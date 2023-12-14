@@ -31,10 +31,3 @@ Practices in [Frontend Mentor Website](https://www.frontendmentor.io/)
 * 4- [Huddle-landing-page-with-alternating-feature-blocks-master](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/junior/huddle-landing-page-with-blocks-master/) **HTML** | **CSS** | **JS** <sup>web components (custom elements)</sup>
 
 **My Frontend Mentor: [@rafaeldgeo](https://www.frontendmentor.io/profile/rafaeldgeo)**
-
-Practices in courses
----
-
-## Kenzie
-* [Projeto Burger King Code](https://projeto-bkb-code-css.rfldiasapp.repl.co/) | **HTML** | **CSS** <sup>flexbox + media queries</sup> | **JS**
-* [Projeto Burger King Code](https://projeto-bkb-code-bootstrap.rfldiasapp.repl.co/) | **HTML** | **Bootstrap 5** | **JS**
