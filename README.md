@@ -18,7 +18,7 @@ Practices in [Frontend Mentor Website](https://www.frontendmentor.io/)
 * 12- [Faq-accordion-card-main](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/newbie/faq-accordion-card-main/) | **HTML** | **CSS** <sup>grid + flexbox + media queries + BEM</sup>
 * 13- [Faq-accordion-main](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/newbie/faq-accordion-main/) | **HTML** | **CSS** <sup>flexbox + media queries + BEM</sup>
 * 14- [Social-proof-section-master](https://social-proof-section-master.rfldiasapp.repl.co/) | **HTML** | **CSS** <sup>grid + flexbox + media queries + BEM</sup>
-* 15- [Ping-coming-soon-page-master](https://ping-coming-soon-page-master.rfldiasapp.repl.co/) | **HTML** | **CSS** <sup>flexbox + BEM</sup> | **JS**
+* 15- [Ping-coming-soon-page-master](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/newbie/ping-coming-soon-page-master/) | **HTML** | **CSS** <sup>flexbox + BEM</sup> | **JS**
 * 16- [Base-apparel-coming-soon-master](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/newbie/base-apparel-coming-soon-master/) | **HTML** | **CSS** <sup>grid + flexbox + media queries + BEM</sup> | **JS**
 * 17- [Interactive-rating-component-main](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/newbie/interactive-rating-component-main/) | **HTML** | **CSS** <sup>flexbox + BEM</sup> | **JS**
 * 18- [Article-preview-component-master](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/newbie/article-preview-component-master/) | **HTML** | **CSS** <sup>grid + flexbox + media queries + BEM</sup> | **JS**
