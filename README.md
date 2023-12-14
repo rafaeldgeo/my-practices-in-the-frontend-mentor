@@ -11,7 +11,7 @@ Practices in [Frontend Mentor Website](https://www.frontendmentor.io/)
 * 5- [Order-summary-component](https://order-summary-component-main.rfldiasapp.repl.co/) | **HTML** | **CSS** <sup>flexbox + media queries + BEM</sup>
 * 6- [Product-preview-card-component](https://product-preview-card-component.rfldiasapp.repl.co/) | **HTML** | **CSS** <sup>flexbox + media queries + BEM</sup>
 * 7- [Stats-preview-card-component-main](https://stats-preview-card-component-main.rfldiasapp.repl.co/) | **HTML** | **CSS** <sup>flexbox + media queries + BEM</sup>
-* 8- [3-column-preview-card-component-main](https://3-column-preview-card-component-main.rfldiasapp.repl.co/) | **HTML** | **CSS** <sup>flexbox + media queries + BEM</sup>
+* 8- [3-column-preview-card-component-main](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/newbie/column-3-preview-card-component-main/) | **HTML** | **CSS** <sup>flexbox + media queries + BEM</sup>
 * 9- [Single-price-grid-component-master](https://single-price-grid-component-master.rfldiasapp.repl.co/) | **HTML** | **CSS** <sup>grid + flexbox + media queries + BEM</sup>
 * 10- [Huddle landing page with single introductory section](https://huddle-landing-page.rfldiasapp.repl.co/) | **HTML** | **CSS** <sup>grid + flexbox + media queries + BEM</sup>
 * 11- [Four-card-feature-section-master](https://four-card-feature-section-master.rfldiasapp.repl.co/) | **HTML** | **CSS** <sup>grid + flexbox + media queries + BEM</sup>
