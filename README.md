@@ -25,7 +25,7 @@ Practices in [Frontend Mentor Website](https://www.frontendmentor.io/)
 * 19- [Intro-component-with-signup-form-master](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/newbie/intro-component-with-signup-form-master/) | **HTML** | **CSS** <sup>grid + flexbox + media queries + BEM</sup> | **JS**
 
 ## Level: junior<sup>2</sup>
-* 1- [Testimonials-grid-section-main](https://testimonials-grid-section-main.rfldiasapp.repl.co/) **HTML** | **CSS** | **JS** <sup>web components (custom elements)</sup>
+* 1- [Testimonials-grid-section-main](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/junior/testimonials-grid-section-main/) **HTML** | **CSS** | **JS** <sup>web components (custom elements)</sup>
 * 2- [Fylo-data-storage-component-master](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/junior/fylo-data-storage-component-master/) **HTML** | **CSS** | **JS** <sup>web components (custom elements)</sup>
 * 3- [Clipboard-landing-page-master](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/junior/clipboard-landing-page-master/) **HTML** | **CSS** | **JS** <sup>web components (custom elements)</sup>
 * 4- [Huddle-landing-page-with-alternating-feature-blocks-master](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/junior/huddle-landing-page-with-blocks-master/) **HTML** | **CSS** | **JS** <sup>web components (custom elements)</sup>
