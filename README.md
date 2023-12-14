@@ -15,7 +15,7 @@ Practices in [Frontend Mentor Website](https://www.frontendmentor.io/)
 * 9- [Single-price-grid-component-master](https://single-price-grid-component-master.rfldiasapp.repl.co/) | **HTML** | **CSS** <sup>grid + flexbox + media queries + BEM</sup>
 * 10- [Huddle landing page with single introductory section](https://huddle-landing-page.rfldiasapp.repl.co/) | **HTML** | **CSS** <sup>grid + flexbox + media queries + BEM</sup>
 * 11- [Four-card-feature-section-master](https://four-card-feature-section-master.rfldiasapp.repl.co/) | **HTML** | **CSS** <sup>grid + flexbox + media queries + BEM</sup>
-* 12- [Faq-accordion-card-main](https://faq-accordion-card-main.rfldiasapp.repl.co/) | **HTML** | **CSS** <sup>grid + flexbox + media queries + BEM</sup>
+* 12- [Faq-accordion-card-main](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/newbie/faq-accordion-card-main/) | **HTML** | **CSS** <sup>grid + flexbox + media queries + BEM</sup>
 * 13- [Faq-accordion-main](https://faq-accordion-main.rfldiasapp.repl.co/) | **HTML** | **CSS** <sup>flexbox + media queries + BEM</sup>
 * 14- [Social-proof-section-master](https://social-proof-section-master.rfldiasapp.repl.co/) | **HTML** | **CSS** <sup>grid + flexbox + media queries + BEM</sup>
 * 15- [Ping-coming-soon-page-master](https://ping-coming-soon-page-master.rfldiasapp.repl.co/) | **HTML** | **CSS** <sup>flexbox + BEM</sup> | **JS**
