@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png"> 
+  <title>Frontend Mentor | Article preview component</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <main>
+    <article class="article">     
+      <div class="article__div-img"> 
+        <img class="article__img-drawer" src="./images/drawers.jpg" alt="" width="660" height="528"> 
+      </div>
+      <div class="article__div-content">
+        <div class="article__title-body">
+          <h1 class="article__h1">Shift the overall look and feel by adding these wonderful
+          touches to furniture in your home</h1>
+          <p class="article__p">Ever been in a room and felt like something was missing? Perhapsit felt slightly bare 
+            and uninviting. I’ve got some simple tips to help you make any room feel complete.</p>
+        </div>
+        <div class="article__div-footer">
+          <div class="article__div-user">
+            <img class="article__img-avatar" src="./images/avatar-michelle.jpg" alt="avatar da michele. Formato do rosto redondo, pele cor branca, cabelos castanhos" style="width: 40px;">
+            <div class="article__div-identification">
+              <span class="article__span article__span--name">Michelle Appleton</span>
+              <span class="article__span article__span--date">28 Jun 2020</span>
+            </div>
+          </div>   
+          <div class="article__div-midias">
+            <span class="article__span-share">share</span>
+            <div class="article__wrap-midias">
+              <a class="article__a-media" href="https://www.facebook.com/" target="_blank" aria-label="go to facebook">
+                <img src="./images/icon-facebook.svg" alt="">
+              </a>
+              <a class="article__a-media" href="https://twitter.com/" target="_blank" aria-label="go to twitter">
+                <img src="./images/icon-twitter.svg" alt="">
+              </a>
+              <a class="article__a-media" href="https://br.pinterest.com/" target="_blank" aria-label="go to pinterest">
+                <img src="./images/icon-pinterest.svg" alt="">
+              </a>
+            </div>
+          </div> 
+          <div class="article__div-share">
+            <button type="button" class="article__btn" aria-label="share">
+              <svg class="article__svg-arrow" xmlns="http://www.w3.org/2000/svg" width="15" height="13">
+                  <path d="M15 6.495L8.766.014V3.88H7.441C3.33 3.88 0 7.039 0 10.936v2.049l.589-.612C2.59 10.294 5.422 9.11 8.39 9.11h.375v3.867L15 6.495z"/>
+              </svg>
+            </button>
+          </div>  
+        </div>
+      </div> 
+    </article>    
+  </main>
+    
+  <footer>
+    <div class="attribution">Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    Coded by <a href="https://www.linkedin.com/in/rafael-dias-de-almeida-devmap/" target="_blank">Rafael Dias de Almeida</a>.
+    </div>
+  </footer>
+</body>
+</html>
