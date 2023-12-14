@@ -3,6 +3,6 @@
 
 ![Design preview for the Order summary card coding challenge](./design/desktop-preview.jpg)
 
-## [My Solution](https://order-summary-component-main.rfldiasapp.repl.co/) 🚀
+## [My Solution](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/newbie/order-summary-component-main/) 🚀
 
 **My Frontend Mentor: [@rafaeldgeo](https://www.frontendmentor.io/profile/rafaeldgeo)**
