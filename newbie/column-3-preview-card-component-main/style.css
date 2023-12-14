@@ -74,7 +74,7 @@ main {
 }
 
 .cards__title--suvs::before {
-  content: url("/images/icon-suvs.svg"); 
+  content: url("./images/icon-suvs.svg"); 
   display: block;
   margin-bottom: 1rem;
 }
