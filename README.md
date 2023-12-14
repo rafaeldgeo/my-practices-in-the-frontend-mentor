@@ -14,7 +14,7 @@ Practices in [Frontend Mentor Website](https://www.frontendmentor.io/)
 * 8- [3-column-preview-card-component-main](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/newbie/column-3-preview-card-component-main/) | **HTML** | **CSS** <sup>flexbox + media queries + BEM</sup>
 * 9- [Single-price-grid-component-master](https://single-price-grid-component-master.rfldiasapp.repl.co/) | **HTML** | **CSS** <sup>grid + flexbox + media queries + BEM</sup>
 * 10- [Huddle landing page with single introductory section](https://huddle-landing-page.rfldiasapp.repl.co/) | **HTML** | **CSS** <sup>grid + flexbox + media queries + BEM</sup>
-* 11- [Four-card-feature-section-master](https://four-card-feature-section-master.rfldiasapp.repl.co/) | **HTML** | **CSS** <sup>grid + flexbox + media queries + BEM</sup>
+* 11- [Four-card-feature-section-master](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/newbie/four-card-feature-section-master/) | **HTML** | **CSS** <sup>grid + flexbox + media queries + BEM</sup>
 * 12- [Faq-accordion-card-main](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/newbie/faq-accordion-card-main/) | **HTML** | **CSS** <sup>grid + flexbox + media queries + BEM</sup>
 * 13- [Faq-accordion-main](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/newbie/faq-accordion-main/) | **HTML** | **CSS** <sup>flexbox + media queries + BEM</sup>
 * 14- [Social-proof-section-master](https://social-proof-section-master.rfldiasapp.repl.co/) | **HTML** | **CSS** <sup>grid + flexbox + media queries + BEM</sup>
