@@ -1,0 +1,209 @@
+@charset "UTF-8";
+
+@import url('https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap');
+
+:root {
+  --very-dark-desaturated-blue: hsl(238, 29%, 16%);
+  --soft-red: hsl(14, 88%, 65%);
+  --white: #fff;
+  --soft-violet: hsl(273, 75%, 66%);
+  --soft-blue: hsl(240, 73%, 65%);
+  --very-dark-grayish-blue: hsl(237, 12%, 33%);
+  --dark-grayish-blue: hsl(240, 6%, 50%);
+  --light-grayish-blue: hsl(240, 5%, 91%);
+  --font: 'Kumbh Sans', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: var(--font);
+  background-color: var(--soft-blue);
+}
+
+main {
+  flex: 1 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 100%;
+  background-image: linear-gradient(var(--soft-violet), var(--soft-blue));
+  background-repeat: no-repeat;
+}
+
+.card {
+  display: grid;
+  grid-template: auto auto / minmax(min-content, 350px);
+  margin: 0.6rem;
+}
+
+.card__image-mobile {
+  align-self: flex-end;
+  display: block;
+  max-width: 75%;
+  height: auto; 
+  margin: 0 auto;
+  position: relative;
+  top: 38%;
+}
+
+.card__image-box {
+  display: none;
+}
+
+.card__body {
+  background-image: url("./images/bg-pattern-mobile.svg");
+  background-repeat: no-repeat;
+  background-size: 80% auto;
+  background-position: top center;
+  padding: 0 min(7vw, 1.8rem) min(10vw, 2.5rem) min(7vw, 1.8rem);
+  border-radius: min(5vw, 20px);
+  box-shadow: 0 18px 17px 0 rgba(0,0,0,0.27);
+  background-color: var(--white); 
+}
+
+.card__image-desktop {
+  display: none;
+}
+
+.card__answer {
+  margin: min(2vw, 0.4rem) 0 min(1vw, 0.2rem) 0;
+  font-size: clamp(0.6rem, 3vw, 0.8rem);
+  line-height: calc(clamp(0.6rem, 3vw, 0.8rem) * 1.5);
+  color: var(--dark-grayish-blue);
+}
+
+.card__title {
+  margin: min(40vw, 9.3rem) 0 min(4vw, 1rem) 0;
+  text-align: center;
+  font-size: clamp(1rem, 7vw, 2rem);
+  color: var(--very-dark-desaturated-blue);
+}
+
+.card__details {
+  display: block;
+  position: relative;
+  padding: min(5vw, 1.3rem) 0; 
+  border-bottom: 1px solid var(--light-grayish-blue);
+}
+
+.card__summary {
+  color: var(--very-dark-grayish-blue);
+  font-size: clamp(0.6rem, 4vw, 0.9rem);
+  cursor: pointer;
+  list-style: none;
+}
+
+.card__summary:after {
+  content: url("./images/icon-arrow-down.svg");
+  position: absolute;
+  right: 0;
+}
+
+.card__details[open] > .card__summary::after {
+  transform: rotate(180deg);
+}
+
+.card__summary:hover {
+  color: var(--soft_red);
+}
+
+.card__details[open] > .card__summary {
+  color: var(--very-dark-desaturated_blue);
+  font-weight: 700;
+}
+
+.card__answer {
+  color: var(--dark-grayish-blue);
+}
+
+@media only screen and (min-width: 900px) {
+
+  .card {
+    grid-template: auto / minmax(min-content, 90px) minmax(min-content, 850px);
+  }
+
+  .card__image-out {
+    z-index: 1;
+  }
+
+  .card__image-box {
+    align-self: flex-end;
+    display: block;
+    height: auto; 
+    margin: 0 auto;
+    padding: 0;
+    position: relative;
+    max-width: 180%;
+    top: 44%;
+    left: 10%;
+  }
+
+  .card__image-mobile {
+    display: none;
+  }
+
+  .card__body {
+    padding: 0;
+    background-image: none;
+    display: grid;
+    grid-template-columns: 400px minmax(min-content, 450px);
+  }
+
+  .card__image-bg-900 {
+    background-image: url(./images/illustration-woman-online-desktop.svg),
+                      url(./images/bg-pattern-desktop.svg);
+    background-repeat: no-repeat, no-repeat;
+    background-position: right center,
+                         right center;
+  }
+  
+  .card__faq {
+    max-width: 100%;
+    padding: min(6vw, 3.8rem) min(6vw, 3.8rem) min(6vw, 3.8rem) min(5vw, 3.8rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    z-index: 0;
+  }
+  
+  .card__title {
+    margin: 0;
+    text-align: start;
+     font-size: clamp(1rem, 3vw, 2rem);
+  }
+
+  .card__details {
+    padding: min(2vw, 1.1rem) 0; 
+    border-bottom: 1px solid var(--light-grayish-blue);
+  }
+
+  .card__summary {
+    font-size: clamp(0.6rem, 2vw, 0.9rem);
+  }
+  
+} 
+
+footer {
+  flex-shrink: 0;
+  margin: 0.6rem 0;
+}
+
+.attribution { 
+  font-size: 11px; 
+  text-align: center; 
+}
+
+.attribution a { color: var(--white);}

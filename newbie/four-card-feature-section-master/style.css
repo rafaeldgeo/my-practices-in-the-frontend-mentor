@@ -1,0 +1,210 @@
+@charset "UTF-8";
+
+/* Regular */
+@font-face {
+  font-family: "Poppins";
+  src: url("./fonts/Poppins-Regular.ttf");
+  src: url("./fonts/Poppins-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Extra Light */
+@font-face {
+  font-family: "Poppins";
+  src: url("./fonts/Poppins-ExtraLight.ttf");
+  src: url("./fonts/Poppins-ExtraLight.ttf") format("truetype");
+  font-weight: 200;
+  font-style: normal;
+}
+
+/* Semi Bold */
+@font-face {
+  font-family: "Poppins";
+  src: url("./fonts/Poppins-SemiBold.ttf");
+  src: url("./fonts/Poppins-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+}
+
+:root {
+  --red: hsl(0, 78%, 62%);
+  --cyan: hsl(180, 62%, 55%);
+  --orange: hsl(34, 97%, 64%);
+  --blue: hsl(212, 86%, 64%);
+  --very-dark-blue: hsl(234, 12%, 34%);
+  --grayish-blue: hsl(229, 6%, 66%);
+  --very-light_gray: hsl(0, 0%, 98%);
+  --font: "Poppins" , sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--very-light-gray);
+  font-family: var(--font);
+  color: var(--very-dark-blue);
+}
+
+main {
+  flex: 1 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 100%;
+}
+
+.section-grid {
+  display: grid;
+  grid-template-areas: 
+  "header"
+  "supervisor"
+  "team"
+  "karma"
+  "calculator"; 
+  justify-content: center;
+  grid-template-columns: minmax(min-content, 330px); 
+  grid-template-rows: auto, repeat(4, 1fr); 
+  grid-gap: 1.2rem 0rem;
+  margin: 0.6rem;
+}
+
+.div-grid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.div-grid--header {
+  grid-area: header;
+  text-align: center;
+}
+
+.div-grid__h1-header {
+  font-size: min(6vw, 1.5rem);
+  font-weight: 200;
+}
+
+.div-grid__p-header {
+  margin: min(3vw, 0.8rem) 0 min(6vw, 1.5rem) 0;
+  font-size: min(4vw, 0.9rem);
+  color: var(--grayish-blue);
+}
+
+.div-grid__span-header {
+  font-weight: 600;
+}
+
+.div-grid--supervisor {
+  grid-area: supervisor;
+}
+
+.div-grid__div-card--supervisor {
+  border-top: 3px solid var(--cyan);
+}
+
+.div-grid--team {
+  grid-area: team;
+}
+
+.div-grid__div-card--team {
+  border-top: 3px solid var(--red);
+}
+
+.div-grid--karma {
+  grid-area: karma;
+}
+
+.div-grid__div-card--karma {
+  border-top: 3px solid var(--orange);
+}
+
+.div-grid--calculator {
+  grid-area: calculator;
+}
+
+.div-grid__div-card--calculator {
+  border-top: 3px solid var(--blue);
+}
+
+.div-grid__div-card {
+  width: 100%;
+  padding: min(6vw, 1.5rem) min(9vw, 2rem); 
+  border-radius: 6px;
+  box-shadow: -1px 9px 12px 1px rgba(78,79,89,0.26);
+  background-color: var(--very-light-gray);
+}
+
+.div-grid__h2-card {
+  font-size: min(6vw, 1rem);
+}
+
+.div-grid__p-card {
+  font-size: min(5vw, 0.8rem);
+  margin: min(2vw, 0.6rem) 0 min(6vw, 1.5rem) 0;
+  color: var(--grayish-blue);
+}
+
+.div-grid__img {
+  max-width: 100%;
+  height: auto;
+  float: right;
+  margin-top: min(2vw, 0.6rem);
+}
+
+@media only screen and (min-width: 500px) {
+
+  .section-grid {
+    grid-template-areas: 
+    "header header header"
+    "supervisor team calculator"
+    "supervisor karma calculator";
+    grid-template-columns: repeat(3, minmax(10%, 360px)); 
+    grid-template-rows: auto, 1fr, 1fr; 
+    grid-gap: 1.2rem 1.2rem;
+  }
+
+  .div-grid__div-header { width: 46%; }
+
+  .div-grid__h1-header { font-size: min(4vw, 2rem); }
+
+  .div-grid__div-card {
+    padding: min(2vw, 1.5rem) min(2vw, 2rem); 
+  }
+
+  .div-grid__p-header {
+    margin: min(2vw, 0.6rem) 0 min(4vw, 1.5rem) 0;
+    font-size: min(3vw, 1rem);
+  }
+
+  .div-grid__h2-card {
+    font-size: min(3vw, 1.2rem);
+  }
+
+  .div-grid__p-card {
+    font-size: min(2vw, 0.9rem);
+  }  
+}
+
+footer {
+  flex-shrink: 0;
+  margin: 0.6rem 0;
+}
+
+.attribution { 
+  font-size: 11px; 
+  text-align: center; 
+}
+
+.attribution a { color: var(--red); }
