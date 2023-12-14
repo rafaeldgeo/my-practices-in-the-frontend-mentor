@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="stylesheet" href="style.css">
+  <script defer src="script.js"></script>
+  <title>Frontend Mentor | Interactive rating component</title>
+</head>
+<body>
+  <main>
+    <section class="card-rate">
+      <div class="card-rate__wrapped-star">
+        <img class="card-rate__img-star" src="./images/icon-star.svg" alt="" width="16" height="15">
+      </div>
+      <h1 class="card-rate__title">How did we do?</h1>
+      <p class="card-rate__statement">Please let us know how we did with your support request. All feedback is appreciated to help us improve our offering!</p>
+      <form action="#">
+        <div class="card-rate__grades">
+          <input class="card-rate__note-input" type="button" name="note" value="1">
+          <input class="card-rate__note-input" type="button" name="note" value="2" >
+          <input class="card-rate__note-input" type="button" name="note" value="3">
+          <input class="card-rate__note-input" type="button" name="note" value="4">
+          <input class="card-rate__note-input" type="button" name="note" value="5">
+        </div>
+        <div class="card-rate__wrapped-btn">
+          <button class="card-rate__submit-btn" type="button">Submit</button>
+        </div>
+      </form>        
+    </section>
+
+    <section class="card-thanks">
+      <img class="card-thanks__img-cellphone"src="./images/illustration-thank-you.svg" alt="" width="162">
+      <span class="card-thanks__note-chosen">You selected out <span class="card-thanks__note"></span> of 5</span>  
+      <h2 class="card-thanks__subtitle">Thank you!</h2>
+      <p class="card-thanks__final-messagem"> We appreciate you taking the time to give a rating. If you ever need more support,   don’t hesitate to get in touch! </p>
+    </section>
+  </main>  
+  
+  <footer>
+    <div class="attribution">Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    Coded by <a href="https://www.linkedin.com/in/rafael-dias-de-almeida-devmap/" target="_blank">Rafael Dias de Almeida</a>.
+    </div>
+  </footer>
+</body>
+</html>
