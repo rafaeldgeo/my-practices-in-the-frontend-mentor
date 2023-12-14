@@ -68,7 +68,7 @@ main {
 } 
 
 .cards__title--sedans::before {
-  content: url("/images/icon-sedans.svg"); 
+  content: url("./images/icon-sedans.svg"); 
   display: block;
   margin-bottom: 1rem;
 }
@@ -80,7 +80,7 @@ main {
 }
 
 .cards__title--luxury::before {
-  content: url("/images/icon-luxury.svg"); 
+  content: url("./images/icon-luxury.svg"); 
   display: block;
   margin-bottom: 1rem;
 }
