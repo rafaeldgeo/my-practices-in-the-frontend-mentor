@@ -1,0 +1,189 @@
+@charset "UTF-8";
+
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700&family=Montserrat:wght@500;700&display=swap');
+
+:root {
+  --dark-cyan: hsl(158, 36%, 37%);
+  --cream: hsl(30, 38%, 92%);
+  --very-dark-blue: hsl(212, 21%, 14%);
+  --dark-grayish-blue: hsl(228, 12%, 48%);
+  --white: hsl(0, 0%, 100%);
+  --font-main: 'Montserrat', sans-serif;
+  --font-secondary: 'Fraunces', serif;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--cream);
+}
+
+main {
+  flex: 1 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  flex: 0 1 345px;
+  display: flex;
+  flex-direction: column;
+  margin: 0.6rem;
+  border-radius: 10px;
+  background-color: var(--white);
+}
+
+.card__image-chanel {
+  border-radius: 10px 10px 0 0;
+  max-width: 100%;
+  height: 100%;
+}
+
+.card__body {
+  padding: min(6vw, 1.4rem);
+  border-radius: 0 0 10px 10px;
+  background-color: var(--white);
+}
+
+.card__title {
+  font-family: var(--font-main);
+  font-size: clamp(0.4rem, 6vw, 0.9rem);
+  font-weight: 500;
+  letter-spacing: 0.3rem;
+  color: var(--dark-grayish-blue);
+}
+
+.card__sub-title {
+  margin-top: min(3vw, 0.6rem);
+  font-family: var(--font-secondary);
+  font-size: clamp(0.8rem, 9vw, 2rem);
+  line-height: calc(clamp(0.8rem, 9vw, 2rem) * 0.4rem); 
+  font-weight: 700;
+}
+
+.card__description {
+  margin: min(4vw, 1.1rem) 0;
+  font-family: var(--font-main);
+  font-size: clamp(0.4rem, 4vw, 0.9rem);
+  line-height: calc(clamp(0.4rem, 4vw, 0.9rem) * 1.5);
+  font-weight: 500;
+  color: var(--dark-grayish-blue);
+}
+
+.card__prices {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap:0 12px;
+}
+
+.card__new-price {
+  font-family: var(--font-secondary);
+  font-size: clamp(0.8rem, 8vw, 1.9rem);
+  font-weight: 700;
+  color: var(--dark-cyan);
+}
+
+.card__old-price {
+  font-family: var(--font-main);
+  font-size: clamp(0.5rem, 4vw, 0.9rem);
+  text-decoration-line: line-through;
+  color: var(--dark-grayish-blue);
+}
+
+.card__btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0 10px;
+  flex-wrap: wrap;
+  width: 100%;
+  padding: min(4vw, 1.1rem); 
+  margin: min(4vw, 1rem) 0;
+  border-style: none;
+  border-radius: 8px;
+  font-family: var(--font-main);
+  font-weight: 700;
+  background-color: var(--dark-cyan);
+  color: var(--white);
+  cursor: pointer;
+}
+
+@media only screen and (min-width: 448px) {
+
+  .card {
+    flex: 0 1 480px;
+    flex-direction: row;
+  }
+
+  .card__image-chanel {
+    object-fit: cover;
+    max-width: 100%;
+    height: 100%; 
+    border-radius: 10px 0 0 10px;
+  }
+
+  .card__container-image {
+    flex: 0 0 240px;
+  }
+  
+  .card__body {
+    flex: 0 1 240px;
+    padding: min(4vw, 1.1rem); 
+    border-radius: 0px 10px 10px 0px;
+  }
+
+  .card__title {
+    font-size: clamp(0.1rem, 3vw, 0.6rem);
+  }
+
+  .card__sub-title {
+    font-size: clamp(0.5rem, 6vw, 1.7rem);
+    line-height: calc(clamp(0.5rem, 6vw, 1.7rem) * 1); 
+    margin-top: min(2vw, 0.6rem); 
+  }
+
+  .card__description {
+    margin: min(6vw, 1.1rem) 0;
+    font-size: clamp(0.4rem, 4vw, 0.8rem);
+    line-height: calc(clamp(0.6rem, 4vw, 0.8rem) * 1.5);
+    color: var(--dark-grayish-blue);
+  }
+
+  .card__new-price {
+    font-size: clamp(0.8rem, 6vw, 1.9rem);
+  }
+  
+  .card__old-price {
+    font-size: clamp(0.6rem, 6vw, 0.8rem);
+  }
+
+  .card__btn {
+    padding: min(8vw, 0.8rem);
+    margin: min(8vw, 0.8rem) 0;
+  }
+} 
+
+footer {
+  flex-shrink: 0;
+  margin: 0.6rem 0;
+}
+
+.attribution { 
+  font-size: 11px; 
+  text-align: center; 
+}
+
+.attribution a { color: var(--dark-cyan); }
