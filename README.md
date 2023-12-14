@@ -10,7 +10,7 @@ Practices in [Frontend Mentor Website](https://www.frontendmentor.io/)
 * 4- [Profile-card-component-main](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/newbie/profile-card-component-main/) | **HTML** | **CSS** <sup>flexbox + BEM</sup>
 * 5- [Order-summary-component](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/newbie/order-summary-component-main/) | **HTML** | **CSS** <sup>flexbox + media queries + BEM</sup>
 * 6- [Product-preview-card-component](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/newbie/product-preview-card-component/) | **HTML** | **CSS** <sup>flexbox + media queries + BEM</sup>
-* 7- [Stats-preview-card-component-main](https://stats-preview-card-component-main.rfldiasapp.repl.co/) | **HTML** | **CSS** <sup>flexbox + media queries + BEM</sup>
+* 7- [Stats-preview-card-component-main](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/newbie/stats-preview-card-component-main/) | **HTML** | **CSS** <sup>flexbox + media queries + BEM</sup>
 * 8- [3-column-preview-card-component-main](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/newbie/column-3-preview-card-component-main/) | **HTML** | **CSS** <sup>flexbox + media queries + BEM</sup>
 * 9- [Single-price-grid-component-master](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/newbie/single-price-grid-component-master/) | **HTML** | **CSS** <sup>grid + flexbox + media queries + BEM</sup>
 * 10- [Huddle landing page with single introductory section](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/newbie/huddle-landing-page/) | **HTML** | **CSS** <sup>grid + flexbox + media queries + BEM</sup>
