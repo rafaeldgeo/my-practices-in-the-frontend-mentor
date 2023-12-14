@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <title>Frontend Mentor | Fylo data storage component</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="component.js"></script>
+</head>
+<body>
+  <main>
+    <div class="container">
+      <div class="info">
+        <div class="info__logo-wrapper">
+          <h1><img class="info__img-logo" src="./images/logo.svg" alt="logo Fylo"></h1>
+        </div>
+        <div class="info__icons">
+          <div class="info__icon-wrapper">
+            <img class="info__img-icon info__img-icon__document" src="./images/icon-document.svg" alt="" width="20" height="24">
+          </div>
+          <div class="info__icon-wrapper">
+            <img class="info__img-icon info__img-icon__folder" src="./images/icon-folder.svg" alt="" width="24" height="20">
+          </div>
+          <div class="info__icon-wrapper">
+            <img class="info__img-icon info__img-icon__upload" src="./images/icon-upload.svg" alt="" width="24" height="16">
+          </div>
+        </div> 
+      </div>
+      <div class="storage">
+        <storage-left data-storage="185"></storage-left>
+        <storage-bar data-used="815" data-capacity="1000"></storage-bar>        
+      </div>
+    </div>
+  </main>
+  
+  <footer class="footer">
+    <div class="footer__attribution">
+    Challenge by <a class="footer__link" href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    Coded by <a class="footer__link" href="https://www.linkedin.com/in/rafael-dias-de-almeida-devmap/" target="_blank">Rafael Dias de Almeida</a>.
+    </div>
+  </footer>
+</body>
+</html>
