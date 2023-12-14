@@ -5,7 +5,7 @@ Practices in [Frontend Mentor Website](https://www.frontendmentor.io/)
 ---
 ## Level: newbie<sup>1</sup>
 * 1- [QR-code-component](https://newbie-qr-code-component.vercel.app/) **HTML** | **CSS** <sup>flexbox</sup>
-* 2- [NFT-preview-card-component](https://newbie-nft-preview-card-component.vercel.app/) | **HTML** | **CSS** <sup>flexbox</sup>
+* 2- [NFT-preview-card-component](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/newbie/nft-preview-card-component/) | **HTML** | **CSS** <sup>flexbox</sup>
 * 3- [Results-summary-component-main](https://newbie-results-summary-component-main.vercel.app/) | **HTML** | **CSS** <sup>flexbox + media queries</sup>
 * 4- [Profile-card-component-main](https://profile-card-component-main.rfldiasapp.repl.co/) | **HTML** | **CSS** <sup>flexbox + BEM</sup>
 * 5- [Order-summary-component](https://order-summary-component-main.rfldiasapp.repl.co/) | **HTML** | **CSS** <sup>flexbox + media queries + BEM</sup>
