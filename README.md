@@ -4,7 +4,7 @@ In this repository are some practices to improve my front-end skills.
 Practices in [Frontend Mentor Website](https://www.frontendmentor.io/)
 ---
 ## Level: newbie<sup>1</sup>
-* 1- [QR-code-component](https://newbie-qr-code-component.vercel.app/) **HTML** | **CSS** <sup>flexbox</sup>
+* 1- [QR-code-component](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/newbie/qr-code-component/) **HTML** | **CSS** <sup>flexbox</sup>
 * 2- [NFT-preview-card-component](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/newbie/nft-preview-card-component/) | **HTML** | **CSS** <sup>flexbox</sup>
 * 3- [Results-summary-component-main](https://newbie-results-summary-component-main.vercel.app/) | **HTML** | **CSS** <sup>flexbox + media queries</sup>
 * 4- [Profile-card-component-main](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/newbie/profile-card-component-main/) | **HTML** | **CSS** <sup>flexbox + BEM</sup>
