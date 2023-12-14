@@ -3,5 +3,5 @@
 
 ![Design preview for the Interactive rating component coding challenge](./design/desktop-preview.jpg)
 
-## [My Solution](https://interactive-rating-component-main.rfldiasapp.repl.co/) 🚀
+## [My Solution](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/newbie/interactive-rating-component-main/) 🚀
 **My Frontend Mentor: [@rafaeldgeo](https://www.frontendmentor.io/profile/rafaeldgeo)**
