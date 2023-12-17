@@ -16,8 +16,10 @@
       
         :host {
           display: inline-flex;
+          justify-content: center;
           align-items: center;
-          column-gap: 1rem;
+          flex-wrap: wrap;
+          gap: 0.2rem 1rem;
         }
         
         .switch-toogle__wrapper {
@@ -85,33 +87,59 @@
 
   </header>
   <main class="main">
-
-
-  Basic
-  &dollar;19.99
-  &dollar;199.99
-  500 GB Storage
-  2 Users Allowed
-  Send up to 3 GB
-  Learn More
-
-  Professional
-  &dollar;24.99
-  &dollar;249.99
-  1 TB Storage
-  5 Users Allowed
-  Send up to 10 GB
-  Learn More
-
-  Master
-  &dollar;39.99
-  &dollar;399.99
-  2 TB Storage
-  10 Users Allowed
-  Send up to 20 GB
-  Learn More
-  
-
+    <div class="card__container">
+      <div class="card card--start">
+        <div class="card__header">
+          <h2 class="card__title">Basic</h2>
+          <span class="card__price"><span class="card__dollar">&dollar;</span>199.99</span>
+          <!-- &dollar;199.99 -->
+        </div>
+        <div class="card__body">
+          <ul class="card__list">
+            <li class="card__item card__item--start">500 GB Storage</li>
+            <li class="card__item card__item--center">2 Users Allowed</li>
+            <li class="card__item card__item--end">Send up to 3 GB</li>
+          </ul>        
+        </div>
+        <div class="card__footer">
+          <button class="card__btn" type="button">Learn More</button>
+        </div>  
+      </div>
+      <div class="card card--emphasis">
+        <div class="card__header">
+          <h2 class="card__title">Professional</h2>
+          <span class="card__price"><span class="card__dollar">&dollar;</span>224.99</span>
+          <!-- &dollar;249.99 -->
+        </div>
+        <div class="card__body">
+          <ul class="card__list">
+            <li class="card__item card__item--start">1 TB Storage</li>
+            <li class="card__item card__item--center">5 Users Allowed</li>
+            <li class="card__item card__item--end">Send up to 10 GB</li>
+          </ul>        
+        </div>
+        <div class="card__footer">
+          <button class="card__btn card__btn--emphasis" type="button">Learn More</button>
+        </div>  
+      </div>
+      <div class="card card--end">
+        <div class="card__header">
+          <h2 class="card__title">Master</h2>
+          <span class="card__price"><span class="card__dollar">&dollar;</span>339.99</span>
+          <!-- &dollar;399.99 -->
+        </div>
+        <div class="card__body">
+          <ul class="card__list">
+            <li class="card__item card__item--start">2 TB Storage</li>
+            <li class="card__item card__item--center">10 Users Allowed</li>
+            <li class="card__item card__item--end">Send up to 20 GB</li>
+          </ul>        
+        </div>
+        <div class="card__footer">
+          <button class="card__btn" type="button">Learn More</button>
+        </div>  
+      </div>
+    </div>
   </main>
   <footer class="footer">
     <div class="footer__attribution"> 
