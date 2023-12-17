@@ -5,16 +5,87 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
   <title>Frontend Mentor | [Challenge Name Here]</title>
-  <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="components.js"></script>
 </head>
 <body>
+  <header class="header">
+    <h1 class="header_title">Our Pricing</h1>
+    <template id="toggle-switch-element-template">
+      <style>
+      
+        :host {
+          display: inline-flex;
+          align-items: center;
+          column-gap: 1rem;
+        }
+        
+        .switch-toogle__wrapper {
+          position: relative;
+          display: inline-block;
+          width: 3.75rem;
+          height: 2.12rem;
+        }
 
-  Our Pricing
-  Annually
-  Monthly
+        .switch-toggle__input {
+          opacity: 0;
+          width: 0;
+          height: 0;
+        }
+
+        .switch-toggle__label {
+          color: var(--light-grayish-blue);
+        }
+
+        .switch-toggle__slider {
+          position: absolute;
+          cursor: pointer;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          border-radius: 2rem;
+          background-image: linear-gradient(90deg, var(--linear-gradient-start), var(--linear-gradient-end));
+          transform: .4s;
+        }
+
+        .switch-toggle__slider:before {
+          position: absolute;
+          content: "";
+          height: 1.62rem;
+          width: 1.62rem;
+          left: 0.25rem;
+          bottom: 0.25rem;
+          border-radius: 50%;
+          background-color: white;
+          transition: .4s;
+        }
+
+        .switch-toggle__input:checked + .switch-toggle__slider {
+          opacity: 0.5;
+        }
+
+        .switch-toggle__input:focus + .switch-toggle__slider {
+          outline: 2px solid var(--outline-color);
+        }
+
+        .switch-toggle__input:checked + .switch-toggle__slider:before {
+          transform: translateX(1.62rem);
+        }
+
+      </style>
+      <label class="switch-toggle__label" for="inputcheckbox">Annually</label>
+      <label class="switch-toogle__wrapper">  
+        <input class="switch-toggle__input" type="checkbox" id="inputcheckbox">
+        <span class="switch-toggle__slider"></span>
+      </label> 
+      <label class="switch-toggle__label" for="inputcheckbox">Monthly</label>
+    </template>
+    <toggle-switch></toggle-switch>
+
+  </header>
+  <main class="main">
+
 
   Basic
   &dollar;19.99
@@ -40,9 +111,13 @@
   Send up to 20 GB
   Learn More
   
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
-  </div>
+
+  </main>
+  <footer class="footer">
+    <div class="footer__attribution"> 
+      Challenge by <a class="footer__link-author" href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+      Coded by <a class="footer__link-author" href="https://www.linkedin.com/in/rafael-dias-de-almeida-devmap/" target="_blank">Rafael Dias de Almeida</a>.
+    </div>
+  </footer>
 </body>
 </html>
