@@ -18,15 +18,15 @@
           display: inline-flex;
           justify-content: center;
           align-items: center;
-          flex-wrap: wrap;
+          flex-wrap: wrap; 
           gap: 0.2rem 1rem;
         }
         
         .switch-toogle__wrapper {
           position: relative;
           display: inline-block;
-          width: 3.75rem;
-          height: 2.12rem;
+          width: min(15vw, 3.75rem);
+          height: min(8.4vw, 2.12rem);
         }
 
         .switch-toggle__input {
@@ -36,6 +36,7 @@
         }
 
         .switch-toggle__label {
+          font-size: clamp(0.6rem, 4.2vw, 1rem);
           color: var(--light-grayish-blue);
         }
 
@@ -54,10 +55,10 @@
         .switch-toggle__slider:before {
           position: absolute;
           content: "";
-          height: 1.62rem;
-          width: 1.62rem;
-          left: 0.25rem;
-          bottom: 0.25rem;
+          width: min(6.1vw, 1.62rem);
+          height: min(6.1vw, 1.62rem);
+          left: min(1.1vw, 0.25rem);
+          bottom: min(1.1vw, 0.25rem);
           border-radius: 50%;
           background-color: white;
           transition: .4s;
