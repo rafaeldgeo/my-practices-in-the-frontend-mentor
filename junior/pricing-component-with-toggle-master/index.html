@@ -6,7 +6,8 @@
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
   <title>Frontend Mentor | [Challenge Name Here]</title>
   <link rel="stylesheet" href="style.css">
-  <script defer src="components.js"></script>
+  <script defer src="toogle-switch-components.js"></script>
+  <script defer src="toogle-values.js"></script>
 </head>
 <body>
   <header class="header">
@@ -84,7 +85,7 @@
       </label> 
       <label class="switch-toggle__label" for="inputcheckbox">Monthly</label>
     </template>
-    <toggle-switch></toggle-switch>
+    <toggle-switch class="toogle-switch"></toggle-switch>
 
   </header>
   <main class="main">
@@ -92,8 +93,10 @@
       <div class="card card--start">
         <div class="card__header">
           <h2 class="card__title">Basic</h2>
-          <span class="card__price"><span class="card__dollar">&dollar;</span>199.99</span>
-          <!-- &dollar;199.99 -->
+          <div class="card__price">
+            <span class="card__dollar">&dollar;</span><span class="card__value"></span>
+          </div>
+          
         </div>
         <div class="card__body">
           <ul class="card__list">
@@ -109,8 +112,9 @@
       <div class="card card--emphasis">
         <div class="card__header">
           <h2 class="card__title">Professional</h2>
-          <span class="card__price"><span class="card__dollar">&dollar;</span>224.99</span>
-          <!-- &dollar;249.99 -->
+          <div class="card__price">
+            <span class="card__dollar">&dollar;</span><span class="card__value"></span>
+          </div>
         </div>
         <div class="card__body">
           <ul class="card__list">
@@ -126,8 +130,9 @@
       <div class="card card--end">
         <div class="card__header">
           <h2 class="card__title">Master</h2>
-          <span class="card__price"><span class="card__dollar">&dollar;</span>339.99</span>
-          <!-- &dollar;399.99 -->
+          <div class="card__price">
+            <span class="card__dollar">&dollar;</span><span class="card__value"></span>
+          </div>
         </div>
         <div class="card__body">
           <ul class="card__list">

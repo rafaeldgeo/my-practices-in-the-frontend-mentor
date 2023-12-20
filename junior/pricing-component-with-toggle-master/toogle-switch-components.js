@@ -12,6 +12,7 @@ class ToggleSwitch extends HTMLElement {
         const clonedContent = templateContent.cloneNode(true);
         shadowRoot.appendChild(clonedContent);
     }
+
 }
 
 customElements.define("toggle-switch", ToggleSwitch);

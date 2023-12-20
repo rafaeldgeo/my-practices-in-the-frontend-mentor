@@ -102,9 +102,11 @@ body {
 .card__price {
     display: flex;
     align-items: center;
-    column-gap: 0.3rem; /*  */
-    font-size: clamp(0.8rem, 14.9vw, 3.5rem); /*  */
+    column-gap: 0.3rem;
     color: var(--dark-grayish-blue);
+}
+
+.card__value { font-size: clamp(0.8rem, 14.9vw, 3.5rem); 
 }
 
 .card__dollar { font-size: clamp(0.2rem, 7.68vw, 1.8rem); }
