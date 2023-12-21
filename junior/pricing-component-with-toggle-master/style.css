@@ -230,9 +230,7 @@ body {
         font-size: clamp(0.6rem, 4.2vw, 1rem); 
     }
     
-    .card__value {
-        font-size: clamp(1rem, 6.1vw, 4.5rem);
-    }
+    .card__value { font-size: clamp(1rem, 6.1vw, 4.5rem);}
     
     .card__dollar { font-size: clamp(1rem, 3.4vw, 2.5rem); }
     
