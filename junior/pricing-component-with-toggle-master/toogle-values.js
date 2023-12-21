@@ -13,7 +13,7 @@ let setValues = function(planPrices) {
     }
 }
 
-setValues(annuallyPrices);
+setValues(monthlyPrices);
 
 inputCheckbox.addEventListener("click", ()=> {
     if (inputCheckbox.checked === false) {

@@ -30,8 +30,7 @@ body {
     flex-direction: column;
     align-items: center;
     font-family: var(--font);
-    background-color: var(--very-light-grayish-blue);
-    background: url(./images/bg-top.svg);
+    background: url(./images/bg-top.svg), var(--very-light-grayish-blue);
     background-repeat: no-repeat;
     background-position: 
     top -3% right -210%;
@@ -192,7 +191,7 @@ body {
     }
 
     body {
-        background: url(./images/bg-top.svg), url(./images/bg-bottom.svg);
+        background: url(./images/bg-top.svg), url(./images/bg-bottom.svg), var(--very-light-grayish-blue);
         background-repeat: no-repeat, no-repeat;
         background-position: 
         top right, 
