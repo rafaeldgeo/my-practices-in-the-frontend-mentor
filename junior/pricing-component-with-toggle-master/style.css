@@ -184,9 +184,7 @@ body {
 
 @media only screen and (min-width: 376px) {
 
-    html, body {
-        height: 100%;
-    }
+    html, body { height: 100%; }
 
     body {
         background: url(./images/bg-top.svg), url(./images/bg-bottom.svg), var(--very-light-grayish-blue);
@@ -196,9 +194,7 @@ body {
         bottom left;
     } 
         
-    .header_title {
-        font-size: clamp(1.2rem, 8.5vw, 2rem);
-    }
+    .header_title { font-size: clamp(1.2rem, 8.5vw, 2rem); }
     
     .card__container {
         flex-direction: row;
@@ -222,25 +218,17 @@ body {
         box-shadow: 10px 5px 12px 5px var(--shadow-color); 
     }
     
-    .card--emphasis {
-        padding: min(5.4vw, 4rem) min(2.7vw, 2rem);
-    }
+    .card--emphasis { padding: min(5.4vw, 4rem) min(2.7vw, 2rem); }
         
-    .card__title { 
-        font-size: clamp(0.6rem, 4.2vw, 1rem); 
-    }
+    .card__title { font-size: clamp(0.6rem, 4.2vw, 1rem); }
     
     .card__value { font-size: clamp(1rem, 6.1vw, 4.5rem);}
     
     .card__dollar { font-size: clamp(1rem, 3.4vw, 2.5rem); }
     
-    .card__list {
-        font-size: clamp(0.4rem, 4vw, 0.95em);
-    }
+    .card__list { font-size: clamp(0.4rem, 4vw, 0.95em); }
     
-    .card__item {
-        padding: min(1.5vw, 1.1rem) 0;
-    }
+    .card__item {padding: min(1.5vw, 1.1rem) 0;}
     
 }
 
