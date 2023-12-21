@@ -139,9 +139,7 @@ body {
 .card---emphasis 
 :is(.card__item--start, 
 .card__item--center, 
-.card__item--end) {
-    border-block-color: var(--light-grayish-blue);
-}
+.card__item--end) { border-block-color: var(--light-grayish-blue); }
 
 .card__footer {
     display: flex;
