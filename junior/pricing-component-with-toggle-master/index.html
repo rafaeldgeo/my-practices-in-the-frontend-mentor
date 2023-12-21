@@ -61,12 +61,13 @@
           left: min(1.1vw, 0.25rem);
           bottom: min(1.1vw, 0.25rem);
           border-radius: 50%;
-          background-color: white;
+          background-color: var(--white);
           transition: .4s;
         }
 
         .switch-toggle__input:hover + .switch-toggle__slider {
-          opacity: 0.5;
+          background-image: none;
+          background-color: var(--linear-gradient-start);
         }
 
         .switch-toggle__input:focus + .switch-toggle__slider {
@@ -74,7 +75,7 @@
         }
 
         .switch-toggle__input:checked + .switch-toggle__slider:before {
-          transform: translateX(1.62rem);
+          transform: translateX(100%);
         }
 
       </style>
