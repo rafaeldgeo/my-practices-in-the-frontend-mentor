@@ -29,5 +29,6 @@ Practices in [Frontend Mentor Website](https://www.frontendmentor.io/)
 * 2- [Fylo-data-storage-component-master](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/junior/fylo-data-storage-component-master/) **HTML** | **CSS** | **JS** <sup>web components (custom elements)</sup>
 * 3- [Clipboard-landing-page-master](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/junior/clipboard-landing-page-master/) **HTML** | **CSS** | **JS** <sup>web components (custom elements)</sup>
 * 4- [Huddle-landing-page-with-alternating-feature-blocks-master](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/junior/huddle-landing-page-with-blocks-master/) **HTML** | **CSS** | **JS** <sup>web components (custom elements)</sup>
+* 5- [Pricing-component-with-toggle-master](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/junior/pricing-component-with-toggle-master//) **HTML** | **CSS** | **JS** <sup>web components (template)</sup>
 
 **My Frontend Mentor: [@rafaeldgeo](https://www.frontendmentor.io/profile/rafaeldgeo)**
