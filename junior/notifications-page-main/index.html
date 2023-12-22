@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+  <title>Frontend Mentor | Notifications page</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="main">
+    <h1 class="sr-only">Notification page</h1>
+    <div class="notification">
+      <div class="notification__header">
+        <div class="notification__alert">
+          <h2 class="notification__title">Notifications</h2>
+          <span class="notification__badge">3</span>
+        </div>
+        <button class="notification__btn-mark-all-read" type="button">Mark all as read</button>
+      </div>
+      <div class="notification__body">
+        <template id="notification-item-element-template">
+          <style></style>
+          <div class="notification__personal-img-wrapper">
+            <img class="notification__personal-img" src="./assets/images/avatar-angela-gray.webp" alt="" width="90" height="90">
+          </div>
+          <div class="notificaion__content">
+            <span class="notification__name-user">Mark Webber</span>
+            <span class="notification__action">reacted to your recent post</span>
+            <span class="notification__action-link">My first tournament today!</span>
+            <span class="notification__alert-circle"></span>
+            <span class="notification__action-time">1m ago</span>
+          </div>
+        </template>
+
+      </div>
+    </div>
+  </main>
+  <!-- Angela Gray followed you
+  5m ago
+
+  Jacob Thompson has joined your group Chess Club
+  1 day ago
+
+  Rizky Hasanuddin sent you a private message
+  5 days ago
+  Hello, thanks for setting up the Chess Club. I've been a member for a few weeks now and 
+  I'm already having lots of fun and improving my game.
+
+  Kimberly Smith commented on your picture
+  1 week ago
+
+  Nathan Peterson reacted to your recent post 5 end-game strategies to increase your win rate
+  2 weeks ago
+
+  Anna Kim left the group Chess Club
+  2 weeks ago -->
+  
+  <footer class="footer">
+    <div class="footer__attribution"> 
+      Challenge by <a class="footer__link-author" href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+      Coded by <a class="footer__link-author" href="https://www.linkedin.com/in/rafael-dias-de-almeida-devmap/" target="_blank">Rafael Dias de Almeida</a>.
+    </div>
+  </footer>
+</body>
+</html>
