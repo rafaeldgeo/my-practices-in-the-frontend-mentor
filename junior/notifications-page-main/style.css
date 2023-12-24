@@ -37,13 +37,13 @@
 html, body { 
     width: 100%; 
     height: 100%; 
+    background-color: var(--white);
 }
 
 body {
     display: flex;
     flex-direction: column;
     font-family: var(--font);
-    background-color: var(--white);
 }
 
 .sr-only {
@@ -128,7 +128,7 @@ body {
 
 @media only screen and (min-width: 576px) {
 
-    body { background-color: var(--very-light-grayish-blue); }
+    html, body { background-color: var(--very-light-grayish-blue); }
 
     .notification {
         padding: min(4vw, 1.8rem);
