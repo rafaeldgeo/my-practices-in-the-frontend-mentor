@@ -75,7 +75,7 @@ body {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    row-gap: 1rem;
+    row-gap: 0.6rem;
     align-items: center;
     margin-block-start: 1rem;
     margin-block-end: 1rem;
