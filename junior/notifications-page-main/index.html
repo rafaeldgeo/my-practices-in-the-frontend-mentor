@@ -30,100 +30,151 @@
               box-sizing: border-box;
             }
 
-            :host {
+            :host { font-size: clamp(0.8rem, 2.7vw, 1rem); }
+
+            .notification-item__wrapper {
               display: inline-flex;
               gap: 0.9rem;
-              font-size: calc(0.8rem, 2.7vw, 1rem);
+              min-inline-size: 100%;
+              padding: 1rem;
+              border-radius: 0.5rem;
             }
 
-            .notification-item__user-img {
+            .notification-item__your-picture-wrapper, .notification-item__user-img-wrapper { flex: 0 0 auto; }
+
+            .notification-item__user-img, .notification-item__picture-img {
               display: block;
               width: min(7.8vw, 2.8rem);
               height: auto;
             }
 
+            .notification-item__picture-img {
+              border: 3px solid transparent;
+              border-radius: 10px;
+              cursor: pointer;
+            }
+
+            .notification-item__picture-img:hover, :focus {
+              border-color: var(--light-grayish-blue-2);
+            }
+
+            .notification-item__content { flex: 1 1 auto; }
+
             .notification-item__user-name,
-            .notification-item__action-post,
-            .notification-item__action-group {
+            .notification-item__link {
               font-weight: 600;
               text-decoration: none;
             }
            
             .notification-item__user-name { color: var(--very-dark-blue); }
 
-            .notification-item__action-time { color: var(--grayish-blue); }
+            .notification-item__time { color: var(--grayish-blue); }
 
             .notification-item__type-notification, .notification-item__privative-message { color: var(--dark-grayish-blue); }
 
-            .notification-item__action-post { color: var(--dark-grayish-blue); }
+            .notification-item__link--post { color: var(--dark-grayish-blue); }
             
-            .notification-item__action-group { color: var(--blue); }
+            .notification-item__link--group { color: var(--blue); }
 
-            :is(.notification-item__user-name, .notification-item__action-post):hover, :focus{
+            :is(.notification-item__user-name, .notification-item__link--post):hover, :focus{
               color: var(--blue);
             }
 
             .notification-item__privative-message {
+              font-weight: 500;
               border-radius: 0.3rem;
-              border-block: 1px solid var(--grayish-blue);
-            }
-
-            .notification-item__privative-message {
-              margin-block-start: 10px;
+              border: 1px solid var(--light-grayish-blue-1);
+              padding: 0.6rem;
+              margin-block-start: 0.6rem;
+              cursor: pointer;
             }
 
             .notification-item__privative-message:hover {
               background-color: var(--light-grayish-blue-1);
             }
 
-            :host([new-notification]) .notificaion-item__paragraph::after  {
+            :host([new-notification]) .notification-item__paragraph::after  {
               content: "";
               display: inline-block;
               border-radius: 50%;
-              width: 0.6rem;
-              height: 0.6rem;
+              width: 0.5rem;
+              height: 0.5rem;
               margin-inline-start: 0.2rem;
               background-color: var(--red);
             }
 
-            :host([new-notification]) {
+            :host([new-notification]) .notification-item__wrapper {
               background-color: var(--very-light-grayish-blue);
             }
 
           </style>
-          <div class="notification-item__user-img-wrapper"></div>
-          <div class="notificaion-item__content">
-            <p class="notificaion-item__paragraph">
-              <a class="notification-item__user-name" href="#" target="_blank"><slot name="user-name"></slot></a>
-              <span class="notification-item__type-notification"></span>
-              <a class="notification-item__action-post" href="#" target="_blank"><slot name="action-link-post"></slot></a>
-              <a class="notification-item__action-group" href="#" target="_blank"><slot name="action-link-group"></slot></a>
-            </p>
-            <span class="notification-item__action-time"><slot name="action-time"></slot></span>
-            <!-- <p class="notification-item__privative-message"></p> -->
-          </div> 
+          <div class="notification-item__wrapper">
+            <div class="notification-item__user-img-wrapper"></div>
+            <div class="notification-item__content">
+              <p class="notification-item__paragraph">
+                <a class="notification-item__user-name" href="#" target="_blank"><slot name="user-name"></slot></a>
+                <span class="notification-item__type-notification"></span>
+                <a class="notification-item__link" href="#" target="_blank"><slot name="link"></slot></a>
+              </p>
+              <span class="notification-item__time"><slot name="time"></slot></span>
+              <div class="notification-item__message-wrapper"></div>
+            </div>
+            <div class="notification-item__your-picture-wrapper"></div>
+            
+          </div>
+          
         </template>
 
         <ul class="notification-item__list">
           <li class="notification-item__list-item">
-            <notification-item data-image="./assets/images/avatar-mark-webber.webp" data-type-notification="reacted" new-notification>
+            <notification-item data-img-user="./assets/images/avatar-mark-webber.webp" data-type-notification="reacted" new-notification>
               <span slot="user-name">Mark Webber</span>
-              <span slot="action-link-post">My first tournament today!</span>
-              <span slot="action-time">1m ago</span>
+              <span slot="link">My first tournament today!</span>
+              <span slot="time">1m ago</span>
              </notification-item>
           </li>
           <li class="notification-item__list-item">
+            <notification-item data-img-user="./assets/images/avatar-angela-gray.webp" data-type-notification="followed" new-notification>
+              <span slot="user-name">Angela Gray</span>
+              <span slot="time">5m ago</span>
+             </notification-item>
           </li>
-
+          <li class="notification-item__list-item">
+            <notification-item data-img-user="./assets/images/avatar-jacob-thompson.webp" data-type-notification="joined-group" new-notification>
+              <span slot="user-name">Jacob Thompson</span>
+              <span slot="link">Chess Club</span>
+              <span slot="time">1 day ago</span>
+             </notification-item>
           </li>
-          
-          <li class="notification-item__list-item"></li>
-          <li class="notification-item__list-item"></li>
-          <li class="notification-item__list-item"></li>
-          <li class="notification-item__list-item"></li>
-          <li class="notification-item__list-item"></li>      
-        
-          
+          <li class="notification-item__list-item">
+            <notification-item data-img-user="./assets/images/avatar-rizky-hasanuddin.webp" data-type-notification="sent-message">
+              <span slot="user-name">Rizky Hasanuddin</span>
+              <span slot="time">5 day ago</span>
+              <span slot="privative-message">Hello, thanks for setting up the Chess Club. I've been a member for a few weeks now and 
+                I'm already having lots of fun and improving my game.</span>
+             </notification-item>
+          </li>
+          <li class="notification-item__list-item">
+            <notification-item data-img-user="./assets/images/avatar-kimberly-smith.webp" data-type-notification="commented" data-img-picture="./assets/images/image-chess.webp">
+              <span slot="user-name">Kimberly Smith</span>
+              <span slot="time">1 week ago</span>
+             </notification-item>
+          </li>
+          <li class="notification-item__list-item">
+            <notification-item data-img-user="./assets/images/avatar-nathan-peterson.webp" data-type-notification="reacted">
+              <span slot="user-name">Nathan Peterson</span>
+              <span slot="link">5 end-game strategies to increase your win rate</span>
+              <span slot="time">2 week ago</span>
+             </notification-item>
+          </li>
+          <li class="notification-item__list-item">
+            <notification-item data-img-user="./assets/images/avatar-anna-kim.webp" data-type-notification="left-group">
+              <span slot="user-name">Anna Kim</span>
+              <span slot="link">Chess Club</span>
+              <span slot="time">2 weeks ago</span>
+             </notification-item>
+          </li>      
+  
         </ul>
       </div>
     </div>
