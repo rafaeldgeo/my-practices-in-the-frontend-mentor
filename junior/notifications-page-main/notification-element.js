@@ -16,7 +16,6 @@ class NotificationItem extends HTMLElement {
         setTypeNotification(this);
 
     }
-  
 }
 
 customElements.define("notification-item", NotificationItem); 

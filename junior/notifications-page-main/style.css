@@ -32,7 +32,6 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-   /*  border: 1px solid rgb(230, 235, 240);  */
 }
 
 html, body { width: 100%; }
@@ -73,6 +72,7 @@ body {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+    row-gap: 1rem;
     align-items: center;
     margin-block-start: 1rem;
     margin-block-end: 1rem;
@@ -94,6 +94,7 @@ body {
     width: 1.8rem;
     height: 1.5rem;
     border-radius: 0.4rem;
+    font-size: 1rem;
     text-align: center;
     font-weight: 600;
     color: var(--white);
