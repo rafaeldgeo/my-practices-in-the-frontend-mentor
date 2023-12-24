@@ -69,7 +69,6 @@ function setTypeNotification(element) {
             pictureImage.setAttribute("width", 90);
             pictureImage.setAttribute("height", 90);
             pictureImage.setAttribute("alt", "");
-            pictureImage.setAttribute("tabindex", "0");
             const image = element.getAttribute("data-img-picture");
             pictureImage.src = image; 
             divPictureWrapper.appendChild(pictureImage);  
