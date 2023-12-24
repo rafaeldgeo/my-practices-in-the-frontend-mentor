@@ -133,6 +133,7 @@ body {
 
     .notification {
         padding: min(4vw, 1.8rem);
+        margin: 0.6rem;
         border-radius: 1rem;
         background-color: var(--white);
         box-shadow: 1px 1px 20px 5px var(--shadow-color);
