@@ -6,56 +6,129 @@
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
   <title>Frontend Mentor | Notifications page</title>
   <link rel="stylesheet" href="style.css">
+  <script defer src="notification-element.js"></script>
 </head>
 <body>
   <main class="main">
     <h1 class="sr-only">Notification page</h1>
     <div class="notification">
       <div class="notification__header">
-        <div class="notification__alert">
+        <div class="notification__alert-wrapper">
           <h2 class="notification__title">Notifications</h2>
           <span class="notification__badge">3</span>
         </div>
         <button class="notification__btn-mark-all-read" type="button">Mark all as read</button>
       </div>
       <div class="notification__body">
+
         <template id="notification-item-element-template">
-          <style></style>
-          <div class="notification__personal-img-wrapper">
-            <img class="notification__personal-img" src="./assets/images/avatar-angela-gray.webp" alt="" width="90" height="90">
-          </div>
-          <div class="notificaion__content">
-            <span class="notification__name-user">Mark Webber</span>
-            <span class="notification__action">reacted to your recent post</span>
-            <span class="notification__action-link">My first tournament today!</span>
-            <span class="notification__alert-circle"></span>
-            <span class="notification__action-time">1m ago</span>
-          </div>
+          <style>
+            
+            * {
+              margin: 0;
+              padding: 0;
+              box-sizing: border-box;
+            }
+
+            :host {
+              display: inline-flex;
+              gap: 0.9rem;
+              font-size: calc(0.8rem, 2.7vw, 1rem);
+            }
+
+            .notification-item__user-img {
+              display: block;
+              width: min(7.8vw, 2.8rem);
+              height: auto;
+            }
+
+            .notification-item__user-name,
+            .notification-item__action-post,
+            .notification-item__action-group {
+              font-weight: 600;
+              text-decoration: none;
+            }
+           
+            .notification-item__user-name { color: var(--very-dark-blue); }
+
+            .notification-item__action-time { color: var(--grayish-blue); }
+
+            .notification-item__type-notification, .notification-item__privative-message { color: var(--dark-grayish-blue); }
+
+            .notification-item__action-post { color: var(--dark-grayish-blue); }
+            
+            .notification-item__action-group { color: var(--blue); }
+
+            :is(.notification-item__user-name, .notification-item__action-post):hover, :focus{
+              color: var(--blue);
+            }
+
+            .notification-item__privative-message {
+              border-radius: 0.3rem;
+              border-block: 1px solid var(--grayish-blue);
+            }
+
+            .notification-item__privative-message {
+              margin-block-start: 10px;
+            }
+
+            .notification-item__privative-message:hover {
+              background-color: var(--light-grayish-blue-1);
+            }
+
+            :host([new-notification]) .notificaion-item__paragraph::after  {
+              content: "";
+              display: inline-block;
+              border-radius: 50%;
+              width: 0.6rem;
+              height: 0.6rem;
+              margin-inline-start: 0.2rem;
+              background-color: var(--red);
+            }
+
+            :host([new-notification]) {
+              background-color: var(--very-light-grayish-blue);
+            }
+
+          </style>
+          <div class="notification-item__user-img-wrapper"></div>
+          <div class="notificaion-item__content">
+            <p class="notificaion-item__paragraph">
+              <a class="notification-item__user-name" href="#" target="_blank"><slot name="user-name"></slot></a>
+              <span class="notification-item__type-notification"></span>
+              <a class="notification-item__action-post" href="#" target="_blank"><slot name="action-link-post"></slot></a>
+              <a class="notification-item__action-group" href="#" target="_blank"><slot name="action-link-group"></slot></a>
+            </p>
+            <span class="notification-item__action-time"><slot name="action-time"></slot></span>
+            <!-- <p class="notification-item__privative-message"></p> -->
+          </div> 
         </template>
 
+        <ul class="notification-item__list">
+          <li class="notification-item__list-item">
+            <notification-item data-image="./assets/images/avatar-mark-webber.webp" data-type-notification="reacted" new-notification>
+              <span slot="user-name">Mark Webber</span>
+              <span slot="action-link-post">My first tournament today!</span>
+              <span slot="action-time">1m ago</span>
+             </notification-item>
+          </li>
+          <li class="notification-item__list-item">
+          </li>
+
+          </li>
+          
+          <li class="notification-item__list-item"></li>
+          <li class="notification-item__list-item"></li>
+          <li class="notification-item__list-item"></li>
+          <li class="notification-item__list-item"></li>
+          <li class="notification-item__list-item"></li>      
+        
+          
+        </ul>
       </div>
     </div>
   </main>
-  <!-- Angela Gray followed you
-  5m ago
 
-  Jacob Thompson has joined your group Chess Club
-  1 day ago
-
-  Rizky Hasanuddin sent you a private message
-  5 days ago
-  Hello, thanks for setting up the Chess Club. I've been a member for a few weeks now and 
-  I'm already having lots of fun and improving my game.
-
-  Kimberly Smith commented on your picture
-  1 week ago
-
-  Nathan Peterson reacted to your recent post 5 end-game strategies to increase your win rate
-  2 weeks ago
-
-  Anna Kim left the group Chess Club
-  2 weeks ago -->
-  
   <footer class="footer">
     <div class="footer__attribution"> 
       Challenge by <a class="footer__link-author" href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 

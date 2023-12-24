@@ -63,6 +63,36 @@ body {
     min-width: 100%;
 }
 
+.notification {
+    background-color: var(--white);
+}
+
+.notification__header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.notification__alert-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.notification__title {
+
+}
+
+.notification__badge {
+
+}
+
+.notification__btn-mark-all-read {
+    
+}
+
+.notification-item__list {
+    list-style-type: none;
+}
+
 .footer { flex-shrink: 0;}
 
 .footer__attribution { 
