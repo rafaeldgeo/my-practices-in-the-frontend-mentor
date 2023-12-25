@@ -1,6 +1,10 @@
 "use strict";
 
 class NotificationItem extends HTMLElement {
+
+    static get observedAttributes() {
+        return ["data-img-user", "data-type-notification", "data-img-picture", "new-notification"];
+    }
     
     constructor() {
         super();
@@ -12,13 +16,27 @@ class NotificationItem extends HTMLElement {
         const clonedContent = templanteContent.cloneNode(true);
         shadowRoot.appendChild(clonedContent);
 
+        newNotification(this);
         setUserImage(this);
         setTypeNotification(this);
+    }
+
+    attributeChangedCallback(attributeName, oldValue, newValue) {
+        if (oldValue === newValue) {
+            return;
+        } else {
+            this[attributeName] = newValue;
+
+        }
 
     }
 }
 
 customElements.define("notification-item", NotificationItem); 
+
+function newNotification(element) {
+    element.getAttribute("new-notification");
+}
 
 function setUserImage(element) {
 
@@ -35,7 +53,6 @@ function setUserImage(element) {
 
     divUserImgWrapper.appendChild(userImage);  
 } 
-
 
 function setTypeNotification(element) {
 
