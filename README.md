@@ -15,9 +15,9 @@ Practices in [Frontend Mentor Website](https://www.frontendmentor.io/)
 * 9- [Single-price-grid-component-master](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/newbie/single-price-grid-component-master/) | **HTML** | **CSS** <sup>grid + flexbox + media queries + BEM</sup>
 * 10- [Huddle landing page with single introductory section](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/newbie/huddle-landing-page/) | **HTML** | **CSS** <sup>grid + flexbox + media queries + BEM</sup>
 * 11- [Four-card-feature-section-master](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/newbie/four-card-feature-section-master/) | **HTML** | **CSS** <sup>grid + flexbox + media queries + BEM</sup>
-* 12- [Faq-accordion-card-main](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/newbie/faq-accordion-card-main/) | **HTML** | **CSS** <sup>grid + flexbox + media queries + BEM</sup>
-* 13- [Faq-accordion-main](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/newbie/faq-accordion-main/) | **HTML** | **CSS** <sup>flexbox + media queries + BEM</sup>
-* 14- [Social-proof-section-master](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/newbie/social-proof-section-master/) | **HTML** | **CSS** <sup>grid + flexbox + media queries + BEM</sup>
+* 12- [Social-proof-section-master](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/newbie/social-proof-section-master/) | **HTML** | **CSS** <sup>grid + flexbox + media queries + BEM</sup>
+* 13- [Faq-accordion-card-main](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/newbie/faq-accordion-card-main/) | **HTML** | **CSS** <sup>grid + flexbox + media queries + BEM</sup>
+* 14- [Faq-accordion-main](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/newbie/faq-accordion-main/) | **HTML** | **CSS** <sup>flexbox + media queries + BEM</sup>
 * 15- [Ping-coming-soon-page-master](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/newbie/ping-coming-soon-page-master/) | **HTML** | **CSS** <sup>flexbox + BEM</sup> | **JS**
 * 16- [Base-apparel-coming-soon-master](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/newbie/base-apparel-coming-soon-master/) | **HTML** | **CSS** <sup>grid + flexbox + media queries + BEM</sup> | **JS**
 * 17- [Interactive-rating-component-main](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/newbie/interactive-rating-component-main/) | **HTML** | **CSS** <sup>flexbox + BEM</sup> | **JS**
