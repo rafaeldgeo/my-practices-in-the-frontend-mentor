@@ -28,8 +28,8 @@ class NotificationItem extends HTMLElement {
             this[attributeName] = newValue;
 
         }
-
     }
+    
 }
 
 customElements.define("notification-item", NotificationItem); 

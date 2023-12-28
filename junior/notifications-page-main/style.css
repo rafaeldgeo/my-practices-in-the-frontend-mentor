@@ -139,13 +139,19 @@ body {
     }
 }
 
-.footer { flex-shrink: 0;}
+.footer { 
+    flex-shrink: 0;
+    margin: 0.6rem 0;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+}
 
-.footer__attribution { 
+/* .footer__attribution { 
     margin: 0.6rem 0;
     font-size: 11px; 
     text-align: center;
     color: var(--very-dark-blue);
 }
   
-.footer__link-author { color: var(--red); }
+.footer__link-author { color: var(--red); } */
