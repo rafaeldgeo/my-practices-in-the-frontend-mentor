@@ -1,13 +1,17 @@
 "use strict";
 
-class NotificationItem extends HTMLElement {
+export default class NotificationItem extends HTMLElement {
 
     static get observedAttributes() {
-        return ["data-img-user", "data-type-notification", "data-img-picture", "new-notification"];
+        return ["user-img", "user-name", "type-notification", "time-notification", "new-notification"];
     }
     
     constructor() {
         super();
+        this.userImageUrl = "https://fakeimg.pl/90x90?text=image";
+        this.userName = "User Name";
+        this.typeNotification = "no type";
+        this.timeNotification = "define time";
     }
 
     connectedCallback() {
@@ -16,94 +20,142 @@ class NotificationItem extends HTMLElement {
         const clonedContent = templanteContent.cloneNode(true);
         shadowRoot.appendChild(clonedContent);
 
-        newNotification(this);
-        setUserImage(this);
-        setTypeNotification(this);
+        const imgUser = this.shadowRoot.querySelector(".notification-item__user-img");
+        imgUser.src = this.userImageUrl;
+
+        const aUserName = this.shadowRoot.querySelector(".notification-item__user-name");
+        aUserName.innerText = this.userName;
+
+        const spanTypeNotification = this.shadowRoot.querySelector(".notification-item__type-notification");
+        spanTypeNotification.innerText = this.typeNotification;
+
+        const aNotification = this.shadowRoot.querySelector(".notification-item__link");
+        const typeNotification = this.getAttribute("type-notification");
+        const styleLink = this.setStyleLink(typeNotification);
+        aNotification.classList.add(styleLink);
+
+        const spanTimeNotification = this.shadowRoot.querySelector(".notification-item__time");
+        spanTimeNotification.innerText = this.timeNotification;
+      
     }
 
     attributeChangedCallback(attributeName, oldValue, newValue) {
-        if (oldValue === newValue) {
-            return;
-        } else {
-            this[attributeName] = newValue;
+        if (attributeName === "user-img") {
+            this.userImageUrl = newValue;
+        } else if (attributeName === "user-name") {
+            this.userName = newValue;
+        } else if (attributeName === "type-notification") {
+            this.typeNotification = newValue;
+        } else if (attributeName === "time-notification") {
+            this.timeNotification = newValue;
+        } 
+    }
 
+    set userImageUrl(newValue){
+        this._userImageUrl = newValue;
+        if (!this.shadowRoot) {
+            return;
+        }
+
+        const element = this.shadowRoot.querySelector(".notification-item__user-img");
+        if (element) { 
+            element.src = this._userImageUrl; 
         }
     }
-    
-}
 
-customElements.define("notification-item", NotificationItem); 
-
-function newNotification(element) {
-    element.getAttribute("new-notification");
-}
-
-function setUserImage(element) {
-
-    const shadow = element.shadowRoot;
-    const divUserImgWrapper = shadow.querySelector(".notification-item__user-img-wrapper");
-    const userImage = document.createElement("img");
-
-    userImage.classList.add("notification-item__user-img");
-    userImage.setAttribute("width", 90);
-    userImage.setAttribute("height", 90);
-    userImage.setAttribute("alt", "User Photo");
-    const image = element.getAttribute("data-img-user");
-    userImage.src = image; 
-
-    divUserImgWrapper.appendChild(userImage);  
-} 
-
-function setTypeNotification(element) {
-
-    const shadow = element.shadowRoot;
-    const spanTypeNotification = shadow.querySelector(".notification-item__type-notification");
-    const link = shadow.querySelector(".notification-item__link");
-    const typeNotification = element.getAttribute("data-type-notification");
-    let messageAction = "";
-
-     switch (typeNotification) {
-        case "reacted":
-            messageAction = "reacted to your recent post ";
-            link.classList.add("notification-item__link--post");
-            break;
-        case "followed":
-            messageAction = "followed you";
-            break;
-        case "joined-group":
-            messageAction = "has joined your group ";
-            link.classList.add("notification-item__link--group");
-            break;
-        case "left-group":
-            messageAction = "left the group ";
-            link.classList.add("notification-item__link--group");
-            break;
-        case "commented":
-            messageAction = "commented on your picture";
-            const divPictureWrapper = shadow.querySelector(".notification-item__your-picture-wrapper");
-            const pictureImage = document.createElement("img");
-            pictureImage.classList.add("notification-item__picture-img");
-            pictureImage.setAttribute("width", 90);
-            pictureImage.setAttribute("height", 90);
-            pictureImage.setAttribute("alt", "");
-            const image = element.getAttribute("data-img-picture");
-            pictureImage.src = image; 
-            divPictureWrapper.appendChild(pictureImage);  
-            break;
-        case "sent-message":
-            messageAction = "sent you a private message ";
-            const divMessageWrapper = shadow.querySelector(".notification-item__message-wrapper");
-            const privativeMessage = document.createElement("p");
-            privativeMessage.classList.add("notification-item__privative-message");
-            const slotPrivativeMessage = document.createElement("slot");
-            slotPrivativeMessage.setAttribute("name", "privative-message");
-            privativeMessage.appendChild(slotPrivativeMessage);
-            divMessageWrapper.appendChild(privativeMessage);
-            break;
-        default:
-            messageAction = "define a message.";            
+    get userImageUrl() {
+        return this._userImageUrl; 
     }
 
-    spanTypeNotification.innerText = messageAction;
+    set userName(newValue){
+        this._userName = newValue;
+        if (!this.shadowRoot) {
+            return;
+        }
+
+        const element = this.shadowRoot.querySelector(".notification-item__user-name");
+        if (element) { 
+            element.src = this._userName; 
+        }
+    }
+
+    get userName() {
+        return this._userName; 
+    }
+
+    set typeNotification(newValue) {
+        switch (newValue) {
+            case "reacted":
+                this._message = "reacted to your recent post ";
+                break;
+            case "followed":
+                this._message = "followed you";
+                break;
+            case "joined-group":
+                this._message = "has joined your group ";
+                break;
+            case "left-group":
+                this._message = "left the group ";
+                break;
+            case "commented":
+                this._message = "commented on your picture";  
+                break;
+            case "sent-message":
+                this._message = "sent you a private message ";
+                break;
+            default:
+                this._message = "define a message.";            
+        }
+
+        if (!this.shadowRoot) {
+            return;
+        }
+        
+        const element = this.shadowRoot.querySelector(".notification-item__type-notification");
+        if (element) {
+            element.innerText = this._message;
+        }
+    }
+
+    get typeNotification() {
+        return this._message;
+    }
+
+    set timeNotification(newValue) {
+        this._timeNotification = newValue;
+        if (!this.shadowRoot) {
+            return;
+        }
+
+        const element = this.shadowRoot.querySelector(".notification-item__time");
+        if (element) {
+            element.innerText = this._timeNotification;
+        }
+    }
+
+    get timeNotification() {
+        return this._timeNotification;
+    }
+
+    setStyleLink(typeNotification) {
+        let styleLink = "";
+        switch (typeNotification) {
+            case "reacted":
+                styleLink = "notification-item__link--post";
+                break;
+            case "joined-group":
+            case "left-group":
+                styleLink = "notification-item__link--group";
+                break;
+            default:
+                styleLink = "notification-item__link--basic";
+        }
+        return styleLink;
+    }
 }
+
+// include in index.js
+/* customElements.define("notification-item", NotificationItem);  */
+
+
 

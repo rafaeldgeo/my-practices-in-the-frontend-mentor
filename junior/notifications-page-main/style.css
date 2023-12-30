@@ -126,6 +126,37 @@ body {
     padding-block-start: 0.5rem;
 }
 
+.notification-item__privative-message {
+    color: var(--dark-grayish-blue);
+    font-weight: 500;
+    border-radius: 0.3rem;
+    border: 1px solid var(--light-grayish-blue-1);
+    padding: 0.6rem;
+    margin-block-start: 0.6rem;
+    cursor: pointer;
+  }
+
+  .notification-item__privative-message:hover {
+    background-color: var(--light-grayish-blue-1);
+  }
+
+  .notification-item__picture-img {
+    display: block;
+    width: min(10vw, 2.8rem);
+    height: auto;
+  }
+
+  .notification-item__picture-img {
+    border: 3px solid transparent;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+
+  .notification-item__picture-img:hover, :focus {
+    border-color: var(--light-grayish-blue-2);
+  }
+
+
 @media only screen and (min-width: 576px) {
 
     body { background-color: var(--very-light-grayish-blue); }

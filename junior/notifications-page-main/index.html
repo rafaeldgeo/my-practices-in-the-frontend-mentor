@@ -6,9 +6,8 @@
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
   <title>Frontend Mentor | Notifications page</title>
   <link rel="stylesheet" href="style.css">
-  <script defer src="notification-element.js"></script>
-  <script defer src="interaction-read-all.js"></script>
   <script type="module" defer src="./index.js"></script>
+  <script defer src="interaction-read-all.js"></script>
 </head>
 <body>
   <main class="main">
@@ -42,22 +41,12 @@
               border-radius: 0.5rem;
             }
 
-            .notification-item__your-picture-wrapper, .notification-item__user-img-wrapper { flex: 0 0 auto; }
+            .notification-item__user-img-wrapper { flex: 0 0 auto; }
 
-            .notification-item__user-img, .notification-item__picture-img {
+            .notification-item__user-img {
               display: block;
               width: min(7.8vw, 2.8rem);
               height: auto;
-            }
-
-            .notification-item__picture-img {
-              border: 3px solid transparent;
-              border-radius: 10px;
-              cursor: pointer;
-            }
-
-            .notification-item__picture-img:hover, :focus {
-              border-color: var(--light-grayish-blue-2);
             }
 
             .notification-item__content { flex: 1 1 auto; }
@@ -72,7 +61,7 @@
 
             .notification-item__time { color: var(--grayish-blue); }
 
-            .notification-item__type-notification, .notification-item__privative-message { color: var(--dark-grayish-blue); }
+            .notification-item__type-notification { color: var(--dark-grayish-blue); }
 
             .notification-item__link--post { color: var(--dark-grayish-blue); }
             
@@ -80,19 +69,6 @@
 
             :is(.notification-item__user-name, .notification-item__link--post):hover, :focus{
               color: var(--blue);
-            }
-
-            .notification-item__privative-message {
-              font-weight: 500;
-              border-radius: 0.3rem;
-              border: 1px solid var(--light-grayish-blue-1);
-              padding: 0.6rem;
-              margin-block-start: 0.6rem;
-              cursor: pointer;
-            }
-
-            .notification-item__privative-message:hover {
-              background-color: var(--light-grayish-blue-1);
             }
 
             :host([new-notification]) .notification-item__paragraph::after  {
@@ -111,72 +87,61 @@
 
           </style>
           <div class="notification-item__wrapper">
-            <div class="notification-item__user-img-wrapper"></div>
+            <div class="notification-item__user-img-wrapper">
+              <img class="notification-item__user-img" width="90" height="90" alt="User Photo">
+            </div>
             <div class="notification-item__content">
               <p class="notification-item__paragraph">
-                <a class="notification-item__user-name" href="#" target="_blank" aria-label="name of user"><slot name="user-name"></slot></a>
+                <a class="notification-item__user-name" href="#" target="_blank" aria-label="name of user"></a>
                 <span class="notification-item__type-notification"></span>
                 <a class="notification-item__link" href="#" target="_blank" aria-label="access the content"><slot name="link"></slot></a>
               </p>
-              <span class="notification-item__time"><slot name="time"></slot></span>
-              <div class="notification-item__message-wrapper"></div>
+              <span class="notification-item__time"></span>
+              <div class="notification-item__message-wrapper">
+                <p><slot name="privative-message"></slot></p>
+              </div>
             </div>
-            <div class="notification-item__your-picture-wrapper"></div>
-            
+            <div class="notification-item__your-picture-wrapper"><slot></slot></div>
           </div>
           
         </template>
 
         <ul class="notification-item__list">
           <li class="notification-item__list-item">
-            <notification-item data-img-user="./assets/images/avatar-mark-webber.webp" data-type-notification="reacted" new-notification>
-              <span slot="user-name">Mark Webber</span>
+            <notification-item user-img="./assets/images/avatar-mark-webber.webp" user-name="Mark Webber" type-notification="reacted" time-notification="1m ago" new-notification>
               <span slot="link">My first tournament today!</span>
-              <span slot="time">1m ago</span>
-             </notification-item>
+            </notification-item>
           </li>
           <li class="notification-item__list-item">
-            <notification-item data-img-user="./assets/images/avatar-angela-gray.webp" data-type-notification="followed" new-notification>
-              <span slot="user-name">Angela Gray</span>
-              <span slot="time">5m ago</span>
-             </notification-item>
+            <notification-item user-img="./assets/images/avatar-angela-gray.webp" user-name="Angela Gray" type-notification="followed" time-notification="5m ago" new-notification>
+            </notification-item>
           </li>
           <li class="notification-item__list-item">
-            <notification-item data-img-user="./assets/images/avatar-jacob-thompson.webp" data-type-notification="joined-group" new-notification>
-              <span slot="user-name">Jacob Thompson</span>
+            <notification-item user-img="./assets/images/avatar-jacob-thompson.webp" user-name="Jacob Thompson" type-notification="joined-group" time-notification="1 day ago" new-notification>
               <span slot="link">Chess Club</span>
-              <span slot="time">1 day ago</span>
              </notification-item>
           </li>
           <li class="notification-item__list-item">
-            <notification-item data-img-user="./assets/images/avatar-rizky-hasanuddin.webp" data-type-notification="sent-message">
-              <span slot="user-name">Rizky Hasanuddin</span>
-              <span slot="time">5 day ago</span>
-              <span slot="privative-message">Hello, thanks for setting up the Chess Club. I've been a member for a few weeks now and 
-                I'm already having lots of fun and improving my game.</span>
+            <notification-item user-img="./assets/images/avatar-rizky-hasanuddin.webp" user-name="Rizky Hasanuddin" type-notification="sent-message" time-notification="5 day ago">
+              <p class="notification-item__privative-message" slot="privative-message">Hello, thanks for setting up the Chess Club. I've been a member for a few weeks now and 
+                I'm already having lots of fun and improving my game.</p>
              </notification-item>
           </li>
           <li class="notification-item__list-item">
-            <notification-item data-img-user="./assets/images/avatar-kimberly-smith.webp" data-type-notification="commented" data-img-picture="./assets/images/image-chess.webp">
-              <span slot="user-name">Kimberly Smith</span>
-              <span slot="time">1 week ago</span>
+            <notification-item user-img="./assets/images/avatar-kimberly-smith.webp" user-name="Kimberly Smith" type-notification="commented" time-notification="1 week ago">
+              <img class="notification-item__picture-img" width="90" height="90" alt="image commented" src="./assets/images/image-chess.webp">
              </notification-item>
           </li>
           <li class="notification-item__list-item">
-            <notification-item data-img-user="./assets/images/avatar-nathan-peterson.webp" data-type-notification="reacted">
-              <span slot="user-name">Nathan Peterson</span>
+            <notification-item user-img="./assets/images/avatar-nathan-peterson.webp" user-name="Nathan Peterson" type-notification="reacted" time-notification="2 week ago">
               <span slot="link">5 end-game strategies to increase your win rate</span>
-              <span slot="time">2 week ago</span>
              </notification-item>
           </li>
           <li class="notification-item__list-item">
-            <notification-item data-img-user="./assets/images/avatar-anna-kim.webp" data-type-notification="left-group">
-              <span slot="user-name">Anna Kim</span>
+            <notification-item user-img="./assets/images/avatar-anna-kim.webp" user-name="Anna Kim" type-notification="left-group" time-notification="2 weeks ago">
               <span slot="link">Chess Club</span>
-              <span slot="time">2 weeks ago</span>
              </notification-item>
-          </li>      
-  
+          </li>
         </ul>
       </div>
     </div>
