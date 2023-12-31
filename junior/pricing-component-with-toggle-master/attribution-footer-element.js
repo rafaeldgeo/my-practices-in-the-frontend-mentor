@@ -106,5 +106,5 @@ export default class AttributionFooter extends HTMLElement {
     get colorLink() { return this._colorLink }
 }
 
-// include in index.js
+// include code in index.js
 /* customElements.define("attribution-footer", AttributionFooter); */

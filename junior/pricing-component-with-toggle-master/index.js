@@ -1,5 +1,7 @@
 "use strict";
 
+// modules
+
 import AttributionFooter from "./attribution-footer-element.js";
 import ToggleSwitch from "./toogle-switch-components.js";
 

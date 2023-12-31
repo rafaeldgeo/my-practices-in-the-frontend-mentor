@@ -15,4 +15,5 @@
 
 }
 
+// insert index.js
 /* customElements.define("toggle-switch", ToggleSwitch); */
