@@ -1,6 +1,6 @@
 "use strict";
 
-class ToggleSwitch extends HTMLElement {
+ export default class ToggleSwitch extends HTMLElement {
 
     constructor() {
         super();
@@ -15,4 +15,4 @@ class ToggleSwitch extends HTMLElement {
 
 }
 
-customElements.define("toggle-switch", ToggleSwitch);
+/* customElements.define("toggle-switch", ToggleSwitch); */

@@ -232,13 +232,10 @@ body {
     
 }
 
-.footer { flex-shrink: 0;}
-
-.footer__attribution { 
+.footer { 
+    flex-shrink: 0;
     margin: 0.6rem 0;
-    font-size: 11px; 
-    text-align: center;
-    color: var(--dark-grayish-blue);
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
 }
-  
-.footer__link-author { color: var(--linear-gradient-end); }
