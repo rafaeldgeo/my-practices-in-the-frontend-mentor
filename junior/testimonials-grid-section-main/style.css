@@ -111,12 +111,7 @@ main {
 
 .footer {
   flex-shrink: 0;
+  display: flex;
+  justify-content: center;
   margin: 0.6rem 0;
 }
-
-.footer__attribution { 
-  font-size: 11px; 
-  text-align: center; 
-}
-
-.footer__link { color: var(--moderate-violet); }
