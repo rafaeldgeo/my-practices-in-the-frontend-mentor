@@ -310,13 +310,10 @@ body {
 }
 
 .footer__attribution { 
-  margin: 0.6rem 0;
-  font-size: 11px; 
   text-align: center;
-  color: var(--grayish-blue);
+  margin: 0.6rem 0;
 }
 
-.footer__link-author { color: var(--strong-cyan); }
 
 
 

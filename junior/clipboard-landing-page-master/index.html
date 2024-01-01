@@ -6,7 +6,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
   <title>Frontend Mentor | Clipboard landing page</title>
   <link rel="stylesheet" href="style.css">
-  <script defer src="component.js"></script>
+  <script defer type="module" src="./index.js"></script>
 </head>
 <body>
   <div class="container">
@@ -18,8 +18,8 @@
       <p class="header__introduce">Clipboard allows you to track and organize everything you 
     copy. Instantly access your clipboard on all your devices.</p>
       <div class="header__btn-download">
-        <btn-download data-label="Download for iOS" data-backgroundColor="hsl(171, 66%, 44%)" data-borderColor="hsl(171, 66%, 34%)" data-boxShadow="hsl(171, 66%, 92%)">  </btn-download>
-        <btn-download data-label="Download for Mac" data-backgroundColor="hsl(233, 100%, 69%)" data-borderColor="hsl(233, 100%, 65%)" data-boxShadow="hsl(233, 100%, 92%)">  </btn-download>
+        <btn-download label="Download for iOS" background-color="hsl(171, 66%, 44%)" border-color="hsl(171, 66%, 34%)" box-shadow="hsl(171, 66%, 92%)">  </btn-download>
+        <btn-download label="Download for Mac" background-color="hsl(233, 100%, 69%)"border-color="hsl(233, 100%, 65%)" box-shadow="hsl(233, 100%, 92%)">  </btn-download>
       </div>
     </header>
     <main class="main">
@@ -50,7 +50,7 @@
 
       <section class="main__devices">
         <h2 class="main__subtitle">Access Clipboard anywhere</h2>
-        <p class="main__introduce">Whether you’re on the go, or at your computer, you can access all your Clipboard snippets in a few simple clicks.</p>
+        <p class="main__introduce">Whether you're on the go, or at your computer, you can access all your Clipboard snippets in a few simple clicks.</p>
         <div class="main__devices-wrapper">
           <img class="main__img-devices" src="./images/image-devices.png" alt="" width="905" height="575">
         </div>
@@ -58,7 +58,7 @@
 
       <section class="main__supercharge">
         <h2 class="main__subtitle">Supercharge your workflow</h2>
-        <p class="main__introduce">We’ve got the tools to boost your productivity.</p>
+        <p class="main__introduce">We've got the tools to boost your productivity.</p>
         <div class="main__tools-wrapper">
           <div class="main__tool">
             <div class="main__icon-wrapper">
@@ -102,8 +102,8 @@
         <h2 class="main__subtitle">Clipboard for iOS and Mac OS</h2>
         <p class="main__introduce">Available for free on the App Store. Download for Mac or iOS, sync with iCloud and you’re ready to start adding to your clipboard.</p>
         <div class="main__btn-download">
-          <btn-download data-label="Download for iOS" data-backgroundColor="hsl(171, 66%, 44%)" data-borderColor="hsl(171, 66%, 34%)" data-boxShadow="hsl(171, 66%, 92%)">  </btn-download>
-          <btn-download data-label="Download for Mac" data-backgroundColor="hsl(233, 100%, 69%)" data-borderColor="hsl(233, 100%, 65%)" data-boxShadow="hsl(233, 100%, 92%)">  </btn-download>
+          <btn-download label="Download for iOS" background-color="hsl(171, 66%, 44%)" border-color="hsl(171, 66%, 34%)" box-shadow="hsl(171, 66%, 92%)">  </btn-download>
+          <btn-download label="Download for Mac" background-color="hsl(233, 100%, 69%)" border-color="hsl(233, 100%, 65%)" box-shadow="hsl(233, 100%, 92%)">  </btn-download>
         </div>
       </section>
     </main>
@@ -141,8 +141,8 @@
           </div>
         </div>
       </div>
-      <div class="footer__attribution"> Challenge by <a class="footer__link-author" href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a class="footer__link-author" href="https://www.linkedin.com/in/rafael-dias-de-almeida-devmap/" target="_blank">Rafael Dias de Almeida</a>.
+      <div class="footer__attribution">
+        <attribution-footer color-label="hsl(201, 11%, 66%)" color-link="hsl(171, 66%, 44%)"></attribution-footer>
       </div>
     </footer>
   </div>
