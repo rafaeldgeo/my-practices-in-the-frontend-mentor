@@ -43,7 +43,7 @@ main {
 
 main::before {
   position: absolute;
-  content: url("/images/bg-pattern-top.svg");
+  content: url("./images/bg-pattern-top.svg");
   right: 50%;
   bottom: 40%;
   z-index: -1;
