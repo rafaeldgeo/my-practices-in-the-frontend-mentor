@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">  
+  <title>Frontend Mentor | Sunnyside agency landing page</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer type="module" src="./index.js"></script>
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      About
+      Services
+      Projects
+      Contact
+      <h2 class="header__title">We are creatives</h2>
+    </header>
+    <main class="main">
+      <div class="main__services">
+        <div class="main__service-wrapper">
+          <div class="main__info-wrapper">
+            <h3 class="main__service-title">Transform your brand</h3>
+            <p class="main__service-description">We are a full-service creative agency specializing in helping brands grow fast. 
+              Engage your clients through compelling visuals that do most of the marketing for you.</p>
+              <button class="main__btn-learn-more" type="button">Learn more</button>
+          </div>
+          <div class="main__image-wrapper">
+            <img class="main__img-service" 
+            srcset="./images/mobile/image-transform.jpg 750w,
+                    ./images/desktop/image-transform.jpg 720w
+                    "
+            sizes="(max-width: 375px) 375px,
+                  (min-width: 376px) 720px,
+                    720px"     
+            src="./images/desktop/image-transform.jpg" 
+            alt="one chicken egg with yellow background">
+          </div>
+        </div>
+        <div class="main__service-wrapper">
+          <div class="main__image-wrapper">
+            <img class="main__img-service"
+            srcset="./images/mobile/image-stand-out.jpg 750w,
+                    ./images/desktop/image-stand-out.jpg 720w
+                    "
+            sizes="(max-width: 375px) 375px,
+                  (min-width: 376px) 720px,
+                    720px"     
+            src="./images/desktop/image-stand-out.jpg" 
+            alt="one one pink plastic cup with pink background">
+          </div>
+          <div class="main__info-wrapper">
+            <h3 class="main_service-title">Stand out to the right audience</h3>
+            <p class="main__service-description">Using a collaborative formula of designers, researchers, photographers, videographers, and copywriters, 
+              we’ll build and extend your brand in digital places. </p>
+              <button class="main__btn-learn-more" type="button">Learn more</button>
+          </div>
+          
+        </div>
+      </div>
+      <div class="main__resoucers-wrapper">
+        <div class="main__resource main__resource--color-green">
+          <h4 class="main__resource-title">Graphic design</h4>
+          <p class="main__resource-description">Great design makes you memorable. We deliver artwork that underscores your brand message and captures potential clients’ attention.
+          </p>
+        </div>
+        <div class="main__resource main__resource--color-blue">
+          <h4 class="main__resource-title">Photography</h4>
+          <p class="main__resource-description">Increase your credibility by getting the most stunning, high-quality photos that improve your business image.
+          </p>
+        </div>
+      </div>
+      <section class="main__testimonials">
+        <h5 class="main__testimonails-title">Client testimonials</h5>
+        <div class="main__testimonials-wrapper">
+          <div class="main__testimonial">
+            <div class="main__wrapper-client-photo">
+              <img class="main__client-photo" src="./images/image-emily.jpg" alt="young woman, white skin, blond and long hair" width="144" height="144" loading="lazy">
+            </div>
+            <p class="main__client-testimonial">We put our trust in Sunnyside and they delivered, making sure our needs were met and deadlines were always hit.</p>
+            <span class="main__client-name">Emily R.</span>
+            <span class="main__client-position">Marketing Director</span>
+          </div>
+          <div class="main__testimonial">
+            <div class="main__wrapper-client-photo">
+              <img class="main__client-photo" src="./images/image-thomas.jpg" alt="young man, brunette skin, black and short hair" width="144" height="144" loading="lazy">
+            </div>
+            <p class="main__client-testimonial">Sunnyside’s enthusiasm coupled with their keen interest in our brand’s success made it a satisfying and enjoyable experience.</p>
+            <span class="main__client-name">Thomas S.</span>
+            <span class="main__client-position">Chief Operating Officer</span>
+          </div>
+          <div class="main__testimonial">
+            <div class="main__wrapper-client-photo">
+              <img class="main__client-photo" src="./images/image-jennie.jpg" alt="young woman, white skin, brown and short hair" width="144" height="144" loading="lazy">
+            </div>
+            <p class="main__client-testimonial">Incredible end result! Our sales increased over 400% when we worked with Sunnyside. Highly recommended!</p>
+            <span class="main__client-name">Jennie F.</span>
+            <span class="main__client-position">Business Owner</span>
+          </div>
+        </div>
+      </section>
+     <!--  <div class="main__creations">
+        <div class="main__wrapper-creation">
+          <picture>
+            <source srcset="./images/mobile/image-gallery-milkbottles.jpg" media="(max-width: 375px)">
+            <img src="./images/desktop/image-gallery-milkbottles.jpg" alt="milk bottles" loading="lazy" width="720" height="894">
+          </picture>
+        </div>
+        <div class="main__wrapper-creation">
+          <picture>
+            <source srcset="./images/mobile/image-gallery-orange.jpg" media="(max-width: 375px)">
+            <img src="./images/desktop/image-gallery-orange.jpg" alt="orange on the plate" loading="lazy" width="720" height="894">
+          </picture>
+        </div>
+        <div class="main__wrapper-creation">
+          <picture>
+            <source srcset="./images/mobile/image-gallery-cone.jpg" media="(max-width: 375px)">
+            <img src="./images/desktop/image-gallery-cone.jpg" alt="cone without ice cream" loading="lazy" width="720" height="894">
+          </picture>
+        </div>
+        <div class="main__wrapper-creation">
+          <picture>
+            <source srcset="./images/mobile/image-gallery-sugarcubes.jpg" media="(max-width: 375px)">
+            <img src="./images/desktop/image-gallery-sugarcubes.jpg" alt="sugar cubes" loading="lazy" width="720" height="894">
+          </picture>
+        </div>
+      </div> -->
+    </main>
+    <footer class="footer">
+      <div class="footer__wrapper-logo">
+        <img src="./images/logo.svg" alt="">
+      </div>
+      <nav class="footer__menu">
+        About Services Projects Contact
+      </nav>
+      <div class="footer__social-midia">
+        <a href="#" target="_blank" aria-label="go to facebook">
+          <img src="./images/icon-facebook.svg" alt="">
+        </a>
+        <a href="#" target="_blank" aria-label="go to instagram">
+          <img src="./images/icon-instagram.svg" alt="">
+        </a>
+        <a href="#" target="_blank" aria-label="go to twitter">
+          <img src="./images/icon-twitter.svg" alt="">
+        </a>
+        <a href="#" target="_blank" aria-label="go to pinterest">
+          <img src="./images/icon-pinterest.svg" alt="">
+        </a>
+      </div>
+      <attribution-footer color-label="hsl(167, 40%, 24%)" color-link="hsl(0, 0%, 100%)"></attribution-footer>
+    </footer>
+  </div>  
+</body>
+</html>
