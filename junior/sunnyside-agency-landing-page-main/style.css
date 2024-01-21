@@ -1,13 +1,14 @@
 @charset "UTF-8";
 
 @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@600&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:wght@700;900&display=swap');
 
 :root {
     --soft-red: hsl(7, 99%, 70%);
     --yellow: hsl(51, 100%, 49%);
     --dark-desaturated-cyan: hsl(167, 40%, 24%); /* graphic design text */
     --dark-blue: hsl(198, 62%, 26%); /* photography text */
+    --blue: hsl(200, 100%, 62%);
     --dark-moderate-cyan: hsl(168, 34%, 41%); /* footer */
     --very-dark-desaturated-blue: hsl(212, 27%, 19%);
     --very-dark-grayish-blue: hsl(213, 9%, 39%);
@@ -22,6 +23,7 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+   /*  border: 1px solid dodgerblue; */
 }
 
 html, body { width: 100%; }
@@ -44,17 +46,43 @@ body {
     .main__resource-title,
     .main__testimonails-title,
     .main__client-name,
-    .main__client-position) {
+    .main__client-position,
+    .main__btn-learn-more) {
     font-family: var(--font2);
-}
+} 
 
+/* Mudar mobile */
 .header {
-    flex: 1 0 40%;
+    position: relative;
+    flex: 1 0 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     background-image: url("./images/desktop/image-header.jpg");
     background-repeat: no-repeat;
     background-size: cover; 
     background-position: center 100%;
-    background-color: red;  
+    background-color: var(--blue);
+}
+
+/* Mudar mobile */
+.header__title {
+    font-size: clamp(2.5rem, 3.9vw, 3.5rem);
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: min(calc(1vw - 0.3rem), 0.5rem);
+    position: absolute;
+    top: 20%;
+    color: var(--white);
+}
+
+/* Mudar mobile */
+.header__title::after {
+    content: url("./images/icon-arrow-down.svg");
+    display: block;
+    text-align: center;
+    position: relative;
+    top: min(calc(10vw - 0.2rem), 8rem);
 }
 
 .main {
@@ -65,22 +93,70 @@ body {
     background-color: var(--white);
 }
 
+/* Mudar Mobile */
 .main__services {
     display: grid;
     grid-template-rows: 1fr 1fr;
 }
 
+/* Mudar Mobile */
 .main__service-wrapper {
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
 
-.main__info-wrapper {
+.main__info {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-    background-color: pink;
+    align-items: center; 
+    padding: 1rem;
+    background-color: var(--white);
+}
+
+:is(.main__service-title, 
+    .main__service-description) {
+    inline-size: min(40vw, 28rem);
+    text-align: start;
+    color: var(--very-dark-desaturated-blue);
+}
+
+.main__service-title {
+    font-weight: 900;
+    font-size: clamp(0.6rem, 4vw, 2.5rem);
+}
+
+.main__service-description {
+    font-family: var(--font1);
+    font-size: clamp(0.4rem, 2.1vw, 1.1rem);
+    line-height: calc(clamp(0.4rem, 2.3vw, 1.1rem) * 1.5);
+    margin: min(3vw, 4rem) 0;
+}
+
+
+.main__btn-learn-more {
+    position: relative;
+    border: none; 
+    width: 34%;
+    font-size: clamp(0.4rem, 2.1vw, 1.1rem);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.05rem;
+    z-index: 0;
+    color: var(--very-dark-desaturated-blue);
+    background-color: var(--white);
+} 
+
+.main__btn-learn-more::after {
+    content: "";
+    display: block;
+    border-radius: 1rem;
+    background-color: var(--soft-red);
+    width: 100%;
+    height: 10px;
+    position: relative;
+    z-index: -1;
+    top: -8px;
 }
 
 .main__img-service {
