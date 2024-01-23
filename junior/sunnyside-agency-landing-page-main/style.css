@@ -6,6 +6,9 @@
 :root {
     --soft-red: hsl(7, 99%, 70%);
     --yellow: hsl(51, 100%, 49%);
+    --dark-yellow: hsl(50, 99%, 50%);
+    --salmon: hsl(5, 100%, 69%);
+    --light-green: hsl(167, 43%, 71%);
     --dark-desaturated-cyan: hsl(167, 40%, 24%); /* graphic design text */
     --dark-blue: hsl(198, 62%, 26%); /* photography text */
     --blue: hsl(200, 100%, 62%);
@@ -96,13 +99,13 @@ body {
 /* Mudar Mobile */
 .main__services {
     display: grid;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: repeat(2, 1fr);
 }
 
 /* Mudar Mobile */
 .main__service-wrapper {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, 1fr);
 }
 
 .main__info {
@@ -114,6 +117,7 @@ body {
     background-color: var(--white);
 }
 
+/* Mudar Mobile */
 :is(.main__service-title, 
     .main__service-description) {
     inline-size: min(40vw, 28rem);
@@ -121,11 +125,13 @@ body {
     color: var(--very-dark-desaturated-blue);
 }
 
+/* Mudar Mobile */
 .main__service-title {
     font-weight: 900;
     font-size: clamp(0.6rem, 4vw, 2.5rem);
 }
 
+/* Mudar Mobile */
 .main__service-description {
     font-family: var(--font1);
     font-size: clamp(0.4rem, 2.1vw, 1.1rem);
@@ -133,11 +139,11 @@ body {
     margin: min(3vw, 4rem) 0;
 }
 
-
+/* Mudar Mobile */
 .main__btn-learn-more {
     position: relative;
     border: none; 
-    width: 34%;
+    width: 150px;
     font-size: clamp(0.4rem, 2.1vw, 1.1rem);
     font-weight: 900;
     text-transform: uppercase;
@@ -145,19 +151,31 @@ body {
     z-index: 0;
     color: var(--very-dark-desaturated-blue);
     background-color: var(--white);
+    cursor: pointer;
 } 
 
 .main__btn-learn-more::after {
     content: "";
     display: block;
     border-radius: 1rem;
-    background-color: var(--soft-red);
     width: 100%;
     height: 10px;
     position: relative;
     z-index: -1;
     top: -8px;
+    opacity: 0.2;
 }
+
+.main__btn-learn-more--yellow::after {
+    background-color: var(--yellow);
+}
+
+.main__btn-learn-more--red::after {
+    background-color: var(--soft-red);
+}
+
+.main__btn-learn-more--yellow:hover::after { opacity: 1; }
+.main__btn-learn-more--red:hover::after { opacity: 1; }
 
 .main__img-service {
     float: left;
@@ -165,8 +183,12 @@ body {
     height: auto;
 }
 
+.main__image-wrapper--yellow { background-color: var(--dark-yellow); }
+.main__image-wrapper--salmon { background-color: var(--salmon); }
+
 .main__resoucers-wrapper {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
 
 .main__testimonials-wrapper {
@@ -176,7 +198,6 @@ body {
 .main__creations {
     display: flex;
 }
-
 
 .footer {
     flex: 0 1 auto;
