@@ -28,6 +28,7 @@ body {
   align-items: center;
   font-family: var(--font);
   background-color: var(--white);
+  min-height: 100vh;
 }
 
 .container {
