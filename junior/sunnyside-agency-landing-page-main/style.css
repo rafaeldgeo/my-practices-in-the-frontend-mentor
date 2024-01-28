@@ -1,0 +1,104 @@
+@charset "UTF-8";
+
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@600&family=Fraunces:wght@700;900&display=swap');
+
+:root {
+--soft-red: hsl(7, 99%, 70%);
+--yellow: hsl(51, 100%, 49%);
+--dark-desaturated-cyan: hsl(167, 40%, 24%); /* graphic design text */
+--dark-blue: hsl(198, 62%, 26%); /* photography text */
+--dark-moderate-cyan: hsl(168, 34%, 41%); /* footer */
+--very-dark-desaturated-blue: hsl(212, 27%, 19%);
+--very-dark-grayish-blue: hsl(213, 9%, 39%);
+--dark-grayish-blue: hsl(232, 10%, 55%);
+--grayish-blue: hsl(210, 4%, 67%);
+--white: hsl(0, 0%, 100%);
+--font-title: 'Fraunces', serif;
+--font-body: 'Barlow', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* border: 1px solid dodgerblue; */ 
+}
+
+html { width: 100%; } 
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--white);
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 1440px;
+    width: 100%;
+}
+
+.header {
+    flex: 1 0 auto;
+    width: 100%;
+}
+
+.main {
+    flex: 1 0 auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.main__text-side-image-block {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, 1fr);
+}
+
+.main__text-side-image-block--start { grid-template-areas: "wrapper-image" "wrapper-text" ; }
+.main__text-side-image-block--end { grid-template-areas: "wrapper-image" "wrapper-text"; }
+
+.main__wrapper-text { grid-area: wrapper-text; }
+.main__wrapper-image-side-block { grid-area: wrapper-image; }
+
+.main__image-side-block {
+    max-inline-size: 100%;
+    block-size: auto;
+    float: left;
+}
+
+.main__text-over-image-block {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, 1fr);
+}
+
+
+.main__image-down-block {
+    max-inline-size: 100%;
+    block-size: auto;
+}
+
+@media only screen and (min-width: 577px) {
+
+    .main__text-side-image-block {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(min-content, 720px));
+        grid-template-rows: 1fr;
+    }
+
+    .main__text-side-image-block--start { grid-template-areas: "wrapper-text wrapper-image"; }
+    .main__text-side-image-block--end { grid-template-areas: "wrapper-image" "wrapper-text"; }
+
+    .main__text-over-image-block {
+        display: relative;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(min-content, 720px));
+        grid-template-rows: auto;
+    }
+}
+
