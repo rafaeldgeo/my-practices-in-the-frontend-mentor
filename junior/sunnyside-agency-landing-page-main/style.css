@@ -21,7 +21,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-   /*  border: 1px solid dodgerblue;   */
+    /* border: 1px solid dodgerblue;    */ 
 }
 
 html { width: 100%; } 
@@ -89,7 +89,12 @@ body {
     text-align: center;
 }
 
+.main__client-testimonials {
+    padding: 150px 20px;
+}
+
 .main__title-testimonials {
+    margin-bottom: 60px;
     font-family: var(--font-title);
     font-size: clamp(0.6rem, 2.5vw, 1.1rem);
     letter-spacing: 0.2rem;
@@ -105,9 +110,12 @@ body {
     grid-template-rows: repeat(3, 1fr);
 }
 
-.main__wrapper-client-image {
+.main__client {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    row-gap: 50px;
 }
 
 .main__client-image {
@@ -116,10 +124,48 @@ body {
     block-size: auto;
 }
 
+.main__testimonial { 
+    display: flex;
+    align-items: center;
+    height: 50%; 
+}
+
+.main__text-testimonial {
+    max-inline-size: 76%;
+    margin: 0 auto;
+    text-align: center;
+    font-family: var(--font-body);
+    font-size: clamp(0.8rem, 2.1vw, 1.125rem);
+    line-height: calc(clamp(0.8rem, 2.1vw, 1.125rem) * 1.5);
+    color: var(--very-dark-grayish-blue);
+}
+
+.main__identification-client {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    row-gap: 10px;
+}
+
+.main__client-name {
+    font-family: var(--font-title);
+    font-size: clamp(1rem, 2.1vw, 1.2rem);
+    font-weight: 900;
+    color: var(--very-dark-desaturated-blue);
+}
+
+.main__client-position {
+    font-family: var(--font-body);
+    font-size: clamp(0.6rem, 1vw, 0.9rem);
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--grayish-blue);
+}
+
 .main__images-creative-block {
     display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(4, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
 }
 
 .footer {
@@ -178,7 +224,10 @@ body {
 .footer__social-icon { fill: var(--dark-desaturated-cyan); }
 .footer__social-icon:hover { fill: var(--white); }
 
-attribution-footer { margin: 0.6rem 0; }
+attribution-footer { 
+    font-family: var(--font-title);
+    margin: 0.6rem 0; 
+}
 
 @media only screen and (min-width: 577px) {
 
