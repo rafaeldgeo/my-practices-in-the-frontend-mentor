@@ -21,7 +21,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-   /*  border: 1px solid dodgerblue;  */     
+  /*   border: 1px solid dodgerblue;    */      
 }
 
 html { width: 100%; } 
@@ -84,17 +84,35 @@ body {
 }
 
 .main__wrapper-text-over-block {
+    max-inline-size: 85%;
     position: absolute;
-    top: 65%;
+    left: 5%;
+    top: calc(65% - 0.5rem);
     text-align: center;
+}
+
+.main__wrapper-text-over-block--start { color: var(--dark-desaturated-cyan); }
+.main__wrapper-text-over-block--end { color: var(--dark-blue); }
+
+.main__title-over-block {
+    font-family: var(--font-title);
+    font-size: clamp(0.5rem, 7vw, 2.5rem);
+    font-weight: 900;
+}
+
+.main__description-over-block {
+    margin: min(7vw, 1.25rem) 0;
+    font-family: var(--font-body);
+    font-size: clamp(0.4rem, 4vw, 1.1rem);
+    line-height: calc(clamp(0.4rem, 4vw, 1.1rem) * 1.5);
 }
 
 .main__client-testimonials { padding: min(20vw, 10.6rem) min(10vw, 1.5rem); }
 
 .main__title-testimonials {
-    margin-bottom: min(16vw, 3.75rem);
+    margin-bottom: min(8vw, 3.75rem);
     font-family: var(--font-title);
-    font-size: clamp(0.8rem, 4.2vw, 1.5rem);
+    font-size: clamp(0.4rem, 4.2vw, 1.5rem);
     letter-spacing: 0.2rem;
     text-transform: uppercase;
     font-weight: 900;
@@ -106,7 +124,7 @@ body {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: repeat(3, 1fr);
-    row-gap: 3.75rem;
+    row-gap: min(12vw, 3.75rem);
 }
 
 .main__client {
@@ -126,16 +144,16 @@ body {
 .main__testimonial { 
     display: flex;
     align-items: center;
-    height: 50%; 
+    height: auto; 
 }
 
 .main__text-testimonial {
-    max-inline-size: 85%;
+    max-inline-size: auto;
     margin: 0 auto;
     text-align: center;
     font-family: var(--font-body);
-    font-size: clamp(0.8rem, 4.1vw, 1.3rem);
-    line-height: calc(clamp(0.8rem, 4.1vw, 1.3rem) * 1.5);
+    font-size: clamp(0.5rem, 4.1vw, 1.3rem);
+    line-height: calc(clamp(0.5rem, 4.1vw, 1.3rem) * 1.5);
     color: var(--very-dark-grayish-blue);
 }
 
@@ -143,19 +161,19 @@ body {
     display: flex;
     flex-direction: column;
     text-align: center;
-    row-gap: 0.6rem;
+    row-gap: min(1vw, 0.6rem);
 }
 
 .main__client-name {
     font-family: var(--font-title);
-    font-size: clamp(1rem, 4.5vw, 1.5rem);
+    font-size: clamp(0.7rem, 4.5vw, 1.5rem);
     font-weight: 900;
     color: var(--very-dark-desaturated-blue);
 }
 
 .main__client-position {
     font-family: var(--font-body);
-    font-size: clamp(0.6rem, 3.5vw, 1.1rem);
+    font-size: clamp(0.5rem, 3.5vw, 1.1rem);
     font-weight: 600;
     color: var(--grayish-blue);
 }
@@ -180,12 +198,15 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 50px;
+    padding: min(10vw, 3.1rem) min(6vw, 3.1rem);
 }
 
-.footer__nav {
-    margin: 30px 0 50px 0;
-}
+.footer__logo {
+    max-inline-size: calc(20% + 5rem);
+    block-size: auto;
+} 
+
+.footer__nav { margin: 1.8rem 0 3.1rem 0; }
 
 .footer__menu {
     list-style-type: none;
@@ -200,7 +221,7 @@ body {
 .footer__menu-link {
     text-decoration: none;
     font-family: var(--font-body);
-    font-size: 1rem;
+    font-size: clamp(0.8rem, 2.1vw, 1rem);
     font-weight: 600;
     color: var(--dark-desaturated-cyan);
 }
@@ -210,7 +231,9 @@ body {
 .footer__social-midias {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     column-gap: 1.25rem;
+    row-gap: 1rem;
 }
 
 .footer__social-link {
@@ -243,6 +266,24 @@ attribution-footer {
         grid-template-rows: auto;
     }
 
+    .main__image-down-block { float: none; }
+
+    .main__wrapper-text-over-block {
+        max-inline-size: calc(45% + 4rem);
+        left: calc(25% - 1.5rem);
+        top: calc(65% - 1rem);
+    }
+
+    .main__title-over-block {
+        font-size: clamp(0.6rem, 2.1vw, 1.5rem);
+    }
+    
+    .main__description-over-block {
+        margin: min(1vw, 1.25rem) 0;
+        font-size: clamp(0.4rem, 1.8vw, 1.1rem);
+        line-height: calc(clamp(0.4rem, 1.8vw, 1.1rem) * 1.5);
+    }
+        
     .main__client-testimonials { padding: min(12vw, 10.6rem) 1.5rem; }
     
     .main__title-testimonials {
@@ -269,5 +310,7 @@ attribution-footer {
         grid-template-columns: repeat(4, 1fr);
         grid-template-rows: auto;
     }
+
+    .footer__logo { max-inline-size: 9.3rem; }
 }
 
