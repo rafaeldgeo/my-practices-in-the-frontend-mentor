@@ -21,7 +21,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-  /*   border: 1px solid dodgerblue;    */      
+    /* border: 1px solid dodgerblue;            */
 }
 
 html { width: 100%; } 
@@ -53,18 +53,6 @@ body {
     flex-direction: column;
 }
 
-.main__text-side-image-block {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(2, 1fr);
-}
-
-.main__text-side-image-block--start { grid-template-areas: "wrapper-image" "wrapper-text" ; }
-.main__text-side-image-block--end { grid-template-areas: "wrapper-image" "wrapper-text"; }
-
-.main__wrapper-text { grid-area: wrapper-text; }
-.main__wrapper-image-side-block { grid-area: wrapper-image; }
-
 :is(.main__image-side-block, 
     .main__image-down-block,
     .main__image-creative) {
@@ -73,15 +61,93 @@ body {
     block-size: auto;
 }
 
+.main__text-side-image-block {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, auto);
+}
+
+.main__wrapper-text-side-block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: min(20vw, 100px) 5px;
+}
+
+.main__text-side-block {
+    max-inline-size: calc(70% + 3.8rem); 
+    text-align: center;
+    color: var(--very-dark-desaturated-blue);
+}
+
+.main__title-side-block {
+    font-family: var(--font-title);
+    font-size: clamp(0.8rem, 7.5vw, 2.5rem);
+    font-weight: 900;
+}
+
+.main__description-side-block {
+    margin: min(10vw, 1.8rem) 0;
+    font-family: var(--font-body);
+    font-size: clamp(0.5rem, 5vw, 1.1rem);
+    line-height: calc(clamp(0.5rem, 5vw, 1.1rem) * 1.5);
+}
+
+.main__btn-block {
+    position: relative;
+    font-family: var(--font-title);
+    font-size: clamp(0.5rem, 3.5vw, 1rem);
+    text-transform: uppercase;
+    font-weight: 900;
+    letter-spacing: 0.1rem;
+    border: none;
+    background-color: transparent;
+    color: var(--very-dark-desaturated-blue);
+    margin-bottom: 0.3rem;
+    padding: 0 0.3rem;
+    cursor: pointer;
+}
+
+.main__btn-block::after {
+    position: absolute;
+    content: "";
+    left: 0;
+    top: 60%;
+    z-index: -1;
+    border-radius: 20px;
+    width: 100%;
+    height: 50%;
+}
+
+.main__btn-block--start::after { 
+    background-color: var(--yellow); 
+    opacity: 0.2;
+}
+
+.main__btn-block--end::after { 
+    background-color: var(--soft-red); 
+    opacity: 0.2;
+}
+
+.main__btn-block--start:hover::after { opacity: 1; }
+.main__btn-block--end:hover::after { opacity: 1; }
+
+
+.main__text-side-image-block--start { grid-template-areas: "wrapper-image" "wrapper-text" ; }
+.main__text-side-image-block--end { grid-template-areas: "wrapper-image" "wrapper-text"; }
+
+.main__wrapper-text { grid-area: wrapper-text; }
+.main__wrapper-image-side-block { grid-area: wrapper-image; }
+
+
+
 .main__text-over-image-block {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: repeat(2, 1fr);
 }
 
-.main__wrapper-image-down-block {
-    position: relative;
-}
+.main__wrapper-image-down-block { position: relative; }
 
 .main__wrapper-text-over-block {
     max-inline-size: 85%;
@@ -253,13 +319,30 @@ attribution-footer {
 @media only screen and (min-width: 577px) {
 
     .main__text-side-image-block {
-        grid-template-columns: repeat(2, minmax(min-content, 720px));
-        grid-template-rows: 1fr;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: auto;
     }
 
     .main__text-side-image-block--start { grid-template-areas: "wrapper-text wrapper-image"; }
     .main__text-side-image-block--end { grid-template-areas: "wrapper-image" "wrapper-text"; }
 
+    .main__wrapper-text-side-block { padding: 0; }
+
+    .main__text-side-block {
+        max-inline-size: calc(61% + 1rem); 
+        text-align: left;
+    }
+
+    .main__title-side-block { font-size: clamp(0.8rem, 3.1vw, 2.5rem); }
+    
+    .main__description-side-block {
+        margin: min(2.1vw, 1.8rem) 0;
+        font-size: clamp(0.5rem, 2vw, 1.1rem);
+        line-height: calc(clamp(0.5rem, 2vw, 1.1rem) * 1.5);
+    }
+
+    .main__btn-block { font-size: clamp(0.6rem, 2.1vw, 1rem);}
+    
     .main__text-over-image-block {
         display: relative;
         grid-template-columns: repeat(2, minmax(min-content, 720px));
