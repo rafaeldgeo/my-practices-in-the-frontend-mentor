@@ -21,7 +21,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    /* border: 1px solid dodgerblue;            */
+    /* border: 1px solid dodgerblue;   */           
 }
 
 html { width: 100%; } 
@@ -44,6 +44,28 @@ body {
 .header {
     flex: 1 0 auto;
     width: 100%;
+    position: relative;    
+}
+
+.header__message-welcome {
+    position: absolute;
+    top: 25%;
+    left: 0;
+    text-align: center;
+    font-family: var(--font-title);
+    font-size: clamp(0.6rem, 11vw, 3.8rem);
+    letter-spacing: 0.2rem;
+    text-transform: uppercase;
+    font-weight: 900;
+    color: var(--white);
+}
+
+.header__arrow {
+    max-inline-size: 90%;
+    block-size: calc(30% - 1rem);
+    position: absolute;
+    top: 50%;
+    left: calc(49% - 1rem); 
 }
 
 .main {
@@ -53,7 +75,8 @@ body {
     flex-direction: column;
 }
 
-:is(.main__image-side-block, 
+:is(.main__image-header,
+    .main__image-side-block, 
     .main__image-down-block,
     .main__image-creative) {
     max-inline-size: 100%;
@@ -317,6 +340,19 @@ attribution-footer {
 }
 
 @media only screen and (min-width: 577px) {
+
+    .header__message-welcome {
+        top: 22%;
+        left: calc(23% - 1.5rem);
+        font-size: clamp(1rem, 5vw, 3.8rem);
+        letter-spacing: min(calc(2vw - 0.6rem), 0.6rem);
+    }
+    
+    .header__arrow {
+        block-size: calc(30% - 1rem);
+        top: 38%;
+        left: calc(49% - 1rem); 
+    }
 
     .main__text-side-image-block {
         grid-template-columns: repeat(2, 1fr);
