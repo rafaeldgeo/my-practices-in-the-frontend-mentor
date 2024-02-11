@@ -336,7 +336,7 @@ body {
 .footer__social-icon:hover { fill: var(--white); }
 
 attribution-footer { 
-    font-family: var(--font-title);
+    font-family: var(--font-body);
     margin: 0.6rem 0; 
 }
 
