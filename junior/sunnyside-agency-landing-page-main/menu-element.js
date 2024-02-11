@@ -7,6 +7,8 @@ export default class MenuElement extends LitElement {
     static properties = {
         listOfLinks: {},
         logo: {},
+        showMenuMobile: {state: true},
+        showModal: {state: true},
     }
 
     static styles = css`
@@ -27,14 +29,7 @@ export default class MenuElement extends LitElement {
         width: 100%;
       }
 
-      .header__desktop { display: none; }
-
-      .header__mobile {
-        padding: min(3vw, 0.5rem);
-        position: relative;
-        display: block;
-        cursor: pointer;
-      }
+      .header__desktop-menu { display: none; }
 
       .header__icon-hamburger {
         display: block;
@@ -52,19 +47,29 @@ export default class MenuElement extends LitElement {
         block-size: auto;
       }
 
-      .header__drop-down {
+      .header__drop-down-menu {
         position: absolute;
-        display: block;
+        display: none;
         padding: min(15vw, 3rem) min(10vw, 2.1rem);
         width: 92vw;
         height: auto;
         right: 4%;
         top: calc(11% + 1.5rem); 
-        z-index: 1;
+        z-index: 100;
         background-color: var(--white);
       }
 
-      .header__drop-down::before {
+      .header__drop-down-menu--show {
+        display: block;
+      }
+
+      .header__btn {
+        background-color: transparent;
+        border: none;
+        z-index: 2
+      }
+
+      .header__drop-down-menu::before {
         content: "";
         position: absolute;
         bottom: 100%;
@@ -101,15 +106,27 @@ export default class MenuElement extends LitElement {
         background-color: var(--yellow);
       }
 
+      .header__modal {
+        display: block;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: transparent;
+      }
+
       @media only screen and (min-width: 577px) {
 
         .header__nav { padding: min(4vw, 3.1rem) min(3vw, 3.1rem); }
 
-        .header__desktop { display: block; }
+        .header__desktop-menu { display: block; }
 
-        .header__mobile { display: none; }
+        .header__btn { display: none; }
 
-        .header__drop-down { display: none; }
+        .header__drop-down-menu { display: none; }
 
         .header__logo { max-inline-size: 120%; }
        
@@ -125,45 +142,51 @@ export default class MenuElement extends LitElement {
         }
 
         .header__link--4 {
-        padding: min(1.5vw, 1.2rem) min(1.5vw, 1.8rem);
-        border-radius: 2rem;
-        font-size: clamp(1rem, 2vw, 1.3rem);
-        color: var(--very-dark-desaturated-blue);
-        background-color: var(--white);
+          padding: min(1.5vw, 1.2rem) min(1.5vw, 1.8rem);
+          border-radius: 2rem;
+          font-size: clamp(1rem, 2vw, 1.3rem);
+          color: var(--very-dark-desaturated-blue);
+          background-color: var(--white);
       }
 
       .header__link--4:hover {
         color: var(--white);
         background-color: var(--white-opacity);
       }
+
+    }
     `;
 
     constructor() {
         super();
         this.listOfLinks = ["About", "Services", "Projects", "Contact"];
         this.logo = "./images/logo.svg";
+        this.showMenuMobile = false;
+        this.showModal = false;
     }
 
     render() {
         return html`
-          <nav class="header__nav">
+        
+          <div class="header__nav">
             <h1 class="header__title">
                 <img class="header__logo" src="${this.logo ?? nothing}" alt="logo sunnyside" width="186" height="36">
             </h1>
-            <div class="header__desktop">
-                ${this.createList()}
-            </div>
-            <div class="header__mobile">
-                <img class="header__icon-hamburger" src="./images/icon-hamburger.svg" alt="menu" width="24" height="18">
-            </div>
-          </nav>
-          <div class="header__drop-down">
-            ${this.createList()}
-          </div>
+            <nav class="header__desktop-menu">
+                ${this._createList()}
+            </nav>
+            <button class="header__btn" type="button" aria-label="menu" @click=${this._toggleMenuMobile}>
+              <img class="header__icon-hamburger" src="./images/icon-hamburger.svg" alt="menu" width="24" height="18">
+            </button>
+          </div>    
+            <nav class="header__drop-down-menu ${this.showMenuMobile ? "header__drop-down-menu--show" : ""}">
+              ${this._createList()}
+            </nav>
+            <div @click=${this._toggleMenuMobile} class="${this.showModal ? "header__modal" : ""}"></div> 
         `;
     }
 
-    createList() {
+    _createList() {
         return html`
          <ul class="header__list">
                 ${this.listOfLinks.map((item, index) => html`
@@ -174,6 +197,13 @@ export default class MenuElement extends LitElement {
             </ul>
         `;
     }
+
+    _toggleMenuMobile(){
+      console.log("batata");
+      this.showMenuMobile = !this.showMenuMobile;
+      this.showModal = !this.showModal;
+    }
+    
 }
 
 /* customElements.define("menu-element",MenuElement); */
