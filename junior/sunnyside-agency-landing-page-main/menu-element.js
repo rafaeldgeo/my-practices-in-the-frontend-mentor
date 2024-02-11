@@ -20,7 +20,7 @@ export default class MenuElement extends LitElement {
       /*  border: 1px solid tomato;   */  
       }
 
-      .header__nav {
+      .header__menu {
         padding: min(6vw, 3.1rem) min(3vw, 3.1rem);
         position: absolute;
         display: flex;
@@ -120,7 +120,7 @@ export default class MenuElement extends LitElement {
 
       @media only screen and (min-width: 577px) {
 
-        .header__nav { padding: min(4vw, 3.1rem) min(3vw, 3.1rem); }
+        .header__menu { padding: min(4vw, 3.1rem) min(3vw, 3.1rem); }
 
         .header__desktop-menu { display: block; }
 
@@ -167,8 +167,7 @@ export default class MenuElement extends LitElement {
 
     render() {
         return html`
-        <nav class="header__menu"> 
-          <div class="header__nav">
+          <div class="header__menu">
             <h1 class="header__title">
                 <img class="header__logo" src="${this.logo ?? nothing}" alt="logo sunnyside" width="186" height="36">
             </h1>
@@ -179,11 +178,10 @@ export default class MenuElement extends LitElement {
               <img class="header__icon-hamburger" src="./images/icon-hamburger.svg" alt="menu" width="24" height="18">
             </button>
           </div>    
-            <div class="header__drop-down-menu ${this.showMenuMobile ? "header__drop-down-menu--show" : ""}">
-              ${this._createList()}
-            </div>
-            <div @click=${this._toggleMenuMobile} class="${this.showModal ? "header__modal" : ""}"></div> 
-        </nav>
+          <div class="header__drop-down-menu ${this.showMenuMobile ? "header__drop-down-menu--show" : ""}">
+            ${this._createList()}
+          </div>
+          <div @click=${this._toggleMenuMobile} class="${this.showModal ? "header__modal" : ""}"></div> 
         `;
     }
 
