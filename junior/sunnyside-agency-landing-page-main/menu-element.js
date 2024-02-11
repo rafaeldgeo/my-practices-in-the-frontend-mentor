@@ -17,7 +17,6 @@ export default class MenuElement extends LitElement {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
-      /*  border: 1px solid tomato;   */  
       }
 
       .header__menu {
@@ -171,16 +170,16 @@ export default class MenuElement extends LitElement {
             <h1 class="header__title">
                 <img class="header__logo" src="${this.logo ?? nothing}" alt="logo sunnyside" width="186" height="36">
             </h1>
-            <div class="header__desktop-menu">
+            <nav class="header__desktop-menu">
                 ${this._createList()}
-            </div>
+            </nav>
             <button class="header__btn" type="button" aria-label="menu" @click=${this._toggleMenuMobile}>
               <img class="header__icon-hamburger" src="./images/icon-hamburger.svg" alt="menu" width="24" height="18">
             </button>
           </div>    
-          <div class="header__drop-down-menu ${this.showMenuMobile ? "header__drop-down-menu--show" : ""}">
+          <nav class="header__drop-down-menu ${this.showMenuMobile ? "header__drop-down-menu--show" : ""}">
             ${this._createList()}
-          </div>
+          </nav>
           <div @click=${this._toggleMenuMobile} class="${this.showModal ? "header__modal" : ""}"></div> 
         `;
     }
