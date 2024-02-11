@@ -167,22 +167,23 @@ export default class MenuElement extends LitElement {
 
     render() {
         return html`
-        
+        <nav class="header__menu"> 
           <div class="header__nav">
             <h1 class="header__title">
                 <img class="header__logo" src="${this.logo ?? nothing}" alt="logo sunnyside" width="186" height="36">
             </h1>
-            <nav class="header__desktop-menu">
+            <div class="header__desktop-menu">
                 ${this._createList()}
-            </nav>
+            </div>
             <button class="header__btn" type="button" aria-label="menu" @click=${this._toggleMenuMobile}>
               <img class="header__icon-hamburger" src="./images/icon-hamburger.svg" alt="menu" width="24" height="18">
             </button>
           </div>    
-            <nav class="header__drop-down-menu ${this.showMenuMobile ? "header__drop-down-menu--show" : ""}">
+            <div class="header__drop-down-menu ${this.showMenuMobile ? "header__drop-down-menu--show" : ""}">
               ${this._createList()}
-            </nav>
+            </div>
             <div @click=${this._toggleMenuMobile} class="${this.showModal ? "header__modal" : ""}"></div> 
+        </nav>
         `;
     }
 
