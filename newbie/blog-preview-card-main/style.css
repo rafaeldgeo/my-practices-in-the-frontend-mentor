@@ -14,7 +14,6 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    /* border: 1px solid red;   */
 }
 
 html, body {
@@ -74,14 +73,14 @@ h1 + span {
     margin: min(5vw, 0.9rem) 0 min(5vw, 1.2rem) 0;
 }
 
-h2 {
-    font-size: clamp(0.8rem, 6vw, 1.4rem); 
+h2 { font-size: clamp(0.8rem, 6vw, 1.4rem); }
+
+h2 > a { 
     color: var(--black);
+    text-decoration: none; 
 }
 
-h2:hover { color: var(--yellow); }
-
-h2 > a { text-decoration: none; }
+h2 > a:hover { color: var(--yellow); }
 
 p {
     margin: min(2.1vw, 0.6rem) 0;
