@@ -30,7 +30,7 @@ body {
     font-family: var(--font);
 }
 
-main {
+.main {
     flex: 1 0 auto;
     display: flex;
     align-items: center;
@@ -39,7 +39,7 @@ main {
     width: 100%;
 }
 
-main > div {
+.main__card {
     display: grid;
     grid-template-columns: minmax(min-content, 336px);
     grid-template-rows: repeat(3, auto);    
@@ -51,15 +51,15 @@ main > div {
     background-color: var(--white);
 }
 
-main > div > img {
+.main__img-header {
     max-inline-size: 100%;
     block-size: auto;
     border-radius: 0.6rem;
 }
 
-img + div  { max-inline-size: 100%; }
+.main__card-body { max-inline-size: 100%; }
 
-h1 {
+.main__tag {
     display: inline-block;
     border-radius: 0.3rem;
     padding: min(1.5vw, 0.3rem) min(2.2vw, 0.7rem);
@@ -68,55 +68,55 @@ h1 {
     background-color: var(--yellow);
 }
 
-h1 + span {
+.main__date {
     display: block;
     font-size: clamp(0.5rem, 4vw, 0.9rem);
     margin: min(5vw, 0.9rem) 0 min(5vw, 1.2rem) 0;
 }
 
-h2 {
+.main__title {
     font-size: clamp(0.8rem, 6vw, 1.4rem); 
     color: var(--black);
 }
 
-h2:hover { color: var(--yellow); }
+.main__title:hover { color: var(--yellow); }
 
-h2 > a { text-decoration: none; }
+.main__link { text-decoration: none; }
 
-p {
+.main__text {
     margin: min(2.1vw, 0.6rem) 0;
     font-size: clamp(0.6rem, 5vw, 1rem);
     line-height: calc(clamp(0.6rem, 5vw, 1rem) * 1.5);
     color: var(--grey);
 }
 
-div + div {
+.main__card-footer {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
     column-gap: min(3vw, 0.6rem);
 }
 
-img[alt="one white man using blue shirt"] {
+.main__img-avatar {
     max-inline-size: 12%;
     block-size: auto;
     float: left;
 }
 
-img + span {
+.main__author {
     font-size: clamp(0.6rem, 5vw, 0.9rem);;
     font-weight: 800;
 }
 
-footer {
+.footer {
     flex-shrink: 0;
     margin: 0.6rem 0;
   }
   
-footer > div { 
+  .attribution { 
     font-size: 11px; 
     text-align: center; 
   }
   
-footer > div > a { color: var(--black); }
+  .attribution a { color: var(--black); }
   
