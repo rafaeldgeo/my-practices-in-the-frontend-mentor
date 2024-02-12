@@ -48,6 +48,7 @@ main > div {
     row-gap: min(5vw, 1.2rem);
     outline: 1px solid var(--black);
     background-color: var(--white);
+    box-shadow: 9px 9px 1px var(--black);
 }
 
 main > div > img {
@@ -80,7 +81,9 @@ h2 > a {
     text-decoration: none; 
 }
 
-h2 > a:hover { color: var(--yellow); }
+h2 > a:hover { 
+    color: var(--yellow); 
+}
 
 p {
     margin: min(2.1vw, 0.6rem) 0;
