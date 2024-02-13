@@ -58,13 +58,6 @@ div div:nth-child(1) {
     text-align: center;
 }
 
-div div:nth-child(2) {
-    display: grid;
-    grid-template-rows: repeat(auto-fit, auto);
-    justify-items: center;
-    row-gap: min(10vw, 0.9rem);
-}
-
 img {
     max-inline-size: 100%;
     block-size: auto;
@@ -89,6 +82,10 @@ p {
     color: var(--white);
 }
 
+menu { list-style-type: none; }
+
+li { margin: min(10vw, 0.9rem) 0; }
+
 a[href="#"] {
     display: block;
     border-radius: 0.5rem;
@@ -103,6 +100,7 @@ a[href="#"] {
 }
 
 a[href="#"]:hover {
+    transition: background-color 0.5s;
     color: var(--dark-grey);
     background-color: var(--green);
 }
