@@ -19,7 +19,6 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-/*   border: 1px solid rgb(218, 213, 248);  */
 }
 
 html, body {
@@ -174,31 +173,36 @@ main {
   border-collapse: collapse;
 }
 
-.main__row-table:nth-child(2) {
-  
-
+.main__row-table {
+  border-bottom: 2px solid var(--light-grey);
 }
+
+.main__row-table:last-child {
+  border: none;
+}
+
 .main__unit-of-measurement {
   text-align: start;
   font-weight: 600;
   color: var(--wenge-brown);
-  padding-left: 30px;
+  padding: 8px 0 8px 31px;
 }
 
 .main__value-table {
   font-weight: 700;
   color: var(--nutmeg);
-  padding-left: 5px;
+  padding: 8px 0 8px 8px;
 }
-
-.main__table-nutrition: {
-  background-color: red;
-}
- 
 
 .main__unit-of-measurement, .main__value-table {
   width: 50%; 
 }
+
+@media only screen and (min-width: 577px) {
+  
+
+}
+
 
 footer {
     flex-shrink: 0;
@@ -206,9 +210,10 @@ footer {
 }
   
 .attribution { 
+  color: var(--nutmeg);
   font-size: 11px; 
   text-align: center; 
 }
   
-.attribution a { color: var(--white);}
+.attribution a { color: var(--dark-raspberry);}
   
