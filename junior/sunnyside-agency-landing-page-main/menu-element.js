@@ -197,7 +197,6 @@ export default class MenuElement extends LitElement {
     }
 
     _toggleMenuMobile(){
-      console.log("batata");
       this.showMenuMobile = !this.showMenuMobile;
       this.showModal = !this.showModal;
     }
