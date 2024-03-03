@@ -1,23 +1,12 @@
 "use strict";
 
-import {LitElement, html, css} from 'https://cdn.jsdelivr.net/gh/lit/dist@3/all/lit-all.min.js';
-
-async function getData(){
-  let data = "data.json";
-  try {
-    let res = await fetch(data);
-    return await res.json();
-  } catch (error) {
-    console.log(error);
-  }
-}
+import {LitElement, html, css, until} from 'https://cdn.jsdelivr.net/gh/lit/dist@3/all/lit-all.min.js';
 
 export default class CardTime extends LitElement {
 
     static properties = {
         activity: {},
         icon: {},
-        list: {status: true},
     }
 
     static styles = css`  
@@ -28,55 +17,17 @@ export default class CardTime extends LitElement {
             box-sizing: border-box;
         }
 
-        .container {
-            display: grid;
-            grid-template-columns: minmax(min-content, 330px);
-            grid-template-rows: repeat(6, minmax(max-content, 10rem));
-            gap: 1.6rem 0;
-        }
-
-        .card {
-            padding-top: 45px;
+        :host {
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
-            background-image: none;
+            background-image: url("./images/icon-work.svg");
             background-repeat: no-repeat;
             background-position: top -12px right 16px;
             background-size: auto;
             border-radius: 1rem;
-            background-color: var(--pale-blue);
-            font-family: var(--font);
-        }
-
-        .card--work {
-            background-image: url("./images/icon-work.svg");
             background-color: var(--light-orange);
-        }
-
-        .card--play {
-            background-image: url("./images/icon-play.svg");
-            background-color: var(--soft-blue);
-        }
-
-        .card--study {
-            background-image: url("./images/icon-study.svg");
-            background-color: var(--light-red);
-        }
-
-        .card--exercise {
-            background-image: url("./images/icon-exercise.svg");
-            background-color: var(--lime-green);
-        }
-
-        .card--social {
-            background-image: url("./images/icon-social.svg");
-            background-color: var(--violet);
-        }
-
-        .card--self-care {
-            background-image: url("./images/icon-self-care.svg");
-            background-color: var(--soft-yellow);
+            font-family: var(--font);
         }
 
         .card__info:hover {
@@ -138,12 +89,6 @@ export default class CardTime extends LitElement {
 
         @media only screen and (min-width: 577px) {
 
-            .container {
-                grid-template-columns: repeat(3, minmax(min-content, 15.9rem));
-                grid-template-rows: repeat(2, minmax(max-content, 6.25rem));
-                gap: min(3.25vw, 1.87rem);
-            }
-
             .card__info { padding: 1.75rem min(3vw, 1.87rem); }
 
             .card__header { margin-bottom: min(1vw, 0.75rem); }
@@ -174,38 +119,27 @@ export default class CardTime extends LitElement {
         super();
         this.activity = "";
         this.icon = "";
-        this.list = [
-            {title: "Work" },
-            {title: "Play"}, 
-            {title: "Study"},
-            {title: "Exercise"}, 
-            {title: "Social"},
-            {title: "Self Care"}
-        ];
-     }
+    }
 
     render() {
         return html `
-        <div class="container">
-            ${this.list.map((item) => 
-                html`
-                <div class="card work">
-                <div class="card__info">
-                    <div class="card__header">
-                        <h3 class="card__title">${item.title}</h3>
-                        <svg class="card__icon" viewBox="0 0 21 5" width="21" height="5" xmlns="http://www.w3.org/2000/svg"><path d="M2.5 0a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Zm8 0a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Zm8 0a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Z" fill-rule="evenodd"/></svg>
-                    </div>
-                    <div class="card__body">
-                        <span class="card__current">32hrs</span>    
-                        <span class="card__previous">Last Week - 36hrs</span>
-                    </div>
-                </div>    
-            </div>`
-            )}
-        </div>
+          <div class="card__info">
+            <div class="card__header">
+                <h3 class="card__title">Work</h3>
+                <svg class="card__icon" viewBox="0 0 21 5" width="21" height="5" xmlns="http://www.w3.org/2000/svg"><path d="M2.5 0a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Zm8 0a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Zm8 0a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Z" fill-rule="evenodd"/></svg>
+            </div>
+            <div class="card__body">
+                <span class="card__current">32hrs</span>    
+                <span class="card__previous">Last Week - 36hrs</span>
+            </div>
+          </div>    
         `;
-    } 
-    
+    }
+
+    teste(){
+       
+    }
+
     
 }
 
