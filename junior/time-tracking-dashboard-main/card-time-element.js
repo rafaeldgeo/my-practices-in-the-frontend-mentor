@@ -1,16 +1,6 @@
 "use strict";
 
-import {LitElement, html, css} from 'https://cdn.jsdelivr.net/gh/lit/dist@3/all/lit-all.min.js';
-
-async function getData(){
-  let data = "data.json";
-  try {
-    let res = await fetch(data);
-    return await res.json();
-  } catch (error) {
-    console.log(error);
-  }
-}
+import {LitElement, html, css} from 'https://cdn.jsdelivr.net/gh/lit/dist@3/core/lit-core.min.js';
 
 export default class CardTime extends LitElement {
 
@@ -18,6 +8,7 @@ export default class CardTime extends LitElement {
         activity: {},
         icon: {},
         list: {status: true},
+        data: {type: Array},
     }
 
     static styles = css`  
@@ -139,7 +130,7 @@ export default class CardTime extends LitElement {
         @media only screen and (min-width: 577px) {
 
             .container {
-                grid-template-columns: repeat(3, minmax(min-content, 15.9rem));
+                grid-template-columns: repeat(3, minmax(max-content, 15.9rem));
                 grid-template-rows: repeat(2, minmax(max-content, 6.25rem));
                 gap: min(3.25vw, 1.87rem);
             }
@@ -174,39 +165,45 @@ export default class CardTime extends LitElement {
         super();
         this.activity = "";
         this.icon = "";
-        this.list = [
+       /*  this.list = [
             {title: "Work" },
             {title: "Play"}, 
             {title: "Study"},
             {title: "Exercise"}, 
             {title: "Social"},
             {title: "Self Care"}
-        ];
+        ]; */
+        this.data = [];
+        fetch("data.json")
+        .then(response => response.json())
+        .then(data => {
+            this.data = data;
+        });
      }
 
     render() {
         return html `
         <div class="container">
-            ${this.list.map((item) => 
+            ${this.data.map((item) => 
                 html`
-                <div class="card work">
-                <div class="card__info">
-                    <div class="card__header">
-                        <h3 class="card__title">${item.title}</h3>
-                        <svg class="card__icon" viewBox="0 0 21 5" width="21" height="5" xmlns="http://www.w3.org/2000/svg"><path d="M2.5 0a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Zm8 0a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Zm8 0a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Z" fill-rule="evenodd"/></svg>
-                    </div>
-                    <div class="card__body">
-                        <span class="card__current">32hrs</span>    
-                        <span class="card__previous">Last Week - 36hrs</span>
-                    </div>
-                </div>    
+                <div class="card">
+                    <div class="card__info">
+                        <div class="card__header">
+                            <h3 class="card__title">${item.title}</h3>
+                            <svg class="card__icon" viewBox="0 0 21 5" width="21" height="5" xmlns="http://www.w3.org/2000/svg"><path d="M2.5 0a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Zm8 0a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Zm8 0a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Z" fill-rule="evenodd"/></svg>
+                        </div>
+                        <div class="card__body">
+                            <span class="card__current">${item.timeframes.daily.current}hrs</span>    
+                            <span class="card__previous">Last Week - ${item.timeframes.daily.previous}hrs</span>
+                        </div>
+                    </div>    
             </div>`
             )}
         </div>
         `;
-    } 
-    
-    
+    }
+
+
 }
 
 /* customElements.define("cardtime-element", CardTime); */
