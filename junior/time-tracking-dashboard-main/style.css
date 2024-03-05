@@ -129,6 +129,10 @@ main {
     color: var(--white);
 }
 
+.btn-period--selected {
+    color: var(--white);
+}
+
 @media only screen and (min-width: 577px) {
 
     html, body { height: 100%; }

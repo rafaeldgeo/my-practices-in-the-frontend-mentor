@@ -5,9 +5,6 @@ import {LitElement, html, css} from 'https://cdn.jsdelivr.net/gh/lit/dist@3/core
 export default class CardTime extends LitElement {
 
     static properties = {
-        activity: {},
-        icon: {},
-        list: {status: true},
         data: {type: Array},
     }
 
@@ -33,7 +30,7 @@ export default class CardTime extends LitElement {
             justify-content: flex-end;
             background-image: none;
             background-repeat: no-repeat;
-            background-position: top -12px right 16px;
+            background-position: top -5px right 16px;
             background-size: auto;
             border-radius: 1rem;
             background-color: var(--pale-blue);
@@ -163,16 +160,6 @@ export default class CardTime extends LitElement {
 
     constructor() {
         super();
-        this.activity = "";
-        this.icon = "";
-       /*  this.list = [
-            {title: "Work" },
-            {title: "Play"}, 
-            {title: "Study"},
-            {title: "Exercise"}, 
-            {title: "Social"},
-            {title: "Self Care"}
-        ]; */
         this.data = [];
         fetch("data.json")
         .then(response => response.json())
@@ -186,7 +173,7 @@ export default class CardTime extends LitElement {
         <div class="container">
             ${this.data.map((item) => 
                 html`
-                <div class="card">
+                <div class="card ${this.defineStyle(item.title)}">
                     <div class="card__info">
                         <div class="card__header">
                             <h3 class="card__title">${item.title}</h3>
@@ -203,6 +190,9 @@ export default class CardTime extends LitElement {
         `;
     }
 
+    defineStyle(activity) {
+        return `card--${activity.replace(" ","-").toLowerCase()}`
+    }
 
 }
 
