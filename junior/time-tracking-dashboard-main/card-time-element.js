@@ -4,6 +4,7 @@ import {LitElement, html, css} from 'https://cdn.jsdelivr.net/gh/lit/dist@3/core
 
 const btnPeriod = document.querySelectorAll(".btn-period");
 
+/* Listening the buttons */
 btnPeriod.forEach((btn) => {
     btn.addEventListener("click", (e) => {
         btnPeriod.forEach(btn => btn.classList.remove("btn-period--selected"));
@@ -189,8 +190,8 @@ export default class CardTime extends LitElement {
                             <svg class="card__icon" viewBox="0 0 21 5" width="21" height="5" xmlns="http://www.w3.org/2000/svg"><path d="M2.5 0a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Zm8 0a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Zm8 0a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Z" fill-rule="evenodd"/></svg>
                         </div>
                         <div class="card__body">
-                            <span class="card__current">${this.defineCurrent(activity)}hrs</span>    
-                            <span class="card__previous">Last Week - ${activity.timeframes.daily.previous}hrs</span>
+                            <span class="card__current">${this.defineHours(activity.timeframes, "current")}hrs</span>    
+                            <span class="card__previous">Last Week - ${this.defineHours(activity.timeframes, "previous")}hrs</span>
                         </div>
                     </div> 
             </div>`
@@ -203,27 +204,20 @@ export default class CardTime extends LitElement {
         return `card--${activity.replace(" ","-").toLowerCase()}`
     }
    
-    getBtn(){
+    defineHours(activity, time) {
+        let periodSelected = "";
         btnPeriod.forEach((btn) => {
             if (btn.className.includes("btn-period--selected")) {
-                console.log(btn.textContent);
-                return btn.textContent;
+                periodSelected = btn.textContent.toLocaleLowerCase();
             };
         });
+        for (let prop in activity) {
+            if (prop === periodSelected) {
+              console.log(activity[prop][time]);
+              return activity[prop][time];
+            }            
+          }
     }
-    
-    defineCurrent(activity){
-        const period = this.getBtn();
-        if (period === "daily") {
-            return activity.timeframes.daily.current;
-        } else if (period === "weekly") {
-            return activity.timeframes.weekly.current;
-        } else {
-            return activity.timeframes.monthly.current;
-        }
-
-    }
-
 }
 
 /* customElements.define("cardtime-element", CardTime); */
