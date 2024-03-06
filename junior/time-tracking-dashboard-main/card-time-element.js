@@ -2,6 +2,15 @@
 
 import {LitElement, html, css} from 'https://cdn.jsdelivr.net/gh/lit/dist@3/core/lit-core.min.js';
 
+const btnPeriod = document.querySelectorAll(".btn-period");
+
+btnPeriod.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+        btnPeriod.forEach(btn => btn.classList.remove("btn-period--selected"));
+        e.target.classList.add("btn-period--selected");
+    })
+});
+
 export default class CardTime extends LitElement {
 
     static properties = {
@@ -171,19 +180,19 @@ export default class CardTime extends LitElement {
     render() {
         return html `
         <div class="container">
-            ${this.data.map((item) => 
+            ${this.data.map((activity) => 
                 html`
-                <div class="card ${this.defineStyle(item.title)}">
+                <div class="card ${this.defineStyle(activity.title)}">
                     <div class="card__info">
                         <div class="card__header">
-                            <h3 class="card__title">${item.title}</h3>
+                            <h3 class="card__title">${activity.title}</h3>
                             <svg class="card__icon" viewBox="0 0 21 5" width="21" height="5" xmlns="http://www.w3.org/2000/svg"><path d="M2.5 0a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Zm8 0a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Zm8 0a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Z" fill-rule="evenodd"/></svg>
                         </div>
                         <div class="card__body">
-                            <span class="card__current">${item.timeframes.daily.current}hrs</span>    
-                            <span class="card__previous">Last Week - ${item.timeframes.daily.previous}hrs</span>
+                            <span class="card__current">${this.defineCurrent(activity)}hrs</span>    
+                            <span class="card__previous">Last Week - ${activity.timeframes.daily.previous}hrs</span>
                         </div>
-                    </div>    
+                    </div> 
             </div>`
             )}
         </div>
@@ -192,6 +201,27 @@ export default class CardTime extends LitElement {
 
     defineStyle(activity) {
         return `card--${activity.replace(" ","-").toLowerCase()}`
+    }
+   
+    getBtn(){
+        btnPeriod.forEach((btn) => {
+            if (btn.className.includes("btn-period--selected")) {
+                console.log(btn.textContent);
+                return btn.textContent;
+            };
+        });
+    }
+    
+    defineCurrent(activity){
+        const period = this.getBtn();
+        if (period === "daily") {
+            return activity.timeframes.daily.current;
+        } else if (period === "weekly") {
+            return activity.timeframes.weekly.current;
+        } else {
+            return activity.timeframes.monthly.current;
+        }
+
     }
 
 }
