@@ -4,14 +4,6 @@ import {LitElement, html, css} from 'https://cdn.jsdelivr.net/gh/lit/dist@3/core
 
 const btnPeriod = document.querySelectorAll(".btn-period");
 
-/* Listening the buttons */
-btnPeriod.forEach((btn) => {
-    btn.addEventListener("click", (e) => {
-        btnPeriod.forEach(btn => btn.classList.remove("btn-period--selected"));
-        e.target.classList.add("btn-period--selected");
-    })
-});
-
 export default class CardTime extends LitElement {
 
     static properties = {
@@ -134,10 +126,10 @@ export default class CardTime extends LitElement {
            color: var(--pale-blue);
         }
 
-        @media only screen and (min-width: 577px) {
+        @media only screen and (min-width: 36.06rem) {
 
             .container {
-                grid-template-columns: repeat(3, minmax(max-content, 15.9rem));
+                grid-template-columns: repeat(3, minmax(8rem, 15.9rem));
                 grid-template-rows: repeat(2, minmax(max-content, 6.25rem));
                 gap: min(3.25vw, 1.87rem);
             }
@@ -150,7 +142,6 @@ export default class CardTime extends LitElement {
                 flex-direction: column; 
                 justify-content: none;
                 align-items: flex-start;
-
             }
 
             .card__title { font-size: clamp(0.8rem, 2vw, 1.18rem); }
@@ -164,7 +155,6 @@ export default class CardTime extends LitElement {
                 margin-bottom: min(0.5vw, 0.3rem);
                 font-size: clamp(0.6rem, 1.6vw, 0.95rem);
             }
-
         }
     `;
 
@@ -190,8 +180,8 @@ export default class CardTime extends LitElement {
                             <svg class="card__icon" viewBox="0 0 21 5" width="21" height="5" xmlns="http://www.w3.org/2000/svg"><path d="M2.5 0a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Zm8 0a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Zm8 0a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Z" fill-rule="evenodd"/></svg>
                         </div>
                         <div class="card__body">
-                            <span class="card__current">${this.defineHours(activity.timeframes, "current")}hrs</span>    
-                            <span class="card__previous">Last Week - ${this.defineHours(activity.timeframes, "previous")}hrs</span>
+                            <span class="card__current"><span class="card__current-value">${activity.timeframes.weekly.current}</span>hrs</span>    
+                            <span class="card__previous">Last Week <span class="card__previous-value">${activity.timeframes.weekly.previous}</span>hrs</span>
                         </div>
                     </div> 
             </div>`
@@ -204,20 +194,30 @@ export default class CardTime extends LitElement {
         return `card--${activity.replace(" ","-").toLowerCase()}`
     }
    
-    defineHours(activity, time) {
-        let periodSelected = "";
-        btnPeriod.forEach((btn) => {
-            if (btn.className.includes("btn-period--selected")) {
-                periodSelected = btn.textContent.toLocaleLowerCase();
-            };
-        });
-        for (let prop in activity) {
-            if (prop === periodSelected) {
-              console.log(activity[prop][time]);
-              return activity[prop][time];
-            }            
-          }
+    defineHours(period, getElement, time) {
+        let card = this.renderRoot.querySelectorAll(getElement); 
+        card.forEach((item, index) => {
+         if (period === "weekly") {
+             item.innerText = this.data[index].timeframes[period][time];
+         } else if (period === "daily") {
+            item.innerText = this.data[index].timeframes[period][time];
+         } else if (period === "monthly") {
+            item.innerText = this.data[index].timeframes[period][time];
+         }
+        });  
     }
+
+    connectedCallback() {
+        super.connectedCallback();
+        let period = "";
+        btnPeriod.forEach((btn) => {
+            btn.addEventListener("click", (e) => {
+                period = e.target.textContent.toLocaleLowerCase();
+                this.defineHours(period, ".card__current-value", "current");
+                this.defineHours(period, ".card__previous-value", "previous");
+        });
+    }); 
+   }
 }
 
 /* customElements.define("cardtime-element", CardTime); */

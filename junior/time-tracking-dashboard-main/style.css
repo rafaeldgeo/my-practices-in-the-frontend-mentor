@@ -133,12 +133,12 @@ main {
     color: var(--white);
 }
 
-@media only screen and (min-width: 577px) {
+@media only screen and (min-width: 36.06rem) {
 
     html, body { height: 100%; }
 
     .main__container {
-        grid-template-columns: minmax(min-content, 15.9rem) 1fr;
+        grid-template-columns: minmax(min-content, 15.9rem) 75%;
         grid-template-rows: minmax(max-content, 6.25rem);
         gap: 0 min(3.25vw, 1.87rem);
         margin: 0.6rem;

@@ -1,4 +1,4 @@
-/* "use strict";
+"use strict";
 
 const btnPeriod = document.querySelectorAll(".btn-period");
 
@@ -7,4 +7,4 @@ btnPeriod.forEach((btn) => {
         btnPeriod.forEach(btn => btn.classList.remove("btn-period--selected"));
         e.target.classList.add("btn-period--selected");
     })
-}); */
+}); 
