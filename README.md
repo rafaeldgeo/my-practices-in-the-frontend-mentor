@@ -35,5 +35,8 @@ Practices in [Frontend Mentor Website](https://www.frontendmentor.io/)
 * 5- [Pricing-component-with-toggle-master](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/junior/pricing-component-with-toggle-master//) **HTML** | **CSS** | **JS** <sup>web components (template)</sup>
 * 6- [Notifications-page-main](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/junior/notifications-page-main/) **HTML** | **CSS** | **JS** <sup>web components (custom elements, template and slots)</sup>
 * 7- [Sunnyside-agency-landing-page-main](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/junior/sunnyside-agency-landing-page-main/) **HTML** | **CSS** | **JS** <sup>Lit Library</sup>
+* 8- [Time-tracking-dashboard-main](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/junior/time-tracking-dashboard-main/) **HTML** | **CSS** | **JS** <sup>Lit Library + </sup><sup>JSON</sup>
+
+
 
 **My Frontend Mentor: [@rafaeldgeo](https://www.frontendmentor.io/profile/rafaeldgeo)**
