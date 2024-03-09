@@ -3,75 +3,62 @@
 export default class Testimonial extends HTMLElement {
 
   static get observedAttributes() {
-    return ["img-url", "background-color", "text-color", "border-color", "user-name", "title", "text", "background-image"];
+    return ["data-img", "data-name", "data-title", "data-text", "data-background-color","data-text-color", "data-border-color"];
   }
   
   constructor() {
     super();
-    this.userImageUrl = "https://fakeimg.pl/56x56?text=photo";
-    this.backgroundColor = "#ffffff";
-    this.textColor = "#000000";
-    this.borderColor = "#000000";
-    this.userName = "Define user name";
-    this.title = "Define a title";
-    this.text = "Define a text";
-  }
-
-  attributeChangedCallback(attributeName, oldValue, newValue) {
-    if (attributeName === "img-url") {
-      this.userImageUrl = newValue;
-    } else if (attributeName === "background-color") {
-      this.backgroundColor = newValue;
-    } else if (attributeName === "user-name") {
-      this.userName = newValue;
-    } else if (attributeName === "title") {
-      this.title = newValue;
-    } else if (attributeName === "text") {
-      this.text = newValue;
-    } else if (attributeName === "text-color") {
-      this.textColor = newValue;
-    } else if (attributeName === "border-color") {
-      this.borderColor = newValue;
-    }
   }
 
   connectedCallback() {
+    const shadow = this.attachShadow({ mode: "open"});
 
-    const shadowRoot = this.attachShadow({ mode: "open"});
-
-    const divTestimonialContainer = this.createElementDom("div","testimonial__container");
-    const backgroundColor = this.backgroundColor;
-    const textColor = this.textColor;
-    const borderColor = this.borderColor;
-
-    const divUserWrapper = this.createElementDom("div", "testimononial__user-wrapper");
-    const divAvatarWrapper = this.createElementDom("div", "testimonial__avatar-wrapper");
-
-    const imgAvatar = this.createElementDom("img", "testimonial__avatar-img");
-    imgAvatar.setAttribute("alt", "Image Avatar");
-    imgAvatar.setAttribute("width", "56");
-    imgAvatar.setAttribute("height", "56");
-    imgAvatar.src = this.userImageUrl;
-
-    const divInfoWrapper = this.createElementDom("div", "testimonial__info-wrapper");   
-    const spanUserName = this.createElementDom("span", "testimonail__user-name");
-    spanUserName.innerText = this.userName;
-
-    const spanUserVerifield = this.createElementDom("span", "testimonial__user-verifield");
-    spanUserVerifield.innerText = "Verifield Graduate";
-
-    const divTestimonyWrapper = this.createElementDom("div", "testimonial__testimony-wrapper");
-
-    const h2TestimonyTitle = this.createElementDom("h2", "testimonial__testimony-title");
-    h2TestimonyTitle.innerText = this.title;
-
-    const pTestimonyText = this.createElementDom("p", "testimonial__testimony-text");
-    pTestimonyText.innerText = this.text;
-
-    let backgroundImage = "none";
-    if (this.hasAttribute("background-image")) {
+    const testimonialContainer = document.createElement("div");
+    testimonialContainer.classList.add("testimonial__container");
+    const backgroundColor = this.getAttribute("data-background-color");
+    const textColor = this.getAttribute("data-text-color");
+    const borderColor = this.getAttribute("data-border-color");
+    let backgroundImage;
+    if (this.hasAttribute("data-background-image")) {
       backgroundImage = 'url("./images/bg-pattern-quotation.svg")'; 
+    } else {
+      backgroundImage = "none";
     }
+
+    const userWrapper = document.createElement("div");
+    userWrapper.classList.add("testimononial__user-wrapper");
+
+    const avatarWrapper = document.createElement("div");
+    avatarWrapper.classList.add("testimonial__avatar-wrapper");
+    
+    const avatarImg = document.createElement("img");
+    avatarImg.classList.add("testimonial__avatar-img");
+    avatarImg.setAttribute("alt", "");
+    avatarImg.setAttribute("width", "56");
+    avatarImg.setAttribute("height", "56");
+    avatarImg.src = this.getAttribute("data-img");
+
+    const infoWrapper = document.createElement("div");
+    infoWrapper.classList.add("testimonial__info-wrapper");
+
+    const userName = document.createElement("span");
+    userName.classList.add("testimonail__user-name");
+    userName.textContent = this.getAttribute("data-name");
+
+    const userVerifield = document.createElement("span");
+    userVerifield.classList.add("testimonial__user-verifield");
+    userVerifield.innerText = "Verifield Graduate";
+
+    const testimonyWrapper = document.createElement("div");
+    testimonyWrapper.classList.add("testimonial__testimony-wrapper");
+
+    const testimonyTitle = document.createElement("h2");
+    testimonyTitle.classList.add("testimonial__testimony-title");
+    testimonyTitle.textContent = this.getAttribute("data-title");
+
+    const testimonyText = document.createElement("p");
+    testimonyText.classList.add("testimonial__testimony-text");
+    testimonyText.textContent = this.getAttribute("data-text");
 
     const style = document.createElement("style");
     style.textContent = 
@@ -142,7 +129,7 @@ export default class Testimonial extends HTMLElement {
         color: ${textColor};
       }
 
-      @media only screen and (min-width: 576px) {
+      @media only screen and (min-width: 1000px) {
 
         .testimonial__container {
           padding: min(2vw, 1.5rem) min(2vw, 2rem); 
@@ -167,94 +154,29 @@ export default class Testimonial extends HTMLElement {
           font-size: clamp(0.6rem, 2vw, 0.8rem);
           line-height: calc(clamp(0.6rem, 2vw, 0.8rem) * 1.5);
         }
-        
       }
       `;
-    
-    shadowRoot.appendChild(style);
-    shadowRoot.appendChild(divTestimonialContainer);
-    divTestimonialContainer.appendChild(divUserWrapper);
-    divUserWrapper.appendChild(divAvatarWrapper);
-    divAvatarWrapper.appendChild(imgAvatar);
-    divUserWrapper.appendChild(divInfoWrapper);
-    divInfoWrapper.appendChild(spanUserName);
-    divInfoWrapper.appendChild(spanUserVerifield);
-    divTestimonialContainer.appendChild(divTestimonyWrapper);
-    divTestimonyWrapper.appendChild(h2TestimonyTitle);
-    divTestimonyWrapper.appendChild(pTestimonyText);
+          
+    shadow.appendChild(style);
+    shadow.appendChild(testimonialContainer);
+    testimonialContainer.appendChild(userWrapper);
+    userWrapper.appendChild(avatarWrapper);
+    avatarWrapper.appendChild(avatarImg);
+    userWrapper.appendChild(infoWrapper);
+    infoWrapper.appendChild(userName);
+    infoWrapper.appendChild(userVerifield);
+    testimonialContainer.appendChild(testimonyWrapper);
+    testimonyWrapper.appendChild(testimonyTitle);
+    testimonyWrapper.appendChild(testimonyText);
   }
 
-  set userImageUrl(newValue) {
-    this._userImageUrl = newValue;
-    if (!this.shadowRoot) {
+  attributeChangedCallback(name, oldValue, newValue) {
+    if (oldValue === newValue) {
       return;
+    } else {
+      this[name] = newValue;
     }
   }
-
-  get userImageUrl() { return this._userImageUrl; }
-
-  set backgroundColor(newValue) {
-    this._backgroundColor = newValue;
-    if (!this.shadowRoot) {
-      return;
-    }
-  }
-
-  get backgroundColor() { return this._backgroundColor; }
-
-  set textColor(newValue) {
-    this._textColor = newValue;
-    if (!this.shadowRoot) {
-      return;
-    }
-  }
-
-  get textColor() { return this._textColor; }
-
-  set borderColor(newValue) {
-    this._borderColor = newValue;
-    if (!this.shadowRoot) {
-      return;
-    }
-  }
-
-  get borderColor() { return this._borderColor; }
-
-  set userName(newValue) {
-    this._userName = newValue;
-    if (!this.shadowRoot) {
-      return;
-    }
-  }
-
-  get userName() { this._userName; }
-
-  set title(newValue) {
-    this._title = newValue;
-    if (!this.shadowRoot) {
-      return;
-    }
-  }
-
-  get title() { return this._title; }
-
-  set text(newValue) {
-    this._text = newValue;
-    if (!this.shadowRoot) {
-      return;
-    }
-  }
-
-  get text() { return this._text; }
-
-  createElementDom(tag, classCss) {
-    const element = document.createElement(tag);
-    if (classCss) {
-      element.classList.add(classCss);
-    }
-    return element;
-  }
-
 }
 
 /* customElements.define("testimonial-user", Testimonial); */
