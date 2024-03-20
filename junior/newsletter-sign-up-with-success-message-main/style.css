@@ -2,6 +2,7 @@
 
 :root {
     --tomato: hsl(4, 100%, 67%);
+    --light-tomato:  hsl(4, 63%, 95%);
     --dark-slate-grey: hsl(234, 29%, 20%);
     --charcoal-grey: hsl(235, 18%, 26%);
     --grey: hsl(231, 7%, 60%);
@@ -173,19 +174,6 @@ color: var(--dark-slate-grey);
     .newsletter__header-form { margin-block-end: min(1.5vw, 0.65rem); }
     
     .newsletter__header-form { font-size: clamp(0.6rem, 1.5vw, 0.75rem); }
-
-    .newsletter__input-email {
-        padding: min(2vw, 1.12rem) min(1.5vw, 1.5rem);
-        font-size: clamp(0.7rem, 1.5vw, 1rem);
-        margin-block-end: min(1.5vw, 1.5rem);
-    }
-    
-    ::placeholder { font-size: clamp(0.7rem, 1.5vw, 1rem); }
-
-    .newsletter__btn-send {
-        padding: min(2.5vw, 1.12rem) min(2.5vw, 1.5rem);
-        font-size: clamp(0.7rem, 1.5vw, 1rem);
-    }
 
 }
 
