@@ -4,6 +4,9 @@ import {LitElement, html, css} from 'https://cdn.jsdelivr.net/gh/lit/dist@3/core
 
 export default class FormEmailElement extends LitElement {
 
+    static properties = {
+        error: {status: true },
+    }
 
     static styles = css`
 
@@ -26,7 +29,9 @@ export default class FormEmailElement extends LitElement {
         font-weight: 700;
     }
 
-    .newsletter__erro { color: var(--tomato); } 
+    .newsletter__error { 
+        color: var(--tomato); 
+    } 
 
     .newsletter__input-email {
         width: 100%;
@@ -45,6 +50,17 @@ export default class FormEmailElement extends LitElement {
 
     .newsletter__input-email:focus {
         outline: 1px solid var(--dark-slate-grey);
+    }
+
+    .newsletter__input-email:invalid {
+      background-color: none;
+    }
+
+    .active {
+        color: var(--tomato);
+        border: 1px solid var(--tomato);
+        outline: 1px solid var(--tomato);
+        background-color: var(--light-tomato);
     }
 
     .newsletter__btn-send {
@@ -84,10 +100,27 @@ export default class FormEmailElement extends LitElement {
             font-size: clamp(0.7rem, 1.5vw, 1rem);
         }
     }
+
+    @media only screen and (max-width: 23.5rem) {
+
+        .newsletter__input-email {
+            padding: min(5vw, 1.12rem) min(5vw, 1.5rem);
+            font-size: clamp(0.7rem, 4vw, 1rem);
+            margin-block-end: min(3.5vw, 1.5rem);
+        }
+    
+        ::placeholder { font-size: clamp(0.7rem, 4vw, 1rem); }
+
+        .newsletter__btn-send {
+            padding: min(5vw, 1.12rem) min(5vw, 1.5rem);
+            font-size: clamp(0.7rem, 4vw, 1rem);
+        }
+    }
     `;
 
     constructor() {
-        super();
+        super()
+        this.error = "";
     }
 
     render() {
@@ -95,13 +128,33 @@ export default class FormEmailElement extends LitElement {
          <form class="newsletter__form" action="thanks.html" novalidate>
             <div class="newsletter__header-form">
               <label class="newsletter__input-label" for="email">Email address</label>
-              <span class="newsletter__erro">Valid email required</span>
+              <span class="newsletter__error">${this.error}</span>
             </div>
-            <input class="newsletter__input-email" type="email" name="email" id="email" placeholder="email@company.com">
-            <input class="newsletter__btn-send" type="submit" value="Subscribe to monthly newsletter">
+            <input class="newsletter__input-email" type="email" name="email" id="email" placeholder="email@company.com" @change=${this.checkInput}>
+            <input class="newsletter__btn-send" type="submit" value="Subscribe to monthly newsletter" @click=${this.checkSubmit}>
           </form> 
         `;
     }
+
+    checkInput(){
+        const input = this.renderRoot.querySelector(".newsletter__input-email");
+        if (input.validity.valid && input.value.length > 0) {
+            this.error = "";
+            input.classList.remove("active");
+        }
+    }
+
+    checkSubmit(e){
+        const input = this.renderRoot.querySelector(".newsletter__input-email");
+        if (!input.validity.valid || input.value.length === 0) {
+            this.error = "Valid email required";
+            input.classList.add("active");
+            e.preventDefault();
+        } else {
+            this.error = "";
+        }
+    }
+
 }
 
-customElements.define("form-email-element", FormEmailElement);
+/* customElements.define("form-email-element", FormEmailElement); */
