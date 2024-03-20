@@ -4,7 +4,7 @@ In this repository are some practices to improve my front-end skills.
 Practices in [Frontend Mentor Website](https://www.frontendmentor.io/)
 ---
 ## Level: newbie<sup>1</sup>
-* 1- [QR-code-component](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/newbie/qr-code-component/) **HTML** | **CSS** <sup>flexbox</sup> <sup>[see the version in bootstrap 5](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/newbie/using-frame-works-css/qr-code-component/)</sup>
+* 1- [QR-code-component](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/newbie/qr-code-component/) **HTML** | **CSS** <sup>flexbox</sup> | <sup>[see the version in bootstrap 5](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/newbie/using-frame-works-css/qr-code-component/)</sup>
 * 2- [NFT-preview-card-component](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/newbie/nft-preview-card-component/) | **HTML** | **CSS** <sup>flexbox</sup>
 * 3- [Blog-preview-card-main](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/newbie/blog-preview-card-main/) | **HTML** | **CSS** <sup>flexbox + grid</sup>
 * 4- [Social-links-profile-main](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/newbie/social-links-profile-main/) | **HTML** | **CSS** <sup>flexbox + grid</sup>
