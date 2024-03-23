@@ -62,17 +62,17 @@ main {
     grid-area: info;
     display: flex; 
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     padding: 0; 
 }
 
 .newsletter__wrapper-info {
-    width: min-content;
+    max-inline-size: 375px;
     display: flex;
     flex-direction: column;
     row-gap: min(2.5vw, 1rem);
-    padding: 0;
+    padding: 0.6rem;
 }
 
 .newsletter__title {
@@ -90,7 +90,7 @@ color: var(--dark-slate-grey);
 
 .newsletter__announce {
     font-size: clamp(0.7rem, 4.3vw, 1rem);
-    inline-size: 35ch;
+    inline-size: none; 
     line-height: calc(clamp(0.7rem, 4.3vw, 1rem) *1.5);
 }
 
@@ -176,7 +176,6 @@ color: var(--dark-slate-grey);
     .newsletter__header-form { font-size: clamp(0.6rem, 1.5vw, 0.75rem); }
 
 }
-
 
 footer {
     flex-shrink: 0;
