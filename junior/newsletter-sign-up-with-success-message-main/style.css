@@ -123,7 +123,7 @@ color: var(--dark-slate-grey);
 
 @media only screen and (min-width: 36.06rem) {
 
-    body { background-color: var(--dark-slate-grey); }
+    body { background-color: var(--charcoal-grey); }
     
 
     main { justify-content: center; }
