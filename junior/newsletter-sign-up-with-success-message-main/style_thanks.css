@@ -9,6 +9,8 @@
     --font: "Roboto", sans-serif;
     --gadiente-color1:#FF527B;
     --gradient-color2: #FF6A3A;
+    --shadow: hsl(235, 20%, 22%);
+    --shadow-btn: #fabba7;
     --shadow-btn: #fabba7;
 }
 
@@ -91,7 +93,7 @@ main {
 
 @media only screen and (min-width: 36.06rem) {
 
-    body { background-color: var(--charcoal-grey); }
+    body { background-color: var(--charcoal-grey) }
 
     main { justify-content: center; }
 
@@ -100,6 +102,7 @@ main {
         display: flex;
         gap: 0 0;
         padding: 3.12rem 4.06rem 3.87rem 4.06rem;
+        box-shadow: 1px 10px 10px 10px var(--shadow);
     }
 
     .sucess-message__thanks {

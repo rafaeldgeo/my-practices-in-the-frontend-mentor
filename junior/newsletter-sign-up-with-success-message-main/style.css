@@ -9,6 +9,7 @@
     --white: hsl(0, 0%, 100%);
     --gadiente-color1:#FF527B;
     --gradient-color2: #FF6A3A;
+    --shadow: hsl(235, 20%, 22%);
     --shadow-btn: #fabba7;
     --font: "Roboto", sans-serif;
 }
@@ -135,6 +136,7 @@ color: var(--dark-slate-grey);
         border-radius: calc(1vw + 1.18rem);
         padding: min(2.5vw, 1.43rem);
         margin: 0.6rem;
+        box-shadow: 1px 10px 10px 10px var(--shadow);
     }
 
     .newsletter__info { padding: min(2.5vw, 3rem) min(2.5vw, 2.62rem); }
