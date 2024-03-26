@@ -12,7 +12,7 @@
 <body>
   <div class="container">
     <header class="header">
-      <img class="header__logo" src="./images/logo.svg" alt="Fylo Logo" width="176" height="52">
+      <div><img class="header__logo" src="./images/logo.svg" alt="Fylo Logo" width="176" height="52"></div>
       <nav class="header__menu">
         <a href="#" class="header__menu-link">Features</a>
         <a href="#" class="header__menu-link">Team</a>
@@ -20,31 +20,42 @@
       </nav>
     </header>
     <main class="main">
-      <img class="main__illustration-intro" src="./images/illustration-intro.png" alt="" width="720" height="534">
-      <h1 class="main__title">All your files in one secure location, accessible anywhere.</h1>
-      <p class="main__intro">Fylo stores all your most important files in one secure location. Access them wherever
-        you need, share and collaborate with friends family, and co-workers.</p>
-      <button class="main__btn" type="button">Get Started</button>
+      <div class="main__wrapper-intro">
+        <img class="main__illustration-intro" src="./images/illustration-intro.png" alt="" width="720" height="534">
+        <h1 class="main__title">All your files in one secure location, accessible anywhere.</h1>
+        <p class="main__intro">Fylo stores all your most important files in one secure location. Access them wherever
+          you need, share and collaborate with friends family, and co-workers.</p>
+        <button class="main__btn" type="button">Get Started</button>
+      </div>
       <div class="resources">
         <div class="resources__item">
-          <img class="resources__icon" src="./images/icon-access-anywhere.svg" alt="" width="83" height="78">
+          <div class="resources__wrapper-icon">
+            <img class="resources__icon" src="./images/icon-access-anywhere.svg" alt="" width="83" height="78">
+          </div>
           <h2 class="resources__title">Access your files, anywhere</h2>
           <p class="resources__description">The ability to use a smartphone, tablet, or computer to access your account means your
             files follow you everywhere.</p>
         </div>
         <div class="resources__item">
-          <img class="resources__icon" src="./images/icon-security.svg" alt="" width="70" height="88">
+          <div class="resources__wrapper-icon">
+            <img class="resources__icon" src="./images/icon-security.svg" alt="" width="70" height="88">
+          </div>
           <h2 class="resources__title">Security you can trust</h2>
           <p class="resources__description">2-factor authentication and user-controlled encryption are just a couple of the security
             features we allow to help secure your files.</p>
         </div>
         <div class="resources__item">
-          <img class="resources__icon" src="./images/icon-collaboration.svg" alt="" width="86" height="71">
+          <div class="resources__wrapper-icon">
+            <img class="resources__icon" src="./images/icon-collaboration.svg" alt="" width="86" height="71">
+          </div>
           <h2 class="resources__title">Real-time collaboration</h2>
-          <p class="resources__description">Securely share files and folders with friends, family and colleagues for live collaboration.</p>
+          <p class="resources__description">Securely share files and folders with friends, family and colleagues for live collaboration. 
+            No email attachments required.</p>
         </div>
         <div class="resources__item">
-          <img class="resources__icon" src="./images/icon-any-file.svg" alt="" width="91" height="64">
+          <div class="resources__wrapper-icon">
+            <img class="resources__icon" src="./images/icon-any-file.svg" alt="" width="91" height="64">
+          </div>
           <h2 class="resources__title">Store any type of filen</h2>
           <p class="resources__description"> Whether you're sharing holidays photos or work documents, Fylo has you covered allowing for all
             file types to be securely stored and shared.</p>
