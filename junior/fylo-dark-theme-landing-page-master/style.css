@@ -21,7 +21,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    border: 1px solid blue; 
+   /*  border: 1px solid blue;  */
 } 
 
 html, body { width: 100%; }
@@ -181,7 +181,7 @@ body {
 
 .see-work__title {
     font-size: 40px;
-    max-inline-size: 20ch;
+    max-inline-size: 15ch; 
     line-height: 1.2;
     margin-block-end: 32px; 
 }
@@ -214,18 +214,25 @@ body {
     justify-content: center;
     gap: 0 40px;
     flex-wrap: wrap;
+    background-image: url(./images/bg-quotes.png);
+    padding-block-start: 40px;
+    background-repeat: no-repeat;
+    background-position: calc(1vw + 2.5rem) 0;
 }
 
 .testimonials__user-brief {
     flex: 0 1 360px;
     display: flex;
     flex-direction: column;
-    padding: 38px 20px;
+    border-radius: 0.3rem;
+    padding: 40px 26px 30px 26px;
     background-color: var(--dark-blue-testimonials);
+    box-shadow: 8px 10px 4px 2px var(--dark-blue-intro);
 }
 
 .testimonials__user-word {
     font-size: 15px;
+    margin-block-end: 15px;
 }
 
 .testimonials__wrapper-info {
@@ -238,6 +245,7 @@ body {
     max-inline-size: 100%;
     block-size: auto;
     border-radius: 3rem;
+    margin-inline-end: 8px;
 }
 
 .testimonials__identification {
@@ -248,11 +256,13 @@ body {
     font-size: 9px;
     font-weight: 900;
     display: block;
+    margin-block-end: 4px;
 }
 
 .testimonials__position {
+    font-size: 7px;
+    font-weight: 900;
     display: block;
-    text-align: start;
 }
 
 .see-work__icon { fill: var(--cyan); }
