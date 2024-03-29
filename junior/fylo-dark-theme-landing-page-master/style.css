@@ -11,6 +11,7 @@
     --blue: hsl(198, 60%, 50%); /* inside call-to-action gradient */
     --light-red: hsl(0, 100%, 63%); /* error */
     --white: hsl(0, 0%, 100%);
+    --shadow: hsl(218, 28%, 10%);
     --font-primary: "Open Sans", sans-serif; /* Headings, Call-to-actions, Header Navigation */
     --font-secondary: "Raleway", sans-serif; /* Body */
 }
@@ -21,7 +22,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-   /*  border: 1px solid blue;  */
+   /*  border: 1px solid blue;  */    
 } 
 
 html, body { width: 100%; }
@@ -40,7 +41,7 @@ body {
     .see-work__title,
     .main__btn,
     .see-work__btn,
-    ) {
+    .sing-up__title) {
     font-family: var(--font-secondary);   
 }
 
@@ -48,7 +49,9 @@ body {
     .resources__description,
     .see-work__description,
     .testimonials__user-word,
-    .testimonials__identification) {
+    .testimonials__identification,
+    .sing-up__instruction,
+    .sing-up__error) {
     font-family: var(--font-primary);
 }
 
@@ -90,6 +93,7 @@ body {
 
 .main {
     flex: 1 0 auto;
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -142,7 +146,7 @@ body {
     grid-template-columns: repeat(2, minmax(20px, 410px));
     grid-template-rows: repeat(2, auto);
     gap: 80px 90px; 
-    margin-block-end: 130px;
+    margin-block-end: 120px;
 }
 
 .resources__wrapper-icon {
@@ -212,15 +216,16 @@ body {
 .testimonials {
     display: flex;
     justify-content: center;
-    gap: 0 40px;
+    gap: 20px 40px;
     flex-wrap: wrap;
-    background-image: url(./images/bg-quotes.png);
     padding-block-start: 40px;
+    margin-block-end: 120px;
     background-repeat: no-repeat;
     background-position: calc(1vw + 2.5rem) 0;
-}
+} 
 
 .testimonials__user-brief {
+    position: relative;
     flex: 0 1 360px;
     display: flex;
     flex-direction: column;
@@ -228,6 +233,14 @@ body {
     padding: 40px 26px 30px 26px;
     background-color: var(--dark-blue-testimonials);
     box-shadow: 8px 10px 4px 2px var(--dark-blue-intro);
+}
+
+.testimonials__user-brief--quotes::before {
+    position: absolute;
+    content: url("./images/bg-quotes.png");
+    bottom: 95%;
+    right: 87%;
+    z-index: -1;
 }
 
 .testimonials__user-word {
@@ -269,6 +282,69 @@ body {
 .see-work__wrapper-btn:hover .see-work__btn { color: var(--white); }
 .see-work__wrapper-btn:hover { border-block-end: 1px solid var(--white); }
 .see-work__wrapper-btn:hover .see-work__icon { fill: var(--white); }
+
+.sing-up {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 0.3rem;
+    padding: 50px 0 20px 0;   
+    width: 66%; 
+    background-color: var(--dark-blue-intro);
+    box-shadow: 4px 6px 5px 1px var(--shadow);
+}
+
+.sing-up__title {
+    font-size: 32px;
+}
+
+.sing-up__instruction {
+    text-align: center;
+    font-size: 14px;
+    max-inline-size: 80ch; 
+    margin-block-start: 25px;
+    margin-block-end: 40px;
+}
+
+.sing-up__form { 
+    width: 85%; 
+}
+
+.sing-up__wrapper-form {
+    display: flex;
+    justify-content: center; 
+    flex-wrap: wrap;
+    gap: 0 30px; 
+    width: 100%;
+}
+
+.sing-up__input {
+    border: 0;
+    width: 66%;    
+    border-radius: 1.5rem;
+    padding: 16px 35px;
+}
+
+.sing-up__error {
+    color: var(--light-red);
+    font-size: 0.6rem;
+    font-weight: 900;
+    padding-inline-start: 45px;
+}
+
+.sing-up__btn {
+    border: none;
+    border-radius: 1.87rem;
+    padding: 5px 30px;  
+   /*  margin-block: 1.75rem; */
+    background: linear-gradient(var(--cyan), var(--blue));
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--white);
+    cursor: pointer;
+}
+
+.sing-up__btn:hover { background: var(--cyan); }
 
 .footer {
     flex: 0 1 720px;

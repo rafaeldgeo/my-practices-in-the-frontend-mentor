@@ -28,7 +28,6 @@
         <button class="main__btn" type="button">Get Started</button>
       </div>
       <div class="resources">
-        <div>
           <div class="resources__item">
             <div class="resources__wrapper-icon">
               <img class="resources__icon" src="./images/icon-access-anywhere.svg" alt="" width="83" height="78">
@@ -45,8 +44,6 @@
             <p class="resources__description">2-factor authentication and user-controlled encryption are just a couple of the security
               features we allow to help secure your files.</p>
           </div>
-        </div>
-        <div>
           <div class="resources__item">
             <div class="resources__wrapper-icon">
               <img class="resources__icon" src="./images/icon-collaboration.svg" alt="" width="86" height="71">
@@ -63,7 +60,6 @@
             <p class="resources__description"> Whether you're sharing holidays photos or work documents, Fylo has you covered allowing for all
               file types to be securely stored and shared.</p>
           </div>
-        </div>
       </div>
       <div class="see-work">
         <img class="see-work__illustration" src="./images/illustration-stay-productive.png" alt="" width="615" height="465">
@@ -78,7 +74,7 @@
         </div>
       </div>
       <div class="testimonials">
-        <div class="testimonials__user-brief">
+        <div class="testimonials__user-brief testimonials__user-brief--quotes">
           <p class="testimonials__user-word"> Fylo has improved our team productivity by an order of magnitude. Since making the switch our team has
             become a well-oiled collaboration machine.</p>
           <div class="testimonials__wrapper-info">
@@ -118,9 +114,11 @@
         <p class="sing-up__instruction">It only takes a minute to sign up and our free starter tier is extremely generous. If you have any
           questions, our support team would be happy to help you.</p>
         <form class="sing-up__form" action="#" novalidate>
-          <input class="sing-up__input" type="email" id="email" placeholder="email@example.com">
+          <div class="sing-up__wrapper-form">
+            <input class="sing-up__input" type="email" id="email" placeholder="email@example.com">
+            <input class="sing-up__btn" type="submit" value="Get Started For Free">
+          </div>
           <span class="sing-up__error">Please enter a valid email address</span>
-          <input class="sing-up__btn" type="submit" value="Get Started For Free">
         </form>
       </div>      
     </main>
