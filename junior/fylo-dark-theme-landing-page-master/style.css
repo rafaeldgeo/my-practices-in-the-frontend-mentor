@@ -22,7 +22,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-   /*  border: 1px solid blue;  */    
+  /*   border: 1px solid blue;      */ 
 } 
 
 html, body { width: 100%; }
@@ -32,7 +32,8 @@ body {
     flex-direction: column;
     align-items: center;
     color: var(--white);
-    background-color: var(--dark-blue-main);
+    background-color: blue;
+    /* background-color: var(--dark-blue-main); */
 }
 
 :is(.header__menu, 
@@ -61,7 +62,6 @@ body {
     row-gap: 4.37rem;
     max-inline-size: 1440px;
     width: 100%;
-    padding-inline: 4.35rem;
 }
 
 .header {
@@ -70,8 +70,7 @@ body {
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    padding-block-start: 4.25rem;
-    padding-inline: 0.5rem;
+    padding: 4.52rem 5rem 0.5rem 5rem;
 }
 
 .header__menu {
@@ -92,11 +91,13 @@ body {
 }
 
 .main {
+    position: relative;
     flex: 1 0 auto;
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: red;
 }
 
 .main__wrapper-intro {
@@ -104,7 +105,7 @@ body {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    margin-block-end: 135px;
+    margin-block-end: 8.43rem;
 }
 
 :is(.main__illustration-intro, 
@@ -145,8 +146,8 @@ body {
     display: grid;
     grid-template-columns: repeat(2, minmax(20px, 410px));
     grid-template-rows: repeat(2, auto);
-    gap: 80px 90px; 
-    margin-block-end: 120px;
+    gap: 5rem 5.6rem; 
+    margin-block-end: 7.5rem;
 }
 
 .resources__wrapper-icon {
@@ -219,9 +220,7 @@ body {
     gap: 20px 40px;
     flex-wrap: wrap;
     padding-block-start: 40px;
-    margin-block-end: 120px;
-    background-repeat: no-repeat;
-    background-position: calc(1vw + 2.5rem) 0;
+    margin-block-end: 280px;
 } 
 
 .testimonials__user-brief {
@@ -284,6 +283,8 @@ body {
 .see-work__wrapper-btn:hover .see-work__icon { fill: var(--white); }
 
 .sing-up {
+    position: absolute;
+    top: 97%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -347,7 +348,8 @@ body {
 .sing-up__btn:hover { background: var(--cyan); }
 
 .footer {
-    flex: 0 1 720px;
+    flex: 0 1 420px;
+    background-color: var(--dark-blue-footer);
 }
 
 .footer__midia {
