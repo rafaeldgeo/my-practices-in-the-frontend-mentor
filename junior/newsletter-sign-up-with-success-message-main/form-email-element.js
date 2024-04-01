@@ -125,7 +125,7 @@ export default class FormEmailElement extends LitElement {
 
     render() {
         return html`
-         <form class="newsletter__form" action="thanks.html" novalidate>
+         <form class="newsletter__form" action="thanks.html" method="get" novalidate>
             <div class="newsletter__header-form">
               <label class="newsletter__input-label" for="email">Email address</label>
               <span class="newsletter__error">${this.error}</span>
