@@ -22,7 +22,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    /* border: 1px solid blue; */      
+    border: 1px solid blue;       
 } 
 
 html, body { width: 100%; }
@@ -49,26 +49,29 @@ body {
     block-size: auto;
 }
 
-:is(.header__menu, 
-    .main__title,
-    .resources__title,
-    .see-work__title,
-    .main__btn,
-    .see-work__btn,
-    .sing-up__title) {
-        font-family: var(--font-secondary);   
-}
-
 :is(.main__intro,
     .resources__description,
     .see-work__description,
     .testimonials__user-word,
     .testimonials__identification,
     .sing-up__instruction,
-    .sing-up__error) {
+    .sing-up__error,
+    .footer__address-wrapper,
+    .footer__contact-wrapper,
+    .footer__link) {
         font-family: var(--font-primary);
 }
 
+:is(.header__menu, 
+    .main__title,
+    .resources__title,
+    .see-work__title,
+    .main__btn,
+    .see-work__btn,
+    .sing-up__title,
+    .footer__attribution) {
+        font-family: var(--font-secondary);   
+}
 
 .header {
     flex: 1 0 auto;
@@ -341,4 +344,20 @@ body {
 
 .footer {
     flex: 0 1 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--dark-blue-footer);
 }
+
+
+.footer__wrapper {
+    width: 100%;
+    padding: min(5vw, 4.52rem) min(5vw, 5rem) 0 min(5vw, 5rem);
+}
+
+.footer__body {
+    display: grid;
+    
+}
+
