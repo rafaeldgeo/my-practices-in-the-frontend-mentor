@@ -22,7 +22,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    border: 1px solid blue;       
+   /*  border: 1px solid blue;  */        
 } 
 
 html, body { width: 100%; }
@@ -284,7 +284,7 @@ body {
 
 .sing-up {
     position: absolute;
-    top: 94%;
+    top: 95%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -350,14 +350,89 @@ body {
     background-color: var(--dark-blue-footer);
 }
 
-
 .footer__wrapper {
     width: 100%;
-    padding: min(5vw, 4.52rem) min(5vw, 5rem) 0 min(5vw, 5rem);
+    padding: min(12vw, 14rem) min(7vw, 7.1rem) min(4vw, 3.75rem) min(7vw, 7.1rem);
 }
+
+.footer__logo-wrapper { margin-block-end: 2rem; }
 
 .footer__body {
-    display: grid;
-    
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
 }
 
+:is(.footer__address-wrapper,
+    .footer__phone-wrapper,
+    .footer__email-wrapper) {
+    display: flex;
+    column-gap: 1.5rem;
+    font-family: var(--font-primary);
+    font-style: normal;
+}
+
+.footer__address-wrapper {
+    font-size: 1rem;
+    line-height: 1.5;
+    max-inline-size: 43ch;
+}
+
+.footer__contact-wrapper {
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.footer__menu {
+    display: flex;
+    gap: 0 5rem;
+}
+
+.footer__item { 
+    list-style-type: none; 
+    margin-block-end: 1rem;
+    width: min(6.5vw, 5.6rem);
+}
+
+.footer__link {
+    display: block;
+    color: var(--white);
+    text-decoration: none;
+}
+
+.footer__link:hover { font-weight: 600; }
+
+.footer__midia-wrapper {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.65rem 0.65rem;
+  }
+  
+  .footer__midia-icon-wrapper {
+    padding: 0.3rem;
+    border: 1px solid var(--white);
+    border-radius: 3rem;
+    cursor: pointer;
+  }
+  
+  .footer__midia-icon-wrapper:hover { border: 1px solid var(--cyan); }
+  
+  .footer__midia-icon {
+    margin: auto auto; 
+    padding: 0.1rem 0.1rem; 
+    color: var(--white);
+  }
+  
+  .footer__midia-icon-wrapper:hover .footer__midia-icon { color: var(--cyan); }
+  
+  .footer__midia-icon--facebook { padding: 0.1rem 0.3rem; }
+  
+  .footer__midia-icon--instagram { padding: 0.1rem 0.2rem; }
+
+  .footer__attribution { 
+    margin: 0.6rem 0;
+  }
+  
