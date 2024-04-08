@@ -12,6 +12,7 @@
     --light-red: hsl(0, 100%, 63%); /* error */
     --white: hsl(0, 0%, 100%);
     --shadow: hsl(218, 28%, 10%);
+    --light-red-form: hsl(0, 80%, 80%);
     --font-primary: "Open Sans", sans-serif; /* Headings, Call-to-actions, Header Navigation */
     --font-secondary: "Raleway", sans-serif; /* Body */
 }
@@ -21,8 +22,7 @@
 *::after {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-   /*  border: 1px solid blue;  */                 
+    box-sizing: border-box;             
 } 
 
 html, body { width: 100%; }
@@ -290,9 +290,7 @@ body {
     margin-inline-end: 0.5rem;
 }
 
-.testimonials__identification {
-    text-align: start;
-}
+.testimonials__identification { text-align: start; }
 
 .testimonials__user-name {
     font-size: 0.56rem;
@@ -333,9 +331,7 @@ body {
     margin-block-end: 2.8rem;
 }
 
-.sing-up__form { 
-    width: 100%;
-}
+.sing-up__form { width: 100%; }
 
 .sing-up__wrapper-form {
     display: flex;
@@ -358,6 +354,9 @@ body {
     border-radius: 1.5rem;
     padding: 1rem 2.18rem;
 }
+
+::placeholder { color: var(--dark-blue-intro); }
+
 
 .sing-up__error {
     color: var(--light-red);
