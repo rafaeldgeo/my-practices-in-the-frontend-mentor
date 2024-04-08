@@ -28,14 +28,15 @@ Practices in [Frontend Mentor Website](https://www.frontendmentor.io/)
 * 22- [Intro-component-with-signup-form-master](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/newbie/intro-component-with-signup-form-master/) | **HTML** | **CSS** <sup>grid + flexbox + media queries + BEM</sup> | **JS**
 
 ## Level: junior<sup>2</sup>
-* 1- [Testimonials-grid-section-main](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/junior/testimonials-grid-section-main/) **HTML** | **CSS** | **JS** <sup>web components (custom elements)</sup>
-* 2- [Fylo-data-storage-component-master](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/junior/fylo-data-storage-component-master/) **HTML** | **CSS** | **JS** <sup>web components (custom elements)</sup>
-* 3- [Clipboard-landing-page-master](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/junior/clipboard-landing-page-master/) **HTML** | **CSS** | **JS** <sup>web components (custom elements)</sup>
-* 4- [Huddle-landing-page-with-alternating-feature-blocks-master](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/junior/huddle-landing-page-with-blocks-master/) **HTML** | **CSS** | **JS** <sup>web components (custom elements)</sup>
-* 5- [Pricing-component-with-toggle-master](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/junior/pricing-component-with-toggle-master//) **HTML** | **CSS** | **JS** <sup>web components (template)</sup>
-* 6- [Notifications-page-main](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/junior/notifications-page-main/) **HTML** | **CSS** | **JS** <sup>web components (custom elements, template and slots)</sup>
-* 7- [Sunnyside-agency-landing-page-main](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/junior/sunnyside-agency-landing-page-main/) **HTML** | **CSS** | **JS** <sup>Lit Library</sup>
-* 8- [Newsletter-sign-up-with-success-message-main](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/junior/newsletter-sign-up-with-success-message-main/) **HTML** | **CSS** | **JS** <sup>Lit Library</sup>
-* 9- [Time-tracking-dashboard-main](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/junior/time-tracking-dashboard-main/) **HTML** | **CSS** | **JS** <sup>Lit Library + </sup><sup>JSON</sup>
+* 1- [Fylo-dark-theme-landing-page-master](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/junior/fylo-dark-theme-landing-page-master/) **HTML** | **CSS** | **JS**
+* 2- [Testimonials-grid-section-main](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/junior/testimonials-grid-section-main/) **HTML** | **CSS** | **JS** <sup>web components (custom elements)</sup>
+* 3- [Fylo-data-storage-component-master](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/junior/fylo-data-storage-component-master/) **HTML** | **CSS** | **JS** <sup>web components (custom elements)</sup>
+* 4- [Clipboard-landing-page-master](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/junior/clipboard-landing-page-master/) **HTML** | **CSS** | **JS** <sup>web components (custom elements)</sup>
+* 5- [Huddle-landing-page-with-alternating-feature-blocks-master](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/junior/huddle-landing-page-with-blocks-master/) **HTML** | **CSS** | **JS** <sup>web components (custom elements)</sup>
+* 6- [Pricing-component-with-toggle-master](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/junior/pricing-component-with-toggle-master//) **HTML** | **CSS** | **JS** <sup>web components (template)</sup>
+* 7- [Notifications-page-main](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/junior/notifications-page-main/) **HTML** | **CSS** | **JS** <sup>web components (custom elements, template and slots)</sup>
+* 8- [Sunnyside-agency-landing-page-main](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/junior/sunnyside-agency-landing-page-main/) **HTML** | **CSS** | **JS** <sup>Lit Library</sup>
+* 9- [Newsletter-sign-up-with-success-message-main](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/junior/newsletter-sign-up-with-success-message-main/) **HTML** | **CSS** | **JS** <sup>Lit Library</sup>
+* 10- [Time-tracking-dashboard-main](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/junior/time-tracking-dashboard-main/) **HTML** | **CSS** | **JS** <sup>Lit Library + </sup><sup>JSON</sup>
 
 **My Frontend Mentor: [@rafaeldgeo](https://www.frontendmentor.io/profile/rafaeldgeo)**
