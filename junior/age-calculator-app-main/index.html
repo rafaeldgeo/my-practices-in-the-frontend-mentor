@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+  <link rel="stylesheet" href="style.css">
+  <script defer type="module" src="./index.js"></script>
+  <title>Frontend Mentor | Age calculator app</title>
+</head>
+<body>
+  <main>
+    <div class="container">
+      <div class="input-date">
+        <form class="calculator__form" action="#" novalidate>
+          <div class="calculator__wrapper-day">
+            <label class="calculator__label" for="day">Day</label>
+            <input class="calculator__input" type="text" inputmode="numeric" pattern="\d*" placeholder="DD" id="day" name="day">
+          </div>
+          <div class="calculator__wrapper-month">
+            <label class="calculator__label" for="month">Month</label>
+            <input class="calculator__input" type="text" placeholder="MM" id="month" name="month">
+          </div>
+          <div class="calculator__wrapper-year">
+            <label class="calculator__label" for="year">Year</label>
+            <input class="calculator__input" type="text" placeholder="YYYY" id="year" name="year">
+          </div>
+          <button class="calculator__btn" type="submit">
+            <svg xmlns="http://www.w3.org/2000/svg" width="46" height="44" viewBox="0 0 46 44"><g fill="none" stroke="#FFF" stroke-width="2"><path d="M1 22.019C8.333 21.686 23 25.616 23 44M23 44V0M45 22.019C37.667 21.686 23 25.616 23 44"/></g></svg>
+          </button>
+        </form>
+      </div>
+      <div class="calculator__wrapper-result">
+        <div class="calculator"></div>
+        <span class="calculator__result">--</span>
+      </div>
+    </div>
+   years
+  -- months
+  -- days
+  </main>
+  <footer>
+    <attribution-footer color-label=" hsl(0, 0%, 8%)" color-link="hsl(259, 100%, 65%)"></attribution-footer>
+  </footer>
+</body>
+</html>
