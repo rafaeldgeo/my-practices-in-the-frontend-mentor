@@ -14,16 +14,18 @@
       <div class="calculate">
         <form class="calculate__form" action="#">
           <div class="calculate__wrapper-input">
-            <label class="calculate__label" for="day">Day</label>
-            <input class="calculate__input" type="text" inputmode="numeric" placeholder="DD" id="day" name="day" min="1" max="31" required>
-          </div>
-          <div class="calculate__wrapper-input">
-            <label class="calculate__label" for="month">Month</label>
-            <input class="calculate__input" type="text" inputmode="numeric" placeholder="MM" id="month" name="month" min="1" max="12" required>
-          </div>
-          <div class="calculate__wrapper-input">
-            <label class="calculate__label" for="year">Year</label>
-            <input class="calculate__input" type="text" inputmode="numeric" placeholder="YYYY" id="year" name="year" min="1582" required>
+            <div class="calculate__wrapper-field">
+              <label class="calculate__label" for="day">Day</label>
+              <input class="calculate__input" type="text" inputmode="numeric" placeholder="DD" id="day" name="day" min="1" max="31" required> 
+            </div>
+            <div class="calculate__wrapper-field">
+              <label class="calculate__label" for="month">Month</label>
+              <input class="calculate__input" type="text" inputmode="numeric" placeholder="MM" id="month" name="month" min="1" max="12" required>
+            </div>
+            <div class="calculate__wrapper-field">
+              <label class="calculate__label" for="year">Year</label>
+             <input class="calculate__input" type="text" inputmode="numeric" placeholder="YYYY" id="year" name="year" min="1582" required>
+            </div>
           </div>
           <button class="calculate__btn" type="submit">
             <svg xmlns="http://www.w3.org/2000/svg" width="46" height="44" viewBox="0 0 46 44"><g fill="none" stroke="#FFF" stroke-width="2"><path d="M1 22.019C8.333 21.686 23 25.616 23 44M23 44V0M45 22.019C37.667 21.686 23 25.616 23 44"/></g></svg>
@@ -43,6 +45,7 @@
           <span class="result__value">--</span>
           <span class="resul__label">days</span>
         </div>
+    </div>
   </main>
   <footer>
     <attribution-footer color-label=" hsl(0, 0%, 8%)" color-link="hsl(259, 100%, 65%)"></attribution-footer>

@@ -19,6 +19,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+  /*   border: 1px solid blue; */
 }
 
 html, body {
@@ -46,7 +47,88 @@ main {
 
 .container {
     background-color: var(--white);
+    max-inline-size: 842px;
+    margin: .6rem;
+    padding: 3.45rem;
+    border-radius: 25px 25px 50px 25px;
 }
+
+.calculate { inline-size: 100%; }
+
+.calculate__form { position: relative; }
+
+.calculate__wrapper-input {
+    display: flex;
+    column-gap: 1.87rem;
+    padding-block-end: 50px;
+    border-bottom: 2px solid var(--light-grey);
+    cursor: pointer;
+}
+
+.calculate__wrapper-field {
+    max-inline-size: 22%;
+    display: flex;
+    flex-direction: column;
+    row-gap: .5rem;
+}
+
+.calculate__label {
+    text-transform: uppercase;
+    font-size: .93rem;
+    font-weight: 700;
+    letter-spacing: 0.2rem; 
+    color: var(--smokey-grey);
+}
+
+.calculate__input {
+    inline-size: 100%;
+    border-radius: .5rem;
+    border: 1px solid var(--light-grey);
+    font-family: var(--font);
+    font-size: 1.93rem;
+    font-weight: 700;
+    padding: 12px 22px; 
+    color: var(--off-black);
+} 
+
+::placeholder {
+    font-family: var(--font);
+    font-size: 1.93rem;
+    font-weight: 700;
+    color: var(--smokey-grey);
+}
+
+.calculate__input:focus { outline: 1px solid var(--purple); }
+
+.calculate__btn {
+    position: absolute;
+    right: 0;
+    top: 66%;
+    border: none;
+    border-radius: 50%;
+    background-color: var(--purple);
+    padding: 1.56rem;
+    cursor: pointer;
+}
+
+.calculate__btn:hover { background-color: var(--off-black); }
+
+.result__value {
+    font-size: 100px;
+    letter-spacing: 1rem;
+    font-weight: 800;
+    font-style: italic;
+    color: var(--purple);
+}
+
+.resul__label {
+    font-size: 105px;
+    font-weight: 800;
+    font-style: italic;
+    letter-spacing: -.29rem;
+    color: var(--off-black);
+}
+
 
 footer {
     flex-shrink: 0;
