@@ -223,6 +223,8 @@ export default class AgeCalculatorElement extends LitElement {
     }
 
     checkSubmit(e) {
+        const DATE = new Date();
+        const currentYear = DATE.getFullYear(); 
         const inputList = this.renderRoot.querySelectorAll(".calculate__input");
         inputList.forEach(input => {
             if (input.value.length === 0) {
@@ -239,11 +241,16 @@ export default class AgeCalculatorElement extends LitElement {
                 }
                 this.formatError(input);
                 e.preventDefault();
+            } else if (input.id === "year" && input.value > currentYear) {
+                input.nextElementSibling.textContent =  "Must be in the past";
+                this.formatError(input);
+                e.preventDefault();
             } else {
                 input.classList.remove("calculate__input--erro");
                 input.nextElementSibling.classList.remove("calculate__error--active");
                 input.previousElementSibling.classList.remove("calculate__label--erro");
                 input.nextElementSibling.textContent = "";
+               /*  this.validDate(e ,input); */
             }
         });
     }
@@ -254,9 +261,19 @@ export default class AgeCalculatorElement extends LitElement {
         input.nextElementSibling.classList.add("calculate__error--active");
     }
 
-    validDate(input) {
-        
+   /*  validDate(event, input) {
+        const DATE = new Date();
+        const day = DATE.getDay();
+        const month = DATE.getMonth();
+        const year = DATE.getFullYear();
+    } */
 
+    validDate() {
+        const inputMonth = this.renderRoot.querySelector("#month").value;
+        const inputDay = this.renderRoot.querySelector("#day").value;
+        const monthsWith30 = /[469]|1{2}/;
+        const isMonthWith30 = monthsWith30.test(inputMonth);
+        if ()
     }
 
 }
