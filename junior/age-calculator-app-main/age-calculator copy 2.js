@@ -4,6 +4,10 @@ import {LitElement, html, css} from 'https://cdn.jsdelivr.net/gh/lit/dist@3/core
 
 export default class AgeCalculatorElement extends LitElement {
 
+    static properties = {
+        error: {status: true},
+    }
+
     static styles = css`
     
     *,
@@ -169,6 +173,11 @@ export default class AgeCalculatorElement extends LitElement {
     }
     `;
 
+    constructor() {
+        super();
+        this.error = "";
+    }
+
     render() {
         return html`
         <div class="calculate">
@@ -190,7 +199,7 @@ export default class AgeCalculatorElement extends LitElement {
              <span class="calculate__error">Error message</span>
             </div>
           </div>
-          <button class="calculate__btn" type="submit" @click=${this._checkSubmit}>
+          <button class="calculate__btn" type="submit" @click=${this.checkSubmit}>
             <svg class="calculate__btn-icon" xmlns="http://www.w3.org/2000/svg" width="46" height="44" viewBox="0 0 46 44"><g fill="none" stroke="#FFF" stroke-width="2"><path d="M1 22.019C8.333 21.686 23 25.616 23 44M23 44V0M45 22.019C37.667 21.686 23 25.616 23 44"/></g></svg>
           </button>
         </form>
@@ -209,45 +218,68 @@ export default class AgeCalculatorElement extends LitElement {
           <span class="resul__label">days</span>
         </div>
       </div>
+        
     `;
     }
 
-    _checkSubmit(e) {
+    checkSubmit(e) {
+        const DATE = new Date();
+        const currentYear = DATE.getFullYear(); 
+        const monthsWith30days = /[469]|1{2}/;
+        const monthWith29days = 2;
+        const inputMonth = Number(this.renderRoot.querySelector("#month").value);
         const inputList = this.renderRoot.querySelectorAll(".calculate__input");
+        let teste = null;
         inputList.forEach(input => {
-            if (!this._validEmpty(input)) {
+            if (input.value.length === 0) { /* erro para campos vazios */
+                input.nextElementSibling.textContent = "This field is required";
+                this.formatError(input);
                 e.preventDefault();
+            } else if (!input.validity.valid) { /* erro para campos com regras no HTML */
+                if (input.id === "day") {
+                    input.nextElementSibling.textContent =  "Must be a valid day"; 
+                } else if (input.id === "month") {
+                    input.nextElementSibling.textContent =  "Must be a valid month";
+                } else if (input.id === "year") {
+                    input.nextElementSibling.textContent =  "Must be a valid year";
+                }
+                this.formatError(input);
+                e.preventDefault(); 
+            } else if (input.id === "day") { /* erro para campos mês com 30 dias e fevereiro com 29 dias */
+                if (Number(input.value) === 31 && monthsWith30days.test(inputMonth) || (Number(input.value) > 29 && inputMonth === monthWith29days)) {
+                    input.nextElementSibling.textContent =  "Must be a valid date"; 
+                    this.formatError(input);
+                    inputList[1].previousElementSibling.classList.add("calculate__label--erro");
+                    teste = false;
+                    e.preventDefault(); 
+                }
+            } else if (input.id === "year" && Number(input.value) > currentYear) { /* erro para ano futuro */
+                input.nextElementSibling.textContent =  "Must be in the past";
+                this.formatError(input);
+                e.preventDefault();
+            } else if (teste) { /* passa sem erro */
+                input.classList.remove("calculate__input--erro");
+                input.nextElementSibling.classList.remove("calculate__error--active");
+                input.previousElementSibling.classList.remove("calculate__label--erro");
+                input.nextElementSibling.textContent = "";
+               /*  this.validDate(e ,input); */
             }
         });
     }
 
-    _validEmpty(input){
-        let isValid = true;
-        if (input.value.length === 0) {
-            input.nextElementSibling.textContent = "This field is required";
-            isValid = false;
-            this._formatError(input, isValid);
-        } else {
-            this._formatError(input, isValid);
-            input.nextElementSibling.textContent = "Error message";
-        }
-
+    formatError(input) {
+        input.classList.add("calculate__input--erro");
+        input.previousElementSibling.classList.add("calculate__label--erro");
+        input.nextElementSibling.classList.add("calculate__error--active");
     }
+ 
+   /*  validDate(event, input) {
+        const DATE = new Date();
+        const day = DATE.getDay();
+        const month = DATE.getMonth();
+        const year = DATE.getFullYear();
+    } */
 
-    _formatError(input, isValid) {
-        if (!isValid) {
-            input.classList.add("calculate__input--erro");
-            input.previousElementSibling.classList.add("calculate__label--erro");
-            input.nextElementSibling.classList.add("calculate__error--active");
-        } else {
-            input.classList.remove("calculate__input--erro");
-            input.nextElementSibling.classList.remove("calculate__error--active");
-            input.previousElementSibling.classList.remove   ("calculate__label--erro");
-            input.nextElementSibling.textContent = "";
-        }
-    }
-
-    
 }
 
 /* customElements.define("age-calculator-element", AgeCalculatorElement); */

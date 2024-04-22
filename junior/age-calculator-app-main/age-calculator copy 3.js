@@ -4,6 +4,13 @@ import {LitElement, html, css} from 'https://cdn.jsdelivr.net/gh/lit/dist@3/core
 
 export default class AgeCalculatorElement extends LitElement {
 
+    static properties = {
+        errorMessageDay: {status: true},
+        errorStyleLabelDay: {status: true},
+        errorStyleInputDay: {status: true},
+        errorStyleMessageDay: {status: true},
+    }
+
     static styles = css`
     
     *,
@@ -169,28 +176,37 @@ export default class AgeCalculatorElement extends LitElement {
     }
     `;
 
+    constructor() {
+        super();
+        this.errorMessageDay = "Error Message";
+        this.errorStyleLabelDay = "";
+        this.errorStyleInputDay = "";
+        this.errorStyleMessageDay = "";
+        
+    }
+
     render() {
         return html`
         <div class="calculate">
         <form class="calculate__form" action="#" novalidate>
           <div class="calculate__wrapper-input">
             <div class="calculate__wrapper-field">
-              <label class="calculate__label" for="day">Day</label>
-              <input class="calculate__input" type="number" inputmode="numeric" placeholder="DD" id="day" name="day" min="1" max="31" required> 
-              <span class="calculate__error">Error message</span>
+              <label class="calculate__label ${this.errorStyleLabelDay}" for="day">Day</label>
+              <input class="calculate__input ${this.errorStyleInputDay}" type="number" inputmode="numeric" placeholder="DD" id="day" name="day" min="1" max="31" @change=${this._checkDate} required> 
+              <span class="calculate__error ${this.errorStyleMessageDay}">${this.errorMessageDay}</span>
             </div>
             <div class="calculate__wrapper-field">
-              <label class="calculate__label" for="month">Month</label>
+              <label class="calculate__label ${this.errorLabelStyle}" for="month">Month</label>
               <input class="calculate__input" type="number" inputmode="numeric" placeholder="MM" id="month" name="month" min="1" max="12" required>
               <span class="calculate__error">Error message</span>
             </div>
             <div class="calculate__wrapper-field">
-              <label class="calculate__label" for="year">Year</label>
+              <label class="calculate__label ${this.errorLabelStyle}" for="year">Year</label>
              <input class="calculate__input" type="number" inputmode="numeric" placeholder="YYYY" id="year" name="year" min="1582" required>
              <span class="calculate__error">Error message</span>
             </div>
           </div>
-          <button class="calculate__btn" type="submit" @click=${this._checkSubmit}>
+          <button class="calculate__btn" type="submit" @click=${this._submitDate}>
             <svg class="calculate__btn-icon" xmlns="http://www.w3.org/2000/svg" width="46" height="44" viewBox="0 0 46 44"><g fill="none" stroke="#FFF" stroke-width="2"><path d="M1 22.019C8.333 21.686 23 25.616 23 44M23 44V0M45 22.019C37.667 21.686 23 25.616 23 44"/></g></svg>
           </button>
         </form>
@@ -209,45 +225,38 @@ export default class AgeCalculatorElement extends LitElement {
           <span class="resul__label">days</span>
         </div>
       </div>
+        
     `;
     }
 
-    _checkSubmit(e) {
-        const inputList = this.renderRoot.querySelectorAll(".calculate__input");
-        inputList.forEach(input => {
-            if (!this._validEmpty(input)) {
-                e.preventDefault();
-            }
-        });
-    }
-
-    _validEmpty(input){
-        let isValid = true;
-        if (input.value.length === 0) {
-            input.nextElementSibling.textContent = "This field is required";
-            isValid = false;
-            this._formatError(input, isValid);
+    _checkDate(){
+        const day = this.renderRoot.querySelector("#day");
+        if (!this._checkValidity(day)) {
+            this.errorMessageDay = "Must be a valid day";
+            this.errorStyleLabelDay = "calculate__label--erro";
+            this.errorStyleInputDay = "calculate__input--erro";
+            this.errorStyleMessageDay = "calculate__error--active";
+            return false;
         } else {
-            this._formatError(input, isValid);
-            input.nextElementSibling.textContent = "Error message";
-        }
-
-    }
-
-    _formatError(input, isValid) {
-        if (!isValid) {
-            input.classList.add("calculate__input--erro");
-            input.previousElementSibling.classList.add("calculate__label--erro");
-            input.nextElementSibling.classList.add("calculate__error--active");
-        } else {
-            input.classList.remove("calculate__input--erro");
-            input.nextElementSibling.classList.remove("calculate__error--active");
-            input.previousElementSibling.classList.remove   ("calculate__label--erro");
-            input.nextElementSibling.textContent = "";
+            this.errorStyleLabelDay = "";
+            this.errorStyleInputDay = "";
+            this.errorStyleMessageDay = "";
+            return true;
         }
     }
 
-    
+    _checkValidity(input){
+        if (input.validity.valid) {
+            return true;
+        }
+    }
+
+    _submitDate(e){
+        if (!this._checkDate()) {
+            e.preventDefault(); 
+        }
+    }
+
 }
 
 /* customElements.define("age-calculator-element", AgeCalculatorElement); */
