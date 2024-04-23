@@ -252,29 +252,21 @@ export default class AgeCalculatorElement extends LitElement {
             this.errorMessageDay = this._defineTypeError(typeError);
             isValid = false;
         } 
-        this.errorStyleLabelDay = isValid ? false : true;
-        this.errorStyleFocusDay = isValid ? false : true;
-        this.errorShowMessageDay = isValid ? false : true; 
+        this._ErrorFormat("day", isValid);
+        return isValid;
     }
 
     _checkMonth() {
         const month = this.renderRoot.querySelector("#month");
         const day = this.renderRoot.querySelector("#day");
-        const MONTH30DAYS = /[469]|1{2}/;
-        const FEBRURARY = 2;
         let typeError = this._checkValidity(month);
         let isValid = true;
         if (typeError === "empetyfield" || typeError === "invalidmonth") {
             this.errorMessageMonth = this._defineTypeError(typeError);
             isValid = false;
-        } 
-        this.errorShowMessageMonth = isValid ? false : true;  
-        if (Number(day.value) === 31 && MONTH30DAYS.test(month.value) || Number(day.value) > 29 && Number(month.value) === FEBRURARY) {
-            this.errorMessageDay = this._defineTypeError("invaliddate");
-            isValid = false;
-        } 
-        this.errorStyleLabelMonth = isValid ? false : true;
-        this.errorStyleFocusMonth = isValid ? false : true;
+        }
+        this._ErrorFormat("month", isValid);
+        return isValid;
     }
 
     _checkYear(){
@@ -290,9 +282,8 @@ export default class AgeCalculatorElement extends LitElement {
             this.errorMessageYear = this._defineTypeError("invalidyearfuture");
             isValid = false;
         }
-        this.errorStyleLabelYear = isValid ? false : true;
-        this.errorStyleFocusYear = isValid ? false : true;
-        this.errorShowMessageYear = isValid ? false : true;
+        this._ErrorFormat("year", isValid);
+        return isValid;
     }
 
     _checkValidity(input){
@@ -310,6 +301,22 @@ export default class AgeCalculatorElement extends LitElement {
         }
     }
 
+    _ErrorFormat(inputType, isValid){
+        if (inputType === "day") {
+            this.errorStyleLabelDay = isValid ? false : true;
+            this.errorStyleFocusDay = isValid ? false : true;
+            this.errorShowMessageDay = isValid ? false : true; 
+        } else if (inputType === "month") {
+            this.errorStyleLabelMonth = isValid ? false : true;
+            this.errorStyleFocusMonth = isValid ? false : true;
+            this.errorShowMessageMonth = isValid ? false : true; 
+        } else if (inputType === "year") {
+            this.errorStyleLabelYear = isValid ? false : true;
+            this.errorStyleFocusYear = isValid ? false : true;
+            this.errorShowMessageYear = isValid ? false : true; 
+        }
+    }
+
     _defineTypeError(error) {
         const typeError = {
             standard: "Message Error", 
@@ -323,14 +330,28 @@ export default class AgeCalculatorElement extends LitElement {
         return typeError[error];
     }
 
+    _checkDate(){
+        const month = this.renderRoot.querySelector("#month");
+        const day = this.renderRoot.querySelector("#day");
+        const MONTH30DAYS = /[469]|1{2}/;
+        const FEBRURARY = 2;
+        let isValid = true;
+        if (Number(day.value) === 31 && MONTH30DAYS.test(month.value) || Number(day.value) > 29 && Number(month.value) === FEBRURARY) {
+            this.errorMessageDay = this._defineTypeError("invaliddate");
+            isValid = false;
+        } 
+        this._ErrorFormat("day", isValid);
+    } 
+
     _submitDate(e){
         let checkDay = this._checkDay();
         let checkMonth = this._checkMonth();
         let checkYear = this._checkYear();
-        if (!checkDay || !checkMonth || !checkYear) {
-            e.preventDefault(); 
+        if (checkDay || checkMonth || checkYear) {
+            this._checkDate();
         }
         e.preventDefault();
+        
     }
 
 }
