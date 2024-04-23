@@ -5,14 +5,17 @@ import {LitElement, html, css} from 'https://cdn.jsdelivr.net/gh/lit/dist@3/core
 export default class AgeCalculatorElement extends LitElement {
 
     static properties = {
+        days: {status: true},
         errorMessageDay: {status: true},
         errorStyleLabelDay: {status: true},
         errorStyleFocusDay: {status: true},
         errorShowMessageDay: {status: true},  
+        months: {status: true},
         errorMessageMonth: {status: true},
         errorStyleLabelMonth: {status: true},
         errorStyleFocusMonth: {status: true},
         errorShowMessageMonth: {status: true},  
+        years: {status: true},
         errorMessageYear: {status: true},
         errorStyleLabelYear: {status: true},
         errorStyleFocusYear: {status: true},
@@ -186,14 +189,17 @@ export default class AgeCalculatorElement extends LitElement {
 
     constructor() {
         super();   
+        this.days = "--";
         this.errorMessageDay = "Message Error";
         this.errorStyleLabelDay = false;
         this.errorStyleFocusDay = false;
         this.errorShowMessageDay = false;
+        this.months = "--",
         this.errorMessageMonth = "Message Error";
         this.errorStyleLabelMonth = false;
         this.errorStyleFocusMonth = false;
         this.errorShowMessageMonth = false;  
+        this.years = "--",
         this.errorMessageYear = "Message Error";
         this.errorStyleLabelYear = false;
         this.errorStyleFocusYear = false;
@@ -228,20 +234,48 @@ export default class AgeCalculatorElement extends LitElement {
       </div>
       <div class="result">
         <div class="result__wrapper-output">
-          <span class="result__value">--</span>
+          <span class="result__value">${this.years}</span>
           <span class="resul__label">years</span>
         </div>
         <div class="result__wrapper-output">
-          <span class="result__value">--</span>
+          <span class="result__value">${this.months}</span>
           <span class="resul__label">months</span>
         </div>
         <div class="result__wrapper-output">
-          <span class="result__value">--</span>
+          <span class="result__value">${this.days}</span>
           <span class="resul__label">days</span>
         </div>
       </div>
         
     `;
+    }
+
+    _defineTypeError(error) {
+        const typeError = {
+            standard: "Message Error", 
+            empetyfield: "This field is required",
+            invalidday: "Must be a valid day",
+            invalidmonth: "Must be a valid month",
+            invalidyear: "Must be a valid year",
+            invalidyearfuture: "Must be in the past",
+            invaliddate: "Must be a valid date",
+        };
+        return typeError[error];
+    }
+
+    _checkValidity(input){
+        if (input.value.length === 0) {
+            return "empetyfield";
+        } else if (!input.validity.valid) {
+            if (input.id === "day") {
+                return "invalidday"; 
+            } else if (input.id === "month") {
+                return "invalidmonth"
+            } else if (input.id === "year") {
+                return "invalidyear"; }
+        } else {
+            return "standard";
+        }
     }
 
     _checkDay(){
@@ -286,21 +320,6 @@ export default class AgeCalculatorElement extends LitElement {
         return isValid;
     }
 
-    _checkValidity(input){
-        if (input.value.length === 0) {
-            return "empetyfield";
-        } else if (!input.validity.valid) {
-            if (input.id === "day") {
-                return "invalidday"; 
-            } else if (input.id === "month") {
-                return "invalidmonth"
-            } else if (input.id === "year") {
-                return "invalidyear"; }
-        } else {
-            return "standard";
-        }
-    }
-
     _ErrorFormat(inputType, isValid){
         if (inputType === "day") {
             this.errorStyleLabelDay = isValid ? false : true;
@@ -317,42 +336,51 @@ export default class AgeCalculatorElement extends LitElement {
         }
     }
 
-    _defineTypeError(error) {
-        const typeError = {
-            standard: "Message Error", 
-            empetyfield: "This field is required",
-            invalidday: "Must be a valid day",
-            invalidmonth: "Must be a valid month",
-            invalidyear: "Must be a valid year",
-            invalidyearfuture: "Must be in the past",
-            invaliddate: "Must be a valid date",
-        };
-        return typeError[error];
-    }
-
-    _checkDate(){
-        const month = this.renderRoot.querySelector("#month");
-        const day = this.renderRoot.querySelector("#day");
-        const MONTH30DAYS = /[469]|1{2}/;
-        const FEBRURARY = 2;
-        let isValid = true;
-        if (Number(day.value) === 31 && MONTH30DAYS.test(month.value) || Number(day.value) > 29 && Number(month.value) === FEBRURARY) {
-            this.errorMessageDay = this._defineTypeError("invaliddate");
-            isValid = false;
-        } 
-        this._ErrorFormat("day", isValid);
-    } 
-
     _submitDate(e){
         let checkDay = this._checkDay();
         let checkMonth = this._checkMonth();
         let checkYear = this._checkYear();
-        if (checkDay || checkMonth || checkYear) {
-            this._checkDate();
+        if (!checkDay || !checkMonth || !checkYear) {
+            e.preventDefault();
+        } else {
+            this._checkDate(); 
         }
         e.preventDefault();
-        
     }
+
+    _checkDate(){
+        const year = Number(this.renderRoot.querySelector("#year").value);
+        const month = Number(this.renderRoot.querySelector("#month").value);
+        const day = Number(this.renderRoot.querySelector("#day").value);
+        const MONTH30DAYS = /[469]|1{2}/;
+        const FEBRURARY = 2;
+        let isValid = true;
+        if (day === 31 && MONTH30DAYS.test(month) || day > 29 && month === FEBRURARY) {
+            this.errorMessageDay = this._defineTypeError("invaliddate");
+            isValid = false;
+        } else {
+           this._calcDate(day, month, year); 
+        }
+        this._ErrorFormat("day", isValid);  
+    } 
+
+    _calcDate(inputDay, inputMonth, inputYear) {
+        const DATE = new Date();
+        const currentYear = Number(DATE.getFullYear());
+        const currentMonth = DATE.getMonth() + 1;
+        const currentDate = DATE.getDate();
+        this.years = currentYear - inputYear;
+        this.months = currentMonth - inputMonth;
+        this.days = currentDate - inputDay;
+        if (this.months < 0) {
+            --this.years;
+            this.months = (this.months - 1) + 12;
+        }
+        if (this.days < 0) {
+            this.days = this.days + 30;
+        }
+    }
+
 
 }
 
