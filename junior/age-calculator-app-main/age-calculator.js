@@ -4,6 +4,21 @@ import {LitElement, html, css} from 'https://cdn.jsdelivr.net/gh/lit/dist@3/core
 
 export default class AgeCalculatorElement extends LitElement {
 
+    static properties = {
+        errorMessageDay: {status: true},
+        errorStyleLabelDay: {status: true},
+        errorStyleFocusDay: {status: true},
+        errorShowMessageDay: {status: true},  
+        errorMessageMonth: {status: true},
+        errorStyleLabelMonth: {status: true},
+        errorStyleFocusMonth: {status: true},
+        errorShowMessageMonth: {status: true},  
+        errorMessageYear: {status: true},
+        errorStyleLabelYear: {status: true},
+        errorStyleFocusYear: {status: true},
+        errorShowMessageYear: {status: true},
+    }
+
     static styles = css`
     
     *,
@@ -169,28 +184,44 @@ export default class AgeCalculatorElement extends LitElement {
     }
     `;
 
+    constructor() {
+        super();   
+        this.errorMessageDay = "Message Error";
+        this.errorStyleLabelDay = false;
+        this.errorStyleFocusDay = false;
+        this.errorShowMessageDay = false;
+        this.errorMessageMonth = "Message Error";
+        this.errorStyleLabelMonth = false;
+        this.errorStyleFocusMonth = false;
+        this.errorShowMessageMonth = false;  
+        this.errorMessageYear = "Message Error";
+        this.errorStyleLabelYear = false;
+        this.errorStyleFocusYear = false;
+        this.errorShowMessageYear = false;
+    }
+
     render() {
         return html`
         <div class="calculate">
         <form class="calculate__form" action="#" novalidate>
           <div class="calculate__wrapper-input">
             <div class="calculate__wrapper-field">
-              <label class="calculate__label" for="day">Day</label>
-              <input class="calculate__input" type="number" inputmode="numeric" placeholder="DD" id="day" name="day" min="1" max="31" required> 
-              <span class="calculate__error">Error message</span>
+              <label class="calculate__label ${this.errorStyleLabelDay ? "calculate__label--erro" : ""}"  for="day">Day</label>
+              <input class="calculate__input ${this.errorStyleFocusDay ? "calculate__input--erro" : ""}" type="number" inputmode="numeric" placeholder="DD" id="day" name="day" min="1" max="31" @change=${this._checkDay} required> 
+              <span class="calculate__error ${this.errorShowMessageDay ? "calculate__error--active": ""}">${this.errorMessageDay}</span>
             </div>
             <div class="calculate__wrapper-field">
-              <label class="calculate__label" for="month">Month</label>
-              <input class="calculate__input" type="number" inputmode="numeric" placeholder="MM" id="month" name="month" min="1" max="12" required>
-              <span class="calculate__error">Error message</span>
+              <label class="calculate__label ${this.errorStyleLabelMonth ? "calculate__label--erro" : ""}" for="month">Month</label>
+              <input class="calculate__input ${this.errorStyleFocusMonth ? "calculate__input--erro" : ""}" type="number" inputmode="numeric" placeholder="MM" id="month" name="month" min="1" max="12"  @change=${this._checkMonth} required>
+              <span class="calculate__error ${this.errorShowMessageMonth ? "calculate__error--active": ""}">${this.errorMessageMonth}</span>
             </div>
             <div class="calculate__wrapper-field">
-              <label class="calculate__label" for="year">Year</label>
-             <input class="calculate__input" type="number" inputmode="numeric" placeholder="YYYY" id="year" name="year" min="1582" required>
-             <span class="calculate__error">Error message</span>
+              <label class="calculate__label ${this.errorStyleLabelYear ? "calculate__label--erro" : ""}" for="year">Year</label>
+             <input class="calculate__input ${this.errorStyleFocusYear ? "calculate__input--erro" : ""}" type="number" inputmode="numeric" placeholder="YYYY" id="year" name="year" min="1582" @change=${this._checkYear} required>
+             <span class="calculate__error ${this.errorShowMessageYear ? "calculate__error--active": ""}">${this.errorMessageYear}</span>
             </div>
           </div>
-          <button class="calculate__btn" type="submit" @click=${this._checkSubmit}>
+          <button class="calculate__btn" type="submit" @click=${this._submitDate}>
             <svg class="calculate__btn-icon" xmlns="http://www.w3.org/2000/svg" width="46" height="44" viewBox="0 0 46 44"><g fill="none" stroke="#FFF" stroke-width="2"><path d="M1 22.019C8.333 21.686 23 25.616 23 44M23 44V0M45 22.019C37.667 21.686 23 25.616 23 44"/></g></svg>
           </button>
         </form>
@@ -209,45 +240,99 @@ export default class AgeCalculatorElement extends LitElement {
           <span class="resul__label">days</span>
         </div>
       </div>
+        
     `;
     }
 
-    _checkSubmit(e) {
-        const inputList = this.renderRoot.querySelectorAll(".calculate__input");
-        inputList.forEach(input => {
-            if (!this._validEmpty(input)) {
-                e.preventDefault();
-            }
-        });
-    }
-
-    _validEmpty(input){
+    _checkDay(){
+        const day = this.renderRoot.querySelector("#day");
+        let typeError = this._checkValidity(day);
         let isValid = true;
-        if (input.value.length === 0) {
-            input.nextElementSibling.textContent = "This field is required";
+        if (typeError === "empetyfield" || typeError === "invalidday") {
+            this.errorMessageDay = this._defineTypeError(typeError);
             isValid = false;
-            this._formatError(input, isValid);
-        } else {
-            this._formatError(input, isValid);
-            input.nextElementSibling.textContent = "Error message";
-        }
-
+        } 
+        this.errorStyleLabelDay = isValid ? false : true;
+        this.errorStyleFocusDay = isValid ? false : true;
+        this.errorShowMessageDay = isValid ? false : true; 
     }
 
-    _formatError(input, isValid) {
-        if (!isValid) {
-            input.classList.add("calculate__input--erro");
-            input.previousElementSibling.classList.add("calculate__label--erro");
-            input.nextElementSibling.classList.add("calculate__error--active");
+    _checkMonth() {
+        const month = this.renderRoot.querySelector("#month");
+        const day = this.renderRoot.querySelector("#day");
+        const MONTH30DAYS = /[469]|1{2}/;
+        const FEBRURARY = 2;
+        let typeError = this._checkValidity(month);
+        let isValid = true;
+        if (typeError === "empetyfield" || typeError === "invalidmonth") {
+            this.errorMessageMonth = this._defineTypeError(typeError);
+            isValid = false;
+        } 
+        this.errorShowMessageMonth = isValid ? false : true;  
+        if (Number(day.value) === 31 && MONTH30DAYS.test(month.value) || Number(day.value) > 29 && Number(month.value) === FEBRURARY) {
+            this.errorMessageDay = this._defineTypeError("invaliddate");
+            isValid = false;
+        } 
+        this.errorStyleLabelMonth = isValid ? false : true;
+        this.errorStyleFocusMonth = isValid ? false : true;
+    }
+
+    _checkYear(){
+        const year = this.renderRoot.querySelector("#year");
+        const DATE = new Date();
+        const currentYear = DATE.getFullYear(); 
+        let typeError = this._checkValidity(year);
+        let isValid = true;
+        if (typeError === "empetyfield" || typeError === "invalidyear") {
+            this.errorMessageYear = this._defineTypeError(typeError);
+            isValid = false;
+        } else if (year.value > currentYear) {
+            this.errorMessageYear = this._defineTypeError("invalidyearfuture");
+            isValid = false;
+        }
+        this.errorStyleLabelYear = isValid ? false : true;
+        this.errorStyleFocusYear = isValid ? false : true;
+        this.errorShowMessageYear = isValid ? false : true;
+    }
+
+    _checkValidity(input){
+        if (input.value.length === 0) {
+            return "empetyfield";
+        } else if (!input.validity.valid) {
+            if (input.id === "day") {
+                return "invalidday"; 
+            } else if (input.id === "month") {
+                return "invalidmonth"
+            } else if (input.id === "year") {
+                return "invalidyear"; }
         } else {
-            input.classList.remove("calculate__input--erro");
-            input.nextElementSibling.classList.remove("calculate__error--active");
-            input.previousElementSibling.classList.remove   ("calculate__label--erro");
-            input.nextElementSibling.textContent = "";
+            return "standard";
         }
     }
 
-    
+    _defineTypeError(error) {
+        const typeError = {
+            standard: "Message Error", 
+            empetyfield: "This field is required",
+            invalidday: "Must be a valid day",
+            invalidmonth: "Must be a valid month",
+            invalidyear: "Must be a valid year",
+            invalidyearfuture: "Must be in the past",
+            invaliddate: "Must be a valid date",
+        };
+        return typeError[error];
+    }
+
+    _submitDate(e){
+        let checkDay = this._checkDay();
+        let checkMonth = this._checkMonth();
+        let checkYear = this._checkYear();
+        if (!checkDay || !checkMonth || !checkYear) {
+            e.preventDefault(); 
+        }
+        e.preventDefault();
+    }
+
 }
 
 /* customElements.define("age-calculator-element", AgeCalculatorElement); */
