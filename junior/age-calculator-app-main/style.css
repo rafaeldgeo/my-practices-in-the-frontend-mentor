@@ -19,7 +19,6 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-   /*  border: 1px solid blue;  */
 }
 
 html, body {
@@ -43,6 +42,16 @@ main {
     align-items: center;
     max-inline-size: 1440px;
     width: 100%;
+}
+
+.sr-only {
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    color: transparent;
 }
 
 .container {
