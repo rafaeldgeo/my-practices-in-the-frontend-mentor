@@ -34,10 +34,47 @@ body {
 
 main {
     flex: 1 0 auto;
-    background-color: red;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     max-inline-size: 1440px;
     width: 100%;
+    background-color: red;
 }
+
+.advice-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-inline-size: 550px;
+    border-radius: 1rem;
+    background-color: var(--dark-grayish-blue);
+}
+
+.advice-box__number {
+    font-size: .8rem;
+    text-transform: uppercase;
+    letter-spacing: .28rem;
+    font-weight: 800;
+    color: var(--neon-green);
+}
+
+.advice-box__text {
+    color: var(--light-cyan);
+    font-size: 1.6rem;
+}
+
+.sr-only {
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    color: transparent;
+}
+
 
 footer {
     flex-shrink: 0;
