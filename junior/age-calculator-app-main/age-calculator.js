@@ -311,8 +311,6 @@ export default class AgeCalculatorElement extends LitElement {
 
     _checkYear(){
         const year = this.renderRoot.querySelector("#year");
-        const DATE = new Date();
-        const currentYear = DATE.getFullYear(); 
         let typeError = this._checkValidity(year);
         let isValid = true;
         if (typeError === "empetyfield" || typeError === "invalidyear") {
@@ -343,10 +341,10 @@ export default class AgeCalculatorElement extends LitElement {
     }
 
     _submitDate(e){
-        let checkDay = this._checkDay();
-        let checkMonth = this._checkMonth();
-        let checkYear = this._checkYear();
-        if (!checkDay || !checkMonth || !checkYear) {
+        const CHECKDAY = this._checkDay();
+        const CHECKMONTH = this._checkMonth();
+        const CHECKYEAR = this._checkYear();
+        if (!CHECKDAY || !CHECKMONTH || !CHECKYEAR) {
             e.preventDefault();
         } else {
             this._checkDate(); 
@@ -391,7 +389,6 @@ export default class AgeCalculatorElement extends LitElement {
             this.days = this.days + 30;
         }
     }
-
 
 }
 
