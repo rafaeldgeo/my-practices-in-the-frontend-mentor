@@ -39,5 +39,6 @@ Practices in [Frontend Mentor Website](https://www.frontendmentor.io/)
 * 9- [Newsletter-sign-up-with-success-message-main](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/junior/newsletter-sign-up-with-success-message-main/) **HTML** | **CSS** | **JS** <sup>Lit Library</sup>
 * 10- [Age-calculator-app-main](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/junior/age-calculator-app-main/) **HTML** | **CSS** | **JS** <sup>Lit Library</sup>
 * 11- [Time-tracking-dashboard-main](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/junior/time-tracking-dashboard-main/) **HTML** | **CSS** | **JS** <sup>Lit Library + </sup><sup>JSON</sup>
+* 12- [Advice-generator-app-main](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/junior/advice-generator-app-main/) **HTML** | **CSS** | **JS** <sup>Lit Library + </sup><sup>API</sup>
 
 **My Frontend Mentor: [@rafaeldgeo](https://www.frontendmentor.io/profile/rafaeldgeo)**
