@@ -2,6 +2,11 @@
 
 import {LitElement, html, css} from 'https://cdn.jsdelivr.net/gh/lit/dist@3/core/lit-core.min.js';
 
+const DATE = new Date();
+const currentYear = Number(DATE.getFullYear());
+const currentMonth = Number(DATE.getMonth()) + 1;
+const currentDate = Number(DATE.getDate());
+
 export default class AgeCalculatorElement extends LitElement {
 
     static properties = {
@@ -20,6 +25,7 @@ export default class AgeCalculatorElement extends LitElement {
         errorStyleLabelYear: {status: true},
         errorStyleFocusYear: {status: true},
         errorShowMessageYear: {status: true},
+        teste: {status: true}
     }
 
     static styles = css`
@@ -349,26 +355,31 @@ export default class AgeCalculatorElement extends LitElement {
     }
 
     _checkDate(){
-        const year = Number(this.renderRoot.querySelector("#year").value);
+        const year = this.renderRoot.querySelector("#year").value;
         const month = Number(this.renderRoot.querySelector("#month").value);
         const day = Number(this.renderRoot.querySelector("#day").value);
         const MONTH30DAYS = /[469]|1{2}/;
-        const FEBRURARY = 2;
+        const FEBRURARY = 2;        
+        let leapYear = year.slice(2,4);
+        let isLeapYear = false;
         let isValid = true;
-        if (day === 31 && MONTH30DAYS.test(month) || day > 29 && month === FEBRURARY) {
+        if (leapYear !== "00" && Number(year) % 4 === 0) {
+            isLeapYear = true;
+        } else if (leapYear === "00" && Number(year) % 400 === 0) {
+            isLeapYear = true;
+        } else {
+            isLeapYear = false;
+        }
+        if (day === 31 && MONTH30DAYS.test(month) || day > 28 && month === FEBRURARY && !isLeapYear || day > 29 && month === FEBRURARY && isLeapYear) {
             this.errorMessageDay = this._defineTypeError("invaliddate");
             isValid = false;
         } else {
-           this._calcDate(day, month, year); 
+           this._calcDate(day, month, Number(year)); 
         }
         this._ErrorFormat("day", isValid);  
     } 
 
     _calcDate(inputDay, inputMonth, inputYear) {
-        const DATE = new Date();
-        const currentYear = Number(DATE.getFullYear());
-        const currentMonth = DATE.getMonth() + 1;
-        const currentDate = DATE.getDate();
         this.years = currentYear - inputYear;
         this.months = currentMonth - inputMonth;
         this.days = currentDate - inputDay;
