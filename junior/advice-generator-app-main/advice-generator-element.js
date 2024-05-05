@@ -5,9 +5,9 @@ import {LitElement, html, css} from 'https://cdn.jsdelivr.net/gh/lit/dist@3/core
 export default class AdviceGenerator extends LitElement {
 
     static properties = {
-        data: {status: true},
-        id: {status: true},
-        advice: {status: true},
+        data: {state: true},
+        id: {state: true},
+        advice: {state: true},
     }
 
     static styles = css`
