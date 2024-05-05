@@ -10,22 +10,22 @@ const currentDate = Number(DATE.getDate());
 export default class AgeCalculatorElement extends LitElement {
 
     static properties = {
-        days: {status: true},
-        errorMessageDay: {status: true},
-        errorStyleLabelDay: {status: true},
-        errorStyleFocusDay: {status: true},
-        errorShowMessageDay: {status: true},  
-        months: {status: true},
-        errorMessageMonth: {status: true},
-        errorStyleLabelMonth: {status: true},
-        errorStyleFocusMonth: {status: true},
-        errorShowMessageMonth: {status: true},  
-        years: {status: true},
-        errorMessageYear: {status: true},
-        errorStyleLabelYear: {status: true},
-        errorStyleFocusYear: {status: true},
-        errorShowMessageYear: {status: true},
-        teste: {status: true}
+        days: {state: true},
+        errorMessageDay: {state: true},
+        errorStyleLabelDay: {state: true},
+        errorStyleFocusDay: {state: true},
+        errorShowMessageDay: {state: true},  
+        months: {state: true},
+        errorMessageMonth: {state: true},
+        errorStyleLabelMonth: {state: true},
+        errorStyleFocusMonth: {state: true},
+        errorShowMessageMonth: {state: true},  
+        years: {state: true},
+        errorMessageYear: {state: true},
+        errorStyleLabelYear: {state: true},
+        errorStyleFocusYear: {state: true},
+        errorShowMessageYear: {state: true},
+        teste: {state: true}
     }
 
     static styles = css`
