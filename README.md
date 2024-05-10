@@ -20,12 +20,13 @@ Practices in [Frontend Mentor Website](https://www.frontendmentor.io/)
 * 14- [Four-card-feature-section-master](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/newbie/four-card-feature-section-master/) | **HTML** | **CSS** <sup>grid + flexbox + media queries + BEM</sup> | <sup>[see the version in bootstrap 5](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/newbie/using-frame-works-css/four-card-feature-section-master/)</sup>
 * 15- [Social-proof-section-master](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/newbie/social-proof-section-master/) | **HTML** | **CSS** <sup>grid + flexbox + media queries + BEM</sup> 
 * 16- [Faq-accordion-card-main](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/newbie/faq-accordion-card-main/) | **HTML** | **CSS** <sup>grid + flexbox + media queries + BEM</sup>
-* 17- [Faq-accordion-main](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/newbie/faq-accordion-main/) | **HTML** | **CSS** <sup>flexbox + media queries + BEM</sup> | **JS**
+* 17- [Faq-accordion-main](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/newbie/faq-accordion-main/) | **HTML** | **CSS** <sup>flexbox + media queries + BEM</sup> | **JS** | <sup>[see the version in bootstrap 5](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/newbie/using-frame-works-css/faq-accordion-main/)</sup>
 * 18- [Ping-coming-soon-page-master](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/newbie/ping-coming-soon-page-master/) | **HTML** | **CSS** <sup>flexbox + BEM</sup> | **JS**
 * 19- [Base-apparel-coming-soon-master](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/newbie/base-apparel-coming-soon-master/) | **HTML** | **CSS** <sup>grid + flexbox + media queries + BEM</sup> | **JS**
 * 20- [Interactive-rating-component-main](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/newbie/interactive-rating-component-main/) | **HTML** | **CSS** <sup>flexbox + BEM</sup> | **JS**
 * 21- [Article-preview-component-master](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/newbie/article-preview-component-master/) | **HTML** | **CSS** <sup>grid + flexbox + media queries + BEM</sup> | **JS**
 * 22- [Intro-component-with-signup-form-master](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/newbie/intro-component-with-signup-form-master/) | **HTML** | **CSS** <sup>grid + flexbox + media queries + BEM</sup> | **JS**
+
 
 ## Level: junior<sup>2</sup>
 * 1- [Fylo-dark-theme-landing-page-master](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/junior/fylo-dark-theme-landing-page-master/) **HTML** | **CSS** | **JS**
