@@ -1,27 +1,18 @@
-"use strict";
+(function () {
+  'use strict'
 
-const clainForm = document.querySelector(".clain__form");
-const clainInput = document.querySelectorAll(".clain__input");
+  var forms = document.querySelectorAll('.needs-validation')
 
-clainForm.addEventListener("input", 
-  function() {
-    for (let i = 0; i < clainInput.length; i++) {
-      if (clainInput[i].validity.valid || clainInput[i].value.length > 0) {
-        clainInput[i].removeAttribute("required");
-        clainInput[i].nextElementSibling.style.display = "none";
-      }
-    }    
-  }
-);
+  Array.prototype.slice.call(forms)
+    .forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
 
-clainForm.addEventListener("submit",
-   function(e) {
-     for (let i = 0; i < clainInput.length; i++) {
-       if (!clainInput[i].validity.valid || clainInput[i].value.length == 0) {
-         clainInput[i].setAttribute("required", "required");
-         clainInput[i].nextElementSibling.style.display = "block";
-       }
-     }
-     e.preventDefault(); 
-   }      
-);
+        form.classList.add('was-validated')
+      }, false)
+    })
+})()
+

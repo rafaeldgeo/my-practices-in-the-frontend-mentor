@@ -2,26 +2,66 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png"> 
+  <title>Frontend Mentor | Intro component with sign up form</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-  <title>Frontend Mentor | Four card feature section</title>
+  <script defer src="./validform.js"></script>
+  <style>
+    html { height: 100%; }
+  </style>
 </head>
-<body class="h-100">
+<body class="h-100" style="background:  hsl(0, 100%, 74%) url('images/bg-intro-desktop.png');">
   <div class="container d-flex flex-column h-100">
-      <main class="row flex-grow-1">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi nisi, cupiditate, totam mollitia sed hic autem ex perferendis obcaecati magni eligendi dolorem. Molestiae veritatis molestias rem, expedita amet voluptate laudantium voluptatem necessitatibus, similique animi ratione quisquam eaque perferendis. In quasi facilis incidunt optio? Reprehenderit quam suscipit repudiandae aliquam, aut aspernatur nostrum sit exercitationem dolor eveniet autem quasi temporibus error perferendis deserunt commodi vitae quisquam et consequuntur quis necessitatibus asperiores ut provident fugiat! Rem quasi ex distinctio facere accusamus, saepe culpa nostrum temporibus officiis aut tempora harum repellendus? Odio minus aliquam repudiandae magnam fugit ea nesciunt, ipsum aut qui illo incidunt, aspernatur molestias velit possimus voluptas, in natus. Consequuntur eveniet possimus architecto amet natus! Nihil quibusdam placeat ducimus, ea laudantium ut reiciendis ipsum velit doloremque pariatur quam. Inventore consequatur nobis odit quisquam amet voluptates ad veritatis nostrum optio nisi molestias, praesentium accusantium obcaecati nemo consequuntur, quae assumenda voluptate dolore velit dolor ipsam. Obcaecati voluptatum distinctio repellendus laborum dolor deleniti nulla, impedit vel nesciunt in culpa corporis harum sit? Quas at dicta reiciendis officia suscipit recusandae similique incidunt dignissimos inventore possimus, illo sed assumenda eum iure ipsam, soluta molestias culpa veniam? Maxime eaque corrupti reiciendis temporibus, neque vero expedita fuga eligendi totam asperiores laudantium modi ullam illum et consectetur dolor eius cupiditate harum, non, corporis quas sequi porro nemo. Libero qui eos amet repudiandae facilis rem quae ducimus laudantium esse nihil architecto odit voluptas repellendus facere recusandae commodi animi, beatae perspiciatis. Minus quae adipisci cupiditate dignissimos dolorum ea et, est nisi quia? Alias nostrum recusandae ea magnam, corrupti aliquam molestiae iste at rem dolorem in inventore tempore beatae error aspernatur et cupiditate possimus excepturi, consectetur pariatur voluptate ut? Non minus, facilis neque odit architecto, aspernatur, unde voluptatem et molestiae ipsam necessitatibus sed. Deleniti inventore aspernatur quae, asperiores non blanditiis dolor amet, ab aut odio provident tempora cum veniam autem similique iste delectus sapiente quo dignissimos excepturi reprehenderit fugit hic. Asperiores quas libero perferendis assumenda iure esse earum dolores alias itaque. Pariatur est vel quidem repellendus iusto praesentium cum at error, neque dolorum recusandae hic laudantium dignissimos quod placeat eius totam cumque tempora necessitatibus rerum! Excepturi nobis accusamus ratione eius quam odio vero. Optio ea ex ipsam aliquid et facilis. Iste cupiditate ea optio consequatur dolorem distinctio nesciunt temporibus? Ducimus voluptas architecto expedita facere veritatis suscipit, inventore placeat officia totam magnam nemo veniam dolorum quidem, similique voluptatem assumenda sequi fuga eveniet, aspernatur consectetur! Officia harum molestias excepturi similique perferendis placeat dolorem alias autem expedita architecto, culpa aliquam debitis eos eveniet! Sit quod accusamus expedita ipsam libero corrupti optio quidem aspernatur harum iure exercitationem saepe, eius assumenda modi! Ad tempora quae nostrum, repellendus corrupti sed aspernatur iste maxime nobis voluptatem quia. Excepturi, necessitatibus hic omnis maxime sapiente rem neque quo sint magnam, cum modi sed vero quaerat perferendis, recusandae voluptatem unde! In, rerum corporis, rem quis dolore nam fugiat tenetur accusantium sint eum sunt dignissimos molestiae expedita odio ipsum vitae, saepe facilis pariatur quos sequi voluptate quas velit. Odit saepe doloremque provident. Nulla, voluptas?
-        
-      </main>
-
-      <footer class="row flex-shrink-0">
-        <div class="text-center fs-6 my-1">
-          Challenge by <a class="link-dark" href="https://www.frontendmentor.io/profile/rafaeldgeo" target="_blank">Frontend Mentor</a>.
-          Coded by <a class="link-dark" href="https://www.linkedin.com/in/rafael-dias-de-almeida-devmap/" target="_blank">Rafael Dias de Almeida.</a>
-          <span class="badge rounded-pill bg-secondary font-monospace">Bootstrap 5 version</span>
+    <main class="row flex-grow-1">
+      <div class="container m-auto">
+        <div class="row px-5">
+          <div class="col text-white p-0 my-auto">
+            <h1 class="display-4 fw-bolder lh-1 pb-4">Learn to code by watching others</h1>
+            <p class="fs-5">See how experienced developers solve problems in real-time. Watching scripted tutorials is great, but understanding how developers think is invaluable.</p>
+          </div>
+          <div class="col p-0">
+            <span class="d-block p-3 mb-4 text-center rounded-3 bg-primary text-white fs-5"><strong>Try it free 7 days</strong> then $20/mo. thereafter</span>
+            <div class="bg-white p-5 rounded-3">
+              <form class="needs-validation" action="#" novalidate>
+                <div class="form-floating mb-2">
+                  <input class="form-control" type="text" placeholder="First Name" name="firstname" id="firstname" required>
+                  <label for="firstname">First Name</label>
+                  <div class="invalid-feedback">First Name cannot be empty</div> 
+                </div>
+                <div class="form-floating mb-2">
+                  <input class="form-control" type="text" placeholder="Last Name" name="lastname" id="lastname" required>
+                  <label for="lastname">Last Name</label>
+                  <div class="invalid-feedback">Last Name cannot be empty</div> 
+                </div>
+                <div class="form-floating mb-2">
+                  <input class="form-control" type="email" placeholder="Email Address" name="email" id="email" required>
+                  <label for="email">Email Address</label>
+                  <div class="invalid-feedback">Looks like this is not an email</div> 
+                </div>
+                <div class="form-floating mb-2">
+                  <input class="form-control" type="password" placeholder="Password" name="password" id="password" required>
+                  <label for="password">Password</label>
+                  <div class="invalid-feedback">Password cannot be empty</div> 
+                </div>
+                <div class="d-grid gap-auto">
+                  <button class="btn btn-success text-uppercase" type="submit">claim your free trial</button>
+                </div>
+              </form>
+              <p class="">By clicking the button, you are agreeing to our <a class="" href="#" target="_blank">Terms and Services</a></p>
+            </div>
+          </div>
         </div>
-      </footer>
-    </div>
+      </div>
+    </main>
+    <footer class="row flex-shrink-0">
+      <div class="text-center fs-6 my-1 text-white">
+        Challenge by <a class="text-dark" href="https://www.frontendmentor.io/profile/rafaeldgeo" target="_blank">Frontend Mentor</a>.
+        Coded by <a class="text-dark" href="https://www.linkedin.com/in/rafael-dias-de-almeida-devmap/" target="_blank">Rafael Dias de Almeida.</a>
+        <span class="badge rounded-pill bg-secondary font-monospace">Bootstrap 5 version</span>
+      </div>
+    </footer>
+  </div>
 </body>
 </html>
