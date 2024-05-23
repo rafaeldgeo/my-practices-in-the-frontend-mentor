@@ -25,8 +25,7 @@ Practices in [Frontend Mentor Website](https://www.frontendmentor.io/)
 * 19- [Base-apparel-coming-soon-master](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/newbie/base-apparel-coming-soon-master/) | **HTML** | **CSS** <sup>grid + flexbox + media queries + BEM</sup> | **JS**
 * 20- [Interactive-rating-component-main](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/newbie/interactive-rating-component-main/) | **HTML** | **CSS** <sup>flexbox + BEM</sup> | **JS**
 * 21- [Article-preview-component-master](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/newbie/article-preview-component-master/) | **HTML** | **CSS** <sup>grid + flexbox + media queries + BEM</sup> | **JS**
-* 22- [Intro-component-with-signup-form-master](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/newbie/intro-component-with-signup-form-master/) | **HTML** | **CSS** <sup>grid + flexbox + media queries + BEM</sup> | **JS**
-
+* 22- [Intro-component-with-signup-form-master](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/newbie/intro-component-with-signup-form-master/) | **HTML** | **CSS** <sup>grid + flexbox + media queries + BEM</sup> | **JS** | <sup>[see the version in bootstrap 5](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/newbie/using-frame-works-css/intro-component-with-signup-form-master/)</sup>
 
 ## Level: junior<sup>2</sup>
 * 1- [Fylo-dark-theme-landing-page-master](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/junior/fylo-dark-theme-landing-page-master/) **HTML** | **CSS** | **JS**
