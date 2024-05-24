@@ -36,12 +36,14 @@ body {
     flex: 1 0 auto;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: repeat(2, min-content);
+    grid-template-rows: repeat(3, min-content);
     grid-template-areas: 
     "header"
-    "main";
+    "main"
+    "aside"
+    "article";
     align-content: center;
-    gap: 0; 
+    gap: min(10.6vw, 2.5rem) 0;
     padding: min(8.5vw, 2rem) min(3.4vw, .8rem);
 }
 
@@ -51,24 +53,7 @@ body {
     margin-block-end: 1rem;
 }
 
-.main {
-    grid-area: main;
-    flex: 1 0 auto;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(3, min-content);
-    grid-template-areas: 
-    "headline"
-    "aside"
-    "article";
-    align-content: center;
-    gap: min(10.6vw, 2.5rem) 0;
-    padding: min(8.5vw, 2rem) min(3.4vw, .8rem);
-}
-
-.headline {
-    grid-area: headline;
-}
+.main { grid-area: main; }
 
 .aside {
     grid-area: aside;
@@ -87,27 +72,15 @@ body {
 
     .container {
         grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: repeat(2, min-content);
+        grid-template-rows: repeat(3, min-content);
         grid-template-areas: 
         "header header header"
-        "main main main";
-        gap: min(2.7vw, 1.87rem);
-        max-inline-size: 1100px;
-        width: 100%;
-        padding: 0 .6rem;
-    }
-
-    .main {
-        grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: repeat(2, min-content);
-        grid-template-areas: 
-        "headline headline aside"
+        "main main aside"
         "article article article";
         gap: min(2.7vw, 1.87rem);
         max-inline-size: 1100px;
         width: 100%;
         padding: 0 .6rem;
-
     }
     
     .aside { padding: min(2.6vw, 1.8rem) min(2.1vw, 1.5rem); }
