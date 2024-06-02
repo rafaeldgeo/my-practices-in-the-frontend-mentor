@@ -13,7 +13,6 @@
     --font-headings: "DM Serif Display", serif;
     --font-body: "Karla", sans-serif;
     --padding-inline-desktop-container: min(11.7vw, 10.6rem);
-    --padding-inline-mobile-container: min(calc(8.8vw - 2.1rem), 1.25rem);
 }
 
 *,
@@ -23,7 +22,6 @@
     padding: 0;
     box-sizing: border-box;
     list-style: none;
-    /* border: 1px solid blue; */
 }
 
 html, body { width: 100%; }
@@ -92,50 +90,62 @@ body {
 .headline {
     position: relative;
     width: inherit;
-    height: auto;
-    margin-block-end: min(21vw, 19rem); /* verificar */
+    height: calc(min(50vw, 630px) - 2rem);
+    background-color: var(--dark-violet);
+    margin-block-end: min(21vw, 19rem);
 }
 
-@media only screen and (max-width: 576px) {
-    
-    .headline__content::after {
-        position: absolute;
-        content: url("./images/bg-pattern-intro-right-mobile.svg");
-        top: 85%;
-        right: 0%;
-        width: 20%;
-        height: auto;
-    }
+.headline::before {
+    position: absolute;
+    content: url("./images/bg-pattern-intro-right-desktop.svg");
+    top: 0;
+    right: 0;
+    width: min(30vw, 30%);
+    height: auto;
+    z-index: 1;
+}
+
+.headline::after {
+    position: absolute;
+    content: url("./images/bg-pattern-intro-left-desktop.svg");
+    top: min(30vw, 72%);
+    left: 0;
+    width: min(30vw, 14%);
+    height: auto;
 }
 
 .headline__wrapper {
     position: relative;
-    top: 0;
+    top: calc(20% - 1rem);
     display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(2, auto);
-    grid-template-areas: 
-    "imagem"
-    "content-text";
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto;
+    gap: 0 1.5rem;
+    padding-inline: var(--padding-inline-desktop-container); 
     background-color: transparent;
     z-index: 0;
 }
-
-.headline__content {
-    grid-area: content-text;
-    padding-block-start: min(17vw, 4rem);
-    padding-block-end: min(17vw, 4rem);
-    text-align: center;
-    color: var(--very-light-gray);
-    background:  var(--dark-violet) url("./images/bg-pattern-intro-left-mobile.svg") no-repeat left top / min(40vw, 45%) auto;
-}
-
-.headline__wrapper-imagem { grid-area: imagem; }
 
 .headline__imagem {
     display: block;
     max-inline-size: 100%;
     block-size: auto;
+}
+
+.headline__content {
+    color: var(--very-light-gray);
+    padding-block-start: min(4.5vw, 4rem);
+}
+
+.headline__content::before {
+    position: absolute;
+    top: 0;
+    content: "";
+    width: calc(min(15vw, 165px) - 1rem);
+    height: 1px;
+    border-radius: 10px;
+    border: none;
+    background-color: var(--very-light-gray);
 }
 
 :is(.headline__title,
@@ -147,31 +157,29 @@ body {
 }
 
 .headline__title {
-    margin: auto;
-    font-size: clamp(1rem, 11.9vw, 2.8rem);
-    line-height: calc(clamp(1rem, 11.9vw, 2.8rem) * 0.9);
+    font-size: clamp(1.5rem, 4.85vw, 4.37rem);
+    line-height: calc(clamp(2rem, 4.85vw, 4.37rem) * 0.9);
     max-inline-size: 15ch; 
-    margin-block-end: min(4.2vw, 1rem); 
+    margin-block-end: min(2vw, 1.8rem);
 }
 
 .headline__introduction {
-    margin: auto;
     font-family: var(--font-body);
-    font-size: clamp(.6rem, 3.4vw, .8rem);
-    line-height: calc(clamp(.6rem, 3.4vw, .8rem) * 1.5);
-    max-inline-size: 34ch;
-    margin-block-end: min(7.6vw, 1.8rem);
+    font-size: clamp(.6rem, 1.1vw, 1rem);
+    line-height: calc(clamp(.6rem, 1.1vw, 1rem) * 1.5);
+    max-inline-size: 56ch;
+    margin-block-end: min(2.7vw, 2.5rem);
 }
 
 :is(.headline__btn, .how-we-work__btn) {
     font-family: var(--font-body);
-    font-size: clamp(.7rem, 3.4vw, .8rem);
+    font-size: clamp(.6rem, 1vw, .9rem);
     font-weight: 700;
     text-decoration: none;
     text-transform: uppercase;
     letter-spacing: .05rem;
-    padding: min(2.5vw, 0.6rem) min(4.2vw, 1rem);
-    border: 1px solid var(--very-light-gray);
+    padding: min(.6vw, .6rem) min(1.7vw, 1.6rem);
+    border: 2px solid var(--very-light-gray);
     color: var(--very-light-gray);
     background-color: transparent;
     cursor: pointer;
@@ -276,6 +284,11 @@ body {
     cursor: pointer;
 }
 
+.footer__wrapper-icon {
+    width: 20px;
+    height: 20px;
+}
+
 .footer__menu-wrapper {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -308,81 +321,4 @@ body {
 attribution-footer { 
     font-family: var(--font-body);
     margin: .6rem 0; 
-}
-
-@media only screen and (min-width: 577px) {
-
-    .headline {
-        height: calc(min(50vw, 630px) - 2rem);
-        margin-block-end: min(21vw, 19rem);
-        background-color: var(--dark-violet);
-    }
-    
-    .headline::before {
-        position: absolute;
-        content: url("./images/bg-pattern-intro-right-desktop.svg");
-        top: 0;
-        right: 0;
-        width: min(30vw, 30%);
-        height: auto;
-        z-index: 1;
-    }
-    
-    .headline::after {
-        position: absolute;
-        content: url("./images/bg-pattern-intro-left-desktop.svg");
-        top: min(30vw, 72%);
-        left: 0;
-        width: min(30vw, 14%);
-        height: auto;
-    }
-    
-    .headline__wrapper {
-        top: calc(20% - 1rem);
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: auto;
-        grid-template-areas: "content-text imagem";
-        gap: 0 1.5rem;
-        padding-inline: var(--padding-inline-desktop-container); 
-    }
-
-    .headline__content { 
-        text-align: start;
-        padding-block-start: min(4.5vw, 4rem);
-        background: none; 
-    }
-     
-    .headline__content::before {
-        position: absolute;
-        top: 0;
-        content: "";
-        width: calc(min(15vw, 165px) - 1rem);
-        height: 1px;
-        border-radius: 10px;
-        border: none;
-        background-color: var(--very-light-gray);
-    }
-
-    .headline__title {
-        font-size: clamp(1.5rem, 4.85vw, 4.37rem);
-        line-height: calc(clamp(2rem, 4.85vw, 4.37rem) * 0.9);
-        margin-block-end: min(2vw, 1.8rem);
-    }
-    
-    .headline__introduction {
-        font-family: var(--font-body);
-        font-size: clamp(.6rem, 1.1vw, 1rem);
-        line-height: calc(clamp(.6rem, 1.1vw, 1rem) * 1.5);
-        max-inline-size: 56ch;
-        margin-block-end: min(2.7vw, 2.5rem);
-    }
-
-    :is(.headline__btn, .how-we-work__btn) {
-        font-size: clamp(.6rem, 1vw, .9rem);
-        padding: min(.6vw, .6rem) min(1.7vw, 1.6rem);
-        border: 2px solid var(--very-light-gray);
-    }
-    
-    
-
 }
