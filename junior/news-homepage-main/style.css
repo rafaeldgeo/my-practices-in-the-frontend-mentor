@@ -29,7 +29,8 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: var(--off-white); 
+    background-color: var(--off-white);  
+    overflow-y: auto; 
 }
 
 .container {

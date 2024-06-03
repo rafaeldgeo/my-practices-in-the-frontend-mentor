@@ -158,6 +158,10 @@ export default class MenuElement extends LitElement {
     }
 
     _toogleMenuMobile(){
+        let body = document.querySelector("body");
+        let bodyCss = window.getComputedStyle(body, null);         
+        let overFlowY = bodyCss.getPropertyValue("overflow-y");
+        body.style.overflowY = overFlowY === "auto" ? "hidden" : "auto"
         this.showMenuMobile = !this.showMenuMobile;
         this.showModal = !this.showModal;
     }
