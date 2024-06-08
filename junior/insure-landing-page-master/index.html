@@ -13,7 +13,7 @@
   <div class="container">
     <header class="header">
       <img class="header__img-logo" src="./images/logo.svg" alt="logo insure" width="112" height="18">
-      <nav class="header__desktop-menu">
+      <nav class="header__menu-desktop">
         <ul class="header__list-menu">
           <li class="header__item-menu"><a class="header__item-link" href="#">How we work</a></li>
           <li class="header__item-menu"><a class="header__item-link" href="#">Blog</a></li>
@@ -21,6 +21,9 @@
           <li class="header__item-menu"><a class="header__item-link header__item-link--button" href="#">View plans</a></li>
         </ul>
       </nav>
+      <button class="header__btn-menu" type="button" aria-label="open menu">
+        <img class="header__icon-menu" src="./images/icon-hamburger.svg" alt="menu" width="32" height="32">
+      </button>
     </header>
     <main class="main">
       <section class="headline">
@@ -139,5 +142,23 @@
       <attribution-footer color-label="hsl(256, 26%, 20%)" color-link="hsl(273, 4%, 51%)"></attribution-footer>
     </footer>
   </div>
+  <script>
+    const body = document.querySelector("body");
+    const headerMenu = document.querySelector(".header__menu-desktop");
+    const headerBtnMenu = document.querySelector(".header__btn-menu");
+    const iconMenu = document.querySelector(".header__icon-menu");
+    headerBtnMenu.addEventListener("click", (e) => {
+      headerMenu.classList.toggle("header__menu-mobile");
+      if (e.target.alt === "menu") {
+        iconMenu.src = "./images/icon-close.svg";
+        iconMenu.alt = "fechar menu"
+        body.style.overflowY = "hidden";
+      } else {
+        iconMenu.src = "./images/icon-hamburger.svg";
+        iconMenu.alt = "menu"
+        body.style.overflowY = "auto";
+      }; 
+        });
+  </script>
 </body>
 </html>
