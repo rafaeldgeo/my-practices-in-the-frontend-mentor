@@ -13,7 +13,7 @@
   <div class="container">
     <header class="header">
       <img class="header__img-logo" src="./images/logo.svg" alt="logo insure" width="112" height="18">
-      <nav class="header__menu-desktop">
+      <nav class="header__menu">
         <ul class="header__list-menu">
           <li class="header__item-menu"><a class="header__item-link" href="#">How we work</a></li>
           <li class="header__item-menu"><a class="header__item-link" href="#">Blog</a></li>
@@ -144,32 +144,22 @@
   </div>
   <script>
     const body = document.querySelector("body");
-    const headerMenu = document.querySelector(".header__menu-desktop");
+    const headerMenu = document.querySelector(".header__menu");
     const headerBtnMenu = document.querySelector(".header__btn-menu");
     const iconMenu = document.querySelector(".header__icon-menu");
     headerBtnMenu.addEventListener("click", (e) => {
-      headerMenu.classList.toggle("header__menu-mobile")
       if (e.target.alt === "menu") {
+        headerMenu.style.display = "block";
         iconMenu.src = "./images/icon-close.svg";
         iconMenu.alt = "fechar menu"
         body.style.overflowY = "hidden";
       } else {
+        /* headerMenu.style.display = "none"; */
         iconMenu.src = "./images/icon-hamburger.svg";
         iconMenu.alt = "menu"
         body.style.overflowY = "auto";
       }; 
-    });
-
-     window.addEventListener("resize", () => {
-      const widthView = window.innerWidth;
-      if (widthView > 576 && iconMenu.alt === "fechar menu") {
-        headerMenu.classList.remove("header__menu-mobile");
-        iconMenu.src = "./images/icon-hamburger.svg";
-        iconMenu.alt = "menu"
-        body.style.overflowY = "auto";
-      }
-    }); 
-      
+        });
   </script>
 </body>
 </html>

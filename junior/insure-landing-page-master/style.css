@@ -50,20 +50,21 @@ body {
     padding-inline: var(--padding-inline-desktop-container);
 }
 
-.header__menu-desktop {
-    display: none;
+.header__menu-desktop { 
+    margin-inline-start: auto;  
+    display: none; 
 }
 
-.header__menu-mobile { 
+.header__menu-mobile {
+    display: block;
     position: fixed;
-    top: 11%;
+    top: 5.75rem;
     left: 0;
     width: 100%;
     height: 100%;
-    margin-inline-start: auto;  
-    display: block;
     z-index: 1;
-    background-color: var(--very-dark-violet);
+    background: var(--very-dark-violet) url("./images/bg-pattern-mobile-nav.svg") no-repeat left 90% / 100vw auto;
+    padding: min(13vw, 3.1rem) min(5.3vw, 1.2rem);
 }
 
 .header__btn-hamburger { display: block; }
@@ -78,30 +79,34 @@ body {
 
 .header__icon-menu { display: block; }
 
-.header__item-menu { display: inline-block; }
+.header__item-menu { 
+    text-align: center;   
+    display: block; 
+    margin-block-end: min(10.6vw, 2.5rem);
+}
 
 .header__item-link {
-    margin-inline-start: min(1.4vw, 1.3rem);
+    display: block;
+    margin-inline-start: 0;
     font-family: var(--font-body);
-    font-size: clamp(.6rem, 1vw, .9rem);
+    font-size: clamp(.6rem, 5.5vw, 1.3rem);
     font-weight: 700;
     text-decoration: none;
     text-transform: uppercase;
     letter-spacing: .05rem;
-    color: var(--dark-grayish-violet);
+    color: var(--very-light-gray);
 }
 
-.header__item-link:hover { color: var(--very-dark-violet); }
-
 .header__item-link--button {
-    border: 2px solid var(--dark-grayish-violet);
-    padding: min(1vw, .6rem) min(1.7vw, 1.6rem);
+    border: 2px solid var(--very-light-gray);
+    max-inline-size: 100%;
+    padding-block: .9rem;
 }
 
 .header__item-link--button:hover {
-    border-color: var(--very-dark-violet);
-    background-color: var(--very-dark-violet);
-    color: var(--very-light-gray);
+    border-color: var(--very-light-gray);
+    background-color: var(--very-light-gray);
+    color: var(--very-dark-violet);
 }
 
 .main { 
@@ -355,14 +360,40 @@ attribution-footer {
 
 @media only screen and (min-width: 577px) {
 
-    .header__menu-desktop { 
-        margin-inline-start: auto;
+    .header__menu-desktop {
         display: block;
+        margin-inline-start: auto;  
         background-color: transparent;
     }
+    
+    .header__menu-mobile { display: none; }
 
     .header__btn-menu { display: none; }
     
+    .header__item-menu { 
+        display: inline-block; 
+        margin-block-end: 0;
+    }
+
+    .header__item-link {
+        margin-inline-start: min(1.4vw, 1.3rem);
+        font-size: clamp(.6rem, 1vw, .9rem);
+        color: var(--dark-grayish-violet);
+    }
+
+    .header__item-link:hover { color: var(--very-dark-violet); }
+
+    .header__item-link--button {
+        border: 2px solid var(--dark-grayish-violet);
+        padding: min(1vw, .6rem) min(1.7vw, 1.6rem);
+    }
+
+    .header__item-link--button:hover {
+        border-color: var(--very-dark-violet);
+        background-color: var(--very-dark-violet);
+        color: var(--very-light-gray);
+    }
+
     .headline {
         height: calc(min(50vw, 630px) - 2rem);
         margin-block-end: min(21vw, 19rem);
