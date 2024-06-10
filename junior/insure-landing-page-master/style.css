@@ -42,20 +42,22 @@ body {
     width: inherit;
 }
 
-.header {
-    flex: 1 0 auto;
+.header { flex: 1 0 auto; }
+
+.navbar__menu {
     padding-block: 1.87rem;
     display: flex;
     align-items: center;
     padding-inline: var(--padding-inline-desktop-container);
+
 }
 
-.header__menu-desktop { 
+.navbar__menu-desktop { 
     margin-inline-start: auto;  
     display: none; 
 }
 
-.header__menu-mobile {
+.navbar__menu-mobile {
     display: block;
     position: fixed;
     top: 5.75rem;
@@ -67,25 +69,25 @@ body {
     padding: min(13vw, 3.1rem) min(5.3vw, 1.2rem);
 }
 
-.header__btn-hamburger { display: block; }
+.navbar__btn-hamburger { display: block; }
 
-.header__btn-close { display: none;}
+.navbar__btn-close { display: none;}
 
-.header__btn-menu {
+.navbar__btn-menu {
     margin-inline-start: auto;
     border: none;
     background-color: transparent;
 }
 
-.header__icon-menu { display: block; }
+.navbar__icon-menu { display: block; }
 
-.header__item-menu { 
+.navbar__item-menu { 
     text-align: center;   
     display: block; 
     margin-block-end: min(10.6vw, 2.5rem);
 }
 
-.header__item-link {
+.navbar__item-link {
     display: block;
     margin-inline-start: 0;
     font-family: var(--font-body);
@@ -97,13 +99,13 @@ body {
     color: var(--very-light-gray);
 }
 
-.header__item-link--button {
+.navbar__item-link--button {
     border: 2px solid var(--very-light-gray);
     max-inline-size: 100%;
     padding-block: .9rem;
 }
 
-.header__item-link--button:hover {
+.navbar__item-link--button:hover {
     border-color: var(--very-light-gray);
     background-color: var(--very-light-gray);
     color: var(--very-dark-violet);
@@ -222,9 +224,10 @@ body {
     color: var(--dark-violet);
 }
 
+#benefits__component { width: inherit; }
+
 .benefits {
     position: relative;
-    width: inherit;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -272,12 +275,14 @@ body {
     text-align: center;
 }
 
+#work__component { width: 86%; }
+
 .how-we-work {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 86%;
+    width: 100%;
     padding: min(22.6vw, 5.3rem) min(5.3vw, 1.25rem);
     margin-block-end: min(42vw, 10rem);
     background: var(--dark-violet) url("./images/bg-pattern-how-we-work-mobile.svg") no-repeat right top / auto auto;
@@ -360,35 +365,35 @@ attribution-footer {
 
 @media only screen and (min-width: 577px) {
 
-    .header__menu-desktop {
+    .navbar__menu-desktop {
         display: block;
         margin-inline-start: auto;  
         background-color: transparent;
     }
     
-    .header__menu-mobile { display: none; }
+    .navbar__menu-mobile { display: none; }
 
-    .header__btn-menu { display: none; }
+    .navbar__btn-menu { display: none; }
     
-    .header__item-menu { 
+    .navbar__item-menu { 
         display: inline-block; 
         margin-block-end: 0;
     }
 
-    .header__item-link {
+    .navbar__item-link {
         margin-inline-start: min(1.4vw, 1.3rem);
         font-size: clamp(.6rem, 1vw, .9rem);
         color: var(--dark-grayish-violet);
     }
 
-    .header__item-link:hover { color: var(--very-dark-violet); }
+    .navbar__item-link:hover { color: var(--very-dark-violet); }
 
-    .header__item-link--button {
+    .navbar__item-link--button {
         border: 2px solid var(--dark-grayish-violet);
         padding: min(1vw, .6rem) min(1.7vw, 1.6rem);
     }
 
-    .header__item-link--button:hover {
+    .navbar__item-link--button:hover {
         border-color: var(--very-dark-violet);
         background-color: var(--very-dark-violet);
         color: var(--very-light-gray);
