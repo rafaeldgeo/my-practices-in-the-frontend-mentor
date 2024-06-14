@@ -6,19 +6,16 @@
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
   <title>Frontend Mentor | Insure landing page</title>
   <link rel="stylesheet" href="style.css">
-  <script defer crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
-  <script defer crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
-  <script defer src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
-  <script defer type="text/babel" src="./navbar-component.js"></script>
-  <script defer type="text/babel" src="./benefits-component.js"></script>
-  <script defer type="text/babel" src="./how-we-work-component.js"></script>
-  <script defer type="module" src="index.js"></script>
-</head>
-<body>
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  <script rel="preload" type="text/babel" src="./navbar-component.js"></script>
+  </head>
+  <body>
   <div class="container">
     <header class="header">
       <div id="navbar__component"></div>
-    </header>
+      </header>
     <main class="main">
       <section class="headline">
         <div class="headline__wrapper">
@@ -89,52 +86,24 @@
                 <li class="footer__item"><a href="#" class="footer__link">Live chat</a></li>
               </ul>
             </nav>
-          </div>
-          <div class="footer__wrapper-content">
-            <h4 class="footer__title">Others</h4>
+            </div>
+            <div class="footer__wrapper-content">
+              <h4 class="footer__title">Others</h4>
             <nav class="footer__menu">
               <ul class="footer__list">
                 <li class="footer__item"><a href="#" class="footer__link">Careers</a></li>
                 <li class="footer__item"><a href="#" class="footer__link">Press</a></li>
                 <li class="footer__item"><a href="#" class="footer__link">Licenses</a></li>
-              </ul>
-            </nav>
+                </ul>
+                </nav>
           </div>
         </div>
       </div>
       <attribution-footer color-label="hsl(256, 26%, 20%)" color-link="hsl(273, 4%, 51%)"></attribution-footer>
     </footer>
-  </div>
-  <!-- <script>
-    const body = document.querySelector("body");
-    const headerMenu = document.querySelector(".header__menu-desktop");
-    const headerBtnMenu = document.querySelector(".header__btn-menu");
-    const iconMenu = document.querySelector(".header__icon-menu");
-    headerBtnMenu.addEventListener("click", (e) => {
-      headerMenu.classList.toggle("header__menu-mobile")
-      if (e.target.alt === "menu") {
-        iconMenu.src = "./images/icon-close.svg";
-        iconMenu.alt = "fechar menu"
-        body.style.overflowY = "hidden";
-      } else {
-        iconMenu.src = "./images/icon-hamburger.svg";
-        iconMenu.alt = "menu"
-        body.style.overflowY = "auto";
-      }; 
-    });
-
-     window.addEventListener("resize", () => {
-      const widthView = window.innerWidth;
-      if (widthView > 576 && iconMenu.alt === "fechar menu") {
-        headerMenu.classList.remove("header__menu-mobile");
-        iconMenu.src = "./images/icon-hamburger.svg";
-        iconMenu.alt = "menu"
-        body.style.overflowY = "auto";
-      }
-    }); 
-  </script>
- -->
-  
-
+    </div>
+    <script type="text/babel" src="./benefits-component.js"></script>
+    <script type="text/babel" src="./how-we-work-component.js"></script>
+    <script type="module" src="index.js"></script>
 </body>
 </html>
