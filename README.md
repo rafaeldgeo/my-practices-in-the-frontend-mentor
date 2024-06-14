@@ -39,7 +39,8 @@ Practices in [Frontend Mentor Website](https://www.frontendmentor.io/)
 * 9- [Newsletter-sign-up-with-success-message-main](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/junior/newsletter-sign-up-with-success-message-main/) **HTML** | **CSS** | **JS** <sup>Lit Library</sup>
 * 10- [News-homepage-main](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/junior/news-homepage-main/) **HTML** | **CSS** | **JS** <sup>Lit Library</sup>
 * 11- [Age-calculator-app-main](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/junior/age-calculator-app-main/) **HTML** | **CSS** | **JS** <sup>Lit Library</sup>
-* 12- [Time-tracking-dashboard-main](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/junior/time-tracking-dashboard-main/) **HTML** | **CSS** | **JS** <sup>Lit Library + </sup><sup>JSON</sup>
-* 13- [Advice-generator-app-main](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/junior/advice-generator-app-main/) **HTML** | **CSS** | **JS** <sup>Lit Library + </sup><sup>API</sup>
+* 12- [Time-tracking-dashboard-main](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/junior/time-tracking-dashboard-main/) **HTML** | **CSS** | **JS** <sup>Lit Library + JSON</sup>
+* 13- [Advice-generator-app-main](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/junior/advice-generator-app-main/) **HTML** | **CSS** | **JS** <sup>Lit Library + API</sup>
+* 14- [Insure-landing-page-master](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/junior/insure-landing-page-master/) **HTML** | **CSS** | **JS** <sup>React to Website + Babel/standalone</sup>
 
 **My Frontend Mentor: [@rafaeldgeo](https://www.frontendmentor.io/profile/rafaeldgeo)**
