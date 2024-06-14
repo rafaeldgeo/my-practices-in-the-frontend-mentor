@@ -31,7 +31,6 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: var(--white);
     overflow-y: auto;
 }
 
@@ -275,7 +274,7 @@ body {
     text-align: center;
 }
 
-#work__component { width: 86%; }
+#work__component { width: inherit; }
 
 .how-we-work {
     display: flex;
@@ -284,6 +283,7 @@ body {
     align-items: center;
     width: 100%;
     padding: min(22.6vw, 5.3rem) min(5.3vw, 1.25rem);
+    margin-inline: auto;
     margin-block-end: min(42vw, 10rem);
     background: var(--dark-violet) url("./images/bg-pattern-how-we-work-mobile.svg") no-repeat right top / auto auto;
 }
@@ -301,10 +301,15 @@ body {
     flex-shrink: 0;
     display: flex;
     flex-direction: column;
+    align-items: center;
     background: var(--very-light-gray) url("./images/bg-pattern-footer-mobile.svg") no-repeat left top / auto auto;
 }
 
-.footer_header {
+.footer__content {
+    inline-size: 100%;
+}
+
+.footer__header {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -505,14 +510,14 @@ attribution-footer {
         font-size: clamp(1rem, 1.8vw, 1.7rem);
         margin-block-end: min(1.2vw, 1.1rem);
     }
-    
+
     .benefits__item-text {
         font-size: clamp(.6rem, 1.1vw, 1rem);
         line-height: calc(clamp(.6rem, 1.1vw, 1rem) * 1.5);
         max-inline-size: 48ch;
         text-align: start;
     }
-    
+
     .how-we-work {
         flex-direction: row;
         max-inline-size: 1100px;
@@ -531,12 +536,16 @@ attribution-footer {
 
     .footer { background: var(--very-light-gray) url("./images/bg-pattern-footer-desktop.svg") no-repeat left top / min(40vw, 37%) auto; }
     
-    .footer_header {
+    .footer__header {
         flex-direction: row;
         justify-content: space-between;
         padding-block-start: min(4.7vw, 4.3rem);
         padding-block-end: min(1.7vw, 1.6rem);
         margin-block-end: min(3.4vw, 3.1rem);
+    }
+
+    .footer__content {
+        inline-size: 80%;
     }
     
     .footer__wrapper-midias {
