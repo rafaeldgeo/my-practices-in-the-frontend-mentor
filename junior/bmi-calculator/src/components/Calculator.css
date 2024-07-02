@@ -18,35 +18,28 @@
 }
 
 .btn {
-    background-color: transparent;
     border: none;
     display: flex;
     align-items: center;
+    background-color: transparent;
     cursor: pointer;
 }
 
 .btn__radio {
     border-radius: 50%;
-    border: 1px solid var(--dark-eletric-blue);
     width:  31px;
     height: 31px;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: transparent;
-}
+} 
 
-.btn__radio--on {
-    border: none;
-    background-color: #ced8fd;
-}
 
 .btn__select {
     border-radius: inherit;
     width: 15px;
     height: 15px;
     z-index: 1;
-    background-color: transparent;
 }
 
 .btn__select--on { background-color: var(--blue); }
@@ -56,6 +49,4 @@
     font-weight: 600;
     margin-inline-start: 1.1rem;
     color: var(--gunmetal);
-
 }
-
