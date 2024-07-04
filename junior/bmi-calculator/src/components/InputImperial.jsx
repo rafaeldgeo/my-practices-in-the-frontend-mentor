@@ -1,10 +1,10 @@
 import React from "react";
 
-export default function InputMetric(){
+export default function InputImperial(){
 
     return(
         <div>
-            <p>Metriccccccccc</p>
+            <p>Imperiallllllll</p>
         </div>
     );
 }

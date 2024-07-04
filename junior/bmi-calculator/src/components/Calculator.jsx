@@ -1,11 +1,14 @@
-import React, {useState, useReducer} from "react";
+import React, {useState} from "react";
 import "../components/Calculator.css"
+import SelectUnit from "./SelectUnit";
+import InputMetric from "./InputMetric";
+import InputImperial from "./InputImperial";
 
 export default function Calculator(){
 
-    /* const [isOn, setSelected] =  useState(false); */
+    const [teste, setTeste] =  useState("metric"); 
 
-    const [state, dispatch] = useReducer(reducer, {
+   /*  const [state, dispatch] = useReducer(reducer, {
         metric: true,
         imperial: false
     });
@@ -53,11 +56,18 @@ export default function Calculator(){
     function handleClickImperial(){
         dispatch({type: "imperial"});
     }
-    
+ */  
+
+    function mensagem(valor){
+        setTeste(() => {
+            return valor === "metric" ? "metric" : "imperial";
+        });
+    }
     return(
         <div className="calculator">
             <h4 className="calculator__title">Enter your details below</h4>
-            <div className="calculator__unit-btns">      
+            <SelectUnit choice={mensagem}></SelectUnit>
+            {/* <div className="calculator__unit-btns">      
                 <button className="btn" onClick={handleClickMetric} aria-label="Metric">
                     <div className="btn__radio" style={btnRadio.metric}>
                         <div className="btn__select" style={radioSelect.metric}></div>
@@ -70,7 +80,8 @@ export default function Calculator(){
                     </div>
                     <span className="btn__label">Imperial</span>
                 </button>
-            </div>
+            </div> */}
+            {teste === "metric" ? <InputMetric /> : <InputImperial/>}
         </div>
 
     );
