@@ -4,6 +4,7 @@
 
 :root {
     --blue: #345FF6;
+    --light-blue:  #CED8FD;
     --gunmetal: #253347;
     --pure-white: #FFFFFF;
     --dark-eletric-blue: #5E6E85;
@@ -49,7 +50,7 @@ html, body { width: 100% ;}
     border-radius: 0 0 28px 28px;
 }
 
-.hero__wrapper-content {
+.hero__content-wrapper {
     display: grid;
     grid-template-columns: repeat(2, minmax(auto, 564px));
     grid-template-rows: repeat(2, auto);
@@ -57,13 +58,13 @@ html, body { width: 100% ;}
                          "text-content calculator";
 }
 
-.hero__wrapper-logo {
+.hero__logo-wrapper {
     grid-area: logo;
     margin-block-start: 4.687rem;
     margin-block-end: 1.75rem;
 }
 
-.hero__wrapper-text {
+.hero__text-wrapper {
     grid-area: text-content;
     text-align: start;
     max-inline-size: 465px;
@@ -84,7 +85,7 @@ html, body { width: 100% ;}
     color: var(--dark-eletric-blue);
 }
 
-.hero__wrapper-calculator {
+.hero__calculator-wrapper {
     grid-area: calculator;
 }
 

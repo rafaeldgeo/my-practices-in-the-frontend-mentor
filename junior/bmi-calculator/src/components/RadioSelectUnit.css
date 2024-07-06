@@ -9,24 +9,34 @@
     border: none;
     display: flex;
     align-items: center;
+    width: fit-content;
     background-color: transparent;
     cursor: pointer;
 }
 
 .btn__radio {
     border-radius: 50%;
+    border: 1px solid var(--dark-eletric-blue);
     width:  31px;
     height: 31px;
     display: flex;
     justify-content: center;
     align-items: center;
-} 
+    background-color: transparent;
+}
 
+.btn__radio--checked { 
+    border: none; 
+    background-color: var(--light-blue);
+}
 
-.btn__select {
+.btn:hover div[class="btn__radio"] { border: 1px solid  var(--blue); }
+
+.btn__selected {
     border-radius: inherit;
     width: 15px;
     height: 15px;
+    background-color: var(--blue);
     z-index: 1;
 }
 
