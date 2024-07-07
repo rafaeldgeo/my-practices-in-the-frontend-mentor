@@ -3,12 +3,9 @@
 .form__field{
     display: flex;
     flex-direction: column;
-}
-
-.form__label {
+    width: fit-content;
     font-size: .8rem;
     color: var(--dark-eletric-blue);
-    margin-block-end: .5rem;
 }
 
 .form__input-wrapper {
@@ -19,17 +16,18 @@
     border-radius: 12px;
     padding: .12rem;
     width: 238px;
+    margin-block-start: .5rem;
 }
 
 .form__input {
     outline: none;
-    border-radius: 12px;
-    height: 69px;
+    border-radius: inherit;
     border: none;
+    height: 69px;
     width: 131px;
     font-size: 1.5rem;
     font-weight: 600;
-    padding: 20px 24px; 
+    padding: 1.25rem 1.5rem; 
     color: var(--gunmetal);
 }
 

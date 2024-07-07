@@ -1,21 +1,37 @@
-import React, { useId } from "react";
+import React, { useState } from "react";
 import "../components/Form.css";
 
 export default function InputMetric(){
 
-    const idInput = useId();
+    const [focus, setFocus] = useState(false);
+
+    function handleFocus(e){
+        const formInputWrapper = e.target.parentElement;
+        if (focus === false) {
+            setFocus(true);
+            formInputWrapper.style.borderColor = "var(--blue)";
+        } else {
+            setFocus(false);
+            formInputWrapper.style.borderColor = "var(--dark-eletric-blue)";
+        }
+    }
 
     return(
         <form className="form">
-            <div className="form__field">
-                <span className="form__label" htmlFor={idInput}>Height</span>
-                <label className="form__input-wrapper" htmlFor={idInput} tabIndex={0}>
-                    <input className="form__input" type="number" id={idInput} placeholder="0" min={0}/>
+            <label className="form__field" htmlFor= "height">
+                Height
+                <div className="form__input-wrapper" tabIndex={0}>
+                    <input className="form__input" type="number" id="height" placeholder="0" min={0} onFocus={handleFocus} onBlur={handleFocus}/>
                     <span className="form__unit">cm</span>
-                </label>
-                
-            </div>
-            
+                </div> 
+            </label>
+            <label className="form__field" htmlFor= "weight">
+                Weight
+                <div className="form__input-wrapper" tabIndex={0}>
+                    <input className="form__input" type="number" id="weight" placeholder="0" min={0} onFocus={handleFocus} onBlur={handleFocus}/>
+                    <span className="form__unit">kg</span>
+                </div> 
+            </label>
         </form>
     );
 }
