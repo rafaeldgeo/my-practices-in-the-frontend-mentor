@@ -1,53 +1,32 @@
-import React, { useReducer } from "react";
+import React, {useState} from "react";
 import "../components/RadioSelectUnit.css";
 
-export default function RadioSelectUnit({choice}){
+function BtnRadio({label, isSelected, onSelect}){
 
-    const [state, dispatch] = useReducer(reducer, {
-        metricSelected: true,
-        imperialSeleced: false
-    });
-
-    function reducer(state, action) {
-        switch(action.type) {
-            case "metric":
-                return {
-                    metricSelected: true,
-                    imperialSelected: false
-                }
-            case "imperial":
-                return {
-                    metricSelected: false,
-                    imperialSelected: true
-                }
-            default:
-        }
-    }
-
-    function handleClickMetric(){
-        dispatch({type: "metric"});
-        choice("metric");
-    }
-
-    function handleClickImperial(){
-        dispatch({type: "imperial"});
-        choice("imperial");
-    }
-   
     return(
-        <div className="btn__wrapper">      
-            <button className="btn" onClick={handleClickMetric} aria-label="Metric">
-                <div className={state.metricSelected ? "btn__radio btn__radio--checked": "btn__radio"}>
-                    <div className={state.metricSelected ? "btn__selected": ""}></div>
+        <>
+            <button className="btn" aria-label={label}>
+                <div className={"btn__radio " + (isSelected ? "btn__radio--selected" : "")} onClick={onSelect}>
+                    <div className={isSelected ? "btn__indicator" : ""}></div>
                 </div>
-                <span className="btn__label">Metric</span>
+                <span className="btn__label">{label}</span>
             </button>
-            <button className="btn" onClick={handleClickImperial} aria-label="Imperial">
-                <div className={state.imperialSelected ? "btn__radio btn__radio--checked": "btn__radio"}>
-                    <div className={state.imperialSelected ? "btn__selected": ""}></div>
-                </div>
-                <span className="btn__label">Imperial</span>
-            </button>
+        </>
+    );
+}
+
+export default function RadioSelectUnit(){
+
+    const [selectedIndex, setSelectedIndex] = useState(0);
+
+    return(
+        <div className="btn__wrapper">  
+            <BtnRadio label="Metric" isSelected={selectedIndex === 0} onSelect={() => setSelectedIndex(0)}></BtnRadio>
+            <BtnRadio label="Imperial" isSelected={selectedIndex === 1} onSelect={() => setSelectedIndex(1)}></BtnRadio>
         </div>
     );
 }
+
+
+
+

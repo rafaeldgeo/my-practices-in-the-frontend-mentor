@@ -25,14 +25,14 @@
     background-color: transparent;
 }
 
-.btn__radio--checked { 
+.btn__radio--selected { 
     border: none; 
     background-color: var(--light-blue);
 }
 
-.btn:hover div[class="btn__radio"] { border: 1px solid  var(--blue); }
+.btn:hover div[class="btn__radio "] { border: 1px solid  var(--blue); }
 
-.btn__selected {
+.btn__indicator {
     border-radius: inherit;
     width: 15px;
     height: 15px;
