@@ -6,18 +6,17 @@ import InputImperial from "./FormImperial";
 
 export default function Calculator(){
 
-    const [unit, setUnit] =  useState("metric"); 
+    const [unitShowed, setUnitShowed] =  useState("metric"); 
 
-    function showInput(unitSelected){
-        setUnit(() => {
-            return unitSelected === "metric" ? "metric" : "imperial";
-        });
+    function getUnit(unit){
+        setUnitShowed(unit);
     }
+
     return(
         <div className="calculator">
             <h4 className="calculator__title">Enter your details below</h4>
-            <RadioSelectUnit choice={showInput} />
-            {unit === "metric" ? <InputMetric /> : <InputImperial/>}
+            <RadioSelectUnit unitSelected={getUnit}/>
+            {unitShowed === "metric" ? <InputMetric /> : <InputImperial /> }
         </div>
 
     );

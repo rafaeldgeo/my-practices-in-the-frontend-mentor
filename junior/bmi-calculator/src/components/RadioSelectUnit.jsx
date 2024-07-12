@@ -1,12 +1,12 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import "../components/RadioSelectUnit.css";
 
-function BtnRadio({label, isSelected, onSelect}){
+function BtnRadio({label, isSelected, onSelectRadio}){
 
     return(
         <>
-            <button className="btn" aria-label={label}>
-                <div className={"btn__radio " + (isSelected ? "btn__radio--selected" : "")} onClick={onSelect}>
+            <button className="btn" aria-label={label} onClick={onSelectRadio} >
+                <div className={"btn__radio " + (isSelected ? "btn__radio--selected" : "")}>
                     <div className={isSelected ? "btn__indicator" : ""}></div>
                 </div>
                 <span className="btn__label">{label}</span>
@@ -15,14 +15,18 @@ function BtnRadio({label, isSelected, onSelect}){
     );
 }
 
-export default function RadioSelectUnit(){
+export default function RadioSelectUnit({unitSelected}){
 
-    const [selectedIndex, setSelectedIndex] = useState(0);
+    const [selectIndex, setSelectIndex] = useState(0);
 
     return(
         <div className="btn__wrapper">  
-            <BtnRadio label="Metric" isSelected={selectedIndex === 0} onSelect={() => setSelectedIndex(0)}></BtnRadio>
-            <BtnRadio label="Imperial" isSelected={selectedIndex === 1} onSelect={() => setSelectedIndex(1)}></BtnRadio>
+            <span onClick={() => {unitSelected("metric")}} >
+                <BtnRadio label="Metric" isSelected={selectIndex === 0} onSelectRadio={() => setSelectIndex(0)}></BtnRadio>
+            </span>
+            <span onClick={() => {unitSelected("imperial")}}>
+                <BtnRadio label="Imperial" isSelected={selectIndex === 1} onSelectRadio={() => setSelectIndex(1)}></BtnRadio>
+            </span>
         </div>
     );
 }
