@@ -3,19 +3,7 @@
   
   
 
-  Metric
-  Imperial
-
-  Height
-  Weight
-
-  Your BMI is...
-
-  <!-- add score -->
-
-  Your BMI suggests you're <!-- add classification -->. 
-  Your ideal weight is between <!-- add range -->.
-
+  
   What your BMI result means
 
   A BMI range of 18.5 to 24.9 is considered a 'healthy weight.' Maintaining a 

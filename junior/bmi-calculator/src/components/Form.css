@@ -1,5 +1,11 @@
 @charset "UTF-8";
 
+.form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 24px;
+}
+
 .form__field{
     display: flex;
     flex-direction: column;
@@ -8,13 +14,16 @@
     color: var(--dark-eletric-blue);
 }
 
+.form__field:focus {
+    background-color: red;
+}
+
 .form__input-wrapper {
     display: flex;
     align-items: center;
     column-gap: 1.5rem;
     border: 1px solid var(--dark-eletric-blue);
     border-radius: 12px;
-    padding: .12rem;
     width: 238px;
     margin-block-start: .5rem;
 }
@@ -23,11 +32,10 @@
     outline: none;
     border-radius: inherit;
     border: none;
-    height: 69px;
-    width: 131px;
+    width: 131px;  
     font-size: 1.5rem;
     font-weight: 600;
-    padding: 1.25rem 1.5rem; 
+    padding: 1.19rem 1.5rem; 
     color: var(--gunmetal);
 }
 

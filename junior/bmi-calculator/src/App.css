@@ -47,7 +47,7 @@ html, body { width: 100% ;}
 .hero {
     background-image: var(--gradient);
     padding-inline-start: 7.25rem;
-    border-radius: 0 0 28px 28px;
+    border-radius: 0 0 1.75rem 1.75rem;
 }
 
 .hero__content-wrapper {
@@ -75,25 +75,27 @@ html, body { width: 100% ;}
     font-weight: 600;
     letter-spacing: -.2rem;
     line-height: 1.1;
-    margin-block-end: 35px;
+    margin-block-end: 2.18rem;
     color: var(--gunmetal);
 }
 
 .hero__introduction {
-    font-size: 16px;
+    font-size: 1rem;
     line-height: 1.5;
     color: var(--dark-eletric-blue);
 }
 
 .hero__calculator-wrapper {
     grid-area: calculator;
+    padding: 2rem;
+    border-radius: 1rem;
+    background-color: var(--pure-white);
 }
 
 .hero__logo {
     max-inline-size: 100%;
     height: auto;
 }
-
 
 .main {
     flex: 1 0 auto;
