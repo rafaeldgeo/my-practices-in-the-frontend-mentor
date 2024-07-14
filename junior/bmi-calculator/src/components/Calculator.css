@@ -2,6 +2,9 @@
 
 
 .calculator {
+    display: flex;
+    flex-direction: column;
+    row-gap: 2rem;
 }
 
 .calculator__title {
@@ -9,4 +12,36 @@
     font-weight: 600;
     letter-spacing: -.075rem;
     color: var(--gunmetal);
+}
+
+.result {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(auto, 1fr));
+    width: 100%;
+    gap: 0 1.5rem;
+    padding: 2rem;
+    border-radius: 1rem 6.25rem 6.25rem 1rem;
+    flex-wrap: wrap;
+    background-color: var(--blue);
+    color: var(--pure-white);
+}
+
+.result__comment-wrapper {
+    margin: auto;
+}
+
+.result__comment {
+    font-size: .87rem;
+    line-height: 1.5;
+}
+
+
+.result__title {
+    font-size: 1rem;
+    margin-block: 0.5rem;
+}
+
+.result__bmi {
+    font-size: 4rem;
+    font-weight: 600;
 }

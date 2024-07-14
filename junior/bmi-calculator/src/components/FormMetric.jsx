@@ -9,10 +9,10 @@ export default function InputMetric(){
         const formInputWrapper = e.target.parentElement;
         if (focus === false) {
             setFocus(true);
-            formInputWrapper.style.borderColor = "var(--blue)";
+            formInputWrapper.classList.add("form__input-wrapper--focus");
         } else {
             setFocus(false);
-            formInputWrapper.style.borderColor = "var(--dark-eletric-blue)";
+            formInputWrapper.classList.remove("form__input-wrapper--focus");
         }
     }
 

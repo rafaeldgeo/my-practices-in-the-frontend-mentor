@@ -89,6 +89,7 @@ html, body { width: 100% ;}
     grid-area: calculator;
     padding: 2rem;
     border-radius: 1rem;
+    box-shadow: 1px 5px 20px 1px #D6E6FE;
     background-color: var(--pure-white);
 }
 
