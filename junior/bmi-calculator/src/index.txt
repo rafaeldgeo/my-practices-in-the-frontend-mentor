@@ -55,3 +55,30 @@
 
 </body>
 </html>
+
+
+
+Calcular a faixa de peso ideal de uma pessoa pode ser feito de várias maneiras, sendo as mais comuns através do cálculo do Índice de Massa Corporal (IMC) ou utilizando fórmulas específicas para determinadas faixas etárias e sexos. Vou te explicar como fazer através do IMC, que é uma medida simples e bastante utilizada:
+
+Índice de Massa Corporal (IMC):
+
+O IMC é calculado dividindo o peso da pessoa (em quilogramas) pela altura ao quadrado (em metros).
+Fórmula: IMC = peso / altura^2
+Interpretação do IMC:
+
+Abaixo de 18,5: Abaixo do peso
+18,5 - 24,9: Peso normal
+25,0 - 29,9: Sobrepeso
+30,0 e acima: Obesidade
+Para determinar a faixa de peso ideal usando o IMC:
+
+Peso ideal (kg) = IMC desejado x (altura)^2
+Por exemplo, se uma pessoa deseja alcançar um IMC de 22 (considerado saudável para muitas populações):
+
+Exemplo: Uma pessoa com altura de 1,70 m
+IMC desejado = 22
+Peso ideal = 22 x (1,70)^2 = 22 x 2,89 = 63,58 kg
+Portanto, para calcular a faixa de peso ideal, é necessário conhecer a altura da pessoa e ter uma meta de IMC desejado. Lembre-se de que o IMC é uma ferramenta de triagem inicial e não leva em conta fatores como composição corporal (proporção de músculos, gordura, etc.) e distribuição de peso, então é sempre bom consultar um profissional de saúde para uma avaliação mais precisa.
+
+
+

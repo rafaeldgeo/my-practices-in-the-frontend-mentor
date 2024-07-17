@@ -23,6 +23,7 @@
     width: fit-content;
     font-size: .8rem;
     color: var(--dark-eletric-blue);
+    cursor: pointer;
 }
 
 .form__input-wrapper {
