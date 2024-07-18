@@ -1,8 +1,5 @@
 @charset "UTF-8";
 
-.form {
-}
-
 .form__field-metric-wrapper {
     display: flex;
     flex-wrap: wrap;
@@ -36,7 +33,7 @@
     margin-block-start: .5rem;
 }
 
-.form__input-wrapper--focus { border: 1px solid var(--blue); }
+.form__input-wrapper:focus-within { border: 1px solid var(--blue); }
 
 .form__input {
     outline: none;

@@ -5,7 +5,7 @@ import Form from "./Form";
 
 export default function Calculator(){
 
-    const [unitShowed, setUnitShowed] =  useState(0); 
+    const [unitShowed, setUnitShowed] =  useState("metric"); 
     const [resultBmi, setResultBmi] = useState("-");
     const [classficationBmi, setClassificationBmi ] = useState("...");
     const [idealWeight, setIdealWeight] = useState({
@@ -34,7 +34,7 @@ export default function Calculator(){
     function getValues(values){
         if (unitShowed === 0) {
             calcMetric(values);
-        } else {
+        } else if (unitShowed === 1) {
             calcImperial(values);
         } 
     }
