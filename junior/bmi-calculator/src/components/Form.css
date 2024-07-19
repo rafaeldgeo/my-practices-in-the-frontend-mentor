@@ -53,3 +53,23 @@
     font-weight: 600;
     color: var(--blue);
 }
+
+.result__comment-wrapper {
+    margin: auto;
+}
+
+.result__comment {
+    font-size: .87rem;
+    line-height: 1.5;
+}
+
+
+.result__title {
+    font-size: 1rem;
+    margin-block: 0.5rem;
+}
+
+.result__bmi {
+    font-size: 4rem;
+    font-weight: 600;
+} 

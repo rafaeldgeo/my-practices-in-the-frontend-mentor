@@ -2,10 +2,12 @@ import React, {useState, useEffect} from "react";
 import "../components/Calculator.css"
 import RadioSelectUnit from "./RadioSelectUnit";
 import Form from "./Form";
+import FormMetric from "./FormMetric";
+import FormImperial from "./FormImperial";
 
 export default function Calculator(){
 
-    const [unitShowed, setUnitShowed] =  useState(0); 
+    const [unitShowed, setUnitShowed] =  useState("metric"); 
     const [resultBmi, setResultBmi] = useState("-");
     const [classficationBmi, setClassificationBmi ] = useState("...");
     const [idealWeight, setIdealWeight] = useState({
@@ -34,7 +36,7 @@ export default function Calculator(){
     function getValues(values){
         if (unitShowed === 0) {
             calcMetric(values);
-        } else {
+        } else if (unitShowed === 1) {
             calcImperial(values);
         } 
     }
@@ -82,6 +84,8 @@ export default function Calculator(){
                     <p className="result__comment">Your BMI suggests you're a {classficationBmi} Your ideal weight is between <strong>{idealWeight.startrange}-{idealWeight.endrange}.</strong></p>
                 </div>
             </div>
+            <FormMetric></FormMetric>
+            <FormImperial></FormImperial>
         </div>
     );
 }
