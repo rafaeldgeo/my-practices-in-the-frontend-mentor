@@ -17,6 +17,7 @@ export default function FormImperial(){
         endrange: "..."
     });
 
+  
     useEffect(()=> {
         if (resultBmi < 18.5) {
             setClassificationBmi("underweight");
@@ -26,7 +27,7 @@ export default function FormImperial(){
             setClassificationBmi("overweight");
         } else if (resultBmi > 30) {
             setClassificationBmi("obese");
-        } else {
+        } else if (resultBmi === "-") {
             setClassificationBmi("...");
         }
     },[resultBmi]);
@@ -38,6 +39,12 @@ export default function FormImperial(){
         });
     }
 
+    function handleEnter(e) {
+        if (e.key === "Enter") {
+          calcImperial();
+        }
+    }
+
     function calcImperial(){
         if (formImperial.height > 0 && formImperial.weight > 0 && formImperial.heightin !== "" && formImperial.weightlbs !== "" ) {
             let heightIn = 12 * Number(formImperial.height) + Number(formImperial.heightin);
@@ -46,6 +53,10 @@ export default function FormImperial(){
             calcIdealWeight(heightIn)
         } else {
             setResultBmi("-");
+            setIdealWeight({
+                startrange: "...", 
+                endrange: "..."
+            });
         }
     }
 
@@ -53,7 +64,7 @@ export default function FormImperial(){
         let startRange = 18.5 * (height * height);
         let endRange = 24.9 * (height * height);
         setIdealWeight({
-            startrange: startRange.toFixed(1), endrange: endRange.toFixed(1)
+            startrange: startRange.toFixed(2), endrange: endRange.toFixed(2)
         })
     }
 
@@ -64,13 +75,13 @@ export default function FormImperial(){
                     <label className="form__field" htmlFor="height">
                         Height
                         <div className="form__input-wrapper" >
-                            <input className="form__input" type="number" id="height" name="height" placeholder="0" tabIndex={0} min={0} max={10} onBlur={calcImperial} value={formImperial.height} onChange={handleChange}/>
+                            <input className="form__input" type="number" id="height" name="height" placeholder="0" tabIndex={0} onBlur={calcImperial} value={formImperial.height} onChange={handleChange}/>
                             <span className="form__unit">ft</span>
                         </div>
                     </label>
                     <label className="form__field" htmlFor="heightin">
                         <div className="form__input-wrapper">
-                            <input className="form__input" type="number" id="heightin" name="heightin"  placeholder="0" tabIndex={0} min={0} onBlur={calcImperial} value={formImperial.heightin} onChange={handleChange}/>
+                            <input className="form__input" type="number" id="heightin" name="heightin"  placeholder="0" tabIndex={0} onBlur={calcImperial} value={formImperial.heightin} onChange={handleChange}/>
                             <span className="form__unit">in</span>
                         </div>
                     </label>
@@ -79,25 +90,25 @@ export default function FormImperial(){
                     <label className="form__field" htmlFor="weight">
                         Weight
                         <div className="form__input-wrapper" >
-                            <input className="form__input" type="number" id="weight" name="weight" placeholder="0" tabIndex={0} min={0} max={50} onBlur={calcImperial} value={formImperial.weight} onChange={handleChange}/>
+                            <input className="form__input" type="number" id="weight" name="weight" placeholder="0" tabIndex={0} onBlur={calcImperial} value={formImperial.weight} onChange={handleChange}/>
                             <span className="form__unit">st</span>
                         </div>
                     </label>
                     <label className="form__field" htmlFor="weightlbs">
                         <div className="form__input-wrapper">
-                            <input className="form__input" type="number" id="weightlbs" name="weightlbs"  placeholder="0" tabIndex={0} min={0} onBlur={calcImperial} value={formImperial.weightlbs} onChange={handleChange}/>
+                            <input className="form__input" type="number" id="weightlbs" name="weightlbs"  placeholder="0" tabIndex={0} onBlur={calcImperial} value={formImperial.weightlbs} onChange={handleChange} onKeyDown={handleEnter}/>
                             <span className="form__unit">lbs</span>
                         </div>
                     </label>
                 </div> 
             </form>
-                <div className="result">
+            <div className="result">
                 <div className="result__score">
                     <h5 className="result__title">Your BMI is...</h5>
                     <span className="result__bmi">{resultBmi}</span>
                 </div>
                 <div className="result__comment-wrapper">
-                    <p className="result__comment">Your BMI suggests you're a {classficationBmi} Your ideal weight is between <strong>{idealWeight.startrange}-{idealWeight.endrange}.</strong></p>
+                    <p className="result__comment">Your BMI suggests you're a {classficationBmi}. Your ideal weight is between <strong>{idealWeight.startrange}lbs - {idealWeight.endrange}lbs.</strong></p>
                 </div>
             </div>
         </>

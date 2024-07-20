@@ -23,7 +23,7 @@ export default function FormMetric(){
             setClassificationBmi("overweight");
         } else if (resultBmi > 30) {
             setClassificationBmi("obese");
-        } else {
+        } else if (resultBmi === "-") {
             setClassificationBmi("...");
         }
     },[resultBmi]);
@@ -35,6 +35,12 @@ export default function FormMetric(){
         });
     }
 
+    function handleEnter(e) {
+        if (e.key === "Enter") {
+          calcMetric();
+        }
+    }
+
     function calcMetric(){
         if (formMetric.height > 0 && formMetric.weight > 0) {
             let height = Number(formMetric.height) / 100;
@@ -43,6 +49,10 @@ export default function FormMetric(){
             calcIdealWeight(height);
         } else {
             setResultBmi("-");
+            setIdealWeight({
+                startrange: "...", 
+                endrange: "..."
+            });
         } 
     }
 
@@ -61,26 +71,26 @@ export default function FormMetric(){
                     <label className="form__field" htmlFor="height">
                         Height
                         <div className="form__input-wrapper" >
-                            <input className="form__input" type="number" id="height" name="height" placeholder="0" tabIndex={0} min={0} max={251} onBlur={calcMetric} value={formMetric.height} onChange={handleChange}/>
+                            <input className="form__input" type="number" id="height" name="height" placeholder="0" tabIndex={0} onBlur={calcMetric} value={formMetric.height} onChange={handleChange}/>
                             <span className="form__unit">cm</span>
                         </div>
                     </label>
                     <label className="form__field" htmlFor="weight">
                         Weight
                         <div className="form__input-wrapper">
-                            <input className="form__input" type="number" id="weight" name="weight"  placeholder="0" tabIndex={0} min={0} max={600} onBlur={calcMetric} value={formMetric.weight} onChange={handleChange}/>
+                            <input className="form__input" type="number" id="weight" name="weight"  placeholder="0" tabIndex={0} onBlur={calcMetric} value={formMetric.weight} onChange={handleChange} onKeyDown={handleEnter}/>
                             <span className="form__unit">kg</span>
                         </div>
                     </label>
                 </div>
             </form>
-                <div className="result">
+            <div className="result">
                 <div className="result__score">
                     <h5 className="result__title">Your BMI is...</h5>
                     <span className="result__bmi">{resultBmi}</span>
                 </div>
                 <div className="result__comment-wrapper">
-                    <p className="result__comment">Your BMI suggests you're a {classficationBmi} Your ideal weight is between <strong>{idealWeight.startrange}-{idealWeight.endrange}.</strong></p>
+                    <p className="result__comment">Your BMI suggests you're a {classficationBmi}. Your ideal weight is between <strong>{idealWeight.startrange}kgs - {idealWeight.endrange}kgs.</strong></p>
                 </div>
             </div>
         </>
