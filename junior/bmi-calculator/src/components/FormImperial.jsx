@@ -1,5 +1,6 @@
 import React,{ useState, useEffect } from "react";
 import "../components/Form.css";
+import Result from "./Result";
 
 export default function FormImperial(){
 
@@ -13,8 +14,10 @@ export default function FormImperial(){
     const [resultBmi, setResultBmi] = useState("-");
     const [classficationBmi, setClassificationBmi ] = useState("...");
     const [idealWeight, setIdealWeight] = useState({
-        startrange: "...",
-        endrange: "..."
+        startrangest: "0",
+        startrangelbs: "0",
+        endrangest: "0",
+        endrangelbs: "0",
     });
 
   
@@ -27,7 +30,7 @@ export default function FormImperial(){
             setClassificationBmi("overweight");
         } else if (resultBmi > 30) {
             setClassificationBmi("obese");
-        } else if (resultBmi === "-") {
+        } else if (resultBmi === "0.0") {
             setClassificationBmi("...");
         }
     },[resultBmi]);
@@ -41,31 +44,67 @@ export default function FormImperial(){
 
     function handleEnter(e) {
         if (e.key === "Enter") {
-          calcImperial();
+          validImput();
         }
     }
 
-    function calcImperial(){
-        if (formImperial.height > 0 && formImperial.weight > 0 && formImperial.heightin !== "" && formImperial.weightlbs !== "" ) {
-            let heightIn = 12 * Number(formImperial.height) + Number(formImperial.heightin);
-            let weightLbs = (Number(formImperial.weight) * 14) + Number(formImperial.weightlbs);
-            setResultBmi((weightLbs / (heightIn * heightIn) * 703).toFixed(1));
-            calcIdealWeight(heightIn)
+    function validImput(){
+        if (formImperial.height > 0 && formImperial.weight > 0 && formImperial.heightin !== "" && formImperial.weightlbs !== "" ){
+            let height = convertImperialHeightToMetric(formImperial.height, formImperial.heightin);
+            let weight = convertImperialWeightToMetric(formImperial.weight,formImperial.weightlbs);
+            calcBmi(height, weight);
         } else {
             setResultBmi("-");
             setIdealWeight({
-                startrange: "...", 
-                endrange: "..."
+                startrangest: "...",
+                startrangelbs: "...",
+                endrangest: "...",
+                endrangelbs: "...",
             });
         }
     }
 
+    function calcBmi(height, weight){
+        setResultBmi((weight / (height * height)).toFixed(1));
+        calcIdealWeight(height.toFixed(2));
+    }
+    
     function calcIdealWeight(height){
-        let startRange = 18.5 * (height * height);
-        let endRange = 24.9 * (height * height);
+        let startRangeMetric = 18.5 * (height * height);
+        let endRangeMetric = 24.9 * (height * height);
+        let startRangeImperia = convertResultWeight(startRangeMetric);
+        let endRangeImperial = convertResultWeight(endRangeMetric);
         setIdealWeight({
-            startrange: startRange.toFixed(2), endrange: endRange.toFixed(2)
+            startrangest: startRangeImperia[0].toFixed(0),
+            startrangelbs: startRangeImperia[1].toFixed(0),
+            endrangest: endRangeImperial[0].toFixed(0),
+            endrangelbs: endRangeImperial[1].toFixed(0),
         })
+    }
+
+    function convertImperialHeightToMetric(foot, inches){
+        let heightInches = (Number(foot) * 12) + Number(inches);
+        let heightMeters = (heightInches * 2.54) / 100;
+        return heightMeters;
+    }
+
+    function convertImperialWeightToMetric(stone, libras){
+        let weightLibras = (Number(stone) * 14) + Number(libras);
+        let weightKg = weightLibras * 0.453592;
+        return weightKg;
+    }
+
+   function convertResultWeight(rangeMetric){
+        let weightConvertToLibras = rangeMetric * 2.20;
+        let weightConvertToStones = weightConvertToLibras / 14;
+        let weightFindLibras = weightConvertToStones.toFixed(0) * 14;
+        let weightLibras = 0;
+        if (weightConvertToLibras > weightFindLibras) {
+            weightLibras = weightConvertToLibras - weightFindLibras;
+        } else {
+            weightLibras = weightFindLibras - weightConvertToLibras;
+        }
+        return [weightConvertToStones, weightLibras];
     }
 
     return(
@@ -75,13 +114,13 @@ export default function FormImperial(){
                     <label className="form__field" htmlFor="height">
                         Height
                         <div className="form__input-wrapper" >
-                            <input className="form__input" type="number" id="height" name="height" placeholder="0" tabIndex={0} onBlur={calcImperial} value={formImperial.height} onChange={handleChange}/>
+                            <input className="form__input" type="number" id="height" name="height" placeholder="0" tabIndex={0} onBlur={validImput} value={formImperial.heightft} onChange={handleChange}/>
                             <span className="form__unit">ft</span>
                         </div>
                     </label>
                     <label className="form__field" htmlFor="heightin">
                         <div className="form__input-wrapper">
-                            <input className="form__input" type="number" id="heightin" name="heightin"  placeholder="0" tabIndex={0} onBlur={calcImperial} value={formImperial.heightin} onChange={handleChange}/>
+                            <input className="form__input" type="number" id="heightin" name="heightin"  placeholder="0" tabIndex={0} onBlur={validImput} value={formImperial.heightin} onChange={handleChange}/>
                             <span className="form__unit">in</span>
                         </div>
                     </label>
@@ -90,29 +129,19 @@ export default function FormImperial(){
                     <label className="form__field" htmlFor="weight">
                         Weight
                         <div className="form__input-wrapper" >
-                            <input className="form__input" type="number" id="weight" name="weight" placeholder="0" tabIndex={0} onBlur={calcImperial} value={formImperial.weight} onChange={handleChange}/>
+                            <input className="form__input" type="number" id="weight" name="weight" placeholder="0" tabIndex={0} onBlur={validImput} value={formImperial.weightst} onChange={handleChange}/>
                             <span className="form__unit">st</span>
                         </div>
                     </label>
                     <label className="form__field" htmlFor="weightlbs">
                         <div className="form__input-wrapper">
-                            <input className="form__input" type="number" id="weightlbs" name="weightlbs"  placeholder="0" tabIndex={0} onBlur={calcImperial} value={formImperial.weightlbs} onChange={handleChange} onKeyDown={handleEnter}/>
+                            <input className="form__input" type="number" id="weightlbs" name="weightlbs"  placeholder="0" tabIndex={0} onBlur={validImput} value={formImperial.weightlbs} onChange={handleChange} onKeyDown={handleEnter}/>
                             <span className="form__unit">lbs</span>
                         </div>
                     </label>
                 </div> 
             </form>
-            <div className="result">
-                <div className="result__score">
-                    <h5 className="result__title">Your BMI is...</h5>
-                    <span className="result__bmi">{resultBmi}</span>
-                </div>
-                <div className="result__comment-wrapper">
-                    <p className="result__comment">Your BMI suggests you're a {classficationBmi}. Your ideal weight is between <strong>{idealWeight.startrange}lbs - {idealWeight.endrange}lbs.</strong></p>
-                </div>
-            </div>
+            <Result bmi={resultBmi} classfication={classficationBmi} idealWeightStart={idealWeight.startrangest} idealWeightStartImperial={idealWeight.startrangelbs} idealWeightEnd={idealWeight.endrangest} idealWeightEndImperial={idealWeight.endrangelbs} unit="st" unitImperial="lbs"/>
         </>
-        
-        
     );
 }

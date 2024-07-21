@@ -1,5 +1,6 @@
 import React,{ useState, useEffect } from "react";
 import "../components/Form.css";
+import Result from "./Result";
 
 export default function FormMetric(){
 
@@ -37,23 +38,27 @@ export default function FormMetric(){
 
     function handleEnter(e) {
         if (e.key === "Enter") {
-          calcMetric();
+            validImput();
         }
     }
 
-    function calcMetric(){
-        if (formMetric.height > 0 && formMetric.weight > 0) {
+    function validImput(){
+        if (formMetric.height > 0 && formMetric.weight > 0){
             let height = Number(formMetric.height) / 100;
             let weight = Number(formMetric.weight);
-            setResultBmi((weight / (height * height)).toFixed(1));
-            calcIdealWeight(height);
+            calcBmi(height, weight);
         } else {
             setResultBmi("-");
             setIdealWeight({
-                startrange: "...", 
+                startrange: "...",
                 endrange: "..."
             });
-        } 
+        }
+    }
+
+    function calcBmi(height, weight){
+        setResultBmi((weight / (height * height)).toFixed(1));
+        calcIdealWeight(height.toFixed(2));
     }
 
     function calcIdealWeight(height){
@@ -71,30 +76,20 @@ export default function FormMetric(){
                     <label className="form__field" htmlFor="height">
                         Height
                         <div className="form__input-wrapper" >
-                            <input className="form__input" type="number" id="height" name="height" placeholder="0" tabIndex={0} onBlur={calcMetric} value={formMetric.height} onChange={handleChange}/>
+                            <input className="form__input" type="number" id="height" name="height" placeholder="0" tabIndex={0} onBlur={validImput} value={formMetric.height} onChange={handleChange}/>
                             <span className="form__unit">cm</span>
                         </div>
                     </label>
                     <label className="form__field" htmlFor="weight">
                         Weight
                         <div className="form__input-wrapper">
-                            <input className="form__input" type="number" id="weight" name="weight"  placeholder="0" tabIndex={0} onBlur={calcMetric} value={formMetric.weight} onChange={handleChange} onKeyDown={handleEnter}/>
+                            <input className="form__input" type="number" id="weight" name="weight"  placeholder="0" tabIndex={0} onBlur={validImput} value={formMetric.weight} onChange={handleChange} onKeyDown={handleEnter}/>
                             <span className="form__unit">kg</span>
                         </div>
                     </label>
                 </div>
             </form>
-            <div className="result">
-                <div className="result__score">
-                    <h5 className="result__title">Your BMI is...</h5>
-                    <span className="result__bmi">{resultBmi}</span>
-                </div>
-                <div className="result__comment-wrapper">
-                    <p className="result__comment">Your BMI suggests you're a {classficationBmi}. Your ideal weight is between <strong>{idealWeight.startrange}kgs - {idealWeight.endrange}kgs.</strong></p>
-                </div>
-            </div>
+            <Result bmi={resultBmi} classfication={classficationBmi} idealWeightStart={idealWeight.startrange} idealWeightEnd={idealWeight.endrange} unit="kgs"/>
         </>
-        
-        
     );
 }
