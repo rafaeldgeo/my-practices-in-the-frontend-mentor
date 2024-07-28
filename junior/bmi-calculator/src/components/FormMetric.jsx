@@ -89,7 +89,7 @@ export default function FormMetric(){
                     </label>
                 </div>
             </form>
-            <Result bmi={resultBmi} classfication={classficationBmi} idealWeightStart={idealWeight.startrange} idealWeightEnd={idealWeight.endrange} unit="kgs"/>
+            <Result bmi={resultBmi} classfication={classficationBmi} idealWeightStart={idealWeight.startrange} idealWeightEnd={idealWeight.endrange} unit="kgs"/> 
         </>
     );
 }

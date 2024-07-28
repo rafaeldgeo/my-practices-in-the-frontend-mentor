@@ -2,6 +2,7 @@
 
 
 .calculator {
+    position: absolute;
     display: flex;
     flex-direction: column;
     row-gap: 2rem;
@@ -9,8 +10,10 @@
     border-radius: 1rem;
     box-shadow: 1px 5px 20px 1px #D6E6FE;
     background-color: var(--pure-white);
-    width: 100%;
     max-width: 564px;
+    z-index: 1;
+    top: 167px;
+    left: 51.4%;
 }
 
 .calculator__title {
@@ -22,8 +25,8 @@
 
 .result {
     display: grid;
-    width: 100%;
     grid-template-columns: repeat(2, minmax(auto, 1fr));
+    width: 100%;
     gap: 0 1.5rem;
     padding: 2rem;
     border-radius: 1rem 6.25rem 6.25rem 1rem;

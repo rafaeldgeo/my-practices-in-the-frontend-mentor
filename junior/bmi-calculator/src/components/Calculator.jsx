@@ -15,8 +15,8 @@ export default function Calculator(){
     return(
         <div className="calculator">
             <h4 className="calculator__title">Enter your details below</h4>
-            <RadioSelectUnit unitSelected={getUnit}/>
-            {unitShowed === 0 ? <FormMetric /> : <FormImperial /> }
+             <RadioSelectUnit unitSelected={getUnit}/> 
+             {unitShowed === 0 ? <FormMetric /> : <FormImperial /> }  
         </div>
     );
 }
