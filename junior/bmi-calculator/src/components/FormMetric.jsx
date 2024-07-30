@@ -74,14 +74,14 @@ export default function FormMetric(){
             <form className="form" >
                 <div className="form__field-metric-wrapper">
                     <label className="form__field" htmlFor="height">
-                        Height
+                        <span className="form__label">Height</span>
                         <div className="form__input-wrapper" >
                             <input className="form__input" type="number" id="height" name="height" placeholder="0" tabIndex={0} onBlur={validImput} value={formMetric.height} onChange={handleChange}/>
                             <span className="form__unit">cm</span>
                         </div>
                     </label>
                     <label className="form__field" htmlFor="weight">
-                        Weight
+                        <span className="form__label">Weight</span>
                         <div className="form__input-wrapper">
                             <input className="form__input" type="number" id="weight" name="weight"  placeholder="0" tabIndex={0} onBlur={validImput} value={formMetric.weight} onChange={handleChange} onKeyDown={handleEnter}/>
                             <span className="form__unit">kg</span>

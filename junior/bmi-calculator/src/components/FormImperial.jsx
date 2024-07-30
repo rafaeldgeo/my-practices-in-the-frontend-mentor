@@ -112,7 +112,7 @@ export default function FormImperial(){
             <form className="form" >
                 <div className="form__field-imperial-wrapper">
                     <label className="form__field" htmlFor="height">
-                        Height
+                        <span className="form__label">Height</span>
                         <div className="form__input-wrapper" >
                             <input className="form__input" type="number" id="height" name="height" placeholder="0" tabIndex={0} onBlur={validImput} value={formImperial.heightft} onChange={handleChange}/>
                             <span className="form__unit">ft</span>
@@ -127,7 +127,7 @@ export default function FormImperial(){
                 </div>
                 <div className="form__field-imperial-wrapper">
                     <label className="form__field" htmlFor="weight">
-                        Weight
+                        <span className="form__label">Weight</span>
                         <div className="form__input-wrapper" >
                             <input className="form__input" type="number" id="weight" name="weight" placeholder="0" tabIndex={0} onBlur={validImput} value={formImperial.weightst} onChange={handleChange}/>
                             <span className="form__unit">st</span>

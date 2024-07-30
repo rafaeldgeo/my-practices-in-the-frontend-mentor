@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.css";
 import logo from "./images/logo.svg";
+import man from "./images/image-man-eating.webp";
 import Calculator from "./components/Calculator";
 import AttributionFooter from "./components/AttributionFooter";
 
@@ -22,7 +23,17 @@ export default function App(){
                 </div> 
                 <div className="hero__background"></div> 
             </header>
-            <main className="main">teste</main>
+            <main className="main">
+                <section className="result-explanation">
+                    <div className="result-explanation__img-wrapper">
+                        <img className="result-explanation__img-man" src={man} alt="man eating" width={564} height={533} loading="lazy"/>
+                    </div>
+                    <div className="result-explanation__content">
+                        <h2 className="result-explanation__title">What your BMI result means</h2>
+                        <p className="result-explanation__text">A BMI range of 18.5 to 24.9 is considered a 'healthy weight.' Maintaining a healthy weight may lower your chances of experiencing health issues later on, such as obesity and type 2 diabetes. Aim for a nutritious diet with reduced fat and sugar content, incorporating ample fruits and vegetables. Additionally, strive for regular physical activity, ideally about 30 minutes daily for five days a week.</p>
+                    </div>
+                </section>
+            </main>
             <footer className="footer">
                 <AttributionFooter></AttributionFooter>
             </footer>  
