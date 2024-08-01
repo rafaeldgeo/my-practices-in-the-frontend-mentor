@@ -2,36 +2,36 @@
 
 
 .calculator {
-    display: flex;
-    flex-direction: column;
-    row-gap: min(2.46vw, 2rem);
-    padding: min(2.46vw, 2rem);
+    background-color: var(--pure-white);
     border-radius: 1rem;
     box-shadow: 1px 5px 20px 1px #D6E6FE;
-    background-color: var(--pure-white);
+    display: flex;
+    flex-direction: column;
+    padding: min(2.46vw, 2rem);
+    row-gap: min(2.46vw, 2rem);
 }
 
 .calculator__title {
+    color: var(--gunmetal);
     font-size: 1.5rem;
     font-weight: 600;
     letter-spacing: -.075rem;
-    color: var(--gunmetal);
 }
 
 .result {
-    display: grid;
-    width: 100%;
-    grid-template-columns: repeat(2, minmax(auto, 1fr));
-    gap: 0 1.5rem;
-    padding: 2rem;
-    border-radius: 1rem 6.25rem 6.25rem 1rem;
-    flex-wrap: wrap;
     background-color: var(--blue);
+    border-radius: 1rem 6.25rem 6.25rem 1rem;
     color: var(--pure-white);
+    display: grid;
+    flex-wrap: wrap;
+    gap: 0 1.5rem;
+    grid-template-columns: repeat(2, minmax(auto, 1fr));
+    padding: 2rem;
+    width: 100%;
 }
 
 .result__comment-wrapper {
-    margin: auto;
+    margin: auto 0;
 }
 
 .result__comment {
