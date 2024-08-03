@@ -4,6 +4,7 @@ import logo from "./images/logo.svg";
 import man from "./images/image-man-eating.webp";
 import Calculator from "./components/Calculator";
 import Tips from "./components/Tips";
+import Limitations from "./components/Limitations";
 import AttributionFooter from "./components/AttributionFooter";
 
 export default function App(){
@@ -35,6 +36,7 @@ export default function App(){
                     </div>
                 </section>
                 <Tips />
+                <Limitations />
             </main>
             <footer className="footer">
                 <AttributionFooter></AttributionFooter>

@@ -3,12 +3,11 @@
 .tips {
     background-color: var(--light-blue);
     border-radius: 1.75rem;
-    margin-inline: min(1.8vw, 1.5rem); /* desktop */
-    padding: min(10vw, 4.5rem) min(10.76vw, 8.75rem) min(10vw, 6rem); /* desktop */
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr)); /* desktop */
     gap: 0 2rem; /* desktop */
-
+    grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));  /* desktop */
+    margin-inline: min(1.8vw, 1.5rem); /* desktop */
+    padding: min(10vw, 4.5rem) min(10.76vw, 8.75rem) min(10vw, 6rem);  /* desktop */ 
 }
 
 .tips__card {
@@ -18,20 +17,16 @@
 }
 
 .tips__icon {
+    block-size: auto;
     display: block;
     max-inline-size: 100%;
-    block-size: auto;
-}
-
-.tips__content {
-    
 }
 
 .tips__title {
+    color: var(--gunmetal);
     font-size: 24px;
     font-weight: 600;
     letter-spacing: -.1rem;
-    color: var(--gunmetal);
     margin-block-end: 24px;
 }
 
