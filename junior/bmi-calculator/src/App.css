@@ -8,6 +8,8 @@
     --gunmetal: #253347;
     --pure-white: #FFFFFF;
     --dark-eletric-blue: #5E6E85;
+    --gradient-start:  rgba(214,230,254,0.25);
+    --gradient-end: rgba(214,252,254,0.25);
     --gradient: linear-gradient(127deg, #D6E6FE, #D6FCFE);
     --font: "Inter", sans-serif;
 }
@@ -45,7 +47,7 @@ html, body { width: 100% ;}
 }
 
 .hero__background {
-    background-image: var(--gradient);
+    background: linear-gradient(309deg, rgba(214,230,254,1) 0%, rgba(214,252,254,0) 100%);
     border-radius: 0 0 1.75rem 1.75rem; /* desktop */
     height: min(80vw, 737px); /* desktop */
     max-width: 69.1%;

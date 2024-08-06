@@ -1,0 +1,64 @@
+@charset "UTF-8";
+
+.card {
+    --card-shadow: rgba(143, 174, 207, 0.25);
+    background-color: var(--pure-white);
+    box-shadow: 16px 32px 56px var(--card-shadow); 
+    border-radius: 1rem;
+    padding: 2rem;
+    max-width: 37ch;
+}
+
+.card__header {
+    display: flex;
+    align-items: center;
+    margin-block-end: 1rem;
+    column-gap: 1rem;
+}
+
+.card__title {
+    color: var(--gunmetal);
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: -.1rem;
+}
+
+.card__text {
+    color: var(--dark-eletric-blue);
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.limitation {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-areas: "introduce introduce gender gender"
+                         ". . age muscle"
+                         ". pregnancy race .";
+    padding: 0 min(10.76vw, 8.75rem); 
+}
+
+
+.limitation__introduce {
+    grid-area: introduce;
+}
+
+.limitation__gender {
+    grid-area: gender;
+}
+
+.limitation__age {
+    grid-area: age;
+}
+
+.limitation__muscle {
+    grid-area: muscle;
+}
+
+.limitation__pregnancy {
+    grid-area: pregnancy;
+}
+
+.limitation__race {
+    grid-area: race;
+}
