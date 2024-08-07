@@ -34,24 +34,24 @@ export default function Limitations(){
     return(
             <section className="limitation">
                 <div className="limitation__introduce">
-                    <h2>Limitations of BMI</h2>
-                    <p>Although BMI is often a practical indicator of healthy weight, it is not suited for every person. Specific groups should carefully consider their BMI outcomes, and in certain cases, the measurement may not be beneficial to use.</p>
+                    <h2 className="limitation__title">Limitations of BMI</h2>
+                    <p className="limitation__text">Although BMI is often a practical indicator of healthy weight, it is not suited for every person. Specific groups should carefully consider their BMI outcomes, and in certain cases, the measurement may not be beneficial to use.</p>
                 </div>
-                <div className="limitation__gender">
+                <div className="limitation__card limitation__card-gender">
                     <Card defineLimitation = "gender" />
                 </div>
-                <div className="limitation__age">
+                <div className="limitation__card limitation__card-age">
                     <Card defineLimitation = "age" />
                 </div>
-                <div className="limitation__muscle">
+                <div className="limitation__card limitation__card-muscle">
                     <Card defineLimitation = "muscle" />
                 </div>
-                <div className="limitation__pregnancy">
+                <div className="limitation__card limitation__card-pregnancy">
                     <Card defineLimitation = "pregnancy" />
                 </div>
-                <div className="limitation__race">
+                <div className="limitation__card limitation__card-race">
                     <Card defineLimitation = "race" />
-                </div>
+                </div>    
             </section>
     );
 }

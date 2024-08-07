@@ -14,7 +14,7 @@
 .calculator__title {
     color: var(--gunmetal);
     font-size: 1.5rem;
-    font-weight: 600;
+    font-weight: var(--font-semi-bold);
     letter-spacing: -.075rem;
 }
 

@@ -25,6 +25,7 @@
 .form__label {
     color: var(--dark-eletric-blue);
     font-size: .875rem;
+    font-weight: var(--font-regular);
     margin-block-end: .5rem;
 }
 
@@ -45,7 +46,7 @@
     border-radius: inherit;
     color: var(--gunmetal);
     font-size: 1.5rem;
-    font-weight: 600;
+    font-weight: var(--font-semi-bold);
     outline: none;
     padding: min(1.46vw, 1.19rem) min(1.84vw, 1.5rem); /* desktop */
     width: 131px;
@@ -56,6 +57,6 @@
 .form__unit {
     color: var(--blue);
     font-size: 1.5rem;
-    font-weight: 600;
+    font-weight: var(--font-semi-bold);
     padding: .625rem;
 }
