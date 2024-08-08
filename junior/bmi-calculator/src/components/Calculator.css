@@ -1,10 +1,9 @@
 @charset "UTF-8";
 
-
 .calculator {
     background-color: var(--pure-white);
     border-radius: 1rem;
-    box-shadow: 1px 5px 20px 1px #D6E6FE;
+    box-shadow: 16px 32px 56px var(--shadow-calculator);
     display: flex;
     flex-direction: column;
     padding: min(2.46vw, 2rem);

@@ -10,7 +10,7 @@
     --dark-eletric-blue: #5E6E85;
     --gradient-start:  rgba(214,230,254,0.25);
     --gradient-end: rgba(214,252,254,0.25);
-    --gradient: linear-gradient(127deg, #D6E6FE, #D6FCFE);
+    --shadow-calculator: rgba(143,174,207,0.25);
     --font: "Inter", sans-serif;
     --font-regular: 400;
     --font-semi-bold: 600;

@@ -13,7 +13,7 @@
 .tips__card {
     display: flex;
     flex-direction: column;
-    gap: 45px 0;
+    gap: min(3vw, 2.8125rem) 0;
 }
 
 .tips__icon {
@@ -24,15 +24,15 @@
 
 .tips__title {
     color: var(--gunmetal);
-    font-size: 24px;
+    font-size: clamp(1rem, .5rem + 1.5vw, 1.5rem); /* desktop */
     font-weight: var(--font-semi-bold);
     letter-spacing: -.1rem;
-    margin-block-end: 24px;
+    margin-block-end: min(1.5vw, 24px);
 }
 
 .tips__text {
     color: var(--dark-eletric-blue);
-    font-size: 1rem;
+    font-size: clamp(.8rem, .5rem + .6vw, 1rem); /* desktop */
     font-weight: var(--font-regular);
-    line-height: 1.5;
+    line-height: calc(clamp(.8rem, .5rem + .6vw, 1rem) * 1.5); /* desktop */
 }

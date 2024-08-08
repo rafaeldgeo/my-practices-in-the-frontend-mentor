@@ -1,6 +1,8 @@
 import React from "react";
 import "./App.css";
 import logo from "./images/logo.svg";
+import curvedRight from "./images/pattern-curved-line-right.svg";
+import curvedLeft from "./images/pattern-curved-line-left.svg";
 import man from "./images/image-man-eating.webp";
 import Calculator from "./components/Calculator";
 import Tips from "./components/Tips";
@@ -25,7 +27,7 @@ export default function App(){
                 </div> 
                 <div className="hero__background"></div> 
             </header>
-            <main className="main">
+            <main className="main" style={{ backgroundImage: `url(${curvedLeft})`, backgroundRepeat: "no-repeat", backgroundPosition: "85% 0%", backgroundSize: "auto"}}>
                 <section className="result-explanation">
                     <div className="result-explanation__img-wrapper">
                         <img className="result-explanation__img-man" src={man} alt="man eating" width={564} height={533} loading="lazy"/>
