@@ -11,7 +11,7 @@ import AttributionFooter from "./components/AttributionFooter";
 
 export default function App(){
     return(
-        <div className="container">
+        <div className="container" style={{backgroundImage: `url(${curvedLeft})`, backgroundRepeat: "no-repeat", backgroundPosition: "calc(79% + 9rem) 28%", backgroundSize: "5% auto"}}>
             <header className="header">
                <div className="hero__content">
                     <div className="hero__logo-wrapper">
@@ -27,7 +27,7 @@ export default function App(){
                 </div> 
                 <div className="hero__background"></div> 
             </header>
-            <main className="main" style={{ backgroundImage: `url(${curvedLeft})`, backgroundRepeat: "no-repeat", backgroundPosition: "85% 0%", backgroundSize: "auto"}}>
+            <main className="main" style={{backgroundImage: `url(${curvedRight})`, backgroundRepeat: "no-repeat", backgroundPosition: "20% 75%", backgroundSize: "6% auto"}}>
                 <section className="result-explanation">
                     <div className="result-explanation__img-wrapper">
                         <img className="result-explanation__img-man" src={man} alt="man eating" width={564} height={533} loading="lazy"/>

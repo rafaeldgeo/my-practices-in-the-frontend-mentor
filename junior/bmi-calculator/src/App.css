@@ -139,7 +139,7 @@ html, body { width: 100% ;}
     font-size: clamp(.8rem, .5rem + .6vw, 1rem);  /* desktop */
     font-weight: var(--font-regular);
     line-height: calc(clamp(.8rem, .5rem + .6vw, 1rem) * 1.5); /* desktop */
-    padding-block-end: min(2vw, 2.5rem);  /* desktop */
+    padding-block-end: min(2.8vw, 2.5rem);  /* desktop */
 }
 
 .footer { flex-shrink: 0; }
