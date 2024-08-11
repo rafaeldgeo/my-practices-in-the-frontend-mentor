@@ -113,16 +113,15 @@ html, body { width: 100% ;}
 
 .result-explanation {
     display: flex;
-    flex-direction: column;
-    gap: min(9vw, 3rem) 0; /* desktop */
-    margin-block-start: clamp(18.75rem, 55vw, 18.75rem);   /* desktop */
+    gap: 0 min(10.07vw, 8.18rem); /* desktop */
+    margin-block-start: min(10vw, 4.0625rem);   /* desktop */
     margin-block-end: min(10vw, 6rem);   /* desktop */ 
-    padding: 0;
+    padding: 0 min(10.76vw, 8.75rem);   /* desktop */
 }
 
-.result-explanation__img-wrapper { flex: 1 1 auto; } 
+.result-explanation__img-wrapper { flex: 1 1 564px; /* desktop */ } 
 
-.result-explanation__content { flex: 1 1 auto; }
+.result-explanation__content { flex: 1 1 465px; /* desktop */ }
 
 .result-explanation__content { 
     color: var(--gunmetal); 
@@ -132,21 +131,21 @@ html, body { width: 100% ;}
 }
 
 .result-explanation__title{
-    font-size: clamp(1.75rem, 0.75rem + 4.8vw, 2rem);  
+    font-size: clamp(1.75rem, 0.75rem + 2.5vw, 3rem);  /* desktop */
     font-weight: var(--font-semi-bold);
     letter-spacing: -.1rem;
-    line-height: calc(clamp(1.75rem, 0.75rem + 4.8vw, 2rem) * 1.1); 
-    padding-block-end: min(6vw, 2rem); 
+    line-height: calc(clamp(1.75rem, 0.75rem + 2.5vw, 3rem) * 1.1); /* desktop */
+    padding-block-end: min(2.5vw, 2.1875rem); /* desktop */
 }
 
 .result-explanation__text {
-    font-size: clamp(.8rem, .5rem + 1vw, 0.8125rem);  
+    font-size: clamp(.7rem, .3rem + .8vw, 1rem);  /* desktop */
     font-weight: var(--font-regular);
-    line-height: calc(clamp(.8rem, .5rem + 1vw, 0.8125rem) * 1.5); 
-    padding-block-end: min(calc(2.8vw - 1rem), 2.5rem); 
+    line-height: calc(clamp(.7rem, .3rem + .8vw, 1rem) * 1.5); /* desktop */
+    padding-block-end: min(calc(2.8vw - 1rem), 2.5rem);  /* desktop */
 }
 
-/* tablet */
+/* table */
 @media only screen and (min-width: 376px) and (max-width: 768px) {
 
     .header {
@@ -213,10 +212,6 @@ html, body { width: 100% ;}
     }
     
     .result-explanation__img-man { object-position: -50px 0; }
-
-    .result-explanation__img-wrapper { flex: 1 1 320px; } 
-
-    .result-explanation__content { flex: 1 1 331px; }
     
     .result-explanation__title{
         font-size: clamp(1rem, 0.75rem + 2.7vw, 2rem); 
@@ -231,10 +226,36 @@ html, body { width: 100% ;}
     }
 }
 
+@media only screen and (min-width: 376px) and (max-width: 559px) {
+
+    .result-explanation__img-man { object-position: 0 0; }
+
+    .result-explanation {
+        flex-direction: column;
+        gap: 0 0; 
+        margin-block-start: clamp(18.75rem, 55vw, 18.75rem); 
+        margin-block-end: min(10vw, 6rem);   /* VERIFICAR */ 
+        padding: 0 min(5.5vw, 2.625rem);
+    }
+
+    .result-explanation__img-wrapper { flex: 1 1 auto; } 
+
+    .result-explanation__content { flex: 1 1 auto; }
+
+    .result-explanation__img-man { object-position: 0; }
+}
+
+
 /* desktop */
 @media only screen and (min-width: 769px) {
 
-    .container { position: relative; }
+    .container {
+        background-color: var(--pure-white);
+        display: flex;
+        flex-direction: column;
+        max-width: min(1440px, 100%);
+        position: relative;
+    }
 
     .pattern-left {
         display: block;
@@ -250,32 +271,9 @@ html, body { width: 100% ;}
         height: min(80vw, 737px); 
         max-width: 69.1%;
     } 
-
-    .result-explanation {
-        flex-direction: row;
-        gap: 0 min(10.07vw, 8.18rem); 
-        margin-block-start: min(10vw, 4.0625rem);   
-        margin-block-end: min(10vw, 6rem);   
-        padding: 0 min(10.76vw, 8.75rem);   
-    }
-    
-    .result-explanation__img-wrapper { flex: 1 1 564px; } 
-    
-    .result-explanation__content { flex: 1 1 465px; }
-
-    .result-explanation__title{
-        font-size: clamp(1.75rem, 0.75rem + 2.5vw, 3rem);
-        line-height: calc(clamp(1.75rem, 0.75rem + 2.5vw, 3rem) * 1.1);
-        padding-block-end: min(2.5vw, 2.1875rem); 
-    }
-    
-    .result-explanation__text {
-        font-size: clamp(.7rem, .3rem + .8vw, 1rem); 
-        line-height: calc(clamp(.7rem, .3rem + .8vw, 1rem) * 1.5); 
-        padding-block-end: min(calc(2.8vw - 1rem), 2.5rem);
-    }
     
 }
+
 
 .footer { flex-shrink: 0; }
 
