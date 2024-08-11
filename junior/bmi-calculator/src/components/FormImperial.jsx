@@ -110,7 +110,7 @@ export default function FormImperial(){
     return(
         <>
             <form className="form" >
-                <div className="form__field-imperial-wrapper">
+                <div className="form__field-wrapper form__field-wrapper-imperial">
                     <label className="form__field" htmlFor="height">
                         <span className="form__label">Height</span>
                         <div className="form__input-wrapper" >
@@ -125,7 +125,7 @@ export default function FormImperial(){
                         </div>
                     </label>
                 </div>
-                <div className="form__field-imperial-wrapper">
+                <div className="form__field-wrapper form__field-wrapper-imperial">
                     <label className="form__field" htmlFor="weight">
                         <span className="form__label">Weight</span>
                         <div className="form__input-wrapper" >

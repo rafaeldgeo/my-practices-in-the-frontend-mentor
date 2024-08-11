@@ -72,7 +72,7 @@ export default function FormMetric(){
     return(
         <>
             <form className="form" >
-                <div className="form__field-metric-wrapper">
+                <div className="form__field-wrapper">
                     <label className="form__field" htmlFor="height">
                         <span className="form__label">Height</span>
                         <div className="form__input-wrapper" >

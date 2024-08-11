@@ -42,7 +42,14 @@
 
 .btn__label {
     color: var(--gunmetal);
-    font-size: 1rem;
+    font-size: clamp(.9rem, 1.2vw, 1rem);
     font-weight: var(--font-semi-bold);
     margin-inline-start: 1.1rem;
+}
+
+/* Tablet */
+@media only screen and (min-width: 376px) and (max-width: 768px) {
+
+    .btn__label { font-size: clamp(.8rem, 2.1vw, 1rem); }
+
 }

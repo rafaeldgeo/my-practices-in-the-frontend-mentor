@@ -33,6 +33,7 @@ export default function Limitations(){
 
     return(
             <section className="limitation">
+                <svg className="pattern-right" xmlns="http://www.w3.org/2000/svg" width="94.664" height="122.518" viewBox="0 0 94.664 122.518"><path fill="none" stroke="#ACC1DE" d="M94.498 122.046C65.99 112.032 7.28 73.613.498.046"/></svg>
                 <div className="limitation__introduce">
                     <h2 className="limitation__title">Limitations of BMI</h2>
                     <p className="limitation__text">Although BMI is often a practical indicator of healthy weight, it is not suited for every person. Specific groups should carefully consider their BMI outcomes, and in certain cases, the measurement may not be beneficial to use.</p>

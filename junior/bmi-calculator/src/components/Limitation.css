@@ -3,11 +3,17 @@
 * {
     /* border: 1px solid blue; */
 }
+
 .limitation {
     display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    padding: min(10.76vw, 7.5rem) min(10.76vw, 8.75rem);  
     gap: min(2.1vw, 32px);
+    grid-template-columns: repeat(12, 1fr);
+    padding: min(10.76vw, 7.5rem) min(10.76vw, 8.75rem);
+    position: relative;
+}
+
+.pattern-right {
+    display: none;
 }
 
 .limitation__introduce {
@@ -86,3 +92,17 @@
     line-height: calc(clamp(.8rem, .5rem + .6vw, 1rem) * 1.5); /* desktop */
 }
 
+
+@media only screen and (min-width: 769px) {
+
+    .pattern-right {
+        display: block;
+        position: absolute;
+        z-index: 0;
+        top: calc(24% + 9rem);
+        left: calc(28% - 5rem);
+        max-inline-size: 7%;
+        block-size: auto;
+    }
+
+}

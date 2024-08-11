@@ -1,6 +1,8 @@
 import React from "react";
 import "./App.css";
 import logo from "./images/logo.svg";
+import curvedRight from "./images/pattern-curved-line-right.svg";
+import curvedLeft from "./images/pattern-curved-line-left.svg";
 import man from "./images/image-man-eating.webp";
 import Calculator from "./components/Calculator";
 import Tips from "./components/Tips";
@@ -9,7 +11,7 @@ import AttributionFooter from "./components/AttributionFooter";
 
 export default function App(){
     return(
-        <div className="container">
+        <div className="container" style={{backgroundImage: `url(${curvedLeft})`, backgroundRepeat: "no-repeat", backgroundPosition: "calc(79% + 9rem) 28%", backgroundSize: "5% auto"}}>
             <header className="header">
                <div className="hero__content">
                     <div className="hero__logo-wrapper">
@@ -25,8 +27,7 @@ export default function App(){
                 </div> 
                 <div className="hero__background"></div> 
             </header>
-            <svg className="pattern-left" xmlns="http://www.w3.org/2000/svg" width="85.831" height="200.501" viewBox="0 0 85.831 200.501"><path fill="none" stroke="#ACC1DE" d="M82.719.092c7.831 41.7 2.31 140.08-82.43 200"/></svg>
-            <main className="main">
+            <main className="main" style={{backgroundImage: `url(${curvedRight})`, backgroundRepeat: "no-repeat", backgroundPosition: "20% 75%", backgroundSize: "6% auto"}}>
                 <section className="result-explanation">
                     <div className="result-explanation__img-wrapper">
                         <img className="result-explanation__img-man" src={man} alt="man eating" width={564} height={533} loading="lazy"/>

@@ -12,38 +12,19 @@
 
 .calculator__title {
     color: var(--gunmetal);
-    font-size: 1.5rem;
+    font-size: clamp(1.3rem, 1.7vw, 1.5rem);
     font-weight: var(--font-semi-bold);
     letter-spacing: -.075rem;
 }
 
-.result {
-    background-color: var(--blue);
-    border-radius: 1rem 6.25rem 6.25rem 1rem;
-    color: var(--pure-white);
-    display: grid;
-    flex-wrap: wrap;
-    gap: 0 1.5rem;
-    grid-template-columns: repeat(2, minmax(auto, 1fr));
-    padding: 2rem;
-    width: 100%;
-}
+/* Tablet */
+@media only screen and (min-width: 376px) and (max-width: 768px) {
 
-.result__comment-wrapper {
-    margin: auto 0;
-}
+    .calculator {
+        padding: min(4.2vw, 2rem);
+        row-gap: min(4.2vw, 2rem);
+    }
 
-.result__comment {
-    font-size: .87rem;
-    line-height: 1.5;
-}
+    .calculator__title { font-size: clamp(1.1rem, 3.2vw, 1.5rem); }
 
-.result__title {
-    font-size: 1rem;
-    margin-block: 0.5rem;
 }
-
-.result__bmi {
-    font-size: 4rem;
-    font-weight: 600;
-} 
