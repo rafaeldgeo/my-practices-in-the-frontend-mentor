@@ -4,16 +4,17 @@
     background: linear-gradient(90deg,var(--gradient-start) 0%, var(--gradient-end) 100%);
     border-radius: 1.75rem;
     display: grid;
-    gap: 0 2rem; /* desktop */
-    grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));  /* desktop */
-    margin-inline: min(1.8vw, 1.5rem); /* desktop */
-    padding: min(10vw, 4.5rem) min(10.76vw, 8.75rem) min(10vw, 6rem);  /* desktop */ 
+    gap: min(5.3vw, 2.5rem) 0;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, auto);
+    margin-inline: 0;
+    padding: min(7.9vw, 3.75rem) min(5.6vw, 2.6878rem) min(7.9vw, 3.75rem) min(5.1vw, 2.4375rem);
 }
 
 .tips__card {
     display: flex;
-    flex-direction: column;
-    gap: min(3vw, 2.8125rem) 0;
+    flex-direction: row;
+    gap: 0 min(5.3vw, 2.5rem); 
 }
 
 .tips__icon {
@@ -22,17 +23,51 @@
     max-inline-size: 100%;
 }
 
+.tips__content {
+    display: flex;
+    flex-direction: column;
+    row-gap: min(3.2vw, 1.5rem);
+}
+
 .tips__title {
     color: var(--gunmetal);
-    font-size: clamp(1rem, .5rem + 1.5vw, 1.5rem); /* desktop */
+    font-size: clamp(1rem, .8rem + 1.6vw, 1.5rem); /* desktop */
     font-weight: var(--font-semi-bold);
     letter-spacing: -.1rem;
-    margin-block-end: min(1.5vw, 24px);
 }
 
 .tips__text {
     color: var(--dark-eletric-blue);
-    font-size: clamp(.8rem, .5rem + .6vw, 1rem); /* desktop */
+    font-size: clamp(.8rem, .5rem + 1.1vw, 1rem); /* desktop */
     font-weight: var(--font-regular);
-    line-height: calc(clamp(.8rem, .5rem + .6vw, 1rem) * 1.5); /* desktop */
+    line-height: calc(clamp(.8rem, .5rem + 1.1vw, 1rem) * 1.5); /* desktop */
+}
+
+
+@media only screen and (min-width: 769px) {
+
+    .tips {
+        gap: 0 2rem; 
+        grid-template-columns: repeat(3, minmax(10rem, 1fr));  
+        margin-inline: min(1.8vw, 1.5rem); 
+        padding: min(5vw, 4.5rem) min(8.13vw, 8.3125rem) min(6.7vw, 6rem) min(8.1vw, 7.25rem);  
+    }
+
+    .tips__card {
+        flex-direction: column;
+        gap: min(3vw, 2.8125rem) 0;
+    }
+
+    .tips__content {
+        flex-direction: column;
+        row-gap: 1.5rem;
+    }
+
+    .tips__title { font-size: clamp(1rem, .5rem + 1.5vw, 1.5rem); }
+
+    .tips__text {
+        font-size: clamp(.8rem, .5rem + .6vw, 1rem); /* desktop */
+        line-height: calc(clamp(.8rem, .5rem + .6vw, 1rem) * 1.5); /* desktop */
+    }
+      
 }
