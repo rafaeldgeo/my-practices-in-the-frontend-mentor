@@ -6,60 +6,57 @@
 
 .limitation {
     display: grid;
-    gap: min(2.1vw, 32px);
+    gap: min(3.2vw, 1.5rem) min(2vw, 0.9375rem);
     grid-template-columns: repeat(12, 1fr);
-    padding: min(10.76vw, 7.5rem) min(10.76vw, 8.75rem);
+    grid-template-rows: repeat(4, auto);
+    padding: min(12.5vw, 6rem) min(5.6vw, 2.6878rem) min(14vw, .625rem) min(5.1vw, 2.4375rem);
     position: relative;
 }
 
-.pattern-right {
-    display: none;
-}
+.pattern-right { display: none; }
 
 .limitation__introduce {
     grid-column-start: 1;
-    grid-column-end: 7;
-    max-inline-size: 564px;
+    grid-column-end: 13;
+    text-align: center;
+    padding-block-end: min(4.2vw, 2rem);
 }
 
-.limitation__card { max-inline-size: 365px; }
+.limitation__card { 
+    max-inline-size: 365px;
+}
 
 .limitation__card-gender {
-    grid-column-start: 8;
-    grid-column-end: 12;
+    grid-column-start: 1;
+    grid-column-end: 7;
 }
-
 
 .limitation__card-age {
-    grid-column-start: 5;
-    grid-column-end: 9;
-}
-
-.limitation__card-muscle {
-    grid-column-start: 9;
+    grid-column-start: 7;
     grid-column-end: 13;
 }
 
-.limitation__card-pregnancy {
-    grid-column-start: 3;
+.limitation__card-muscle {
+    grid-column-start: 1;
     grid-column-end: 7;
 }
 
-.limitation__card-race {
+.limitation__card-pregnancy {
     grid-column-start: 7;
-    grid-column-end: 12;
+    grid-column-end: 13;
+}
+
+.limitation__card-race {
+    grid-column-start: 4;
+    grid-column-end: 10;
 }
 
 .limitation__title {
     color: var(--gunmetal);
-    font-size: clamp(1.75rem, 0.75rem + 2.5vw, 3rem);  /* desktop */
+    font-size: clamp(1.75rem, 0.8rem + 2.5vw, 2rem);  
     font-weight: var(--font-semi-bold);
     letter-spacing: -.1rem;
-    margin-block-end: min(2.3vw, 2.1815rem);
-}
-
-.limitation__text {
-    max-inline-size: 55ch;
+    margin-block-end: min(4.2vw, 2rem);
 }
 
 .card {
@@ -67,15 +64,16 @@
     background-color: var(--pure-white);
     box-shadow: 16px 32px 56px var(--card-shadow); 
     border-radius: 1rem;
-    padding: min(2.1vw, 2rem);
+    padding: min(4.2vw, 2rem);
     max-width: 37ch;
+    height: 100%;
 }
 
 .card__header {
     display: flex;
     align-items: center;
-    margin-block-end: min(1.5vw, 1rem); /* desktop */
-    column-gap: min(1.5vw, 1rem); /* desktop */
+    margin-block-end: min(2.2vw, 1rem); 
+    column-gap: min(2.2vw, 1rem); 
 }
 
 .card__title {
@@ -87,9 +85,9 @@
 
 .card__text, .limitation__text {
     color: var(--dark-eletric-blue);
-    font-size: clamp(.8rem, .5rem + .6vw, 1rem); /* desktop */
+    font-size: clamp(.8rem, .6rem + 1vw, 1rem); 
     font-weight: var(--font-regular);
-    line-height: calc(clamp(.8rem, .5rem + .6vw, 1rem) * 1.5); /* desktop */
+    line-height: calc(clamp(.8rem, .6rem + 1vw, 1rem) * 1.5); /* desktop */
 }
 
 
@@ -105,4 +103,78 @@
         block-size: auto;
     }
 
+    .limitation {
+        display: grid;
+        gap: min(2.1vw, 32px);
+        grid-template-columns: repeat(12, 1fr);
+        padding: min(10.76vw, 7.5rem) min(10.76vw, 8.75rem) min(14vw, .625rem);
+        position: relative;
+    }
+
+    .limitation__introduce {
+        grid-column-start: 1;
+        grid-column-end: 7;
+        max-inline-size: 564px;
+        text-align: left;
+    }
+    
+    .limitation__card { max-inline-size: 365px; }
+    
+    .limitation__card-gender {
+        grid-column-start: 8;
+        grid-column-end: 12;
+    }
+    
+    .limitation__card-age {
+        grid-column-start: 5;
+        grid-column-end: 9;
+    }
+    
+    .limitation__card-muscle {
+        grid-column-start: 9;
+        grid-column-end: 13;
+    }
+    
+    .limitation__card-pregnancy {
+        grid-column-start: 3;
+        grid-column-end: 7;
+    }
+    
+    .limitation__card-race {
+        grid-column-start: 7;
+        grid-column-end: 12;
+    }
+    
+    .limitation__title {
+        font-size: clamp(1.75rem, 0.75rem + 2.5vw, 3rem);  
+        letter-spacing: -.1rem;
+        margin-block-end: min(2.3vw, 2.1815rem);
+    }
+    
+    .limitation__text {
+        max-inline-size: 55ch;
+    }
+    
+    .card {
+        padding: min(2.1vw, 2rem);
+        max-width: 37ch;
+    }
+    
+    .card__header {
+        display: flex;
+        align-items: center;
+        margin-block-end: min(1.5vw, 1rem); 
+        column-gap: min(1.5vw, 1rem); 
+    }
+    
+    .card__title {
+        font-size: 1.25rem;
+        letter-spacing: -.1rem;
+    }
+    
+    .card__text, .limitation__text {
+        font-size: clamp(.8rem, .5rem + .6vw, 1rem); 
+        line-height: calc(clamp(.8rem, .5rem + .6vw, 1rem) * 1.5); 
+    }
+    
 }
