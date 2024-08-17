@@ -52,8 +52,8 @@ body {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: repeat(2, auto);
-    padding-inline-start: 0; 
-    padding-inline-end: 0; 
+    padding-inline-start: min(6.4vw, 1.5rem); 
+    padding-inline-end: min(6.3vw, 1.4375rem); 
     padding-block-start: min(8.6vw, 2rem); 
     position: absolute;
     width: fit-content;
@@ -124,10 +124,9 @@ body {
 .result-explanation {
     display: flex;
     flex-direction: column;
-    gap: min(9vw, 3rem) 0; /* desktop */
-    margin-block-start: clamp(18.75rem, 55vw, 18.75rem);   /* desktop */
-    margin-block-end: min(10vw, 6rem);   /* desktop */ 
-    padding: 0;
+    gap: min(13vw, 3rem) 0; 
+    margin-block-start: clamp(18.75rem, 55vw, 18.75rem);   /* FALTA */
+    margin-block-end: min(19.1vw, 4.475rem); 
 }
 
 .result-explanation__img-wrapper { flex: 1 1 auto; } 
@@ -139,20 +138,21 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: end;
+    padding: 0 min(6.3vw, 1.4375rem) 0 min(6.5vw, 2rem);
 }
 
 .result-explanation__title{
-    font-size: clamp(1.75rem, 0.75rem + 4.8vw, 2rem);  
+    font-size: clamp(1.75rem, .75rem + 5.5vw, 2rem);  
     font-weight: var(--font-semi-bold);
     letter-spacing: -.1rem;
-    line-height: calc(clamp(1.75rem, 0.75rem + 4.8vw, 2rem) * 1.1); 
-    padding-block-end: min(6vw, 2rem); 
+    line-height: calc(clamp(1.75rem, 0.75rem + 5.5vw, 2rem) * 1.1); 
+    padding-block-end: min(8.6vw, 2rem); 
 }
 
 .result-explanation__text {
-    font-size: clamp(.8rem, .5rem + 1vw, 0.8125rem);  
+    font-size: clamp(.8rem, .75rem + 1.2vw, 1rem);  
     font-weight: var(--font-regular);
-    line-height: calc(clamp(.8rem, .5rem + 1vw, 0.8125rem) * 1.5); 
+    line-height: calc(clamp(.8rem, .75rem + 1.2vw, 1rem) * 1.5); 
     padding-block-end: min(calc(2.8vw - 1rem), 2.5rem); 
 }
 
@@ -199,7 +199,7 @@ body {
         flex-direction: row;
         gap: 0 0; 
         margin-block-start: clamp(260px, 45vw, 350px) ; 
-        margin-block-end: min(10vw, 6rem);   /* VERIFICAR */ 
+        margin-block-end: min(10vw, 6rem);  
         padding: 0 min(5.5vw, 2.625rem) 0 0;
     }
     
@@ -253,6 +253,7 @@ body {
         font-size: clamp(2.8rem, .875rem + 3.6vw, 4.1rem); 
         line-height: calc(clamp(2.8rem, .875rem + 3.6vw, 4.1rem) * 1.1); 
         margin-block-end: min(2.69vw, 2.1875rem);
+        max-inline-size: none;
     }
 
     .hero__introduction {

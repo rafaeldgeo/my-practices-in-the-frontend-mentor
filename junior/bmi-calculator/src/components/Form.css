@@ -2,13 +2,16 @@
 
 .form__field-wrapper {
     display: grid;
-    gap: 0 min(1.7vw, 1.5rem);  /* desktop */
-    grid-template-columns: repeat(2, 1fr);
+    gap: 0 min(4.3vw, 1rem);  
+    grid-template-rows: repeat(2, auto);
     width: 100%;
 }
 
+.form__field-wrapper-metric { grid-template-columns: 1fr; }
+
 .form__field-wrapper-imperial {
     align-items: end;
+    grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(2, auto);
 }
 
@@ -59,7 +62,11 @@
 
 /* Tablet */
 @media only screen and (min-width: 376px) and (max-width: 768px) {
-
+    
+    .form__field-wrapper {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
     .form__field-wrapper, 
     .form__input-wrapper { 
         gap: 0 min(3.2vw, 1.5rem); 
@@ -78,4 +85,30 @@
         font-size: clamp(.8rem, 3.2vw, 1.5rem);
         padding: min(2.7vw, 1.25rem) min(3.2vw, 1.5rem) min(2.7vw, 1.25rem) 0; 
     }
+}
+
+@media only screen and (min-width: 769px) {
+
+    .form__field-wrapper {
+        gap: 0 min(1.7vw, 1.5rem);  
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .form__input-wrapper {
+        align-items: center;
+        border-radius: min(8.4vw, .75rem);
+        gap: 0 min(1.7vw, 1.5rem);
+        display: flex;
+        justify-content: space-between;
+        margin-block-end: .5rem; /* desktop */
+    }
+
+    .form__input {
+        font-size: clamp(1.2rem, 1.7vw, 1.5rem);
+        padding: min(1.4vw, 1.25rem) 0 min(1.4vw, 1.25rem) min(1.7vw, 1.5rem) ; /* desktop */
+        width: 131px;
+    }
+    
+
+
 }

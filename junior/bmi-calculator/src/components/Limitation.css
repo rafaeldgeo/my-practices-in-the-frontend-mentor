@@ -2,55 +2,26 @@
 
 .limitation {
     display: grid;
-    gap: min(3.2vw, 1.5rem) min(2vw, 0.9375rem);
-    grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: repeat(4, auto);
-    padding: min(12.5vw, 6rem) min(5.6vw, 2.6878rem) min(14vw, .625rem) min(5.1vw, 2.4375rem);
+    gap: min(4.3vw, 1rem) 0;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(5, auto);
+    padding: min(12.5vw, 6rem) min(7.9vw, 1.8125rem) min(14vw, .625rem) min(5.1vw, 1.1875rem);
     position: relative;
 }
 
 .pattern-right { display: none; }
 
 .limitation__introduce {
-    grid-column-start: 1;
-    grid-column-end: 13;
     text-align: center;
-    padding-block-end: min(4.2vw, 2rem);
-}
-
-.limitation__card { max-inline-size: 365px; }
-
-.limitation__card-gender {
-    grid-column-start: 1;
-    grid-column-end: 7;
-}
-
-.limitation__card-age {
-    grid-column-start: 7;
-    grid-column-end: 13;
-}
-
-.limitation__card-muscle {
-    grid-column-start: 1;
-    grid-column-end: 7;
-}
-
-.limitation__card-pregnancy {
-    grid-column-start: 7;
-    grid-column-end: 13;
-}
-
-.limitation__card-race {
-    grid-column-start: 4;
-    grid-column-end: 10;
+    padding-block-end: min(13.5vw, 3.125rem);
 }
 
 .limitation__title {
     color: var(--gunmetal);
-    font-size: clamp(1.75rem, 0.8rem + 2.5vw, 2rem);  
+    font-size: clamp(1.75rem, .8rem + 5.2vw, 2rem);  
     font-weight: var(--font-semi-bold);
     letter-spacing: -.1rem;
-    margin-block-end: min(4.2vw, 2rem);
+    margin-block-end: min(8.7vw, 2rem);
 }
 
 .card {
@@ -58,7 +29,7 @@
     background-color: var(--pure-white);
     box-shadow: 16px 32px 56px var(--card-shadow); 
     border-radius: 1rem;
-    padding: min(4.2vw, 2rem);
+    padding: min(6.5vw, 1.5rem);
     max-width: 37ch;
     height: 100%;
 }
@@ -66,8 +37,8 @@
 .card__header {
     display: flex;
     align-items: center;
-    margin-block-end: min(2.2vw, 1rem); 
-    column-gap: min(2.2vw, 1rem); 
+    margin-block-end: min(4.5vw, 1rem); 
+    column-gap: min(4.5vw, 1rem); 
 }
 
 .card__title {
@@ -79,9 +50,9 @@
 
 .card__text, .limitation__text {
     color: var(--dark-eletric-blue);
-    font-size: clamp(.8rem, .6rem + 1vw, 1rem); 
+    font-size: clamp(.8rem, .6rem + 2vw, 1rem); 
     font-weight: var(--font-regular);
-    line-height: calc(clamp(.8rem, .6rem + 1vw, 1rem) * 1.5); /* desktop */
+    line-height: calc(clamp(.8rem, .6rem + 2vw, 1rem) * 1.5); 
 }
 
 @media only screen and (min-width: 376px) { 
@@ -197,7 +168,7 @@
         text-align: left;
 }
     
-    .limitation__card { max-inline-size: 365px; } /* verificar */
+    .limitation__card { max-inline-size: 365px; } 
     
     .limitation__card-gender {
         grid-column-start: 8;
