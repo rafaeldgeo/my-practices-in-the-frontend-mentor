@@ -125,7 +125,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: min(13vw, 3rem) 0; 
-    margin-block-start: clamp(18.75rem, 55vw, 18.75rem);   /* FALTA */
+    margin-block-start: clamp(240px, 1.5625rem + 100vw, 400px);
     margin-block-end: min(19.1vw, 4.475rem); 
 }
 

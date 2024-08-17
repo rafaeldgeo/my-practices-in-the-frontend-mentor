@@ -38,7 +38,7 @@
         padding: min(2.46vw, 2rem);
         row-gap: min(2.46vw, 2rem);
     }
-    
+
     .calculator__title { font-size: clamp(1.3rem, 1.7vw, 1.5rem); }
 
 

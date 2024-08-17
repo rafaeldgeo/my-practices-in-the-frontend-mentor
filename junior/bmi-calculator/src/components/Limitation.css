@@ -12,13 +12,13 @@
 .pattern-right { display: none; }
 
 .limitation__introduce {
-    text-align: center;
     padding-block-end: min(13.5vw, 3.125rem);
+    text-align: center;
 }
 
 .limitation__title {
     color: var(--gunmetal);
-    font-size: clamp(1.75rem, .8rem + 5.2vw, 2rem);  
+    font-size: clamp(1.75rem, .8rem + 5.2vw, 2rem);
     font-weight: var(--font-semi-bold);
     letter-spacing: -.1rem;
     margin-block-end: min(8.7vw, 2rem);
@@ -27,18 +27,18 @@
 .card {
     --card-shadow: rgba(143, 174, 207, 0.25);
     background-color: var(--pure-white);
-    box-shadow: 16px 32px 56px var(--card-shadow); 
     border-radius: 1rem;
-    padding: min(6.5vw, 1.5rem);
-    max-width: 37ch;
+    box-shadow: 16px 32px 56px var(--card-shadow);
     height: 100%;
+    max-width: 37ch;
+    padding: min(6.5vw, 1.5rem);
 }
 
 .card__header {
-    display: flex;
     align-items: center;
-    margin-block-end: min(4.5vw, 1rem); 
-    column-gap: min(4.5vw, 1rem); 
+    column-gap: min(4.5vw, 1rem);
+    display: flex;
+    margin-block-end: min(4.5vw, 1rem);
 }
 
 .card__title {
@@ -48,13 +48,16 @@
     letter-spacing: -.1rem;
 }
 
-.card__text, .limitation__text {
+.card__text, 
+.limitation__text {
     color: var(--dark-eletric-blue);
     font-size: clamp(.8rem, .6rem + 2vw, 1rem); 
     font-weight: var(--font-regular);
     line-height: calc(clamp(.8rem, .6rem + 2vw, 1rem) * 1.5); 
 }
 
+
+/* Tablet */
 @media only screen and (min-width: 376px) { 
 
     .limitation {
@@ -64,52 +67,52 @@
         grid-template-rows: repeat(4, auto);
         padding: min(12.5vw, 6rem) min(5.6vw, 2.6878rem) min(14vw, .625rem) min(5.1vw, 2.4375rem);
         position: relative;
-    }
+       }
     
     .pattern-right { display: none; }
     
     .limitation__introduce {
-        grid-column-start: 1;
         grid-column-end: 13;
-        text-align: center;
+        grid-column-start: 1;
         padding-block-end: min(4.2vw, 2rem);
-    }
+        text-align: center;
+     }
     
     .limitation__card { max-inline-size: 365px; }
     
     .limitation__card-gender {
-        grid-column-start: 1;
         grid-column-end: 7;
+        grid-column-start: 1;
     }
     
     .limitation__card-age {
-        grid-column-start: 7;
         grid-column-end: 13;
+        grid-column-start: 7;
     }
     
     .limitation__card-muscle {
-        grid-column-start: 1;
         grid-column-end: 7;
+        grid-column-start: 1;
     }
     
     .limitation__card-pregnancy {
-        grid-column-start: 7;
         grid-column-end: 13;
+        grid-column-start: 7;
     }
     
     .limitation__card-race {
-        grid-column-start: 4;
         grid-column-end: 10;
+        grid-column-start: 4;
     }
     
     .limitation__title {
         color: var(--gunmetal);
-        font-size: clamp(1.75rem, 0.8rem + 2.5vw, 2rem);  
+        font-size: clamp(1.75rem, 0.8rem + 2.5vw, 2rem);
         font-weight: var(--font-semi-bold);
         letter-spacing: -.1rem;
         margin-block-end: min(4.2vw, 2rem);
     }
-    
+
     .card {
         --card-shadow: rgba(143, 174, 207, 0.25);
         background-color: var(--pure-white);
@@ -121,10 +124,10 @@
     }
     
     .card__header {
-        display: flex;
         align-items: center;
-        margin-block-end: min(2.2vw, 1rem); 
-        column-gap: min(2.2vw, 1rem); 
+        column-gap: min(2.2vw, 1rem);
+        display: flex;
+        margin-block-end: min(2.2vw, 1rem);
     }
     
     .card__title {
@@ -134,16 +137,17 @@
         letter-spacing: -.1rem;
     }
     
-    .card__text, .limitation__text {
+    .card__text, 
+    .limitation__text {
         color: var(--dark-eletric-blue);
-        font-size: clamp(.8rem, .6rem + 1vw, 1rem); 
+        font-size: clamp(.8rem, .6rem + 1vw, 1rem);
         font-weight: var(--font-regular);
-        line-height: calc(clamp(.8rem, .6rem + 1vw, 1rem) * 1.5); /* desktop */
-    }
+        line-height: calc(clamp(.8rem, .6rem + 1vw, 1rem) * 1.5);
+      }
 
 }
 
-
+/* Desktop */
 @media only screen and (min-width: 769px) {
 
     .pattern-right {
@@ -154,49 +158,49 @@
         position: absolute;
         top: calc(24% + 9rem);
         z-index: 0;
-       }
+    }
 
     .limitation {
         gap: min(2.1vw, 2rem);
         padding: min(10.76vw, 7.5rem) min(10.76vw, 8.75rem) min(14vw, .625rem);
-}
+    }
 
     .limitation__introduce {
         grid-column-end: 7;
         grid-column-start: 1;
         max-inline-size: 564px;
         text-align: left;
-}
+    }
     
     .limitation__card { max-inline-size: 365px; } 
     
     .limitation__card-gender {
-        grid-column-start: 8;
         grid-column-end: 12;
+        grid-column-start: 8;
     }
     
     .limitation__card-age {
-        grid-column-start: 5;
         grid-column-end: 9;
+        grid-column-start: 5;
     }
     
     .limitation__card-muscle {
-        grid-column-start: 9;
         grid-column-end: 13;
+        grid-column-start: 9;
     }
     
     .limitation__card-pregnancy {
-        grid-column-start: 3;
         grid-column-end: 7;
+        grid-column-start: 3;
     }
     
     .limitation__card-race {
-        grid-column-start: 7;
         grid-column-end: 12;
+        grid-column-start: 7;
     }
     
     .limitation__title {
-        font-size: clamp(1.75rem, 0.75rem + 2.5vw, 3rem);  
+        font-size: clamp(1.75rem, 0.75rem + 2.5vw, 3rem);
         margin-block-end: min(2.3vw, 2.1815rem);
     }
     
@@ -205,8 +209,8 @@
     .card { padding: min(2.1vw, 2rem); }
     
     .card__header {
-        margin-block-end: min(1.5vw, 1rem); 
-        column-gap: min(1.5vw, 1rem); 
+        column-gap: min(1.5vw, 1rem);
+        margin-block-end: min(1.5vw, 1rem);
     }
     
     .card__title {
@@ -215,8 +219,7 @@
     }
     
     .card__text, .limitation__text {
-        font-size: clamp(.8rem, .5rem + .6vw, 1rem); 
-        line-height: calc(clamp(.8rem, .5rem + .6vw, 1rem) * 1.5); 
+        font-size: clamp(.8rem, .5rem + .6vw, 1rem);
+        line-height: calc(clamp(.8rem, .5rem + .6vw, 1rem) * 1.5);
     }
-    
 }
