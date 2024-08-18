@@ -7,6 +7,7 @@
     grid-template-columns: 1fr;
     grid-template-rows: repeat(3, auto);
     margin-inline: 0;
+    margin-block: min(19.2vw, 4.5rem);
     padding: min(15vw, 3.5rem) min(7.5vw, 1.81rem) min(15vw, 3.5rem) min(5.2vw, 1.19rem);
 }
 
@@ -49,6 +50,7 @@
     .tips {
         gap: min(5.3vw, 2.5rem) 0;
         padding: min(7.9vw, 3.75rem) min(5.6vw, 2.6878rem) min(7.9vw, 3.75rem) min(5.1vw, 2.4375rem);
+        margin-block: min(12.5vw, 6rem);
        }
 }
 
@@ -60,6 +62,8 @@
         gap: 0 2rem;
         grid-template-columns: repeat(3, minmax(10rem, 1fr));
         margin-inline: min(1.8vw, 1.5rem);
+        margin-block-start: min(7.1vw, 6.375rem);
+        margin-block-end: min(8.4vw, 7.5rem);
         padding: min(5vw, 4.5rem) min(8.13vw, 8.3125rem) min(6.7vw, 6rem) min(8.1vw, 7.25rem);
     }
 

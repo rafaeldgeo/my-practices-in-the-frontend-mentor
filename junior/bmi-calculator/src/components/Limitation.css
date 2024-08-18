@@ -5,7 +5,7 @@
     gap: min(4.3vw, 1rem) 0;
     grid-template-columns: 1fr;
     grid-template-rows: repeat(5, auto);
-    padding: min(12.5vw, 6rem) min(7.9vw, 1.8125rem) min(14vw, .625rem) min(5.1vw, 1.1875rem);
+    padding-inline: min(7.9vw, 1.8125rem) min(5.1vw, 1.1875rem);
     position: relative;
 }
 
@@ -65,7 +65,7 @@
         gap: min(3.2vw, 1.5rem) min(2vw, 0.9375rem);
         grid-template-columns: repeat(12, 1fr);
         grid-template-rows: repeat(4, auto);
-        padding: min(12.5vw, 6rem) min(5.6vw, 2.6878rem) min(14vw, .625rem) min(5.1vw, 2.4375rem);
+        padding-inline: min(5.6vw, 2.6878rem) min(5.1vw, 2.4375rem);
         position: relative;
        }
     
@@ -162,7 +162,7 @@
 
     .limitation {
         gap: min(2.1vw, 2rem);
-        padding: min(10.76vw, 7.5rem) min(10.76vw, 8.75rem) min(14vw, .625rem);
+        padding-inline: min(10.76vw, 8.75rem);
     }
 
     .limitation__introduce {
