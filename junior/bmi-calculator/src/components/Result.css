@@ -37,7 +37,12 @@
         gap: 0 min(3.2vw, 1.5rem);
         grid-template-columns: repeat(2, minmax(auto, 1fr));
         padding: min(4.2vw, 2rem);
-}
+    }
+
+    .result--welcome {
+        gap: 1rem;
+        grid-template-columns: 1fr;
+    }
 
     .result__comment {
         font-size: clamp(.8rem, 1.9vw, .875rem);
@@ -61,7 +66,12 @@
         gap: 0 min(1.7vw, 1.5rem);
         grid-template-columns: repeat(2, minmax(auto, 1fr));
         padding: min(2.3vw, 2rem);
-}
+    }
+
+    .result--welcome {
+        gap: 1rem;
+        grid-template-columns: 1fr;
+    }
     
     .result__comment {
         font-size: clamp(.8rem, 1vw, .875rem);
@@ -72,6 +82,8 @@
         font-size: clamp(.9rem, 1.3vw, 1.125rem);
         margin-block: 0.5rem;
     }
+
+    .result__title--welcome { margin-block: 0; }
     
     .result__bmi {
         font-size: clamp(3rem, 3.9vw, 3.5rem);
