@@ -49,13 +49,9 @@
         line-height: calc(clamp(.8rem, 1.9vw, .875rem) * 1.5);
     }
     
-    .result__title {
-        font-size: clamp(.9rem, 2.1vw, 1rem);
-    }
+    .result__title { font-size: clamp(.9rem, 2.1vw, 1rem); }
     
-    .result__bmi {
-        font-size: clamp(3rem, 6.3vw, 3rem);
-    } 
+    .result__bmi { font-size: clamp(3rem, 6.3vw, 3rem); } 
 }
 
 /* Desktop */
@@ -88,7 +84,4 @@
     .result__bmi {
         font-size: clamp(3rem, 3.9vw, 3.5rem);
     } 
-
-
-
 }
