@@ -49,14 +49,16 @@ export default function FormImperial(){
         }
     }
 
-    function validImput(){
-        if (formImperial.height > 0 && formImperial.weight > 0 && formImperial.heightin !== "" && formImperial.weightlbs !== "" ){
-            let height = convertImperialHeightToMetric(formImperial.height, formImperial.heightin);
-            let weight = convertImperialWeightToMetric(formImperial.weight,formImperial.weightlbs);
-            calcBmi(height, weight);
-            setWelcome(false)
-        } else {
-            setWelcome(true);
+    function validImput(){ 
+        if (formImperial.heightin.length > 0 && formImperial.weightlbs > 0) {
+            if (formImperial.height > 0 && formImperial.height <= 8 && formImperial.weight > 0 && formImperial.weight <= 93 && formImperial.heightin >= 0 && formImperial.heightin <= 11 && formImperial.weightlbs >= 0 && formImperial.weightlbs <= 13) {
+                let height = convertImperialHeightToMetric(formImperial.height, formImperial.heightin);
+                let weight = convertImperialWeightToMetric(formImperial.weight,formImperial.weightlbs);
+                calcBmi(height, weight);
+                setWelcome(false)
+            } else {
+                setWelcome(true);
+            }
         }
     }
 
