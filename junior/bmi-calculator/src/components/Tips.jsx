@@ -10,7 +10,7 @@ export default function Tips(){
                 <img className="tips__icon" src={tip.icon} alt="" width={64} height={64} loading="lazy"/>
             </div>
             <div className="tips__content">
-                <h3 className="tips__title">{tip.title}</h3>
+                <h4 className="tips__title">{tip.title}</h4>
                 <p className="tips__text">{tip.text}</p>
             </div>
         </div>
