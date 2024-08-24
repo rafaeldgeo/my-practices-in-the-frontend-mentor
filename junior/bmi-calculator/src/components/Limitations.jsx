@@ -15,7 +15,7 @@ function Card({defineLimitation}){
                             <img className="card__icon" src={limitation.icon} alt="" width={32} height={32} loading="lazy" />
                         </div>
                         <div className="card__title-wrapper">
-                            <h5 className="card__title">{limitation.title}</h5>
+                            <h4 className="card__title">{limitation.title}</h4>
                         </div>
                     </div>
                     <div className="card__body">
