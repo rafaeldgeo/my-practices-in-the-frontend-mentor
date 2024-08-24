@@ -17,7 +17,7 @@ export default function Result({show, bmi, classfication, idealWeightStart, idea
 
     const welcome = (
         <div className="result result--welcome">
-                <h5 className="result__title result__title--welcome">Welcome!</h5>
+                <span className="result__title result__title--welcome">Welcome!</span>
                 <p className="result__comment">Enter your height and weight and you’ll see your BMI result here</p>
         </div>
     );
