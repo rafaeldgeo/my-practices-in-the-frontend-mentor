@@ -15,6 +15,10 @@
     --f-size20: 2rem;
     --f-size30: 3rem;
     --f-size35: 3.5rem;
+    --f-weight-regular: 400;
+    --f-weight-medium: 500;
+    --f-weight-bold: 700;
+    --f-weight-black: 900;
 }
 
 *,
@@ -24,6 +28,7 @@
     font-family: var(--font);
     margin: 0;
     padding: 0;
+    /* border: 1px solid blue;    */
 }
 
 html,
@@ -67,8 +72,13 @@ body {
     padding: min(6vw, 1rem) min(8vw, 1.625rem);
     border-radius: .5rem;
     font-size: clamp(.6rem, .5rem + 3.5vw, var(--f-size10));
-    font-weight: 700;
+    font-weight: var(--f-weight-bold);
     cursor: pointer;
+}
+
+.btn__pre-order:hover {
+    background-color: var(--dark-blue);
+    color: var(--white);
 }
 
 @media only screen and (max-width: 247px) {
@@ -81,19 +91,67 @@ body {
     .header__btn-wrapper { margin: auto; }
 }
 
+.introduce {
+    display: flex;
+    flex-direction: column;
+    gap: min(17.1vw, 4rem) 0;
+    
+}
+
+.introduce__img-wrapper { padding-inline-start: min(6.4vw, 1.5rem); }
+
+.introduce__img {
+    max-inline-size: 100%;
+    block-size: auto;
+    border-radius: 10% 0 0 10%;
+}
+
 
 .introduce__content {
     display: flex;
     flex-direction: column;
+    padding: 0 min(6.5vw, 1.5rem);
     row-gap: min(10.4vw, 2.4375rem);
 }
 
 .introduce__title {
-    text-transform: uppercase;
-    font-size: clamp(2.5rem, .5rem + 10.9vw, var(--f-size30));
-    line-height: calc(clamp(2.5rem, .5rem + 10.9vw, var(--f-size30)) * 1);
-    font-weight: 900;
     color: var(--dark-blue);
+    font-size: clamp(.8rem, 13vw, var(--f-size30));
+    font-weight: var(--f-weight-black);
+    line-height: calc(clamp(1rem, .5rem + 10.9vw, var(--f-size30)) * 1);
+    text-transform: uppercase;
+}
+
+.introduce__text {
+    color: var(--light-blue-200);
+    font-size: clamp(.6rem, .5rem + 2.2vw, var(--f-size10));
+    font-weight: var(--f-weight-medium);
+    line-height: calc(clamp(.8rem, .5rem + 2.2vw, var(--f-size10)) * 1.5);
+}
+
+.introduce__btn-wrapper {
+    display: flex;
+    align-items: center;
+    column-gap: min(10vw, 2.3125rem);
+}
+
+.introduce__btn-wrapper .btn__pre-order {
+    padding: min(3vw, .6875rem) min(3.8vw, .875rem);
+    background-color: var(--dark-orange);
+    color: var(--white);
+    line-height: 1.5;
+}
+
+.introduce__btn-wrapper .btn__pre-order:hover {
+    background-color: var(--light-orange);
+    color: var(--white);
+}
+
+.introduce__release {
+    font-size: clamp(.8rem, .5rem + 2.2vw, var(--f-size10));
+    font-weight: var(--f-weight-bold);
+    text-transform: uppercase;
+    color: var(--light-blue-200);
 }
 
 
