@@ -28,7 +28,7 @@ export default function App(){
                     </div>
                     <picture className="introduce__img-wrapper">
                         <source media="(max-width: 375px)" srcset={keyboardMobile} width={372} height={331} />
-                        <source media="(min-width: 376px) and (max-width: 768px)" srcset={keyboardTablet} width={320} height={425} />
+                        <source media="(min-width: 376px) and (max-width: 768px)" srcset={keyboardTablet} width={478} height={425} />
                         <source media="(min-width: 769px)" srcset={keyboardDesktop} width={540} height={480} />
                         <img className="introduce__img" src={keyboardMobile} alt="keyboard" />
                     </picture>
