@@ -50,7 +50,6 @@ body {
     flex: 1 0 auto;
     display: flex;
     align-items: center;
-    background-color: red;
     max-inline-size: 1110px;
     width: inherit;
     padding-block: min(6.4vw, 1.4375rem) min(17.1vw, 4rem);
@@ -69,9 +68,9 @@ body {
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    font-size: clamp(.8rem, 4.3vw, 1rem);
+    font-size: clamp(.8rem, .5rem + 2.2vw, 1rem);
     font-weight: var(--f-weight-bold);
-    line-height: calc(clamp(.8rem, 4.3vw, 1rem) * 1.8);
+    line-height: calc(clamp(.8rem, .5rem + 2.2vw, 1rem) * 1.65);
     padding-block: min(3vw, .6875rem);
     padding-inline: min(4vw, .90625rem) min(3.7vw, .84375rem);
     text-transform: uppercase;
@@ -89,28 +88,67 @@ body {
 
 .main { flex: 1 0 auto }
 
+.highline {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, auto);
+}
+
 .highline__content {
     display: flex;
     flex-direction: column;
+    padding-inline: min(6.5vw, 1.5rem);
     row-gap: min(8.6vw, 2rem);
 }
 
 .highline__title {
     color: var(--dark-blue);
-    font-size: clamp(2rem, 13vw, 3rem);
+    font-size: clamp(.8rem, .5rem + 11vw, 3rem);
     font-weight: var(--f-weight-black);
-    line-height: calc(clamp(2rem, 13vw, 3rem) * 1);
+    line-height: calc(clamp(.8rem, .5rem + 11vw, 3rem) * 1);
     text-transform: uppercase;
 }
 
 .highline__text {
     color: var(--light-blue-200);
+    font-size: clamp(.8rem, .5rem + 2.2vw, 1rem);
     font-weight: var(--f-weight-medium);
-    font-size: clamp(.8rem, 4.3vw, 1rem);
-    line-height: calc(clamp(.8rem, 4.3vw, 1rem) * 1.5);
-
+    line-height: calc(clamp(.8rem, .5rem + 2.2vw, 1rem) * 1.5);
 }
 
+.highline__order-wrapper {
+    align-items: center;
+    column-gap: min(8.6vw, 2rem);
+    display: flex;
+    justify-content: center;
+}
+
+.highline__btn.btn-order {
+    background-color: var(--dark-orange);
+    color: var(--white);
+}
+
+.highline__btn.btn-order:hover { background-color: var(--light-orange); }
+
+.highline__release {
+    color: var(--light-blue-200);
+    font-size: clamp(.8rem, .5rem + 2.2vw, 1rem);
+    font-weight: var(--f-weight-bold);
+    line-height: calc(clamp(.8rem, .5rem + 2.2vw, 1rem) * 1.65);
+    text-transform: uppercase;
+}
+
+.highline__image-wrapper {
+    padding-left: 24px;
+    /* background-color: red; */
+}
+
+.highline__image {
+    object-fit: contain;
+    max-inline-size: 100%;
+    border-radius: 24px 0 0 24px;
+    display: block;
+}
 .footer { flex-shrink: 0; }
 
 
