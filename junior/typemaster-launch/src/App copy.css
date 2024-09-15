@@ -88,7 +88,6 @@ body {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: repeat(2, auto);
-    gap: min(17.1vw, 4rem) 0;
 }
 
 .highline__content {
@@ -136,85 +135,16 @@ body {
 }
 
 .highline__image-wrapper {
-    margin-left: auto;
-    width: 94%;
+    padding-left: 24px;
+    /* background-color: red; */
 }
 
 .highline__image {
-    
-    aspect-ratio: 1/.94;
+    object-fit: contain;
+    max-inline-size: 100%;
     border-radius: 24px 0 0 24px;
     display: block;
-    max-width: 100%;
 }
-
-@media only screen and (min-width: 376px) and (max-width: 768px) {
-
-    .header { 
-        padding-block: min(5.3vw, 2.5rem) min(8.1vw, 3.875rem);
-        padding-inline: min(5.3vw, 2.5rem);
-    }
-
-    .highline {
-        grid-template-columns: minmax(auto, 378px) minmax(auto, 321px);
-        grid-template-rows: auto;
-        align-items: center;
-        gap: 0  min(9vw, 4.3125rem);
-    }
-
-    .highline__content {
-        padding-inline: min(5.1vw, 2.4375rem) 0;
-        row-gap: 0;
-    }
-
-    .highline__title {
-        font-size: clamp(.8rem, .5rem + 5.3vw, 3rem);
-        line-height: calc(clamp(.8rem, .5rem + 5.3vw, 3rem) * 1);
-    }
-
-    .highline__text {
-        font-size: clamp(.8rem, .5rem + 1.1vw, 1rem);
-        line-height: calc(clamp(.8rem, .5rem + 1.1vw, 1rem) * 1.5);
-        margin-block: min(4.5vw, 2.125rem) min(5.1vw, 2.4375rem);
-    }
-
-    .highline__order-wrapper {
-        align-items: center; 
-        column-gap: min(4.9vw, 2.3125rem);
-        display: flex;
-        justify-content: center;
-    }
-
-    .btn-order {
-        font-size: clamp(.8rem, .5rem + 1.1vw, 1rem);
-        line-height: calc(clamp(.8rem, .5rem + 1.1vw, 1rem) * 1.65);
-        padding-block: min(2.9vw, 1rem);
-        padding-inline: min(3.4vw, 1.625rem) min(3.6vw, 1.6875rem);
-    }
-
-    .highline__release {
-        font-size: clamp(.8rem, .5rem + 1.1vw, 1rem);
-        line-height: calc(clamp(.8rem, .5rem + 1.1vw, 1rem) * 1.65);
-    }
-
-    .highline__image-wrapper {
-        margin-left: none;
-        width: 100%;
-    }
-
-    .highline__image {
-        object-fit: cover;
-        aspect-ratio: 1/1.2;
-        border-radius: 24px 0 0 24px;
-        display: block;
-        max-width: 100%;
-    }
-
-
-
-
-}
-
 .footer { flex-shrink: 0; }
 
 

@@ -26,8 +26,8 @@ export default function App(){
                         </div>
                     </div>
                     <picture className="highline__image-wrapper">
-                        <source srcSet={mobileKeyboard} media="(max-width: 375px)" width={375} height={331}/>
-                        <source srcset="https://placehold.co/956x850" media="(min-width: 376px) and (max-width: 768px)"/>
+                        <source srcSet={mobileKeyboard} media="(max-width: 375px)"/>
+                        <source srcset={tabletKeyboard} media="(min-width: 376px) and (max-width: 768px)"/>
                         <source srcset="https://placehold.co/1080x960" media="(min-width: 769px)"/>
                         <img className="highline__image" src={mobileKeyboard} alt="black keyboard"/>
                     </picture>
