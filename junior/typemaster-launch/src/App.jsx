@@ -3,6 +3,7 @@ import logo from "./assets/shared/logo.svg";
 import mobileKeyboard from "./assets/mobile/image-keyboard.jpg";
 import tabletKeyboard from "./assets/tablet/image-keyboard.jpg";
 import desktopKeyboard from "./assets/desktop/image-keyboard.jpg";
+import patternSquare from "./assets/shared/pattern-square.svg";
 import "./App.css";
 
 export default function App(){
@@ -27,10 +28,13 @@ export default function App(){
                     </div>
                     <picture className="highline__image-wrapper">
                         <source srcSet={mobileKeyboard} media="(max-width: 375px)"/>
-                        <source srcset={tabletKeyboard} media="(min-width: 376px) and (max-width: 768px)"/>
-                        <source srcset="https://placehold.co/1080x960" media="(min-width: 769px)"/>
+                        <source srcSet={tabletKeyboard} media="(min-width: 376px) and (max-width: 768px)"/>
+                        <source srcSet="https://placehold.co/1080x960" media="(min-width: 769px)"/>
                         <img className="highline__image" src={mobileKeyboard} alt="black keyboard"/>
                     </picture>
+                    <div className="highline__pattern-square">
+                        <img src={patternSquare} alt=""/>
+                    </div> 
                 </section>
             </main>
             <footer className="footer"></footer>
