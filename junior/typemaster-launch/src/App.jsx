@@ -32,8 +32,8 @@ export default function App(){
                         <source srcSet="https://placehold.co/1080x960" media="(min-width: 769px)"/>
                         <img className="highline__image" src={mobileKeyboard} alt="black keyboard"/>
                     </picture>
-                    <div className="highline__pattern-square">
-                        <img src={patternSquare} alt=""/>
+                    <div className="highline__pattern-square-wrapper">
+                        <img className="highline__pattern-square" src={patternSquare} alt=""/>
                     </div> 
                 </section>
             </main>
