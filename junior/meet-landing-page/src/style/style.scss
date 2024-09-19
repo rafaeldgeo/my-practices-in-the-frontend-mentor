@@ -1,0 +1,220 @@
+@use "base";
+
+*, 
+*::before,
+*::after {
+    box-sizing: border-box;
+    font-family: base.$font;
+    margin: 0;
+    padding: 0;
+    // border: 1px solid red;
+}
+
+html,
+body {
+    width: 100%;
+}
+
+body {
+    @include base.layout(column);
+    background-color: base.$white;
+}
+
+.container {
+    @include base.layout(column);
+    max-inline-size: 1440px;
+    width: inherit;
+}
+
+.header {
+    flex: 1 0 auto;
+    margin: auto;
+    padding-top: min(13vw, 3rem);
+}
+
+.btn {
+    border: none;
+    border-radius: 1.8125rem;
+    padding: min(4.3vw, 1rem) min(10.7vw, 2.5rem);
+    width: fit-content;
+    font-size: clamp(.6rem, .5rem + 2.2vw, 1rem);
+    line-height: calc(clamp(.6rem, .5rem + 2.2vw, 1rem) * 1.5);
+    font-weight: base.$f-weight-black;
+    color: base.$white;
+    cursor: pointer;
+    
+    .btn__version {
+        color: base.$cyan-300;
+        margin-inline-start: .25rem;
+    }
+
+    @include base.for-size(desktop) {
+        padding: min(1.2vw, 1rem) min(2.8vw, 2.5rem);
+        font-size: clamp(.6rem, .5rem + .6vw, 1rem);
+        line-height: calc(clamp(.6rem, .5rem + .6vw, 1rem) * 1.5);
+    }
+}
+
+.main {
+    flex: 1 0 auto;
+    padding-block-start: min(17.1vw, 4rem);
+
+    @include base.for-size(tablet) { padding-block-start: 4rem; }
+
+    @include base.for-size(desktop) { padding-block-start: min(4.5vw, 4rem); }
+
+    .hero {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        gap: min(12.9vw, 3rem) 0;
+    
+        @include base.for-size(tablet) {
+            flex-direction: column;
+            gap: min(9.4vw, 4.5rem) 0;
+        }
+
+        @include base.for-size(desktop) {
+            flex-direction: row;
+            gap: 0 min(calc(10.3vw - 1.6rem), 8rem);
+        }
+
+        .hero__img-left-top-wrapper { 
+            align-self: flex-start;
+            display: block;  
+            max-inline-size: 100%;
+            
+            @include base.for-size(tablet) {
+                
+            }
+
+            @include base.for-size(desktop) {
+                max-inline-size: 366px;
+            }
+
+            .hero__img-left-top {
+                display: block;  
+                object-fit: contain;
+                max-inline-size: 100%;
+
+
+                @include base.for-size(tablet) {
+                    
+                }
+        
+                 @include base.for-size(desktop) {
+                    aspect-ratio: 1 / .833;
+                    object-position: -20px;
+                 }
+             }
+        }
+
+        .hero__img-right-wrapper {
+            align-self: flex-end;
+            display: none;
+
+            @include base.for-size(desktop) {
+                display: block;  
+                max-width: 366px;
+            }
+
+            .hero__img-right {
+                display: block;  
+                object-fit: contain;
+                max-inline-size: 100%;
+
+                @include base.for-size(desktop) {
+                    aspect-ratio: 1 / .833;
+                    object-position: 20px;
+                }
+            }
+        }
+
+        .hero__text-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: min(6.5vw, 1.5rem) 0;
+            padding-inline: min(9.4vw, 2.1875rem);
+            width: inherit;
+
+            @include base.for-size(tablet) {
+                padding-inline: 0;
+                gap: min(3.2vw, 1.5rem) 0;
+                max-inline-size: 448.3px;
+            }
+            
+            @include base.for-size(desktop) {
+                gap: min(2.3vw, 2rem) 0;
+                max-inline-size: 448px;
+                padding-block: min(1.8vw, 2rem);
+                padding-inline: 0;
+            }
+
+            .hero__title {
+                color: base.$slate-900;
+                font-weight: base.$f-weight-black;
+                font-size: clamp(1rem, .5rem + 8.6vw, 2.5rem);
+                line-height: calc(clamp(1rem, .5rem + 8.6vw, 2.5rem) * 1.1);
+                max-width: 10ch;
+
+                @include base.for-size(tablet) {
+                    font-size: clamp(1rem, .5rem + 5.3vw, 3rem);
+                    line-height: calc(clamp(1rem, .5rem + 5.3vw, 2.5rem) * 1.3);
+                }
+
+                @include base.for-size(desktop) {
+                    font-size: clamp(1rem, .5rem + 3.8vw, 4rem);
+                    line-height: calc(clamp(1rem, .5rem + 3.8vw, 4rem) * 1.1);
+                }
+            }
+
+            .hero__text {
+                color: base.$slate-600;
+                font-weight: base.$f-weight-medium;
+                font-size: clamp(.8rem, .5rem + 2.2vw, 1rem);
+                line-height: calc(clamp(.8rem, .5rem + 2.2vw, 1rem) * 1.5);
+
+                @include base.for-size(tablet) {
+                    font-size: clamp(.8rem, .5rem + 1.3vw, 1rem);
+                line-height: calc(clamp(.8rem, .5rem + 1.3vw, 1rem) * 1.5);
+                }
+
+                @include base.for-size(desktop) {
+                    font-size: clamp(.8rem, .5rem + .7vw, 1.125rem);
+                    line-height: calc(clamp(.8rem, .5rem + .7vw, 1.125rem) * 1.5);
+                }
+            }
+
+            .hero__btns-wrapper {
+                display: flex;
+                flex-direction: column;
+                gap: min(4.3vw, 1rem) 0;
+                align-items: center;
+
+                @include base.for-size(tablet-desktop) {
+                    flex-direction: row;
+                    gap: 0 min(2.2vw, 1.0625rem);
+                }
+
+                .btn--download { background-color: base.$cyan-600; }
+
+                .btn--what { background-color: base.$purple-600; }
+
+                .btn--download:hover { background-color: base.$cyan-400; }
+
+                .btn--what:hover { background-color: base.$purple-400; }
+            }
+        }
+    }
+}
+
+.footer {
+    flex-shrink: 0;
+}
+
+
+
+
+

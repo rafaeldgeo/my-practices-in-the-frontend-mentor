@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&display=swap');
+
+$cyan-300: #8FE3F9;
+$cyan-400: #71C0D4;
+$cyan-600: #4D96A9;
+$purple-300: #D988FF;
+$purple-400: #B18BDD;
+$purple-600: #855FB1;
+$slate-300: #D1D1DF;
+$slate-600: #87879D;
+$slate-900: #28283D;
+$white: #FFFFFF;
+$f-weight-regular: 400;
+$f-weight-medium: 500;
+$f-weight-semi-bold: 600;
+$f-weight-bold: 700;
+$f-weight-black: 900;
+$font: "Red Hat Display", sans-serif;
+
+@mixin layout($direction: row ){
+    display: flex;
+    flex-direction: $direction;
+    align-items: center;
+}
+
+@mixin for-size($size) {
+    @if $size == tablet {
+        @media (min-width: 376px) and (max-width: 768px) { @content; }
+    } @else if $size == desktop {
+        @media (min-width: 769px) { @content;}
+    }
+}
