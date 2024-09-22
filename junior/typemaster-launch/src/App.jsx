@@ -17,24 +17,28 @@ export default function App(){
             </header>
             <main className="main">
                 <section className="highline">
-                    <div className="highline__content">
-                        <h1 className="highline__title">Typemaster keyboard</h1>
-                        <p className="highline__text">Improve your productivity and gaming without breaking the bank. Upgrade to a high quality 
-                        mechanical typing experience.</p>
-                        <div className="highline__order-wrapper">
-                            <button className="highline__btn btn-order" type="button">Pre-order now</button>
-                            <span className="highline__release">Release on 5/27</span>
+                    <div className="highline__wrapper">
+                        <div className="highline__content">
+                            <h1 className="highline__title">Typemaster keyboard</h1>
+                            <p className="highline__text">Improve your productivity and gaming without breaking the bank. Upgrade to a high quality
+                            mechanical typing experience.</p>
+                            <div className="highline__order-wrapper">
+                                <button className="highline__btn btn-order" type="button">Pre-order now</button>
+                                <span className="highline__release">Release on 5/27</span>
+                            </div>
+                        </div>
+                        <div className="highline__images-wrapper">
+                            <picture className="highline__photo-wrapper">
+                                <source srcSet={mobileKeyboard} media="(max-width: 375px)"/>
+                                <source srcSet={tabletKeyboard} media="(min-width: 376px) and (max-width: 768px)"/>
+                                <source srcSet={desktopKeyboard} media="(min-width: 769px)"/>
+                                <img className="highline__photo" src={mobileKeyboard} alt="black keyboard"/>
+                            </picture> 
+                            <div className="highline__pattern-square-wrapper">
+                                <img className="highline__pattern-square" src={patternSquare} alt="" width={255} height={240}/>
+                            </div>
                         </div>
                     </div>
-                    <picture className="highline__image-wrapper">
-                        <source srcSet={mobileKeyboard} media="(max-width: 375px)"/>
-                        <source srcSet={tabletKeyboard} media="(min-width: 376px) and (max-width: 768px)"/>
-                        <source srcSet="https://placehold.co/1080x960" media="(min-width: 769px)"/>
-                        <img className="highline__image" src={mobileKeyboard} alt="black keyboard"/>
-                    </picture>
-                    <div className="highline__pattern-square-wrapper">
-                        <img className="highline__pattern-square" src={patternSquare} alt=""/>
-                    </div> 
                 </section>
             </main>
             <footer className="footer"></footer>
