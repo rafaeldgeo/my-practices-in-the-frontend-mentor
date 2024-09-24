@@ -93,6 +93,14 @@ body {
   align-self: flex-start;
   display: block;
   max-inline-size: 100%;
+  overflow: hidden;
+}
+@media (min-width: 376px) and (max-width: 768px) {
+  .main .hero .hero__img-left-top-wrapper {
+    max-inline-size: 768px;
+    width: 100%;
+    max-height: auto;
+  }
 }
 @media (min-width: 769px) {
   .main .hero .hero__img-left-top-wrapper {
@@ -102,12 +110,22 @@ body {
 .main .hero .hero__img-left-top-wrapper .hero__img-left-top {
   display: block;
   object-fit: contain;
-  max-inline-size: 100%;
+  max-inline-size: 110%;
+  aspect-ratio: 1/0.427;
+  object-position: -17px center;
+}
+@media (min-width: 376px) and (max-width: 768px) {
+  .main .hero .hero__img-left-top-wrapper .hero__img-left-top {
+    max-inline-size: 110%;
+    aspect-ratio: 1/0.38;
+    object-position: -25px center;
+  }
 }
 @media (min-width: 769px) {
   .main .hero .hero__img-left-top-wrapper .hero__img-left-top {
+    max-inline-size: 100%;
     aspect-ratio: 1/0.833;
-    object-position: -20px;
+    object-position: -20px center;
   }
 }
 .main .hero .hero__img-right-wrapper {
@@ -197,6 +215,18 @@ body {
   flex-direction: column;
   gap: min(4.3vw, 1rem) 0;
   align-items: center;
+}
+@media (min-width: 376px) and (max-width: 768px) {
+  .main .hero .hero__text-content .hero__btns-wrapper {
+    flex-direction: row;
+    gap: 0 min(2.2vw, 1.0625rem);
+  }
+}
+@media (min-width: 769px) {
+  .main .hero .hero__text-content .hero__btns-wrapper {
+    flex-direction: row;
+    gap: 0 min(1.9vw, 1.0625rem);
+  }
 }
 .main .hero .hero__text-content .hero__btns-wrapper .btn--download {
   background-color: #4D96A9;

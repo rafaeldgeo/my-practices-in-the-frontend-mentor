@@ -83,9 +83,12 @@ body {
             align-self: flex-start;
             display: block;  
             max-inline-size: 100%;
+            overflow: hidden;
             
             @include base.for-size(tablet) {
-                
+                max-inline-size: 768px;
+                width: 100%;
+                max-height: auto;
             }
 
             @include base.for-size(desktop) {
@@ -95,16 +98,20 @@ body {
             .hero__img-left-top {
                 display: block;  
                 object-fit: contain;
-                max-inline-size: 100%;
-
+                max-inline-size: 110%;
+                aspect-ratio: 1 / .427;
+                object-position: -17px center;
 
                 @include base.for-size(tablet) {
-                    
+                    max-inline-size: 110%;
+                    aspect-ratio: 1 / .38;
+                    object-position: -25px center;
                 }
         
                  @include base.for-size(desktop) {
+                    max-inline-size: 100%;
                     aspect-ratio: 1 / .833;
-                    object-position: -20px;
+                    object-position: -20px center;
                  }
              }
         }
@@ -193,9 +200,14 @@ body {
                 gap: min(4.3vw, 1rem) 0;
                 align-items: center;
 
-                @include base.for-size(tablet-desktop) {
+                @include base.for-size(tablet) {
                     flex-direction: row;
                     gap: 0 min(2.2vw, 1.0625rem);
+                }
+
+                @include base.for-size(desktop) {
+                    flex-direction: row;
+                    gap: 0 min(1.9vw, 1.0625rem);
                 }
 
                 .btn--download { background-color: base.$cyan-600; }
