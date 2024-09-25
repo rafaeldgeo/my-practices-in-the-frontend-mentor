@@ -57,17 +57,17 @@ body {
 
 .main {
     flex: 1 0 auto;
-    padding-block-start: min(17.1vw, 4rem);
-
-    @include base.for-size(tablet) { padding-block-start: 4rem; }
-
-    @include base.for-size(desktop) { padding-block-start: min(4.5vw, 4rem); }
 
     .hero {
         align-items: center;
         display: flex;
         flex-direction: column;
         gap: min(12.9vw, 3rem) 0;
+        padding-block: min(17.1vw, 4rem) min(8.6vw, 2rem);
+
+        @include base.for-size(tablet) { padding-block: min(8.4vw, 4rem); }
+
+        @include base.for-size(desktop) { padding-block: min(4.5vw, 4rem); }
     
         @include base.for-size(tablet) {
             flex-direction: column;
@@ -143,7 +143,7 @@ body {
             align-items: center;
             text-align: center;
             gap: min(6.5vw, 1.5rem) 0;
-            padding-inline: min(9.4vw, 2.1875rem);
+            padding-inline: min(8.6vw, 2rem);
             width: inherit;
 
             @include base.for-size(tablet) {
@@ -217,6 +217,156 @@ body {
                 .btn--download:hover { background-color: base.$cyan-400; }
 
                 .btn--what:hover { background-color: base.$purple-400; }
+            }
+        }
+    }
+
+    .index {
+        position: relative;
+        width: fit-content;
+        margin: 0 auto;
+
+        .index__line {
+            position: relative;
+            left: min(11.7vw, 1.6rem);
+            height: 80px;
+            width: 1px;
+            border: 1px solid base.$slate-300;
+        }
+
+        .index__circle {
+            align-items: center;
+            border: 1px solid base.$slate-300;
+            border-radius: 50%;
+            display: flex;
+            height: min(24vw, 56px);
+            justify-content: center;
+            width: min(24vw, 56px);
+
+            .index__number {
+                color: base.$slate-600;
+                font-size: clamp(.6rem, .5rem + 3.4vw, 1rem);
+                line-height: calc(clamp(.6rem, .5rem + 3.4vw, 1rem) * 1.5);
+                font-weight: base.$f-weight-black;
+                line-height: 1.5;
+            }
+        }
+    }
+
+    .content {
+        padding-block: min(8.6vw, 2rem) min(17.1vw, 4rem);
+        padding-inline: min(8.6vw, 2rem);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        @include base.for-size(tablet) { 
+            padding-block: min(7.3vw, 3.5rem) min(8.4vw, 4rem); 
+            padding-inline: min(5.8vw, 2.75rem);
+        }
+
+        @include base.for-size(desktop) { 
+            padding-block: min(3.9vw, 3.5rem) min(5.1vw, 4.5rem); 
+            padding-inline: min(11.2vw, 10rem);
+        }
+
+        .content__image-collage {
+            display: grid;
+            gap: min(4.3vw, 1rem);
+            grid-template-columns: repeat(2, auto);
+            grid-template-rows: repeat(2, auto);
+            padding-block: min(17.1vw, 4rem);
+            
+            .content__img {
+                aspect-ratio: 1 / .977;
+                border-radius: 1rem;
+                height: auto;
+                max-inline-size: 100%;
+                object-fit: cover;
+             }
+    
+            @include base.for-size(tablet) {
+                grid-template-columns: repeat(4, auto);
+                grid-template-rows: auto;
+                gap: min(3.2vw, 1.5rem);
+                padding-block: min(8.4vw, 4rem);
+
+                .content__img { aspect-ratio: 1 / 1.054; }
+            }
+
+            @include base.for-size(desktop) {
+                grid-template-columns: repeat(4, auto);
+                grid-template-rows: auto;
+                gap: min(2.3vw, 2rem);
+                padding-block: min(4.5vw, 4rem);
+    
+                .content__img { aspect-ratio: 1 / 1; }
+            }
+         }
+
+        .content__text-wrapper {
+            max-inline-size: 311px;
+            width: 100%;
+            text-align: center;
+
+            @include base.for-size(tablet) { max-inline-size: 504px; }
+
+            @include base.for-size(desktop) { max-inline-size: 544px; }
+
+            .content__title {
+                color: base.$cyan-600;
+                font-size: clamp(.4rem, .375rem + 2.2vw, .75rem);
+                font-weight: base.$f-weight-black;
+                letter-spacing: 4px;
+                line-height: calc(clamp(.4rem, .375rem + 1.6vw, .75rem) * 1);
+                text-transform: uppercase;
+
+                @include base.for-size(tablet) {
+                    font-size: clamp(.6rem, .375rem + 1.05vw, .875rem);
+                    line-height: calc(clamp(.6rem, .375rem + 1.05vw, .875rem) * 1.07);
+                }
+
+                @include base.for-size(desktop) {
+                    font-size: clamp(.6rem, .5rem + 2.2vw, 1rem);
+                    line-height: calc(clamp(.6rem, .5rem + 2.2vw, 1rem) * 1.13);
+                }
+            }
+
+            .content__subtitle {
+                color: base.$slate-900;
+                font-size: clamp(1rem, .5rem + 6.5vw, 2rem);
+                font-weight: base.$f-weight-black;
+                line-height: calc(clamp(1rem, .5rem + 6.5vw, 2rem) * 1.1);
+                margin-block: min(4.3vw, 1rem) min(8.6vw, 2rem);
+
+                @include base.for-size(tablet) {
+                    font-size: clamp(1rem, .5rem + 3.7vw, 2.25rem);
+                    line-height: calc(clamp(1rem, .5rem + 3.7vw, 2.25rem) * 1.07);
+                    margin-block: min(2.09vw, 1rem) min(4.2vw, 2rem);
+                }
+
+                @include base.for-size(desktop) {
+                    font-size: clamp(.6rem, .5rem + 2.2vw, 1rem);
+                    line-height: calc(clamp(.6rem, .5rem + 2.2vw, 1rem) * 1.13);
+                    margin-block: min(1.2vw, 1rem) min(2.3vw, 2rem);
+                }
+            }
+
+            .content__text {
+                color: base.$slate-600;
+                font-size: clamp(.6rem, .5rem +  2.2vw, 1rem);
+                font-weight: base.$f-weight-medium;
+                line-height: calc(clamp(.6rem, .5rem +  2.2vw, 1rem) * 1.5);
+
+                @include base.for-size(tablet) {
+                    font-size: clamp(.8rem, .5rem + 1.05vw, 1rem);
+                    line-height: calc(clamp(1rem, .5rem + 1.05vw, 1rem) * 1.5);
+                }
+
+                @include base.for-size(desktop) {
+                    font-size: clamp(.6rem, .5rem + .84vw, 1.125rem);
+                    line-height: calc(clamp(.6rem, .5rem + .84vw, 1.125rem) * 1.5);
+                }
             }
         }
     }
