@@ -1,8 +1,14 @@
 import React from "react";
 import logo from "./assets/shared/logo.svg";
 import mobileKeyboard from "./assets/mobile/image-keyboard.jpg";
+import mobilePhoneKeyboard from "./assets/mobile/image-phone-and-keyboard.jpg";
+import mobileGlassKeyboard from "./assets/mobile/image-glass-and-keyboard.jpg";
 import tabletKeyboard from "./assets/tablet/image-keyboard.jpg";
+import tabletPhoneKeyboard from "./assets/tablet/image-phone-and-keyboard.jpg";
+import tabletGlassKeyboard from "./assets/tablet/image-glass-and-keyboard.jpg";
 import desktopKeyboard from "./assets/desktop/image-keyboard.jpg";
+import desktopPhoneKeyboard from "./assets/desktop/image-phone-and-keyboard.jpg";
+import desktopGlassKeyboard from "./assets/desktop/image-glass-and-keyboard.jpg";
 import patternSquare from "./assets/shared/pattern-square.svg";
 import "./App.css";
 
@@ -34,9 +40,35 @@ export default function App(){
                                 <source srcSet={desktopKeyboard} media="(min-width: 769px)"/>
                                 <img className="highline__photo" src={mobileKeyboard} alt="black keyboard"/>
                             </picture> 
-                            <div className="highline__pattern-square-wrapper">
-                                <img className="highline__pattern-square" src={patternSquare} alt="" width={255} height={240}/>
+                            <div className="pattern">
+                                <img className="pattern__square" src={patternSquare} alt="" width={255} height={240}/>
                             </div>
+                        </div>
+                    </div>
+                </section>
+                <section className="about-keyboard">
+                    <div className="about-keyboard__wrapper">
+                        <div className="about-keyboard__images-wrapper">
+                            <div className="pattern">
+                                <img className="pattern__square" src={patternSquare} alt="" width={255} height={240}/>
+                            </div>
+                            <picture className="about-keyboard__photo-phone-wrapper">
+                                <source srcSet={mobilePhoneKeyboard} media="(max-width: 375px)"/>
+                                <source srcSet={tabletPhoneKeyboard} media="(min-width: 376px) and (max-width: 768px)"/>
+                                <source srcSet={desktopPhoneKeyboard} media="(min-width: 769px)"/>
+                                <img className="about-keyboard__photo-phone" src={mobilePhoneKeyboard} alt="phone and keyboard"/>
+                            </picture>
+                            <picture className="about-keyboard__photo-glass-wrapper">
+                                <source srcSet={mobileGlassKeyboard} media="(max-width: 375px)"/>
+                                <source srcSet={tabletGlassKeyboard} media="(min-width: 376px) and (max-width: 768px)"/>
+                                <source srcSet={desktopGlassKeyboard} media="(min-width: 769px)"/>
+                                <img className="about-keyboard__photo-glass" src={mobileGlassKeyboard} alt="glass and keyboard"/>
+                            </picture>  
+                        </div>
+                        <div className="about-keyboard__content">
+                            <h2 className="about-keyboard__subtitle">Mechanical wireless keyboard</h2>
+                            <p className="about-keyboard__text">The Typemaster keyboard boasts top-notch build and practical design. It offers a wide variety 
+                            of switches and keycaps, along with reliable wireless connectivity.</p>
                         </div>
                     </div>
                 </section>
