@@ -26,6 +26,7 @@ Practices in [Frontend Mentor Website](https://www.frontendmentor.io/)
 * 20- [Interactive-rating-component-main](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/newbie/interactive-rating-component-main/) | **HTML** | **CSS** <sup>flexbox + BEM</sup> | **JS** <sup>Vanilla</sup>
 * 21- [Article-preview-component-master](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/newbie/article-preview-component-master/) | **HTML** | **CSS** <sup>grid + flexbox + media queries + BEM</sup> | **JS** <sup>Vanilla</sup>
 * 22- [Intro-component-with-signup-form-master](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/newbie/intro-component-with-signup-form-master/) | **HTML** | **CSS** <sup>grid + flexbox + media queries + BEM</sup> | **JS** <sup>Vanilla</sup> | <sup>[see the version in bootstrap 5](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/newbie/using-frame-works-css/intro-component-with-signup-form-master/)</sup>
+* 23- [Meeting-landing-page](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/newbie/meet-landing-page/) | **HTML** | **SASS -> CSS**  <sup>grid + flexbox + media queries + BEM</sup>
 
 ## Level: junior<sup>2</sup>
 * 1- [Fylo-dark-theme-landing-page-master](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/junior/fylo-dark-theme-landing-page-master/) **HTML** | **CSS** | **JS** <sup>Vanilla</sup>
