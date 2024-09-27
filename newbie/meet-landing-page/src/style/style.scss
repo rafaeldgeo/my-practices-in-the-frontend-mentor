@@ -176,7 +176,7 @@ body {
             width: inherit;
 
             @include base.for-size(tablet) {
-                padding-inline: 0;
+                padding-inline: min(2vw, 2rem);
                 gap: min(3.2vw, 1.5rem) 0;
                 max-inline-size: 448.3px;
             }

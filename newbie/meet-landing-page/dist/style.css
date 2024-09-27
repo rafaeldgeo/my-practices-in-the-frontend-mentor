@@ -189,7 +189,7 @@ body {
 }
 @media (min-width: 376px) and (max-width: 768px) {
   .main .hero .hero__text-content {
-    padding-inline: 0;
+    padding-inline: min(2vw, 2rem);
     gap: min(3.2vw, 1.5rem) 0;
     max-inline-size: 448.3px;
   }
