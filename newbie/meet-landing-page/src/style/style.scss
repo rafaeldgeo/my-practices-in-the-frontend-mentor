@@ -376,7 +376,7 @@ body {
 .footer {
     position: relative;
     align-items: center;
-    background: base.$background, no-repeat url("../../assets/mobile/image-footer.jpg");
+    background: base.$background, no-repeat url(base.$background-image-mobile);
     background-size: cover;
     color: base.$white;
     display: flex;
@@ -397,7 +397,7 @@ body {
     }
 
     @include base.for-size(tablet) {
-        background: base.$background, no-repeat url("../../assets/tablet/image-footer.jpg");
+        background: base.$background, no-repeat url(base.$background-image-tablet);
         background-size: cover;
         margin-top: 6.75rem;
         padding-block: min(8.4vw, 4rem) 0;
@@ -408,7 +408,7 @@ body {
     }
     
     @include base.for-size(desktop) {
-        background: base.$background, no-repeat url("../../assets/desktop/image-footer.jpg");
+        background: base.$background, no-repeat url(base.$background-image-desktop);
         background-size: cover;
         margin-top: 6.75rem;
         padding-block: min(7.8vw, 7rem) 0;

@@ -17,6 +17,9 @@ $f-weight-bold: 700;
 $f-weight-black: 900;
 $font: "Red Hat Display", sans-serif;
 $background: linear-gradient(hsla(192, 37%, 48%, 0.9),hsla(192, 37%, 48%, 0.9));
+$background-image-mobile: "/assets/mobile/image-footer.jpg";
+$background-image-tablet: "/assets/tablet/image-footer.jpg";
+$background-image-desktop: "/assets/desktop/image-footer.jpg";
 
 @mixin layout($direction: row ){
     display: flex;
