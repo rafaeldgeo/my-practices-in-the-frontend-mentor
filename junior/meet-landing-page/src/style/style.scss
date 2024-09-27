@@ -7,7 +7,6 @@
     font-family: base.$font;
     margin: 0;
     padding: 0;
-    // border: 1px solid red;
 }
 
 html,
@@ -309,7 +308,7 @@ body {
             width: 100%;
             text-align: center;
 
-            @include base.for-size(tablet) { max-inline-size: 504px; }
+            @include base.for-size(tablet) { max-inline-size: 445px; }
 
             @include base.for-size(desktop) { max-inline-size: 544px; }
 
@@ -333,6 +332,7 @@ body {
             }
 
             .content__subtitle {
+                margin: 0 auto;
                 color: base.$slate-900;
                 font-size: clamp(1rem, .5rem + 6.5vw, 2rem);
                 font-weight: base.$f-weight-black;
@@ -346,9 +346,10 @@ body {
                 }
 
                 @include base.for-size(desktop) {
-                    font-size: clamp(.6rem, .5rem + 2.2vw, 1rem);
-                    line-height: calc(clamp(.6rem, .5rem + 2.2vw, 1rem) * 1.13);
+                    font-size: clamp(.6rem, .5rem + 2.2vw, 2.5rem);
+                    line-height: calc(clamp(.6rem, .5rem + 2.2vw, 2.5rem) * 1);
                     margin-block: min(1.2vw, 1rem) min(2.3vw, 2rem);
+                    max-width: 18ch;
                 }
             }
 
@@ -403,9 +404,7 @@ body {
         padding-inline: min(5.8vw, 2.75rem);
         row-gap:  min(8.4vw, 4rem);
 
-        .index--botton {
-            bottom: calc(87% + 1rem);
-        }
+        .index--botton { bottom: calc(87% + 1rem); }
     }
     
     @include base.for-size(desktop) {
@@ -421,8 +420,6 @@ body {
             bottom: calc(87% + 1rem);
         }
   }
-
-   
 
     .hero-footer {
         display: flex;
