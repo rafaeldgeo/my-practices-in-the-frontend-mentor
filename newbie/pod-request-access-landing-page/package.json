@@ -1,0 +1,15 @@
+{
+  "name": "pod-request-access-landing-page",
+  "version": "1.0.0",
+  "description": "![Design preview for the Pod request access landing page coding challenge](./preview.jpg)",
+  "main": "index.js",
+  "scripts": {
+    "compile": "sass --watch src/style/style.scss dist/style.css"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "sass": "^1.79.4"
+  }
+}

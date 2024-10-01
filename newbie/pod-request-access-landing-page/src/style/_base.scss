@@ -1,0 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Chivo:ital,wght@0,100..900;1,100..900&display=swap');
+
+$green: #54E6AF;
+$blue-300: #C2CBE5;
+$blue-600: #5A668A;
+$blue-900: #2C344B;
+$blue-950: #121725;
+$white: #FFFFFF;
+$red: #FB3E3E;
+$f-weight-light: 300;
+$f-weight-bold: 700;
+$font: "Chivo", system-ui;
+
+// breakpoints
+@mixin for-size($device) {
+    @if $device == tablet {
+        @media (min-width: 376px) and (max-width: 768px) { @content; }
+    } @else if $device == desktop {
+        @media (min-width: 769px) { @content; }
+    }
+}
+
+@mixin space($property, $device, $sizePix) {
+    $sizeRem: $sizePix / 16;
+    $sizeVw: 0;
+    @if $device == mobile {
+        $sizeVw: ($sizePix / 375) * 100;
+        #{$property}: min($sizeVw, $sizeRem);
+    }
+}
+
+@mixin teste($property, $color) {
+    #{$property}: $color;
+}
