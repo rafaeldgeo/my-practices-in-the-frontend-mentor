@@ -87,7 +87,8 @@ body {
     max-inline-size: inherit;
 }
 
-.highline {
+.highline,
+.about-keyboard {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -174,6 +175,63 @@ body {
     display: none;
 }
 
+.about-keyboard__wrapper {
+    display: grid;
+    gap: min(17.1vw, 4rem) 0; 
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    padding: min(9.07vw, 2.125rem) 0 min(29.6vw, 6.9375rem) 0;
+}
+
+.about-keyboard__images-wrapper {
+    column-gap: min(6.4vw, 1.5rem);
+    display: grid;
+    grid-template-columns: minmax(auto, 106px) minmax(auto, 220px);
+    grid-template-rows: 100%;
+    padding-inline: 0 min(6.5vw, 1.5rem);
+}
+
+.about-keyboard__photo-phone {
+    border-radius: 0 1.5rem 1.5rem 0;
+    display: block;
+    height: 100%;
+    max-inline-size: 100%;
+    object-fit: cover;
+}
+
+.about-keyboard__photo-glass {
+    border-radius: 1.5rem;
+    display: block;
+    height: 100%;
+    max-inline-size: 100%;
+    object-fit: cover;
+}
+
+.about-keyboard__content {
+    display: flex;
+    flex-direction: column;
+    gap: min(6.5vw, 1.5rem) 0;
+    padding-inline: min(6.5vw, 1.5rem);
+    text-align: center;
+}
+
+.about-keyboard__subtitle {
+    color: var(--dark-blue);
+    font-size: clamp(1rem, .5rem + 6.4vw, 2rem);
+    font-weight: var(--f-weight-black);
+    line-height: calc(clamp(1rem, .5rem + 6.4vw, 2rem) * 1.13);
+    margin: 0 auto;
+    max-inline-size: 15ch;
+    text-transform: uppercase;
+}
+
+.about-keyboard__text {
+    color: var(--light-blue-200);
+    font-size: clamp(.8rem, .5rem + 2.2vw, 1rem);
+    font-weight: var(--f-weight-medium);
+    line-height: calc(clamp(.8rem, .5rem + 2.2vw, 1rem) * 1.63);
+}
+
 
 @media only screen and (min-width: 376px) and (max-width: 768px) {
 
@@ -239,6 +297,22 @@ body {
         object-position: 0;
     }
 
+    .about-keyboard__wrapper {
+        gap: min(9.4vw, 4.5rem) 0; 
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+        justify-items: center;
+        padding: min(9.07vw, 2.125rem) 0 min(29.6vw, 6.9375rem) 0;
+    }
+
+    .about-keyboard__images-wrapper {
+        grid-template-columns: minmax(auto, 214px) minmax(auto, 445px);
+        column-gap: min(3.2vw, 1.5rem);
+        padding-inline: min(5.08vw, 2.4375rem) min(5.3vw, 2.5rem);
+    }
+
+    .about-keyboard__photo-phone { border-radius: 1.5rem; }
+    
     @media only screen and (min-width: 376px) and (max-width: 450px) {
 
         .highline { gap: 0 .4rem; }
@@ -309,6 +383,21 @@ body {
         display: block;
     }
 
+    .about-keyboard__wrapper {
+        gap: min(9.4vw, 4.5rem) 0; 
+        grid-template-columns: auto minmax(auto, 255px);
+        grid-template-rows: auto;
+        padding: min(9.07vw, 2.125rem) 0 min(29.6vw, 6.9375rem) 0;
+    }
+
+    .about-keyboard__images-wrapper {
+        grid-template-columns: minmax(auto, 255px) minmax(auto, 445px);
+        column-gap: min(4vw, 1.875rem);
+        padding-inline: min(5.08vw, 2.4375rem) 0;
+    }
+
+    .about-keyboard__photo-phone { border-radius: 1.5rem; }
+
     .pattern { display: none; }   
 
     @media only screen and (min-width: 1440px) {
@@ -321,9 +410,9 @@ body {
         }
 
         .highline__images-wrapper {
-            grid-template-columns: minmax(auto, 540px) auto;
             column-gap: min(2.9vw, 1.875rem);
-        }
+            grid-template-columns: minmax(auto, 540px) auto;
+          }
 
         .pattern { display: block; }
     

@@ -46,7 +46,7 @@ export default function App(){
                         </div>
                     </div>
                 </section>
-                <section className="about-keyboard">
+             <section className="about-keyboard">
                     <div className="about-keyboard__wrapper">
                         <div className="about-keyboard__images-wrapper">
                             <div className="pattern">
@@ -63,14 +63,14 @@ export default function App(){
                                 <source srcSet={tabletGlassKeyboard} media="(min-width: 376px) and (max-width: 768px)"/>
                                 <source srcSet={desktopGlassKeyboard} media="(min-width: 769px)"/>
                                 <img className="about-keyboard__photo-glass" src={mobileGlassKeyboard} alt="glass and keyboard"/>
-                            </picture>  
+                            </picture>   
                         </div>
                         <div className="about-keyboard__content">
                             <h2 className="about-keyboard__subtitle">Mechanical wireless keyboard</h2>
                             <p className="about-keyboard__text">The Typemaster keyboard boasts top-notch build and practical design. It offers a wide variety 
                             of switches and keycaps, along with reliable wireless connectivity.</p>
-                        </div>
-                    </div>
+                        </div>  
+                    </div> 
                 </section>
             </main>
             <footer className="footer"></footer>

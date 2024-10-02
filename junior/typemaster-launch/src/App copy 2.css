@@ -92,7 +92,6 @@ body {
     flex-direction: column;
     justify-content: center;
     padding-inline: 0;
-    width: inherit;
 }
 
 .highline__wrapper {
@@ -107,7 +106,7 @@ body {
     flex-direction: column;
     justify-self: center;
     max-inline-size: 100%;
-    padding-inline: min(6.4vw, 1.5rem);
+    padding-inline: min(6.5vw, 1.5rem);
     row-gap: min(8.6vw, 2rem);
 }
 
@@ -150,24 +149,25 @@ body {
 
 .highline__images-wrapper {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(auto, 375px);
     grid-template-rows: auto;
     column-gap: 0;
 }
 
 .highline__photo-wrapper {
-    max-inline-size: 93.6%;
+    max-inline-size: 351px;
     display: block;
     justify-self: end;
 }
 
 .highline__photo {
-    aspect-ratio: 9 / 8.231;
+    aspect-ratio: 9 / 8.25;
     object-fit: cover;
     max-inline-size: 100%;
     border-radius: 1.5rem 0 0 1.5rem;
     display: block;
 }
+
 
 .pattern,
 .pattern__square {
@@ -196,8 +196,8 @@ body {
 
     .highline__wrapper {
         align-items: center;
-        gap: 0 min(calc(12vw - 1.4rem), 4.3125rem);
-        grid-template-columns: minmax(auto, 378px) auto;
+        gap: 0 min(9vw, 4.3125rem);
+        grid-template-columns: minmax(auto, 378px) minmax(180px, 321px);
         grid-template-rows: auto;
     }
 
@@ -228,13 +228,13 @@ body {
         line-height: calc(clamp(.8rem, .5rem + 1.1vw, 1rem) * 1.65);
     }
 
-    .highline__images-wrapper { grid-template-columns: minmax(190px, 321px); }
+    .highline__images-wrapper { grid-template-columns: minmax(auto, 540px); }
 
     .highline__photo-wrapper { max-inline-size: none; }
 
     .highline__photo {
         object-fit: cover;
-        aspect-ratio: .8 / 1.060;
+        aspect-ratio: .8 / 1.06;
         border-radius: 1.5rem 0 0 1.5rem;
         object-position: 0;
     }
@@ -263,7 +263,7 @@ body {
 
     .highline__wrapper {
         align-items: center;
-        gap: 0 min(calc(11.3vw - 2rem), 7.8125rem);
+        gap: 0 min(11.3vw, 7.8125rem);
         grid-template-columns: minmax(auto, 445px) auto;
         grid-template-rows: auto;
     }
@@ -297,7 +297,7 @@ body {
         padding-inline: min(2.4vw, 1.625rem) min(2.5vw, 1.6875rem);
     }
 
-    .highline__images-wrapper { grid-template-columns: minmax(320px, 540px); }
+    .highline__images-wrapper { grid-template-columns: minmax(400px, 540px); }
 
     .highline__photo-wrapper { max-inline-size: none; }
 
