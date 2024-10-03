@@ -17,18 +17,26 @@ $font: "Chivo", system-ui;
         @media (min-width: 376px) and (max-width: 768px) { @content; }
     } @else if $device == desktop {
         @media (min-width: 769px) { @content; }
+    } @else {
+        @error "You must define one device valid";
     }
 }
 
-@mixin space($property, $device, $sizePix) {
+// define the fluid space using min(vw, rem)
+@function space($sizePix, $device: mobile) {
     $sizeRem: $sizePix / 16;
-    $sizeVw: 0;
+    $sizeView: 375 !default;
     @if $device == mobile {
-        $sizeVw: ($sizePix / 375) * 100;
-        #{$property}: min($sizeVw, $sizeRem);
+        $sizeView: 375;
+    } @else if $device == tablet {
+        $sizeView: 768;
+    } @else if $device == desktop {
+        $sizeView: 1440;
+    } @else {
+        @error "You must define one device valid";
     }
+    $sizeVw: ($sizePix / $sizeView) * 100;
+
+    @return min($sizeVw * 1vw, $sizeRem * 1rem);
 }
 
-@mixin teste($property, $color) {
-    #{$property}: $color;
-}
