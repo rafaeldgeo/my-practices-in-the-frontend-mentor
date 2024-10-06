@@ -11,6 +11,7 @@ import desktopPhoneKeyboard from "./assets/desktop/image-phone-and-keyboard.jpg"
 import desktopGlassKeyboard from "./assets/desktop/image-glass-and-keyboard.jpg";
 import patternSquare from "./assets/shared/pattern-square.svg";
 import "./App.css";
+import AttributionFooter from "./components/AttributionFooter";
 
 export default function App(){
 
@@ -46,18 +47,21 @@ export default function App(){
                         </div>
                     </div>
                 </section>
-             <section className="about-keyboard">
+              <section className="about-keyboard">
                     <div className="about-keyboard__wrapper">
                         <div className="about-keyboard__images-wrapper">
                             <div className="pattern">
                                 <img className="pattern__square" src={patternSquare} alt="" width={255} height={240}/>
                             </div>
-                            <picture className="about-keyboard__photo-phone-wrapper">
-                                <source srcSet={mobilePhoneKeyboard} media="(max-width: 375px)"/>
-                                <source srcSet={tabletPhoneKeyboard} media="(min-width: 376px) and (max-width: 768px)"/>
-                                <source srcSet={desktopPhoneKeyboard} media="(min-width: 769px)"/>
-                                <img className="about-keyboard__photo-phone" src={mobilePhoneKeyboard} alt="phone and keyboard"/>
-                            </picture>
+                            <div className="about-keyboard__photo-phone-container">
+                                <picture className="about-keyboard__photo-phone-wrapper">
+                                    <source srcSet={mobilePhoneKeyboard} media="(max-width: 375px)"/>
+                                    <source srcSet={tabletPhoneKeyboard} media="(min-width: 376px) and (max-width: 768px)"/>
+                                    <source srcSet={desktopPhoneKeyboard} media="(min-width: 769px)"/>
+                                    <img className="about-keyboard__photo-phone" src={mobilePhoneKeyboard} alt="phone and keyboard"/>
+                                </picture>
+                                <div className="about-keyboard__overlay"></div>
+                            </div>
                             <picture className="about-keyboard__photo-glass-wrapper">
                                 <source srcSet={mobileGlassKeyboard} media="(max-width: 375px)"/>
                                 <source srcSet={tabletGlassKeyboard} media="(min-width: 376px) and (max-width: 768px)"/>
@@ -71,9 +75,12 @@ export default function App(){
                             of switches and keycaps, along with reliable wireless connectivity.</p>
                         </div>  
                     </div> 
-                </section>
+                </section> 
             </main>
-            <footer className="footer"></footer>
+            <footer className="footer">
+                <span className="footer__credit"><strong>Typemaster 2021</strong> | All Rights Reserved</span>
+                <AttributionFooter/>
+            </footer>
         </div>
     );
 }

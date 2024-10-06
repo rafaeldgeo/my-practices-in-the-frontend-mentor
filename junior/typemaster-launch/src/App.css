@@ -5,6 +5,7 @@
 :root{
     --light-orange: #FF9B62;
     --dark-orange: #F16718;
+    --dark-orange-transparent: hsla(22, 89%, 52%, 0.8);
     --light-blue-100: #E8EFF2;
     --light-blue-200: #7B8BAD;
     --dark-blue: #162542;
@@ -19,6 +20,7 @@
 *,
 *::before,
 *::after{
+    /* border: 1px solid red;  */
     box-sizing: border-box;
     font-family: var(--font);
     margin: 0;
@@ -26,16 +28,14 @@
 }
 
 html,
-body {
-    width: 100%;
-}
+body { inline-size: 100%; }
 
 #root {
     align-items: center;
     background-color: var(--white);
     display: flex;
     flex-direction: column;
-    width: inherit;
+    inline-size: inherit;
 }
 
 .container {
@@ -43,17 +43,17 @@ body {
     display: flex;
     flex-direction: column;
     max-inline-size: 1440px;
-    width: inherit;
+    inline-size: inherit;
 }
 
-.header { 
-    flex: 1 0 auto;
-    display: flex;
-    align-items: center;
-    max-inline-size: 1110px;
-    width: inherit;
-    padding-block: min(6.4vw, 1.4375rem) min(17.1vw, 4rem);
-    padding-inline: min(6.5vw, 1.5rem);
+.header {
+      align-items: center;
+      display: flex;
+      flex: 1 0 auto;
+      inline-size: inherit;
+      max-inline-size: 1110px;
+      padding-block: min(6.4vw, 1.4375rem) min(17.1vw, 4rem);
+      padding-inline: min(6.5vw, 1.5rem);
 }
 
 .header__logo { display: block; }
@@ -84,11 +84,15 @@ body {
 
 .main { 
     flex: 1 0 auto;
+    display: flex;
+    flex-direction: column;
     max-inline-size: inherit;
+    inline-size: 100%;
 }
 
 .highline,
 .about-keyboard {
+    align-items: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -171,9 +175,7 @@ body {
 }
 
 .pattern,
-.pattern__square {
-    display: none;
-}
+.pattern__square { display: none; }
 
 .about-keyboard__wrapper {
     display: grid;
@@ -182,6 +184,8 @@ body {
     grid-template-rows: auto auto;
     padding: min(9.07vw, 2.125rem) 0 min(29.6vw, 6.9375rem) 0;
 }
+
+.about-keyboard__photo-phone-container { position: relative; }
 
 .about-keyboard__images-wrapper {
     column-gap: min(6.4vw, 1.5rem);
@@ -197,7 +201,21 @@ body {
     height: 100%;
     max-inline-size: 100%;
     object-fit: cover;
+    filter: saturate(0) opacity(74.86%);
 }
+
+.about-keyboard__photo-phone-wrapper { position: relative; }
+
+.about-keyboard__overlay {
+    background-color: var(--dark-orange);
+    border-radius: 0 1.5rem 1.5rem 0;
+    height: 100%;
+    left: 0;
+    mix-blend-mode: multiply;
+    position: absolute;
+    top: 0;
+    width: 100%;
+} 
 
 .about-keyboard__photo-glass {
     border-radius: 1.5rem;
@@ -297,6 +315,10 @@ body {
         object-position: 0;
     }
 
+    .about-keyboard {
+        flex-direction: row;
+    }
+
     .about-keyboard__wrapper {
         gap: min(9.4vw, 4.5rem) 0; 
         grid-template-columns: 1fr;
@@ -311,7 +333,28 @@ body {
         padding-inline: min(5.08vw, 2.4375rem) min(5.3vw, 2.5rem);
     }
 
-    .about-keyboard__photo-phone { border-radius: 1.5rem; }
+    .about-keyboard__photo-phone, 
+    .about-keyboard__overlay { border-radius: 1.5rem; }
+
+    .about-keyboard__content {
+        flex-direction: row;
+        gap: 0 min(4.7vw, 2.25rem);
+        padding-inline: min(6.5vw, 1.5rem);
+        text-align: start;
+        align-items: center;
+    }
+
+    .about-keyboard__subtitle {
+        font-size: clamp(1rem, .5rem + 3.2vw, 2rem);
+        line-height: calc(clamp(1rem, .5rem + 3.2vw, 2rem) * 1.13);
+        max-inline-size: 255px;
+    }
+    
+    .about-keyboard__text {
+        font-size: clamp(.8rem, .5rem + 1.05vw, 1rem);
+        line-height: calc(clamp(.8rem, .5rem + 1.05vw, 1rem) * 1.63);
+        max-inline-size: 398px;
+    }
     
     @media only screen and (min-width: 376px) and (max-width: 450px) {
 
@@ -383,8 +426,10 @@ body {
         display: block;
     }
 
+    .about-keyboard { flex-direction: row; }
+
     .about-keyboard__wrapper {
-        gap: min(9.4vw, 4.5rem) 0; 
+        gap: 0 min(8.7vw, 7.8125rem); 
         grid-template-columns: auto minmax(auto, 255px);
         grid-template-rows: auto;
         padding: min(9.07vw, 2.125rem) 0 min(29.6vw, 6.9375rem) 0;
@@ -396,7 +441,27 @@ body {
         padding-inline: min(5.08vw, 2.4375rem) 0;
     }
 
-    .about-keyboard__photo-phone { border-radius: 1.5rem; }
+    .about-keyboard__photo-phone,
+    .about-keyboard__overlay { border-radius: 1.5rem; }
+
+    .about-keyboard__content {
+        flex-direction: column;
+        gap: min(1.9vw, 1.6875rem) 0;
+        padding-inline: 0 min(1.7vw, 1.5rem);
+        text-align: start;
+        justify-content: center;
+    }
+
+    .about-keyboard__subtitle {
+        font-size: clamp(1rem, .5rem + 2.2vw, 2rem);
+        line-height: calc(clamp(1rem, .5rem + 2.2vw, 2rem) * 1.13);
+    }
+    
+    .about-keyboard__text {
+        font-size: clamp(.8rem, .5rem + 0.7vw, 1rem);
+        line-height: calc(clamp(.8rem, .5rem + 0.7vw, 1rem) * 1.63);
+
+    }
 
     .pattern { display: none; }   
 
@@ -412,8 +477,26 @@ body {
         .highline__images-wrapper {
             column-gap: min(2.9vw, 1.875rem);
             grid-template-columns: minmax(auto, 540px) auto;
-          }
+        }
 
+        .about-keyboard  {
+            justify-content: flex-start; 
+            padding-inline: 0;
+        }
+
+        .about-keyboard__wrapper {
+            gap: 0 125px; 
+            grid-template-columns: auto minmax(auto, 255px);
+            grid-template-rows: auto;
+            /* padding: min(9.07vw, 2.125rem) 0 min(29.6vw, 6.9375rem) 0; */
+        }
+
+        .about-keyboard__images-wrapper {
+            grid-template-columns: auto minmax(auto, 255px) minmax(auto, 445px);
+            column-gap: min(2.09vw, 1.875rem);
+            padding-inline: 0 0;
+        }
+          
         .pattern { display: block; }
     
         .pattern__square {
@@ -421,9 +504,27 @@ body {
             object-fit: none;
             max-width: 135px;
             object-position: 0;
-        }   
+        } 
+        
+        .about-keyboard__images-wrapper .pattern { align-content: end; }
+
+        .about-keyboard__images-wrapper .pattern__square { object-position: -120px; }
     }
 }
 
-.footer { flex-shrink: 0; }
+.footer { 
+    flex-shrink: 0; 
+    text-align: center;
+}
 
+.footer__credit {
+    font-size: clamp(.8rem, 4.26vw, 1rem);
+    color: var(--light-blue-200);
+    font-weight: var(--f-weight-medium);
+}
+
+.attribution { font-size: .6875rem; }
+
+.attribution__color-label { color: var(--dark-blue); }
+
+.attribution__color-link { color: var(--dark-orange); }
