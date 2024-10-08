@@ -1,13 +1,6 @@
 @use "base";
 
-*, 
-*::before,
-*::after {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: base.$font;
-}
+@include base.reset;
 
 html, 
 body {
@@ -16,33 +9,136 @@ body {
     background-color: base.$blue-950;
 }
 
-%flex-column-center {
+
+body, %flex-column-center { 
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-body { @extend %flex-column-center; }
-
 .container {
-    background-color: red;
     flex: 1 0 auto;
     inline-size: inherit;
     justify-content: center;
     max-inline-size: 1440px;
 
     @extend %flex-column-center;
+
+    @include base.for-size(desktop) {
+        background: no-repeat url(base.$background-image-desktop);
+        background-position: 106% center;
+        background-size: 50% auto;
+        padding-inline: base.fluidSpace(44, desktop);
+    }
+}
+
+.main {
+    // background-color: red;
+    inline-size: inherit;
+    max-inline-size: 1120px;
+    display: flex;
+    flex-direction: column;
+
+    @include base.for-size(desktop) {
+        row-gap: base.fluidSpace(104, desktop);
+    }
 }
 
 .content {
+    background-color: base.$blue-950;
+    inline-size: inherit;
+    display: flex;
+    flex-direction: column;
 
-    .header {
+    @include base.for-size(desktop) {
+        max-inline-size: 736px;
+        row-gap: base.fluidSpace(40, desktop);
+    }
+}
 
+.introduce {
+    display: flex;
+    flex-direction: column;
+    inline-size: inherit;
+    max-inline-size: 665px;
+
+    &__title {
+        color: base.$green-600;
+        font-weight: base.$f-weight-light;
+        text-transform: uppercase;
+    }
+    
+    &__emphasis { color: base.$white; }
+
+    &__description {
+        color: base.$blue-300;
+        font-weight: base.$f-weight-light;
     }
 
-    .main__title {
-        padding: base.space(15, desktop);
+    @include base.for-size(desktop) {
+        row-gap: base.fluidSpace(24, desktop);
+        
+        &__title {
+            $fontSize: base.fluidTypo(48, 24, desktop); 
+            font-size: $fontSize;
+            line-height: calc($fontSize * 1.2);
+        }
+        
+        &__description { 
+            $fontSize: base.fluidTypo(18, 10, desktop); 
+            font-size: $fontSize;
+            line-height: calc($fontSize * 1.5);
+            max-inline-size: 40ch;
+        }
     }
+}
+
+.form {
+    max-inline-size: fit-content;
+    background-color: base.$blue-900;
+    display: flex;
+    justify-content: space-between;
+    padding: .25rem;
+    border-radius: 1.75rem;
+    max-inline-size: 448px;
+    
+    %style-font {
+        font-size: .875rem;
+        font-weight: base.$f-weight-bold;
+        line-height: 2;
+    }
+    
+    &__input {
+        background-color: base.$blue-900;
+        border: none;
+        color: base.$white;
+        @extend %style-font;
+        border-radius: 1.75rem 0 0 1.75rem;
+        inline-size: 60%;
+        padding-left: 1.5rem;
+}
+
+    &__btn {
+        background-color: base.$green-600;
+        border: none;
+        color: base.$blue-950;
+        @extend %style-font;
+        padding: .5rem 2rem;
+        border-radius: 1.75rem;
+        cursor: pointer;
+
+        &:hover { background-color: base.$green-100; }
+    }
+}
+
+.logos {
+    display: flex;
+
+    @include base.for-size(desktop) {
+        padding-block-start: base.fluidSpace(24, desktop);
+        column-gap: base.fluidSpace(40, desktop);
+    }
+
 }
 
 .footer {
@@ -52,7 +148,7 @@ body { @extend %flex-column-center; }
     margin: 0.6rem;
 
     &__link {
-        color: base.$green;
+        color: base.$green-600;
     }
 }
 

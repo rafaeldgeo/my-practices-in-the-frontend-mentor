@@ -1,6 +1,10 @@
+@use "sass:map";
+@use "sass:math";
+
 @import url('https://fonts.googleapis.com/css2?family=Chivo:ital,wght@0,100..900;1,100..900&display=swap');
 
-$green: #54E6AF;
+$green-100: #BCF6DE;
+$green-600: #54E6AF;
 $blue-300: #C2CBE5;
 $blue-600: #5A668A;
 $blue-900: #2C344B;
@@ -10,6 +14,22 @@ $red: #FB3E3E;
 $f-weight-light: 300;
 $f-weight-bold: 700;
 $font: "Chivo", system-ui;
+$deviceList: ("mobile": 375, "tablet": 768, "desktop": 1440);
+$background-image-mobile: "../assets/mobile/image-host.jpg";
+$background-image-tablet: "../assets/tablet/image-host.jpg";
+$background-image-desktop: "../assets/desktop/image-host.jpg";
+
+// reset config
+@mixin reset {
+    *, 
+    *::before,
+    *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: $font;
+    }
+}
 
 // breakpoints
 @mixin for-size($device) {
@@ -22,21 +42,36 @@ $font: "Chivo", system-ui;
     }
 }
 
+// convert px to rem
+@function convertPxToRem($sizePx) {
+    @return math.div($sizePx, 16) * 1rem;
+}
+
+// calculate the view size from device
+@function calculateVw($sizePx, $device) {
+    $sizeView: map.get($deviceList, $device);
+    $sizeVw: (math.div($sizePx, $sizeView) * 100) * 1vw;
+
+    @return $sizeVw;
+}
+
 // define the fluid space using min(vw, rem)
-@function space($sizePix, $device: mobile) {
-    $sizeRem: $sizePix / 16;
-    $sizeView: 375 !default;
-    @if $device == mobile {
-        $sizeView: 375;
-    } @else if $device == tablet {
-        $sizeView: 768;
-    } @else if $device == desktop {
-        $sizeView: 1440;
+@function fluidSpace($sizePx, $device: "mobile") {    
+    @if  map.get($deviceList, $device) {
+        @return min(calculateVw($sizePx, $device), convertPxToRem($sizePx));
     } @else {
         @error "You must define one device valid";
     }
-    $sizeVw: ($sizePix / $sizeView) * 100;
+}
 
-    @return min($sizeVw * 1vw, $sizeRem * 1rem);
+// define the fluid typography using clamp(rem, vw, rem)
+@function fluidTypo($sizePxMax, $sizePxMin, $device: "mobile") {
+    @if  map.get($deviceList, $device) {
+        $sizePx: $sizePxMax - 8;
+        @return clamp(convertPxToRem($sizePxMin), .5rem + calculateVw($sizePx, $device), convertPxToRem($sizePxMax));
+    } @else {
+        @error "You must define one device valid";
+    }
+    
 }
 
