@@ -4,6 +4,14 @@ In this repository are some practices to improve my front-end skills.
 Practices in [Frontend Mentor Website](https://www.frontendmentor.io/)
 ---
 ## Level: newbie<sup>1</sup>
+
+![HTML](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![CSS](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
+![SASS](https://img.shields.io/badge/SASS-hotpink.svg?style=for-the-badge&logo=SASS&logoColor=white)
+![Bootstrap](https://img.shields.io/badge/bootstrap-%238511FA.svg?style=for-the-badge&logo=bootstrap&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E)
+
+
 * 1- [QR-code-component](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/newbie/qr-code-component/) **HTML** | **CSS** <sup>flexbox</sup> | <sup>[see the version in bootstrap 5](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/newbie/using-frame-works-css/qr-code-component/)</sup>
 * 2- [NFT-preview-card-component](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/newbie/nft-preview-card-component/) | **HTML** | **CSS** <sup>flexbox</sup>
 * 3- [Blog-preview-card-main](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/newbie/blog-preview-card-main/) | **HTML** | **CSS** <sup>flexbox + grid</sup>
@@ -29,6 +37,15 @@ Practices in [Frontend Mentor Website](https://www.frontendmentor.io/)
 * 23- [Meeting-landing-page](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/newbie/meet-landing-page/) | **HTML** | **SASS -> CSS**  <sup>grid + flexbox + media queries + BEM</sup>
 
 ## Level: junior<sup>2</sup>
+
+![HTML](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![CSS](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
+![SASS](https://img.shields.io/badge/SASS-hotpink.svg?style=for-the-badge&logo=SASS&logoColor=white)
+![Bootstrap](https://img.shields.io/badge/bootstrap-%238511FA.svg?style=for-the-badge&logo=bootstrap&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E)
+![Lit](https://img.shields.io/badge/lit-324FFF?style=for-the-badge&logo=lit&logoColor=white)
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+
 * 1- [Fylo-dark-theme-landing-page-master](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/junior/fylo-dark-theme-landing-page-master/) **HTML** | **CSS** | **JS** <sup>Vanilla</sup>
 * 2- [Testimonials-grid-section-main](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/junior/testimonials-grid-section-main/) **HTML** | **CSS** | **JS** <sup>web components (custom elements)</sup>
 * 3- [Fylo-data-storage-component-master](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/junior/fylo-data-storage-component-master/) **HTML** | **CSS** | **JS** <sup>web components (custom elements)</sup>
