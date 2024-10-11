@@ -11,6 +11,7 @@ import desktopPhoneKeyboard from "./assets/desktop/image-phone-and-keyboard.jpg"
 import desktopGlassKeyboard from "./assets/desktop/image-glass-and-keyboard.jpg";
 import patternSquare from "./assets/shared/pattern-square.svg";
 import "./App.css";
+import Card from "./components/Card";
 import AttributionFooter from "./components/AttributionFooter";
 
 export default function App(){
@@ -47,7 +48,7 @@ export default function App(){
                         </div>
                     </div>
                 </section>
-              <section className="about-keyboard">
+                <section className="about-keyboard">
                     <div className="about-keyboard__wrapper">
                         <div className="about-keyboard__images-wrapper">
                             <div className="pattern">
@@ -76,6 +77,7 @@ export default function App(){
                         </div>  
                     </div> 
                 </section> 
+                <Card />
             </main>
             <footer className="footer">
                 <span className="footer__credit"><strong>Typemaster 2021</strong> | All Rights Reserved</span>

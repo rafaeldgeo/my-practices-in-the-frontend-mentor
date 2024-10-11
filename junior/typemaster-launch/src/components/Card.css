@@ -1,0 +1,25 @@
+@charset "UTF-8";
+
+.card {
+    display: grid;
+    grid-template-columns: repeat(4, 255px);
+}
+
+.card__item {
+
+}
+
+
+.card__icon-wrapper {
+    background-color: var(--dark-orange);
+    display: flex;
+    justify-content: center;
+    max-inline-size: 65px;
+    block-size: 65px;
+    align-items: center;
+    border-radius: 1rem;
+}
+
+.card__icon {
+    display: block;
+}
