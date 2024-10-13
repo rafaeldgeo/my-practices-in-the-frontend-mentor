@@ -385,6 +385,11 @@ body { inline-size: 100%; }
 
 @media only screen and (min-width: 769px) { 
 
+    .header {
+        padding-block: min(3.82vw, 3.4375rem) min(5.8vw, 5.1875rem);
+        padding-inline: 0;
+    }
+
     .highline {
         flex-direction: row;
         padding-inline: min(6.5vw, 1.5rem);
