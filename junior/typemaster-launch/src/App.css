@@ -20,7 +20,6 @@
 *,
 *::before,
 *::after{
-    /* border: 1px solid red;  */
     box-sizing: border-box;
     font-family: var(--font);
     margin: 0;
@@ -251,12 +250,24 @@ body { inline-size: 100%; }
     line-height: calc(clamp(.8rem, .5rem + 2.2vw, 1rem) * 1.63);
 }
 
+.footer { 
+    flex-shrink: 0; 
+    text-align: center;
+    padding-block-start: min(25.6vw, 6rem);
+}
+
+.footer__credit {
+    font-size: clamp(.8rem, 4.26vw, 1rem);
+    color: var(--light-blue-200);
+    font-weight: var(--f-weight-medium);
+}
+
 
 @media only screen and (min-width: 376px) and (max-width: 768px) {
 
-    .header { 
-        padding-block: min(5.3vw, 2.5rem) min(8.1vw, 3.875rem);
-        padding-inline: min(5.3vw, 2.5rem);
+    .header {
+          padding-block: min(5.3vw, 2.5rem) min(8.1vw, 3.875rem);
+          padding-inline: min(5.3vw, 2.5rem);
     }
 
     .btn-order {
@@ -282,7 +293,7 @@ body { inline-size: 100%; }
         max-inline-size: none;
         padding-inline: min(5.1vw, 2.4375rem) 0;
         row-gap: 0;
-       }
+     }
 
     .highline__title {
         font-size: clamp(.8rem, .5rem + 5.3vw, 3rem);
@@ -316,9 +327,7 @@ body { inline-size: 100%; }
         object-position: 0;
     }
 
-    .about-keyboard {
-        flex-direction: row;
-    }
+    .about-keyboard { flex-direction: row; }
 
     .about-keyboard__wrapper {
         gap: min(9.4vw, 4.5rem) 0; 
@@ -356,6 +365,8 @@ body { inline-size: 100%; }
         line-height: calc(clamp(.8rem, .5rem + 1.05vw, 1rem) * 1.63);
         max-inline-size: 398px;
     }
+
+    .footer { padding-block-start: min(18.5vw, 8.875rem); }
     
     @media only screen and (min-width: 376px) and (max-width: 450px) {
 
@@ -439,7 +450,7 @@ body { inline-size: 100%; }
     .about-keyboard__images-wrapper {
         grid-template-columns: minmax(auto, 255px) minmax(auto, 445px);
         column-gap: min(4vw, 1.875rem);
-        padding-inline: min(5.08vw, 2.4375rem) 0;
+        padding-inline: min(1.7vw, 1.5rem) 0;
     }
 
     .about-keyboard__photo-phone,
@@ -463,6 +474,8 @@ body { inline-size: 100%; }
         line-height: calc(clamp(.8rem, .5rem + 0.7vw, 1rem) * 1.63);
 
     }
+
+    .footer { padding-block-start: min(8.9vw, 8rem); }
 
     .pattern { display: none; }   
 
@@ -489,7 +502,6 @@ body { inline-size: 100%; }
             gap: 0 125px; 
             grid-template-columns: auto minmax(auto, 255px);
             grid-template-rows: auto;
-            /* padding: min(9.07vw, 2.125rem) 0 min(29.6vw, 6.9375rem) 0; */
         }
 
         .about-keyboard__images-wrapper {
@@ -511,17 +523,6 @@ body { inline-size: 100%; }
 
         .about-keyboard__images-wrapper .pattern__square { object-position: -120px; }
     }
-}
-
-.footer { 
-    flex-shrink: 0; 
-    text-align: center;
-}
-
-.footer__credit {
-    font-size: clamp(.8rem, 4.26vw, 1rem);
-    color: var(--light-blue-200);
-    font-weight: var(--f-weight-medium);
 }
 
 .attribution { font-size: .6875rem; }
