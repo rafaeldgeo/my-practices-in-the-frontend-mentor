@@ -182,7 +182,7 @@ body { inline-size: 100%; }
     gap: min(17.1vw, 4rem) 0; 
     grid-template-columns: 1fr;
     grid-template-rows: auto auto;
-    padding: min(9.07vw, 2.125rem) 0 min(29.6vw, 6.9375rem) 0;
+    padding: min(9.07vw, 2.125rem) 0 min(20vw, 4.6875rem) 0;
 }
 
 .about-keyboard__photo-phone-container { position: relative; }
@@ -334,7 +334,7 @@ body { inline-size: 100%; }
         grid-template-columns: 1fr;
         grid-template-rows: auto auto;
         justify-items: center;
-        padding: min(9.07vw, 2.125rem) 0 min(29.6vw, 6.9375rem) 0;
+        padding: min(9.07vw, 2.125rem) 0 min(21.9vw, 10.5rem) 0;
     }
 
     .about-keyboard__images-wrapper {
@@ -449,7 +449,7 @@ body { inline-size: 100%; }
         gap: 0 min(8.7vw, 7.8125rem); 
         grid-template-columns: auto minmax(auto, 255px);
         grid-template-rows: auto;
-        padding: min(9.07vw, 2.125rem) 0 min(29.6vw, 6.9375rem) 0;
+        padding: min(9.07vw, 2.125rem) 0 min(11.7vw, 10.5rem) 0;
     }
 
     .about-keyboard__images-wrapper {
