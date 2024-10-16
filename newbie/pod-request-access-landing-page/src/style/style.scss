@@ -9,7 +9,6 @@ body {
     background-color: base.$blue-950;
 }
 
-
 body, %flex-column-center { 
     display: flex;
     flex-direction: column;
@@ -17,75 +16,185 @@ body, %flex-column-center {
 }
 
 .container {
+    background: base.$background-filter, url(base.$background-image-mobile) no-repeat center / cover;
     flex: 1 0 auto;
     inline-size: inherit;
     justify-content: center;
-    max-inline-size: 1440px;
+    max-inline-size: 100vw;
+    padding-inline: base.fluidSpace(36);
 
     @extend %flex-column-center;
 
     @include base.for-size(desktop) {
-        background: no-repeat url(base.$background-image-desktop);
-        background-position: 106% center;
-        background-size: 50% auto;
-        padding-inline: base.fluidSpace(44, desktop);
+        background: none;
+        max-inline-size: 1440px;
+        padding-inline: base.fluidSpace(160, desktop) 0;
+    }
+
+    @include base.for-size(tablet) {
+        background: none;
+        justify-content: flex-start;
+        max-inline-size: 768px;
+        padding-inline: base.fluidSpace(44, tablet) 0;
     }
 }
 
 .main {
-    // background-color: red;
     inline-size: inherit;
-    max-inline-size: 1120px;
+    max-inline-size: 1280px;
     display: flex;
     flex-direction: column;
+    position: relative;
 
     @include base.for-size(desktop) {
+        background: url(base.$background-image-desktop) no-repeat calc(107% + 2rem) center / contain;
+
+        &::after {
+            @include base.patternDots();
+            background-size: contain;
+            block-size: base.fluidSpace(104, desktop);
+            bottom: -8%;
+            inline-size: base.fluidSpace(232, desktop);
+        }
+    }
+
+    @include base.for-size(tablet) {
+        background: url(base.$background-image-tablet) no-repeat 200px top / contain;
+        
+        &::after {
+            @include base.patternDots();
+            background-size: cover;
+            block-size: base.fluidSpace(104, tablet);
+            bottom: -6%;
+            inline-size: base.fluidSpace(104, tablet);
+      }
+    }
+
+}
+
+.content-block {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    inline-size: inherit;
+    max-inline-size: 100%;
+    row-gap: base.fluidSpace(56);
+
+    &__logo {
+        block-size: auto;
+        display: block;
+        max-inline-size: 100%;
+    }
+
+    @include base.for-size(desktop) {
+        align-items: flex-start;
+        max-inline-size: 57.5%;
         row-gap: base.fluidSpace(104, desktop);
+
+        &__logo { max-inline-size: 10vw; }
+    }
+
+    @include base.for-size(tablet) {
+        align-items: flex-start;
+        max-inline-size: 77.09%;
+        padding-block-start: base.fluidSpace(156, tablet);
+        row-gap: base.fluidSpace(104, tablet);
+
+        &__logo { max-inline-size: 20vw; }
     }
 }
 
-.content {
-    background-color: base.$blue-950;
+.content-info {
+    background-color: transparent;
+    display: grid;
     inline-size: inherit;
-    display: flex;
-    flex-direction: column;
+    row-gap: base.fluidSpace(40);
+    grid-template-areas: 
+    "introduce"
+    "logos"
+    "form";
 
     @include base.for-size(desktop) {
-        max-inline-size: 736px;
+        background-color: base.$blue-950;
+        padding: base.fluidSpace(88, desktop) base.fluidSpace(64, desktop) 0 0;
         row-gap: base.fluidSpace(40, desktop);
+        grid-template-areas: 
+        "introduce"
+        "form"
+        "logos";
     }
+
+    @include base.for-size(tablet) {
+        background-color: base.$blue-950;
+        padding: base.fluidSpace(88, tablet) base.fluidSpace(64, tablet) 0 0;
+        row-gap: base.fluidSpace(40, tablet);
+        grid-template-areas: 
+                "introduce"
+                "form"
+                "logos";
+            }
 }
 
 .introduce {
+    grid-area: introduce;
     display: flex;
     flex-direction: column;
     inline-size: inherit;
     max-inline-size: 665px;
+    text-align: center;
+    row-gap: base.fluidSpace(16);
 
     &__title {
         color: base.$green-600;
         font-weight: base.$f-weight-light;
+        $fontSize: base.fluidTypo(32, 22);
+        font-size: $fontSize;
+        line-height: calc($fontSize * 1.188);
         text-transform: uppercase;
-    }
+     }
     
     &__emphasis { color: base.$white; }
 
     &__description {
         color: base.$blue-300;
         font-weight: base.$f-weight-light;
+        $fontSize: base.fluidTypo(14, 10);
+        font-size: $fontSize;
+        line-height: calc($fontSize * 1.5);
     }
 
     @include base.for-size(desktop) {
         row-gap: base.fluidSpace(24, desktop);
+        text-align: start;
         
         &__title {
-            $fontSize: base.fluidTypo(48, 24, desktop); 
+            $fontSize: base.fluidTypo(48, 24, desktop);
             font-size: $fontSize;
-            line-height: calc($fontSize * 1.2);
+            line-height: calc($fontSize * 1.209);
+            max-inline-size: 30ch;
         }
         
-        &__description { 
-            $fontSize: base.fluidTypo(18, 10, desktop); 
+        &__description {
+            $fontSize: base.fluidTypo(18, 10, desktop);
+            font-size: $fontSize;
+            line-height: calc($fontSize * 1.5);
+            max-inline-size: 40ch;
+        }
+    }
+
+    @include base.for-size(tablet) {
+        row-gap: base.fluidSpace(24, tablet);
+        text-align: start;
+        
+        &__title {
+            $fontSize: base.fluidTypo(48, 24, tablet);
+            font-size: $fontSize;
+            line-height: calc($fontSize * 1.209);
+            max-inline-size: 30ch;
+        }
+        
+        &__description {
+            $fontSize: base.fluidTypo(18, 10, tablet);
             font-size: $fontSize;
             line-height: calc($fontSize * 1.5);
             max-inline-size: 40ch;
@@ -93,52 +202,151 @@ body, %flex-column-center {
     }
 }
 
+.form-wrapper {
+
+    @media (min-width: 500px) { 
+        color: base.$red;
+        font-weight: base.$f-weight-bold;
+    }
+
+     @include base.for-size(desktop) {
+
+        &__erro {
+            visibility: hidden;
+            font-size: base.fluidTypo(12, 10, desktop);
+            padding-block-start: base.fluidSpace(8, desktop);
+            padding-inline-start: base.fluidSpace(32, desktop);
+        }
+
+        &__erro--show { visibility: visible; }
+     }
+
+     @include base.for-size(tablet) {
+
+        &__erro {    
+            visibility: hidden;
+            font-size: base.fluidTypo(12, 10, tablet);
+            padding-block-start: base.fluidSpace(8, tablet);
+            padding-inline-start: base.fluidSpace(32, tablet);
+        }
+
+        &__erro--show { visibility: visible; }
+     }
+}
+
 .form {
-    max-inline-size: fit-content;
-    background-color: base.$blue-900;
+    grid-area: form;
     display: flex;
     justify-content: space-between;
-    padding: .25rem;
+    flex-wrap: wrap;
     border-radius: 1.75rem;
-    max-inline-size: 448px;
-    
-    %style-font {
-        font-size: .875rem;
-        font-weight: base.$f-weight-bold;
-        line-height: 2;
-    }
+    max-inline-size: 100%;
+    row-gap: .5rem;
     
     &__input {
         background-color: base.$blue-900;
         border: none;
+        border-radius: 1.75rem;
         color: base.$white;
-        @extend %style-font;
-        border-radius: 1.75rem 0 0 1.75rem;
-        inline-size: 60%;
-        padding-left: 1.5rem;
-}
+        font-size: .875rem;
+        font-weight: base.$f-weight-bold;
+        inline-size: 100%;
+        line-height: 2;
+        padding: .5rem .5rem .5rem 1.75rem;
+
+        &:focus-visible { background-color: transparent; }
+    }
+
+    &__input__erro--show {
+        outline: 2px solid base.$red; 
+    }
 
     &__btn {
         background-color: base.$green-600;
         border: none;
-        color: base.$blue-950;
-        @extend %style-font;
-        padding: .5rem 2rem;
         border-radius: 1.75rem;
+        color: base.$blue-950;
         cursor: pointer;
+        font-size: .875rem;
+        font-weight: base.$f-weight-bold;
+        inline-size: 100%;
+        line-height: 2;
+        padding: .5rem;
+        transition: background-color 1s;
 
         &:hover { background-color: base.$green-100; }
     }
+
+    @include base.for-size(tablet) {
+        background-color: base.$blue-900;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        max-inline-size: 448px;
+        padding: .25rem;
+
+        &__input {
+            border-radius: 1.75rem 0 0 1.75rem;
+            font-size: base.fluidTypo(14, 10, tablet);
+            inline-size: 60%;
+            padding-left: 1.5rem;
+        }
+
+        &__input__erro--show { outline: none; }
+
+        &__btn {
+            font-size: base.fluidTypo(14, 10, tablet);
+            max-inline-size: 38.61%;
+        }
+    }
+
+    @include base.for-size(desktop) {
+        background-color: base.$blue-900;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        max-inline-size: 448px;
+        padding: .25rem;
+
+        &__input {
+            border-radius: 1.75rem 0 0 1.75rem;
+            inline-size: 60%;
+            padding-left: 1.5rem;
+        }
+
+        &__input__erro--show { outline: none; }
+
+        &__btn { max-inline-size: 38.61%; }
+    }
+}
+
+@media (min-width: 500px) { 
+    .form--erro-show { outline: 2px solid base.$red; }
 }
 
 .logos {
+    grid-area: logos;
     display: flex;
+    align-items: center;
+    column-gap: base.fluidSpace(17.74);
 
-    @include base.for-size(desktop) {
-        padding-block-start: base.fluidSpace(24, desktop);
-        column-gap: base.fluidSpace(40, desktop);
+    &__icons {
+        block-size: auto;
+        display: block;
+        max-inline-size: 16.5vw;
     }
 
+    @include base.for-size(desktop) {
+        column-gap: base.fluidSpace(40, desktop);
+        padding-block-start: base.fluidSpace(2, desktop);
+
+        &__icons { max-inline-size: 9vw; }
+    }
+
+    @include base.for-size(tablet) {
+        column-gap: base.fluidSpace(40, tablet);
+        padding-block-start: base.fluidSpace(2, tablet);
+
+        &__icons { max-inline-size: 13vw; }
+    }
 }
 
 .footer {
@@ -147,9 +355,7 @@ body, %flex-column-center {
     font-size: .6875rem;
     margin: 0.6rem;
 
-    &__link {
-        color: base.$green-600;
-    }
+    &__link { color: base.$green-600; }
 }
 
 

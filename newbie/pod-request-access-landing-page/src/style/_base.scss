@@ -15,9 +15,11 @@ $f-weight-light: 300;
 $f-weight-bold: 700;
 $font: "Chivo", system-ui;
 $deviceList: ("mobile": 375, "tablet": 768, "desktop": 1440);
+$background-filter: linear-gradient(hsla(224, 35%, 11%, 0.9), hsl(224, 35%, 11%, 0.9));
 $background-image-mobile: "../assets/mobile/image-host.jpg";
 $background-image-tablet: "../assets/tablet/image-host.jpg";
 $background-image-desktop: "../assets/desktop/image-host.jpg";
+$bg-pattern-dots: "../assets/desktop/bg-pattern-dots.svg";
 
 // reset config
 @mixin reset {
@@ -28,18 +30,28 @@ $background-image-desktop: "../assets/desktop/image-host.jpg";
         padding: 0;
         box-sizing: border-box;
         font-family: $font;
+        // border: 1px solid red;
     }
 }
 
 // breakpoints
 @mixin for-size($device) {
     @if $device == tablet {
-        @media (min-width: 376px) and (max-width: 768px) { @content; }
+        @media (min-width: 500px) and (max-width: 768px) { @content; }
     } @else if $device == desktop {
         @media (min-width: 769px) { @content; }
     } @else {
         @error "You must define one device valid";
     }
+}
+
+// background pattern-dots
+@mixin patternDots(){
+    background-image: url($bg-pattern-dots);
+    background-repeat: no-repeat;
+    content: "";
+    position: absolute;
+    right: 0;
 }
 
 // convert px to rem
