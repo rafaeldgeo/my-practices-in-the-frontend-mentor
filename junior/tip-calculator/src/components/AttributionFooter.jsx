@@ -4,7 +4,7 @@ export default function AttributionFooter(){
     
     const defaultStyle = {
         textAlign: "center",
-        marginBlock: "2.4375rem .6rem",
+        marginBlock: ".6rem",
     }
 
     return(

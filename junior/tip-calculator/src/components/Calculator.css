@@ -1,0 +1,7 @@
+@charset "UTF-8";
+
+.calculator {
+    background-color: var(--white);
+    border-radius: 1.5625rem;
+}
+
