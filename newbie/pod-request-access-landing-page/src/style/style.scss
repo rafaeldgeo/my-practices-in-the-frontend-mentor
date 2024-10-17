@@ -254,7 +254,7 @@ body, %flex-column-center {
         line-height: 2;
         padding: .5rem .5rem .5rem 1.75rem;
 
-        &:focus-visible { background-color: transparent; }
+        &:focus-visible { background-color: base.$blue-900; }
     }
 
     &__input__erro--show {
@@ -289,6 +289,8 @@ body, %flex-column-center {
             font-size: base.fluidTypo(14, 10, tablet);
             inline-size: 60%;
             padding-left: 1.5rem;
+
+            &:focus-visible { background-color: transparent; }
         }
 
         &__input__erro--show { outline: none; }
@@ -310,6 +312,8 @@ body, %flex-column-center {
             border-radius: 1.75rem 0 0 1.75rem;
             inline-size: 60%;
             padding-left: 1.5rem;
+
+            &:focus-visible { background-color: transparent; }
         }
 
         &__input__erro--show { outline: none; }

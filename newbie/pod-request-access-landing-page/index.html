@@ -6,6 +6,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png">
   <title>Frontend Mentor | Pod request access landing page</title>
   <link rel="stylesheet" href="./dist/style.css">
+  <script src="/src/validemail.js" defer></script>
 </head>
 <body>
   <div class="container">
@@ -21,11 +22,11 @@
               Apple Podcasts, Google Podcasts, Pocket Casts and more!</p>
           </div>
           <div class="form-wrapper">
-            <form class="form form--erro-show" novalidate>
-              <input class="form__input form__input__erro--show" type="email" name="email" id="email" placeholder="Email address" required>
+            <form class="form" novalidate>
+              <input class="form__input" type="email" name="email" id="email" placeholder="Email address" autocomplete="off" required>
               <input class="form__btn" type="submit" value="Request access">
             </form>
-            <span class="form-wrapper__erro form-wrapper__erro--show">Oops! Please check your email</span>
+            <span class="form-wrapper__erro">Oops! Please check your email</span>
           </div>
           <div class="logos">
             <img class="logos__icons" src="./assets/desktop/spotify.svg" alt="logo spotify" width="96" height="29">
