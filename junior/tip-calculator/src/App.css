@@ -3,12 +3,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 :root {
-    --strong-cyan: hsl(172, 67%, 45%);
-    --very-dark-cyan: hsl(183, 100%, 15%);
-    --dark-grayish-cyan: hsl(186, 14%, 43%);
-    --grayish-cyan: hsl(184, 14%, 56%);
-    --light-grayish-cyan: hsl(185, 41%, 84%);
-    --very-light-grayish-cyan: hsl(189, 41%, 97%);
+    --cyan-100: hsl(189, 41%, 97%); 
+    --cyan-200: hsl(185, 41%, 84%); 
+    --cyan-300: hsl(172, 67%, 45%); 
+    --cyan-350: hsl(184, 19%, 68%); 
+    --cyan-400: hsl(186, 14%, 43%); 
+    --cyan-500: hsl(183, 100%, 15%); 
     --white: hsl(0, 0%, 100%);
     --font: "Space Mono", monospace;
     --f-weight-regular: 400;
@@ -27,7 +27,7 @@
 html, body {
     inline-size: 100%;
     block-size: 100%;
-    background-color: var(--light-grayish-cyan);
+    background-color: var(--cyan-200);
 }
 
 #root {
@@ -78,6 +78,6 @@ html, body {
 
 .attribution { font-size: .6875rem; }
 
-.attribution__color-label { color: var(--very-dark-cyan); }
+.attribution__color-label { color: var(--cyan-400); }
 
-.attribution__color-link { color: var(--strong-cyan); }
+.attribution__color-link { color: var(--cyan-300); }
