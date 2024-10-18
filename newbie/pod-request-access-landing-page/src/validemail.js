@@ -1,5 +1,7 @@
 "use strict"
 
+console.log("teste");
+
 const form = document.querySelector(".form");
 const formInput = document.querySelector(".form__input");
 const formWrapperErro = document.querySelector(".form-wrapper__erro");
