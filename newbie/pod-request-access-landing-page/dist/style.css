@@ -57,6 +57,7 @@ body, .container {
     background: url("../assets/desktop/image-host.jpg") no-repeat calc(107% + 2rem) center/contain;
   }
   .main::after {
+    content: "";
     background-image: url("../assets/desktop/bg-pattern-dots.svg");
     background-repeat: no-repeat;
     content: "";
@@ -73,6 +74,7 @@ body, .container {
     background: url("../assets/tablet/image-host.jpg") no-repeat 200px top/contain;
   }
   .main::after {
+    content: "";
     background-image: url("../assets/desktop/bg-pattern-dots.svg");
     background-repeat: no-repeat;
     content: "";

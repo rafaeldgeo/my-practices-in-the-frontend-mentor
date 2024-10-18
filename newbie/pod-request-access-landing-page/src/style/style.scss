@@ -50,6 +50,7 @@ body, %flex-column-center {
         background: url(base.$background-image-desktop) no-repeat calc(107% + 2rem) center / contain;
 
         &::after {
+            content: "";
             @include base.patternDots();
             background-size: contain;
             block-size: base.fluidSpace(104, desktop);
@@ -62,6 +63,7 @@ body, %flex-column-center {
         background: url(base.$background-image-tablet) no-repeat 200px top / contain;
         
         &::after {
+            content: "";
             @include base.patternDots();
             background-size: cover;
             block-size: base.fluidSpace(104, tablet);
