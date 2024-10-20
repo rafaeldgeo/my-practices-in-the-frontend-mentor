@@ -1,0 +1,13 @@
+@charset "UTF-8";
+
+.calculator {
+    background-color: var(--white);
+    border-radius: 1.5625rem;
+    display: grid;
+    gap: 0 min(3.4vw, 3rem);
+    grid-template-columns: minmax(auto, 379px) minmax(auto, 413px);
+    inset-inline: inherit;
+    max-inline-size: 100%;
+    padding: min(2.3vw, 2rem) min(2.3vw, 2rem) min(2.3vw, 2rem) min(3.4vw, 3rem);
+}
+

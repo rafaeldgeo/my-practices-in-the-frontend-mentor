@@ -1,0 +1,56 @@
+@charset "UTF-8";
+
+.input-bill {
+    margin: min(1.2vw, 1rem) 0; 
+}
+
+.bill, .tip, .people {
+    display: flex;
+    flex-direction: column;
+    inline-size: inherit;
+    row-gap: .375rem;
+}
+
+.tip { 
+    padding-block: 40px;
+    row-gap: 1rem; 
+}
+
+.bill__label,
+.tip__label,
+.people__label {
+    color: var(--cyan-400);
+    display: block;
+    font-size: clamp(.8rem, .8rem + .6vw, 1rem);
+    font-weight: var(--f-weight-bold);
+    inline-size: fit-content;
+}
+
+.bill__value-input,
+.people__number-input {
+    border: none;
+    border-radius: .3125rem;
+    color: var(--cyan-500);
+    font-size: clamp(1rem, .8rem + 1.2vw, 1.5rem);
+    font-weight: var(--f-weight-bold);
+    padding: .375rem 1.0625rem .375rem 0;  
+    text-align: end;
+}
+
+.bill__value-input,
+.people__number-input:focus { 
+    outline-color: var(--cyan-300);
+    outline-width: 2px;
+}
+
+::placeholder { color: var(--cyan-350); }
+
+.bill__value-input {
+    background: var(--cyan-100) url("../assets/images/icon-dollar.svg") no-repeat;
+    background-position: 1.20375rem center;
+}
+
+.people__number-input {
+    background: var(--cyan-100) url("../assets/images/icon-person.svg") no-repeat;
+    background-position: 1.20375rem center;
+}

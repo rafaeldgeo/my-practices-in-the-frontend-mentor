@@ -1,0 +1,50 @@
+@charset "UTF-8";
+
+.select-tip {
+    display: grid;
+    gap: min(1.2vw, 1rem) min(.98vw, .875rem);
+    grid-template-columns: repeat(3, minmax(auto, 117px));
+    grid-template-rows: repeat(2, auto);
+    inline-size: 100%;
+}
+
+.select-tip__btn {
+    background-color: var(--cyan-500);
+    border: none;
+    border-radius: .3125rem;
+    color: var(--white);
+    cursor: pointer;
+    font-size: clamp(.75rem, .5rem + 1.12vw, 1.5rem);
+    font-weight: var(--f-weight-bold);
+    padding-block: .375rem;
+}
+
+.select-tip__btn:not(.select-tip__btn--selected):hover {
+    background-color: var(--cyan-250);
+    color: var(--cyan-500);
+}
+
+.select-tip__btn--selected {
+    background-color: var(--cyan-300);
+    color: var(--cyan-500);
+}
+
+.select-tip__custom-input {
+    background-color: var(--cyan-100);
+    border: none;
+    border-radius: .3125rem;
+    color: var(--cyan-500);
+    font-size: clamp(1rem, .8rem + 1.2vw, 1.5rem);
+    font-weight: var(--f-weight-bold);
+    max-inline-size: 118px;
+    padding: .375rem .9375rem .375rem .875rem;
+    text-align: end;
+}
+
+.select-tip__custom-input:focus {
+    outline-color: var(--cyan-300);
+    outline-width: 2px;
+}
+
+
+

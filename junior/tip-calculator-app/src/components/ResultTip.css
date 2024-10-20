@@ -1,0 +1,38 @@
+@charset "UTF-8";
+
+.result-tip {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--cyan-500);
+    border-radius: .9375rem;
+    padding: min(2.8vw, 2.5rem);
+    inline-size: inherit;
+}
+
+.result {
+    flex: 1 0 auto;
+    display: flex;
+    flex-direction: column;
+    row-gap: 25px;
+    inline-size: inherit;
+}
+
+.result__tip {
+    max-inline-size: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: red;
+}
+
+.result__value {
+    display: block;
+}
+
+.result__per-person {
+    display: block;
+    font-size: 13px;
+}
+
+.btn { flex-shrink: 0; }
