@@ -202,8 +202,11 @@ body, .container {
   }
 }
 
+.form-wrapper__erro {
+  visibility: hidden;
+}
 @media (min-width: 500px) {
-  .form-wrapper {
+  .form-wrapper__erro {
     color: #FB3E3E;
     font-weight: 700;
   }

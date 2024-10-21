@@ -204,9 +204,16 @@ body, %flex-column-center {
 
 .form-wrapper {
 
+    &__erro {
+        visibility: hidden;
+    }
+    
     @media (min-width: 500px) { 
-        color: base.$red;
-        font-weight: base.$f-weight-bold;
+
+        &__erro {
+            color: base.$red;
+            font-weight: base.$f-weight-bold;
+        }
     }
 
      @include base.for-size(desktop) {
@@ -257,9 +264,7 @@ body, %flex-column-center {
         &:focus-visible { background-color: base.$blue-900; }
     }
 
-    &__input__erro--show {
-        outline: 2px solid base.$red; 
-    }
+    &__input__erro--show { outline: 2px solid base.$red; }
 
     &__btn {
         background-color: base.$green-600;
