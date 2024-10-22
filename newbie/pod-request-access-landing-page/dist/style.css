@@ -54,7 +54,7 @@ body, .container {
 }
 @media (min-width: 769px) {
   .main {
-    background: url("../assets/desktop/image-host.jpg") no-repeat calc(107% + 2rem) center/contain;
+    background: url("../assets/desktop/image-host.jpg") no-repeat calc(95% + 2rem) center/contain;
   }
   .main::after {
     background-image: url("../assets/desktop/bg-pattern-dots.svg");
