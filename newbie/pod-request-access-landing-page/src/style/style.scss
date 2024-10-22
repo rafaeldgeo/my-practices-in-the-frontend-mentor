@@ -47,7 +47,7 @@ body, %flex-column-center {
     position: relative;
 
     @include base.for-size(desktop) {
-        background: url(base.$background-image-desktop) no-repeat calc(95% + 2rem) center / contain;
+        background: url(base.$background-image-desktop) no-repeat calc(100% + 2rem) center / contain;
 
         &::after {
             @include base.patternDots;

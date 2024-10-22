@@ -54,7 +54,7 @@ body, .container {
 }
 @media (min-width: 769px) {
   .main {
-    background: url("../assets/desktop/image-host.jpg") no-repeat calc(95% + 2rem) center/contain;
+    background: url("../assets/desktop/image-host.jpg") no-repeat calc(100% + 2rem) center/contain;
   }
   .main::after {
     background-image: url("../assets/desktop/bg-pattern-dots.svg");
@@ -155,7 +155,7 @@ body, .container {
 }
 .introduce__title {
   color: #54E6AF;
-  font-weight: 300;
+  font-weight: 200;
   font-size: clamp(1.375rem, 0.5rem + 6.4vw, 2rem);
   line-height: calc(clamp(1.375rem, 0.5rem + 6.4vw, 2rem) * 1.188);
   text-transform: uppercase;
@@ -165,7 +165,7 @@ body, .container {
 }
 .introduce__description {
   color: #C2CBE5;
-  font-weight: 300;
+  font-weight: 200;
   font-size: clamp(0.625rem, 0.5rem + 1.6vw, 0.875rem);
   line-height: calc(clamp(0.625rem, 0.5rem + 1.6vw, 0.875rem) * 1.5);
 }
