@@ -41,6 +41,10 @@
     text-align: end;
 }
 
+.select-tip__custom-input::placeholder {
+    color: var(--cyan-425);
+}
+
 .select-tip__custom-input:focus {
     outline-color: var(--cyan-300);
     outline-width: 2px;

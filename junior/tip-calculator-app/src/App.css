@@ -9,7 +9,9 @@
     --cyan-300: hsl(172, 67%, 45%); 
     --cyan-350: hsl(184, 19%, 68%); 
     --cyan-400: hsl(186, 14%, 43%);
-    --cyan-500: hsl(183, 100%, 15%); 
+    --cyan-425: hsl(180, 18%, 40%);
+    --cyan-450: hsl(183, 78%, 24%);  
+    --cyan-500: hsl(183, 100%, 15%);
     --white: hsl(0, 0%, 100%);
     --font: "Space Mono", monospace;
     --f-weight-regular: 400;
