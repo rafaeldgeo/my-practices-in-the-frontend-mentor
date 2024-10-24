@@ -1,0 +1,45 @@
+
+/* fonts */
+$font-stack: "IBM Plex Mono", monospace;
+
+/* container */
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px,
+  xxl: 1440px
+);
+
+/* spacer */
+$spacer: 1rem;
+$spacers: (
+  0: 0,
+  1: $spacer * .5,
+  2: $spacer,
+  3: $spacer * 1.25,
+  4: $spacer * 1.5,
+  5: $spacer * 2,
+  6: $spacer * 2.5,
+  7: $spacer * 3,
+  8: $spacer * 3.5,
+  9: $spacer * 4,
+  10: $spacer * 5,
+  11: $spacer * 8,
+  12: $spacer * 12.5
+);
+
+/* default 1 */
+$paragraph-margin-bottom: 0;
+$headings-margin-bottom: 0;
+
+/* font-size */
+$font-sizes: (
+  1: .6875rem,
+  2: 1rem,
+  3: 1.125rem,
+  4: 1.25rem,
+  5: 2.5rem,
+  6: 4rem,
+  7: 5.5rem
+);
