@@ -1,4 +1,5 @@
 @charset "UTF-8";
+/* colors */
 /* fonts */
 /* container */
 /* spacer */
@@ -84,7 +85,7 @@
   --bs-danger-border-subtle: #f1aeb5;
   --bs-light-border-subtle: #e9ecef;
   --bs-dark-border-subtle: #adb5bd;
-  --bs-white-rgb: 255, 255, 255;
+  --bs-white-rgb: 252, 250, 249;
   --bs-black-rgb: 0, 0, 0;
   --bs-font-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
@@ -5474,7 +5475,7 @@ textarea.form-control-lg {
 }
 
 .progress-bar-striped {
-  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: linear-gradient(45deg, rgba(252, 250, 249, 0.15) 25%, transparent 25%, transparent 50%, rgba(252, 250, 249, 0.15) 50%, rgba(252, 250, 249, 0.15) 75%, transparent 75%, transparent);
   background-size: var(--bs-progress-height) var(--bs-progress-height);
 }
 
@@ -9700,7 +9701,7 @@ textarea.form-control-lg {
 
 .text-white-50 {
   --bs-text-opacity: 1;
-  color: rgba(255, 255, 255, 0.5) !important;
+  color: rgba(252, 250, 249, 0.5) !important;
 }
 
 .text-body-secondary {
@@ -15094,6 +15095,18 @@ textarea.form-control-lg {
 
 html, body {
   height: 100%;
+}
+
+.icon-medias a {
+  text-decoration: none;
+}
+
+.icon-medias svg {
+  fill: #191826;
+}
+
+.icon-medias svg:hover {
+  fill: #FA7453;
 }
 
 /*# sourceMappingURL=styles.css.map */

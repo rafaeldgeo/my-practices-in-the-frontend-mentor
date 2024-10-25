@@ -1,9 +1,9 @@
 $custom-colors: (
-    "cyan": #66E2DC,
-    "orange": #FA7453,
-    "yellow": #FFB964,
-    "white": #FCFAF9,
-    "slate": #191826,
+    "cyan": $cyan,
+    "orange": $orange,
+    "yellow": $yellow,
+    "white": $white,
+    "slate": $slate,
 );
 
 $theme-colors: map-merge($theme-colors, $custom-colors);
