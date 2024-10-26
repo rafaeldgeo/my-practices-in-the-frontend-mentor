@@ -7,7 +7,8 @@
     display: flex;
     flex-direction: column;
     inline-size: inherit;
-    padding: min(2.8vw, 2.5rem);
+    row-gap: min(8.53vw, 2rem);
+    padding: min(7.2vw, 2.3125rem) min(5.87vw, 1.375rem) min(6.4vw, 2rem) min(6.4vw, 2rem);
 }
 
 .result {
@@ -15,7 +16,7 @@
     flex: 1 0 auto;
     flex-direction: column;
     inline-size: 100%;
-    row-gap: 25px;
+    row-gap: min(5.34vw, 1.25rem);
 }
 
 .result__tip {
@@ -26,14 +27,15 @@
 
 .result__label {
     color: var(--white);
-    font-size: clamp(.8rem, .5rem + .56vw, 1rem);
+    font-size: clamp(.8rem, .5rem + 2.14vw, 1rem);
     font-weight: var(--f-weight-bold);
     letter-spacing: -1px;
 }
 
 .result__by-person {
     color: var(--cyan-400);
-    font-size: clamp(.6rem, .3125rem + .56vw, .8125rem);
+    display: block;
+    font-size: clamp(.6rem, .3125rem + 2.13vw, .8125rem);
 }
 
 .result__value::before { content: "$"; }
@@ -41,13 +43,8 @@
 .result__value {
     color: var(--cyan-300);
     display: block;
-    font-size: clamp(1.5rem, .5rem + 2.78vw, 3rem);
+    font-size: clamp(1.5rem, .5rem + 6.5vw, 2rem);
     font-weight: var(--f-weight-bold);
-}
-
-.result__by-person {
-    display: block;
-    font-size: 13px;
 }
 
 .btn {
@@ -60,10 +57,10 @@
     border: none;
     border-radius: .3125rem;
     color: var(--cyan-500);
-    font-size: clamp(.9rem, .5rem + .83vw, 1.25rem);
+    font-size: clamp(.9rem, .5rem + 3.2vw, 1.25rem);
     font-weight: var(--f-weight-bold);
     inline-size: inherit;
-    padding: 9px;
+    padding: min(2.4vw, .5625rem) min(8.53vw, 2rem);
     text-transform: uppercase;
 }
 
@@ -72,6 +69,49 @@
     cursor: pointer;
 }
 
-.btn__reset--active {
-     background-color: var(--cyan-300);
+.btn__reset--active { background-color: var(--cyan-300); }
+
+@media only screen and (min-width: 376px) and (max-width: 768px) {
+
+    .result-tip { row-gap: 0; }
+
+    .result__tip { flex-wrap: wrap; }
+   
+    .result { row-gap: 1.25rem; }
+
+    .result__label { 
+        inline-size: 88px;
+        font-size: clamp(.8rem, .5rem + .87vw, 1rem); 
+    }
+
+    .result__by-person { font-size: .8125rem; }
+
+    .result__value { font-size: clamp(1.5rem, .5rem + 4.38vw, 3rem); }
+
+    .btn__reset {
+        font-size: clamp(.9rem, .5rem + 1.32vw, 1.25rem);
+        padding: .5625rem;
+    }
+
+}
+
+@media only screen and (min-width: 769px) {
+
+    .result-tip { 
+        padding: min(4.38vw, 2.5rem); 
+        row-gap: 0;
+    }
+
+    .result { row-gap: min(2.74vw, .5625rem); }
+
+    .result__label { font-size: clamp(.8rem, .5rem + .87vw, 1rem); }
+
+    .result__by-person { font-size: .8125rem; }
+
+    .result__value { font-size: clamp(1.5rem, .5rem + 4.38vw, 3rem); }
+
+    .btn__reset {
+        font-size: clamp(.9rem, .5rem + 1.32vw, 1.25rem);
+        padding: .5625rem;
+    }
 }

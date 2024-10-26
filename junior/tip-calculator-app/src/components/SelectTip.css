@@ -2,9 +2,9 @@
 
 .select-tip {
     display: grid;
-    gap: min(1.2vw, 1rem) min(.98vw, .875rem);
-    grid-template-columns: repeat(3, minmax(auto, 117px));
-    grid-template-rows: repeat(2, auto);
+    gap: min(1.75vw, 1rem) min(1.54vw, .875rem);
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, auto);
     inline-size: 100%;
 }
 
@@ -14,7 +14,7 @@
     border-radius: .3125rem;
     color: var(--white);
     cursor: pointer;
-    font-size: clamp(.75rem, .5rem + 1.12vw, 1.5rem);
+    font-size: clamp(.6rem, .5rem + 4.27vw, 1.5rem);
     font-weight: var(--f-weight-bold);
     padding-block: .375rem;
 }
@@ -33,22 +33,56 @@
     background-color: var(--cyan-100);
     border: none;
     border-radius: .3125rem;
+    box-sizing: border-box;
     color: var(--cyan-500);
-    font-size: clamp(1rem, .8rem + 1.2vw, 1.5rem);
+    font-size: clamp(.6rem, 1rem + 2.14vw, 1.5rem);
     font-weight: var(--f-weight-bold);
-    max-inline-size: 118px;
-    padding: .375rem .9375rem .375rem .875rem;
+    padding: min(1.6vw, .375rem) min(4vw, .9375rem) min(1.6vw, .375rem) min(3.73vw, .875rem);
     text-align: end;
+    width: 100%;
 }
 
 .select-tip__custom-input::placeholder {
     color: var(--cyan-425);
+    text-align: center;
 }
 
 .select-tip__custom-input:focus {
     outline-color: var(--cyan-300);
     outline-width: 2px;
 }
+
+
+@media only screen and (min-width: 376px) and (max-width: 768px) {
+
+    .select-tip {
+        gap: min(1.75vw, 1rem) min(1.54vw, .875rem);
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(3, auto);
+    }
+
+    .select-tip__btn {
+        font-size: clamp(.75rem, .5rem + 1.75vw, 1.5rem);
+        padding-block: .375rem;
+    }
+
+    .select-tip__custom-input {
+        font-size: clamp(1rem, .8rem + 1.75vw, 1.5rem);
+        padding: min(.65vw, .375rem) min(1.64vw, .9375rem) min(.65vw, .375rem) min(1.54vw, .875rem);
+    }
+
+}
+
+@media only screen and (min-width: 769px) {
+
+    .select-tip {
+        gap: min(1.75vw, 1rem) min(1.54vw, .875rem);
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(2, auto);
+    }
+
+}
+
 
 
 

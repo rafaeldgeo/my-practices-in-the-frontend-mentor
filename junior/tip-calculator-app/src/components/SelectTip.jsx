@@ -10,7 +10,7 @@ export default function SelectTip(){
             <button className="select-tip__btn" type="button">15%</button>
             <button className="select-tip__btn" type="button">25%</button>
             <button className="select-tip__btn" type="button">50%</button>
-            <input className="select-tip__custom-input" type="text" placeholder="custom"/>
+            <input className="select-tip__custom-input" type="text" placeholder="custom"/>  
         </div>
     );
 }

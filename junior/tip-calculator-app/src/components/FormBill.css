@@ -1,9 +1,5 @@
 @charset "UTF-8";
 
-.input-bill {
-    margin: min(1.2vw, 1rem) 0; 
-}
-
 .bill, .tip, .people {
     display: flex;
     flex-direction: column;
@@ -12,8 +8,8 @@
 }
 
 .tip { 
-    padding-block: 40px;
-    row-gap: 1rem; 
+    padding-block: min(8.54vw, 2rem);
+    row-gap: min(4.27vw, 1rem); 
 }
 
 .bill__label,
@@ -21,20 +17,22 @@
 .people__label {
     color: var(--cyan-400);
     display: block;
-    font-size: clamp(.8rem, .8rem + .6vw, 1rem);
+    font-size: clamp(.8rem, .8rem + 2.14vw, 1rem);
     font-weight: var(--f-weight-bold);
     inline-size: fit-content;
 }
 
 .bill__value-input,
 .people__number-input {
+    width: 100%;
     border: none;
     border-radius: .3125rem;
     color: var(--cyan-500);
-    font-size: clamp(1rem, .8rem + 1.2vw, 1.5rem);
+    font-size: clamp(.6rem, .8rem + 4.27vw, 1.5rem);
     font-weight: var(--f-weight-bold);
-    padding: .375rem 1.0625rem .375rem 0;  
+    padding: min(1.6vw, .375rem) min(4.53vw, 1.0625rem) min(1.6vw, .375rem) 0;  
     text-align: end;
+    box-sizing: border-box;
 }
 
 .bill__value-input,
@@ -53,4 +51,30 @@
 .people__number-input {
     background: var(--cyan-100) url("../assets/images/icon-person.svg") no-repeat;
     background-position: 1.20375rem center;
+}
+
+
+@media only screen and (min-width: 376px) {
+
+    .form-bill {
+        margin: min(1.75vw, 1rem) 0; 
+    }
+
+    .tip { 
+        padding-block: 2.5rem;
+        row-gap: min(4.38vw, 1rem); 
+    }
+
+    .bill__label,
+    .tip__label,
+    .people__label {
+        font-size: clamp(.8rem, .8rem + .88vw, 1rem);
+    }
+
+    .bill__value-input,
+    .people__number-input {
+        font-size: clamp(1rem, .8rem + 1.75vw, 1.5rem);
+        padding: .375rem 1.0625rem .375rem 0;  
+    }
+
 }

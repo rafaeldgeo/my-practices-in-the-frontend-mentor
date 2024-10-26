@@ -1,11 +1,11 @@
 import React from "react";
 import SelectTip from "./SelectTip";
-import "./InputBill.css";
+import "./FormBill.css";
 
-export default function InputBill(){
+export default function FormBill(){
 
     return(
-        <form className="input-bill">
+        <form className="form-bill">
             <div className="bill">
                 <label className="bill__label" htmlFor="bill">Bill</label>
                 <input className="bill__value-input" type="text" name="bill" id="bill" placeholder="0"/>

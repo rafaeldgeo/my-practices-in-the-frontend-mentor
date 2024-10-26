@@ -1,6 +1,6 @@
 import React from "react";
 import "./Calculator.css";
-import InputBill from "./InputBill";
+import FormBill from "./FormBill";
 import ResultTip from "./ResultTip";
 
 
@@ -8,7 +8,7 @@ export function Calculator() {
 
     return(
         <div className="calculator">
-            <InputBill />
+            <FormBill />
             <ResultTip />
         </div>
     );

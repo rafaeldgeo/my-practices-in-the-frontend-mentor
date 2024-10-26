@@ -4,10 +4,29 @@
     background-color: var(--white);
     border-radius: 1.5625rem;
     display: grid;
-    gap: 0 min(3.4vw, 3rem);
-    grid-template-columns: minmax(auto, 379px) minmax(auto, 413px);
+    gap: min(8.54vw, 2rem) 0;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, auto);
     inset-inline: inherit;
     max-inline-size: 100%;
-    padding: min(2.3vw, 2rem) min(2.3vw, 2rem) min(2.3vw, 2rem) min(3.4vw, 3rem);
+    padding: min(8.54vw, 2rem);
 }
 
+@media only screen and (min-width: 376px) and (max-width: 768px) {
+
+    .calculator {
+        gap: 0 min(5.25vw, 3rem);
+        grid-template-columns: repeat(2, minmax(150px, 1fr));
+        padding: min(4.17vw, 2rem);
+    }
+
+}
+
+@media only screen and (min-width: 769px) {
+
+    .calculator {
+        gap: 0 min(5.25vw, 3rem);
+        grid-template-columns: minmax(auto, 379px) minmax(auto, 413px);
+        padding: min(3.5vw, 2rem) min(3.5vw, 2rem) min(3.5vw, 2rem) min(5.25vw, 3rem);
+    }
+}

@@ -44,7 +44,7 @@ html, body {
 .container {
     display: flex;
     flex-direction: column;
-    max-inline-size: 1440px;
+    max-inline-size: 100vw;
     inline-size: inherit;
     block-size: inherit;
     align-items: center;
@@ -66,16 +66,26 @@ html, body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    max-inline-size: 920px;
+    max-inline-size: 100vw;
     inline-size: inherit;
 }
 
 .logo { 
     margin: 0 auto; 
-    padding-block-end: min(6.11vw, 5.49125rem);
+    padding-block: min(13.34vw, 3.125rem) min(10.896vw, 3.051875rem);
 }
 
 .logo__img { display: block; }
+
+@media only screen and (min-width: 768px) {
+
+    .container { max-inline-size: 1440px; }
+
+    .main { max-inline-size: 920px; }
+
+    .logo { padding-block: 0 min(9.60vw, 5.49125rem); }
+
+}
 
 .footer { flex-shrink: 0; }
 
