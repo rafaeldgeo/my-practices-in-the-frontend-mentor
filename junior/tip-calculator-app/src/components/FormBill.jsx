@@ -11,7 +11,7 @@ export default function FormBill(){
                 <input className="bill__value-input" type="text" name="bill" id="bill" placeholder="0"/>
             </div>
             <div className="tip">
-                <label className="tip__label">Select Tip %</label>
+                <label className="tip__label" id="group-label">Select Tip %</label>
                 <SelectTip />
             </div>
             <div className="people">
