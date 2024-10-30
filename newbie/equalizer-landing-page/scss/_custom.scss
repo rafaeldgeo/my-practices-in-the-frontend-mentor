@@ -1,11 +1,20 @@
 
+.icon-medias {
+    display: flex;
+    column-gap: min(2.22vw, 2rem);
+}
+
 .icon-medias a {
     text-decoration: none;
 }
 
-.icon-medias svg { fill: $slate; }
+.icon-medias svg { 
+    fill: $slate; 
+}
 
 .icon-medias svg:hover { fill: $orange; }
+
+h1 { letter-spacing: -1px; }
 
 
 
