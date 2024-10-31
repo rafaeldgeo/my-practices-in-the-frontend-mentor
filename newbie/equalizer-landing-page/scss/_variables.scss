@@ -42,7 +42,11 @@ $paragraph-margin-bottom: 0;
 // change default h1 to h6 margin bottom 1 to 0
 $headings-margin-bottom: 0;
 
+// change default border-radius
 $border-radius: 1rem;
+
+// change default border-radius
+$btn-border-radius: .75rem;
 
 // font-size 
 $font-sizes: (
@@ -54,6 +58,11 @@ $font-sizes: (
   6: 4rem,      /* 64px */
   7: 5.5rem     /* 88px */
 );
+
+// line-height
+$line-height-base: 1.5;
+$line-height-sm: 1.25;
+$line-height-lg: 1.8;
 
 // widths 
 $custom-widths: (
@@ -74,3 +83,10 @@ $custom-widths: (
       width: $value; 
   }
 }
+
+$position-values: (
+  0: 0,
+  25: 30%,
+  50: 50%,
+  100: 100%
+);

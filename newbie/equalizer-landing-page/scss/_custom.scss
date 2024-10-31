@@ -1,20 +1,38 @@
+* {
+    // border: 1px solid red;
+}
 
 .icon-medias {
     display: flex;
     column-gap: min(2.22vw, 2rem);
 }
 
-.icon-medias a {
-    text-decoration: none;
-}
+.icon-medias a { text-decoration: none; }
 
-.icon-medias svg { 
-    fill: $slate; 
-}
+.icon-medias svg { fill: $slate; }
 
 .icon-medias svg:hover { fill: $orange; }
 
 h1 { letter-spacing: -1px; }
+
+.custom-btn-ios:hover {
+    background-color: $cyan;
+    border-color: $cyan;
+    color: $slate;
+}
+
+.custom-btn-ios svg { fill: $white; }
+
+.custom-btn-ios:hover svg { fill: $slate; }
+
+.custom-btn-android:hover {
+    background-color: $yellow;
+    border-color: $yellow;
+    color: $slate;
+}
+
+
+
 
 
 
