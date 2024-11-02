@@ -1,8 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import SelectTip from "./SelectTip";
 import "./FormBill.css";
 
 export default function FormBill(){
+
+    const [percentTip, setPercentTip] = useState("");
+
+    function getPercentTip(value) {
+        console.log(value);
+        setPercentTip(value);
+    }
 
     return(
         <form className="form-bill">
@@ -12,7 +19,7 @@ export default function FormBill(){
             </div>
             <div className="tip">
                 <label className="tip__label" id="group-label">Select Tip %</label>
-                <SelectTip />
+                <SelectTip percentTipChosen={getPercentTip}/>
             </div>
             <div className="people">
                 <label className="people__label" htmlFor="people">Number of People</label>

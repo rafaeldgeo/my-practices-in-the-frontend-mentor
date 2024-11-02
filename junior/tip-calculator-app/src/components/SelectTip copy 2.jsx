@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./SelectTip.css";
 
 function BtnRadio({label, valueTip, isSelected, onSelectRadio }) {
@@ -12,65 +12,37 @@ function BtnRadio({label, valueTip, isSelected, onSelectRadio }) {
     );
 }
 
-export default function SelectTip({percentTipChosen}){
+export default function SelectTip(){
 
     const [selectIndex, setSelectIndex] = useState("");
     const [selectTip, setSelectTip] = useState("");
     const [customTip, setCustomTip] = useState("");
-    const [defineTip, setDefineTip] = useState("");
 
-     // check with delay if the value in input is a radio button
-     useEffect(() => {
-        const timer = setTimeout(() => {
-            const index = selectPercentTip(customTip);
-            if (index !== -1) {
-                setSelectIndex(index);
-                setSelectTip(customTip);
-            } else {
-                setSelectTip("");
-                setSelectIndex("");
-            }
-        }, 500);
-        
-        return () => clearTimeout(timer);
-
-    }, [customTip]);
-
-    useEffect(() => {
-        if (selectTip !== "") {
-            setDefineTip(selectTip);
-        } else if (customTip !== "") {
-            setDefineTip(customTip);
-        }
-
-    }, [selectTip, customTip]);
-
-
-    useEffect(() => {
-        percentTipChosen(defineTip);
-    });
-
-    // select the radio button
     function handleClick(e) {
-        
         const value = Number(e.target.value);
         const index = selectPercentTip(value);
         setSelectIndex(index);
         setSelectTip(value);
-        setCustomTip(""); // clear input custom
+        setCustomTip("");
     }
 
-    // check if the value there is in radio button
     function selectPercentTip(value) {
          const tipList = [5, 10, 15, 25, 50];
          return tipList.findIndex((element) => element === value);
     }
 
-    // show the value in the input
     function handleChange(e){
         const value = Number(e.target.value);
+        const index = selectPercentTip(value);
         if (value >= 0) {
             setCustomTip(value);
+            if (index !== -1) {
+                setSelectIndex(index);
+                setSelectTip(value);
+            } else {
+                setSelectTip("");
+                setSelectIndex("");
+            }
         } 
     }
 

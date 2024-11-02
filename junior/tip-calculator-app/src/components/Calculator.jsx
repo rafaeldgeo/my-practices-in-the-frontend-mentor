@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Calculator.css";
 import FormBill from "./FormBill";
 import ResultTip from "./ResultTip";
