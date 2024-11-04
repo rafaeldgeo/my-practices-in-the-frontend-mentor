@@ -2,6 +2,16 @@
     // border: 1px solid red;
 }
 
+html, body {
+    min-height: 100vh;
+    overflow-x: hidden; 
+}
+
+.custom-bg-main {
+    background: url("../assets/bg-pattern-1.svg") right -3% / auto no-repeat, 
+                url("../assets/bg-main-desktop.png") 40% 98% / auto no-repeat;
+}
+
 .icon-medias {
     display: flex;
     column-gap: min(2.22vw, 2rem);
@@ -9,15 +19,16 @@
 
 .icon-medias a { text-decoration: none; }
 
-.icon-medias svg { fill: $slate; }
+.icon-medias svg { 
+    display: block;
+    fill: $slate; 
+}
 
 .icon-medias svg:hover { fill: $orange; }
 
-h1 { letter-spacing: -1px; }
-
 .custom-btn-ios:hover {
     background-color: $cyan;
-    border-color: $cyan;
+    border: none;
     color: $slate;
 }
 
@@ -27,12 +38,13 @@ h1 { letter-spacing: -1px; }
 
 .custom-btn-android:hover {
     background-color: $yellow;
-    border-color: $yellow;
+    border-color: none;
     color: $slate;
 }
 
-
-
+.custom-bg-pattern {
+    background: url("../assets/bg-pattern-2.svg") 45.5% top / auto no-repeat;
+}
 
 
 
