@@ -14,74 +14,81 @@ function BtnRadio({label, valueTip, isSelected, onSelectRadio }) {
 
 export default function SelectTip({percentTipChosen}){
 
-    const [selectIndex, setSelectIndex] = useState("");
-    const [selectTip, setSelectTip] = useState("");
-    const [customTip, setCustomTip] = useState("");
-    const [defineTip, setDefineTip] = useState("");
+    const [selectBtnIndex, setSelectBtnIndex] = useState("");
+    const [percentTip, setPercentTip] = useState({
+        selectBtnValue: "",
+        customInputValue: "",
+    });
+    
 
-     // check with delay if the value in input is a radio button
+     // check with delay if the value in input is a radio button and select it if be
      useEffect(() => {
         const timer = setTimeout(() => {
-            const index = selectPercentTip(customTip);
-            if (index !== -1) {
-                setSelectIndex(index);
-                setSelectTip(customTip);
+            const btnIndex = selectPercentTip(percentTip.customInputValue);
+            if (btnIndex !== -1) {
+                setSelectBtnIndex(btnIndex);
+                setPercentTip({
+                    selectBtnValue: percentTip.customInputValue,
+                    customInputValue: percentTip.customInputValue,
+                });
             } else {
-                setSelectTip("");
-                setSelectIndex("");
+                setSelectBtnIndex("");
+                setPercentTip({
+                    selectBtnValue: "",
+                    customInputValue: percentTip.customInputValue,
+                });
             }
         }, 500);
-        
+                
         return () => clearTimeout(timer);
 
-    }, [customTip]);
+    }, [percentTip.customInputValue]);
 
-    useEffect(() => {
-        if (selectTip !== "") {
-            setDefineTip(selectTip);
-        } else if (customTip !== "") {
-            setDefineTip(customTip);
-        }
+     // send the value chose to the FormBill component
+     useEffect(() => {
+        const timer = setTimeout(() => {
+            percentTipChosen(percentTip);
+        }, 800);
 
-    }, [selectTip, customTip]);
-
-
-    useEffect(() => {
-        percentTipChosen(defineTip);
-    });
+        return () => clearTimeout(timer);
+     });
 
     // select the radio button
     function handleClick(e) {
-        
-        const value = Number(e.target.value);
-        const index = selectPercentTip(value);
-        setSelectIndex(index);
-        setSelectTip(value);
-        setCustomTip(""); // clear input custom
+        const valueTip = Number(e.target.value);
+        const btnIndex = selectPercentTip(valueTip);
+        setSelectBtnIndex(btnIndex);
+        setPercentTip({
+            selectBtnValue: valueTip,
+            customInputValue: "",
+        })
     }
 
     // check if the value there is in radio button
-    function selectPercentTip(value) {
+    function selectPercentTip(valueTip) {
          const tipList = [5, 10, 15, 25, 50];
-         return tipList.findIndex((element) => element === value);
+         return tipList.findIndex((tip) => tip === valueTip);
     }
 
     // show the value in the input
     function handleChange(e){
-        const value = Number(e.target.value);
-        if (value >= 0) {
-            setCustomTip(value);
+        const valueTip = Number(e.target.value);
+        if (valueTip >= 0) {
+            setPercentTip({
+                selectBtnValue: "",
+                customInputValue: valueTip,
+            });
         } 
     }
 
     return(
         <div className="select-tip" role="radiogroup" aria-labelledby="group-label">
-            <BtnRadio label="5%" valueTip="5" isSelected={selectIndex === 0} onSelectRadio={handleClick}/>
-            <BtnRadio label="10%" valueTip="10" isSelected={selectIndex === 1} onSelectRadio={handleClick}/>
-            <BtnRadio label="15%" valueTip="15" isSelected={selectIndex === 2} onSelectRadio={handleClick}/>
-            <BtnRadio label="25%" valueTip="25" isSelected={selectIndex === 3} onSelectRadio={handleClick}/>
-            <BtnRadio label="50%" valueTip="50" isSelected={selectIndex === 4} onSelectRadio={handleClick}/>
-            <input className="select-tip__custom-input" type="text" value={customTip} placeholder="custom" onChange={handleChange}/>  
+            <BtnRadio label="5%" valueTip="5" isSelected={selectBtnIndex === 0} onSelectRadio={handleClick}/>
+            <BtnRadio label="10%" valueTip="10" isSelected={selectBtnIndex === 1} onSelectRadio={handleClick}/>
+            <BtnRadio label="15%" valueTip="15" isSelected={selectBtnIndex === 2} onSelectRadio={handleClick}/>
+            <BtnRadio label="25%" valueTip="25" isSelected={selectBtnIndex === 3} onSelectRadio={handleClick}/>
+            <BtnRadio label="50%" valueTip="50" isSelected={selectBtnIndex === 4} onSelectRadio={handleClick}/>
+            <input className="select-tip__custom-input" type="text" value={percentTip.customInputValue} placeholder="custom" onChange={handleChange}/>  
         </div>
     );
 }

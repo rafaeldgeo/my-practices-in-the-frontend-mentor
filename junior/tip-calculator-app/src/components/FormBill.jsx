@@ -5,17 +5,26 @@ import "./FormBill.css";
 export default function FormBill(){
 
     const [percentTip, setPercentTip] = useState("");
+    const [valueBill, setValueBill] = useState("");
 
     function getPercentTip(value) {
-        console.log(value);
         setPercentTip(value);
+        console.log(percentTip);
+    }
+
+     // show the value in the input
+    function handleChange(e){
+        const value = e.target.value;
+        if (value >= 0) {
+            setValueBill(value);
+        }
     }
 
     return(
         <form className="form-bill">
             <div className="bill">
                 <label className="bill__label" htmlFor="bill">Bill</label>
-                <input className="bill__value-input" type="text" name="bill" id="bill" placeholder="0"/>
+                <input className="bill__value-input" type="text" name="bill" id="bill" placeholder="0" value={valueBill} onChange={handleChange}/>
             </div>
             <div className="tip">
                 <label className="tip__label" id="group-label">Select Tip %</label>
