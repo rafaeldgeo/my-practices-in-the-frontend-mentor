@@ -9,32 +9,37 @@ export default function FormBill(){
     const [numberPeople, setNumberPeople] = useState("");
 
     useEffect(() => {
-        if (numberPeople === 0) {
-            console.log("erro");
-        }
-    }, [numberPeople])
+        const timer = setTimeout(() => {
+            if (percentTip !== "" && valueBill !== "" && numberPeople > 0) {
+                console.log("calcular");
+            }
+        }, 1000);
 
-    function getPercentTip(value) {
-        setPercentTip(value);
-    }
+        return () => clearTimeout(timer);
+
+    }, [percentTip, valueBill, numberPeople])
+
+    function getPercentTip(value) { setPercentTip(value); }
 
      // show the value in the input Bill
     function handleChangeBill(e){
-        const value = e.target.value;
-        if (value >= 0) {
-            setValueBill(value);
-        }
+        let value = e.target.value;
+        value = value.replace(/\D/g, "");
+        
+        const formatter = new Intl.NumberFormat('en-US', { minimumFractionDigits: 2 });
+        const valueFormated = formatter.format(value / 100).replace(",", ".")
+
+        setValueBill(valueFormated);
+
     }
 
     // show the value in the input People
     function handleChangePeople(e){
-        const value = Number(e.target.value);
-        if (value >= 0) {
-             setNumberPeople(value);
-        }
+        let value = e.target.value;
+        value = value.replace(/\D/g, "");
+        setNumberPeople(Number(value));
     }
-
-    
+ 
     return(
         <form className="form-bill">
             <div className="bill">
@@ -46,8 +51,11 @@ export default function FormBill(){
                 <SelectTip percentTipChosen={getPercentTip}/>
             </div>
             <div className="people">
-                <label className="people__label" htmlFor="people">Number of People</label>
-                <input className="people__number-input" type="text" name="people" id="people" placeholder="0" value={numberPeople} onChange={handleChangePeople}/>
+                <div className="people__label-error-wrapper">
+                    <label className="people__label" htmlFor="people">Number of People</label>
+                    <span className="people__msg-error">{numberPeople === 0 ? "can't be zero" : ""}</span>
+                </div>
+                <input className={"people__number-input " + (numberPeople === 0 ? "people__number-input--error" : "")} type="text" name="people" id="people" placeholder="0" value={numberPeople} onChange={handleChangePeople}/>
             </div>
         </form>
     );

@@ -22,6 +22,11 @@
     inline-size: fit-content;
 }
 
+.people__label-error-wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
 .bill__value-input,
 .people__number-input {
     width: 100%;
@@ -53,12 +58,20 @@
     background-position: 1.20375rem center;
 }
 
+.people__number-input--error,
+.people__number-input--error:focus {
+    outline: 2px solid var(--red);
+}
+
+.people__msg-error {
+    color: var(--red);
+    font-weight: var(--f-weight-bold);
+    font-size: clamp(.8rem, .8rem + 2.14vw, 1rem);
+}
 
 @media only screen and (min-width: 376px) {
 
-    .form-bill {
-        margin: min(1.75vw, 1rem) 0; 
-    }
+    .form-bill { margin: min(1.75vw, 1rem) 0; }
 
     .tip { 
         padding-block: 2.5rem;
@@ -67,9 +80,8 @@
 
     .bill__label,
     .tip__label,
-    .people__label {
-        font-size: clamp(.8rem, .8rem + .88vw, 1rem);
-    }
+    .people__label,
+    .people__msg-error { font-size: clamp(.8rem, .8rem + .88vw, 1rem); }
 
     .bill__value-input,
     .people__number-input {
