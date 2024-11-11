@@ -8,19 +8,22 @@ html, body {
 }
 
 .custom-bg-main {
-    background: url("../assets/bg-main-desktop.png") 40% 98% / auto no-repeat;
+    background: url("../assets/bg-pattern-1.svg") right -3% / auto no-repeat, 
+                url("../assets/bg-main-desktop.png") 40% 98% / auto no-repeat;
 }
 
 .custom-illustration-wrapper, 
 .custom-box {
+    max-inline-size: 512px;
     width: 100%;
 }
 
 .custom-hero-wrapper {
-    row-gap: 60px;
+    column-gap: 2.5rem;
     display: flex;
     flex-direction: column;
     height: fit-content;
+    position: relative;
 }
 
 .custom-illustration-wrapper {
@@ -31,11 +34,12 @@ html, body {
 .custom-illustration {
     block-size: auto;
     max-inline-size: 208px;
-    inline-size: 100%;
+    width: 100%;
 }
 
 .custom-box {
     background-color: $orange;
+    border-radius: 12px;
     color: $slate;
     padding: 56px;
 
@@ -84,16 +88,9 @@ html, body {
                     url("../assets/bg-main-tablet.png") 80% -25% / auto no-repeat;
     }
 
-    .custom-illustration-wrapper, 
-    .custom-box { 
-        max-inline-size: 512px;
-        width: 100%;
-    }
-
     .custom-hero-wrapper {
         height: 828px;
         margin-block: 5.375rem;
-        position: relative;
     }
 
     .custom-illustration-wrapper { 
@@ -105,12 +102,11 @@ html, body {
     .custom-illustration { max-inline-size: 270px; }
 
     .custom-box {
-        border-radius: 12px;
+        position: absolute;
+        top: 24%;
+        right: 12%;
         max-inline-size: 356px;
         padding: 48px;
-        position: absolute;
-        right: 12%;
-        top: 24%;
 
         &__description {
             font-size: 1.125rem;
@@ -134,6 +130,10 @@ html, body {
 
 @include media-breakpoint-up(lg) {
 
+    body {
+        // background-color: yellow;
+    }
+
     .custom-bg-main {
         background: url("../assets/bg-pattern-1.svg") right -3% / auto no-repeat, 
                     url("../assets/bg-main-desktop.png") 40% 98% / auto no-repeat;
@@ -141,7 +141,6 @@ html, body {
 
     .custom-hero-wrapper {
         align-items: center;
-        column-gap: 2.5rem;
         flex-direction: row;
         height: 842px;
         justify-content: center;

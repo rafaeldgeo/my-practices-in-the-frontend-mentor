@@ -8,34 +8,39 @@ html, body {
 }
 
 .custom-bg-main {
-    background: url("../assets/bg-main-desktop.png") 40% 98% / auto no-repeat;
+    background: url("../assets/bg-pattern-1.svg") right -3% / auto no-repeat, 
+                url("../assets/bg-main-desktop.png") 40% 98% / auto no-repeat;
 }
 
 .custom-illustration-wrapper, 
 .custom-box {
     width: 100%;
+    max-inline-size: 512px;
 }
 
 .custom-hero-wrapper {
-    row-gap: 60px;
+    height: fit-content;
     display: flex;
     flex-direction: column;
-    height: fit-content;
+    column-gap: 2.5rem;
+    position: relative;
 }
 
 .custom-illustration-wrapper {
      display: flex;
      justify-content: center;
+
 }
 
 .custom-illustration {
     block-size: auto;
     max-inline-size: 208px;
-    inline-size: 100%;
+    width: 100%;
 }
 
 .custom-box {
     background-color: $orange;
+    border-radius: 12px;
     color: $slate;
     padding: 56px;
 
@@ -70,7 +75,7 @@ html, body {
 @include media-breakpoint-up(sm) {
 
     body {
-        // background-color: red;
+        background-color: red;
     }
     
 
@@ -80,19 +85,16 @@ html, body {
 @include media-breakpoint-up(md) {
 
     .custom-bg-main {
-        background: url("../assets/bg-pattern-1.svg") 109% -3% / 34% auto no-repeat, 
-                    url("../assets/bg-main-tablet.png") 80% -25% / auto no-repeat;
-    }
-
-    .custom-illustration-wrapper, 
-    .custom-box { 
-        max-inline-size: 512px;
-        width: 100%;
+        background: url("../assets/bg-pattern-1.svg") 109% -4% / 34% auto no-repeat, 
+                    url("../assets/bg-main-tablet.png") 40% 98% / auto no-repeat;
     }
 
     .custom-hero-wrapper {
+        column-gap: 2.5rem;
+        display: flex;
+        flex-direction: column;
         height: 828px;
-        margin-block: 5.375rem;
+        margin-block: 5rem;
         position: relative;
     }
 
@@ -105,12 +107,11 @@ html, body {
     .custom-illustration { max-inline-size: 270px; }
 
     .custom-box {
-        border-radius: 12px;
+        position: absolute;
+        top: 10%;
+        right: 10%;
         max-inline-size: 356px;
         padding: 48px;
-        position: absolute;
-        right: 12%;
-        top: 24%;
 
         &__description {
             font-size: 1.125rem;
@@ -122,17 +123,21 @@ html, body {
         border-radius: 12px;
         height: 600px;
         position: absolute;
-        top: 45%;
+        top: 42%;
         z-index: -1;
     }
 
     body {
-        // background-color: blue;
+        background-color: blue;
     }
 
 }
 
 @include media-breakpoint-up(lg) {
+
+    body {
+        background-color: yellow;
+    }
 
     .custom-bg-main {
         background: url("../assets/bg-pattern-1.svg") right -3% / auto no-repeat, 
@@ -140,12 +145,11 @@ html, body {
     }
 
     .custom-hero-wrapper {
-        align-items: center;
-        column-gap: 2.5rem;
         flex-direction: row;
-        height: 842px;
+        margin-block: 5rem;  
+        align-items: center;   
         justify-content: center;
-        margin-block: 5rem;
+        height: 842px;
     }
 
     .custom-illustration-wrapper {
