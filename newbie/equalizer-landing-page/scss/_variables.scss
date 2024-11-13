@@ -66,30 +66,7 @@ $line-height-xs: 1.1;
 $line-height-sm: 1.25;
 $line-height-lg: 1.778;
 
-// widths 
-$custom-widths: (
-    'w-10': 10%, 
-    'w-20': 20%, 
-    'w-30': 30%,
-    'w-40': 40%,
-    'w-45': 45%, 
-    'w-46': 46%, 
-    'w-55': 55%, 
-    'w-60': 60%,
-    'w-63': 63%,
-    'w-70': 70%,
-    'w-75': 75%,
-    'w-80': 80%,
-    'w-90': 90%
-);
-
-// create new width class to widths
-@each $name, $value in $custom-widths {
-  .#{$name} {
-      width: $value; 
-  }
-}
-
+// position
 $position-values: (
   0: 0,
   42: 42%,
