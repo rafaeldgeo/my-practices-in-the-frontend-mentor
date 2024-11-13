@@ -59,7 +59,7 @@ export default function SelectTip({percentTipChosen}){
         const btnIndex = selectPercentTip(valueTip);
         setSelectBtnIndex(btnIndex);
         setPercentTip({
-            selectBtnValue: valueTip,
+            selectBtnValue: Number(valueTip),
             customInputValue: "",
         })
     }
@@ -76,7 +76,7 @@ export default function SelectTip({percentTipChosen}){
         if (valueTip >= 0) {
             setPercentTip({
                 selectBtnValue: "",
-                customInputValue: valueTip,
+                customInputValue: Number(valueTip),
             });
         } 
     }

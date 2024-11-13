@@ -6,9 +6,13 @@ import ResultTip from "./ResultTip";
 
 export function Calculator() {
 
+    function getInputs(value){
+        console.log(value);
+    }
+    
     return(
         <div className="calculator">
-            <FormBill />
+            <FormBill inputsCompleted={getInputs}/>
             <ResultTip />
         </div>
     );

@@ -2,24 +2,23 @@ import React, { useState, useEffect } from "react";
 import SelectTip from "./SelectTip";
 import "./FormBill.css";
 
-export default function FormBill(){
+export default function FormBill({inputsCompleted}){
 
     const [percentTip, setPercentTip] = useState("");
     const [valueBill, setValueBill] = useState("");
     const [numberPeople, setNumberPeople] = useState("");
 
+    // check if all input was complete
     useEffect(() => {
         const timer = setTimeout(() => {
             if (percentTip !== "" && valueBill !== "" && numberPeople > 0) {
-                console.log("calcular");
+                inputsCompleted([percentTip, valueBill, numberPeople]);
             }
         }, 1000);
 
         return () => clearTimeout(timer);
 
-    }, [percentTip, valueBill, numberPeople])
-
-    function getPercentTip(value) { setPercentTip(value); }
+    })
 
      // show the value in the input Bill
     function handleChangeBill(e){
@@ -30,7 +29,15 @@ export default function FormBill(){
         const valueFormated = formatter.format(value / 100).replace(",", ".")
 
         setValueBill(valueFormated);
+    }
 
+    // catch percent tip from Select Tip 
+    function getPercentTip(value) { 
+        if (value.selectBtnValue !== "") {
+            setPercentTip(value.selectBtnValue / 100);
+        } else {
+            setPercentTip(value.customInputValue / 100);
+        }
     }
 
     // show the value in the input People
