@@ -1,0 +1,32 @@
+//font
+$font-family-sans-serif: "Plus Jakarta Sans", sans-serif;
+
+// colors
+$blue-900: #13183F;
+$blue-600: #666CA3;
+$pink-700:  #F02AA6;
+$pink-600: #F74780;
+$pink-300: #FFA7C3;
+$orange: #FF6F48;
+$grey: #83869A;
+
+// spacing
+$spacer: 1rem;
+$spacers: (
+  0: 0,
+  1: $spacer * .25,     // 4px
+  2: $spacer * .5,      // 8px
+  3: $spacer * .75,     // 12px
+  4: $spacer,           // 16px
+  5: $spacer * 1.25,    // 20px
+  6: $spacer * 1.5,     // 24px
+  7: $spacer * 2,       // 32px
+  8: $spacer * 2.5,     // 40px
+  9: $spacer * 2.75,    // 44px
+  10: $spacer * 3,      // 48px
+  11: $spacer * 3.5,    // 56px
+  12: $spacer * 4,      // 64px
+  13: $spacer * 5,      // 80px
+  14: $spacer * 8,      // 128px
+  15: $spacer * 9,      // 144px
+);

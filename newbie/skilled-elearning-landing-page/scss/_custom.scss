@@ -1,0 +1,51 @@
+// @include media-breakpoint-up(xs) {
+
+//     body {
+//         background-color: red;
+//     }
+
+// }
+
+// @include media-breakpoint-up(sm) {
+
+//     body {
+//         background-color: blue;
+//     }
+    
+// }
+
+// @include media-breakpoint-up(md) {
+
+//     body {
+//         background-color: yellow;
+//     }
+    
+// }
+
+// @include media-breakpoint-up(lg) {
+
+//     body {
+//         background-color: pink;
+//     }
+    
+// }
+
+// @include media-breakpoint-up(xl) {
+
+//     body {
+//         background-color: green;
+//     }
+    
+// }
+
+// @include media-breakpoint-up(xxl) {
+
+//     body {
+//         background-color: tomato;
+//     }
+    
+// }
+
+.teste {
+    @include gradient-y(#FF6F48, #F02AA6);
+}

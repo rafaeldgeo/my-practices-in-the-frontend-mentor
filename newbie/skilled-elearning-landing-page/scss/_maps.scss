@@ -1,0 +1,9 @@
+$custom-colors: (
+    "blue-900": $blue-900,
+    "blue-600": $blue-600,
+    "pink-600": $pink-600,
+    "pink-300": $pink-300,
+    "grey": $grey,
+);
+
+$theme-colors: map-merge($theme-colors, $custom-colors);
