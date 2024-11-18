@@ -15543,6 +15543,7 @@ textarea.form-control-lg {
   margin: 0;
   padding: 0;
   font-family: "IBM Plex Sans", sans-serif;
+  border: 1px solid red;
 }
 
 html, body {
@@ -15551,7 +15552,7 @@ html, body {
 
 html, body {
   width: 100%;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 .custom-bg-main {
