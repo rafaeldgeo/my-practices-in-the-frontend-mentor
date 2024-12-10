@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import SelectTip from "./SelectTip";
 import "./FormBill.css";
 
-export default function FormBill(){
+export default function FormBill({onSubmit}){
 
     const [valueBill, setValueBill] = useState("");
     const [numberPeople, setNumberPeople] = useState("");
@@ -11,24 +11,31 @@ export default function FormBill(){
         input: ""
     });
     const [selectBtnIndex, setSelectBtnIndex] = useState("");
+    const btnRef = useRef(null);
 
     // check if all input was complete and send to Calculator Component
     useEffect(() => {
         let percentTip = getPercentTip(valueTip);
         const timer = setTimeout(() => {
             if (valueBill > 0 && percentTip >= 0 && numberPeople > 0) {
-                const valueBillFloat = parseFloat(valueBill);
-                const tipAmount = valueBillFloat * percentTip;
-                const tipAmountPerson = tipAmount / numberPeople;
-                const totalPerson = (valueBillFloat + tipAmount) / numberPeople;
-                console.log(tipAmountPerson);
-                console.log(totalPerson);
+                btnRef.current.click();
             }
         }, 1000);
-        
+
         return () => clearTimeout(timer);
+
     }, [valueBill, valueTip, numberPeople]);
 
+    // calcule Tip
+    function calculeTip(e){
+        e.preventDefault();
+        let percentTip = getPercentTip(valueTip);
+        const valueBillFloat = parseFloat(valueBill);
+        const tipAmount = valueBillFloat * percentTip;
+        const tipAmountPerson = tipAmount / numberPeople;
+        const totalPerson = (valueBillFloat + tipAmount) / numberPeople;
+        onSubmit(tipAmountPerson.toFixed(2), totalPerson.toFixed(2));
+    }
 
      // catch percent tip from Select Tip Component
      function getPercentTip(value) { 
@@ -98,7 +105,7 @@ export default function FormBill(){
     }
 
     return(
-        <form className="form-bill">
+        <form className="form-bill" onSubmit={calculeTip}>
             <div className="bill">
                 <label className="bill__label" htmlFor="bill">Bill</label>
                 <input className="bill__value-input" type="text" name="bill" id="bill" placeholder="0" value={valueBill} onChange={handleChangeBill}/>
@@ -114,6 +121,7 @@ export default function FormBill(){
                 </div>
                 <input className={"people__number-input " + (numberPeople === 0 ? "people__number-input--error" : "")} type="text" name="people" id="people" placeholder="0" value={numberPeople} onChange={handleChangePeople}/>
             </div>
+            <button className="form-bill__btn" ref={btnRef}></button>
         </form>
     );
 }

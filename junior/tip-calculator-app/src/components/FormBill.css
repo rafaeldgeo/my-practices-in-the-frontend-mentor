@@ -69,6 +69,10 @@
     font-size: clamp(.8rem, .8rem + 2.14vw, 1rem);
 }
 
+.form-bill__btn {
+    display: none;
+}
+
 @media only screen and (min-width: 376px) {
 
     .form-bill { margin: min(1.75vw, 1rem) 0; }
