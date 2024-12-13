@@ -58,5 +58,8 @@ Practices in [Frontend Mentor Website](https://www.frontendmentor.io/)
 * 14- [Insure-landing-page-master](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/junior/insure-landing-page-master/) **HTML** | **CSS** | **JS** <sup>React Library Directly in HTML</sup>
 * 15- [Typemaster-pre-launch-landing page](https://rafaeldgeo-typemaster-pre-launch.vercel.app/) **HTML** | **CSS** | **JS** <sup>React Library Create App</sup>
 * 15- [Body-Mass-Index-calculator](https://rafaeldgeo-body-mass-calculator.vercel.app/) **HTML** | **CSS** | **JS** <sup>React Library Create App</sup>
+* 16- [Tip-Calculator](https://rafaeldgeo-tip-calculator.vercel.app/) **HTML** | **CSS** | **JS** <sup>React Library Create App</sup>
+
+
 
 **My Frontend Mentor: [@rafaeldgeo](https://www.frontendmentor.io/profile/rafaeldgeo)**
