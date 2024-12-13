@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, forwardRef, useImperativeHandle } from "react";
 import SelectTip from "./SelectTip";
 import "./FormBill.css";
 
-export default function FormBill({onSubmit}){
+const FormBill = forwardRef((props, ref) => {
 
     const [valueBill, setValueBill] = useState("");
     const [numberPeople, setNumberPeople] = useState("");
@@ -12,6 +12,19 @@ export default function FormBill({onSubmit}){
     });
     const [selectBtnIndex, setSelectBtnIndex] = useState("");
     const btnRef = useRef(null);
+
+    // reset input. This command come from Calculator Component
+    useImperativeHandle(ref, () => ({
+        resetInputs: () => {
+            setValueBill("");
+            setNumberPeople("");
+            setSelectBtnIndex("");
+            setValueTip({
+                select: "",
+                input: ""
+            });
+        },
+    }));
 
     // check if all input was complete and send to Calculator Component
     useEffect(() => {
@@ -34,7 +47,7 @@ export default function FormBill({onSubmit}){
         const tipAmount = valueBillFloat * percentTip;
         const tipAmountPerson = tipAmount / numberPeople;
         const totalPerson = (valueBillFloat + tipAmount) / numberPeople;
-        onSubmit(tipAmountPerson.toFixed(2), totalPerson.toFixed(2));
+        props.onSubmit(tipAmountPerson.toFixed(2), totalPerson.toFixed(2));
     }
 
      // catch percent tip from Select Tip Component
@@ -124,4 +137,6 @@ export default function FormBill({onSubmit}){
             <button className="form-bill__btn" ref={btnRef}></button>
         </form>
     );
-}
+});
+
+export default FormBill;
