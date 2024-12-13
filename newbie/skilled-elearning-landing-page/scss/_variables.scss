@@ -1,14 +1,17 @@
-//font
-$font-family-sans-serif: "Plus Jakarta Sans", sans-serif;
-
 // colors
 $blue-900: #13183F;
+$blue-800: hsla(233, 92%, 29%, .14);
 $blue-600: #666CA3;
 $pink-700:  #F02AA6;
 $pink-600: #F74780;
 $pink-300: #FFA7C3;
 $orange: #FF6F48;
 $grey: #83869A;
+
+
+//font
+$font-family-sans-serif: "Plus Jakarta Sans", sans-serif;
+$font-weight-bolder: 800;
 
 // spacing
 $spacer: 1rem;
@@ -30,3 +33,43 @@ $spacers: (
   14: $spacer * 8,      // 128px
   15: $spacer * 9,      // 144px
 );
+
+// line-height
+$line-height-base: 1.5;
+$line-height-sm: 1.2;
+$line-height-lg: 2;
+
+
+// change default paragraph margin bottom 1 to 0
+$paragraph-margin-bottom: 0;
+
+// change default h1 to h6 margin bottom 1 to 0
+$headings-margin-bottom: 0;
+
+// font-size 
+$font-sizes: (
+  1: .6875rem,  // 11px 
+  2: 1rem,      // 16px 
+  3: 1.125rem,  // 18px 
+  4: 1.5rem,    // 24px 
+  5: 2rem,      // 32px 
+  6: 2.5rem,    // 40px 
+  7: 3.5rem,    // 56px 
+);
+
+
+// custom cards 
+$card-border-radius: 0.9375rem;
+$card-border-width: 0;
+$card-spacer-x: 2rem;
+$card-spacer-y: 2.5rem;
+$card-title-spacer-y: 1.5rem;
+
+
+$position-values: (
+  0: 0,
+  50: 50%,
+  94: 94%,
+  100: 100%
+);
+

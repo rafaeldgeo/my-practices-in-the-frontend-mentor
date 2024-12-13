@@ -46,6 +46,25 @@
     
 // }
 
+.card-custom-courses {
+    background-color: var(--bs-white);
+    box-shadow: 0 25px 50px 0 $blue-800;
+    padding-block-start: 1.5rem;
+    position: relative;
+}
+
+.card-custom-title {
+    background: linear-gradient($orange, $pink-700);
+    box-shadow: 0 25px 50px 0 $blue-800;
+    padding-block-start: 1.5rem;
+    position: relative;
+}
+
+.link-custom-hover { color: $pink-600 }
+
+.link-custom-hover:hover { color: $pink-300;}
+
 .teste {
     @include gradient-y(#FF6F48, #F02AA6);
 }
+  
