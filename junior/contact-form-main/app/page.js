@@ -1,9 +1,12 @@
 import ContactForm from "./components/ContactForm";
+import Dialog from "./components/Dialog";
+import MessageSent from "./components/Dialog";
 
 export default function Home() {
   return (
     <main className="main">
-      <ContactForm></ContactForm>
+      <Dialog></Dialog>
+      <ContactForm></ContactForm> 
     </main>
   );
 }
