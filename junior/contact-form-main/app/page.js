@@ -1,6 +1,5 @@
-import ContactForm from "./components/ContactForm";
-import Dialog from "./components/Dialog";
-import MessageSent from "./components/Dialog";
+import ContactForm from "@/app/components/contact-form/ContactForm";
+import Dialog from "@/app/components/dialog/Dialog";
 
 export default function Home() {
   return (

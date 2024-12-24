@@ -41,7 +41,6 @@ body {
 }
 
 .main {
-  align-items: center;
   display: flex;
   flex: 1 0 auto;
   inline-size: inherit;
@@ -73,12 +72,13 @@ body {
   row-gap: 1.5rem;
 }
 
-.form__label {
-  display: block;
-  margin-block-end: .5rem;
-  font-size: 1rem;
-  line-height: 1.5;
+.form__label, .radio-button__label {
   color: var(--grey-900);
+  display: block;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  margin-block-end: .5rem;
 }
 
 .form__required {
@@ -86,7 +86,7 @@ body {
   margin-inline-start: .5rem;
 }
 
-.form__input, .form__query-wrapper .form__label {
+.form__input, .radio-button {
   border: 1px solid var(--grey-500);
   border-radius: .5rem;
   color: var(--grey-900);
@@ -96,9 +96,7 @@ body {
   padding: min(3.2vw, .75rem) min(6.4vw, 1.5rem);
 }
 
-.form__query-wrapper .form__label { margin-block-end: 0; }
-
-.form__input:focus { outline: 1px solid var(--green-600); }
+:is(.form__input, .checkbox__square):focus { outline: 1px solid var(--green-600); }
 
 .form__input-name, .form__query-wrapper {
   display: grid;
@@ -107,20 +105,6 @@ body {
 }
 
 .form__query-wrapper { gap: 1rem 1rem; }
-
-.form__agree { 
-  display: flex;
-  align-items: center;
-  column-gap: 1rem;
-  margin-block: 2.5rem; 
-  width: 80%;
-}
-
-.form__agree .form__label {
-  cursor: pointer;
-  display: inline;
-  margin-block-end: 0;
-}
 
 .form__btn {
   background-color: var(--green-600);
@@ -137,9 +121,46 @@ body {
 
 .form__btn:hover { background-color: var(--green-600-hover); }
 
+/* Radio Button Component */
+
+.radio-button__label { margin-block-end: 0; }
+
+/* Checkbox Component */
+
+.checkbox { 
+  display: flex;
+  align-items: center;
+  column-gap: 1rem;
+  margin-block: 2.5rem; 
+  width: 80%;
+}
+
+.checkbox .form__label {
+  cursor: pointer;
+  display: inline;
+  margin-block-end: 0;
+}
+
+.checkbox__square {
+  border: 1px solid var(--grey-500);
+  border-radius: 3px;
+  cursor: pointer;
+  height: 13px;
+  width: 13px;
+}
+
+.checkbox__square--checked {
+  background-image: url("/icon-checkbox-check.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+
 @media only screen and (min-width: 576px) {
 
   .container { max-inline-size: 1440px; }
+
+  .main { align-items: center; }
 
   .form-contact {
     margin-inline: 2.4375rem;
@@ -148,7 +169,7 @@ body {
     margin: 2.4375rem;
   }
 
-  .form__input, .form__query-wrapper .form__label {
+  .form__input, .radio-button {
     font-size: 1.125rem;
     padding: .75rem 1.5rem;
   }
@@ -159,6 +180,8 @@ body {
   }
 
 }
+
+/* Dialog Component */
 
 .dialog {
   background-color: var(--grey-900);
@@ -196,6 +219,8 @@ body {
 .footer {
   flex-shrink: 0;
 }
+
+/* AttributationFooter Component */
 
 .attribution__color-label { color: var(--grey-900); }
 

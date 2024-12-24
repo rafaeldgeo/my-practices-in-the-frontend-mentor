@@ -1,6 +1,6 @@
 import { Karla } from "next/font/google";
 import "./globals.css";
-import AttributionFooter from "./components/AttributionFooter";
+import AttributionFooter from "@/app/components/AttributionFooter";
 
 const karla = Karla({
   weight: ["400", "700"],

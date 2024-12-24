@@ -1,6 +1,7 @@
 import Image from "next/image";
 
 export default function Dialog(){
+
     return(
         <dialog className="dialog" open>
             <div className="dialog__head">

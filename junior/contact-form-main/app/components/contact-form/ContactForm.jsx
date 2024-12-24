@@ -1,3 +1,8 @@
+"use client";
+
+import { useState } from "react";
+import CheckBox from "@/app/components/contact-form/Checkbox";
+import RadioButtom from "@/app/components/contact-form/RadioButtom";
 import { Karla } from "next/font/google";
 
 const karla = Karla({
@@ -7,6 +12,17 @@ const karla = Karla({
   });
  
 export default function ContactForm(){
+
+    const [isCheckedCheckBox, SetIsCheckedCheckBox] = useState(false);
+
+    const handleCheckBox = () => {
+        if (isCheckedCheckBox) {
+            SetIsCheckedCheckBox(false);
+        } else {
+            SetIsCheckedCheckBox(true);
+        }
+    }
+
     return(
         <div className="form-contact">
             <h1 className="form-contact__title">Contact Us</h1>
@@ -16,37 +32,29 @@ export default function ContactForm(){
                         <div className="form__firstName">
                             <label className="form__label" htmlFor="firstname">First Name <span className="form__required">*</span>
                             </label>
-                            <input className="form__input" type="text" name="firstname" id="firstname" required/>
+                            <input className="form__input" type="text" name="firstname" id="firstname"/>
                         </div>
                         <div className="form__lastName">
                             <label className="form__label" htmlFor="lastname">Last Name <span className="form__required">*</span></label>
-                            <input className="form__input" type="text" name="lastname" id="lastname" required/>
+                            <input className="form__input" type="text" name="lastname" id="lastname"/>
                         </div>
                     </div>
                     <div className="form__input-email">
                         <label className="form__label" htmlFor="email">Email Address<span className="form__required">*</span></label>
-                        <input className="form__input" type="text" name="email" id="email" required/>
+                        <input className="form__input" type="text" name="email" id="email" />
                     </div>
-                    <div className="form__input-query">
-                        <label className="form__label">Query Type<span className="form__required">*</span></label>
+                    <div className="form__input-query" role="radiogroup" aria-labelledby="group-label">
+                        <h2 className="form__label" id="group-label">Query Type<span className="form__required">*</span></h2>
                         <div className="form__query-wrapper">
-                            <label className="form__label" htmlFor="general">
-                                <input type="radio" name="querytype" id="general" value="general" required /> General Enquiry
-                            </label>
-                            <label className="form__label" htmlFor="suport">
-                                <input type="radio" name="querytype" id="suport" value="suporte" required /> Suport Request
-                            </label>
+                            <RadioButtom></RadioButtom>
                         </div>
                     </div>
                     <div className="form__input-message">
                         <label className="form__label" htmlFor="message">Message<span className="form__required">*</span></label>
-                        <textarea className="form__input" name="message" id="message" rows="3" required></textarea>
+                        <textarea className="form__input" name="message" id="message" rows="3"></textarea>
                     </div>
                 </div>
-                <div className="form__agree">                    
-                    <input className="form__inputCheckbox" type="checkbox" name="checkbox" id="checkbox" required />
-                    <label className="form__label" htmlFor="checkbox">I consent to being contacted by the team <span className="form__required">*</span></label>
-                </div>
+                <CheckBox onCheck={handleCheckBox} isChecked={isCheckedCheckBox}></CheckBox>
                 <input className={`${karla.className} form__btn`} type="submit" value="Submit" />
             </form>
         </div>
