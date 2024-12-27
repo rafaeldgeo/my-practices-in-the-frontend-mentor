@@ -1,19 +1,22 @@
-function BtnRadio(){
+import { useId } from "react";
+
+function BtnRadio({labelRadio, valueRadio, onSelect, isSelect}){
 
     return(
-        <div className="radio-button" role="radio" aria-checked="false" tabIndex="0" data-value="valor" id="radio" name="query_type">
-            <div className="radio-button__circle"></div>
-            <label className="radio-button__label" htmlFor="radio">General Enquiry</label>
+        <div className={"radio-button " + (isSelect ? "radio-button--selected" : "")} role="radio" name="querytype" aria-checked={isSelect ? "true" : "false"} tabIndex="0"
+        aria-labelledby={labelRadio} data-value={valueRadio} onClick={onSelect} onKeyDown={onSelect}>
+            <div className={"radio-button__circle " + (isSelect ? "radio-button__circle--selected" : "")}></div>
+            <span className="radio-button__label" id={labelRadio}>{labelRadio}</span>
         </div>
     );
 }
 
-export default function RadioButtom(){
+export default function RadioButtom({onSelected, isSelected, isChecked}){
 
     return(
         <>
-            <BtnRadio></BtnRadio>
-            <BtnRadio></BtnRadio>
+            <BtnRadio labelRadio="General Enquiry" valueRadio="general enquiry" onSelect={(e) => onSelected(e.target.closest(".radio-button"))} isSelect={isSelected === "general enquiry"} isCheck={isChecked}></BtnRadio>
+            <BtnRadio labelRadio="Suport Request" valueRadio="suport request" onSelect={(e) => onSelected(e.target.closest(".radio-button"))} isSelect={isSelected === "suport request"}></BtnRadio>
         </>
     );
 }
