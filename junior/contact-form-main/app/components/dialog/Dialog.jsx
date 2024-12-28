@@ -1,9 +1,10 @@
+import { useState } from "react";
 import Image from "next/image";
 
-export default function Dialog(){
+export default function Dialog({onShow}){
 
     return(
-        <dialog className="dialog" open>
+        <dialog className="dialog" open={onShow}>
             <div className="dialog__head">
                 <Image src="/icon-success-check.svg" width={20} height={21} alt=""></Image>
                 <span className="dialog__title">Message Sent!</span>
