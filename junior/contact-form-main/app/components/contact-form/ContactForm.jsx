@@ -90,8 +90,9 @@ export default function ContactForm(){
         showDialog();
     }
 
-    // handle dialog after sent
+    // show Dialog Component after sent and scroll window
     const showDialog = () => {
+        window.scroll({top: 0, behavior: "smooth"});
         setDialogShow("open");
         setTimeout(() => {
             setDialogShow("");
