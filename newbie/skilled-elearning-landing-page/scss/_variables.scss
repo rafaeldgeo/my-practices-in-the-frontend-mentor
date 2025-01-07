@@ -32,13 +32,13 @@ $spacers: (
   13: $spacer * 5,      // 80px
   14: $spacer * 8,      // 128px
   15: $spacer * 9,      // 144px
+  16: $spacer * 10
 );
 
 // line-height
 $line-height-base: 1.5;
 $line-height-sm: 1.2;
 $line-height-lg: 2;
-
 
 // change default paragraph margin bottom 1 to 0
 $paragraph-margin-bottom: 0;
@@ -69,7 +69,7 @@ $card-title-spacer-y: 1.5rem;
 $position-values: (
   0: 0,
   50: 50%,
-  94: 94%,
+  94: 91%,
   100: 100%
 );
 
