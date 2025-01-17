@@ -2,12 +2,15 @@
 $blue-900: #13183F;
 $blue-800: hsla(233, 92%, 29%, .14);
 $blue-600: #666CA3;
+$blue-100: #4851FF;
 $pink-700:  #F02AA6;
 $pink-600: #F74780;
 $pink-300: #FFA7C3;
 $orange: #FF6F48;
 $grey: #83869A;
-
+$gratient-btn-intro: linear-gradient($orange, $pink-700);
+$gratient-btn-footer: linear-gradient($blue-100, $pink-700);
+$gradient-btn-footer-hover: linear-gradient($blue-600, $pink-300);
 
 //font
 $font-family-sans-serif: "Plus Jakarta Sans", sans-serif;

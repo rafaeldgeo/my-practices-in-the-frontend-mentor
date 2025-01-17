@@ -69,6 +69,51 @@
     box-shadow: 0 25px 50px 0 $blue-800;
 }
 
+.btn-custom {
+    border: none;
+    border-radius: 1.75rem;
+    font-size: 1.125rem;
+    font-weight: 700;
+    line-height: 1.5;
+    padding: 1rem 2rem;
+}
+
+.btn-custom-header {
+    background-color: $blue-900;
+    color: $white;
+}
+
+.btn-custom-header:hover { background-color: $blue-600; }
+
+.btn-custom-intro {
+    background: $gratient-btn-intro;
+    color: $white;
+}
+
+.btn-custom-intro:hover { opacity: .5; }
+
+.btn-custom-footer {
+    background: $gratient-btn-footer;
+    color: $white;
+}
+
+.btn-custom-footer:hover { 
+    background: $gradient-btn-footer-hover;
+
+}
+
+.btn-custom-header {
+  @include button-variant(
+    $background: $blue-900,
+    $border: $blue-900,
+    $hover-background: darken($blue-600, 10%),
+    $hover-border: darken($blue-600, 10%),
+  );
+}
+
+
+
+
 .link-custom-hover { color: $pink-600 }
 
 .link-custom-hover:hover { color: $pink-300;}
