@@ -33,9 +33,10 @@ $spacers: (
   11: $spacer * 3.5,    // 56px
   12: $spacer * 4,      // 64px
   13: $spacer * 5,      // 80px
-  14: $spacer * 8,      // 128px
-  15: $spacer * 9,      // 144px
-  16: $spacer * 10
+  14: $spacer * 6.90625, // 110.5px
+  15: $spacer * 8,      // 128px
+  16: $spacer * 9,      // 144px
+  17: $spacer * 10
 );
 
 // line-height
@@ -71,8 +72,9 @@ $card-title-spacer-y: 1.5rem;
 
 $position-values: (
   0: 0,
+  5: 5%,
   50: 50%,
+  55: 51%,
   94: 91%,
   100: 100%
 );
-

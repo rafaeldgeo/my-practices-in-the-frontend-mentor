@@ -1,3 +1,0 @@
-@mixin gradient-y($start-color:null, $end-color: null, $start-percent: null, $end-percent: null) {
-    background-image: linear-gradient(to bottom, $start-color $start-percent, $end-color $end-percent);
-}

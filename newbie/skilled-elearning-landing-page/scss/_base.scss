@@ -1,0 +1,81 @@
+@use "sass:map";
+@use "sass:math";
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+
+// colors
+$blue-900: #13183F;
+$blue-800: hsla(233, 92%, 29%, .14);
+$blue-600: #666CA3;
+$blue-100: #4851FF;
+$pink-700:  #F02AA6;
+$pink-600: #F74780;
+$pink-300: #FFA7C3;
+$orange: #FF6F48;
+$grey: #83869A;
+$white: #FFFFFF;
+$gradient-card: linear-gradient($orange, $pink-700);
+$gratient-btn-intro: linear-gradient($orange, $pink-700);
+$gratient-btn-footer: linear-gradient($blue-100, $pink-700);
+$gradient-btn-footer-hover: linear-gradient($blue-600, $pink-300);
+$font: "Plus Jakarta Sans", serif;
+$deviceList: ("mobile": 375, "tablet": 768, "desktop": 1440);
+
+// reset config
+@mixin reset {
+    *, 
+    *::before,
+    *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: $font;
+    }
+}
+
+// breakpoints
+@mixin for-size($device) {
+    @if $device == tablet {
+        @media (min-width: 500px) and (max-width: 768px) { @content; }
+    } @else if $device == desktop {
+        @media (min-width: 769px) { @content; }
+    } @else {
+        @error "You must define one device valid";
+    }
+}
+
+// convert px to rem
+@function convertPxToRem($sizePx) {
+    @return math.div($sizePx, 16) * 1rem;
+}
+
+// calculate the view size from device
+@function calculateVw($sizePx, $device) {
+    $sizeView: map.get($deviceList, $device);
+    $sizeVw: (math.div($sizePx, $sizeView) * 100) * 1vw;
+
+    @return $sizeVw;
+}
+
+// define the fluid space using min(vw, rem)
+@function fluidSpace($sizePx, $device: "mobile") {    
+    @if  map.get($deviceList, $device) {
+        @return min(calculateVw($sizePx, $device), convertPxToRem($sizePx));
+    } @else {
+        @error "You must define one device valid";
+    }
+}
+
+// define the fluid typography using clamp(rem, vw, rem)
+@function fluidTypo($sizePxMin, $sizePxMax, $device: "mobile") {
+    @if  map.get($deviceList, $device) {
+        $sizePx: $sizePxMax - 8;
+        @return clamp(convertPxToRem($sizePxMin), .5rem + calculateVw($sizePx, $device), convertPxToRem($sizePxMax));
+    } @else {
+        @error "You must define one device valid";
+    }
+    
+}
+
+
+

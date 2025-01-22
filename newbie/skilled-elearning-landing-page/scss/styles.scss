@@ -1,17 +1,167 @@
-@import "../node_modules/bootstrap/scss/functions";
-@import "../node_modules/bootstrap/scss/variables";
-@import "../node_modules/bootstrap/scss/mixins";
+@use "base";
 
-@import "variables";
-@import "maps";
-@import "utilities";
+@include base.reset;
 
-@import "../node_modules/bootstrap/scss/bootstrap";
+html, 
+body {
+    width: 100%;
+    background-color: base.$white;
+}
 
-@import "reset";
-@import "custom";
-@import "buttons";
+body {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
 
-@import "../node_modules/bootstrap/scss/maps";
-@import "../node_modules/bootstrap/scss/utilities";
+.container, %flex-column-center {
+    inline-size: inherit;
+    justify-content: center;
+    max-inline-size: 100vw;
+
+    @extend %flex-column-center;
+
+    @include base.for-size(desktop) {
+        max-inline-size: 1440px;
+        padding-inline: base.fluidSpace(160, desktop);
+    }
+}
+
+.header {
+    padding-block: base.fluidSpace(16);
+    padding-inline: base.fluidSpace(20);
+    
+    @include base.for-size(desktop) {
+        padding-block: base.fluidSpace(24, desktop);
+        padding-inline: 0;
+    }
+
+    .btn-get--header { background-color: base.$blue-900; }
+
+    .btn-get--header:hover { background-color: base.$blue-600; }
+}
+
+.navbar {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.btn-get {
+    border: none;
+    border-radius: 1.75rem;
+    color: base.$white;
+    cursor: pointer;
+    $font-size: 1.125rem;
+    font-size: base.fluidTypo(12, 18) ;
+    font-weight: 700;
+    line-height: 1.5;
+    padding: base.fluidSpace(16) base.fluidSpace(32);
+
+    @include base.for-size(tablet) {
+        padding: base.fluidSpace(10.5) base.fluidSpace(24);
+    }
+}
+
+.courses {
+    display: grid;
+    gap: base.fluidSpace(64) base.fluidSpace(32);
+    grid-template-columns: repeat(3, fit-content(352px));
+}
+
+.card {
+    border-radius: 0.9375rem;
+    padding-block-start: base.fluidSpace(64);
+    padding-block-end: base.fluidSpace(40);
+    padding-inline: base.fluidSpace(32);
+    box-shadow: 0 25px 50px 0 base.$blue-800;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+
+    .card__body {
+
+        .card__image {
+            position: absolute;
+            top: -8%;
+           }
+        
+        .card__title {
+            color: base.$blue-900;
+            font-size: base.fluidTypo(16, 24);
+            font-weight: 800;
+            line-height: calc(base.fluidTypo(16, 24) * 1.209);
+}
+        
+        .card__text {
+            color: base.$grey;
+            font-size: base.fluidTypo(10, 18);
+            font-weight: 500;
+            line-height: calc(base.fluidTypo(10, 18) * 1.57);
+            padding-block: base.fluidSpace(24);
+           }
+    }
+
+    .card__footer {
+
+        .card__btn {
+            background-color: transparent;
+            border: none;
+            color: base.$pink-300;
+            cursor: pointer;
+            font-size: base.fluidTypo(15, 18);
+            font-weight: 700;
+            line-height: calc(base.fluidTypo(15, 18) * 1.56);
+        }
+
+        .card__btn:hover { color: base.$pink-600; }
+    }
+}
+
+.card--introduction {
+    background-image: base.$gradient-card;
+    color: base.$white;
+
+    .card__body {
+
+        .card__title {
+            color: base.$white;
+            font-size: base.fluidTypo(20, 32);
+            line-height: calc(base.fluidTypo(20, 32) * 1.5);
+}
+    }
+}
+
+.footer {
+    background-color: base.$blue-900;
+    inline-size: 100vw;
+    display: flex;
+    justify-content: center;
+    padding-block-start: base.fluidSpace(24);
+    
+    &__wrapper {
+        inline-size: 1120px;
+        margin-inline: base.fluidSpace(20);
+    }
+
+    .btn-get--footer { background-image: base.$gratient-btn-footer; }
+
+    .btn-get--footer:hover { background-image: base.$gradient-btn-footer-hover; }
+
+    .attribution {
+        text-align: center;
+        color: base.$white;
+        font-size: .6875rem;
+        margin: 0.6rem;
+
+        &__link {
+            color: base.$orange;
+        }
+    }
+}
+
+
+
 

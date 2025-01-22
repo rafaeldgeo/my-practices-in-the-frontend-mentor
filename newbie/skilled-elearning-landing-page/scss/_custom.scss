@@ -46,6 +46,22 @@
     
 // }
 
+// body > .container {
+//     background: url("../assets/image-hero-desktop.png") 180% -40% / auto no-repeat;
+// }
+
+
+body > .container {
+    overflow-x: clip;
+}
+
+.image-custom {
+    position: absolute;
+    bottom: 53%;
+    left: 51%;
+    z-index: 0;
+}
+
 .card-custom {
     border-radius: 0.9375rem;
     box-shadow: 0 25px 50px 0 $blue-800;
@@ -99,7 +115,6 @@
 
 .btn-custom-footer:hover { 
     background: $gradient-btn-footer-hover;
-
 }
 
 .btn-custom-header {
