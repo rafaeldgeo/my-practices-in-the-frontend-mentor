@@ -24,6 +24,12 @@ body {
   inline-size: inherit;
   justify-content: center;
   max-inline-size: 100vw;
+  padding-inline: min(5.3333333333vw, 1.25rem);
+}
+@media (min-width: 500px) and (max-width: 768px) {
+  .container {
+    padding-inline: min(5.7291666667vw, 2.75rem);
+  }
 }
 @media (min-width: 769px) {
   .container {
@@ -34,12 +40,10 @@ body {
 
 .header {
   padding-block: min(4.2666666667vw, 1rem);
-  padding-inline: min(5.3333333333vw, 1.25rem);
 }
 @media (min-width: 769px) {
   .header {
     padding-block: min(1.6666666667vw, 1.5rem);
-    padding-inline: 0;
   }
 }
 .header .btn-get--header {
@@ -68,14 +72,34 @@ body {
 }
 @media (min-width: 500px) and (max-width: 768px) {
   .btn-get {
-    padding: min(2.8vw, 0.65625rem) min(6.4vw, 1.5rem);
+    padding: min(1.3671875vw, 0.65625rem) min(3.125vw, 1.5rem);
   }
 }
 
 .courses {
   display: grid;
-  gap: min(17.0666666667vw, 4rem) min(8.5333333333vw, 2rem);
-  grid-template-columns: repeat(3, fit-content(352px));
+  gap: min(16vw, 3.75rem) 0;
+  grid-template-columns: 1fr;
+  justify-content: center;
+  padding-block-end: min(21.3333333333vw, 5rem);
+  padding-block-start: min(17.0666666667vw, 4rem);
+}
+@media (min-width: 500px) {
+  .courses {
+    padding-block-end: min(18.75vw, 9rem);
+  }
+}
+@media (min-width: 500px) and (max-width: 768px) {
+  .courses {
+    gap: min(7.8125vw, 3.75rem) min(3.125vw, 1.5rem);
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (min-width: 769px) {
+  .courses {
+    gap: min(5.8333333333vw, 5.25rem) min(2.2222222222vw, 2rem);
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 .card {
@@ -125,13 +149,19 @@ body {
 }
 .card--introduction .card__body .card__title {
   color: #FFFFFF;
-  font-size: clamp(1.25rem, 0.5rem + 6.4vw, 2rem);
-  line-height: calc(clamp(1.25rem, 0.5rem + 6.4vw, 2rem) * 1.5);
+  font-size: clamp(1.25rem, 0.5rem + 4.2666666667vw, 1.5rem);
+  line-height: calc(clamp(1.25rem, 0.5rem + 4.2666666667vw, 1.5rem) * 1.2);
+}
+@media (min-width: 769px) {
+  .card--introduction .card__body .card__title {
+    font-size: clamp(2rem, 0.5rem + 1.6666666667vw, 2rem);
+    line-height: calc(clamp(2rem, 0.5rem + 1.6666666667vw, 2rem) * 1.2);
+  }
 }
 
 .footer {
   background-color: #13183F;
-  inline-size: 100vw;
+  inline-size: 100%;
   display: flex;
   justify-content: center;
   padding-block-start: min(6.4vw, 1.5rem);

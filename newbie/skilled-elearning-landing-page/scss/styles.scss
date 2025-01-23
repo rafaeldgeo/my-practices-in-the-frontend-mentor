@@ -18,8 +18,11 @@ body {
     inline-size: inherit;
     justify-content: center;
     max-inline-size: 100vw;
-
+    padding-inline: base.fluidSpace(20);
+    
     @extend %flex-column-center;
+
+    @include base.for-size(tablet) { padding-inline: base.fluidSpace(44, tablet); }
 
     @include base.for-size(desktop) {
         max-inline-size: 1440px;
@@ -29,12 +32,8 @@ body {
 
 .header {
     padding-block: base.fluidSpace(16);
-    padding-inline: base.fluidSpace(20);
-    
-    @include base.for-size(desktop) {
-        padding-block: base.fluidSpace(24, desktop);
-        padding-inline: 0;
-    }
+        
+    @include base.for-size(desktop) { padding-block: base.fluidSpace(24, desktop); }
 
     .btn-get--header { background-color: base.$blue-900; }
 
@@ -59,15 +58,28 @@ body {
     line-height: 1.5;
     padding: base.fluidSpace(16) base.fluidSpace(32);
 
-    @include base.for-size(tablet) {
-        padding: base.fluidSpace(10.5) base.fluidSpace(24);
-    }
+    @include base.for-size(tablet) { padding: base.fluidSpace(10.5, tablet) base.fluidSpace(24, tablet); }
 }
 
 .courses {
     display: grid;
-    gap: base.fluidSpace(64) base.fluidSpace(32);
-    grid-template-columns: repeat(3, fit-content(352px));
+    gap: base.fluidSpace(60) 0;
+    grid-template-columns: 1fr;
+    justify-content: center;
+    padding-block-end: base.fluidSpace(80);
+    padding-block-start: base.fluidSpace(64);
+
+    @include base.for-size(tabletTodesktop) { padding-block-end: base.fluidSpace(144, tablet); }
+
+    @include base.for-size(tablet) {
+        gap: base.fluidSpace(60, tablet) base.fluidSpace(24, tablet);
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include base.for-size(desktop) {
+        gap: base.fluidSpace(84, desktop) base.fluidSpace(32, desktop);
+        grid-template-columns: repeat(3, 1fr);
+    }
 }
 
 .card {
@@ -86,14 +98,14 @@ body {
         .card__image {
             position: absolute;
             top: -8%;
-           }
+        }
         
         .card__title {
             color: base.$blue-900;
             font-size: base.fluidTypo(16, 24);
             font-weight: 800;
             line-height: calc(base.fluidTypo(16, 24) * 1.209);
-}
+            }
         
         .card__text {
             color: base.$grey;
@@ -123,20 +135,26 @@ body {
 .card--introduction {
     background-image: base.$gradient-card;
     color: base.$white;
+    // padding: base.fluidSpace(32);
 
     .card__body {
-
         .card__title {
             color: base.$white;
-            font-size: base.fluidTypo(20, 32);
-            line-height: calc(base.fluidTypo(20, 32) * 1.5);
-}
+            font-size: base.fluidTypo(20, 24);
+            line-height: calc(base.fluidTypo(20, 24) * 1.2);
+            
+            @include base.for-size(desktop) {
+                font-size: base.fluidTypo(32, 32, desktop);
+                line-height: calc(base.fluidTypo(32, 32, desktop) * 1.2);
+            }
+            
+        }
     }
 }
 
 .footer {
     background-color: base.$blue-900;
-    inline-size: 100vw;
+    inline-size: 100%;
     display: flex;
     justify-content: center;
     padding-block-start: base.fluidSpace(24);

@@ -35,8 +35,26 @@ $deviceList: ("mobile": 375, "tablet": 768, "desktop": 1440);
 
 // breakpoints
 @mixin for-size($device) {
+    @if $device == mobile {
+        @media (max-width: 375px) { @content; }
+    } @else if $device == mobileTotablet {
+        @media (max-width: 768px) { @content; }
+    } @else if $device == tablet {
+        @media (min-width: 500px) and (max-width: 768px) { @content; }
+    } @else if $device == tabletTodesktop {
+        @media (min-width: 500px) { @content; }
+    } @else if $device == desktop {
+        @media (min-width: 769px) { @content; }
+    } @else {
+        @error "You must define one device valid - mobile, mobileToTablet, tablet, tabletToDesktop";
+    }
+}
+
+@mixin for-size($device) {
     @if $device == tablet {
         @media (min-width: 500px) and (max-width: 768px) { @content; }
+    } @else if $device == tabletTodesktop {
+        @media (min-width: 500px) { @content; }
     } @else if $device == desktop {
         @media (min-width: 769px) { @content; }
     } @else {
