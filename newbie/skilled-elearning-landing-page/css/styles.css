@@ -26,7 +26,7 @@ body {
   max-inline-size: 100vw;
   padding-inline: min(5.3333333333vw, 1.25rem);
 }
-@media (min-width: 500px) and (max-width: 768px) {
+@media (min-width: 576px) and (max-width: 768px) {
   .container {
     padding-inline: min(5.7291666667vw, 2.75rem);
   }
@@ -70,10 +70,53 @@ body {
   line-height: 1.5;
   padding: min(4.2666666667vw, 1rem) min(8.5333333333vw, 2rem);
 }
-@media (min-width: 500px) and (max-width: 768px) {
+@media (min-width: 576px) and (max-width: 768px) {
   .btn-get {
     padding: min(1.3671875vw, 0.65625rem) min(3.125vw, 1.5rem);
   }
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: min(12.8vw, 3rem) 0;
+}
+@media (min-width: 576px) and (max-width: 768px) {
+  .hero {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0 min(3.3854166667vw, 1.625rem);
+  }
+}
+@media (min-width: 769px) {
+  .hero {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0 min(2.2222222222vw, 2rem);
+  }
+}
+.hero .hero__text .hero__title {
+  color: #13183F;
+  font-size: clamp(1.25rem, 0.5rem + 8.5333333333vw, 2.5rem);
+  font-weight: 800;
+}
+@media (min-width: 769px) {
+  .hero .hero__text .hero__title {
+    font-size: clamp(2.5rem, 0.5rem + 3.3333333333vw, 3.5rem);
+    line-height: calc(clamp(2.5rem, 0.5rem + 3.3333333333vw, 3.5rem) * 1.2);
+  }
+}
+.hero .hero__text .hero__description {
+  max-inline-size: 35ch;
+  color: #83869A;
+  font-size: clamp(0.625rem, 0.5rem + 2.6666666667vw, 1.125rem);
+  font-weight: 500;
+  line-height: calc(clamp(0.625rem, 0.5rem + 2.6666666667vw, 1.125rem) * 1.5);
+  padding-block: min(6.4vw, 1.5rem) min(10.6666666667vw, 2.5rem);
+}
+.hero .btn-get--hero {
+  background-image: linear-gradient(#FF6F48, #F02AA6);
+}
+.hero .btn-get--hero:hover {
+  opacity: 0.5;
 }
 
 .courses {
@@ -84,12 +127,12 @@ body {
   padding-block-end: min(21.3333333333vw, 5rem);
   padding-block-start: min(17.0666666667vw, 4rem);
 }
-@media (min-width: 500px) {
+@media (min-width: 576px) {
   .courses {
     padding-block-end: min(18.75vw, 9rem);
   }
 }
-@media (min-width: 500px) and (max-width: 768px) {
+@media (min-width: 576px) and (max-width: 768px) {
   .courses {
     gap: min(7.8125vw, 3.75rem) min(3.125vw, 1.5rem);
     grid-template-columns: repeat(2, 1fr);
@@ -97,7 +140,7 @@ body {
 }
 @media (min-width: 769px) {
   .courses {
-    gap: min(5.8333333333vw, 5.25rem) min(2.2222222222vw, 2rem);
+    gap: 5.25rem min(2.2222222222vw, 2rem);
     grid-template-columns: repeat(3, 1fr);
   }
 }
@@ -119,16 +162,28 @@ body {
 }
 .card .card__body .card__title {
   color: #13183F;
-  font-size: clamp(1rem, 0.5rem + 4.2666666667vw, 1.5rem);
+  font-size: clamp(1rem, 0.5rem + 3.2vw, 1.25rem);
   font-weight: 800;
-  line-height: calc(clamp(1rem, 0.5rem + 4.2666666667vw, 1.5rem) * 1.209);
+  line-height: calc(clamp(1rem, 0.5rem + 3.2vw, 1.25rem) * 1.209);
+}
+@media (min-width: 769px) {
+  .card .card__body .card__title {
+    font-size: clamp(1rem, 0.5rem + 1.1111111111vw, 1.5rem);
+    line-height: calc(clamp(1rem, 0.5rem + 1.1111111111vw, 1.5rem) * 1.209);
+  }
 }
 .card .card__body .card__text {
   color: #83869A;
-  font-size: clamp(0.625rem, 0.5rem + 2.6666666667vw, 1.125rem);
+  font-size: clamp(0.625rem, 0.5rem + 2.1333333333vw, 1rem);
   font-weight: 500;
-  line-height: calc(clamp(0.625rem, 0.5rem + 2.6666666667vw, 1.125rem) * 1.57);
+  line-height: calc(clamp(0.625rem, 0.5rem + 2.1333333333vw, 1rem) * 1.57);
   padding-block: min(6.4vw, 1.5rem);
+}
+@media (min-width: 576px) {
+  .card .card__body .card__text {
+    font-size: clamp(0.625rem, 0.5rem + 1.3020833333vw, 1.125rem);
+    line-height: calc(clamp(0.625rem, 0.5rem + 1.3020833333vw, 1.125rem) * 1.57);
+  }
 }
 .card .card__footer .card__btn {
   background-color: transparent;
@@ -146,6 +201,11 @@ body {
 .card--introduction {
   background-image: linear-gradient(#FF6F48, #F02AA6);
   color: #FFFFFF;
+}
+@media (max-width: 576px) {
+  .card--introduction {
+    padding-block: min(8.5333333333vw, 2rem);
+  }
 }
 .card--introduction .card__body .card__title {
   color: #FFFFFF;
@@ -170,6 +230,11 @@ body {
   inline-size: 1120px;
   margin-inline: min(5.3333333333vw, 1.25rem);
 }
+@media (min-width: 576px) and (max-width: 768px) {
+  .footer__wrapper {
+    margin-inline: min(11.7333333333vw, 2.75rem);
+  }
+}
 .footer .btn-get--footer {
   background-image: linear-gradient(#4851FF, #F02AA6);
 }
@@ -183,7 +248,7 @@ body {
   margin: 0.6rem;
 }
 .footer .attribution__link {
-  color: #FF6F48;
+  color: #F02AA6;
 }
 
 /*# sourceMappingURL=styles.css.map */

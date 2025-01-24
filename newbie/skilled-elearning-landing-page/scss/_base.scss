@@ -15,7 +15,7 @@ $orange: #FF6F48;
 $grey: #83869A;
 $white: #FFFFFF;
 $gradient-card: linear-gradient($orange, $pink-700);
-$gratient-btn-intro: linear-gradient($orange, $pink-700);
+$gratient-btn-hero: linear-gradient($orange, $pink-700);
 $gratient-btn-footer: linear-gradient($blue-100, $pink-700);
 $gradient-btn-footer-hover: linear-gradient($blue-600, $pink-300);
 $font: "Plus Jakarta Sans", serif;
@@ -38,11 +38,11 @@ $deviceList: ("mobile": 375, "tablet": 768, "desktop": 1440);
     @if $device == mobile {
         @media (max-width: 375px) { @content; }
     } @else if $device == mobileTotablet {
-        @media (max-width: 768px) { @content; }
+        @media (max-width: 576px) { @content; }
     } @else if $device == tablet {
-        @media (min-width: 500px) and (max-width: 768px) { @content; }
+        @media (min-width: 576px) and (max-width: 768px) { @content; }
     } @else if $device == tabletTodesktop {
-        @media (min-width: 500px) { @content; }
+        @media (min-width: 576px) { @content; }
     } @else if $device == desktop {
         @media (min-width: 769px) { @content; }
     } @else {
@@ -50,17 +50,6 @@ $deviceList: ("mobile": 375, "tablet": 768, "desktop": 1440);
     }
 }
 
-@mixin for-size($device) {
-    @if $device == tablet {
-        @media (min-width: 500px) and (max-width: 768px) { @content; }
-    } @else if $device == tabletTodesktop {
-        @media (min-width: 500px) { @content; }
-    } @else if $device == desktop {
-        @media (min-width: 769px) { @content; }
-    } @else {
-        @error "You must define one device valid";
-    }
-}
 
 // convert px to rem
 @function convertPxToRem($sizePx) {
