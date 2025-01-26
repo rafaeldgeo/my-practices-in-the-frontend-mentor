@@ -1,0 +1,23 @@
+
+:root {
+    --green-179: #3EE9E5;
+    --blue-206: #093F68;
+    --blue-225: #777F98;
+    --blue-230: #080C20;
+    --pink-343: #FF2965;
+    --white: #FFFFFF;
+}
+
+*, 
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    background-color: var(--blue-230);
+}
