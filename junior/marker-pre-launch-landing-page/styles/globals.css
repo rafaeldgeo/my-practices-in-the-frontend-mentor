@@ -18,6 +18,48 @@
 
 html,
 body {
-    width: 100%;
+    inline-size: 100%;
     background-color: var(--blue-230);
 }
+
+.container {
+    inline-size: 100%;
+    max-inline-size: 100vw;
+    margin: 0 auto;
+}
+
+.header { padding-block-start: min(10.8vw, 2.5rem); }
+
+.header__logo {
+    margin: 0 auto;
+    display: block;
+}
+
+@media only screen and (min-width: 769px) {    
+
+    .container { max-inline-size: 1440px; }
+
+    .header {
+        padding-inline: min(11.5vw, 10.3125rem);
+        padding-block-start: min(6.25vw, 5.0625rem);
+    }
+
+    .header__logo { margin: 0;}
+
+}
+
+@media only screen and (min-width: 576px) and (max-width: 768px) {
+
+    .container { max-inline-size: 768px; }
+
+    .header {
+        padding-inline: min(5.08vw, 2.4375rem);
+        padding-block-start: min(6.3vw, 3rem);
+    }
+
+    .header__logo { margin: 0;}
+}
+
+.attribution__color-label { color: var(--blue-225); }
+
+.attribution__color-link { color: var(--green-179); }
