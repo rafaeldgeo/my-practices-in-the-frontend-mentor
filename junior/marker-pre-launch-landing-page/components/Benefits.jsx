@@ -3,19 +3,23 @@ import { benefits } from "@/public/data-benefits";
 
 export default function Benefits(){
 
-    const listBenefits = benefits.map(benefit => 
-        <div className="card" key={benefit.id}>
-            <div className="card__image-wrapper">
-                <img src={`/illustration-${benefit.icon}.svg`} alt="" />
+    const cardBenefits = benefits.map(benefit => 
+        <div className={`${styles.card}  ${benefit.id % 2 == 0 ? styles.cardEven : styles.cardOdd}`} key={benefit.id}>
+            <div className={styles.illustration}>
+                <div className={styles.illustrationWrapper}>
+                    <img className={styles.illustrationImg}src={`/illustration-${benefit.icon}.svg`} alt="" />
+                </div>
             </div>
-            <h2 className={styles.teste}>{benefit.title}</h2>
-            <p>{benefit.description}</p>
+            <div className={styles.cardText}>
+                <h2 className={styles.cardTitle}>{benefit.title}</h2>
+                <p className={styles.cardDescription}>{benefit.description}</p>
+            </div>
         </div>
     );
 
     return(
-        <section>
-             {listBenefits} 
+        <section className={styles.benefits}>
+             {cardBenefits} 
         </section>
     );
 }

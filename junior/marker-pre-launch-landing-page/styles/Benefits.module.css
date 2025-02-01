@@ -1,3 +1,120 @@
-.teste {
-    color: red;
+.benefits {
+    display: grid;
+    grid-template-columns: fit-content(327px);
+    grid-template-rows: repeat(4, 1fr);
+    justify-content: center;
+    gap: min(15vw, 3.5rem) 0;
 }
+
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: min(8.54vw, 2rem) 0;
+}
+
+.illustration {
+    align-items: center;
+    aspect-ratio: 160/164;
+    background-color: var(--blue-206);
+    border-radius: 25%;
+    display: flex;
+    inline-size: 100%;
+    justify-content: center;
+    max-inline-size: 160px;
+}
+
+.illustrationWrapper {
+    align-items: center;
+    aspect-ratio: 104/106;
+    border-radius: 25%;
+    display: flex;
+    inline-size: 100%;
+    justify-content: center;
+    max-inline-size: 104px;
+}
+
+.illustrationImg {
+    object-fit: cover;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.cardTitle {
+    color: var(--white);
+    font-size: clamp(1rem, .5rem + 2.67vw, 1.125rem);
+    font-weight: 800;
+    padding-block-end: min(2.94vw, .6875rem);
+    text-align: center;
+}
+
+.cardDescription {
+    color: var(--blue-225);
+    font-weight: 500;
+    font-size: clamp(.6rem, .5rem + 1.87vw, .9375rem);
+    line-height: calc(clamp(.6rem, .5rem + 1.87vw, .9375rem) * 1.667);
+    text-align: center;
+}
+
+@media only screen and (min-width: 575.98px) {
+
+    .benefits {
+        display: grid;
+        grid-template-columns: fit-content(573px);
+        grid-template-rows: repeat(4, 1fr);
+        justify-content: center;
+        gap: min(5.21vw, 2.5rem) 0;
+    }
+
+    .card { 
+        flex-direction: row;
+        align-items: center;
+        gap: 0 55px;
+    }
+
+    .cardTitle {
+        padding-block-start: 0;
+        text-align: start;
+    }
+
+    .cardEven { padding-inline-start: min(7.6vw, 3.625rem); }
+    
+    .cardOdd { padding-inline-end: min(7.6vw, 3.625rem); }
+
+    .cardDescription { text-align: start; }
+  
+}
+
+@media only screen and (min-width: 767.98px) {
+
+    .benefits {
+        grid-template-columns: repeat(4, fit-content(255px));
+        justify-content: center;
+        gap: 0 min(2.09vw, 1.875rem);
+    }
+
+    .card { 
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start; 
+        gap: min(12.8vw, 3rem) 0;
+    }
+
+    .cardTitle {
+        padding-block-end: min(6.14vw, 1.4375rem);
+        text-align: start;
+    }
+
+    .cardEven { 
+        padding-block-end: min(3.4vw, 3rem); 
+        padding-inline-start: 0;
+    }
+    
+    .cardOdd { 
+        padding-block-start: min(3.4vw, 3rem); 
+        padding-inline-end: 0;
+    }
+
+    .cardDescription { text-align: start; }
+}
+
