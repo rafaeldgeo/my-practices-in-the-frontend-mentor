@@ -3,7 +3,7 @@ import { benefits } from "@/public/data-benefits";
 
 export default function Benefits(){
 
-    const cardBenefits = benefits.map(benefit => 
+    const cardBenefits = benefits?.map(benefit => 
         <div className={`${styles.card}  ${benefit.id % 2 == 0 ? styles.cardEven : styles.cardOdd}`} key={benefit.id}>
             <div className={styles.illustration}>
                 <div className={styles.illustrationWrapper}>

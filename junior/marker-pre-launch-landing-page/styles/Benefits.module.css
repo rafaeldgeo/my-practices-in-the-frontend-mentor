@@ -1,43 +1,43 @@
 .benefits {
     display: grid;
+    gap: min(15vw, 3.5rem) 0;
     grid-template-columns: fit-content(327px);
     grid-template-rows: repeat(4, 1fr);
     justify-content: center;
-    gap: min(15vw, 3.5rem) 0;
 }
 
 .card {
+    align-items: center;
     display: flex;
     flex-direction: column;
-    align-items: center;
     gap: min(8.54vw, 2rem) 0;
 }
 
 .illustration {
     align-items: center;
-    aspect-ratio: 160/164;
+    aspect-ratio: 120/124;
     background-color: var(--blue-206);
-    border-radius: 25%;
+    border-radius: 35%;
     display: flex;
     inline-size: 100%;
     justify-content: center;
-    max-inline-size: 160px;
+    max-inline-size: 120px;
 }
 
 .illustrationWrapper {
     align-items: center;
-    aspect-ratio: 104/106;
+    aspect-ratio: 78/80;
     border-radius: 25%;
     display: flex;
     inline-size: 100%;
     justify-content: center;
-    max-inline-size: 104px;
+    max-inline-size: 78px;
 }
 
 .illustrationImg {
+    max-block-size: 100%;
+    max-inline-size: 100%;
     object-fit: cover;
-    max-width: 100%;
-    max-height: 100%;
 }
 
 .cardTitle {
@@ -50,8 +50,8 @@
 
 .cardDescription {
     color: var(--blue-225);
-    font-weight: 500;
     font-size: clamp(.6rem, .5rem + 1.87vw, .9375rem);
+    font-weight: 500;
     line-height: calc(clamp(.6rem, .5rem + 1.87vw, .9375rem) * 1.667);
     text-align: center;
 }
@@ -60,18 +60,18 @@
 
     .benefits {
         display: grid;
-        grid-template-columns: fit-content(573px);
-        grid-template-rows: repeat(4, 1fr);
-        justify-content: center;
         gap: min(5.21vw, 2.5rem) 0;
-    }
+        grid-template-columns: fit-content(573px);
+        grid-template-rows: repeat(4, 1fr); 
+        justify-content: center;
+     }
 
-    .card { 
-        flex-direction: row;
-        align-items: center;
-        gap: 0 55px;
+    .card {
+          align-items: center;
+          flex-direction: row;
+          gap: 0 min(7.17vw, 3.4375rem);
     }
-
+   
     .cardTitle {
         padding-block-start: 0;
         text-align: start;
@@ -85,21 +85,38 @@
   
 }
 
-@media only screen and (min-width: 767.98px) {
+@media only screen and (min-width: 768.98px) {
 
     .benefits {
-        grid-template-columns: repeat(4, fit-content(255px));
-        justify-content: center;
         gap: 0 min(2.09vw, 1.875rem);
-    }
+        grid-template-columns: repeat(4, fit-content(255px));
+        grid-template-rows: none;  
+        justify-content: center;
+        max-inline-size: 1110px;
+        inline-size: 100%;
+     }
 
-    .card { 
+    .card {
+        align-items: flex-start;
         display: flex;
         flex-direction: column;
-        align-items: flex-start; 
         gap: min(12.8vw, 3rem) 0;
-    }
+      }
 
+    .illustration {
+        aspect-ratio: 160/164;
+        border-radius: 25%;
+        inline-size: 100%;
+        max-inline-size: 160px;
+}
+    
+    .illustrationWrapper {
+        aspect-ratio: 104/106;
+        border-radius: 25%;
+        inline-size: 100%;
+        max-inline-size: 104px;
+     }
+      
     .cardTitle {
         padding-block-end: min(6.14vw, 1.4375rem);
         text-align: start;
