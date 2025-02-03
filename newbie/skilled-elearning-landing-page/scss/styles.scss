@@ -22,18 +22,29 @@ body {
     
     @extend %flex-column-center;
 
-    @include base.for-size(tablet) { padding-inline: base.fluidSpace(44, tablet); }
+    @include base.breakpoints(sm) { padding-inline: base.fluidSpace(44, tablet); }
 
-    @include base.for-size(desktop) {
+    @include base.breakpoints(lg) {
         max-inline-size: 1440px;
         padding-inline: base.fluidSpace(160, desktop);
     }
+
+    @media (min-width: 1300px) { background: url("../assets/image-hero-desktop.png") no-repeat 185% -140px / 70% auto; }
+
+    @media (min-width: 900px) and (max-width: 1299px) { background: url("../assets/image-hero-desktop.png") no-repeat 182% -100px / 70% auto; }
+
+    @media (min-width: 769px) and (max-width: 899px) { background: url("../assets/image-hero-tablet.png") no-repeat 170% -70px / 68% auto; }
+
+    @media (min-width: 676px) and (max-width: 768px) { background: url("../assets/image-hero-tablet.png") no-repeat 250% -82px / 80% auto; }
+
+    @media (min-width: 576px) and (max-width: 675px) { background: url("../assets/image-hero-tablet.png") no-repeat 440% -65px / 90% auto; }
+    
 }
 
 .header {
     padding-block: base.fluidSpace(16);
         
-    @include base.for-size(desktop) { padding-block: base.fluidSpace(24, desktop); }
+    @include base.breakpoints(lg) { padding-block: base.fluidSpace(24, desktop); }
 
     .btn-get--header { background-color: base.$blue-900; }
 
@@ -58,26 +69,37 @@ body {
     line-height: 1.5;
     padding: base.fluidSpace(16) base.fluidSpace(32);
 
-    @include base.for-size(tablet) { padding: base.fluidSpace(10.5, tablet) base.fluidSpace(24, tablet); }
+    @include base.breakpoints(sm) { padding: base.fluidSpace(10.5, tablet) base.fluidSpace(24, tablet); }
 }
 
-.introduce {
+.introduce { 
+    inline-size: 100%;
+    padding-block: base.fluidSpace(64);
+
+    @include base.breakpoints(sm) { padding-block: 0;}
+
+    @include base.breakpoints(lg) { padding-block: base.fluidSpace(64, desktop); } 
 
 }
 
 .hero {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, fit-content);
     gap: base.fluidSpace(48) 0;
 
-    @include base.for-size(tablet) {
+    @include base.breakpoints(sm) {
+        gap: 0 base.fluidSpace(26, tablet);
         grid-template-columns: repeat(2, 1fr);
-        gap: 0 base.fluidSpace(26, tablet); 
+        grid-template-rows: fit-content;
+        padding-block: base.fluidSpace(41.5, tablet);
     }
 
-    @include base.for-size(desktop) {
+    @include base.breakpoints(lg) {
+        gap: 0 base.fluidSpace(32, desktop);
         grid-template-columns: repeat(2, 1fr);
-        gap: 0 base.fluidSpace(32, desktop); 
+        grid-template-rows: 1fr;
+        padding-block: base.fluidSpace(110.5, desktop);
     }
 
     .hero__text {
@@ -86,7 +108,12 @@ body {
             font-size: base.fluidTypo(20, 40);
             font-weight: 800;
 
-            @include base.for-size(desktop) {
+            @include base.breakpoints(md) {
+                font-size: base.fluidTypo(20, 40, tablet);
+                line-height: calc(base.fluidTypo(20, 40, tablet) * 1.2);
+            }
+
+            @include base.breakpoints(lg) {
                 font-size: base.fluidTypo(40, 56, desktop);
                 line-height: calc(base.fluidTypo(40, 56, desktop) * 1.2);
             }
@@ -100,11 +127,26 @@ body {
             line-height: calc(base.fluidTypo(10, 18) * 1.5);
             padding-block: base.fluidSpace(24) base.fluidSpace(40);
         }
+
+        .btn-get--hero { background-image: base.$gratient-btn-hero; }
+
+        .btn-get--hero:hover { opacity: .5; }
     }
 
-    .btn-get--hero { background-image: base.$gratient-btn-hero; }
+    .hero__image-wrapper {
+        .hero__image { 
+            display: block;
+            margin: 0 auto;
+            
+            visibility: visible;
+            max-inline-size: 100%;
+            block-size: auto;
 
-    .btn-get--hero:hover { opacity: .5; }
+            @include base.breakpoints(sm) {
+                visibility: hidden;
+            }            
+        }
+    }
 }
 
 .courses {
@@ -115,14 +157,14 @@ body {
     padding-block-end: base.fluidSpace(80);
     padding-block-start: base.fluidSpace(64);
 
-    @include base.for-size(tabletTodesktop) { padding-block-end: base.fluidSpace(144, tablet); }
-
-    @include base.for-size(tablet) {
+    @include base.breakpoints(sm) {
         gap: base.fluidSpace(60, tablet) base.fluidSpace(24, tablet);
         grid-template-columns: repeat(2, 1fr);
     }
 
-    @include base.for-size(desktop) {
+    @include base.breakpoints(md) { padding-block-end: base.fluidSpace(144, tablet); }
+
+    @include base.breakpoints(lg) {
         gap: 5.25rem base.fluidSpace(32, desktop);
         grid-template-columns: repeat(3, 1fr);
     }
@@ -151,7 +193,7 @@ body {
             font-weight: 800;
             line-height: calc(base.fluidTypo(16, 20) * 1.209);
 
-            @include base.for-size(desktop) {
+            @include base.breakpoints(lg) {
                 font-size: base.fluidTypo(16, 24, desktop);
                 line-height: calc(base.fluidTypo(16, 24, desktop) * 1.209);
             }
@@ -165,9 +207,10 @@ body {
             line-height: calc(base.fluidTypo(10, 16) * 1.57);
             padding-block: base.fluidSpace(24);
 
-            @include base.for-size(tabletTodesktop) {
-                font-size: base.fluidTypo(10, 18, tablet);
-                line-height: calc(base.fluidTypo(10, 18, tablet) * 1.57);
+            
+            @include base.breakpoints(md) {
+                 font-size: base.fluidTypo(10, 18, tablet);
+                 line-height: calc(base.fluidTypo(10, 18, tablet) * 1.57);
             }
         }
     }
@@ -192,7 +235,7 @@ body {
     background-image: base.$gradient-card;
     color: base.$white;
 
-    @include base.for-size(mobileTotablet) { padding-block: base.fluidSpace(32); }
+    @include base.breakpoint-between(0, 575.98px) { padding-block: base.fluidSpace(32); };
 
     .card__body {
         .card__title {
@@ -200,7 +243,7 @@ body {
             font-size: base.fluidTypo(20, 24);
             line-height: calc(base.fluidTypo(20, 24) * 1.2);
             
-            @include base.for-size(desktop) {
+            @include base.breakpoints(lg) {
                 font-size: base.fluidTypo(32, 32, desktop);
                 line-height: calc(base.fluidTypo(32, 32, desktop) * 1.2);
             }   
@@ -219,7 +262,7 @@ body {
         inline-size: 1120px;
         margin-inline: base.fluidSpace(20);
 
-        @include base.for-size(tablet) { margin-inline: base.fluidSpace(44); }
+        @include base.breakpoints(sm) { margin-inline: base.fluidSpace(44); }
     }
 
     .btn-get--footer { background-image: base.$gratient-btn-footer; }
@@ -232,9 +275,7 @@ body {
         font-size: .6875rem;
         margin: .6rem;
 
-        &__link {
-            color: base.$pink-700;
-        }
+        &__link { color: base.$pink-700; }
     }
 }
 

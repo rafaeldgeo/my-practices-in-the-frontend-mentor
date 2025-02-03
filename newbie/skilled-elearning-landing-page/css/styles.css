@@ -26,22 +26,47 @@ body {
   max-inline-size: 100vw;
   padding-inline: min(5.3333333333vw, 1.25rem);
 }
-@media (min-width: 576px) and (max-width: 768px) {
+@media (min-width: 575.98px) {
   .container {
     padding-inline: min(5.7291666667vw, 2.75rem);
   }
 }
-@media (min-width: 769px) {
+@media (min-width: 991.98px) {
   .container {
     max-inline-size: 1440px;
     padding-inline: min(11.1111111111vw, 10rem);
+  }
+}
+@media (min-width: 1300px) {
+  .container {
+    background: url("../assets/image-hero-desktop.png") no-repeat 185% -140px/70% auto;
+  }
+}
+@media (min-width: 900px) and (max-width: 1299px) {
+  .container {
+    background: url("../assets/image-hero-desktop.png") no-repeat 182% -100px/70% auto;
+  }
+}
+@media (min-width: 769px) and (max-width: 899px) {
+  .container {
+    background: url("../assets/image-hero-tablet.png") no-repeat 170% -70px/68% auto;
+  }
+}
+@media (min-width: 676px) and (max-width: 768px) {
+  .container {
+    background: url("../assets/image-hero-tablet.png") no-repeat 250% -82px/80% auto;
+  }
+}
+@media (min-width: 576px) and (max-width: 675px) {
+  .container {
+    background: url("../assets/image-hero-tablet.png") no-repeat 440% -65px/90% auto;
   }
 }
 
 .header {
   padding-block: min(4.2666666667vw, 1rem);
 }
-@media (min-width: 769px) {
+@media (min-width: 991.98px) {
   .header {
     padding-block: min(1.6666666667vw, 1.5rem);
   }
@@ -70,27 +95,47 @@ body {
   line-height: 1.5;
   padding: min(4.2666666667vw, 1rem) min(8.5333333333vw, 2rem);
 }
-@media (min-width: 576px) and (max-width: 768px) {
+@media (min-width: 575.98px) {
   .btn-get {
     padding: min(1.3671875vw, 0.65625rem) min(3.125vw, 1.5rem);
   }
 }
 
-.hero {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: min(12.8vw, 3rem) 0;
+.introduce {
+  inline-size: 100%;
+  padding-block: min(17.0666666667vw, 4rem);
 }
-@media (min-width: 576px) and (max-width: 768px) {
-  .hero {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0 min(3.3854166667vw, 1.625rem);
+@media (min-width: 575.98px) {
+  .introduce {
+    padding-block: 0;
   }
 }
-@media (min-width: 769px) {
+@media (min-width: 991.98px) {
+  .introduce {
+    padding-block: min(4.4444444444vw, 4rem);
+  }
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(2, fit-content);
+  gap: min(12.8vw, 3rem) 0;
+}
+@media (min-width: 575.98px) {
   .hero {
+    gap: 0 min(3.3854166667vw, 1.625rem);
     grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: fit-content;
+    padding-block: min(5.4036458333vw, 2.59375rem);
+  }
+}
+@media (min-width: 991.98px) {
+  .hero {
     gap: 0 min(2.2222222222vw, 2rem);
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    padding-block: min(7.6736111111vw, 6.90625rem);
   }
 }
 .hero .hero__text .hero__title {
@@ -98,7 +143,13 @@ body {
   font-size: clamp(1.25rem, 0.5rem + 8.5333333333vw, 2.5rem);
   font-weight: 800;
 }
-@media (min-width: 769px) {
+@media (min-width: 767.98px) {
+  .hero .hero__text .hero__title {
+    font-size: clamp(1.25rem, 0.5rem + 4.1666666667vw, 2.5rem);
+    line-height: calc(clamp(1.25rem, 0.5rem + 4.1666666667vw, 2.5rem) * 1.2);
+  }
+}
+@media (min-width: 991.98px) {
   .hero .hero__text .hero__title {
     font-size: clamp(2.5rem, 0.5rem + 3.3333333333vw, 3.5rem);
     line-height: calc(clamp(2.5rem, 0.5rem + 3.3333333333vw, 3.5rem) * 1.2);
@@ -112,11 +163,23 @@ body {
   line-height: calc(clamp(0.625rem, 0.5rem + 2.6666666667vw, 1.125rem) * 1.5);
   padding-block: min(6.4vw, 1.5rem) min(10.6666666667vw, 2.5rem);
 }
-.hero .btn-get--hero {
+.hero .hero__text .btn-get--hero {
   background-image: linear-gradient(#FF6F48, #F02AA6);
 }
-.hero .btn-get--hero:hover {
+.hero .hero__text .btn-get--hero:hover {
   opacity: 0.5;
+}
+.hero .hero__image-wrapper .hero__image {
+  display: block;
+  margin: 0 auto;
+  visibility: visible;
+  max-inline-size: 100%;
+  block-size: auto;
+}
+@media (min-width: 575.98px) {
+  .hero .hero__image-wrapper .hero__image {
+    visibility: hidden;
+  }
 }
 
 .courses {
@@ -127,18 +190,18 @@ body {
   padding-block-end: min(21.3333333333vw, 5rem);
   padding-block-start: min(17.0666666667vw, 4rem);
 }
-@media (min-width: 576px) {
-  .courses {
-    padding-block-end: min(18.75vw, 9rem);
-  }
-}
-@media (min-width: 576px) and (max-width: 768px) {
+@media (min-width: 575.98px) {
   .courses {
     gap: min(7.8125vw, 3.75rem) min(3.125vw, 1.5rem);
     grid-template-columns: repeat(2, 1fr);
   }
 }
-@media (min-width: 769px) {
+@media (min-width: 767.98px) {
+  .courses {
+    padding-block-end: min(18.75vw, 9rem);
+  }
+}
+@media (min-width: 991.98px) {
   .courses {
     gap: 5.25rem min(2.2222222222vw, 2rem);
     grid-template-columns: repeat(3, 1fr);
@@ -166,7 +229,7 @@ body {
   font-weight: 800;
   line-height: calc(clamp(1rem, 0.5rem + 3.2vw, 1.25rem) * 1.209);
 }
-@media (min-width: 769px) {
+@media (min-width: 991.98px) {
   .card .card__body .card__title {
     font-size: clamp(1rem, 0.5rem + 1.1111111111vw, 1.5rem);
     line-height: calc(clamp(1rem, 0.5rem + 1.1111111111vw, 1.5rem) * 1.209);
@@ -179,7 +242,7 @@ body {
   line-height: calc(clamp(0.625rem, 0.5rem + 2.1333333333vw, 1rem) * 1.57);
   padding-block: min(6.4vw, 1.5rem);
 }
-@media (min-width: 576px) {
+@media (min-width: 767.98px) {
   .card .card__body .card__text {
     font-size: clamp(0.625rem, 0.5rem + 1.3020833333vw, 1.125rem);
     line-height: calc(clamp(0.625rem, 0.5rem + 1.3020833333vw, 1.125rem) * 1.57);
@@ -202,7 +265,7 @@ body {
   background-image: linear-gradient(#FF6F48, #F02AA6);
   color: #FFFFFF;
 }
-@media (max-width: 576px) {
+@media (min-width: 0) and (max-width: 575.98px) {
   .card--introduction {
     padding-block: min(8.5333333333vw, 2rem);
   }
@@ -212,7 +275,7 @@ body {
   font-size: clamp(1.25rem, 0.5rem + 4.2666666667vw, 1.5rem);
   line-height: calc(clamp(1.25rem, 0.5rem + 4.2666666667vw, 1.5rem) * 1.2);
 }
-@media (min-width: 769px) {
+@media (min-width: 991.98px) {
   .card--introduction .card__body .card__title {
     font-size: clamp(2rem, 0.5rem + 1.6666666667vw, 2rem);
     line-height: calc(clamp(2rem, 0.5rem + 1.6666666667vw, 2rem) * 1.2);
@@ -230,7 +293,7 @@ body {
   inline-size: 1120px;
   margin-inline: min(5.3333333333vw, 1.25rem);
 }
-@media (min-width: 576px) and (max-width: 768px) {
+@media (min-width: 575.98px) {
   .footer__wrapper {
     margin-inline: min(11.7333333333vw, 2.75rem);
   }
