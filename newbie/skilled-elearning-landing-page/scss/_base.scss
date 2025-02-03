@@ -8,6 +8,7 @@ $blue-900: #13183F;
 $blue-800: hsla(233, 92%, 29%, .14);
 $blue-600: #666CA3;
 $blue-100: #4851FF;
+$blue-050: #F0F1FF;
 $pink-700:  #F02AA6;
 $pink-600: #F74780;
 $pink-300: #FFA7C3;
@@ -18,6 +19,7 @@ $gradient-card: linear-gradient($orange, $pink-700);
 $gratient-btn-hero: linear-gradient($orange, $pink-700);
 $gratient-btn-footer: linear-gradient($blue-100, $pink-700);
 $gradient-btn-footer-hover: linear-gradient($blue-600, $pink-300);
+$gradient-background: linear-gradient($white, $blue-050);
 $font: "Plus Jakarta Sans", serif;
 $deviceList: ("mobile": 375, "tablet": 768, "desktop": 1440);
 

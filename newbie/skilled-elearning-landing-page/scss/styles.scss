@@ -5,7 +5,7 @@
 html, 
 body {
     width: 100%;
-    background-color: base.$white;
+    background-image: base.$gradient-background;
 }
 
 body {
@@ -29,7 +29,7 @@ body {
         padding-inline: base.fluidSpace(160, desktop);
     }
 
-    @media (min-width: 1300px) { background: url("../assets/image-hero-desktop.png") no-repeat 185% -140px / 70% auto; }
+    @media (min-width: 1300px) { background: url("../assets/image-hero-desktop.png") no-repeat 185% -175px / 70% auto; }
 
     @media (min-width: 900px) and (max-width: 1299px) { background: url("../assets/image-hero-desktop.png") no-repeat 182% -100px / 70% auto; }
 

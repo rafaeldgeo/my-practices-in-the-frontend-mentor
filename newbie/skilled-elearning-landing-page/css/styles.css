@@ -11,7 +11,7 @@
 html,
 body {
   width: 100%;
-  background-color: #FFFFFF;
+  background-image: linear-gradient(#FFFFFF, #F0F1FF);
 }
 
 body {
@@ -39,7 +39,7 @@ body {
 }
 @media (min-width: 1300px) {
   .container {
-    background: url("../assets/image-hero-desktop.png") no-repeat 185% -140px/70% auto;
+    background: url("../assets/image-hero-desktop.png") no-repeat 185% -175px/70% auto;
   }
 }
 @media (min-width: 900px) and (max-width: 1299px) {
