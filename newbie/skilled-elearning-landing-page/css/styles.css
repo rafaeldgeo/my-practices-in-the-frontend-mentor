@@ -11,7 +11,7 @@
 html,
 body {
   width: 100%;
-  background-image: linear-gradient(#FFFFFF, #F0F1FF);
+  background-image: linear-gradient(#FFFFFF 50%, #F0F1FF 100%);
 }
 
 body {
@@ -39,7 +39,7 @@ body {
 }
 @media (min-width: 1300px) {
   .container {
-    background: url("../assets/image-hero-desktop.png") no-repeat 185% -175px/70% auto;
+    background: url("../assets/image-hero-desktop.png") no-repeat 180% -140px/72% auto;
   }
 }
 @media (min-width: 900px) and (max-width: 1299px) {
@@ -183,6 +183,7 @@ body {
 }
 
 .courses {
+  background-image: linear-gradient(#FFFFFF 50%, #F0F1FF 100%);
   display: grid;
   gap: min(16vw, 3.75rem) 0;
   grid-template-columns: 1fr;
@@ -209,6 +210,7 @@ body {
 }
 
 .card {
+  background-color: var(--white);
   border-radius: 0.9375rem;
   padding-block-start: min(17.0666666667vw, 4rem);
   padding-block-end: min(10.6666666667vw, 2.5rem);

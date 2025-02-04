@@ -29,7 +29,7 @@ body {
         padding-inline: base.fluidSpace(160, desktop);
     }
 
-    @media (min-width: 1300px) { background: url("../assets/image-hero-desktop.png") no-repeat 185% -175px / 70% auto; }
+    @media (min-width: 1300px) { background: url("../assets/image-hero-desktop.png") no-repeat 180% -140px / 72% auto; }
 
     @media (min-width: 900px) and (max-width: 1299px) { background: url("../assets/image-hero-desktop.png") no-repeat 182% -100px / 70% auto; }
 
@@ -150,6 +150,7 @@ body {
 }
 
 .courses {
+    background-image: base.$gradient-background;
     display: grid;
     gap: base.fluidSpace(60) 0;
     grid-template-columns: 1fr;
@@ -171,6 +172,7 @@ body {
 }
 
 .card {
+    background-color: var(--white);
     border-radius: 0.9375rem;
     padding-block-start: base.fluidSpace(64);
     padding-block-end: base.fluidSpace(40);

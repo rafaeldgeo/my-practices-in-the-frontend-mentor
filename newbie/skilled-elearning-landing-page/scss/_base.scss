@@ -19,7 +19,7 @@ $gradient-card: linear-gradient($orange, $pink-700);
 $gratient-btn-hero: linear-gradient($orange, $pink-700);
 $gratient-btn-footer: linear-gradient($blue-100, $pink-700);
 $gradient-btn-footer-hover: linear-gradient($blue-600, $pink-300);
-$gradient-background: linear-gradient($white, $blue-050);
+$gradient-background: linear-gradient($white 50%, $blue-050 100%);
 $font: "Plus Jakarta Sans", serif;
 $deviceList: ("mobile": 375, "tablet": 768, "desktop": 1440);
 
