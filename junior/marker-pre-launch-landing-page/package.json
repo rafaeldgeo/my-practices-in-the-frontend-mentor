@@ -3,22 +3,14 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "next dev",
-    "lint": "next lint",
-    "lint:check": "prettier --check .",
-    "lint:fix": "prettier –-write ."
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "MIT",
+  "license": "ISC",
   "description": "",
   "dependencies": {
     "next": "^15.1.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
-  },
-  "devDependencies": {
-    "eslint": "9.19.0",
-    "eslint-config-next": "15.1.6",
-    "prettier": "^2.8.8"
   }
 }
