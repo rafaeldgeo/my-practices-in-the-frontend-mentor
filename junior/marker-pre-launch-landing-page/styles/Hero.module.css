@@ -1,0 +1,57 @@
+.hero {
+  display: flex;
+  align-items: center;
+}
+
+.heroText {
+  text-align: center;
+}
+
+.heroTitle {
+  color: var(--white);
+  font-size: clamp(0.8rem, 0.5rem + 6.4vw, 2rem);
+  font-weight: 800;
+  line-height: calc(clamp(0.8rem, 0.5rem + 6.4vw, 2rem) * 1.18);
+}
+
+.heroTitleLove {
+  color: var(--green-179);
+}
+
+.heroDescription {
+  color: var(--blue-225);
+  font-size: clamp(0.6rem, 0.5rem + 0.4375rem, 0.9375rem);
+  line-height: calc(clamp(0.6rem, 0.5rem + 0.4375rem, 0.9375rem) * 1.673);
+  padding-block: min(6.14vw, 1.4375rem) min(8.54vw, 2rem);
+}
+
+.iconScroll {
+  display: block;
+  margin: 0 auto;
+}
+
+@media only screen and (min-width: 575.98px) {
+  .heroText {
+    padding-block: min(6.65vw, 3.1875rem);
+  }
+
+  .heroDescription {
+    padding-block: min(1.67vw, 1.5rem) min(4.17vw, 2rem);
+  }
+}
+
+@media only screen and (min-width: 768.98px) {
+  .heroText {
+    padding-block: min(4.94vw, 4.4375rem) min(4.87vw, 84.375rem);  
+    /* padding-block: min(4.375vw, 3.9375rem);  */
+  }
+
+  .heroTitle {
+    font-size: clamp(2rem, 0.5rem + 2.78vw, 3rem);
+    line-height: calc(clamp(2rem, 0.5rem + 2.78vw, 3rem) * 1.18);
+  }
+
+  .heroDescription {
+    padding-block: min(1.67vw, 1.5rem) min(4.45vw, 4rem);
+  }
+}

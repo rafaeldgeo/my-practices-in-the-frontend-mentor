@@ -44,6 +44,12 @@ body {
   padding-inline: min(6.4vw, 1.5rem);
 }
 
+.footer {
+  background: url("../public/bg-footer-squiggle.svg") no-repeat 50% 20% / 150%
+    auto;
+  padding-inline: min(6.4vw, 1.5rem);
+}
+
 @media only screen and (min-width: 576px) and (max-width: 768px) {
   .container {
     max-inline-size: 768px;
@@ -60,6 +66,11 @@ body {
 
   .main {
     padding-inline: min(12.77vw, 6.125rem);
+  }
+
+  .footer {
+    background: url("../public/bg-footer-squiggle.svg") no-repeat 75% center /
+      150% auto;
   }
 }
 
@@ -80,6 +91,11 @@ body {
   .main {
     padding-inline: min(11.46vw, 10.3125rem);
   }
+
+  .footer {
+    background: url("../public/bg-footer-squiggle.svg") no-repeat right center /
+      110% auto;
+  }
 }
 
 .attribution__color-label {
@@ -89,4 +105,3 @@ body {
 .attribution__color-link {
   color: var(--green-179);
 }
-

@@ -1,0 +1,120 @@
+.notification {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  inline-size: 100%;
+  row-gap: min(8.27vw, 1.9375rem);
+  padding-block: 52px 13px;
+}
+
+.notificationTitle {
+  color: var(--white);
+  font-size: clamp(1rem, 0.5rem + 4.27vw, 1.5rem);
+  font-weight: 800;
+  text-align: center;
+  width: 60%;
+}
+
+.form {
+  display: flex;
+  gap: min(6.4vw, 1.5rem) min(4.26vw, 1rem);
+  inline-size: inherit;
+  max-inline-size: 476px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.formInputWapper {
+  inline-size: 100%;
+}
+
+.formLabel {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+.formInput {
+  background-color: var(--blue-206);
+  border: none;
+  border-radius: 1.5rem;
+  color: var(--white);
+  font-size: clamp(0.6rem, 0.5rem + 1.87vw, 0.9375rem);
+  font-weight: 800;
+  inline-size: 100%;
+  line-height: calc(clamp(0.6rem, 0.5rem + 1.87vw, 0.9375rem) * 1.666);
+  padding: min(3.2vw, 0.75rem) min(4.8vw, 1.125rem);
+}
+
+.formInputError {
+  outline: 2px solid var(--pink-343);
+}
+
+.formInput::placeholder {
+  color: var(--white);
+  opacity: 0.4;
+}
+
+.formError {
+  color: var(--pink-343);
+  display: block;
+  font-size: clamp(0.6rem, 0.5rem + 1.06vw, 0.75rem);
+  font-weight: 500;
+  line-height: calc(clamp(0.6rem, 0.5rem + 1.06vw, 0.75rem) * 1.5);
+  padding-block-start: 0.25rem;
+}
+
+.formBtn {
+  background-color: var(--green-179);
+  border: none;
+  border-radius: 1.5rem;
+  color: var(--blue-206);
+  cursor: pointer;
+  font-size: clamp(0.6rem, 0.5rem + 1.87vw, 0.9375rem);
+  font-weight: 800;
+  height: fit-content;
+  inline-size: 100%;
+  line-height: calc(clamp(0.6rem, 0.5rem + 1.87vw, 0.9375rem) * 1.666);
+  padding: min(3.2vw, 0.75rem) min(4.8vw, 1.125rem);
+}
+
+.formBtn:hover {
+  background-color: transparent;
+  color: var(--white);
+  outline: 2px solid var(--green-179);
+}
+
+@media only screen and (min-width: 575.98px) {
+  .notification {
+    row-gap: min(3.78vw, 1.8125rem);
+  }
+
+  .form {
+    flex-wrap: nowrap;
+    justify-content: center;
+  }
+
+  .formInput {
+    max-inline-size: 100%;
+    inline-size: 320px;
+  }
+
+  .formBtn {
+    inline-size: fit-content;
+  }
+}
+
+@media only screen and (min-width: 768.98px) {
+  .notification {
+    row-gap: min(2.92vw, 2.625rem);
+  }
+
+  .notificationTitle {
+    font-size: clamp(1rem, 0.5rem + 1.67vw, 2rem);
+  }
+}
