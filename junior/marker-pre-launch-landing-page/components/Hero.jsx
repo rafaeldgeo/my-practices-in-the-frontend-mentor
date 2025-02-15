@@ -3,10 +3,10 @@ import styles from "@/styles/Hero.module.css";
 export default function Hero() {
     return (
         <section className={styles.hero}>
-            <picture className={styles.heroImgLeftTop}>
+            <picture className={styles.heroImgLeftTopWrapper}>
                <source srcSet="./illustration-hero-mobile.png" media="(max-width: 575px)" type="image/png" />
                <source srcSet="./illustration-hero-left.svg" media="(min-width: 576px)" type="image/svg+xml" />
-               <img src="./illustration-hero-mobile.png" alt="People working" />
+               <img className={styles.heroImgLeftTop} src="./illustration-hero-mobile.png" alt="People working" />
             </picture>
             <div className={styles.heroContent}>
                 <div className={styles.heroText}>
@@ -18,8 +18,8 @@ export default function Hero() {
                     </div>
                 </div>
             </div>
-            <div className={styles.heroImageRight}>
-                <img src="./illustration-hero-right.svg" alt="People working"/>
+            <div className={styles.heroImageRightWrapper}>
+                <img className={styles.heroImgRight} src="./illustration-hero-right.svg" alt="People working"/>
             </div>
         </section>
     );

@@ -15,10 +15,12 @@ export default function Home() {
     return (
         <div className={`${manrope.className} container`}>
             <header className="header">
-                <img className="header__logo" src="/logo.svg" alt="logo maker" width={120} height={35}></img>
+                <div className="headerLogoWapper">
+                    <img className="headerLogo" src="/logo.svg" alt="logo maker" width={120} height={35}></img>
+                </div>
+                <Hero />
             </header>
             <main className="main">
-                <Hero />
                 <Benefits />
                 <Plans />
             </main>

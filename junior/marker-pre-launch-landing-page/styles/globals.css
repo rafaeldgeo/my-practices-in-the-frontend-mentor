@@ -10,28 +10,32 @@
 *,
 *::before,
 *::after {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 
 html,
 body {
-  inline-size: 100%;
   background-color: var(--blue-230);
+  inline-size: 100%;
 }
 
 .container {
   inline-size: 100%;
-  max-inline-size: 100vw;
   margin: 0 auto;
+  max-inline-size: 100vw;
 }
 
 .header {
-  padding-block-start: min(10.8vw, 2.5rem);
+  padding-block: min(10.8vw, 2.5rem) min(38.4vw, 9rem);
 }
 
-.header__logo {
+.headerLogoWapper {
+  padding-inline: 0;
+}
+
+.headerLogo {
   margin: 0 auto;
   display: block;
 }
@@ -56,11 +60,15 @@ body {
   }
 
   .header {
-    padding-inline: min(5.08vw, 2.4375rem);
-    padding-block-start: min(6.3vw, 3rem);
+   
+    padding-block: min(6.3vw, 3rem) min(14.2vw, 6.8125rem);
   }
 
-  .header__logo {
+  .headerLogoWapper {
+    padding-inline: min(5.08vw, 2.4375rem); 
+  }
+
+  .headerLogo {
     margin: 0;
   }
 
@@ -80,11 +88,14 @@ body {
   }
 
   .header {
-    padding-inline: min(11.5vw, 10.3125rem);
-    padding-block-start: min(6.25vw, 5.0625rem);
+    padding-block: min(6.25vw, 5.0625rem) min(14.05vw, 12.625rem);
   }
 
-  .header__logo {
+  .headerLogoWapper {
+    padding-inline: min(11.5vw, 10.3125rem);
+  }
+
+  .headerLogo {
     margin: 0;
   }
 

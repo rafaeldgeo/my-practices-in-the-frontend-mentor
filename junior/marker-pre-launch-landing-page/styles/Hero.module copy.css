@@ -1,0 +1,142 @@
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-block-start: min(17.47vw, 4.09375rem);
+  background-color: red;
+}
+
+.heroImgLeftTopWrapper {
+  display: block;
+  inline-size: 100%;
+  /* max-inline-size: 408px; */
+  overflow: hidden;
+  align-self: center;
+}
+
+.heroImgLeftTop {
+  display: block;
+  height: auto;
+  max-inline-size: 100%;
+  object-fit: contain;
+}
+
+.heroImageRightWrapper {
+  align-self: center;
+  display: none;
+  inline-size: 100%;
+  object-fit: contain;
+}
+
+.heroImgRight {
+  display: none;
+  height: auto;
+  max-inline-size: 100%;
+}
+
+.heroText {
+  text-align: center;
+}
+
+.heroTitle {
+  color: var(--white);
+  font-size: clamp(0.8rem, 0.5rem + 6.4vw, 2rem);
+  font-weight: 800;
+  line-height: calc(clamp(0.8rem, 0.5rem + 6.4vw, 2rem) * 1.18);
+}
+
+.heroTitleLove {
+  color: var(--green-179);
+}
+
+.heroDescription {
+  color: var(--blue-225);
+  font-size: clamp(0.6rem, 0.5rem + 0.4375rem, 0.9375rem);
+  line-height: calc(clamp(0.6rem, 0.5rem + 0.4375rem, 0.9375rem) * 1.673);
+  padding-block: min(6.14vw, 1.4375rem) min(8.54vw, 2rem);
+}
+
+.iconScroll {
+  display: block;
+  margin: 0 auto;
+}
+
+@media only screen and (min-width: 575.98px) {
+  .hero {
+    padding-block-start: min(10.03vw, 4.8125rem);
+  }
+
+  .heroImgLeftTopWrapper {
+    max-inline-size: 114px;
+   }
+
+  .heroImgLeftTop {
+    max-inline-size: 300%;
+    object-position: -60px center;
+  }
+
+  .heroImageRightWrapper {
+    display: block;
+    max-inline-size: 394px;
+  }
+
+  .heroImgRight {
+    display: block;
+    height: auto;
+    max-inline-size: 100%;
+    object-position: 55px center;
+   }
+
+   .heroText {
+    padding-block: min(calc(6.64vw - 1rem), 3.1875rem);
+  }
+
+  .heroDescription {
+    padding-block: min(1.67vw, 1.5rem) min(4.17vw, 2rem);
+  }
+}
+
+@media only screen and (min-width: 768.98px) {
+  .hero {
+    padding-block-start: min(7.92vw, 7.125rem);
+  }
+
+  .heroImgLeftTopWrapper {
+    max-inline-size: 406px;
+   }
+
+  .heroImgLeftTop {
+    max-inline-size: 100%;
+    object-position: -52px center;
+  }
+
+  .heroImageRightWrapper {
+    display: block;
+    max-inline-size: 394px;
+  }
+
+  .heroImgRight {
+    display: block;
+    height: auto;
+    max-inline-size: 100%;
+    object-position: 55px center;
+   }
+
+  .heroContent {
+    inline-size: 100%;
+    max-inline-size: 540px;
+  }
+
+  .heroText {
+    padding-block: min(calc(5.5vw - 1rem), 3.9375rem);
+  }
+
+  .heroTitle {
+    font-size: clamp(2rem, 0.5rem + 2.78vw, 3rem); 
+    line-height: calc(clamp(2rem, 0.5rem + 2.78vw, 3rem) * 1.18);
+  }
+
+  .heroDescription {
+    padding-block: min(1.67vw, 1.5rem) min(4.45vw, 4rem);
+  }
+}
