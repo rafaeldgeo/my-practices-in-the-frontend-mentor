@@ -28,7 +28,7 @@ body {
 }
 
 .header {
-  padding-block: min(10.8vw, 2.5rem) min(38.4vw, 9rem);
+  padding-block-start: min(10.8vw, 2.5rem);
 }
 
 .headerLogoWapper {
@@ -49,9 +49,14 @@ body {
 }
 
 .footer {
-  background: url("../public/bg-footer-squiggle.svg") no-repeat 50% 20% / 150%
+  background: url("../public/bg-footer-squiggle.svg") no-repeat 50% 35% / 150%
     auto;
   padding-inline: min(6.4vw, 1.5rem);
+  padding-block-start: min(38.4vw, 9rem);
+}
+
+.attribution {
+  padding-block-start: min(43.73vw, 10.25rem);
 }
 
 @media only screen and (min-width: 576px) and (max-width: 768px) {
@@ -60,12 +65,11 @@ body {
   }
 
   .header {
-   
-    padding-block: min(6.3vw, 3rem) min(14.2vw, 6.8125rem);
+    padding-block-start: min(6.3vw, 3rem);
   }
 
   .headerLogoWapper {
-    padding-inline: min(5.08vw, 2.4375rem); 
+    padding-inline: min(5.08vw, 2.4375rem);
   }
 
   .headerLogo {
@@ -79,6 +83,11 @@ body {
   .footer {
     background: url("../public/bg-footer-squiggle.svg") no-repeat 75% center /
       150% auto;
+    padding-block-start: min(17.58vw, 8.4375rem);
+  }
+
+  .attribution {
+    padding-block-start: min(13.68vw, 6.5625rem);
   }
 }
 
@@ -88,7 +97,7 @@ body {
   }
 
   .header {
-    padding-block: min(6.25vw, 5.0625rem) min(14.05vw, 12.625rem);
+    padding-block-start: min(6.25vw, 5.0625rem);
   }
 
   .headerLogoWapper {
@@ -104,8 +113,13 @@ body {
   }
 
   .footer {
-    background: url("../public/bg-footer-squiggle.svg") no-repeat right center /
-      110% auto;
+    background: url("../public/bg-footer-squiggle.svg") no-repeat center / auto
+      auto;
+    padding-block-start: min(10.49vw, 9.4375rem);
+  }
+
+  .attribution {
+    padding-block-start: min(8.125vw, 17.3125rem);
   }
 }
 

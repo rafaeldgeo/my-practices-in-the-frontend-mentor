@@ -4,6 +4,7 @@
     grid-template-columns: fit-content(327px);
     grid-template-rows: repeat(4, 1fr);
     justify-content: center;
+    padding-block: min(38.4vw, 9rem);
 }
 
 .card {
@@ -64,6 +65,7 @@
         grid-template-columns: fit-content(573px);
         grid-template-rows: repeat(4, 1fr); 
         justify-content: center;
+        padding-block: min(14.2vw, 6.8125rem);
      }
 
     .card {
@@ -94,6 +96,7 @@
         justify-content: center;
         max-inline-size: 1110px;
         inline-size: 100%;
+        padding-block: min(14.05vw, 12.625rem);
      }
 
     .card {

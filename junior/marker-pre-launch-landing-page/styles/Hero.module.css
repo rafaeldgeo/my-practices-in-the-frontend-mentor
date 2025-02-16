@@ -14,7 +14,7 @@
 .heroImgLeftTop {
   block-size: 100%;
   inline-size: 100%;
- }
+}
 
 .heroImageRightWrapper {
   display: none;
@@ -52,12 +52,13 @@
 
 @media only screen and (min-width: 575.98px) {
   .hero {
-    flex-direction: row;
     align-items: center;
+    background: url("../public/bg-hero-squiggle.svg") no-repeat center 65% / 52% auto;
+    flex-direction: row;
+    gap: 0.625rem;
     justify-content: space-between;
     padding-block-start: min(10.03vw, 4.8125rem);
-    gap: 0.625rem ;
-  }
+}
 
   .heroImgLeftTopWrapper {
     align-self: center;
@@ -72,7 +73,7 @@
     inline-size: 100%;
     object-fit: cover;
     object-position: -170px center;
-   }
+  }
 
   .heroImageRightWrapper {
     align-self: center;
@@ -90,7 +91,7 @@
     object-fit: cover;
     object-position: 0 center;
     position: absolute;
-   }
+  }
 
   .heroText {
     padding-inline: 0;
@@ -109,11 +110,12 @@
 @media only screen and (min-width: 768.98px) {
   .hero {
     align-items: center;
+    background: url("../public/bg-hero-squiggle.svg") no-repeat center 50% / calc(45% - 5rem) auto;
     flex-direction: row;
-    gap: 0.625rem ;
+    gap: 0.625rem;
     justify-content: space-between;
     padding-block-start: min(7.92vw, 7.125rem);
-}
+  }
 
   .heroImgLeftTopWrapper {
     align-self: center;
@@ -128,7 +130,7 @@
     inline-size: 100%;
     object-fit: cover;
     object-position: -52px center;
-   }
+  }
 
   .heroImageRightWrapper {
     align-self: center;
@@ -146,7 +148,7 @@
     object-fit: cover;
     object-position: 0 center;
     position: absolute;
-   }
+  }
 
   .heroContent {
     inline-size: 100%;
@@ -159,7 +161,7 @@
   }
 
   .heroTitle {
-    font-size: clamp(2rem, 0.5rem + 2.78vw, 3rem); 
+    font-size: clamp(2rem, 0.5rem + 2.78vw, 3rem);
     line-height: calc(clamp(2rem, 0.5rem + 2.78vw, 3rem) * 1.18);
   }
 
