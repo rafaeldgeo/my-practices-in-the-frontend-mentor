@@ -61,6 +61,7 @@ Practices in [Frontend Mentor Website](https://www.frontendmentor.io/)
 * 15- [Typemaster-pre-launch-landing page](https://rafaeldgeo-typemaster-pre-launch.vercel.app/) **HTML** | **CSS** | **JS** <sup>React Library Create App</sup>
 * 15- [Body-Mass-Index-calculator](https://rafaeldgeo-body-mass-calculator.vercel.app/) **HTML** | **CSS** | **JS** <sup>React Library Create App</sup>
 * 16- [Tip-Calculator](https://rafaeldgeo-tip-calculator.vercel.app/) **HTML** | **CSS** | **JS** <sup>React Library Create App</sup>
-* 17- [Contact-form-main](https://rafaeldgeo-contact-form-main.vercel.app/) **HTML** | **CSS** | **JS** <sup>React Library + NEXT.JS</sup>
+* 17- [Marker-pre-launch-landing-page](https://rafaeldgeo-marker-pre-launch.vercel.app/) **HTML** | **CSS** <sup>CSS modules</sup> | **JS** <sup>React Library + NEXT.JS using Pages Router</sup>
+* 18- [Contact-form-main](https://rafaeldgeo-contact-form-main.vercel.app/) **HTML** | **CSS** | **JS** <sup>React Library + NEXT.JS using App Router</sup>
 
 **My Frontend Mentor: [@rafaeldgeo](https://www.frontendmentor.io/profile/rafaeldgeo)**
