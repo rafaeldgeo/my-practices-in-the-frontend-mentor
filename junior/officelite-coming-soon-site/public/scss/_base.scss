@@ -1,0 +1,25 @@
+@use "sass:map";
+@use "sass:math";
+
+@import url("https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght,YOPQ@100..900,40..300&display=swap");
+
+$blue-100: #829cff;
+$blue-200: #5175ff;
+$grey-100: #747895;
+$grey-200: #333950;
+$grey-300: #25293a;
+$red-100: #f05b5b;
+$white: #ffffff;
+$font: "Kumbh Sans", sans-serif;
+
+//reset onfig
+@mixin reset {
+    *,
+    *::before,
+    *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: $font;
+    }
+}
