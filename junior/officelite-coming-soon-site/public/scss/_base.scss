@@ -9,8 +9,10 @@ $grey-100: #747895;
 $grey-200: #333950;
 $grey-300: #25293a;
 $red-100: #f05b5b;
+$btn-shadow: hsla(227, 52, 50, 24.72%);
 $white: #ffffff;
 $font: "Kumbh Sans", sans-serif;
+$deviceList: ("mobile": 375, "tablet": 768, "desktop": 1440);
 
 //reset onfig
 @mixin reset {
@@ -21,5 +23,68 @@ $font: "Kumbh Sans", sans-serif;
         padding: 0;
         box-sizing: border-box;
         font-family: $font;
+    }
+}
+
+//breakpoints
+@mixin breakpoints($size) {
+    @if $size == ex {
+        @media (min-width: 374.98px) { @content; }
+    } @else if $size == sm {
+        @media (min-width: 575.98px) { @content; }
+    } @else if $size == md {
+        @media (min-width: 767.98px) { @content; }
+    } @else if $size == lg {
+        @media (min-width: 991.98px) { @content; }
+    } @else if $size == xl {
+        @media (min-width: 1199.98px) { @content; }
+    } @else if $size == xxl {
+        @media (min-width: 1399.98px) { @content; }
+    } @else {
+        @error "You must define a size valid - ex, sm, md, lg, xl, xxl";
+    }
+}
+
+// breakpoint between views
+@mixin breakpoint-between($min, $max) { @media (min-width: $min) and (max-width: $max) { @content; } }
+
+// convert px to rem
+@function convertPxToRem($sizePx) {
+    @return math.div($sizePx, 16) * 1rem;
+}
+
+// calculate the view size from device
+@function calculateVw($sizePx, $device) {
+    $sizeView: map.get($deviceList, $device);
+    $sizeVw: (math.div($sizePx, $sizeView) * 100) * 1vw;
+
+    @return $sizeVw;
+}
+
+// define the fluid space using min(vw, rem)
+@function fluidSpace($sizePx, $device: "mobile") {    
+    @if  map.get($deviceList, $device) {
+        @return min(calculateVw($sizePx, $device), convertPxToRem($sizePx));
+    } @else {
+        @error "You must define one device valid";
+    }
+}
+
+// define the fluid typography using clamp(rem, vw, rem)
+@function fluidTypo($sizePxMin, $sizePxMax, $device: "mobile") {
+    @if  map.get($deviceList, $device) {
+        $sizePx: $sizePxMax - 8;
+        @return clamp(convertPxToRem($sizePxMin), .5rem + calculateVw($sizePx, $device), convertPxToRem($sizePxMax));
+    } @else {
+        @error "You must define one device valid";
+    }
+}
+
+//define the fluid line height using calc(clamp(rem, vw, rem) * number)
+@function fluidLineHeight($sizePxMin, $sizePxMax, $lineHeight, $device: "mobile") {
+    @if map.get($deviceList, $device) {
+        @return calc(fluidTypo($sizePxMin, $sizePxMax, $device) * $lineHeight);
+    } @else {
+        @error "You must define one device valid";
     }
 }

@@ -1,2 +1,100 @@
 @use "base";
 @include base.reset;
+
+html,
+body {
+  background-color: base.$white;
+  inline-size: 100%;
+}
+
+.container {
+  inline-size: 100%;
+  margin: 0 auto;
+  max-inline-size: 100vw;
+  padding-inline: base.fluidSpace(24);
+
+  @include base.breakpoints(sm) {
+    max-inline-size: 768px;
+    padding-inline: base.fluidSpace(39, tablet);
+  }
+
+  @include base.breakpoints(md) {
+    max-inline-size: 1440px;
+    padding-inline: base.fluidSpace(165, desktop);
+  }
+}
+
+.header {
+  .logo {
+    padding-block: base.fluidSpace(46) base.fluidSpace(80);
+
+    @include base.breakpoints(sm) {
+      padding-block: base.fluidSpace(72) base.fluidSpace(104);
+    }
+
+    @include base.breakpoints(md) {
+      padding-block: base.fluidSpace(81) base.fluidSpace(174);
+    }
+
+    &__img {
+      display: block;
+      margin: 0 auto;
+
+      @include base.breakpoints(sm) {
+        margin: 0;
+      }
+    }
+  }
+
+  .hero {
+    &__content {
+      text-align: center;
+
+      @include base.breakpoints(sm) {
+        text-align: start;
+      }
+    }
+
+    &__title {
+      color: base.$grey-300;
+      font-size: base.fluidTypo(20, 40);
+      font-weight: 800;
+      line-height: base.fluidLineHeight(20, 40, 1.2);
+
+      @include base.breakpoints(md) {
+        font-size: base.fluidTypo(36, 56, desktop);
+        line-height: base.fluidLineHeight(36, 56, 1.145, desktop);
+      }
+    }
+
+    &__description {
+      color: base.$grey-100;
+      font-size: base.fluidTypo(10, 16);
+      line-height: base.fluidLineHeight(10, 16, 1.63);
+      font-weight: 400;
+
+      @include base.breakpoints(md) {
+        font-size: base.fluidTypo(10, 18);
+        line-height: base.fluidLineHeight(10, 18, 1.99, desktop);
+      }
+    }
+  }
+}
+
+.btn__get-start {
+  background-color: base.$blue-200;
+  border-radius: base.convertPxToRem(28);
+  box-shadow: 0 25px 25px -10px base.$btn-shadow;
+  color: base.$white;
+  cursor: pointer;
+  display: inline-block;
+  font-size: base.fluidTypo(10, 16);
+  font-weight: 800;
+  line-height: base.fluidLineHeight(10, 16, 1.75);
+  padding: base.fluidSpace(14) base.fluidSpace(41);
+  text-decoration: none;
+}
+
+.btn__get-start:hover {
+  background-color: base.$blue-100;
+}

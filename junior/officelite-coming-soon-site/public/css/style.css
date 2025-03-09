@@ -7,3 +7,101 @@
   box-sizing: border-box;
   font-family: "Kumbh Sans", sans-serif;
 }
+
+html,
+body {
+  background-color: #ffffff;
+  inline-size: 100%;
+}
+
+.container {
+  inline-size: 100%;
+  margin: 0 auto;
+  max-inline-size: 100vw;
+  padding-inline: min(6.4vw, 1.5rem);
+}
+@media (min-width: 575.98px) {
+  .container {
+    max-inline-size: 768px;
+    padding-inline: min(5.078125vw, 2.4375rem);
+  }
+}
+@media (min-width: 767.98px) {
+  .container {
+    max-inline-size: 1440px;
+    padding-inline: min(11.4583333333vw, 10.3125rem);
+  }
+}
+
+.header .logo {
+  padding-block: min(12.2666666667vw, 2.875rem) min(21.3333333333vw, 5rem);
+}
+@media (min-width: 575.98px) {
+  .header .logo {
+    padding-block: min(19.2vw, 4.5rem) min(27.7333333333vw, 6.5rem);
+  }
+}
+@media (min-width: 767.98px) {
+  .header .logo {
+    padding-block: min(21.6vw, 5.0625rem) min(46.4vw, 10.875rem);
+  }
+}
+.header .logo__img {
+  display: block;
+  margin: 0 auto;
+}
+@media (min-width: 575.98px) {
+  .header .logo__img {
+    margin: 0;
+  }
+}
+.header .hero__content {
+  text-align: center;
+}
+@media (min-width: 575.98px) {
+  .header .hero__content {
+    text-align: start;
+  }
+}
+.header .hero__title {
+  color: #25293a;
+  font-size: clamp(1.25rem, 0.5rem + 8.5333333333vw, 2.5rem);
+  font-weight: 800;
+  line-height: calc(clamp(1.25rem, 0.5rem + 8.5333333333vw, 2.5rem) * 1.2);
+}
+@media (min-width: 767.98px) {
+  .header .hero__title {
+    font-size: clamp(2.25rem, 0.5rem + 3.3333333333vw, 3.5rem);
+    line-height: calc(clamp(2.25rem, 0.5rem + 3.3333333333vw, 3.5rem) * 1.145);
+  }
+}
+.header .hero__description {
+  color: #747895;
+  font-size: clamp(0.625rem, 0.5rem + 2.1333333333vw, 1rem);
+  line-height: calc(clamp(0.625rem, 0.5rem + 2.1333333333vw, 1rem) * 1.63);
+  font-weight: 400;
+}
+@media (min-width: 767.98px) {
+  .header .hero__description {
+    font-size: clamp(0.625rem, 0.5rem + 2.6666666667vw, 1.125rem);
+    line-height: calc(clamp(0.625rem, 0.5rem + 0.6944444444vw, 1.125rem) * 1.99);
+  }
+}
+
+.btn__get-start {
+  background-color: #5175ff;
+  border-radius: 1.75rem;
+  box-shadow: 0 25px 25px -10px hsla(227, 52%, 50%, 0.2472);
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-block;
+  font-size: clamp(0.625rem, 0.5rem + 2.1333333333vw, 1rem);
+  font-weight: 800;
+  line-height: calc(clamp(0.625rem, 0.5rem + 2.1333333333vw, 1rem) * 1.75);
+  padding: min(3.7333333333vw, 0.875rem) min(10.9333333333vw, 2.5625rem);
+  text-decoration: none;
+}
+
+.btn__get-start:hover {
+  background-color: #829cff;
+}
