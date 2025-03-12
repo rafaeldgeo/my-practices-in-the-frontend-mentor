@@ -43,7 +43,7 @@ $deviceList: (
       @content;
     }
   } @else if $size == md {
-    @media (min-width: 767.98px) {
+    @media (min-width: 768.98px) {
       @content;
     }
   } @else if $size == lg {
@@ -69,7 +69,6 @@ $deviceList: (
     @content;
   }
 }
-
 
 // convert px to rem
 @function convertPxToRem($sizePx) {

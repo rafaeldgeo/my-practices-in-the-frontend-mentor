@@ -26,7 +26,7 @@ body {
     padding-inline: min(5.078125vw, 2.4375rem);
   }
 }
-@media (min-width: 767.98px) {
+@media (min-width: 768.98px) {
   .container {
     max-inline-size: 1440px;
     padding-inline: min(11.4583333333vw, 10.3125rem);
@@ -41,7 +41,7 @@ body {
     padding-block: min(19.2vw, 4.5rem) min(27.7333333333vw, 6.5rem);
   }
 }
-@media (min-width: 767.98px) {
+@media (min-width: 768.98px) {
   .header .logo {
     padding-block: min(21.6vw, 5.0625rem) min(46.4vw, 10.875rem);
   }
@@ -69,7 +69,7 @@ body {
   font-weight: 800;
   line-height: calc(clamp(1.25rem, 0.5rem + 8.5333333333vw, 2.5rem) * 1.2);
 }
-@media (min-width: 767.98px) {
+@media (min-width: 768.98px) {
   .header .hero__title {
     font-size: clamp(2.25rem, 0.5rem + 3.3333333333vw, 3.5rem);
     line-height: calc(clamp(2.25rem, 0.5rem + 3.3333333333vw, 3.5rem) * 1.145);
@@ -81,7 +81,7 @@ body {
   line-height: calc(clamp(0.625rem, 0.5rem + 2.1333333333vw, 1rem) * 1.63);
   font-weight: 400;
 }
-@media (min-width: 767.98px) {
+@media (min-width: 768.98px) {
   .header .hero__description {
     font-size: clamp(0.625rem, 0.5rem + 2.6666666667vw, 1.125rem);
     line-height: calc(clamp(0.625rem, 0.5rem + 0.6944444444vw, 1.125rem) * 1.99);
@@ -109,33 +109,47 @@ body {
 .plans {
   display: flex;
   flex-direction: column;
+  gap: min(8.5333333333vw, 2rem) 0;
 }
-@media (min-width: 767.98px) {
+@media (min-width: 504.98px) and (max-width: 768.98px) {
+  .plans {
+    flex-direction: column;
+    gap: min(3.125vw, 1.5rem) 0;
+  }
+}
+@media (min-width: 768.98px) {
   .plans {
     flex-direction: row;
+    gap: 0 min(2.0833333333vw, 1.875rem);
   }
 }
 .plans .card {
   border-radius: 0.8125rem;
-  background-color: red;
   display: grid;
   grid-template-columns: minmax(auto, 327px);
   grid-template-rows: auto;
+  justify-content: center;
+  padding: min(10.6666666667vw, 2.5rem) min(12.8vw, 3rem);
   grid-template-areas: "header" "body" "footer";
+  text-align: center;
 }
-@media (min-width: 375.98px) and (max-width: 768.98px) {
+@media (min-width: 504.98px) and (max-width: 768.98px) {
   .plans .card {
-    background-color: blue;
+    align-items: center;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto;
+    justify-content: flex-start;
+    padding: min(6.25vw, 3rem);
     grid-template-areas: "header body" "header body" "footer body";
-    align-items: center;
+    text-align: start;
   }
 }
-@media (min-width: 767.98px) {
+@media (min-width: 768.98px) {
   .plans .card {
     grid-template-columns: minmax(auto, 350px);
     grid-template-rows: auto;
+    padding: min(10.6666666667vw, 2.5rem) min(12.8vw, 3rem);
+    padding: min(2.7777777778vw, 2.5rem) min(4.4444444444vw, 4rem);
     grid-template-areas: "header" "body" "footer";
   }
 }
@@ -143,10 +157,10 @@ body {
   background-color: #5175ff;
 }
 .plans .card__header {
-  grid-area: header;
   color: #333950;
+  grid-area: header;
 }
-.plans .card--emphasis .plans .card__header {
+.plans .card--emphasis .card__header {
   color: #ffffff;
 }
 .plans .card__title {
@@ -158,14 +172,38 @@ body {
   font-size: clamp(2.25rem, 0.5rem + 12.8vw, 3.5rem);
   font-weight: 800;
   line-height: calc(clamp(2.25rem, 0.5rem + 12.8vw, 3.5rem) * 1.143);
+  padding-block: min(10.6666666667vw, 2.5rem) min(2.1333333333vw, 0.5rem);
+  display: block;
+}
+@media (min-width: 504.98px) and (max-width: 768.98px) {
+  .plans .card__price {
+    padding-block: min(2.0833333333vw, 1rem) min(0.5208333333vw, 0.25rem);
+  }
+}
+@media (min-width: 768.98px) {
+  .plans .card__price {
+    padding-block: min(2.7777777778vw, 2.5rem) min(0.5555555556vw, 0.5rem);
+  }
 }
 .plans .card__included-in-plan {
   font-size: clamp(0.5rem, 0.5rem + 2.1333333333vw, 1rem);
   font-weight: 400;
   line-height: calc(clamp(0.5rem, 0.5rem + 2.1333333333vw, 1rem) * 1.75);
+  padding-block-end: 0;
+}
+@media (min-width: 504.98px) and (max-width: 768.98px) {
+  .plans .card__included-in-plan {
+    padding-block-end: min(3.125vw, 1.5rem);
+  }
 }
 .plans .card__body {
   grid-area: body;
+}
+@media (min-width: 504.98px) and (max-width: 768.98px) {
+  .plans .card__body {
+    display: flex;
+    justify-content: center;
+  }
 }
 .plans .card__list-resources {
   color: #747895;
@@ -173,10 +211,34 @@ body {
   font-weight: 400;
   line-height: calc(clamp(0.5rem, 0.5rem + 2.1333333333vw, 1rem) * 1.75);
   list-style-type: none;
+  padding-block: min(14.9333333333vw, 3.5rem) min(8.5333333333vw, 2rem);
 }
-.plans .card--emphasis .plans .card__list-resources {
+@media (min-width: 504.98px) and (max-width: 768.98px) {
+  .plans .card__list-resources {
+    padding-block: 0 0;
+  }
+}
+@media (min-width: 768.98px) {
+  .plans .card__list-resources {
+    padding-block: min(3.8888888889vw, 3.5rem) min(2.2222222222vw, 2rem);
+  }
+}
+.plans .card--emphasis .card__list-resources {
   color: #ffffff;
   opacity: 0.75;
+}
+.plans .card__list-item:nth-child(2) {
+  padding-block: min(4.2666666667vw, 1rem);
+}
+@media (min-width: 504.98px) and (max-width: 768.98px) {
+  .plans .card__list-item:nth-child(2) {
+    padding-block: min(2.0833333333vw, 1rem);
+  }
+}
+@media (min-width: 768.98px) {
+  .plans .card__list-item:nth-child(2) {
+    padding-block: min(1.1111111111vw, 1rem);
+  }
 }
 .plans .card__footer {
   grid-area: footer;
@@ -192,13 +254,13 @@ body {
   line-height: calc(clamp(0.5rem, 0.5rem + 2.1333333333vw, 1rem) * 1.75);
   padding: min(3.7333333333vw, 0.875rem) min(10.6666666667vw, 2.5rem);
 }
-.plans .card--no-emphasis .plans .card__btn:hover {
+.plans .card--no-emphasis .card__btn:hover {
   background-color: rgba(81, 117, 255, 0.35);
 }
-.plans .card--emphasis .plans .card__btn {
+.plans .card--emphasis .card__btn {
   background-color: #ffffff;
 }
-.plans .card--emphasis .plans .card__btn:hover {
+.plans .card--emphasis .card__btn:hover {
   color: #829cff;
 }
 
