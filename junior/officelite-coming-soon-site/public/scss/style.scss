@@ -93,6 +93,18 @@ body {
   line-height: base.fluidLineHeight(10, 16, 1.75);
   padding: base.fluidSpace(14) base.fluidSpace(41);
   text-decoration: none;
+
+  @include base.breakpoint-between(504.98, 768.98) {
+    font-size: base.fluidTypo(10, 16, tablet);
+    line-height: base.fluidLineHeight(10, 16, 1.75, tablet);
+    padding: base.fluidSpace(14, tablet) base.fluidSpace(41, tablet);
+  }
+
+  @include base.breakpoints(md) {
+    font-size: base.fluidTypo(10, 16, desktop);
+    line-height: base.fluidLineHeight(10, 16, 1.75, desktop);
+    padding: base.fluidSpace(14, desktop) base.fluidSpace(41, desktop);
+  }
 }
 
 .btn__get-start:hover {
@@ -120,6 +132,7 @@ body {
     grid-template-columns: minmax(auto, 327px);
     grid-template-rows: auto;
     justify-content: center;
+    align-content: space-between;
     padding: base.fluidSpace(40) base.fluidSpace(48);
 
     grid-template-areas:
@@ -146,7 +159,7 @@ body {
       grid-template-columns: minmax(auto, 350px);
       grid-template-rows: auto;
       padding: base.fluidSpace(40) base.fluidSpace(48);
-      padding: base.fluidSpace(40, desktop) base.fluidSpace(64, desktop);
+      padding: base.fluidSpace(40, desktop);
 
       grid-template-areas:
         "header"
@@ -155,7 +168,10 @@ body {
     }
 
     &--emphasis {
-      background-color: base.$blue-200;
+      background: no-repeat url("../assets/home/bg-pattern-pricing.svg")
+        base.$blue-200;
+      background-size: cover;
+      background-position: center -80%;
     }
 
     &__header {
@@ -171,6 +187,16 @@ body {
       font-size: base.fluidTypo(16, 20);
       font-weight: 800;
       line-height: base.fluidLineHeight(16, 20, 1.4);
+
+      @include base.breakpoint-between(504.98, 768.98) {
+        font-size: base.fluidTypo(16, 20, tablet);
+        line-height: base.fluidLineHeight(16, 20, 1.4, tablet);
+      }
+
+      @include base.breakpoints(md) {
+        font-size: base.fluidTypo(16, 20, desktop);
+        line-height: base.fluidLineHeight(16, 20, 1.4, desktop);
+      }
     }
 
     &__price {
@@ -181,10 +207,14 @@ body {
       display: block;
 
       @include base.breakpoint-between(504.98, 768.98) {
+        font-size: base.fluidTypo(36, 56, tablet);
+        line-height: base.fluidLineHeight(36, 56, 1.143, tablet);
         padding-block: base.fluidSpace(16, tablet) base.fluidSpace(4, tablet);
       }
 
       @include base.breakpoints(md) {
+        font-size: base.fluidTypo(36, 56, desktop);
+        line-height: base.fluidLineHeight(36, 56, 1.143, desktop);
         padding-block: base.fluidSpace(40, desktop) base.fluidSpace(8, desktop);
       }
     }
@@ -196,23 +226,27 @@ body {
       padding-block-end: 0;
 
       @include base.breakpoint-between(504.98, 768.98) {
+        font-size: base.fluidTypo(8, 16, tablet);
+        line-height: base.fluidLineHeight(8, 16, 1.75, tablet);
         padding-block-end: base.fluidSpace(24, tablet);
+      }
+
+      @include base.breakpoints(md) {
+        font-size: base.fluidTypo(8, 16, desktop);
+        line-height: base.fluidLineHeight(8, 16, 1.75, desktop);
       }
     }
 
     &__body {
       grid-area: body;
-     
-       @include base.breakpoint-between(504.98, 768.98) {
+
+      @include base.breakpoint-between(504.98, 768.98) {
         display: flex;
         justify-content: center;
-       
       }
 
       @include base.breakpoints(md) {
-        
       }
-
     }
 
     &__list-resources {
@@ -224,10 +258,14 @@ body {
       padding-block: base.fluidSpace(56) base.fluidSpace(32);
 
       @include base.breakpoint-between(504.98, 768.98) {
+        font-size: base.fluidTypo(8, 16, tablet);
+        line-height: base.fluidLineHeight(8, 16, 1.75, tablet);
         padding-block: 0 0;
       }
 
       @include base.breakpoints(md) {
+        font-size: base.fluidTypo(8, 16, desktop);
+        line-height: base.fluidLineHeight(8, 16, 1.75, desktop);
         padding-block: base.fluidSpace(56, desktop) base.fluidSpace(32, desktop);
       }
     }
@@ -263,6 +301,18 @@ body {
       font-weight: 800;
       line-height: base.fluidLineHeight(8, 16, 1.75);
       padding: base.fluidSpace(14) base.fluidSpace(40);
+
+      @include base.breakpoint-between(504.98, 768.98) {
+        font-size: base.fluidTypo(8, 16, tablet);
+        line-height: base.fluidLineHeight(8, 16, 1.75, tablet);
+        padding: base.fluidSpace(14, tablet) base.fluidSpace(40, tablet);
+      }
+
+      @include base.breakpoints(md) {
+        font-size: base.fluidTypo(8, 16, desktop);
+        line-height: base.fluidLineHeight(8, 16, 1.75, desktop);
+        padding: base.fluidSpace(14, desktop) base.fluidSpace(40, desktop);
+      }
     }
 
     &--no-emphasis .card__btn:hover {
