@@ -170,8 +170,13 @@ body {
 }
 .plans .card--emphasis {
   background: no-repeat url("../assets/home/bg-pattern-pricing.svg") #5175ff;
-  background-size: cover;
-  background-position: center -80%;
+  background-size: auto auto;
+  background-position: center -380px;
+}
+@media (min-width: 504.98px) and (max-width: 768.98px) {
+  .plans .card--emphasis {
+    background-position: -320px center;
+  }
 }
 .plans .card__header {
   color: #333950;
@@ -323,12 +328,96 @@ body {
   color: #829cff;
 }
 
-.attribution {
-  color: #25293a;
+.footer {
+  background-color: #25293a;
+}
+.footer .offer .time-counter__title {
+  color: #ffffff;
+  font-size: clamp(0.625rem, 0.5rem + 2.1333333333vw, 1rem);
+  font-weight: 800;
+  letter-spacing: 5px;
+  line-height: calc(clamp(0.625rem, 0.5rem + 2.1333333333vw, 1rem) * 3);
+  text-transform: uppercase;
+}
+.footer .offer .time-counter__title-emphasis {
+  color: #829cff;
+  font-style: normal;
+}
+@media (min-width: 504.98px) and (max-width: 768.98px) {
+  .footer .offer .time-counter__title {
+    font-size: clamp(0.625rem, 0.5rem + 1.0416666667vw, 1rem);
+    line-height: calc(clamp(0.625rem, 0.5rem + 1.0416666667vw, 1rem) * 3);
+  }
+}
+@media (min-width: 768.98px) {
+  .footer .offer .time-counter__title {
+    font-size: clamp(0.625rem, 0.5rem + 2.1333333333vw, 1rem);
+    line-height: calc(clamp(0.625rem, 0.5rem + 0.5555555556vw, 1rem) * 3);
+  }
+}
+.footer .offer .countdown {
+  width: 100%;
+  display: flex;
+  column-gap: min(3.4666666667vw, 0.8125rem);
+}
+@media (min-width: 504.98px) and (max-width: 768.98px) {
+  .footer .offer .countdown {
+    column-gap: min(2.0833333333vw, 1rem);
+  }
+}
+@media (min-width: 768.98px) {
+  .footer .offer .countdown {
+    column-gap: min(1.1111111111vw, 1rem);
+  }
+}
+.footer .offer .countdown .countdown__digit {
+  background-color: #333950;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  font-weight: 800;
+  padding: min(4.2666666667vw, 1rem);
+  row-gap: 2.12px;
+  text-align: center;
+  border-radius: 0.8125rem;
+}
+@media (min-width: 504.98px) and (max-width: 768.98px) {
+  .footer .offer .countdown .countdown__digit {
+    padding: min(2.0833333333vw, 1rem);
+  }
+}
+@media (min-width: 768.98px) {
+  .footer .offer .countdown .countdown__digit {
+    padding: min(1.9791666667vw, 1.78125rem) min(1.1111111111vw, 1rem);
+  }
+}
+.footer .offer .countdown .countdown__digit .countdown__time {
+  font-size: clamp(1rem, 0.5rem + 6.4vw, 2rem);
+  line-height: calc(clamp(1rem, 0.5rem + 6.4vw, 2rem) * 0.858);
+}
+@media (min-width: 504.98px) and (max-width: 768.98px) {
+  .footer .offer .countdown .countdown__digit .countdown__time {
+    font-size: clamp(1rem, 0.5rem + 6.25vw, 3.5rem);
+    line-height: calc(clamp(1rem, 0.5rem + 6.25vw, 3.5rem) * 0.858);
+  }
+}
+@media (min-width: 768.98px) {
+  .footer .offer .countdown .countdown__digit .countdown__time {
+    font-size: clamp(1rem, 0.5rem + 3.3333333333vw, 3.5rem);
+    line-height: calc(clamp(1rem, 0.5rem + 3.3333333333vw, 3.5rem) * 0.858);
+  }
+}
+.footer .offer .countdown .countdown__digit .countdown__period {
+  font-size: clamp(0.5rem, 0.5rem + 1.0666666667vw, 0.75rem);
+  line-height: calc(clamp(0.5rem, 0.5rem + 1.0666666667vw, 0.75rem) * 1.75);
+  opacity: 0.5;
+}
+.footer .offer .attribution {
+  color: #ffffff;
   font-size: 0.6875rem;
   padding-block: min(256.25vw, 2.5625rem) 0.6rem;
   text-align: center;
 }
-.attribution__link {
+.footer .offer .attribution__link {
   color: #5175ff;
 }

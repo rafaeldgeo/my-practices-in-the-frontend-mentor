@@ -170,8 +170,15 @@ body {
     &--emphasis {
       background: no-repeat url("../assets/home/bg-pattern-pricing.svg")
         base.$blue-200;
-      background-size: cover;
-      background-position: center -80%;
+      background-size: auto auto;
+      background-position: center -380px;
+
+      @include base.breakpoint-between(504.98, 768.98) {
+        background-position: -320px center;
+      }
+
+      @include base.breakpoints(md) {
+      }
     }
 
     &__header {
@@ -329,13 +336,101 @@ body {
   }
 }
 
-.attribution {
-  color: base.$grey-300;
-  font-size: 0.6875rem;
-  padding-block: min(256.25vw, 2.5625rem) 0.6rem;
-  text-align: center;
+.footer {
+  background-color: base.$grey-300;
 
-  &__link {
-    color: base.$blue-200;
+  .offer {
+    .time-counter {
+      &__title {
+        color: base.$white;
+        font-size: base.fluidTypo(10, 16);
+        font-weight: 800;
+        letter-spacing: 5px;
+        line-height: base.fluidLineHeight(10, 16, 3);
+        text-transform: uppercase;
+
+        &-emphasis {
+          color: base.$blue-100;
+          font-style: normal;
+        }
+
+        @include base.breakpoint-between(504.98, 768.98) {
+          font-size: base.fluidTypo(10, 16, tablet);
+          line-height: base.fluidLineHeight(10, 16, 3, tablet);
+        }
+
+        @include base.breakpoints(md) {
+          font-size: base.fluidTypo(10, 16);
+          line-height: base.fluidLineHeight(10, 16, 3, desktop);
+        }
+      }
+    }
+
+    .countdown {
+      width: 100%;
+      display: flex;
+      column-gap: base.fluidSpace(13);
+
+      @include base.breakpoint-between(504.98, 768.98) {
+        column-gap: base.fluidSpace(16, tablet);
+      }
+
+      @include base.breakpoints(md) {
+        column-gap: base.fluidSpace(16, desktop);
+      }
+
+      // parei aqui
+      .countdown__digit {
+        background-color: base.$grey-200;
+        color: base.$white;
+        display: flex;
+        flex-direction: column;
+        font-weight: 800;
+        padding: base.fluidSpace(16);
+        row-gap: 2.12px;
+        text-align: center;
+        border-radius: 0.8125rem;
+
+        @include base.breakpoint-between(504.98, 768.98) {
+          padding: base.fluidSpace(16, tablet);
+        }
+
+        @include base.breakpoints(md) {
+          padding: base.fluidSpace(28.50, desktop) base.fluidSpace(16, desktop);
+        }
+
+        .countdown__time {
+          font-size: base.fluidTypo(16, 32);
+          line-height: base.fluidLineHeight(16, 32, 0.858);
+
+          @include base.breakpoint-between(504.98, 768.98) {
+            font-size: base.fluidTypo(16, 56, tablet);
+            line-height: base.fluidLineHeight(16, 56, 0.858, tablet);
+          }
+
+          @include base.breakpoints(md) {
+            font-size: base.fluidTypo(16, 56, desktop);
+            line-height: base.fluidLineHeight(16, 56, 0.858, desktop);
+          }
+        }
+
+        .countdown__period {
+          font-size: base.fluidTypo(8, 12);
+          line-height: base.fluidLineHeight(8, 12, 1.75);
+          opacity: 0.5;
+        }
+      }
+    }
+
+    .attribution {
+      color: base.$white;
+      font-size: 0.6875rem;
+      padding-block: min(256.25vw, 2.5625rem) 0.6rem;
+      text-align: center;
+
+      &__link {
+        color: base.$blue-200;
+      }
+    }
   }
 }
