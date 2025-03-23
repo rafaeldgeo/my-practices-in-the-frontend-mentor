@@ -10,7 +10,7 @@
 
 html,
 body {
-  background-color: #ffffff;
+  background-color: #fafafa;
   inline-size: 100%;
 }
 
@@ -18,17 +18,28 @@ body {
   inline-size: 100%;
   margin: 0 auto;
   max-inline-size: 100vw;
-  padding-inline: min(6.4vw, 1.5rem);
 }
 @media (min-width: 575.98px) {
   .container {
     max-inline-size: 768px;
-    padding-inline: min(5.078125vw, 2.4375rem);
   }
 }
 @media (min-width: 768.98px) {
   .container {
     max-inline-size: 1440px;
+  }
+}
+
+:is(.header, .main, .footer) {
+  padding-inline: min(6.4vw, 1.5rem);
+}
+@media (min-width: 575.98px) {
+  :is(.header, .main, .footer) {
+    padding-inline: min(5.078125vw, 2.4375rem);
+  }
+}
+@media (min-width: 768.98px) {
+  :is(.header, .main, .footer) {
     padding-inline: min(11.4583333333vw, 10.3125rem);
   }
 }
@@ -38,12 +49,12 @@ body {
 }
 @media (min-width: 575.98px) {
   .header .logo {
-    padding-block: min(19.2vw, 4.5rem) min(27.7333333333vw, 6.5rem);
+    padding-block: min(9.375vw, 4.5rem) min(13.5416666667vw, 6.5rem);
   }
 }
 @media (min-width: 768.98px) {
   .header .logo {
-    padding-block: min(21.6vw, 5.0625rem) min(46.4vw, 10.875rem);
+    padding-block: min(5.625vw, 5.0625rem) min(12.0833333333vw, 10.875rem);
   }
 }
 .header .logo__img {
@@ -55,40 +66,64 @@ body {
     margin: 0;
   }
 }
-.header .hero__content {
+.header .hero {
+  display: flex;
+  flex-flow: column-reverse;
+  align-items: center;
+}
+@media (min-width: 504.98px) and (max-width: 768.98px) {
+  .header .hero {
+    flex-flow: row;
+  }
+}
+@media (min-width: 768.98px) {
+  .header .hero {
+    flex-flow: row;
+    gap: 0 min(6.5972222222vw, 5.9375rem);
+  }
+}
+.header .hero .content {
+  flex: 1 1 auto;
   text-align: center;
 }
 @media (min-width: 575.98px) {
-  .header .hero__content {
+  .header .hero .content {
     text-align: start;
   }
 }
-.header .hero__title {
+@media (min-width: 768.98px) {
+  .header .hero .content {
+    flex: 0 1 540px;
+  }
+}
+.header .hero .content__title {
   color: #25293a;
   font-size: clamp(1.25rem, 0.5rem + 8.5333333333vw, 2.5rem);
   font-weight: 800;
   line-height: calc(clamp(1.25rem, 0.5rem + 8.5333333333vw, 2.5rem) * 1.2);
 }
 @media (min-width: 768.98px) {
-  .header .hero__title {
+  .header .hero .content__title {
     font-size: clamp(2.25rem, 0.5rem + 3.3333333333vw, 3.5rem);
     line-height: calc(clamp(2.25rem, 0.5rem + 3.3333333333vw, 3.5rem) * 1.145);
   }
 }
-.header .hero__description {
+.header .hero .content__description {
   color: #747895;
   font-size: clamp(0.625rem, 0.5rem + 2.1333333333vw, 1rem);
-  line-height: calc(clamp(0.625rem, 0.5rem + 2.1333333333vw, 1rem) * 1.63);
   font-weight: 400;
+  line-height: calc(clamp(0.625rem, 0.5rem + 2.1333333333vw, 1rem) * 1.63);
+  padding-block: min(6.4vw, 1.5rem);
 }
 @media (min-width: 768.98px) {
-  .header .hero__description {
+  .header .hero .content__description {
     font-size: clamp(0.625rem, 0.5rem + 2.6666666667vw, 1.125rem);
     line-height: calc(clamp(0.625rem, 0.5rem + 0.6944444444vw, 1.125rem) * 1.99);
+    padding-block: min(6.4vw, 1.5rem) min(8.5333333333vw, 2rem);
   }
 }
-
 .btn__get-start {
+  width: fit-content;
   background-color: #5175ff;
   border-radius: 1.75rem;
   box-shadow: 0 25px 25px -10px hsla(227, 52%, 50%, 0.2472);
@@ -138,15 +173,16 @@ body {
   }
 }
 .plans .card {
+  align-content: space-between;
+  background-color: #ffffff;
   border-radius: 0.8125rem;
   display: grid;
   grid-template-columns: minmax(auto, 327px);
   grid-template-rows: auto;
   justify-content: center;
-  align-content: space-between;
   padding: min(10.6666666667vw, 2.5rem) min(12.8vw, 3rem);
-  grid-template-areas: "header" "body" "footer";
   text-align: center;
+  grid-template-areas: "header" "body" "footer";
 }
 @media (min-width: 504.98px) and (max-width: 768.98px) {
   .plans .card {
@@ -155,8 +191,8 @@ body {
     grid-template-rows: auto;
     justify-content: flex-start;
     padding: min(6.25vw, 3rem);
-    grid-template-areas: "header body" "header body" "footer body";
     text-align: start;
+    grid-template-areas: "header body" "header body" "footer body";
   }
 }
 @media (min-width: 768.98px) {
@@ -169,9 +205,7 @@ body {
   }
 }
 .plans .card--emphasis {
-  background: no-repeat url("../assets/home/bg-pattern-pricing.svg") #5175ff;
-  background-size: auto auto;
-  background-position: center -380px;
+  background: no-repeat center -380px/auto url("../assets/home/bg-pattern-pricing.svg") #5175ff;
 }
 @media (min-width: 504.98px) and (max-width: 768.98px) {
   .plans .card--emphasis {
@@ -203,11 +237,11 @@ body {
   }
 }
 .plans .card__price {
+  display: block;
   font-size: clamp(2.25rem, 0.5rem + 12.8vw, 3.5rem);
   font-weight: 800;
   line-height: calc(clamp(2.25rem, 0.5rem + 12.8vw, 3.5rem) * 1.143);
   padding-block: min(10.6666666667vw, 2.5rem) min(2.1333333333vw, 0.5rem);
-  display: block;
 }
 @media (min-width: 504.98px) and (max-width: 768.98px) {
   .plans .card__price {
@@ -331,6 +365,24 @@ body {
 .footer {
   background-color: #25293a;
 }
+.footer .offer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: min(10.6666666667vw, 2.5rem);
+}
+@media (min-width: 504.98px) and (max-width: 768.98px) {
+  .footer .offer {
+    row-gap: min(6.25vw, 3rem);
+  }
+}
+@media (min-width: 768.98px) {
+  .footer .offer {
+    flex-direction: row;
+    justify-content: space-between;
+    row-gap: 0;
+  }
+}
 .footer .offer .time-counter__title {
   color: #ffffff;
   font-size: clamp(0.625rem, 0.5rem + 2.1333333333vw, 1rem);
@@ -356,9 +408,10 @@ body {
   }
 }
 .footer .offer .countdown {
-  width: 100%;
-  display: flex;
   column-gap: min(3.4666666667vw, 0.8125rem);
+  display: flex;
+  inline-size: 100%;
+  max-inline-size: 448px;
 }
 @media (min-width: 504.98px) and (max-width: 768.98px) {
   .footer .offer .countdown {
@@ -372,14 +425,15 @@ body {
 }
 .footer .offer .countdown .countdown__digit {
   background-color: #333950;
+  border-radius: 0.8125rem;
   color: #ffffff;
   display: flex;
+  flex: 0 1 100px;
   flex-direction: column;
   font-weight: 800;
   padding: min(4.2666666667vw, 1rem);
   row-gap: 2.12px;
   text-align: center;
-  border-radius: 0.8125rem;
 }
 @media (min-width: 504.98px) and (max-width: 768.98px) {
   .footer .offer .countdown .countdown__digit {
@@ -412,12 +466,12 @@ body {
   line-height: calc(clamp(0.5rem, 0.5rem + 1.0666666667vw, 0.75rem) * 1.75);
   opacity: 0.5;
 }
-.footer .offer .attribution {
+.footer .attribution {
   color: #ffffff;
   font-size: 0.6875rem;
   padding-block: min(256.25vw, 2.5625rem) 0.6rem;
   text-align: center;
 }
-.footer .offer .attribution__link {
+.footer .attribution__link {
   color: #5175ff;
 }

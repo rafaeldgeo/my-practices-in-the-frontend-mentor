@@ -3,7 +3,7 @@
 
 html,
 body {
-  background-color: base.$white;
+  background-color: base.$background-page;
   inline-size: 100%;
 }
 
@@ -11,15 +11,24 @@ body {
   inline-size: 100%;
   margin: 0 auto;
   max-inline-size: 100vw;
-  padding-inline: base.fluidSpace(24);
 
   @include base.breakpoints(sm) {
     max-inline-size: 768px;
-    padding-inline: base.fluidSpace(39, tablet);
   }
 
   @include base.breakpoints(md) {
     max-inline-size: 1440px;
+  }
+}
+
+:is(.header, .main, .footer) {
+  padding-inline: base.fluidSpace(24);
+
+  @include base.breakpoints(sm) {
+    padding-inline: base.fluidSpace(39, tablet);
+  }
+
+  @include base.breakpoints(md) {
     padding-inline: base.fluidSpace(165, desktop);
   }
 }
@@ -29,11 +38,11 @@ body {
     padding-block: base.fluidSpace(46) base.fluidSpace(80);
 
     @include base.breakpoints(sm) {
-      padding-block: base.fluidSpace(72) base.fluidSpace(104);
+      padding-block: base.fluidSpace(72, tablet) base.fluidSpace(104, tablet);
     }
 
     @include base.breakpoints(md) {
-      padding-block: base.fluidSpace(81) base.fluidSpace(174);
+      padding-block: base.fluidSpace(81, desktop) base.fluidSpace(174, desktop);
     }
 
     &__img {
@@ -47,41 +56,67 @@ body {
   }
 
   .hero {
-    &__content {
+    display: flex;
+    flex-flow: column-reverse;
+    align-items: center;
+
+    @include base.breakpoint-between(504.98, 768.98) {
+      flex-flow: row;
+    }
+
+    @include base.breakpoints(md) {
+      flex-flow: row;
+      gap: 0 base.fluidSpace(95, desktop);
+    }
+
+    .content {
+      flex: 1 1 auto;
       text-align: center;
 
       @include base.breakpoints(sm) {
         text-align: start;
       }
-    }
-
-    &__title {
-      color: base.$grey-300;
-      font-size: base.fluidTypo(20, 40);
-      font-weight: 800;
-      line-height: base.fluidLineHeight(20, 40, 1.2);
 
       @include base.breakpoints(md) {
-        font-size: base.fluidTypo(36, 56, desktop);
-        line-height: base.fluidLineHeight(36, 56, 1.145, desktop);
+        flex: 0 1 540px;
+      }
+
+      &__title {
+        color: base.$grey-300;
+        font-size: base.fluidTypo(20, 40);
+        font-weight: 800;
+        line-height: base.fluidLineHeight(20, 40, 1.2);
+
+        @include base.breakpoints(md) {
+          font-size: base.fluidTypo(36, 56, desktop);
+          line-height: base.fluidLineHeight(36, 56, 1.145, desktop);
+        }
+      }
+
+      &__description {
+        color: base.$grey-100;
+        font-size: base.fluidTypo(10, 16);
+        font-weight: 400;
+        line-height: base.fluidLineHeight(10, 16, 1.63);
+        padding-block: base.fluidSpace(24);
+
+        @include base.breakpoints(md) {
+          font-size: base.fluidTypo(10, 18);
+          line-height: base.fluidLineHeight(10, 18, 1.99, desktop);
+          padding-block: base.fluidSpace(24) base.fluidSpace(32);
+        }
       }
     }
+  }
 
-    &__description {
-      color: base.$grey-100;
-      font-size: base.fluidTypo(10, 16);
-      line-height: base.fluidLineHeight(10, 16, 1.63);
-      font-weight: 400;
-
-      @include base.breakpoints(md) {
-        font-size: base.fluidTypo(10, 18);
-        line-height: base.fluidLineHeight(10, 18, 1.99, desktop);
-      }
+  .charts {
+    .charts__img {
     }
   }
 }
 
 .btn__get-start {
+  width: fit-content;
   background-color: base.$blue-200;
   border-radius: base.convertPxToRem(28);
   box-shadow: 0 25px 25px -10px base.$btn-shadow;
@@ -127,32 +162,32 @@ body {
   }
 
   .card {
+    align-content: space-between;
+    background-color: base.$white;
     border-radius: base.convertPxToRem(13);
     display: grid;
     grid-template-columns: minmax(auto, 327px);
     grid-template-rows: auto;
     justify-content: center;
-    align-content: space-between;
     padding: base.fluidSpace(40) base.fluidSpace(48);
+    text-align: center;
 
     grid-template-areas:
       "header"
       "body"
       "footer";
-    text-align: center;
-
     @include base.breakpoint-between(504.98, 768.98) {
       align-items: center;
       grid-template-columns: 1fr 1fr;
       grid-template-rows: auto;
       justify-content: flex-start;
       padding: base.fluidSpace(48, tablet);
+      text-align: start;
 
       grid-template-areas:
         "header body"
         "header body"
         "footer body";
-      text-align: start;
     }
 
     @include base.breakpoints(md) {
@@ -168,10 +203,8 @@ body {
     }
 
     &--emphasis {
-      background: no-repeat url("../assets/home/bg-pattern-pricing.svg")
+      background: no-repeat center -380px / auto url("../assets/home/bg-pattern-pricing.svg")
         base.$blue-200;
-      background-size: auto auto;
-      background-position: center -380px;
 
       @include base.breakpoint-between(504.98, 768.98) {
         background-position: -320px center;
@@ -207,11 +240,11 @@ body {
     }
 
     &__price {
+      display: block;
       font-size: base.fluidTypo(36, 56);
       font-weight: 800;
       line-height: base.fluidLineHeight(36, 56, 1.143);
       padding-block: base.fluidSpace(40) base.fluidSpace(8);
-      display: block;
 
       @include base.breakpoint-between(504.98, 768.98) {
         font-size: base.fluidTypo(36, 56, tablet);
@@ -340,6 +373,21 @@ body {
   background-color: base.$grey-300;
 
   .offer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: base.fluidSpace(40);
+
+    @include base.breakpoint-between(504.98, 768.98) {
+      row-gap: base.fluidSpace(48, tablet);
+    }
+
+    @include base.breakpoints(md) {
+      flex-direction: row;
+      justify-content: space-between;
+      row-gap: 0;
+    }
+
     .time-counter {
       &__title {
         color: base.$white;
@@ -367,9 +415,10 @@ body {
     }
 
     .countdown {
-      width: 100%;
-      display: flex;
       column-gap: base.fluidSpace(13);
+      display: flex;
+      inline-size: 100%;
+      max-inline-size: 448px;
 
       @include base.breakpoint-between(504.98, 768.98) {
         column-gap: base.fluidSpace(16, tablet);
@@ -379,24 +428,24 @@ body {
         column-gap: base.fluidSpace(16, desktop);
       }
 
-      // parei aqui
       .countdown__digit {
         background-color: base.$grey-200;
+        border-radius: 0.8125rem;
         color: base.$white;
         display: flex;
+        flex: 0 1 100px;
         flex-direction: column;
         font-weight: 800;
         padding: base.fluidSpace(16);
         row-gap: 2.12px;
         text-align: center;
-        border-radius: 0.8125rem;
 
         @include base.breakpoint-between(504.98, 768.98) {
           padding: base.fluidSpace(16, tablet);
         }
 
         @include base.breakpoints(md) {
-          padding: base.fluidSpace(28.50, desktop) base.fluidSpace(16, desktop);
+          padding: base.fluidSpace(28.5, desktop) base.fluidSpace(16, desktop);
         }
 
         .countdown__time {
@@ -421,16 +470,16 @@ body {
         }
       }
     }
+  }
 
-    .attribution {
-      color: base.$white;
-      font-size: 0.6875rem;
-      padding-block: min(256.25vw, 2.5625rem) 0.6rem;
-      text-align: center;
+  .attribution {
+    color: base.$white;
+    font-size: 0.6875rem;
+    padding-block: min(256.25vw, 2.5625rem) 0.6rem;
+    text-align: center;
 
-      &__link {
-        color: base.$blue-200;
-      }
+    &__link {
+      color: base.$blue-200;
     }
   }
 }
