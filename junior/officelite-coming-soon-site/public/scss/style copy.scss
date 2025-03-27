@@ -1,10 +1,6 @@
 @use "base";
 @include base.reset;
 
-* {
-  // border: 1px solid red;
-}
-
 html,
 body {
   background-color: base.$background-page;
@@ -107,7 +103,7 @@ main {
   @include base.breakpoints(md) {
     flex-flow: row;
     gap: 0 base.fluidSpace(95, desktop);
-    padding-block: base.fluidSpace(174, desktop) 0;
+    padding-block: base.fluidSpace(174, desktop) base.fluidSpace(184, desktop);
   }
 
   .content {
@@ -162,15 +158,18 @@ main {
 
 .footer {
   background-color: base.$grey-300;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 
   @include base.breakpoints(md) {
-    // margin-top: base.fluidSpace(270, desktop);
+    
+    margin-top: base.fluidSpace(270, desktop);
+    height: 603px;
   }
 }
 
 .plans {
-  position: relative;
-  top: min(250px, 17vw);
   display: flex;
   flex-direction: column;
   gap: base.fluidSpace(32) 0;
@@ -407,7 +406,7 @@ main {
   @include base.breakpoints(md) {
     flex-direction: row;
     justify-content: space-between;
-    padding-block: base.fluidSpace(336, desktop) base.fluidSpace(67.3, desktop);
+    padding-block: base.fluidSpace(82, desktop) base.fluidSpace(81.9, desktop);
     row-gap: 0;
   }
 
