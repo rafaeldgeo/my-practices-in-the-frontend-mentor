@@ -1,10 +1,6 @@
 @use "base";
 @include base.reset;
 
-* {
-  // border: 1px solid red;
-}
-
 html,
 body {
   background-color: base.$background-page;
@@ -12,17 +8,23 @@ body {
 }
 
 .container {
+  background-image: url("../assets/home/bg-pattern-header.svg");
+  background-position: center -160px;
+  background-repeat: no-repeat;
+  background-size: 120% auto;
   inline-size: 100%;
   margin: 0 auto;
   max-inline-size: 100vw;
 
   @include base.breakpoints(sm) {
+    background-position: 528% -13%;
+    background-size: 90% auto;
     max-inline-size: 768px;
-    background: no-repeat 528% -13% / 90% auto url("../assets/home/bg-pattern-header.svg");
   }
 
   @include base.breakpoints(md) {
-    background: no-repeat 190% -40% / 75% auto url("../assets/home/bg-pattern-header.svg");
+    background-size: 75% auto;
+    background-position: 190% -40%;
     max-inline-size: 1440px;
   }
 }
@@ -41,21 +43,21 @@ body {
 
 .header {
   .logo {
-    padding-block: base.fluidSpace(46) base.fluidSpace(80);
+    padding-block-start: base.fluidSpace(46);
 
     @include base.breakpoint-between(504.98, 768.98) {
-      padding-block: base.fluidSpace(72, tablet) 0;
+      padding-block-start: base.fluidSpace(72, tablet);
     }
 
     @include base.breakpoints(md) {
-      padding-block: base.fluidSpace(81, desktop) 0;
+      padding-block-start: base.fluidSpace(81, desktop);
     }
 
     &__img {
       display: block;
       margin: 0 auto;
 
-      @include base.breakpoints(sm) {
+      @include base.breakpoints(ex) {
         margin: 0;
       }
     }
@@ -98,36 +100,36 @@ main {
 }
 
 .hero {
+  align-items: center;
   display: flex;
   flex-flow: column-reverse;
-  align-items: center;
+  gap: base.fluidSpace(64) 0;
+  padding-block: base.fluidSpace(80) base.fluidSpace(100);
 
   @include base.breakpoint-between(504.98, 768.98) {
     flex-flow: row;
     gap: 0 base.fluidSpace(63, tablet);
-    padding-block: base.fluidSpace(104, tablet) 0;
+    padding-block: base.fluidSpace(104, tablet) base.fluidSpace(140, tablet);
   }
 
   @include base.breakpoints(md) {
     flex-flow: row;
     gap: 0 base.fluidSpace(95, desktop);
-    padding-block: base.fluidSpace(174, desktop) 0;
+    padding-block: base.fluidSpace(174, desktop) base.fluidSpace(184, desktop);
   }
 
   .content {
     flex: auto;
     text-align: center;
 
-    @include base.breakpoints(sm) {
-      text-align: start;
-    }
-
     @include base.breakpoint-between(504.98, 768.98) {
       flex: 0 1 345px;
+      text-align: start;
     }
 
     @include base.breakpoints(md) {
       flex: 0 1 540px;
+      text-align: start;
     }
 
     &__title {
@@ -171,7 +173,7 @@ main {
   .charts {
     block-size: auto;
     display: block;
-    inline-size: 100%;
+    inline-size: 52.3%;
 
     &__img {
       block-size: auto;
@@ -181,6 +183,7 @@ main {
 
     @include base.breakpoint-between(504.98, 768.98) {
       flex-basis: 281px;
+
       &__img {
         aspect-ratio: 281 / 314;
       }
@@ -188,6 +191,7 @@ main {
 
     @include base.breakpoints(md) {
       flex-basis: 475px;
+
       &__img {
         aspect-ratio: 475 / 531;
       }
@@ -196,21 +200,27 @@ main {
 }
 
 .plans {
-  position: relative;
-  top: min(250px, 17vw);
   display: flex;
   flex-direction: column;
   gap: base.fluidSpace(32) 0;
+  inline-size: 100%;
+  left: 50%;
+  padding-inline: base.fluidSpace(24);
+  position: absolute;
+  transform: translateX(-50%);
+  z-index: 1;
 
   @include base.breakpoint-between(504.98, 768.98) {
     flex-direction: column;
     gap: base.fluidSpace(24, tablet) 0;
-    top: min(500px, 62vw);
+    padding-inline: base.fluidSpace(39, tablet);
   }
 
   @include base.breakpoints(md) {
     flex-direction: row;
     gap: 0 base.fluidSpace(30, desktop);
+    padding-inline: base.fluidSpace(165, desktop);
+    top: calc(114% - 8rem);
   }
 
   .card {
@@ -228,6 +238,7 @@ main {
       "header"
       "body"
       "footer";
+
     @include base.breakpoint-between(504.98, 768.98) {
       align-items: center;
       grid-template-columns: 1fr 1fr;
@@ -236,7 +247,7 @@ main {
       padding: base.fluidSpace(48, tablet);
       text-align: start;
 
-      grid-template-areas:
+    grid-template-areas:
         "header body"
         "header body"
         "footer body";
@@ -252,17 +263,15 @@ main {
         "header"
         "body"
         "footer";
-    }
+      }
 
-    &--emphasis {
+     &--emphasis {
+
       background: no-repeat center -380px / auto url("../assets/home/bg-pattern-pricing.svg")
         base.$blue-200;
 
       @include base.breakpoint-between(504.98, 768.98) {
         background-position: -320px center;
-      }
-
-      @include base.breakpoints(md) {
       }
     }
 
@@ -338,7 +347,7 @@ main {
       }
 
       @include base.breakpoints(md) {
-      }
+    }
     }
 
     &__list-resources {
@@ -422,28 +431,37 @@ main {
 }
 
 .footer {
+  background-color: base.$grey-300;
+  background-image: url("../assets/home/bg-pattern-footer.svg");
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  background-size: 300% auto;
+  margin-block-start: base.fluidSpace(794);
+
   @include base.breakpoint-between(504.98, 768.98) {
-    background: no-repeat center 6% / 200%
-      url("../assets/home/bg-pattern-footer.svg") base.$grey-300;
+    background-position: center 6%;
+    background-size: 200% auto;
+    margin-block-start: base.fluidSpace(498, tablet);
   }
 
   @include base.breakpoints(md) {
-    background: no-repeat -706px -620px / auto
-      url("../assets/home/bg-pattern-footer.svg") base.$grey-300;
+    background-position: -706px -620px;
+    background-size: auto;
+    margin-block-start: base.fluidSpace(254, desktop);
   }
 }
 
 .offer {
+  align-items: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  padding-block: base.fluidSpace(894) base.fluidSpace(76.41);
   row-gap: base.fluidSpace(40);
-  padding-block: base.fluidSpace(82) base.fluidSpace(91);
 
   @include base.breakpoint-between(504.98, 768.98) {
-    row-gap: base.fluidSpace(48, tablet);
     justify-content: space-between;
     padding-block: base.fluidSpace(630.85, tablet) base.fluidSpace(76.41, tablet);
+    row-gap: base.fluidSpace(48, tablet);
   }
 
   @include base.breakpoints(md) {
@@ -454,6 +472,13 @@ main {
   }
 
   .time-counter {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+
+    @include base.breakpoints(md) {
+      align-items: start;
+    }
     &__title {
       color: base.$white;
       font-size: base.fluidTypo(10, 16);
