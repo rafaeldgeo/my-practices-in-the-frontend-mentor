@@ -1,6 +1,10 @@
 @use "base";
 @include base.reset;
 
+* {
+  // border: 1px solid red;
+}
+
 html,
 body {
   background-color: base.$background-page;
@@ -14,9 +18,11 @@ body {
 
   @include base.breakpoints(sm) {
     max-inline-size: 768px;
+    background: no-repeat 528% -13% / 90% auto url("../assets/home/bg-pattern-header.svg");
   }
 
   @include base.breakpoints(md) {
+    background: no-repeat 190% -40% / 75% auto url("../assets/home/bg-pattern-header.svg");
     max-inline-size: 1440px;
   }
 }
@@ -37,8 +43,8 @@ body {
   .logo {
     padding-block: base.fluidSpace(46) base.fluidSpace(80);
 
-    @include base.breakpoints(sm) {
-      padding-block: base.fluidSpace(72, tablet) base.fluidSpace(104, tablet);
+    @include base.breakpoint-between(504.98, 768.98) {
+      padding-block: base.fluidSpace(72, tablet) 0;
     }
 
     @include base.breakpoints(md) {
@@ -98,12 +104,14 @@ main {
 
   @include base.breakpoint-between(504.98, 768.98) {
     flex-flow: row;
+    gap: 0 base.fluidSpace(63, tablet);
+    padding-block: base.fluidSpace(104, tablet) 0;
   }
 
   @include base.breakpoints(md) {
     flex-flow: row;
     gap: 0 base.fluidSpace(95, desktop);
-    padding-block: base.fluidSpace(174, desktop) base.fluidSpace(184, desktop);
+    padding-block: base.fluidSpace(174, desktop) 0;
   }
 
   .content {
@@ -112,6 +120,10 @@ main {
 
     @include base.breakpoints(sm) {
       text-align: start;
+    }
+
+    @include base.breakpoint-between(504.98, 768.98) {
+      flex: 0 1 345px;
     }
 
     @include base.breakpoints(md) {
@@ -123,6 +135,11 @@ main {
       font-size: base.fluidTypo(20, 40);
       font-weight: 800;
       line-height: base.fluidLineHeight(20, 40, 1.2);
+
+      @include base.breakpoint-between(504.98, 768.98) {
+        font-size: base.fluidTypo(20, 40, tablet);
+        line-height: base.fluidLineHeight(20, 40, 1.2, tablet);
+      }
 
       @include base.breakpoints(md) {
         font-size: base.fluidTypo(30, 56, desktop);
@@ -138,6 +155,12 @@ main {
       padding-block: base.fluidSpace(24);
 
       @include base.breakpoints(md) {
+        font-size: base.fluidTypo(10, 16, tablet);
+        line-height: base.fluidLineHeight(10, 16, 1.56, tablet);
+        padding-block: base.fluidSpace(24, tablet) base.fluidSpace(24, tablet);
+      }
+
+      @include base.breakpoints(md) {
         font-size: base.fluidTypo(10, 18, desktop);
         line-height: base.fluidLineHeight(10, 18, 1.56, desktop);
         padding-block: base.fluidSpace(24, desktop) base.fluidSpace(32, desktop);
@@ -146,30 +169,35 @@ main {
   }
 
   .charts {
-    flex-basis: 475px;
+    block-size: auto;
+    display: block;
+    inline-size: 100%;
+
     &__img {
-      aspect-ratio: 475 / 531;
       block-size: auto;
       display: block;
       inline-size: 100%;
     }
-  }
-}
 
-.footer {
-  background-color: base.$grey-300;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
+    @include base.breakpoint-between(504.98, 768.98) {
+      flex-basis: 281px;
+      &__img {
+        aspect-ratio: 281 / 314;
+      }
+    }
 
-  @include base.breakpoints(md) {
-    
-    margin-top: base.fluidSpace(270, desktop);
-    height: 603px;
+    @include base.breakpoints(md) {
+      flex-basis: 475px;
+      &__img {
+        aspect-ratio: 475 / 531;
+      }
+    }
   }
 }
 
 .plans {
+  position: relative;
+  top: min(250px, 17vw);
   display: flex;
   flex-direction: column;
   gap: base.fluidSpace(32) 0;
@@ -177,6 +205,7 @@ main {
   @include base.breakpoint-between(504.98, 768.98) {
     flex-direction: column;
     gap: base.fluidSpace(24, tablet) 0;
+    top: min(500px, 62vw);
   }
 
   @include base.breakpoints(md) {
@@ -392,6 +421,18 @@ main {
   }
 }
 
+.footer {
+  @include base.breakpoint-between(504.98, 768.98) {
+    background: no-repeat center 6% / 200%
+      url("../assets/home/bg-pattern-footer.svg") base.$grey-300;
+  }
+
+  @include base.breakpoints(md) {
+    background: no-repeat -706px -620px / auto
+      url("../assets/home/bg-pattern-footer.svg") base.$grey-300;
+  }
+}
+
 .offer {
   display: flex;
   flex-direction: column;
@@ -401,12 +442,14 @@ main {
 
   @include base.breakpoint-between(504.98, 768.98) {
     row-gap: base.fluidSpace(48, tablet);
+    justify-content: space-between;
+    padding-block: base.fluidSpace(630.85, tablet) base.fluidSpace(76.41, tablet);
   }
 
   @include base.breakpoints(md) {
     flex-direction: row;
     justify-content: space-between;
-    padding-block: base.fluidSpace(82, desktop) base.fluidSpace(81.9, desktop);
+    padding-block: base.fluidSpace(336, desktop) base.fluidSpace(67.3, desktop);
     row-gap: 0;
   }
 
