@@ -22,19 +22,25 @@ fs.watch(path.join(__dirname, "public/scss"), (event, filename) => {
   if (filename && filename.endsWith(".scss")) {
     console.log(`${filename} foi alterado. Recompilando SASS...`);
     complileSass();
-  } 
+  }
 });
 
 //criação do servidor HTTP
 const server = http.createServer((req, res) => {
+
+  let requestedUrl = req.url === "/" ? "index.html" : req.url;
+
+  let safePath = path.normalize(decodeURIComponent(requestedUrl)).replace(/^(\.\.[\/\\])+/, '');
+
   let filePath = path.join(
     __dirname,
     "public",
-    req.url === "/" ? "index.html" : req.url
+    safePath
   );
+
   const extname = String(path.extname(filePath)).toLowerCase();
 
-  const mineTypes = {
+  const mimeTypes = {
     ".html": "text/html",
     ".js": "text/javascript",
     ".css": "text/css",
@@ -53,7 +59,7 @@ const server = http.createServer((req, res) => {
     ".webp": "image/webp",
   };
 
-  let contentType = mineTypes[extname] || "application/octet-steam";
+  let contentType = mimeTypes[extname] || "application/octet-stream";
 
   fs.readFile(filePath, (error, content) => {
     if (error) {

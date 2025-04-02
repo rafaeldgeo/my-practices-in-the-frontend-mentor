@@ -1,5 +1,6 @@
 @use "base";
 @include base.reset;
+@import "sign-up";
 
 html,
 body {
@@ -247,7 +248,7 @@ main {
       padding: base.fluidSpace(48, tablet);
       text-align: start;
 
-    grid-template-areas:
+      grid-template-areas:
         "header body"
         "header body"
         "footer body";
@@ -263,10 +264,9 @@ main {
         "header"
         "body"
         "footer";
-      }
+    }
 
-     &--emphasis {
-
+    &--emphasis {
       background: no-repeat center -380px / auto url("../assets/home/bg-pattern-pricing.svg")
         base.$blue-200;
 
@@ -347,7 +347,7 @@ main {
       }
 
       @include base.breakpoints(md) {
-    }
+      }
     }
 
     &__list-resources {
@@ -460,7 +460,8 @@ main {
 
   @include base.breakpoint-between(504.98, 768.98) {
     justify-content: space-between;
-    padding-block: base.fluidSpace(630.85, tablet) base.fluidSpace(76.41, tablet);
+    padding-block: base.fluidSpace(630.85, tablet)
+      base.fluidSpace(76.41, tablet);
     row-gap: base.fluidSpace(48, tablet);
   }
 
