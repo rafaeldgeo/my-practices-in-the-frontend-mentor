@@ -1,0 +1,8 @@
+@use "base";
+@include base.reset;
+
+html,
+body {
+  background-color: base.$background-page;
+  inline-size: 100%;
+}

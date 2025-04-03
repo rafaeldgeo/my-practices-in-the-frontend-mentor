@@ -4,24 +4,31 @@ const path = require("path");
 const sass = require("sass");
 
 // função para compilar SASS em CSS
-function complileSass() {
-  const scssPath = path.join(__dirname, "public/scss/style.scss");
-  const cssPath = path.join(__dirname, "public/css/style.css");
+function compileSass() {
+  const scssDir = path.join(__dirname, "public/scss");
+  const cssDir = path.join(__dirname, "public/css");
 
-  try {
-    const result = sass.compile(scssPath);
-    fs.writeFileSync(cssPath, result.css);
-    console.log("SASS compilado com sucesso");
-  } catch (error) {
-    console.error("Erro ao compilar SASS", error);
-  }
+  fs.readdirSync(scssDir).forEach((file) => {
+    if (file.endsWith(".scss")) {
+      const scssPath = path.join(scssDir, file);
+      const cssPath = path.join(cssDir, file.replace(".scss", ".css"));
+
+      try {
+        const result = sass.compile(scssPath);
+        fs.writeFileSync(cssPath, result.css);
+        console.log("SASS compilado com sucesso");
+      } catch (error) {
+        console.error("Erro ao compilar SASS", error);
+      }
+    }
+  });
 }
 
 //monitora mudanças no arquivo SASS
 fs.watch(path.join(__dirname, "public/scss"), (event, filename) => {
   if (filename && filename.endsWith(".scss")) {
     console.log(`${filename} foi alterado. Recompilando SASS...`);
-    complileSass();
+    compileSass();
   }
 });
 
