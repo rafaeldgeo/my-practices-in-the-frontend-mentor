@@ -82,9 +82,10 @@ body {
 .hero {
   position: relative;
   .content {
-    inline-size: clamp(240px, 38vw, 540px);
-  
-    margin-inline-end: base.fluidSpace(125, desktop);
+    inline-size: 100%;
+    max-inline-size: 540px;
+    margin-inline-end: 125px;
+
 
     &__title {
       color: base.$grey-300;
@@ -128,7 +129,6 @@ body {
     align-items: center;
     display: flex;
     flex-direction: column;
-    row-gap: .5rem;
 
     @include base.breakpoints(md) {
       align-items: start;
@@ -220,11 +220,12 @@ body {
   .form {
     position: absolute;
     z-index: 1;
-    top: -30px;
-    left: clamp(380px, 46.2vw, 665px);
+    top: 0;
+    left: 665px;
     border-radius: 0.8125rem;
     background-color: base.$white;
-    inline-size: clamp(240px, 31vw, 445px);
+    inline-size: 100%;
+    max-inline-size: 445px;
 
     &__wrapper-input {
       display: flex;
@@ -251,21 +252,17 @@ body {
       font-size: base.fluidTypo(10, 16);
       inline-size: 100%;
       line-height: base.fluidLineHeight(10, 16, 1.75);
-      padding-block-end: base.fluidSpace(17);
-      padding-inline-start: base.fluidSpace(16);
+      padding-block-end: 17px;
+      padding-inline-start: 16px;
 
       @include base.breakpoints(md) {
         font-size: base.fluidTypo(10, 16, tablet);
         line-height: base.fluidLineHeight(10, 16, 1.75, tablet);
-        padding-block-end: base.fluidSpace(17, tablet);
-      padding-inline-start: base.fluidSpace(16, tablet);
       }
 
       @include base.breakpoints(md) {
         font-size: base.fluidTypo(10, 16, desktop);
         line-height: base.fluidLineHeight(10, 16, 1.75, desktop);
-        padding-block-end: base.fluidSpace(17, desktop);
-        padding-inline-start: base.fluidSpace(16, desktop);
       }
     }
 
@@ -283,7 +280,7 @@ body {
     }
 
     @include base.breakpoints(md) {
-      padding: base.fluidSpace(40, desktop) base.fluidSpace(42, desktop) base.fluidSpace(51, desktop) base.fluidSpace(43, desktop);
+      padding: base.fluidSpace(40, desktop) base.fluidSpace(42, desktop);
     }
 
     &__submit {

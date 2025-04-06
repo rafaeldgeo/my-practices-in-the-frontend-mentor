@@ -64,11 +64,12 @@ body {
 }
 
 .hero {
+  display: flex;
+  flex-direction: row;
   position: relative;
 }
 .hero .content {
-  inline-size: clamp(240px, 38vw, 540px);
-  margin-inline-end: min(8.6805555556vw, 7.8125rem);
+  flex-basis: 540px;
 }
 .hero .content__title {
   color: #25293a;
@@ -113,7 +114,6 @@ body {
   align-items: center;
   display: flex;
   flex-direction: column;
-  row-gap: 0.5rem;
 }
 @media (min-width: 768.98px) {
   .hero .time-counter {
@@ -205,13 +205,13 @@ body {
   opacity: 0.5;
 }
 .hero .form {
-  position: absolute;
-  z-index: 1;
-  top: -30px;
-  left: clamp(380px, 46.2vw, 665px);
+  flex-basis: 445px;
+  position: relative;
+  left: 275px;
   border-radius: 0.8125rem;
   background-color: #ffffff;
-  inline-size: clamp(240px, 31vw, 445px);
+  inline-size: 100%;
+  max-inline-size: 445px;
 }
 .hero .form__wrapper-input {
   display: flex;
@@ -239,23 +239,19 @@ body {
   font-size: clamp(0.625rem, 0.5rem + 2.1333333333vw, 1rem);
   inline-size: 100%;
   line-height: calc(clamp(0.625rem, 0.5rem + 2.1333333333vw, 1rem) * 1.75);
-  padding-block-end: min(4.5333333333vw, 1.0625rem);
-  padding-inline-start: min(4.2666666667vw, 1rem);
+  padding-block-end: 17px;
+  padding-inline-start: 16px;
 }
 @media (min-width: 768.98px) {
   .hero .form :is(.form__input, .form__select) {
     font-size: clamp(0.625rem, 0.5rem + 1.0416666667vw, 1rem);
     line-height: calc(clamp(0.625rem, 0.5rem + 1.0416666667vw, 1rem) * 1.75);
-    padding-block-end: min(2.2135416667vw, 1.0625rem);
-    padding-inline-start: min(2.0833333333vw, 1rem);
   }
 }
 @media (min-width: 768.98px) {
   .hero .form :is(.form__input, .form__select) {
     font-size: clamp(0.625rem, 0.5rem + 0.5555555556vw, 1rem);
     line-height: calc(clamp(0.625rem, 0.5rem + 0.5555555556vw, 1rem) * 1.75);
-    padding-block-end: min(1.1805555556vw, 1.0625rem);
-    padding-inline-start: min(1.1111111111vw, 1rem);
   }
 }
 .hero .form__input::placeholder {
@@ -274,7 +270,7 @@ body {
 }
 @media (min-width: 768.98px) {
   .hero .form {
-    padding: min(2.7777777778vw, 2.5rem) min(2.9166666667vw, 2.625rem) min(3.5416666667vw, 3.1875rem) min(2.9861111111vw, 2.6875rem);
+    padding: min(2.7777777778vw, 2.5rem) min(2.9166666667vw, 2.625rem);
   }
 }
 .hero .form__submit {

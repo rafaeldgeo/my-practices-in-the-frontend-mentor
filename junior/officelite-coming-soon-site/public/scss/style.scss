@@ -156,7 +156,7 @@ main {
       line-height: base.fluidLineHeight(10, 16, 1.63);
       padding-block: base.fluidSpace(24);
 
-      @include base.breakpoints(md) {
+      @include base.breakpoint-between(504.98, 768.98) {
         font-size: base.fluidTypo(10, 16, tablet);
         line-height: base.fluidLineHeight(10, 16, 1.56, tablet);
         padding-block: base.fluidSpace(24, tablet) base.fluidSpace(24, tablet);
@@ -560,6 +560,22 @@ main {
       opacity: 0.5;
     }
   }
+}
+
+.choice-main {
+  font-weight: bold;
+  margin-right: 8px;
+}
+
+.choice-sub {
+  color: red;
+  font-weight: normal;
+}
+
+.choices__item--selectable {
+  display: flex;
+  gap: 6px;
+  align-items: center;
 }
 
 .attribution {
