@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/favicon-32x32.png"
+    />
+    <link rel="stylesheet" href="./css/style-sign-up.css" />
+    <title>Frontend Mentor | Officelite coming soon site</title>
+  </head>
+  <body>
+    <div class="container">
+      <header class="header">
+        <div class="logo">
+          <img
+            class="logo__img logo__img"
+            src="./assets/shared/logo.svg"
+            alt="logo officelite"
+            width="155"
+            height="30"
+          />
+        </div>
+      </header>
+      <main class="main">
+        <section class="hero">
+          <div class="content">
+            <h1 class="content__title">Work smarter. Save time.</h1>
+            <p class="content__description">
+              Easily manage your projects. Get on the list andreceive in-app
+              perks available only to early subscribers. We are moving into
+              final development and getting ready for official launch soon.
+            </p>
+            <div class="time-counter">
+              <h3 class="time-counter__title">
+                Coming <em class="time-counter__title-emphasis">4 Nov 2020</em>
+              </h3>
+              <div class="time-counter__countdown">
+                <div class="time-counter__digit">
+                  <time class="time-counter__time" datetime="P47D">47</time
+                  ><span class="time-counter__period">Days</span>
+                </div>
+                <div class="time-counter__digit">
+                  <time class="time-counter__time" datetime="PT7H">07</time
+                  ><span class="time-counter__period">Hours</span>
+                </div>
+                <div class="time-counter__digit">
+                  <time class="time-counter__time" datetime="PT56M">56</time
+                  ><span class="time-counter__period">Min</span>
+                </div>
+                <div class="time-counter__digit">
+                  <time class="time-counter__time" datetime="PT14S">14</time
+                  ><span class="time-counter__period">Sec</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <form class="form" action="">
+            <div class="form__wrapper-input">
+              <input class="form__input"
+                type="text"
+                name="name"
+                id="name"
+                placeholder="Name"
+                title="Name"
+                aria-label="Name"
+                required
+              />
+              <input class="form__input"
+                type="email"
+                name="email"
+                id="email"
+                placeholder="Email Address"
+                title="Email Address"
+                aria-label="Email Address"
+                required
+              />
+              <select class="form__select" id="form__select" name="plan" id="plan" required>
+                <option value="basic">Basic Pack <span class="form__select--red">Free</span></option>
+                <option value="pro">Pro Pack $9.99</option>
+                <option value="ultimate">Pack $19.99</option>
+              </select>
+              <input class="form__input"
+                type="tel"
+                name="phone"
+                id="phone"
+                placeholder="Phone Number"
+                title="Phone Number"
+                aria-label="Phone Number"
+                required
+              />
+              <input class="form__input"
+                type="text"
+                name="company"
+                id="company"
+                placeholder="Company"
+                title="Company"
+                aria-label="Company"
+                required
+              />
+            </div>
+            <input class="form__submit" type="submit" value="Get on the List" />
+          </form>
+        </section>
+      </main>
+    </div>
+    <div class="decoration"></div>
+  </body>
+</html>
