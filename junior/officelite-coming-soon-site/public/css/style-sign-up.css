@@ -17,8 +17,7 @@ body {
 
 .container {
   display: flex;
-  flex-direction: row;
-  block-size: 100%;
+  flex-direction: column;
   inline-size: 100%;
   margin: 0 auto;
   max-inline-size: 100vw;
@@ -30,6 +29,8 @@ body {
 }
 @media (min-width: 768.98px) {
   .container {
+    block-size: 100%;
+    flex-direction: row;
     max-inline-size: 1440px;
     padding-inline: min(11.4583333333vw, 10.3125rem) 0;
   }
@@ -41,6 +42,16 @@ body {
   flex-direction: column;
 }
 
+@media (min-width: 575.98px) {
+  .header {
+    padding-inline: min(5.078125vw, 2.4375rem);
+  }
+}
+@media (min-width: 504.98px) and (max-width: 768.98px) {
+  .header .logo {
+    padding-block-start: min(9.375vw, 4.5rem);
+  }
+}
 @media (min-width: 768.98px) {
   .header .logo {
     padding-block-start: min(5.625vw, 5.0625rem);
@@ -56,6 +67,14 @@ body {
   }
 }
 
+.main {
+  position: relative;
+}
+@media (min-width: 504.98px) and (max-width: 768.98px) {
+  .main {
+    padding-block-start: min(27.7333333333vw, 6.5rem);
+  }
+}
 @media (min-width: 768.98px) {
   .main {
     padding-block-start: min(41.0666666667vw, 9.625rem);
@@ -63,11 +82,26 @@ body {
 }
 
 .hero {
+  display: flex;
+  flex-direction: column;
   position: relative;
+  align-items: center;
+}
+@media (min-width: 768.98px) {
+  .hero {
+    display: block;
+  }
 }
 .hero .info {
-  inline-size: clamp(240px, 38vw, 540px);
-  margin-inline-end: min(8.6805555556vw, 7.8125rem);
+  inline-size: clamp(240px, 75vw, 573px);
+  text-align: center;
+}
+@media (min-width: 768.98px) {
+  .hero .info {
+    inline-size: clamp(240px, 38vw, 540px);
+    margin-inline-end: min(8.6805555556vw, 7.8125rem);
+    text-align: start;
+  }
 }
 .hero .info__title {
   color: #25293a;
@@ -98,7 +132,7 @@ body {
   .hero .info__description {
     font-size: clamp(0.625rem, 0.5rem + 1.0416666667vw, 1rem);
     line-height: calc(clamp(0.625rem, 0.5rem + 1.0416666667vw, 1rem) * 1.56);
-    padding-block: min(3.125vw, 1.5rem) min(3.125vw, 1.5rem);
+    padding-block: min(3.125vw, 1.5rem) min(5.2083333333vw, 2.5rem);
   }
 }
 @media (min-width: 768.98px) {
@@ -128,7 +162,7 @@ body {
   text-transform: uppercase;
 }
 .hero .time-counter__title-emphasis {
-  color: #829cff;
+  color: #5175ff;
   font-style: normal;
 }
 @media (min-width: 504.98px) and (max-width: 768.98px) {
@@ -204,14 +238,26 @@ body {
   opacity: 0.5;
 }
 .hero .form {
+  inline-size: 100%;
   background-color: #ffffff;
   border-radius: 0.8125rem;
   box-shadow: 0 50px 50px -25px hsla(227, 34%, 45%, 0.24);
-  inline-size: clamp(240px, 31vw, 445px);
-  left: clamp(380px, 46.2vw, 665px);
-  position: absolute;
-  top: -30px;
-  z-index: 1;
+}
+@media (min-width: 504.98px) and (max-width: 768.98px) {
+  .hero .form {
+    max-inline-size: 445px;
+    padding: min(5.2083333333vw, 2.5rem) min(5.46875vw, 2.625rem) min(6.640625vw, 3.1875rem) min(5.5989583333vw, 2.6875rem);
+  }
+}
+@media (min-width: 768.98px) {
+  .hero .form {
+    bottom: clamp(10px, 0.7vw, 10px);
+    inline-size: clamp(240px, 31vw, 445px);
+    left: clamp(380px, 46.2vw, 665px);
+    position: absolute;
+    z-index: 1;
+    padding: min(2.7777777778vw, 2.5rem) min(2.9166666667vw, 2.625rem) min(3.5416666667vw, 3.1875rem) min(2.9861111111vw, 2.6875rem);
+  }
 }
 .hero .form__wrapper-input {
   display: flex;
@@ -272,11 +318,6 @@ body {
     font-size: clamp(0.625rem, 0.5rem + 0.5555555556vw, 1rem);
   }
 }
-@media (min-width: 768.98px) {
-  .hero .form {
-    padding: min(2.7777777778vw, 2.5rem) min(2.9166666667vw, 2.625rem) min(3.5416666667vw, 3.1875rem) min(2.9861111111vw, 2.6875rem);
-  }
-}
 .hero .form__submit {
   background-color: #5175ff;
   border: none;
@@ -312,10 +353,16 @@ body {
   background-color: #25293a;
   background-image: url("../assets/sign-up/bg-pattern-side.svg");
   background-repeat: no-repeat;
-  background-position: center -780px;
+}
+@media (min-width: 504.98px) and (max-width: 768.98px) {
+  .decoration {
+    flex-basis: 380px;
+    margin-block-start: min(33.0729166667vw, 15.875rem);
+  }
 }
 @media (min-width: 768.98px) {
   .decoration {
+    background-position: center -780px;
     flex-basis: 420px;
     padding-inline-end: min(11.4583333333vw, 10.3125rem);
   }

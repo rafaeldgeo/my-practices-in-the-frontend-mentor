@@ -562,22 +562,6 @@ main {
   }
 }
 
-.choice-main {
-  font-weight: bold;
-  margin-right: 8px;
-}
-
-.choice-sub {
-  color: red;
-  font-weight: normal;
-}
-
-.choices__item--selectable {
-  display: flex;
-  gap: 6px;
-  align-items: center;
-}
-
 .attribution {
   color: base.$white;
   font-size: 0.6875rem;
