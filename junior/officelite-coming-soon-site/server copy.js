@@ -2,7 +2,6 @@ const http = require("http");
 const fs = require("fs");
 const path = require("path");
 const sass = require("sass");
-const processForm = require("./public/process-form");
 
 // função para compilar SASS em CSS
 function compileSass() {
@@ -36,25 +35,16 @@ fs.watch(path.join(__dirname, "public/scss"), (event, filename) => {
 //criação do servidor HTTP
 const server = http.createServer((req, res) => {
 
-  let requestedUrl = "";
-
-  if (req.method === "GET" && req.url === "/") {
-    requestedUrl = "index.html";
-  } else if (req.method === "POST" && req.url === "/process-form.js") {
-    processForm(req, res);
-    return;
-  } else {
-    requestedUrl = req.url;
-  }
+  let requestedUrl = req.url === "/" ? "index.html" : req.url;
 
   let safePath = path.normalize(decodeURIComponent(requestedUrl)).replace(/^(\.\.[\/\\])+/, '');
-  
+
   let filePath = path.join(
     __dirname,
     "public",
     safePath
   );
-  
+
   const extname = String(path.extname(filePath)).toLowerCase();
 
   const mimeTypes = {

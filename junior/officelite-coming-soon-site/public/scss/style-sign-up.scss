@@ -9,6 +9,10 @@ body {
 }
 
 .container {
+  background-image: url("../assets/home/bg-pattern-header.svg");
+  background-position: center -158px;
+  background-repeat: no-repeat;
+  background-size: 120% auto;
   display: flex;
   flex-direction: column;
   inline-size: 100%;
@@ -16,10 +20,12 @@ body {
   max-inline-size: 100vw;
 
   @include base.breakpoint-between(504.98, 768.98) {
+    background-image: none;
     max-inline-size: 768px;
   }
 
   @include base.breakpoints(md) {
+    background-image: none;
     block-size: 100%;
     flex-direction: row;
     max-inline-size: 1440px;
@@ -79,11 +85,8 @@ body {
 }
 
 .hero {
-  // display: flex;
-  // flex-direction: column;
   position: relative;
-  // align-items: center;
-
+  
   @include base.breakpoints(md) {
     display: block;
   }
