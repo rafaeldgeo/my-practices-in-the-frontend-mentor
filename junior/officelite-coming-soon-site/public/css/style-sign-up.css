@@ -303,6 +303,7 @@ body {
   }
 }
 .hero .form :is(.form__input, .form__select) {
+  background-color: #ffffff;
   border: none;
   border-bottom: 1px solid #babdca;
   color: #25293a;
@@ -372,6 +373,11 @@ body {
 .hero .form__submit:hover {
   background-color: rgba(81, 117, 255, 0.35);
   color: #5175ff;
+}
+.hero .form .form__input--error {
+  border-bottom: 1px solid #f05b5b;
+  color: #f05b5b;
+  background: no-repeat url("../assets/sign-up/icon-cross.svg") 98% 20%/auto;
 }
 
 .decoration {

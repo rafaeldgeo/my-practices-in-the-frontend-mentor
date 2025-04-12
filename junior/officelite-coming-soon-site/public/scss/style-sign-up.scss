@@ -286,6 +286,7 @@ body {
     }
 
     :is(.form__input, .form__select) {
+      background-color: base.$white;
       border: none;
       border-bottom: 1px solid base.$grey-050;
       color: base.$grey-300;
@@ -301,15 +302,15 @@ body {
         line-height: base.fluidLineHeight(10, 16, 1.75, tablet);
         padding-block-end: base.fluidSpace(17, tablet);
         padding-inline-start: base.fluidSpace(16, tablet);
-      }
+    }
 
       @include base.breakpoints(md) {
         font-size: base.fluidTypo(10, 16, desktop);
         line-height: base.fluidLineHeight(10, 16, 1.75, desktop);
         padding-block-end: base.fluidSpace(17, desktop);
         padding-inline-start: base.fluidSpace(16, desktop);
-      }
     }
+  }
 
     &__input::placeholder {
       color: base.$grey-050;
@@ -352,6 +353,12 @@ body {
     &__submit:hover {
       background-color: base.$btn-background-try-for-free-hover;
       color: base.$blue-200;
+    }
+
+    .form__input--error {
+      border-bottom: 1px solid base.$red-100;
+      color: base.$red-100;
+      background: no-repeat url("../assets/sign-up/icon-cross.svg") 98% 20% / auto;
     }
   }
 }

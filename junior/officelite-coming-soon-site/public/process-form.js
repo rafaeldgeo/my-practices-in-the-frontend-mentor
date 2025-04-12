@@ -3,7 +3,7 @@ function processForm(req, res) {
 
     req.on("data", chunk => {
         body += chunk.toString();
-    }); 
+    });
 
     req.on("end", () => {
         const data = new URLSearchParams(body);
@@ -15,8 +15,14 @@ function processForm(req, res) {
 
         console.log(`Received: Name: ${name} | Email = ${email} | Plan: ${plan} | Phone: ${phone} | Company: ${company}`);
 
-        res.writeHead(200, {"Content-Type": "text/plain"});
-        res.end("The data was sent successfully");
+        try {
+            res.writeHead(302, { 'Location': '/sign-up.html' }); 
+            res.end();
+        } catch (err) {
+            console.error('Error in process the form:', err);
+            res.writeHead(500, { 'Content-Type': 'text/plain' });
+            res.end('Internal erro to process the form.');
+        }
     });
 }
 

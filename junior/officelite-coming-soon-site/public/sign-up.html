@@ -37,7 +37,8 @@
               </p>
               <div class="time-counter">
                 <h3 class="time-counter__title">
-                  Coming <em class="time-counter__title-emphasis">4 Nov 2020</em>
+                  Coming
+                  <em class="time-counter__title-emphasis">4 Nov 2020</em>
                 </h3>
                 <div class="time-counter__countdown">
                   <div class="time-counter__digit">
@@ -59,56 +60,70 @@
                 </div>
               </div>
             </div>
-            <form class="form" action="/process-form.js" method="POST">
+            <form class="form" action="/process-form.js" method="POST" novalidate>
               <div class="form__wrapper-input">
-                <input class="form__input"
+                <input
+                  class="form__input"
                   type="text"
                   name="name"
                   id="name"
                   placeholder="Name"
                   title="Name"
                   aria-label="Name"
-                  required
+                  aria-invalid="false"
                 />
-                <input class="form__input"
+                <input
+                  class="form__input"
                   type="email"
                   name="email"
                   id="email"
                   placeholder="Email Address"
                   title="Email Address"
                   aria-label="Email Address"
-                  required
+                  aria-invalid="false"
                 />
-                <select class="form__select" id="form__select" name="plan" id="plan" required>
+                <select
+                  class="form__select"
+                  id="form__select"
+                  name="plan"
+                  id="plan"
+                >
                   <option value="basic">Basic Pack Free</option>
                   <option value="pro">Pro Pack $9.99</option>
                   <option value="ultimate">Ultimate Pack $19.99</option>
                 </select>
-                <input class="form__input"
+                <input
+                  class="form__input"
                   type="tel"
                   name="phone"
                   id="phone"
                   placeholder="Phone Number"
                   title="Phone Number"
                   aria-label="Phone Number"
-                  required
+                  aria-invalid="false"
                 />
-                <input class="form__input"
+                <input
+                  class="form__input"
                   type="text"
                   name="company"
                   id="company"
                   placeholder="Company"
                   title="Company"
                   aria-label="Company"
-                  required
+                  aria-invalid="false"
                 />
               </div>
-              <input class="form__submit" type="submit" value="Get on the List" />
+              <input
+                class="form__submit"
+                type="submit"
+                value="Get on the List"
+              />
             </form>
           </section>
         </main>
       </div>
       <div class="decoration"></div>
     </div>
+    <script src="./valid-form.js"></script>
   </body>
 </html>
