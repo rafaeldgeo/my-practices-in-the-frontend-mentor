@@ -124,23 +124,23 @@
         <section class="offer">
           <div class="time-counter">
             <h3 class="time-counter__title">
-              Coming <em class="time-counter__title-emphasis">4 Nov 2020</em>
+              Coming <em class="time-counter__title-emphasis">...</em>
             </h3>
             <div class="time-counter__countdown">
               <div class="time-counter__digit">
-                <time class="time-counter__time" datetime="P47D">47</time
+                <time class="time-counter__time" id="days" datetime="P47D">47</time
                 ><span class="time-counter__period">Days</span>
               </div>
               <div class="time-counter__digit">
-                <time class="time-counter__time" datetime="PT7H">07</time
+                <time class="time-counter__time" id="hours" datetime="PT7H">07</time
                 ><span class="time-counter__period">Hours</span>
               </div>
               <div class="time-counter__digit">
-                <time class="time-counter__time" datetime="PT56M">56</time
+                <time class="time-counter__time" id="min" datetime="PT56M">56</time
                 ><span class="time-counter__period">Min</span>
               </div>
               <div class="time-counter__digit">
-                <time class="time-counter__time" datetime="PT14S">14</time
+                <time class="time-counter__time" id="sec" datetime="PT14S">14</time
                 ><span class="time-counter__period">Sec</span>
               </div>
             </div>
@@ -168,7 +168,7 @@
         </div>
       </footer>
     </div>
-    <!-- If you're choosing to make this date dynamic, set it to 30 days in the future from the moment the visitor views the page -->
+    <script defer type="module" src="./countdown.js"></script>
     <!-- If you're choosing to make this timer dynamic, have it countdown from the date you set above -->
   </body>
 </html>

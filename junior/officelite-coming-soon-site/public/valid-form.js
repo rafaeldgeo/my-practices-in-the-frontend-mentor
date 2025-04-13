@@ -3,6 +3,7 @@
 const form = document.querySelector(".form");
 const inputs = Array.from(document.querySelectorAll(".form__input"));
 
+// function check the types of inputs and call a function to valid them
 function validInput(input) {
 
     switch (input.type) {
@@ -18,37 +19,42 @@ function validInput(input) {
     }
 }
 
-function validInputText(input) {
-    if (input.value.trim().length > 0) {
+// set style of erro if there is
+function setStyleError(input, isValid) {
+    if (isValid) {
         input.classList.remove("form__input--error");
+        input.setAttribute('aria-invalid', 'true');
     } else {
-        input.classList.add("form__input--erro");
+        input.classList.add("form__input--error");
+        input.setAttribute('aria-invalid', 'false');
     }
 }
 
+// valid input text
+function validInputText(input) {
+    input.value.trim().length > 0 ? setStyleError(input, true) : setStyleError(input, false);
+}
+
+// valid input email
 function validInputEmail(input) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const testEmail = emailRegex.test(input.value);
-    console.log(testEmail);
 
-    if (testEmail) {
-        input.classList.remove("form__input--error");
-    } else {
-        console.log("entrou");
-        input.classList.add("form__input--error");
-    }
+    testEmail && input.value.trim().length > 0 ? setStyleError(input, true) : setStyleError(input, false);
 }
 
-form.addEventListener("input", (e) => {
+// call each input when it is clicked
+form.addEventListener("change", (e) => {
     const inputElement = e.target;
     validInput(inputElement);
 });
 
+// check if the inputs are valid
 form.addEventListener("submit", (e) => {
     let validForm = true;
     inputs.forEach((input) => {
-        if (input.value.trim().length === 0) {
-            input.classList.add("form__input--error");
+        validInput(input);
+        if (input.ariaInvalid === "false") {
             validForm = false;
         }
     })
@@ -58,4 +64,11 @@ form.addEventListener("submit", (e) => {
     }
 
 });
+
+
+
+
+
+
+
 

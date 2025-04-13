@@ -10,6 +10,7 @@
       href="./assets/favicon-32x32.png"
     />
     <link rel="stylesheet" href="./css/style-sign-up.css" />
+    <script defer type="module" src="./countdown.js"></script>
     <title>Frontend Mentor | Officelite coming soon site</title>
   </head>
   <body>
@@ -38,7 +39,7 @@
               <div class="time-counter">
                 <h3 class="time-counter__title">
                   Coming
-                  <em class="time-counter__title-emphasis">4 Nov 2020</em>
+                  <em class="time-counter__title-emphasis">...</em>
                 </h3>
                 <div class="time-counter__countdown">
                   <div class="time-counter__digit">
@@ -60,7 +61,7 @@
                 </div>
               </div>
             </div>
-            <form class="form" action="/process-form.js" method="POST" novalidate>
+            <form class="form" action="/process-form.js" method="POST" novalidate autocomplete="off">
               <div class="form__wrapper-input">
                 <input
                   class="form__input"
@@ -70,7 +71,6 @@
                   placeholder="Name"
                   title="Name"
                   aria-label="Name"
-                  aria-invalid="false"
                 />
                 <input
                   class="form__input"
@@ -80,7 +80,6 @@
                   placeholder="Email Address"
                   title="Email Address"
                   aria-label="Email Address"
-                  aria-invalid="false"
                 />
                 <select
                   class="form__select"
@@ -100,7 +99,6 @@
                   placeholder="Phone Number"
                   title="Phone Number"
                   aria-label="Phone Number"
-                  aria-invalid="false"
                 />
                 <input
                   class="form__input"
@@ -110,7 +108,6 @@
                   placeholder="Company"
                   title="Company"
                   aria-label="Company"
-                  aria-invalid="false"
                 />
               </div>
               <input
@@ -124,6 +121,6 @@
       </div>
       <div class="decoration"></div>
     </div>
-    <script src="./valid-form.js"></script>
+    <script type="module" src="./valid-form.js"></script>
   </body>
 </html>
