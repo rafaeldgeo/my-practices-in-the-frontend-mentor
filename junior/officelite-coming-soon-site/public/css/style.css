@@ -193,23 +193,27 @@ main {
   display: block;
   inline-size: 52.3%;
 }
-.hero .charts__img {
-  block-size: auto;
-  display: block;
-  inline-size: 100%;
-}
 @media (min-width: 504.98px) and (max-width: 768.98px) {
   .hero .charts {
     flex-basis: 281px;
-  }
-  .hero .charts__img {
-    aspect-ratio: 281/314;
   }
 }
 @media (min-width: 768.98px) {
   .hero .charts {
     flex-basis: 475px;
   }
+}
+.hero .charts__img {
+  block-size: auto;
+  display: block;
+  inline-size: 100%;
+}
+@media (min-width: 504.98px) and (max-width: 768.98px) {
+  .hero .charts__img {
+    aspect-ratio: 281/314;
+  }
+}
+@media (min-width: 768.98px) {
   .hero .charts__img {
     aspect-ratio: 475/531;
   }
@@ -510,61 +514,61 @@ main {
     line-height: calc(clamp(0.625rem, 0.5rem + 0.5555555556vw, 1rem) * 3);
   }
 }
-.offer .time-counter__countdown {
+.offer .time-counter .countdown {
   column-gap: min(3.4666666667vw, 0.8125rem);
   display: flex;
-  inline-size: 100%;
-  max-inline-size: 448px;
 }
 @media (min-width: 504.98px) and (max-width: 768.98px) {
-  .offer .time-counter__countdown {
+  .offer .time-counter .countdown {
     column-gap: min(2.0833333333vw, 1rem);
   }
 }
 @media (min-width: 768.98px) {
-  .offer .time-counter__countdown {
+  .offer .time-counter .countdown {
     column-gap: min(1.1111111111vw, 1rem);
   }
 }
-.offer .time-counter__digit {
+.offer .time-counter .countdown .countdown__digit {
   background-color: #333950;
   border-radius: 0.8125rem;
   color: #ffffff;
   display: flex;
-  flex: 0 1 100px;
   flex-direction: column;
   font-weight: 800;
   padding: min(4.2666666667vw, 1rem);
   row-gap: 2.12px;
   text-align: center;
+  inline-size: clamp(62px, 19.2vw, 72px);
 }
 @media (min-width: 504.98px) and (max-width: 768.98px) {
-  .offer .time-counter__digit {
+  .offer .time-counter .countdown .countdown__digit {
     padding: min(2.0833333333vw, 1rem);
+    inline-size: clamp(70px, 13.1vw, 100px);
   }
 }
 @media (min-width: 768.98px) {
-  .offer .time-counter__digit {
+  .offer .time-counter .countdown .countdown__digit {
     padding: min(1.9791666667vw, 1.78125rem) min(1.1111111111vw, 1rem);
+    inline-size: clamp(70px, 7vw, 100px);
   }
 }
-.offer .time-counter__time {
+.offer .time-counter .countdown__time {
   font-size: clamp(1rem, 0.5rem + 6.4vw, 2rem);
   line-height: calc(clamp(1rem, 0.5rem + 6.4vw, 2rem) * 0.858);
 }
 @media (min-width: 504.98px) and (max-width: 768.98px) {
-  .offer .time-counter__time {
+  .offer .time-counter .countdown__time {
     font-size: clamp(1rem, 0.5rem + 6.25vw, 3.5rem);
     line-height: calc(clamp(1rem, 0.5rem + 6.25vw, 3.5rem) * 0.858);
   }
 }
 @media (min-width: 768.98px) {
-  .offer .time-counter__time {
+  .offer .time-counter .countdown__time {
     font-size: clamp(1rem, 0.5rem + 3.3333333333vw, 3.5rem);
     line-height: calc(clamp(1rem, 0.5rem + 3.3333333333vw, 3.5rem) * 0.858);
   }
 }
-.offer .time-counter__period {
+.offer .time-counter .countdown__period {
   font-size: clamp(0.5rem, 0.5rem + 1.0666666667vw, 0.75rem);
   line-height: calc(clamp(0.5rem, 0.5rem + 1.0666666667vw, 0.75rem) * 1.75);
   opacity: 0.5;

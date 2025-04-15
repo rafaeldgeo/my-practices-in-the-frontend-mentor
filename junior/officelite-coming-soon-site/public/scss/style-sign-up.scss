@@ -147,15 +147,15 @@ body {
     }
   }
 
+  
+  
+  
+  
+
   .time-counter {
     align-items: center;
     display: flex;
     flex-direction: column;
-    row-gap: 1.125rem;
-
-    @include base.breakpoints(sm) {
-      row-gap: 0.5rem;
-    }
 
     @include base.breakpoints(md) {
       align-items: start;
@@ -178,18 +178,17 @@ body {
         font-size: base.fluidTypo(10, 16, tablet);
         line-height: base.fluidLineHeight(10, 16, 3, tablet);
       }
-
+  
       @include base.breakpoints(md) {
         font-size: base.fluidTypo(10, 16);
         line-height: base.fluidLineHeight(10, 16, 3, desktop);
       }
+
     }
 
-    &__countdown {
+    .countdown {
       column-gap: base.fluidSpace(13);
       display: flex;
-      inline-size: 100%;
-      max-inline-size: 448px;
 
       @include base.breakpoint-between(504.98, 768.98) {
         column-gap: base.fluidSpace(16, tablet);
@@ -198,52 +197,55 @@ body {
       @include base.breakpoints(md) {
         column-gap: base.fluidSpace(16, desktop);
       }
-    }
 
-    &__digit {
-      background-color: base.$blue-150;
-      border-radius: 0.8125rem;
-      color: base.$blue-200;
-      display: flex;
-      flex: 0 1 100px;
-      flex-direction: column;
-      font-weight: 800;
-      padding: base.fluidSpace(16);
-      row-gap: 2.12px;
-      text-align: center;
+      .countdown__digit {
+        background-color: base.$blue-150;
+        border-radius: 0.8125rem;
+        color: base.$blue-200;
+        display: flex;
+        flex-direction: column;
+        font-weight: 800;
+        padding: base.fluidSpace(16);
+        row-gap: 2.12px;
+        text-align: center;
+        inline-size: clamp(62px, 19.2vw, 72px);
+       
+        @include base.breakpoint-between(504.98, 768.98) {
+          padding: base.fluidSpace(16, tablet);
+          inline-size: clamp(70px, 13.1vw, 100px);
+        }
 
-      @include base.breakpoint-between(504.98, 768.98) {
-        padding: base.fluidSpace(16, tablet);
+        @include base.breakpoints(md) {
+          padding: base.fluidSpace(28.5, desktop) base.fluidSpace(16, desktop);
+          inline-size: clamp(70px, 7vw, 100px);
+        }
       }
 
-      @include base.breakpoints(md) {
-        padding: base.fluidSpace(28.5, desktop) base.fluidSpace(16, desktop);
+      &__time {
+        font-size: base.fluidTypo(16, 32);
+        line-height: base.fluidLineHeight(16, 32, 0.858);
+
+        @include base.breakpoint-between(504.98, 768.98) {
+          font-size: base.fluidTypo(16, 56, tablet);
+          line-height: base.fluidLineHeight(16, 56, 0.858, tablet);
+        }
+
+        @include base.breakpoints(md) {
+          font-size: base.fluidTypo(16, 56, desktop);
+          line-height: base.fluidLineHeight(16, 56, 0.858, desktop);
+        }
       }
-    }
 
-    &__time {
-      font-size: base.fluidTypo(16, 32);
-      line-height: base.fluidLineHeight(16, 32, 0.858);
-
-      @include base.breakpoint-between(504.98, 768.98) {
-        font-size: base.fluidTypo(16, 56, tablet);
-        line-height: base.fluidLineHeight(16, 56, 0.858, tablet);
+      &__period {
+        color: base.$grey-200;
+        font-size: base.fluidTypo(8, 12);
+        line-height: base.fluidLineHeight(8, 12, 1.75);
+        opacity: 0.5;
       }
-
-      @include base.breakpoints(md) {
-        font-size: base.fluidTypo(16, 56, desktop);
-        line-height: base.fluidLineHeight(16, 56, 0.858, desktop);
-      }
-    }
-
-    &__period {
-      color: base.$grey-200;
-      font-size: base.fluidTypo(8, 12);
-      line-height: base.fluidLineHeight(8, 12, 1.75);
-      opacity: 0.5;
     }
   }
-
+}
+  
   .form {
     background-color: base.$white;
     border-radius: base.convertPxToRem(13);
@@ -361,7 +363,6 @@ body {
       background: no-repeat url("../assets/sign-up/icon-cross.svg") 98% 20% / auto;
     }
   }
-}
 
 .decoration {
   background-color: base.$grey-300;

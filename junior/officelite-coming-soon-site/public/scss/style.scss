@@ -175,24 +175,24 @@ main {
     display: block;
     inline-size: 52.3%;
 
-    &__img {
-      block-size: auto;
-      display: block;
-      inline-size: 100%;
-    }
-
     @include base.breakpoint-between(504.98, 768.98) {
       flex-basis: 281px;
-
-      &__img {
-        aspect-ratio: 281 / 314;
-      }
     }
 
     @include base.breakpoints(md) {
       flex-basis: 475px;
+    }
 
-      &__img {
+    &__img {
+      block-size: auto;
+      display: block;
+      inline-size: 100%;
+
+      @include base.breakpoint-between(504.98, 768.98) {
+        aspect-ratio: 281 / 314;
+      }
+
+      @include base.breakpoints(md) {
         aspect-ratio: 475 / 531;
       }
     }
@@ -479,6 +479,7 @@ main {
     @include base.breakpoints(md) {
       align-items: start;
     }
+
     &__title {
       color: base.$white;
       font-size: base.fluidTypo(10, 16);
@@ -496,18 +497,17 @@ main {
         font-size: base.fluidTypo(10, 16, tablet);
         line-height: base.fluidLineHeight(10, 16, 3, tablet);
       }
-
+  
       @include base.breakpoints(md) {
         font-size: base.fluidTypo(10, 16);
         line-height: base.fluidLineHeight(10, 16, 3, desktop);
       }
+
     }
 
-    &__countdown {
+    .countdown {
       column-gap: base.fluidSpace(13);
       display: flex;
-      inline-size: 100%;
-      max-inline-size: 448px;
 
       @include base.breakpoint-between(504.98, 768.98) {
         column-gap: base.fluidSpace(16, tablet);
@@ -516,48 +516,50 @@ main {
       @include base.breakpoints(md) {
         column-gap: base.fluidSpace(16, desktop);
       }
-    }
 
-    &__digit {
-      background-color: base.$grey-200;
-      border-radius: 0.8125rem;
-      color: base.$white;
-      display: flex;
-      flex: 0 1 100px;
-      flex-direction: column;
-      font-weight: 800;
-      padding: base.fluidSpace(16);
-      row-gap: 2.12px;
-      text-align: center;
+      .countdown__digit {
+        background-color: base.$grey-200;
+        border-radius: 0.8125rem;
+        color: base.$white;
+        display: flex;
+        flex-direction: column;
+        font-weight: 800;
+        padding: base.fluidSpace(16);
+        row-gap: 2.12px;
+        text-align: center;
+        inline-size: clamp(62px, 19.2vw, 72px);
+       
+        @include base.breakpoint-between(504.98, 768.98) {
+          padding: base.fluidSpace(16, tablet);
+          inline-size: clamp(70px, 13.1vw, 100px);
+        }
 
-      @include base.breakpoint-between(504.98, 768.98) {
-        padding: base.fluidSpace(16, tablet);
+        @include base.breakpoints(md) {
+          padding: base.fluidSpace(28.5, desktop) base.fluidSpace(16, desktop);
+          inline-size: clamp(70px, 7vw, 100px);
+        }
       }
 
-      @include base.breakpoints(md) {
-        padding: base.fluidSpace(28.5, desktop) base.fluidSpace(16, desktop);
+      &__time {
+        font-size: base.fluidTypo(16, 32);
+        line-height: base.fluidLineHeight(16, 32, 0.858);
+
+        @include base.breakpoint-between(504.98, 768.98) {
+          font-size: base.fluidTypo(16, 56, tablet);
+          line-height: base.fluidLineHeight(16, 56, 0.858, tablet);
+        }
+
+        @include base.breakpoints(md) {
+          font-size: base.fluidTypo(16, 56, desktop);
+          line-height: base.fluidLineHeight(16, 56, 0.858, desktop);
+        }
       }
-    }
 
-    &__time {
-      font-size: base.fluidTypo(16, 32);
-      line-height: base.fluidLineHeight(16, 32, 0.858);
-
-      @include base.breakpoint-between(504.98, 768.98) {
-        font-size: base.fluidTypo(16, 56, tablet);
-        line-height: base.fluidLineHeight(16, 56, 0.858, tablet);
+      &__period {
+        font-size: base.fluidTypo(8, 12);
+        line-height: base.fluidLineHeight(8, 12, 1.75);
+        opacity: 0.5;
       }
-
-      @include base.breakpoints(md) {
-        font-size: base.fluidTypo(16, 56, desktop);
-        line-height: base.fluidLineHeight(16, 56, 0.858, desktop);
-      }
-    }
-
-    &__period {
-      font-size: base.fluidTypo(8, 12);
-      line-height: base.fluidLineHeight(8, 12, 1.75);
-      opacity: 0.5;
     }
   }
 }

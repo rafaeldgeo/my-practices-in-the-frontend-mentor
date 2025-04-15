@@ -15,10 +15,10 @@ timeCounterTitleEmphasis.textContent = fullDate;
 
 //define countdown
 
-const timeCounterDays = document.querySelector("#days");
-const timeCounterHours = document.querySelector("#hours");
-const timeCounterMin = document.querySelector("#min");
-const timeCounterSec = document.querySelector("#sec");
+const countDownDays = document.querySelector("#days");
+const countDownHours = document.querySelector("#hours");
+const countDownMin = document.querySelector("#min");
+const countDownSec = document.querySelector("#sec");
 
 function updateCountDown() {
 
@@ -31,10 +31,10 @@ function updateCountDown() {
     const min = Math.floor((TotalSeconds % (60 * 60)) / 60);
     const sec = Math.floor(TotalSeconds % 60);
 
-    timeCounterDays.textContent = String(days).padStart(2, "0");
-    timeCounterHours.textContent = String(hours).padStart(2, "0");
-    timeCounterMin.textContent = String(min).padStart(2, "0");
-    timeCounterSec.textContent = String(sec).padStart(2, "0");
+    countDownDays.textContent = String(days).padStart(2, "0");
+    countDownHours.textContent = String(hours).padStart(2, "0");
+    countDownMin.textContent = String(min).padStart(2, "0");
+    countDownSec.textContent = String(sec).padStart(2, "0");
 }
 
 const countdownInterval = setInterval(updateCountDown, 1000);

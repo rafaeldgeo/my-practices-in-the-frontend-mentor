@@ -167,12 +167,6 @@ body {
   align-items: center;
   display: flex;
   flex-direction: column;
-  row-gap: 1.125rem;
-}
-@media (min-width: 575.98px) {
-  .hero .time-counter {
-    row-gap: 0.5rem;
-  }
 }
 @media (min-width: 768.98px) {
   .hero .time-counter {
@@ -203,67 +197,68 @@ body {
     line-height: calc(clamp(0.625rem, 0.5rem + 0.5555555556vw, 1rem) * 3);
   }
 }
-.hero .time-counter__countdown {
+.hero .time-counter .countdown {
   column-gap: min(3.4666666667vw, 0.8125rem);
   display: flex;
-  inline-size: 100%;
-  max-inline-size: 448px;
 }
 @media (min-width: 504.98px) and (max-width: 768.98px) {
-  .hero .time-counter__countdown {
+  .hero .time-counter .countdown {
     column-gap: min(2.0833333333vw, 1rem);
   }
 }
 @media (min-width: 768.98px) {
-  .hero .time-counter__countdown {
+  .hero .time-counter .countdown {
     column-gap: min(1.1111111111vw, 1rem);
   }
 }
-.hero .time-counter__digit {
+.hero .time-counter .countdown .countdown__digit {
   background-color: #eef1ff;
   border-radius: 0.8125rem;
   color: #5175ff;
   display: flex;
-  flex: 0 1 100px;
   flex-direction: column;
   font-weight: 800;
   padding: min(4.2666666667vw, 1rem);
   row-gap: 2.12px;
   text-align: center;
+  inline-size: clamp(62px, 19.2vw, 72px);
 }
 @media (min-width: 504.98px) and (max-width: 768.98px) {
-  .hero .time-counter__digit {
+  .hero .time-counter .countdown .countdown__digit {
     padding: min(2.0833333333vw, 1rem);
+    inline-size: clamp(70px, 13.1vw, 100px);
   }
 }
 @media (min-width: 768.98px) {
-  .hero .time-counter__digit {
+  .hero .time-counter .countdown .countdown__digit {
     padding: min(1.9791666667vw, 1.78125rem) min(1.1111111111vw, 1rem);
+    inline-size: clamp(70px, 7vw, 100px);
   }
 }
-.hero .time-counter__time {
+.hero .time-counter .countdown__time {
   font-size: clamp(1rem, 0.5rem + 6.4vw, 2rem);
   line-height: calc(clamp(1rem, 0.5rem + 6.4vw, 2rem) * 0.858);
 }
 @media (min-width: 504.98px) and (max-width: 768.98px) {
-  .hero .time-counter__time {
+  .hero .time-counter .countdown__time {
     font-size: clamp(1rem, 0.5rem + 6.25vw, 3.5rem);
     line-height: calc(clamp(1rem, 0.5rem + 6.25vw, 3.5rem) * 0.858);
   }
 }
 @media (min-width: 768.98px) {
-  .hero .time-counter__time {
+  .hero .time-counter .countdown__time {
     font-size: clamp(1rem, 0.5rem + 3.3333333333vw, 3.5rem);
     line-height: calc(clamp(1rem, 0.5rem + 3.3333333333vw, 3.5rem) * 0.858);
   }
 }
-.hero .time-counter__period {
+.hero .time-counter .countdown__period {
   color: #333950;
   font-size: clamp(0.5rem, 0.5rem + 1.0666666667vw, 0.75rem);
   line-height: calc(clamp(0.5rem, 0.5rem + 1.0666666667vw, 0.75rem) * 1.75);
   opacity: 0.5;
 }
-.hero .form {
+
+.form {
   background-color: #ffffff;
   border-radius: 0.8125rem;
   box-shadow: 0 50px 50px -25px hsla(227, 34%, 45%, 0.24);
@@ -275,14 +270,14 @@ body {
   z-index: 1;
 }
 @media (min-width: 504.98px) and (max-width: 768.98px) {
-  .hero .form {
+  .form {
     max-inline-size: clamp(378px, 58vw, 445px);
     top: clamp(352px, 58.5vw, 449px);
     padding: min(5.2083333333vw, 2.5rem) min(5.46875vw, 2.625rem) min(6.640625vw, 3.1875rem) min(5.5989583333vw, 2.6875rem);
   }
 }
 @media (min-width: 768.98px) {
-  .hero .form {
+  .form {
     bottom: clamp(10px, 0.7vw, 100px);
     inline-size: clamp(240px, 31vw, 445px);
     left: clamp(380px, 46.2vw, 665px);
@@ -290,19 +285,19 @@ body {
     padding: min(2.7777777778vw, 2.5rem) min(2.9166666667vw, 2.625rem) min(3.5416666667vw, 3.1875rem) min(2.9861111111vw, 2.6875rem);
   }
 }
-.hero .form__wrapper-input {
+.form__wrapper-input {
   display: flex;
   flex-direction: column;
   padding-block-end: min(10.6666666667vw, 2.5rem);
   row-gap: min(6.4vw, 1.5rem);
 }
 @media (min-width: 768.98px) {
-  .hero .form__wrapper-input {
+  .form__wrapper-input {
     padding-block-end: min(2.7777777778vw, 2.5rem);
     row-gap: min(1.6666666667vw, 1.5rem);
   }
 }
-.hero .form :is(.form__input, .form__select) {
+.form :is(.form__input, .form__select) {
   background-color: #ffffff;
   border: none;
   border-bottom: 1px solid #babdca;
@@ -315,7 +310,7 @@ body {
   padding-inline-start: min(4.2666666667vw, 1rem);
 }
 @media (min-width: 504.98px) and (max-width: 768.98px) {
-  .hero .form :is(.form__input, .form__select) {
+  .form :is(.form__input, .form__select) {
     font-size: clamp(0.625rem, 0.5rem + 1.0416666667vw, 1rem);
     line-height: calc(clamp(0.625rem, 0.5rem + 1.0416666667vw, 1rem) * 1.75);
     padding-block-end: min(2.2135416667vw, 1.0625rem);
@@ -323,28 +318,28 @@ body {
   }
 }
 @media (min-width: 768.98px) {
-  .hero .form :is(.form__input, .form__select) {
+  .form :is(.form__input, .form__select) {
     font-size: clamp(0.625rem, 0.5rem + 0.5555555556vw, 1rem);
     line-height: calc(clamp(0.625rem, 0.5rem + 0.5555555556vw, 1rem) * 1.75);
     padding-block-end: min(1.1805555556vw, 1.0625rem);
     padding-inline-start: min(1.1111111111vw, 1rem);
   }
 }
-.hero .form__input::placeholder {
+.form__input::placeholder {
   color: #babdca;
   font-size: clamp(0.625rem, 0.5rem + 2.1333333333vw, 1rem);
 }
 @media (min-width: 504.98px) and (max-width: 768.98px) {
-  .hero .form__input::placeholder {
+  .form__input::placeholder {
     font-size: clamp(0.625rem, 0.5rem + 1.0416666667vw, 1rem);
   }
 }
 @media (min-width: 768.98px) {
-  .hero .form__input::placeholder {
+  .form__input::placeholder {
     font-size: clamp(0.625rem, 0.5rem + 0.5555555556vw, 1rem);
   }
 }
-.hero .form__submit {
+.form__submit {
   background-color: #5175ff;
   border: none;
   border-radius: 1.75rem;
@@ -357,24 +352,24 @@ body {
   padding: min(3.7333333333vw, 0.875rem) min(10.6666666667vw, 2.5rem);
 }
 @media (min-width: 504.98px) and (max-width: 768.98px) {
-  .hero .form__submit {
+  .form__submit {
     font-size: clamp(0.5rem, 0.5rem + 1.0416666667vw, 1rem);
     line-height: calc(clamp(0.5rem, 0.5rem + 1.0416666667vw, 1rem) * 1.75);
     padding: min(1.8229166667vw, 0.875rem) min(5.2083333333vw, 2.5rem);
   }
 }
 @media (min-width: 768.98px) {
-  .hero .form__submit {
+  .form__submit {
     font-size: clamp(0.5rem, 0.5rem + 0.5555555556vw, 1rem);
     line-height: calc(clamp(0.5rem, 0.5rem + 0.5555555556vw, 1rem) * 1.75);
     padding: min(0.9722222222vw, 0.875rem) min(2.7777777778vw, 2.5rem);
   }
 }
-.hero .form__submit:hover {
+.form__submit:hover {
   background-color: rgba(81, 117, 255, 0.35);
   color: #5175ff;
 }
-.hero .form .form__input--error {
+.form .form__input--error {
   border-bottom: 1px solid #f05b5b;
   color: #f05b5b;
   background: no-repeat url("../assets/sign-up/icon-cross.svg") 98% 20%/auto;
