@@ -1,22 +1,13 @@
 "use strict";
 
-let releaseDate;
 const savedDate = localStorage.getItem("releaseDate");
-
-// save date
-if (savedDate) {
-    releaseDate = new Date(savedDate);
-} else {
-    const dateNow = new Date();
-    const releaseDate = new Date();
-    releaseDate.setDate(dateNow.getDate() + 30);
-    localStorage.setItem("releaseDate", releaseDate.toISOString());
-}
+const releaseDate = new Date(savedDate);
 
 // define date of coming
 const monthNum = releaseDate.getMonth();
 const ListMonth = ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"];
 const fullDate = `${releaseDate.getDate()} ${ListMonth[monthNum]} ${releaseDate.getFullYear()}`;
+
 const timeCounterTitleEmphasis = document.querySelector(".time-counter__title-emphasis");
 timeCounterTitleEmphasis.textContent = fullDate;
 
