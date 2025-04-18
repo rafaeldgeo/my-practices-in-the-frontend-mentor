@@ -43,13 +43,9 @@ document.addEventListener("DOMContentLoaded", function () {
         const sec = Math.floor(TotalSeconds % 60);
 
         countDownDays.textContent = String(days).padStart(2, "0");
-        countDownDays.setAttribute("datetime", `P${days}D`);
         countDownHours.textContent = String(hours).padStart(2, "0");
-        countDownHours.setAttribute("datetime", `P${hours}H`);
         countDownMin.textContent = String(min).padStart(2, "0");
-        countDownMin.setAttribute("datetime", `P${min}M`);
         countDownSec.textContent = String(sec).padStart(2, "0");
-        countDownSec.setAttribute("datetime", `P${sec}S`);
     }
 
     setInterval(updateCountDown, 1000);
