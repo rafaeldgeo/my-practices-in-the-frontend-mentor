@@ -4,7 +4,7 @@ const path = require("path");
 const sass = require("sass");
 const processForm = require("./public/process-form");
 
-// função para compilar SASS em CSS
+// compile SASS from CSS
 function compileSass() {
   const scssDir = path.join(__dirname, "public/scss");
   const cssDir = path.join(__dirname, "public/css");
@@ -25,7 +25,7 @@ function compileSass() {
   });
 }
 
-//monitora mudanças no arquivo SASS
+// monitors changes in SASS file
 fs.watch(path.join(__dirname, "public/scss"), (event, filename) => {
   if (filename && filename.endsWith(".scss")) {
     console.log(`${filename} foi alterado. Recompilando SASS...`);
@@ -33,7 +33,7 @@ fs.watch(path.join(__dirname, "public/scss"), (event, filename) => {
   }
 });
 
-//criação do servidor HTTP
+// create HTTP server
 const server = http.createServer((req, res) => {
 
   let requestedUrl = "";
