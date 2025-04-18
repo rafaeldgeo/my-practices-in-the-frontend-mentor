@@ -11,7 +11,10 @@
     />
     <script defer type="module" src="./countdown-sing-up.js"></script>
     <link rel="stylesheet" href="./css/style-sign-up.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css"/>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css"
+    />
     <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
     <title>Frontend Mentor | Officelite coming soon site</title>
   </head>
@@ -40,28 +43,23 @@
               </p>
               <div class="time-counter">
                 <h3 class="time-counter__title">
-                  Coming
-                  <em class="time-counter__title-emphasis"></em>
+                  Coming<em class="time-counter__title-emphasis">4 nov 2020</em>
                 </h3>
                 <div class="countdown">
                   <div class="countdown__digit">
-                    <time
-                      class="countdown__time"
-                      id="days"
-                      datetime="P47D"
-                    ></time
+                    <time class="countdown__time" id="days">47</time
                     ><span class="countdown__period">Days</span>
                   </div>
                   <div class="countdown__digit">
-                    <time class="countdown__time" id="hours"></time
+                    <time class="countdown__time" id="hours">07</time
                     ><span class="countdown__period">Hours</span>
                   </div>
                   <div class="countdown__digit">
-                    <time class="countdown__time" id="min"></time
+                    <time class="countdown__time" id="min">56</time
                     ><span class="countdown__period">Min</span>
                   </div>
                   <div class="countdown__digit">
-                    <time class="countdown__time" id="sec"></time>
+                    <time class="countdown__time" id="sec">14</time>
                     <span class="countdown__period">Sec</span>
                   </div>
                 </div>
@@ -123,8 +121,8 @@
     <script>
       // Choice.JS Library custom select
       document.addEventListener("DOMContentLoaded", function () {
-      const select = document.getElementById("select");
-      const choices = new Choices(select, {
+        const select = document.getElementById("select");
+        const choices = new Choices(select, {
           allowHTML: true,
           searchEnabled: false,
           itemSelectText: "",
