@@ -14,7 +14,7 @@ if (savedDate) {
     releaseDate = new Date(savedDate);
 } else {
     const dateNow = new Date();
-    const releaseDate = new Date();
+    let releaseDate = new Date();
     releaseDate.setDate(dateNow.getDate() + 30);
     localStorage.setItem("releaseDate", releaseDate.toISOString());
 }
@@ -30,6 +30,7 @@ export function defineReleaseDateTitle(releaseDate){
 
 document.addEventListener("DOMContentLoaded", function() {
     defineReleaseDateTitle(releaseDate);
+    updateCountDown();
 });
 
 
@@ -56,9 +57,6 @@ function updateCountDown() {
     countDownSec.setAttribute("datetime", `P${sec}S`);
 }
 
-document.addEventListener("DOMContentLoaded", function() {
-    updateCountDown();
-});
 setInterval(updateCountDown, 1000);
 
 
