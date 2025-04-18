@@ -1,5 +1,3 @@
-"use strict";
-
 const countDownDays = document.querySelector("#days");
 const countDownHours = document.querySelector("#hours");
 const countDownMin = document.querySelector("#min");
