@@ -86,7 +86,7 @@ body {
 
 .hero {
   position: relative;
-  
+
   @include base.breakpoints(md) {
     display: block;
   }
@@ -147,11 +147,6 @@ body {
     }
   }
 
-  
-  
-  
-  
-
   .time-counter {
     align-items: center;
     display: flex;
@@ -178,12 +173,11 @@ body {
         font-size: base.fluidTypo(10, 16, tablet);
         line-height: base.fluidLineHeight(10, 16, 3, tablet);
       }
-  
+
       @include base.breakpoints(md) {
         font-size: base.fluidTypo(10, 16);
         line-height: base.fluidLineHeight(10, 16, 3, desktop);
       }
-
     }
 
     .countdown {
@@ -209,7 +203,7 @@ body {
         row-gap: 2.12px;
         text-align: center;
         inline-size: clamp(62px, 19.2vw, 72px);
-       
+
         @include base.breakpoint-between(504.98, 768.98) {
           padding: base.fluidSpace(16, tablet);
           inline-size: clamp(70px, 13.1vw, 100px);
@@ -245,124 +239,239 @@ body {
     }
   }
 }
-  
-  .form {
+
+.form {
+  background-color: base.$white;
+  border-radius: base.convertPxToRem(13);
+  box-shadow: 0 50px 50px -25px base.$blue-shadow;
+  inline-size: 100%;
+  left: 50%;
+  padding: base.fluidSpace(24);
+  position: absolute;
+  transform: translate(-50%);
+  z-index: 1;
+  overflow: hidden;
+
+  @include base.breakpoint-between(504.98, 768.98) {
+    max-inline-size: clamp(378px, 58vw, 445px);
+    top: clamp(352px, 58.5vw, 449px);
+
+    padding: base.fluidSpace(40, tablet) base.fluidSpace(42, tablet)
+      base.fluidSpace(51, tablet) base.fluidSpace(43, tablet);
+  }
+
+  @include base.breakpoints(md) {
+    bottom: clamp(10px, 0.7vw, 100px);
+    inline-size: clamp(240px, 31vw, 445px);
+    left: clamp(380px, 46.2vw, 665px);
+    transform: none;
+
+    padding: base.fluidSpace(40, desktop) base.fluidSpace(42, desktop)
+      base.fluidSpace(51, desktop) base.fluidSpace(43, desktop);
+  }
+
+  &__wrapper-input {
+    display: flex;
+    flex-direction: column;
+    padding-block-end: base.fluidSpace(40);
+    row-gap: base.fluidSpace(24);
+
+    @include base.breakpoints(md) {
+      padding-block-end: base.fluidSpace(40, desktop);
+      row-gap: base.fluidSpace(24, desktop);
+    }
+  }
+
+  .input {
     background-color: base.$white;
-    border-radius: base.convertPxToRem(13);
-    box-shadow: 0 50px 50px -25px base.$blue-shadow;
+    border: none;
+    border-bottom: 1px solid base.$grey-050;
+    color: base.$grey-300;
+    display: block;
+    font-size: base.fluidTypo(10, 16);
     inline-size: 100%;
-    left: 50%;
-    padding: base.fluidSpace(24);
-    position: absolute;
-    transform: translate(-50%);
-    z-index: 1;
+    line-height: base.fluidLineHeight(10, 16, 1.75);
+    padding-block-end: base.fluidSpace(17);
+    padding-inline-start: base.fluidSpace(16);
 
     @include base.breakpoint-between(504.98, 768.98) {
-      max-inline-size: clamp(378px, 58vw, 445px);
-      top: clamp(352px, 58.5vw, 449px);
-
-      padding: base.fluidSpace(40, tablet) base.fluidSpace(42, tablet)
-        base.fluidSpace(51, tablet) base.fluidSpace(43, tablet);
+      font-size: base.fluidTypo(10, 16, tablet);
+      line-height: base.fluidLineHeight(10, 16, 1.75, tablet);
+      padding-block-end: base.fluidSpace(17, tablet);
+      padding-inline-start: base.fluidSpace(16, tablet);
     }
 
     @include base.breakpoints(md) {
-      bottom: clamp(10px, 0.7vw, 100px);
-      inline-size: clamp(240px, 31vw, 445px);
-      left: clamp(380px, 46.2vw, 665px);
-      transform: none;
+      font-size: base.fluidTypo(10, 16, desktop);
+      line-height: base.fluidLineHeight(10, 16, 1.75, desktop);
+      padding-block-end: base.fluidSpace(17, desktop);
+      padding-inline-start: base.fluidSpace(16, desktop);
+    }
+  }
 
-      padding: base.fluidSpace(40, desktop) base.fluidSpace(42, desktop)
-        base.fluidSpace(51, desktop) base.fluidSpace(43, desktop);
+  .input::placeholder {
+    color: base.$grey-050;
+    font-size: base.fluidTypo(10, 16);
+
+    @include base.breakpoint-between(504.98, 768.98) {
+      font-size: base.fluidTypo(10, 16, tablet);
     }
 
-    &__wrapper-input {
-      display: flex;
-      flex-direction: column;
-      padding-block-end: base.fluidSpace(40);
-      row-gap: base.fluidSpace(24);
+    @include base.breakpoints(md) {
+      font-size: base.fluidTypo(10, 16, desktop);
+    }
+  }
+
+  .submit {
+    background-color: base.$blue-200;
+    border: none;
+    border-radius: base.convertPxToRem(28);
+    color: base.$white;
+    cursor: pointer;
+    font-size: base.fluidTypo(8, 16);
+    font-weight: 800;
+    inline-size: 100%;
+    line-height: base.fluidLineHeight(8, 16, 1.75);
+    padding: base.fluidSpace(14) base.fluidSpace(40);
+
+    @include base.breakpoint-between(504.98, 768.98) {
+      font-size: base.fluidTypo(8, 16, tablet);
+      line-height: base.fluidLineHeight(8, 16, 1.75, tablet);
+      padding: base.fluidSpace(14, tablet) base.fluidSpace(40, tablet);
+    }
+
+    @include base.breakpoints(md) {
+      font-size: base.fluidTypo(8, 16, desktop);
+      line-height: base.fluidLineHeight(8, 16, 1.75, desktop);
+      padding: base.fluidSpace(14, desktop) base.fluidSpace(40, desktop);
+    }
+  }
+
+  .submit:hover {
+    background-color: base.$btn-background-try-for-free-hover;
+    color: base.$blue-200;
+  }
+
+  .input--error {
+    border-bottom: 1px solid base.$red-100;
+    color: base.$red-100;
+    background: no-repeat url("../assets/sign-up/icon-cross.svg") 98% 20% / auto;
+  }
+
+  .choices {
+    margin: 0;
+
+    .choices__inner {
+      background-color: base.$white;
+      border: none;
+      padding: 0;
+    }
+
+    .choices__list {
+      padding: 0;
+    }
+
+    .choices__list--dropdown {
+      border: 1px solid base.$grey-200;
+      border-radius: 0.5rem;
+      padding: fluidSpace(24) base.fluidSpace(32);
+
+      @include base.breakpoint-between(504.98, 768.98) {
+        padding: base.fluidSpace(24, tablet) base.fluidSpace(32, tablet);
+      }
 
       @include base.breakpoints(md) {
-        padding-block-end: base.fluidSpace(40, desktop);
-        row-gap: base.fluidSpace(24, desktop);
+        padding: base.fluidSpace(24, desktop) base.fluidSpace(32, desktop);
       }
     }
 
-    :is(.form__input, .form__select) {
-      background-color: base.$white;
-      border: none;
+    .choices__item {
       border-bottom: 1px solid base.$grey-050;
-      color: base.$grey-300;
-      display: block;
-      font-size: base.fluidTypo(10, 16);
-      inline-size: 100%;
-      line-height: base.fluidLineHeight(10, 16, 1.75);
       padding-block-end: base.fluidSpace(17);
       padding-inline-start: base.fluidSpace(16);
+      position: relative;
+
+      @include base.breakpoint-between(504.98, 768.98) {
+        padding-block-end: base.fluidSpace(17, tablet);
+        padding-inline-start: base.fluidSpace(16, tablet);
+      }
+
+      @include base.breakpoints(md) {
+        padding-block-end: base.fluidSpace(17, desktop);
+        padding-inline-start: base.fluidSpace(16, desktop);
+      }
+    }
+
+    #choices--select-item-choice-3 {
+      border-bottom: 0;
+    }
+
+    .choices__item--selectable {
+      color: base.$grey-200;
+      font-size: base.fluidTypo(10, 16);
+      line-height: base.fluidLineHeight(10, 16, 1.75);
 
       @include base.breakpoint-between(504.98, 768.98) {
         font-size: base.fluidTypo(10, 16, tablet);
         line-height: base.fluidLineHeight(10, 16, 1.75, tablet);
-        padding-block-end: base.fluidSpace(17, tablet);
-        padding-inline-start: base.fluidSpace(16, tablet);
-    }
+      }
 
       @include base.breakpoints(md) {
         font-size: base.fluidTypo(10, 16, desktop);
         line-height: base.fluidLineHeight(10, 16, 1.75, desktop);
-        padding-block-end: base.fluidSpace(17, desktop);
-        padding-inline-start: base.fluidSpace(16, desktop);
-    }
-  }
-
-    &__input::placeholder {
-      color: base.$grey-050;
-      font-size: base.fluidTypo(10, 16);
-
-      @include base.breakpoint-between(504.98, 768.98) {
-        font-size: base.fluidTypo(10, 16, tablet);
-      }
-
-      @include base.breakpoints(md) {
-        font-size: base.fluidTypo(10, 16, desktop);
       }
     }
 
-    &__submit {
-      background-color: base.$blue-200;
-      border: none;
-      border-radius: base.convertPxToRem(28);
-      color: base.$white;
-      cursor: pointer;
-      font-size: base.fluidTypo(8, 16);
+    .select__pack {
       font-weight: 800;
-      inline-size: 100%;
-      line-height: base.fluidLineHeight(8, 16, 1.75);
-      padding: base.fluidSpace(14) base.fluidSpace(40);
-
-      @include base.breakpoint-between(504.98, 768.98) {
-        font-size: base.fluidTypo(8, 16, tablet);
-        line-height: base.fluidLineHeight(8, 16, 1.75, tablet);
-        padding: base.fluidSpace(14, tablet) base.fluidSpace(40, tablet);
-      }
-
-      @include base.breakpoints(md) {
-        font-size: base.fluidTypo(8, 16, desktop);
-        line-height: base.fluidLineHeight(8, 16, 1.75, desktop);
-        padding: base.fluidSpace(14, desktop) base.fluidSpace(40, desktop);
-      }
     }
 
-    &__submit:hover {
-      background-color: base.$btn-background-try-for-free-hover;
-      color: base.$blue-200;
-    }
-
-    .form__input--error {
-      border-bottom: 1px solid base.$red-100;
-      color: base.$red-100;
-      background: no-repeat url("../assets/sign-up/icon-cross.svg") 98% 20% / auto;
+    .select__price {
+      opacity: 0.4;
     }
   }
+
+  .choices.is-focused {
+    outline: 2px solid #000000;
+  }
+
+  .choices[data-type*="select-one"]::after {
+    background-image: url("../assets/sign-up/icon-arrow-down.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    border: none;
+    content: "";
+    height: 1rem;
+    pointer-events: none;
+    position: absolute;
+    right: 1rem;
+    top: 40%;
+    transform: translateY(-50%);
+    width: 1rem;
+  }
+
+  .choices.is-open[data-type*="select-one"]::after {
+    background-image: url("../assets/sign-up/icon-arrow-down.svg");
+    rotate: 180deg;
+    top: 20%;
+  }
+
+  .choices__item.choices__item--choice.is-selected::after {
+    background-image: url("../assets/sign-up/icon-check.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    content: "";
+    display: inline-block;
+    height: 1rem;
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1rem;
+  }
+}
 
 .decoration {
   background-color: base.$grey-300;

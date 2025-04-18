@@ -1,7 +1,7 @@
 "use strict";
 
 const form = document.querySelector(".form");
-const inputs = Array.from(document.querySelectorAll(".form__input"));
+const inputs = Array.from(document.querySelectorAll(".input"));
 
 // function check the types of inputs and call a function to valid them
 function validInput(input) {
@@ -22,10 +22,10 @@ function validInput(input) {
 // set style of erro if there is
 function setStyleError(input, isValid) {
     if (isValid) {
-        input.classList.remove("form__input--error");
+        input.classList.remove("input--error");
         input.setAttribute('aria-invalid', 'true');
     } else {
-        input.classList.add("form__input--error");
+        input.classList.add("input--error");
         input.setAttribute('aria-invalid', 'false');
     }
 }

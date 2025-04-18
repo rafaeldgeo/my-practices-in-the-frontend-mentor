@@ -268,6 +268,7 @@ body {
   position: absolute;
   transform: translate(-50%);
   z-index: 1;
+  overflow: hidden;
 }
 @media (min-width: 504.98px) and (max-width: 768.98px) {
   .form {
@@ -297,7 +298,7 @@ body {
     row-gap: min(1.6666666667vw, 1.5rem);
   }
 }
-.form :is(.form__input, .form__select) {
+.form .input {
   background-color: #ffffff;
   border: none;
   border-bottom: 1px solid #babdca;
@@ -310,7 +311,7 @@ body {
   padding-inline-start: min(4.2666666667vw, 1rem);
 }
 @media (min-width: 504.98px) and (max-width: 768.98px) {
-  .form :is(.form__input, .form__select) {
+  .form .input {
     font-size: clamp(0.625rem, 0.5rem + 1.0416666667vw, 1rem);
     line-height: calc(clamp(0.625rem, 0.5rem + 1.0416666667vw, 1rem) * 1.75);
     padding-block-end: min(2.2135416667vw, 1.0625rem);
@@ -318,28 +319,28 @@ body {
   }
 }
 @media (min-width: 768.98px) {
-  .form :is(.form__input, .form__select) {
+  .form .input {
     font-size: clamp(0.625rem, 0.5rem + 0.5555555556vw, 1rem);
     line-height: calc(clamp(0.625rem, 0.5rem + 0.5555555556vw, 1rem) * 1.75);
     padding-block-end: min(1.1805555556vw, 1.0625rem);
     padding-inline-start: min(1.1111111111vw, 1rem);
   }
 }
-.form__input::placeholder {
+.form .input::placeholder {
   color: #babdca;
   font-size: clamp(0.625rem, 0.5rem + 2.1333333333vw, 1rem);
 }
 @media (min-width: 504.98px) and (max-width: 768.98px) {
-  .form__input::placeholder {
+  .form .input::placeholder {
     font-size: clamp(0.625rem, 0.5rem + 1.0416666667vw, 1rem);
   }
 }
 @media (min-width: 768.98px) {
-  .form__input::placeholder {
+  .form .input::placeholder {
     font-size: clamp(0.625rem, 0.5rem + 0.5555555556vw, 1rem);
   }
 }
-.form__submit {
+.form .submit {
   background-color: #5175ff;
   border: none;
   border-radius: 1.75rem;
@@ -352,27 +353,134 @@ body {
   padding: min(3.7333333333vw, 0.875rem) min(10.6666666667vw, 2.5rem);
 }
 @media (min-width: 504.98px) and (max-width: 768.98px) {
-  .form__submit {
+  .form .submit {
     font-size: clamp(0.5rem, 0.5rem + 1.0416666667vw, 1rem);
     line-height: calc(clamp(0.5rem, 0.5rem + 1.0416666667vw, 1rem) * 1.75);
     padding: min(1.8229166667vw, 0.875rem) min(5.2083333333vw, 2.5rem);
   }
 }
 @media (min-width: 768.98px) {
-  .form__submit {
+  .form .submit {
     font-size: clamp(0.5rem, 0.5rem + 0.5555555556vw, 1rem);
     line-height: calc(clamp(0.5rem, 0.5rem + 0.5555555556vw, 1rem) * 1.75);
     padding: min(0.9722222222vw, 0.875rem) min(2.7777777778vw, 2.5rem);
   }
 }
-.form__submit:hover {
+.form .submit:hover {
   background-color: rgba(81, 117, 255, 0.35);
   color: #5175ff;
 }
-.form .form__input--error {
+.form .input--error {
   border-bottom: 1px solid #f05b5b;
   color: #f05b5b;
   background: no-repeat url("../assets/sign-up/icon-cross.svg") 98% 20%/auto;
+}
+.form .choices {
+  margin: 0;
+}
+.form .choices .choices__inner {
+  background-color: #ffffff;
+  border: none;
+  padding: 0;
+}
+.form .choices .choices__list {
+  padding: 0;
+}
+.form .choices .choices__list--dropdown {
+  border: 1px solid #333950;
+  border-radius: 0.5rem;
+  padding: fluidSpace(24) min(8.5333333333vw, 2rem);
+}
+@media (min-width: 504.98px) and (max-width: 768.98px) {
+  .form .choices .choices__list--dropdown {
+    padding: min(3.125vw, 1.5rem) min(4.1666666667vw, 2rem);
+  }
+}
+@media (min-width: 768.98px) {
+  .form .choices .choices__list--dropdown {
+    padding: min(1.6666666667vw, 1.5rem) min(2.2222222222vw, 2rem);
+  }
+}
+.form .choices .choices__item {
+  border-bottom: 1px solid #babdca;
+  padding-block-end: min(4.5333333333vw, 1.0625rem);
+  padding-inline-start: min(4.2666666667vw, 1rem);
+  position: relative;
+}
+@media (min-width: 504.98px) and (max-width: 768.98px) {
+  .form .choices .choices__item {
+    padding-block-end: min(2.2135416667vw, 1.0625rem);
+    padding-inline-start: min(2.0833333333vw, 1rem);
+  }
+}
+@media (min-width: 768.98px) {
+  .form .choices .choices__item {
+    padding-block-end: min(1.1805555556vw, 1.0625rem);
+    padding-inline-start: min(1.1111111111vw, 1rem);
+  }
+}
+.form .choices #choices--select-item-choice-3 {
+  border-bottom: 0;
+}
+.form .choices .choices__item--selectable {
+  color: #333950;
+  font-size: clamp(0.625rem, 0.5rem + 2.1333333333vw, 1rem);
+  line-height: calc(clamp(0.625rem, 0.5rem + 2.1333333333vw, 1rem) * 1.75);
+}
+@media (min-width: 504.98px) and (max-width: 768.98px) {
+  .form .choices .choices__item--selectable {
+    font-size: clamp(0.625rem, 0.5rem + 1.0416666667vw, 1rem);
+    line-height: calc(clamp(0.625rem, 0.5rem + 1.0416666667vw, 1rem) * 1.75);
+  }
+}
+@media (min-width: 768.98px) {
+  .form .choices .choices__item--selectable {
+    font-size: clamp(0.625rem, 0.5rem + 0.5555555556vw, 1rem);
+    line-height: calc(clamp(0.625rem, 0.5rem + 0.5555555556vw, 1rem) * 1.75);
+  }
+}
+.form .choices .select__pack {
+  font-weight: 800;
+}
+.form .choices .select__price {
+  opacity: 0.4;
+}
+.form .choices.is-focused {
+  outline: 2px solid #000000;
+}
+.form .choices[data-type*=select-one]::after {
+  background-image: url("../assets/sign-up/icon-arrow-down.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: none;
+  content: "";
+  height: 1rem;
+  pointer-events: none;
+  position: absolute;
+  right: 1rem;
+  top: 40%;
+  transform: translateY(-50%);
+  width: 1rem;
+}
+.form .choices.is-open[data-type*=select-one]::after {
+  background-image: url("../assets/sign-up/icon-arrow-down.svg");
+  rotate: 180deg;
+  top: 20%;
+}
+.form .choices__item.choices__item--choice.is-selected::after {
+  background-image: url("../assets/sign-up/icon-check.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  content: "";
+  display: inline-block;
+  height: 1rem;
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1rem;
 }
 
 .decoration {

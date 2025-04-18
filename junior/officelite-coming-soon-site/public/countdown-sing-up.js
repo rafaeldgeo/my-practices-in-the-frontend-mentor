@@ -1,5 +1,11 @@
 "use strict";
 
+const countDownDays = document.querySelector("#days");
+const countDownHours = document.querySelector("#hours");
+const countDownMin = document.querySelector("#min");
+const countDownSec = document.querySelector("#sec");
+
+// define localStorage
 const savedDate = localStorage.getItem("releaseDate");
 const releaseDate = new Date(savedDate);
 
@@ -12,11 +18,6 @@ const timeCounterTitleEmphasis = document.querySelector(".time-counter__title-em
 timeCounterTitleEmphasis.textContent = fullDate;
 
 //define countdown
-const countDownDays = document.querySelector("#days");
-const countDownHours = document.querySelector("#hours");
-const countDownMin = document.querySelector("#min");
-const countDownSec = document.querySelector("#sec");
-
 function updateCountDown() {
 
     const dateNow = new Date();
@@ -29,13 +30,17 @@ function updateCountDown() {
     const sec = Math.floor(TotalSeconds % 60);
 
     countDownDays.textContent = String(days).padStart(2, "0");
+    countDownDays.setAttribute("datetime", `P${days}D`);
     countDownHours.textContent = String(hours).padStart(2, "0");
+    countDownHours.setAttribute("datetime", `P${hours}H`);
     countDownMin.textContent = String(min).padStart(2, "0");
+    countDownMin.setAttribute("datetime", `P${min}M`);
     countDownSec.textContent = String(sec).padStart(2, "0");
+    countDownSec.setAttribute("datetime", `P${sec}S`);
 }
 
 updateCountDown();
-const countdownInterval = setInterval(updateCountDown, 1000);
+setInterval(updateCountDown, 1000);
 
 
 

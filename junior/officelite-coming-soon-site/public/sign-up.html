@@ -11,6 +11,8 @@
     />
     <link rel="stylesheet" href="./css/style-sign-up.css" />
     <script defer type="module" src="./countdown-sing-up.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
     <title>Frontend Mentor | Officelite coming soon site</title>
   </head>
   <body>
@@ -39,32 +41,42 @@
               <div class="time-counter">
                 <h3 class="time-counter__title">
                   Coming
-                  <em class="time-counter__title-emphasis">...</em>
+                  <em class="time-counter__title-emphasis"></em>
                 </h3>
                 <div class="countdown">
                   <div class="countdown__digit">
-                    <time class="countdown__time" id="days" datetime="P47D">47</time
+                    <time
+                      class="countdown__time"
+                      id="days"
+                      datetime="P47D"
+                    ></time
                     ><span class="countdown__period">Days</span>
                   </div>
                   <div class="countdown__digit">
-                    <time class="countdown__time" id="hours" datetime="PT7H">07</time
+                    <time class="countdown__time" id="hours"></time
                     ><span class="countdown__period">Hours</span>
                   </div>
                   <div class="countdown__digit">
-                    <time class="countdown__time" id="min" datetime="PT56M">56</time
+                    <time class="countdown__time" id="min"></time
                     ><span class="countdown__period">Min</span>
                   </div>
                   <div class="countdown__digit">
-                    <time class="countdown__time" id="sec" datetime="PT14S">14</time
-                    ><span class="countdown__period">Sec</span>
+                    <time class="countdown__time" id="sec"></time>
+                    <span class="countdown__period">Sec</span>
                   </div>
                 </div>
               </div>
             </div>
-            <form class="form" action="/process-form.js" method="POST" novalidate autocomplete="off">
+            <form
+              class="form"
+              action="/process-form.js"
+              method="POST"
+              novalidate
+              autocomplete="off"
+            >
               <div class="form__wrapper-input">
                 <input
-                  class="form__input"
+                  class="input"
                   type="text"
                   name="name"
                   id="name"
@@ -73,7 +85,7 @@
                   aria-label="Name"
                 />
                 <input
-                  class="form__input"
+                  class="input"
                   type="email"
                   name="email"
                   id="email"
@@ -81,18 +93,9 @@
                   title="Email Address"
                   aria-label="Email Address"
                 />
-                <select
-                  class="form__select"
-                  id="form__select"
-                  name="plan"
-                  id="plan"
-                >
-                  <option value="basic">Basic Pack Free</option>
-                  <option value="pro">Pro Pack $9.99</option>
-                  <option value="ultimate">Ultimate Pack $19.99</option>
-                </select>
+                <select name="plan" id="select"></select>
                 <input
-                  class="form__input"
+                  class="input"
                   type="tel"
                   name="phone"
                   id="phone"
@@ -101,7 +104,7 @@
                   aria-label="Phone Number"
                 />
                 <input
-                  class="form__input"
+                  class="input"
                   type="text"
                   name="company"
                   id="company"
@@ -110,17 +113,44 @@
                   aria-label="Company"
                 />
               </div>
-              <input
-                class="form__submit"
-                type="submit"
-                value="Get on the List"
-              />
+              <input class="submit" type="submit" value="Get on the List" />
             </form>
           </section>
         </main>
       </div>
       <div class="decoration"></div>
     </div>
-    <!-- <script type="module" src="./valid-form.js"></script> -->
+    <script>
+      // Choice.JS Library custom select
+      document.addEventListener("DOMContentLoaded", function () {
+      const select = document.getElementById("select");
+      const choices = new Choices(select, {
+          allowHTML: true,
+          searchEnabled: false,
+          itemSelectText: "",
+          placeholder: false,
+          noResultsText: "Nenhum resultado encontrado",
+          choices: [
+            {
+              value: "basic",
+              label:
+                '<span class="select__pack">Basic Pack</span> <span class="select__price">Free</span>',
+              selected: true,
+            },
+            {
+              value: "pro",
+              label:
+                '<span class="select__pack">Pro Pack</span> <span class="select__price">$9.99</span>',
+            },
+            {
+              value: "ultimate",
+              label:
+                '<span class="select__pack">Ultimate Pack</span> <span class="select__price">$19.99</span>',
+            },
+          ],
+        });
+      });
+    </script>
+    <script type="module" src="./valid-form.js"></script>
   </body>
 </html>

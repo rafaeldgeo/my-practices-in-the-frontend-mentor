@@ -1,5 +1,11 @@
 "use strict";
 
+const countDownDays = document.querySelector("#days");
+const countDownHours = document.querySelector("#hours");
+const countDownMin = document.querySelector("#min");
+const countDownSec = document.querySelector("#sec");
+
+// define localStorage
 let releaseDate;
 const savedDate = localStorage.getItem("releaseDate");
 
@@ -14,18 +20,17 @@ if (savedDate) {
 }
 
 // define date of coming
-const monthNum = releaseDate.getMonth();
-const ListMonth = ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"];
-const fullDate = `${releaseDate.getDate()} ${ListMonth[monthNum]} ${releaseDate.getFullYear()}`;
-const timeCounterTitleEmphasis = document.querySelector(".time-counter__title-emphasis");
-timeCounterTitleEmphasis.textContent = fullDate;
+export function defineReleaseDateTitle(releaseDate){
+    const monthNum = releaseDate.getMonth();
+    const ListMonth = ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"];
+    const fullDate = `${releaseDate.getDate()} ${ListMonth[monthNum]} ${releaseDate.getFullYear()}`;
+    const timeCounterTitleEmphasis = document.querySelector(".time-counter__title-emphasis");
+    timeCounterTitleEmphasis.textContent = fullDate;
+}
+
+defineReleaseDateTitle(releaseDate);
 
 //define countdown
-const countDownDays = document.querySelector("#days");
-const countDownHours = document.querySelector("#hours");
-const countDownMin = document.querySelector("#min");
-const countDownSec = document.querySelector("#sec");
-
 function updateCountDown() {
 
     const dateNow = new Date();
@@ -38,13 +43,17 @@ function updateCountDown() {
     const sec = Math.floor(TotalSeconds % 60);
 
     countDownDays.textContent = String(days).padStart(2, "0");
+    countDownDays.setAttribute("datetime", `P${days}D`);
     countDownHours.textContent = String(hours).padStart(2, "0");
+    countDownHours.setAttribute("datetime", `P${hours}H`);
     countDownMin.textContent = String(min).padStart(2, "0");
+    countDownMin.setAttribute("datetime", `P${min}M`);
     countDownSec.textContent = String(sec).padStart(2, "0");
+    countDownSec.setAttribute("datetime", `P${sec}S`);
 }
 
 updateCountDown();
-const countdownInterval = setInterval(updateCountDown, 1000);
+setInterval(updateCountDown, 1000);
 
 
 
