@@ -28,7 +28,11 @@ export function defineReleaseDateTitle(releaseDate){
     timeCounterTitleEmphasis.textContent = fullDate;
 }
 
-defineReleaseDateTitle(releaseDate);
+document.addEventListener("DOMContentLoaded", function() {
+    defineReleaseDateTitle(releaseDate);
+});
+
+
 
 //define countdown
 function updateCountDown() {
@@ -52,7 +56,9 @@ function updateCountDown() {
     countDownSec.setAttribute("datetime", `P${sec}S`);
 }
 
-updateCountDown();
+document.addEventListener("DOMContentLoaded", function() {
+    updateCountDown();
+});
 setInterval(updateCountDown, 1000);
 
 
