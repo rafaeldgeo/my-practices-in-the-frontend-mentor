@@ -36,6 +36,19 @@ document.addEventListener("DOMContentLoaded", function () {
         const dateNow = new Date();
         const diffMillis = releaseDate.getTime() - dateNow.getTime();
 
+        if (diffMillis <= 0) {
+            // Create new date for 30 days from now
+            releaseDate = new Date();
+            releaseDate.setDate(releaseDate.getDate() + 30);
+            localStorage.setItem("releaseDate", releaseDate.toISOString());
+
+            // update title with new date
+            defineReleaseDateTitle(releaseDate);
+
+            // Recalc diff
+            diffMillis = releaseDate.getTime() - dateNow.getTime();
+        }
+
         const TotalSeconds = Math.floor(diffMillis / 1000);
         const days = Math.floor(TotalSeconds / (60 * 60 * 24));
         const hours = Math.floor((TotalSeconds % (60 * 60 * 24)) / (60 * 60));
