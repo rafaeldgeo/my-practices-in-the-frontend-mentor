@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let releaseDate;
     const savedDate = localStorage.getItem("releaseDate");
 
-    // save date
+    // save date of coming
     if (savedDate) {
         releaseDate = new Date(savedDate);
     } else {
