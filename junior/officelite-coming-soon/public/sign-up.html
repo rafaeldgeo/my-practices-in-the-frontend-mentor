@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/favicon-32x32.png"
+    />
+    <script type="module" src="./countdown-sing-up.js"></script>
+    <link rel="stylesheet" href="./css/style-sign-up.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
+    <title>Frontend Mentor | Officelite coming soon site</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="content">
+        <header class="header">
+          <div class="logo">
+            <img
+              class="logo__img logo__img"
+              src="./assets/shared/logo.svg"
+              alt="logo officelite"
+              width="155"
+              height="30"
+            />
+          </div>
+        </header>
+        <main class="main">
+          <section class="hero">
+            <div class="info">
+              <h1 class="info__title">Work smarter. Save time.</h1>
+              <p class="info__description">
+                Easily manage your projects. Get on the list andreceive in-app
+                perks available only to early subscribers. We are moving into
+                final development and getting ready for official launch soon.
+              </p>
+              <div class="time-counter">
+                <h3 class="time-counter__title">
+                  Coming<em class="time-counter__title-emphasis">4 nov 2020</em>
+                </h3>
+                <div class="countdown">
+                  <div class="countdown__digit">
+                    <span class="countdown__time" id="days">47</span>
+                    <span class="countdown__period">Days</span>
+                  </div>
+                  <div class="countdown__digit">
+                    <span class="countdown__time" id="hours">07</span>
+                    <span class="countdown__period">Hours</span>
+                  </div>
+                  <div class="countdown__digit">
+                    <span class="countdown__time" id="min">56</span>
+                    <span class="countdown__period">Min</span>
+                  </div>
+                  <div class="countdown__digit">
+                    <span class="countdown__time" id="sec">14</span>
+                    <span class="countdown__period">Sec</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <form
+              class="form"
+              action="/process-form.js"
+              method="POST"
+              novalidate
+              autocomplete="off"
+            >
+              <div class="form__wrapper-input">
+                <input
+                  class="input"
+                  type="text"
+                  name="name"
+                  id="name"
+                  placeholder="Name"
+                  title="Name"
+                  aria-label="Name"
+                />
+                <input
+                  class="input"
+                  type="email"
+                  name="email"
+                  id="email"
+                  placeholder="Email Address"
+                  title="Email Address"
+                  aria-label="Email Address"
+                />
+                <select name="plan" id="select"></select>
+                <input
+                  class="input"
+                  type="tel"
+                  name="phone"
+                  id="phone"
+                  placeholder="Phone Number"
+                  title="Phone Number"
+                  aria-label="Phone Number"
+                />
+                <input
+                  class="input"
+                  type="text"
+                  name="company"
+                  id="company"
+                  placeholder="Company"
+                  title="Company"
+                  aria-label="Company"
+                />
+              </div>
+              <input class="submit" type="submit" value="Get on the List" />
+            </form>
+          </section>
+        </main>
+      </div>
+      <div class="decoration"></div>
+    </div>
+    <script>
+      // Choice.JS Library custom select
+      document.addEventListener("DOMContentLoaded", function () {
+        const select = document.getElementById("select");
+        const choices = new Choices(select, {
+          allowHTML: true,
+          searchEnabled: false,
+          itemSelectText: "",
+          placeholder: false,
+          noResultsText: "Nenhum resultado encontrado",
+          choices: [
+            {
+              value: "basic",
+              label:
+                '<span class="select__pack">Basic Pack</span> <span class="select__price">Free</span>',
+              selected: true,
+            },
+            {
+              value: "pro",
+              label:
+                '<span class="select__pack">Pro Pack</span> <span class="select__price">$9.99</span>',
+            },
+            {
+              value: "ultimate",
+              label:
+                '<span class="select__pack">Ultimate Pack</span> <span class="select__price">$19.99</span>',
+            },
+          ],
+        });
+      });
+    </script>
+    <script type="module" src="./valid-form.js"></script>
+  </body>
+</html>
