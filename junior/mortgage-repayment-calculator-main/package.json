@@ -1,6 +1,14 @@
 {
+  "name": "mortage-repayment",
+  "version": "1.0.0",
+  "scripts": {
+    "build:css": "sass src/scss:public/css --no-source-map --style=compressed",
+    "watch:css": "sass src/scss:public/css --watch"
+  },
   "dependencies": {
     "ejs": "^3.1.10",
-    "express": "^5.1.0"
+    "express": "^5.1.0",
+    "npm": "^11.4.1",
+    "sass": "^1.89.0"
   }
 }

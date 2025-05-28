@@ -1,0 +1,18 @@
+@use "base";
+@include base.reset;
+
+html,
+body {
+    background-color: base.$slate-100;
+    inline-size: 100%;
+}
+
+.attribution {
+  color: base.$slate-900;
+  font-size: 0.6875rem;
+  text-align: center;
+
+  &__link {
+    color: base.$red;
+  }
+}
