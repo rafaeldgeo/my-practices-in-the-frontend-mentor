@@ -24,20 +24,20 @@
               </button>
             </div>
             <form class="content__form" action="">
-              <div class="content__wrapper-input">
+              <div class="content__field">
                 <label class="content__label" for="amount"
                   >Mortgage Amount</label
                 >
-                <input class="content__input" type="text" id="amount" />
+                <input class="content__input" type="number" id="amount" />
               </div>
-              <div class="content__group-input">
-                <div class="content__wrapper-input">
+              <div class="content__inputs-row">
+                <div class="content__field">
                   <label for="term" class="content__label">Mortgage Term</label>
-                  <input class="content__input" type="text" id="term" />
+                  <input class="content__input" type="number" id="term" />
                 </div>
-                <div class="content__wrapper-input">
+                <div class="content__field">
                   <label for="rate" class="content__label">Interest Rate</label>
-                  <input class="content__input" type="text" id="rate" />
+                  <input class="content__input" type="number" id="rate" />
                 </div>
               </div>
               <fieldset>
@@ -55,16 +55,55 @@
                   </div>
                 </div>
               </fieldset>
-              <input type="submit" value="Calculate Repayments">
+              <input type="submit" value="Calculate Repayments" />
             </form>
           </div>
-          <div class="result">
-            <div class="result__wrapper-image">
-              <img class="result__image" src="/images/illustration-empty.svg" alt="coins, a pen, a contract, cash and calculator">
+          <div class="results">
+            <div class="results__shown">
+              <div class="results__shown-wrapper-image">
+                <img
+                  class="results__shown-image"
+                  src="/images/illustration-empty.svg"
+                  alt="coins, a pen, a contract, cash and calculator"
+                />
+              </div>
+              <div class="results__shown-content">
+                <h2 class="results__shown-title">Results shown here</h2>
+                <p class="results__shown-text">
+                  Complete the form and click “calculate repayments” to see what
+                  your monthly repayments would be.
+                </p>
+              </div>
             </div>
-            <div class="result__content">
-              <h2 class="result__title">Results shown here</h2>
-              <p class="result__text">Complete the form and click “calculate repayments” to see what your monthly repayments would be.</p>
+            <div class="results__your">
+              <h2 class="results__your-title">Your results</h2>
+              <p class="results__your-text">
+                Your results are shown below based on the information you
+                provided. To adjust the results, edit the form and click
+                “calculate repayments” again.
+              </p>
+              <div class="results__your-wapprer-values">
+                <h3 class="results__your-subtitle" id="repayment-label">
+                  Your monthly repayments
+                </h3>
+                <p class="results__your-value">
+                  £<data
+                    id="repayments"
+                    aria-labelledby="repayment-label"
+                    value=""
+                    >1,797.74</data
+                  >
+                </p>
+                <hr />
+                <h3 class="results__your-subtitle" id="repay-label">
+                  Total you'll repay over the term
+                </h3>
+                <p class="results__your-value">
+                  £<data id="repay" aria-labelledby="repay-label" value=""
+                    >539,322.94</data
+                  >
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -88,9 +127,6 @@
           >.
         </div>
       </footer>
-    </div>    
-    <!-- Your results Your results are shown below based on the information you
-    provided. To adjust the results, edit the form and click “calculate
-    repayments” again. Your monthly repayments Total you'll repay over the term -->
+    </div>
   </body>
 </html>
