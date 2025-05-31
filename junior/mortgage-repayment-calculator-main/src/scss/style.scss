@@ -1,18 +1,67 @@
 @use "base";
 @include base.reset;
 
+
 html,
 body {
     background-color: base.$slate-100;
+    block-size: 100dvh;
+    block-size: 100vh;
     inline-size: 100%;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  min-block-size: 100dvh;
+  min-block-size: 100vh;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  inline-size: 100%;
+  max-inline-size: 1440px;
+  min-block-size: inherit;
+  align-items: center;
+}
+
+.main {
+  align-items: center;
+  display: flex;
+  flex: 1 0 auto;
+  inline-size: 100%;
+  justify-content: center;
+}
+
+.calculator {
+  background-color: base.$white;
+  display: flex;
+  flex-direction: row;
+  inline-size: inherit;
+  max-inline-size: 1008px;
+}
+
+.content {
+  flex: 0 1 504px;
+}
+
+.results {
+  flex: 0 1 504px;
+  background-color: base.$slate-900;
+}
+
+.footer {
+  flex: 0 1 auto;
 }
 
 .attribution {
   color: base.$slate-900;
   font-size: 0.6875rem;
+  padding-block: .5rem;
   text-align: center;
 
   &__link {
     color: base.$red;
-  }
+}
 }
