@@ -24,25 +24,25 @@
                 Clear All
               </button>
             </div>
-            <form class="content__form" action="">
-              <div class="content__field">
-                <label class="content__label" for="amount"
+            <form class="form" action="">
+              <div class="form__field">
+                <label class="form__label" for="amount"
                   >Mortgage Amount</label
                 >
-                <input class="content__input" type="number" id="amount" />
+                <input class="form__input" type="number" id="amount" />
               </div>
-              <div class="content__inputs-row">
-                <div class="content__field">
-                  <label for="term" class="content__label">Mortgage Term</label>
-                  <input class="content__input" type="number" id="term" />
+              <div class="form__inputs-row">
+                <div class="form__field">
+                  <label for="term" class="form__label">Mortgage Term</label>
+                  <input class="form__input" type="number" id="term" />
                 </div>
-                <div class="content__field">
-                  <label for="rate" class="content__label">Interest Rate</label>
-                  <input class="content__input" type="number" id="rate" />
+                <div class="form__field">
+                  <label for="rate" class="form__label">Interest Rate</label>
+                  <input class="form__input" type="number" id="rate" />
                 </div>
               </div>
-              <fieldset>
-                <legend>Mortgage Type</legend>
+              <fieldset class="form__fieldset">
+                <legend class="form__fieldset-legend">Mortgage Type</legend>
                 <div class="pretty p-default p-round">
                   <input type="radio" name="type" value="repayment" />
                   <div class="state">
@@ -56,7 +56,10 @@
                   </div>
                 </div>
               </fieldset>
-              <input type="submit" value="Calculate Repayments" />
+              <button class="form__btn-calculate" type="submit">
+                <img class="form__btn-icon" src="/images/icon-calculator.svg" alt="">
+                Calculate Repayments
+              </button>
             </form>
           </div>
           <div class="results">

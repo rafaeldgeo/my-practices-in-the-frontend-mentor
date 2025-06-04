@@ -48,14 +48,13 @@ body {
   }
 
   @include base.breakpoints(md) {
-    flex-direction: row;
     margin: base.fluidSpace(40, "desktop");
+    flex-direction: row;
   }
 }
 
 .content,
 .results {
-  flex: 0 1 504px;
   padding: base.fluidSpace(32) base.fluidSpace(24);
 
   @include base.breakpoints(sm) {
@@ -63,19 +62,29 @@ body {
   }
 
   @include base.breakpoints(md) {
+    flex: 0 1 504px;
     padding: base.fluidSpace(40, "desktop");
   }
 }
 
 .content {
   &__header {
+    align-items: self-start;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    flex-direction: column;
+    padding-block-end: base.fluidSpace(24);
+    row-gap: base.fluidSpace(8);
 
-    @include base.breakpoints(sm) {
+    @include base.breakpoints(ex) {
       align-items: center;
       flex-direction: row;
+      justify-content: space-between;
+      padding-block-end: base.fluidSpace(40, "tablet");
+      row-gap: 0;
+    }
+
+    @include base.breakpoints(md) {
+      padding-block-end: base.fluidSpace(40, "desktop");
     }
   }
 
@@ -83,7 +92,6 @@ body {
     color: base.$slate-900;
     font-weight: 800;
     font-size: base.fluidTypo(20, 24);
-    
 
     @include base.breakpoints(sm) {
       font-size: base.fluidTypo(20, 24, "tablet");
@@ -95,7 +103,94 @@ body {
   }
 
   &__btn-clear {
+    background-color: transparent;
+    border: none;
     flex: 0 0 auto;
+    text-decoration: underline;
+  }
+
+  .content__btn-clear,
+  .form__label,
+  .form__fieldset-legend {
+    font-weight: 500;
+    color: base.$slate-700;
+    font-size: base.fluidTypo(10, 16);
+
+    @include base.breakpoints(sm) {
+      font-size: base.fluidTypo(10, 16, "tablet");
+    }
+
+    @include base.breakpoints(md) {
+      font-size: base.fluidTypo(10, 16, "desktop");
+    }
+  }
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    row-gap: base.fluidSpace(24);
+
+    @include base.breakpoints(sm) {
+      row-gap: base.fluidSpace(24, "tablet");
+    }
+
+    @include base.breakpoints(sm) {
+      row-gap: base.fluidSpace(24, "desktop");
+    }
+
+    &__label,
+    &__fieldset-legend {
+      display: block;
+      padding-block-end: base.fluidSpace(12);
+
+      @include base.breakpoints(sm) {
+        padding-block-end: base.fluidSpace(12, "tablet");
+      }
+
+      @include base.breakpoints(md) {
+        padding-block-end: base.fluidSpace(12, "desktop");
+      }
+    }
+
+    &__inputs-row {
+      display: flex;
+      flex-direction: column;
+
+      @include base.breakpoints(ex) {
+        flex-direction: row;
+      }
+    }
+
+    &__fieldset {
+      border: none;
+    }
+
+    &__btn-calculate {
+      align-items: center;
+      background-color: base.$lime;
+      border: none;
+      border-radius: base.convertPxToRem(30);
+      color: base.$slate-900;
+      column-gap: base.convertPxToRem(12);
+      display: flex;
+      font-size: base.fluidTypo(14, 18);
+      font-weight: 800;
+      inline-size: 100%;
+      padding: base.fluidSpace(16) base.fluidSpace(46.5);
+
+      @include base.breakpoints(ex) {
+        font-size: base.fluidTypo(14, 18, "tablet");
+        inline-size: fit-content;
+        margin-block-start: base.fluidSpace(16, "tablet");
+        padding: base.fluidSpace(16, "tablet") base.fluidSpace(40, "tablet");
+       }
+
+      @include base.breakpoints(md) {
+        font-size: base.fluidTypo(14, 18, "desktop");
+        margin-block-start: base.fluidSpace(16, "desktop");
+        padding: base.fluidSpace(16, "desktop") base.fluidSpace(40, "desktop");
+       }
+     }
   }
 }
 
