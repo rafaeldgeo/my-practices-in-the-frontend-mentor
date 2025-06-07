@@ -103,7 +103,7 @@ body {
 }
 .content__title {
   color: hsl(202, 55%, 16%);
-  font-weight: 800;
+  font-weight: 700;
   font-size: clamp(1.25rem, 0.5rem + 4.2666666667vw, 1.5rem);
 }
 @media (min-width: 575.98px) {
@@ -119,6 +119,7 @@ body {
 .content__btn-clear {
   background-color: transparent;
   border: none;
+  cursor: pointer;
   flex: 0 0 auto;
   text-decoration: underline;
 }
@@ -183,6 +184,36 @@ body {
 }
 .content .form__fieldset {
   border: none;
+  display: flex;
+  flex-direction: column;
+  row-gap: min(3.2vw, 0.75rem);
+}
+@media (min-width: 575.98px) {
+  .content .form__fieldset {
+    row-gap: min(1.5625vw, 0.75rem);
+  }
+}
+@media (min-width: 768.98px) {
+  .content .form__fieldset {
+    row-gap: min(0.8333333333vw, 0.75rem);
+  }
+}
+.content .form__radio {
+  border: 1px solid hsl(200, 26%, 54%);
+  border-radius: 4px;
+  padding: min(3.2vw, 0.75rem) min(4.2666666667vw, 1rem);
+}
+.content .form .pretty .state label {
+  color: hsl(202, 55%, 16%);
+  font-size: clamp(0.625rem, 0.5rem + 2.6666666667vw, 1.125rem);
+}
+.content .form .pretty input:checked ~ .state label {
+  color: hsl(61, 70%, 52%);
+}
+.content .form .pretty input:focus-visible ~ .state label {
+  outline: 2px solid #000;
+  outline-offset: 2px;
+  border-radius: 1px;
 }
 .content .form__btn-calculate {
   align-items: center;
@@ -196,6 +227,7 @@ body {
   font-weight: 800;
   inline-size: 100%;
   padding: min(4.2666666667vw, 1rem) min(12.4vw, 2.90625rem);
+  cursor: pointer;
 }
 @media (min-width: 375.98px) {
   .content .form__btn-calculate {
@@ -211,6 +243,9 @@ body {
     margin-block-start: min(1.1111111111vw, 1rem);
     padding: min(1.1111111111vw, 1rem) min(2.7777777778vw, 2.5rem);
   }
+}
+.content .form__btn-calculate:hover {
+  background-color: #E6E79A;
 }
 
 .results {

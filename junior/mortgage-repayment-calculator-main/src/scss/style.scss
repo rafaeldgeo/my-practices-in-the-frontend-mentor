@@ -90,7 +90,7 @@ body {
 
   &__title {
     color: base.$slate-900;
-    font-weight: 800;
+    font-weight: 700;
     font-size: base.fluidTypo(20, 24);
 
     @include base.breakpoints(sm) {
@@ -105,6 +105,7 @@ body {
   &__btn-clear {
     background-color: transparent;
     border: none;
+    cursor: pointer;
     flex: 0 0 auto;
     text-decoration: underline;
   }
@@ -163,6 +164,39 @@ body {
 
     &__fieldset {
       border: none;
+      display: flex;
+      flex-direction: column;
+      row-gap: base.fluidSpace(12);
+
+      @include base.breakpoints(sm) {
+        row-gap: base.fluidSpace(12, "tablet");
+      }
+
+      @include base.breakpoints(md) {
+        row-gap: base.fluidSpace(12, "desktop");
+      }
+    }
+
+    &__radio {
+      border: 1px solid base.$slate-500;
+      border-radius: 4px;
+      padding: base.fluidSpace(12) base.fluidSpace(16);
+    }
+
+    // Pretty checkbox
+    .pretty .state label {
+      color: base.$slate-900;
+      font-size: base.fluidTypo(10, 18);
+    }
+
+    .pretty input:checked ~ .state label {
+      color: base.$lime;
+    }
+
+    .pretty input:focus-visible ~ .state label {
+      outline: 2px solid #000;
+      outline-offset: 2px;
+      border-radius: 1px;
     }
 
     &__btn-calculate {
@@ -177,20 +211,25 @@ body {
       font-weight: 800;
       inline-size: 100%;
       padding: base.fluidSpace(16) base.fluidSpace(46.5);
+      cursor: pointer;
 
       @include base.breakpoints(ex) {
         font-size: base.fluidTypo(14, 18, "tablet");
         inline-size: fit-content;
         margin-block-start: base.fluidSpace(16, "tablet");
         padding: base.fluidSpace(16, "tablet") base.fluidSpace(40, "tablet");
-       }
+      }
 
       @include base.breakpoints(md) {
         font-size: base.fluidTypo(14, 18, "desktop");
         margin-block-start: base.fluidSpace(16, "desktop");
         padding: base.fluidSpace(16, "desktop") base.fluidSpace(40, "desktop");
-       }
-     }
+      }
+    }
+
+    &__btn-calculate:hover {
+      background-color: base.$lime-hover;
+    }
   }
 }
 

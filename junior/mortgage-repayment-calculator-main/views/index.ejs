@@ -11,7 +11,7 @@
     />
     <title>Frontend Mentor | Mortgage repayment calculator</title>
     <link rel="stylesheet" href="/css/style.css" />
-    <link rel="stylesheet" href="/css/pretty-checkbox.min.css">
+    <link rel="stylesheet" href="/css/pretty-checkbox.css">
   </head>
   <body>
     <div class="container">
@@ -43,16 +43,20 @@
               </div>
               <fieldset class="form__fieldset">
                 <legend class="form__fieldset-legend">Mortgage Type</legend>
-                <div class="pretty p-default p-round">
-                  <input type="radio" name="type" value="repayment" />
-                  <div class="state">
-                    <label>Repayment</label>
+                <div class="form__radio">
+                  <div class="pretty p-default p-round">
+                    <input type="radio" name="type" value="repayment" id="repayment"/>
+                    <div class="state p-primary-o">
+                      <label for="repayment">Repayment</label>
+                    </div>
                   </div>
                 </div>
-                <div class="pretty p-default p-round">
-                  <input type="radio" name="type" value="interest" />
-                  <div class="state">
-                    <label>Interest Only</label>
+                <div class="form__radio">
+                  <div class="pretty p-default p-round">
+                    <input type="radio" name="type" value="interest" id="interest" />
+                    <div class="state p-primary-o">
+                      <label for="interest">Interest Only</label>
+                    </div>
                   </div>
                 </div>
               </fieldset>
