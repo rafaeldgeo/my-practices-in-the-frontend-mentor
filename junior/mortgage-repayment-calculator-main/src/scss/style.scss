@@ -153,12 +153,55 @@ body {
       }
     }
 
+    &__input-container {
+      align-items: center;
+      border: 1px solid base.$slate-700;
+      border-radius: base.convertPxToRem(4);
+      display: flex;
+    }
+
+    &__label-secondary {
+      background-color: base.$slate-100;
+      color: base.$slate-700;
+      display: inline-block;
+      font-size: base.fluidTypo(10, 18);
+      font-weight: 700;
+      padding: base.fluidSpace(12.5) base.fluidSpace(16);
+    }
+
+    &__label-secondary--initial {
+      border-radius: base.convertPxToRem(4) 0 0 base.convertPxToRem(4);
+    }
+
+    &__label-secondary--final {
+      border-radius: 0 base.convertPxToRem(4) base.convertPxToRem(4) 0;
+    }
+
+    &__input {
+      background-color: transparent;
+      border: none;
+      font-size: base.fluidTypo(10, 18);
+      padding: base.fluidSpace(12.5) base.fluidSpace(16);
+      width: 100%;
+
+      @include base.breakpoints(sm) {
+        font-size: base.fluidTypo(10, 18, "tablet");
+        padding: base.fluidSpace(12.5, "tablet") base.fluidSpace(16, "tablet");
+      }
+
+      @include base.breakpoints(md) {
+        font-size: base.fluidTypo(10, 18, "desktop");
+        padding: base.fluidSpace(12.5, "desktop") base.fluidSpace(16, "desktop");
+      }
+    }
+
     &__inputs-row {
       display: flex;
       flex-direction: column;
 
       @include base.breakpoints(ex) {
         flex-direction: row;
+        column-gap: base.fluidSpace(24);
       }
     }
 
@@ -206,26 +249,27 @@ body {
       border-radius: base.convertPxToRem(30);
       color: base.$slate-900;
       column-gap: base.convertPxToRem(12);
+      cursor: pointer;
       display: flex;
       font-size: base.fluidTypo(14, 18);
       font-weight: 800;
       inline-size: 100%;
-      padding: base.fluidSpace(16) base.fluidSpace(46.5);
-      cursor: pointer;
+      justify-content: center;
+      padding: base.fluidSpace(16) 0;
 
       @include base.breakpoints(ex) {
         font-size: base.fluidTypo(14, 18, "tablet");
         inline-size: fit-content;
         margin-block-start: base.fluidSpace(16, "tablet");
         padding: base.fluidSpace(16, "tablet") base.fluidSpace(40, "tablet");
-      }
+       }
 
       @include base.breakpoints(md) {
         font-size: base.fluidTypo(14, 18, "desktop");
         margin-block-start: base.fluidSpace(16, "desktop");
         padding: base.fluidSpace(16, "desktop") base.fluidSpace(40, "desktop");
-      }
-    }
+       }
+     }
 
     &__btn-calculate:hover {
       background-color: base.$lime-hover;

@@ -173,6 +173,45 @@ body {
     padding-block-end: min(0.8333333333vw, 0.75rem);
   }
 }
+.content .form__input-container {
+  align-items: center;
+  border: 1px solid hsl(200, 24%, 40%);
+  border-radius: 0.25rem;
+  display: flex;
+}
+.content .form__label-secondary {
+  background-color: hsl(202, 86%, 94%);
+  color: hsl(200, 24%, 40%);
+  display: inline-block;
+  font-size: clamp(0.625rem, 0.5rem + 2.6666666667vw, 1.125rem);
+  font-weight: 700;
+  padding: min(3.3333333333vw, 0.78125rem) min(4.2666666667vw, 1rem);
+}
+.content .form__label-secondary--initial {
+  border-radius: 0.25rem 0 0 0.25rem;
+}
+.content .form__label-secondary--final {
+  border-radius: 0 0.25rem 0.25rem 0;
+}
+.content .form__input {
+  background-color: transparent;
+  border: none;
+  font-size: clamp(0.625rem, 0.5rem + 2.6666666667vw, 1.125rem);
+  padding: min(3.3333333333vw, 0.78125rem) min(4.2666666667vw, 1rem);
+  width: 100%;
+}
+@media (min-width: 575.98px) {
+  .content .form__input {
+    font-size: clamp(0.625rem, 0.5rem + 1.3020833333vw, 1.125rem);
+    padding: min(1.6276041667vw, 0.78125rem) min(2.0833333333vw, 1rem);
+  }
+}
+@media (min-width: 768.98px) {
+  .content .form__input {
+    font-size: clamp(0.625rem, 0.5rem + 0.6944444444vw, 1.125rem);
+    padding: min(0.8680555556vw, 0.78125rem) min(1.1111111111vw, 1rem);
+  }
+}
 .content .form__inputs-row {
   display: flex;
   flex-direction: column;
@@ -180,6 +219,7 @@ body {
 @media (min-width: 375.98px) {
   .content .form__inputs-row {
     flex-direction: row;
+    column-gap: min(6.4vw, 1.5rem);
   }
 }
 .content .form__fieldset {
@@ -222,12 +262,13 @@ body {
   border-radius: 1.875rem;
   color: hsl(202, 55%, 16%);
   column-gap: 0.75rem;
+  cursor: pointer;
   display: flex;
   font-size: clamp(0.875rem, 0.5rem + 2.6666666667vw, 1.125rem);
   font-weight: 800;
   inline-size: 100%;
-  padding: min(4.2666666667vw, 1rem) min(12.4vw, 2.90625rem);
-  cursor: pointer;
+  justify-content: center;
+  padding: min(4.2666666667vw, 1rem) 0;
 }
 @media (min-width: 375.98px) {
   .content .form__btn-calculate {

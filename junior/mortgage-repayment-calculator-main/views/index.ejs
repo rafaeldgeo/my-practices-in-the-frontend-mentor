@@ -11,7 +11,7 @@
     />
     <title>Frontend Mentor | Mortgage repayment calculator</title>
     <link rel="stylesheet" href="/css/style.css" />
-    <link rel="stylesheet" href="/css/pretty-checkbox.css">
+    <link rel="stylesheet" href="/css/pretty-checkbox.css" />
   </head>
   <body>
     <div class="container">
@@ -26,26 +26,38 @@
             </div>
             <form class="form" action="">
               <div class="form__field">
-                <label class="form__label" for="amount"
-                  >Mortgage Amount</label
-                >
-                <input class="form__input" type="number" id="amount" />
+                <label class="form__label" for="amount">Mortgage Amount</label>
+                <div class="form__input-container">
+                  <span class="form__label-secondary form__label-secondary--initial">£</span>
+                  <input class="form__input" type="number" id="amount" />
+                </div>
               </div>
               <div class="form__inputs-row">
                 <div class="form__field">
                   <label for="term" class="form__label">Mortgage Term</label>
-                  <input class="form__input" type="number" id="term" />
+                  <div class="form__input-container">
+                    <input class="form__input" type="number" id="term" />
+                    <span class="form__label-secondary form__label-secondary--final">years</span>
+                  </div>
                 </div>
                 <div class="form__field">
                   <label for="rate" class="form__label">Interest Rate</label>
-                  <input class="form__input" type="number" id="rate" />
+                  <div class="form__input-container">
+                    <input class="form__input" type="number" id="rate" />
+                    <span class="form__label-secondary form__label-secondary--final">%</span>
+                  </div>
                 </div>
               </div>
               <fieldset class="form__fieldset">
                 <legend class="form__fieldset-legend">Mortgage Type</legend>
                 <div class="form__radio">
                   <div class="pretty p-default p-round">
-                    <input type="radio" name="type" value="repayment" id="repayment"/>
+                    <input
+                      type="radio"
+                      name="type"
+                      value="repayment"
+                      id="repayment"
+                    />
                     <div class="state p-primary-o">
                       <label for="repayment">Repayment</label>
                     </div>
@@ -53,7 +65,12 @@
                 </div>
                 <div class="form__radio">
                   <div class="pretty p-default p-round">
-                    <input type="radio" name="type" value="interest" id="interest" />
+                    <input
+                      type="radio"
+                      name="type"
+                      value="interest"
+                      id="interest"
+                    />
                     <div class="state p-primary-o">
                       <label for="interest">Interest Only</label>
                     </div>
@@ -61,7 +78,11 @@
                 </div>
               </fieldset>
               <button class="form__btn-calculate" type="submit">
-                <img class="form__btn-icon" src="/images/icon-calculator.svg" alt="">
+                <img
+                  class="form__btn-icon"
+                  src="/images/icon-calculator.svg"
+                  alt=""
+                />
                 Calculate Repayments
               </button>
             </form>
