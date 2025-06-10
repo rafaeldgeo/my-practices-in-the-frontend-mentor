@@ -183,6 +183,8 @@ body {
       font-size: base.fluidTypo(10, 18);
       padding: base.fluidSpace(12.5) base.fluidSpace(16);
       width: 100%;
+      font-weight: 700;
+      color: base.$slate-900;
 
       @include base.breakpoints(sm) {
         font-size: base.fluidTypo(10, 18, "tablet");
@@ -262,14 +264,14 @@ body {
         inline-size: fit-content;
         margin-block-start: base.fluidSpace(16, "tablet");
         padding: base.fluidSpace(16, "tablet") base.fluidSpace(40, "tablet");
-       }
+      }
 
       @include base.breakpoints(md) {
         font-size: base.fluidTypo(14, 18, "desktop");
         margin-block-start: base.fluidSpace(16, "desktop");
         padding: base.fluidSpace(16, "desktop") base.fluidSpace(40, "desktop");
-       }
-     }
+      }
+    }
 
     &__btn-calculate:hover {
       background-color: base.$lime-hover;
@@ -280,6 +282,8 @@ body {
 .results {
   background-color: base.$slate-900;
   border-radius: 0;
+  display: flex;
+  align-items: center;
 
   @include base.breakpoints(sm) {
     border-radius: 0 0 base.convertPxToRem(24) base.convertPxToRem(24);
@@ -289,12 +293,95 @@ body {
     border-radius: 0 base.convertPxToRem(24) base.convertPxToRem(24)
       base.convertPxToRem(80);
   }
+
+  &__shown {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    row-gap: base.fluidSpace(16);
+
+    @include base.breakpoints(sm) {
+      row-gap: base.fluidSpace(16, "tablet");
+    }
+
+    @include base.breakpoints(md) {
+      row-gap: base.fluidSpace(16, "tablet");
+    }
+  }
+
+  &__content--center {
+    align-items: center;
+  }
+
+  &__content--start {
+    align-items: start;
+  }
+
+  &__title {
+    color: base.$white;
+    font-size: base.fluidTypo(16, 24);
+    font-weight: 700;
+
+    @include base.breakpoints(sm) {
+      font-size: base.fluidTypo(20, 24, "tablet");
+    }
+
+    @include base.breakpoints(md) {
+      font-size: base.fluidTypo(20, 24, "desktop");
+    }
+  }
+
+  &__text {
+    color: base.$slate-300;
+    font-size: base.fluidTypo(10, 16);
+    font-weight: 500;
+    line-height: calc(base.fluidTypo(10, 16) * 1.5);
+
+    @include base.breakpoints(sm) {
+      $size-value: base.fluidTypo(10, 16, "tablet");
+      font-size: $size-value;
+      line-height: calc($size-value * 1.5);
+    }
+
+    @include base.breakpoints(md) {
+      $size-value: base.fluidTypo(10, 16, "desktop");
+      font-size: $size-value;
+      line-height: calc($size-value * 1.5);
+    }
+  }
+
+  &__shown-image {
+    max-inline-size: 192px;
+    inline-size: 100%;
+    block-size: auto;
+  }
+
+  &__text--center {
+    text-align: center;
+  }
+
+  &__text--start {
+    text-align: start;
+  }
+
+  &__your {
+    display: flex;
+    flex-direction: column;
+    row-gap: 40px;
+  }
+
+  // PAREI AQUI
 }
 
 .footer {
   background-color: base.$slate-900;
-  flex: 0 1 auto;
   inline-size: 100%;
+  flex: 0 1 auto;
 
   @include base.breakpoints(sm) {
     background-color: base.$slate-100;

@@ -199,6 +199,8 @@ body {
   font-size: clamp(0.625rem, 0.5rem + 2.6666666667vw, 1.125rem);
   padding: min(3.3333333333vw, 0.78125rem) min(4.2666666667vw, 1rem);
   width: 100%;
+  font-weight: 700;
+  color: hsl(202, 55%, 16%);
 }
 @media (min-width: 575.98px) {
   .content .form__input {
@@ -292,6 +294,8 @@ body {
 .results {
   background-color: hsl(202, 55%, 16%);
   border-radius: 0;
+  display: flex;
+  align-items: center;
 }
 @media (min-width: 575.98px) {
   .results {
@@ -303,11 +307,86 @@ body {
     border-radius: 0 1.5rem 1.5rem 5rem;
   }
 }
+.results__shown {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+.results__content {
+  display: flex;
+  flex-direction: column;
+  row-gap: min(4.2666666667vw, 1rem);
+}
+@media (min-width: 575.98px) {
+  .results__content {
+    row-gap: min(2.0833333333vw, 1rem);
+  }
+}
+@media (min-width: 768.98px) {
+  .results__content {
+    row-gap: min(2.0833333333vw, 1rem);
+  }
+}
+.results__content--center {
+  align-items: center;
+}
+.results__content--start {
+  align-items: start;
+}
+.results__title {
+  color: hsl(0, 0%, 100%);
+  font-size: clamp(1rem, 0.5rem + 4.2666666667vw, 1.5rem);
+  font-weight: 700;
+}
+@media (min-width: 575.98px) {
+  .results__title {
+    font-size: clamp(1.25rem, 0.5rem + 2.0833333333vw, 1.5rem);
+  }
+}
+@media (min-width: 768.98px) {
+  .results__title {
+    font-size: clamp(1.25rem, 0.5rem + 1.1111111111vw, 1.5rem);
+  }
+}
+.results__text {
+  color: hsl(203, 41%, 72%);
+  font-size: clamp(0.625rem, 0.5rem + 2.1333333333vw, 1rem);
+  font-weight: 500;
+  line-height: calc(clamp(0.625rem, 0.5rem + 2.1333333333vw, 1rem) * 1.5);
+}
+@media (min-width: 575.98px) {
+  .results__text {
+    font-size: clamp(0.625rem, 0.5rem + 1.0416666667vw, 1rem);
+    line-height: calc(clamp(0.625rem, 0.5rem + 1.0416666667vw, 1rem) * 1.5);
+  }
+}
+@media (min-width: 768.98px) {
+  .results__text {
+    font-size: clamp(0.625rem, 0.5rem + 0.5555555556vw, 1rem);
+    line-height: calc(clamp(0.625rem, 0.5rem + 0.5555555556vw, 1rem) * 1.5);
+  }
+}
+.results__shown-image {
+  max-inline-size: 192px;
+  inline-size: 100%;
+  block-size: auto;
+}
+.results__text--center {
+  text-align: center;
+}
+.results__text--start {
+  text-align: start;
+}
+.results__your {
+  display: flex;
+  flex-direction: column;
+  row-gap: 40px;
+}
 
 .footer {
   background-color: hsl(202, 55%, 16%);
-  flex: 0 1 auto;
   inline-size: 100%;
+  flex: 0 1 auto;
 }
 @media (min-width: 575.98px) {
   .footer {

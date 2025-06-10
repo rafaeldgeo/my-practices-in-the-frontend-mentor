@@ -29,21 +29,21 @@
                 <label class="form__label" for="amount">Mortgage Amount</label>
                 <div class="form__input-container">
                   <span class="form__label-secondary form__label-secondary--initial">£</span>
-                  <input class="form__input" type="number" id="amount" />
+                  <input class="form__input" type="number" id="amount" min="0" step="0.001"/>
                 </div>
               </div>
               <div class="form__inputs-row">
                 <div class="form__field">
                   <label for="term" class="form__label">Mortgage Term</label>
                   <div class="form__input-container">
-                    <input class="form__input" type="number" id="term" />
+                    <input class="form__input" type="number" id="term" min="0"/>
                     <span class="form__label-secondary form__label-secondary--final">years</span>
                   </div>
                 </div>
                 <div class="form__field">
                   <label for="rate" class="form__label">Interest Rate</label>
                   <div class="form__input-container">
-                    <input class="form__input" type="number" id="rate" />
+                    <input class="form__input" type="number" id="rate" min="0" step="0.01"/>
                     <span class="form__label-secondary form__label-secondary--final">%</span>
                   </div>
                 </div>
@@ -88,7 +88,7 @@
             </form>
           </div>
           <div class="results">
-            <div class="results__shown">
+            <!-- <div class="results__shown">
               <div class="results__shown-wrapper-image">
                 <img
                   class="results__shown-image"
@@ -96,21 +96,23 @@
                   alt="coins, a pen, a contract, cash and calculator"
                 />
               </div>
-              <div class="results__shown-content">
-                <h2 class="results__shown-title">Results shown here</h2>
-                <p class="results__shown-text">
+              <div class="results__content results__content--center">
+                <h2 class="results__title">Results shown here</h2>
+                <p class="results__text results__text--center">
                   Complete the form and click “calculate repayments” to see what
                   your monthly repayments would be.
                 </p>
               </div>
-            </div>
+            </div> -->
             <div class="results__your">
-              <h2 class="results__your-title">Your results</h2>
-              <p class="results__your-text">
-                Your results are shown below based on the information you
-                provided. To adjust the results, edit the form and click
-                “calculate repayments” again.
-              </p>
+              <div class="results__content results__content--start">
+                <h2 class="results__title">Your results</h2>
+                <p class="results__text results__text--start">
+                  Your results are shown below based on the information you
+                  provided. To adjust the results, edit the form and click
+                  “calculate repayments” again.
+                </p>
+              </div>
               <div class="results__your-wapprer-values">
                 <h3 class="results__your-subtitle" id="repayment-label">
                   Your monthly repayments
