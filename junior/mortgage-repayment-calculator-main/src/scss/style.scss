@@ -116,13 +116,16 @@ body {
     font-weight: 500;
     color: base.$slate-700;
     font-size: base.fluidTypo(10, 16);
+    line-height: base.fluidLineHeight(10, 16, 1.5);
 
     @include base.breakpoints(sm) {
       font-size: base.fluidTypo(10, 16, "tablet");
+      line-height: base.fluidLineHeight(10, 16, 1.5, "tablet");
     }
 
     @include base.breakpoints(md) {
       font-size: base.fluidTypo(10, 16, "desktop");
+      line-height: base.fluidLineHeight(10, 16, 1.5, "desktop");
     }
   }
 
@@ -139,7 +142,25 @@ body {
       row-gap: base.fluidSpace(24, "desktop");
     }
 
-    &__label,
+    &__field,
+    &__fieldset {
+      display: flex;
+      flex-direction: column;
+      row-gap: base.fluidSpace(12);
+
+      @include base.breakpoints(sm) {
+        row-gap: base.fluidSpace(12, "tablet");
+      }
+
+      @include base.breakpoints(md) {
+        row-gap: base.fluidSpace(12, "desktop");
+      }
+    }
+
+    &__fieldset {
+      border: none;
+    }
+
     &__fieldset-legend {
       display: block;
       padding-block-end: base.fluidSpace(12);
@@ -158,6 +179,10 @@ body {
       border: 1px solid base.$slate-700;
       border-radius: base.convertPxToRem(4);
       display: flex;
+    }
+
+    &__input-container:hover {
+      border: 1px solid base.$slate-900;
     }
 
     &__label-secondary {
@@ -207,25 +232,14 @@ body {
       }
     }
 
-    &__fieldset {
-      border: none;
-      display: flex;
-      flex-direction: column;
-      row-gap: base.fluidSpace(12);
-
-      @include base.breakpoints(sm) {
-        row-gap: base.fluidSpace(12, "tablet");
-      }
-
-      @include base.breakpoints(md) {
-        row-gap: base.fluidSpace(12, "desktop");
-      }
-    }
-
     &__radio {
       border: 1px solid base.$slate-500;
-      border-radius: 4px;
+      border-radius: base.convertPxToRem(4);
       padding: base.fluidSpace(12) base.fluidSpace(16);
+    }
+
+    &__radio:hover {
+      border: 1px solid base.$lime;
     }
 
     // Pretty checkbox
@@ -258,6 +272,7 @@ body {
       inline-size: 100%;
       justify-content: center;
       padding: base.fluidSpace(16) 0;
+      margin-block-start: base.fluidSpace(16);
 
       @include base.breakpoints(ex) {
         font-size: base.fluidTypo(14, 18, "tablet");
@@ -275,6 +290,23 @@ body {
 
     &__btn-calculate:hover {
       background-color: base.$lime-hover;
+    }
+
+    &__error {
+      color: base.$red;
+      font-weight: 500;
+      font-size: base.fluidTypo(10, 14);
+      line-height: base.fluidLineHeight(10, 14, 1.5);
+
+      @include base.breakpoints(sm) {
+        font-size: base.fluidTypo(10, 14);
+        line-height: base.fluidLineHeight(10, 14, 1.5, "tablet");
+      }
+
+      @include base.breakpoints(md) {
+        font-size: base.fluidTypo(10, 14);
+        line-height: base.fluidLineHeight(10, 14, 1.5, "desktop");
+      }
     }
   }
 }
@@ -340,18 +372,16 @@ body {
     color: base.$slate-300;
     font-size: base.fluidTypo(10, 16);
     font-weight: 500;
-    line-height: calc(base.fluidTypo(10, 16) * 1.5);
+    line-height: base.fluidLineHeight(10, 16, 1.5);
 
     @include base.breakpoints(sm) {
-      $size-value: base.fluidTypo(10, 16, "tablet");
-      font-size: $size-value;
-      line-height: calc($size-value * 1.5);
+      font-size: base.fluidTypo(10, 16, "tablet");
+      line-height: base.fluidLineHeight(10, 16, 1.5, "tablet");
     }
 
     @include base.breakpoints(md) {
-      $size-value: base.fluidTypo(10, 16, "desktop");
-      font-size: $size-value;
-      line-height: calc($size-value * 1.5);
+      font-size: base.fluidTypo(10, 16, "desktop");
+      line-height: base.fluidLineHeight(10, 16, 1.5, "desktop");
     }
   }
 

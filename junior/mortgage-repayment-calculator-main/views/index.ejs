@@ -29,26 +29,29 @@
                 <label class="form__label" for="amount">Mortgage Amount</label>
                 <div class="form__input-container">
                   <span class="form__label-secondary form__label-secondary--initial">£</span>
-                  <input class="form__input" type="number" id="amount" min="0" step="0.001"/>
+                  <input class="form__input" type="number" id="amount" min="0" step="0.001" aria-errormessage="amount-error"  aria-invalid="false"/>
                 </div>
+                <span class="form__error" id="amount-error" role="alert">This field is required</span>
               </div>
               <div class="form__inputs-row">
                 <div class="form__field">
                   <label for="term" class="form__label">Mortgage Term</label>
                   <div class="form__input-container">
-                    <input class="form__input" type="number" id="term" min="0"/>
+                    <input class="form__input" type="number" id="term" min="0" aria-errormessage="term-error"  aria-invalid="false"/>
                     <span class="form__label-secondary form__label-secondary--final">years</span>
                   </div>
+                  <span class="form__error" id="term-error" role="alert">This field is required</span>
                 </div>
                 <div class="form__field">
                   <label for="rate" class="form__label">Interest Rate</label>
                   <div class="form__input-container">
-                    <input class="form__input" type="number" id="rate" min="0" step="0.01"/>
+                    <input class="form__input" type="number" id="rate" min="0" step="0.01" aria-errormessage="rate-error"  aria-invalid="false"/>
                     <span class="form__label-secondary form__label-secondary--final">%</span>
                   </div>
+                  <span class="form__error" id="rate-error" role="alert">This field is required</span>
                 </div>
               </div>
-              <fieldset class="form__fieldset">
+              <fieldset class="form__fieldset" aria-describedby="radio-error">
                 <legend class="form__fieldset-legend">Mortgage Type</legend>
                 <div class="form__radio">
                   <div class="pretty p-default p-round">
@@ -57,6 +60,8 @@
                       name="type"
                       value="repayment"
                       id="repayment"
+                      aria-errormessage="radio-error"
+                      aria-invalid="false"
                     />
                     <div class="state p-primary-o">
                       <label for="repayment">Repayment</label>
@@ -70,21 +75,24 @@
                       name="type"
                       value="interest"
                       id="interest"
+                      aria-errormessage="radio-error"
+                      aria-invalid="false"
                     />
                     <div class="state p-primary-o">
                       <label for="interest">Interest Only</label>
                     </div>
                   </div>
                 </div>
+                <span class="form__error" id="radio-error" role="alert">This field is required</span>
               </fieldset>
               <button class="form__btn-calculate" type="submit">
-                <img
-                  class="form__btn-icon"
-                  src="/images/icon-calculator.svg"
-                  alt=""
-                />
-                Calculate Repayments
-              </button>
+                  <img
+                    class="form__btn-icon"
+                    src="/images/icon-calculator.svg"
+                    alt=""
+                  />
+                  Calculate Repayments
+                </button>
             </form>
           </div>
           <div class="results">
