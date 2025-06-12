@@ -1,0 +1,49 @@
+@use "base";
+
+@mixin results-content($aling: center) {
+  display: flex;
+  flex-direction: column;
+  row-gap: base.fluidSpace(16);
+  align-items: $aling;
+
+  @include base.breakpoints(sm) {
+    row-gap: base.fluidSpace(16, "tablet");
+  }
+
+  @include base.breakpoints(md) {
+    row-gap: base.fluidSpace(16, "tablet");
+  }
+}
+
+@mixin results-title($aling: center) {
+  color: base.$white;
+  font-size: base.fluidTypo(16, 24);
+  font-weight: 700;
+  text-align: $aling;
+
+  @include base.breakpoints(sm) {
+    font-size: base.fluidTypo(20, 24, "tablet");
+  }
+
+  @include base.breakpoints(md) {
+    font-size: base.fluidTypo(20, 24, "desktop");
+  }
+}
+
+@mixin results-text($aling: center) {
+  color: base.$slate-300;
+  font-size: base.fluidTypo(10, 16);
+  font-weight: 500;
+  line-height: base.fluidLineHeight(10, 16, 1.5);
+  text-align: $aling;
+
+  @include base.breakpoints(sm) {
+    font-size: base.fluidTypo(10, 16, "tablet");
+    line-height: base.fluidLineHeight(10, 16, 1.5, "tablet");
+  }
+
+  @include base.breakpoints(md) {
+    font-size: base.fluidTypo(10, 16, "desktop");
+    line-height: base.fluidLineHeight(10, 16, 1.5, "desktop");
+  }
+}

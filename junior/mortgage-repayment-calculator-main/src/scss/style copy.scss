@@ -1,5 +1,4 @@
 @use "base";
-@use "mixins" as mx;
 @include base.reset;
 
 html,
@@ -42,7 +41,7 @@ body {
   flex-direction: column;
   inline-size: inherit;
   max-inline-size: 1008px;
-  box-shadow: 0 32px 64px 0 base.$shadow #133041;
+  box-shadow: 0 32px 64px 0 base.$shadow;
 
   @include base.breakpoints(sm) {
     border-radius: base.convertPxToRem(24) base.convertPxToRem(24);
@@ -130,12 +129,6 @@ body {
       line-height: base.fluidLineHeight(10, 16, 1.5, "desktop");
     }
   }
-
-  &__btn-clear:hover {
-    color: base.$slate-900;
-  }
-
-
 
   .form {
     display: flex;
@@ -335,53 +328,86 @@ body {
       base.convertPxToRem(80);
   }
 
-  .results-shown-here {
+  &__shown {
     align-items: center;
     display: flex;
     flex-direction: column;
-
-    .results-shown-here__image {
-      max-inline-size: 192px;
-      inline-size: 100%;
-      block-size: auto;
-    }
-
-    .results-shown-here__content {
-      @include mx.results-content();
-    }
-
-    .results-shown-here__title {
-      @include mx.results-title();
-    }
-
-    .results-shown-here__text {
-      @include mx.results-text();
-    }
   }
 
-  .results-your {
+  &__content {
     display: flex;
     flex-direction: column;
+    row-gap: base.fluidSpace(16);
 
-    .results-your__content {
-      @include mx.results-content(start);
+    @include base.breakpoints(sm) {
+      row-gap: base.fluidSpace(16, "tablet");
     }
 
-    .results-your__title {
-      @include mx.results-title(start);
-    }
-
-    .results-your__text {
-      @include mx.results-text(start);
-    }
-
-    .results-your__card {
-      background-color: base.$black-transparence;
-      border-radius: base.convertPxToRem(8);
-      border-top: 4px solid base.$lime;
-
+    @include base.breakpoints(md) {
+      row-gap: base.fluidSpace(16, "tablet");
     }
   }
+
+  &__content--center {
+    align-items: center;
+  }
+
+  &__content--start {
+    align-items: start;
+  }
+
+  &__title {
+    color: base.$white;
+    font-size: base.fluidTypo(16, 24);
+    font-weight: 700;
+
+    @include base.breakpoints(sm) {
+      font-size: base.fluidTypo(20, 24, "tablet");
+    }
+
+    @include base.breakpoints(md) {
+      font-size: base.fluidTypo(20, 24, "desktop");
+    }
+  }
+
+  &__text {
+    color: base.$slate-300;
+    font-size: base.fluidTypo(10, 16);
+    font-weight: 500;
+    line-height: base.fluidLineHeight(10, 16, 1.5);
+
+    @include base.breakpoints(sm) {
+      font-size: base.fluidTypo(10, 16, "tablet");
+      line-height: base.fluidLineHeight(10, 16, 1.5, "tablet");
+    }
+
+    @include base.breakpoints(md) {
+      font-size: base.fluidTypo(10, 16, "desktop");
+      line-height: base.fluidLineHeight(10, 16, 1.5, "desktop");
+    }
+  }
+
+  &__shown-image {
+    max-inline-size: 192px;
+    inline-size: 100%;
+    block-size: auto;
+  }
+
+  &__text--center {
+    text-align: center;
+  }
+
+  &__text--start {
+    text-align: start;
+  }
+
+  &your {
+    display: flex;
+    flex-direction: column;
+    row-gap: 40px;
+  }
+
+  // PAREI AQUI
 }
 
 .footer {
