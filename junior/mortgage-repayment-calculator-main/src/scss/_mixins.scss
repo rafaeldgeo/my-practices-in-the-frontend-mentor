@@ -1,5 +1,6 @@
 @use "base";
 
+// define style for content into results class
 @mixin results-content($aling: center) {
   display: flex;
   flex-direction: column;
@@ -15,6 +16,7 @@
   }
 }
 
+// define style for title into results class
 @mixin results-title($aling: center) {
   color: base.$white;
   font-size: base.fluidTypo(16, 24);
@@ -30,6 +32,7 @@
   }
 }
 
+// define style for paragraph into results class
 @mixin results-text($aling: center) {
   color: base.$slate-300;
   font-size: base.fluidTypo(10, 16);
@@ -45,5 +48,42 @@
   @include base.breakpoints(md) {
     font-size: base.fluidTypo(10, 16, "desktop");
     line-height: base.fluidLineHeight(10, 16, 1.5, "desktop");
+  }
+}
+
+// define row-gap for breakpoints mobile, tablet and desktop
+@mixin row-gap($pxValue) {
+  row-gap: base.fluidSpace($pxValue);
+
+  @include base.breakpoints(sm) {
+    row-gap: base.fluidSpace($pxValue, "tablet");
+  }
+
+  @include base.breakpoints(md) {
+    row-gap: base.fluidSpace($pxValue, "desktop");
+  }
+}
+
+// define font-size and line-height for breakpoints tablet and desktop
+@mixin fontSize-LineHeight($pxValueMin, $pxValueMax, $LineHeightValue) {
+ 
+  @include base.breakpoints(sm) {
+    font-size: base.fluidTypo($pxValueMin, $pxValueMax, "tablet");
+    line-height: base.fluidLineHeight(
+      $pxValueMin,
+      $pxValueMax,
+      $LineHeightValue,
+      "tablet"
+    );
+  }
+
+  @include base.breakpoints(md) {
+    font-size: base.fluidTypo($pxValueMin, $pxValueMax, "desktop");
+    line-height: base.fluidLineHeight(
+      $pxValueMin,
+      $pxValueMax,
+      $LineHeightValue,
+      "desktop"
+    );
   }
 }

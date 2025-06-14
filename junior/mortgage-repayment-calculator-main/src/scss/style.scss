@@ -50,8 +50,8 @@ body {
   }
 
   @include base.breakpoints(md) {
-    margin: base.fluidSpace(40, "desktop");
     flex-direction: row;
+    margin: base.fluidSpace(40, "desktop");
   }
 }
 
@@ -119,50 +119,24 @@ body {
     color: base.$slate-700;
     font-size: base.fluidTypo(10, 16);
     line-height: base.fluidLineHeight(10, 16, 1.5);
-
-    @include base.breakpoints(sm) {
-      font-size: base.fluidTypo(10, 16, "tablet");
-      line-height: base.fluidLineHeight(10, 16, 1.5, "tablet");
-    }
-
-    @include base.breakpoints(md) {
-      font-size: base.fluidTypo(10, 16, "desktop");
-      line-height: base.fluidLineHeight(10, 16, 1.5, "desktop");
-    }
+    @include mx.fontSize-LineHeight(10, 16, 1.5);
   }
 
   &__btn-clear:hover {
     color: base.$slate-900;
   }
 
-
-
   .form {
     display: flex;
     flex-direction: column;
-    row-gap: base.fluidSpace(24);
 
-    @include base.breakpoints(sm) {
-      row-gap: base.fluidSpace(24, "tablet");
-    }
-
-    @include base.breakpoints(sm) {
-      row-gap: base.fluidSpace(24, "desktop");
-    }
+    @include mx.row-gap(24);
 
     &__field,
     &__fieldset {
       display: flex;
       flex-direction: column;
-      row-gap: base.fluidSpace(12);
-
-      @include base.breakpoints(sm) {
-        row-gap: base.fluidSpace(12, "tablet");
-      }
-
-      @include base.breakpoints(md) {
-        row-gap: base.fluidSpace(12, "desktop");
-      }
+      @include mx.row-gap(12);
     }
 
     &__fieldset {
@@ -193,6 +167,10 @@ body {
       border: 1px solid base.$slate-900;
     }
 
+    &__input-container--focus {
+      border: 1px solid base.$lime;
+    }
+
     &__label-secondary {
       background-color: base.$slate-100;
       color: base.$slate-700;
@@ -200,6 +178,11 @@ body {
       font-size: base.fluidTypo(10, 18);
       font-weight: 700;
       padding: base.fluidSpace(12.5) base.fluidSpace(16);
+    }
+
+    &__label-secondary--focus {
+      background-color: base.$lime;
+      color: base.$slate-900;
     }
 
     &__label-secondary--initial {
@@ -306,16 +289,7 @@ body {
       font-weight: 500;
       font-size: base.fluidTypo(10, 14);
       line-height: base.fluidLineHeight(10, 14, 1.5);
-
-      @include base.breakpoints(sm) {
-        font-size: base.fluidTypo(10, 14);
-        line-height: base.fluidLineHeight(10, 14, 1.5, "tablet");
-      }
-
-      @include base.breakpoints(md) {
-        font-size: base.fluidTypo(10, 14);
-        line-height: base.fluidLineHeight(10, 14, 1.5, "desktop");
-      }
+      @include mx.fontSize-LineHeight(10, 14, 1.5);
     }
   }
 }
@@ -360,8 +334,10 @@ body {
   }
 
   .results-your {
+    align-self: flex-start;
     display: flex;
     flex-direction: column;
+    @include mx.row-gap(40);
 
     .results-your__content {
       @include mx.results-content(start);
@@ -379,8 +355,47 @@ body {
       background-color: base.$black-transparence;
       border-radius: base.convertPxToRem(8);
       border-top: 4px solid base.$lime;
-
+      padding: base.fluidSpace(32);
     }
+
+    .results-your__subtitle {
+      color: base.$slate-300;
+      font-size: base.fluidTypo(10, 16);
+      font-weight: 500;
+      line-height: base.fluidLineHeight(10, 16, 1);
+      padding-block-end: base.fluidSpace(8);
+      @include mx.fontSize-LineHeight(10, 16, 1);
+  }
+
+    .results-your__value-principal {
+      color: base.$lime;
+      font-size: base.fluidTypo(20, 40);
+      font-weight: 700;
+      line-height: base.fluidLineHeight(20, 40, 1.25);
+      @include mx.fontSize-LineHeight(46, 56, 1.25);
+    }
+
+    hr {
+      margin-block: base.fluidSpace(32);
+
+      @include base.breakpoints(sm) {
+        margin-block: base.fluidSpace(32, "tablet");
+      }
+
+      @include base.breakpoints(md) {
+        margin-block: base.fluidSpace(32, "desktop");
+      }
+
+      border-color: base.$hr-color;
+    }
+
+    .results-your__value-secondary {
+      color: base.$white;
+      font-size: base.fluidTypo(14, 24);
+      font-weight: 700;
+      line-height: base.fluidLineHeight(14, 24, 1.25);
+      @include mx.fontSize-LineHeight(14, 24, 1.25);
+}
   }
 }
 

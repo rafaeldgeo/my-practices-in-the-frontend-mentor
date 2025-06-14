@@ -11,7 +11,8 @@
     />
     <title>Frontend Mentor | Mortgage repayment calculator</title>
     <link rel="stylesheet" href="/css/style.css" />
-    <link rel="stylesheet" href="/css/pretty-checkbox.css" />
+    <link rel="stylesheet" href="/css/pretty-checkbox.min.css" />
+    <script src="/js/form.js" defer></script>
   </head>
   <body>
     <div class="container">
@@ -28,27 +29,65 @@
               <div class="form__field">
                 <label class="form__label" for="amount">Mortgage Amount</label>
                 <div class="form__input-container">
-                  <span class="form__label-secondary form__label-secondary--initial">£</span>
-                  <input class="form__input" type="number" id="amount" min="0" step="0.001" aria-errormessage="amount-error"  aria-invalid="false"/>
+                  <span
+                    class="form__label-secondary form__label-secondary--initial"
+                    >£</span
+                  >
+                  <input
+                    class="form__input"
+                    type="number"
+                    id="amount"
+                    min="0"
+                    step="0.001"
+                    aria-errormessage="amount-error"
+                    aria-invalid="false"
+                  />
                 </div>
-                <span class="form__error" id="amount-error" role="alert">This field is required</span>
+                <span class="form__error" id="amount-error" role="alert"
+                  >This field is required</span
+                >
               </div>
               <div class="form__inputs-row">
                 <div class="form__field">
                   <label for="term" class="form__label">Mortgage Term</label>
                   <div class="form__input-container">
-                    <input class="form__input" type="number" id="term" min="0" aria-errormessage="term-error"  aria-invalid="false"/>
-                    <span class="form__label-secondary form__label-secondary--final">years</span>
+                    <input
+                      class="form__input"
+                      type="number"
+                      id="term"
+                      min="0"
+                      aria-errormessage="term-error"
+                      aria-invalid="false"
+                    />
+                    <span
+                      class="form__label-secondary form__label-secondary--final"
+                      >years</span
+                    >
                   </div>
-                  <span class="form__error" id="term-error" role="alert">This field is required</span>
+                  <span class="form__error" id="term-error" role="alert"
+                    >This field is required</span
+                  >
                 </div>
                 <div class="form__field">
                   <label for="rate" class="form__label">Interest Rate</label>
                   <div class="form__input-container">
-                    <input class="form__input" type="number" id="rate" min="0" step="0.01" aria-errormessage="rate-error"  aria-invalid="false"/>
-                    <span class="form__label-secondary form__label-secondary--final">%</span>
+                    <input
+                      class="form__input"
+                      type="number"
+                      id="rate"
+                      min="0"
+                      step="0.01"
+                      aria-errormessage="rate-error"
+                      aria-invalid="false"
+                    />
+                    <span
+                      class="form__label-secondary form__label-secondary--final"
+                      >%</span
+                    >
                   </div>
-                  <span class="form__error" id="rate-error" role="alert">This field is required</span>
+                  <span class="form__error" id="rate-error" role="alert"
+                    >This field is required</span
+                  >
                 </div>
               </div>
               <fieldset class="form__fieldset" aria-describedby="radio-error">
@@ -83,16 +122,18 @@
                     </div>
                   </div>
                 </div>
-                <span class="form__error" id="radio-error" role="alert">This field is required</span>
+                <span class="form__error" id="radio-error" role="alert"
+                  >This field is required</span
+                >
               </fieldset>
               <button class="form__btn-calculate" type="submit">
-                  <img
-                    class="form__btn-icon"
-                    src="/images/icon-calculator.svg"
-                    alt=""
-                  />
-                  Calculate Repayments
-                </button>
+                <img
+                  class="form__btn-icon"
+                  src="/images/icon-calculator.svg"
+                  alt=""
+                />
+                Calculate Repayments
+              </button>
             </form>
           </div>
           <div class="results">
@@ -125,7 +166,7 @@
                 <h3 class="results-your__subtitle" id="repayment-label">
                   Your monthly repayments
                 </h3>
-                <p class="results-your__value">
+                <p class="results-your__value-principal">
                   £<data
                     id="repayments"
                     aria-labelledby="repayment-label"
@@ -137,7 +178,7 @@
                 <h3 class="results-your__subtitle" id="repay-label">
                   Total you'll repay over the term
                 </h3>
-                <p class="results-your__value">
+                <p class="results-your__value-secondary">
                   £<data id="repay" aria-labelledby="repay-label" value=""
                     >539,322.94</data
                   >
