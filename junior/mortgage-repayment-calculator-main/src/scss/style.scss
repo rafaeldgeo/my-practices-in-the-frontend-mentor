@@ -161,14 +161,15 @@ body {
       border: 1px solid base.$slate-700;
       border-radius: base.convertPxToRem(4);
       display: flex;
-    }
-
-    &__input-container:hover {
-      border: 1px solid base.$slate-900;
+      outline: none;
     }
 
     &__input-container--focus {
       border: 1px solid base.$lime;
+    }
+
+    &__input-container--hover:hover {
+      border: 1px solid base.$slate-900;
     }
 
     &__label-secondary {
@@ -213,6 +214,10 @@ body {
       }
     }
 
+    &__input:focus {
+      outline: none;
+    }
+
     &__inputs-row {
       display: flex;
       flex-direction: column;
@@ -223,13 +228,19 @@ body {
       }
     }
 
-    &__radio {
+    &__radio-container {
       border: 1px solid base.$slate-500;
       border-radius: base.convertPxToRem(4);
       padding: base.fluidSpace(12) base.fluidSpace(16);
     }
 
-    &__radio:hover {
+    &__radio--checked {
+      background-color: base.$lime-background-radio;
+      border: 1px solid base.$lime;
+      color: base.$slate-900;
+  }
+
+    &__radio-container--hover:hover {
       border: 1px solid base.$lime;
     }
 
@@ -237,10 +248,6 @@ body {
     .pretty .state label {
       color: base.$slate-900;
       font-size: base.fluidTypo(10, 18);
-    }
-
-    .pretty input:checked ~ .state label {
-      color: base.$lime;
     }
 
     .pretty input:focus-visible ~ .state label {
@@ -365,7 +372,7 @@ body {
       line-height: base.fluidLineHeight(10, 16, 1);
       padding-block-end: base.fluidSpace(8);
       @include mx.fontSize-LineHeight(10, 16, 1);
-  }
+    }
 
     .results-your__value-principal {
       color: base.$lime;
@@ -395,7 +402,7 @@ body {
       font-weight: 700;
       line-height: base.fluidLineHeight(14, 24, 1.25);
       @include mx.fontSize-LineHeight(14, 24, 1.25);
-}
+    }
   }
 }
 

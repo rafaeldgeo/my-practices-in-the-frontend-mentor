@@ -203,12 +203,13 @@ body {
   border: 1px solid hsl(200, 24%, 40%);
   border-radius: 0.25rem;
   display: flex;
-}
-.content .form__input-container:hover {
-  border: 1px solid hsl(202, 55%, 16%);
+  outline: none;
 }
 .content .form__input-container--focus {
   border: 1px solid hsl(61, 70%, 52%);
+}
+.content .form__input-container--hover:hover {
+  border: 1px solid hsl(202, 55%, 16%);
 }
 .content .form__label-secondary {
   background-color: hsl(202, 86%, 94%);
@@ -249,6 +250,9 @@ body {
     padding: min(0.8680555556vw, 0.78125rem) min(1.1111111111vw, 1rem);
   }
 }
+.content .form__input:focus {
+  outline: none;
+}
 .content .form__inputs-row {
   display: flex;
   flex-direction: column;
@@ -259,20 +263,22 @@ body {
     column-gap: min(6.4vw, 1.5rem);
   }
 }
-.content .form__radio {
+.content .form__radio-container {
   border: 1px solid hsl(200, 26%, 54%);
   border-radius: 0.25rem;
   padding: min(3.2vw, 0.75rem) min(4.2666666667vw, 1rem);
 }
-.content .form__radio:hover {
+.content .form__radio--checked {
+  background-color: hsla(61, 70%, 52%, 0.2);
+  border: 1px solid hsl(61, 70%, 52%);
+  color: hsl(202, 55%, 16%);
+}
+.content .form__radio-container--hover:hover {
   border: 1px solid hsl(61, 70%, 52%);
 }
 .content .form .pretty .state label {
   color: hsl(202, 55%, 16%);
   font-size: clamp(0.625rem, 0.5rem + 2.6666666667vw, 1.125rem);
-}
-.content .form .pretty input:checked ~ .state label {
-  color: hsl(61, 70%, 52%);
 }
 .content .form .pretty input:focus-visible ~ .state label {
   outline: 2px solid #000;

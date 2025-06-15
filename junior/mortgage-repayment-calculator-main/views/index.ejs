@@ -28,7 +28,7 @@
             <form class="form" action="">
               <div class="form__field">
                 <label class="form__label" for="amount">Mortgage Amount</label>
-                <div class="form__input-container">
+                <div class="form__input-container form__input-container--hover">
                   <span
                     class="form__label-secondary form__label-secondary--initial"
                     >£</span
@@ -50,7 +50,9 @@
               <div class="form__inputs-row">
                 <div class="form__field">
                   <label for="term" class="form__label">Mortgage Term</label>
-                  <div class="form__input-container">
+                  <div
+                    class="form__input-container form__input-container--hover"
+                  >
                     <input
                       class="form__input"
                       type="number"
@@ -70,7 +72,9 @@
                 </div>
                 <div class="form__field">
                   <label for="rate" class="form__label">Interest Rate</label>
-                  <div class="form__input-container">
+                  <div
+                    class="form__input-container form__input-container--hover"
+                  >
                     <input
                       class="form__input"
                       type="number"
@@ -92,9 +96,10 @@
               </div>
               <fieldset class="form__fieldset" aria-describedby="radio-error">
                 <legend class="form__fieldset-legend">Mortgage Type</legend>
-                <div class="form__radio">
+                <div class="form__radio-container form__radio-container--hover">
                   <div class="pretty p-default p-round">
                     <input
+                      class="form__radio"
                       type="radio"
                       name="type"
                       value="repayment"
@@ -107,9 +112,10 @@
                     </div>
                   </div>
                 </div>
-                <div class="form__radio">
+                <div class="form__radio-container form__radio-container--hover">
                   <div class="pretty p-default p-round">
                     <input
+                      class="form__radio"
                       type="radio"
                       name="type"
                       value="interest"
