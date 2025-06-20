@@ -1,9 +1,39 @@
-import { checkEmptyInputs } from "./form_style.js"
-
-const form = document.querySelector(".form");
-const inputs = document.querySelectorAll(".form__input");
 const inputAmount = document.getElementById("amount");
 const inputRate = document.getElementById("rate");
+const inputs = document.querySelectorAll(".form__input");
+const form = document.querySelector(".form");
+
+// check if the inputs are empty
+const checkEmptyInputs = function (e) {
+    const divFields = form.querySelectorAll(".form__field");
+    divFields.forEach((divFormField) => {
+        const input = divFormField.querySelector(".form__input");
+        const divInputContainer = divFormField.querySelector(".form__input-container");
+        const spanLabelSecondary = divFormField.querySelector(".form__label-secondary");
+        const spanError = divFormField.querySelector(".form__msg-erro");
+        if (!input || !spanError || !spanLabelSecondary || !divInputContainer) {
+            console.warn("There's some problem with elements of the classes .form__input, .form__input-container, .form__label-secondary, .form__msg-erro");
+            return;
+        };
+        if (input.value.trim() === "") {
+            divInputContainer.classList.add("form__input-container--error");
+            divInputContainer.classList.remove("form__input-container--hover");
+            spanLabelSecondary.classList.add("form__label-secondary--error");
+            spanError.classList.add("form__msg-erro--show");
+            input.ariaInvalid = "true";
+            e.preventDefault();
+        } else {
+            divInputContainer.classList.remove("form__input-container--error");
+            divInputContainer.classList.add("form__input-container--hover");
+            spanLabelSecondary.classList.remove("form__label-secondary--error");
+            spanError.classList.remove("form__msg-erro--show");
+            input.ariaInvalid = "false";
+        }
+    });
+}
+
+form.addEventListener("submit", checkEmptyInputs);
+
 
 // sanitize inputs because I'm using type="text" in input
 inputs.forEach((input) => {
@@ -48,6 +78,9 @@ const inputFormatAmount = function (e) {
     }
 }
 
+// shows formated number from input id="amount" 000.000
+inputAmount.addEventListener("blur", inputFormatAmount);
+
 // format of the input from input id="rate"
 const inputFormatRate = function (e) {
     
@@ -63,11 +96,6 @@ const inputFormatRate = function (e) {
     }
 }
 
-// shows formated number from input id="amount" 000.000
-inputAmount.addEventListener("blur", inputFormatAmount);
-
 // shows formated number from input id="rate" 0.00
 inputRate.addEventListener("blur", inputFormatRate);
 
-// sent the form
-form.addEventListener("submit", checkEmptyInputs);

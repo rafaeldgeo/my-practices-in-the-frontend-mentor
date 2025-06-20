@@ -12,8 +12,8 @@
     <title>Frontend Mentor | Mortgage repayment calculator</title>
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" href="/css/pretty-checkbox.min.css" />
-    <script src="/js/form_style.js" defer></script>
-    <script src="/js/form_valid.js" defer></script>
+    <script src="/js/form_style.js" type="module" defer></script>
+    <script src="/js/form_valid.js" type="module" defer></script>
   </head>
   <body>
     <div class="container">
@@ -38,11 +38,11 @@
                     class="form__input"
                     type="text"
                     id="amount"
+                    autocomplete="off"
                     aria-errormessage="amount-error"
-                    aria-invalid="false"
                   />
                 </div>
-                <span class="form__error" id="amount-error" role="alert"
+                <span class="form__msg-erro" id="amount-error" role="alert"
                   >This field is required</span
                 >
               </div>
@@ -56,16 +56,16 @@
                       class="form__input"
                       type="text"
                       id="term"
+                      autocomplete="off"
                       min="0"
                       aria-errormessage="term-error"
-                      aria-invalid="false"
                     />
                     <span
                       class="form__label-secondary form__label-secondary--final"
                       >years</span
                     >
                   </div>
-                  <span class="form__error" id="term-error" role="alert"
+                  <span class="form__msg-erro" id="term-error" role="alert"
                     >This field is required</span
                   >
                 </div>
@@ -78,17 +78,17 @@
                       class="form__input"
                       type="text"
                       id="rate"
+                      autocomplete="off"
                       min="0"
                       step="0.01"
                       aria-errormessage="rate-error"
-                      aria-invalid="false"
                     />
                     <span
                       class="form__label-secondary form__label-secondary--final"
                       >%</span
                     >
                   </div>
-                  <span class="form__error" id="rate-error" role="alert"
+                  <span class="form__msg-erro" id="rate-error" role="alert"
                     >This field is required</span
                   >
                 </div>
@@ -104,7 +104,6 @@
                       value="repayment"
                       id="repayment"
                       aria-errormessage="radio-error"
-                      aria-invalid="false"
                     />
                     <div class="state p-primary-o">
                       <label for="repayment">Repayment</label>
@@ -120,14 +119,13 @@
                       value="interest"
                       id="interest"
                       aria-errormessage="radio-error"
-                      aria-invalid="false"
                     />
                     <div class="state p-primary-o">
                       <label for="interest">Interest Only</label>
                     </div>
                   </div>
                 </div>
-                <span class="form__error" id="radio-error" role="alert"
+                <span class="form__msg-erro" id="radio-error" role="alert"
                   >This field is required</span
                 >
               </fieldset>

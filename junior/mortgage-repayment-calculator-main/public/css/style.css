@@ -208,6 +208,9 @@ body {
 .content .form__input-container--focus {
   border: 1px solid hsl(61, 70%, 52%);
 }
+.content .form__input-container--error {
+  border: 1px solid hsl(4, 69%, 50%);
+}
 .content .form__input-container--hover:hover {
   border: 1px solid hsl(202, 55%, 16%);
 }
@@ -218,6 +221,10 @@ body {
   font-size: clamp(0.625rem, 0.5rem + 2.6666666667vw, 1.125rem);
   font-weight: 700;
   padding: min(3.3333333333vw, 0.78125rem) min(4.2666666667vw, 1rem);
+}
+.content .form__label-secondary--error {
+  background-color: hsl(4, 69%, 50%);
+  color: hsl(0, 0%, 100%);
 }
 .content .form__label-secondary--focus {
   background-color: hsl(61, 70%, 52%);
@@ -319,7 +326,7 @@ body {
 .content .form__btn-calculate:hover {
   background-color: hsl(61, 62%, 75%);
 }
-.content .form__error {
+.content .form__msg-erro {
   display: none;
   color: hsl(4, 69%, 50%);
   font-weight: 500;
@@ -327,16 +334,19 @@ body {
   line-height: calc(clamp(0.625rem, 0.5rem + 1.6vw, 0.875rem) * 1.5);
 }
 @media (min-width: 575.98px) {
-  .content .form__error {
+  .content .form__msg-erro {
     font-size: clamp(0.625rem, 0.5rem + 0.78125vw, 0.875rem);
     line-height: calc(clamp(0.625rem, 0.5rem + 0.78125vw, 0.875rem) * 1.5);
   }
 }
 @media (min-width: 768.98px) {
-  .content .form__error {
+  .content .form__msg-erro {
     font-size: clamp(0.625rem, 0.5rem + 0.4166666667vw, 0.875rem);
     line-height: calc(clamp(0.625rem, 0.5rem + 0.4166666667vw, 0.875rem) * 1.5);
   }
+}
+.content .form__msg-erro--show {
+  display: block;
 }
 
 .results {

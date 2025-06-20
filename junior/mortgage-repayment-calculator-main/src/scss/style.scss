@@ -168,10 +168,14 @@ body {
       border: 1px solid base.$lime;
     }
 
+     &__input-container--error {
+      border: 1px solid base.$red;
+    }
+
     &__input-container--hover:hover {
       border: 1px solid base.$slate-900;
     }
-
+  
     &__label-secondary {
       background-color: base.$slate-100;
       color: base.$slate-700;
@@ -179,6 +183,11 @@ body {
       font-size: base.fluidTypo(10, 18);
       font-weight: 700;
       padding: base.fluidSpace(12.5) base.fluidSpace(16);
+    }
+
+    &__label-secondary--error {
+      background-color: base.$red;
+      color: base.$white;
     }
 
     &__label-secondary--focus {
@@ -290,7 +299,7 @@ body {
       background-color: base.$lime-hover;
     }
 
-    &__error {
+    &__msg-erro {
       display: none;
       color: base.$red;
       font-weight: 500;
@@ -298,6 +307,12 @@ body {
       line-height: base.fluidLineHeight(10, 14, 1.5);
       @include mx.fontSize-LineHeight(10, 14, 1.5);
     }
+
+    &__msg-erro--show {
+      display: block;
+      
+    }
+
   }
 }
 
