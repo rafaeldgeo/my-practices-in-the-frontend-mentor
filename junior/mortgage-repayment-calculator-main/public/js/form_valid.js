@@ -1,12 +1,12 @@
 import { checkEmptyInputs } from "./form_style.js"
 
 const form = document.querySelector(".form");
-const inputs = document.querySelectorAll(".form__input");
+const numberInputs = document.querySelectorAll(".form__input");
 const inputAmount = document.getElementById("amount");
 const inputRate = document.getElementById("rate");
 
 // sanitize inputs because I'm using type="text" in input
-inputs.forEach((input) => {
+numberInputs.forEach((input) => {
     input.addEventListener("input", (e) => {
         let valueInputed = e.target.value;
         // clear inputs, only number, dot or comma
@@ -27,7 +27,7 @@ inputs.forEach((input) => {
     );
 });
 
-// format of the input from input id="amount"
+// format of the input from input id="amount" 000.000
 const inputFormatAmount = function (e) {
     const defineFormatAmount = new Intl.NumberFormat("pt-BR", {
         style: "decimal",
@@ -48,7 +48,7 @@ const inputFormatAmount = function (e) {
     }
 }
 
-// format of the input from input id="rate"
+// format of the input from input id="rate" 0.00
 const inputFormatRate = function (e) {
     
     let valueInputed = e.target.value;
@@ -63,11 +63,11 @@ const inputFormatRate = function (e) {
     }
 }
 
-// shows formated number from input id="amount" 000.000
+// listen the amount input
 inputAmount.addEventListener("blur", inputFormatAmount);
 
-// shows formated number from input id="rate" 0.00
+// listen the rate input
 inputRate.addEventListener("blur", inputFormatRate);
 
-// sent the form
+// listen submit buttom 
 form.addEventListener("submit", checkEmptyInputs);

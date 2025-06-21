@@ -1,61 +1,74 @@
-const formInputs = document.querySelectorAll(".form__input-container");
-const formRadios = document.querySelectorAll(".form__radio-container");
 const form = document.querySelector(".form");
+const divNumberInputs = form.querySelectorAll(".form__input-container");
+const divRadioInputs = form.querySelectorAll(".form__radio-container");
+const fieldsetRadio = form.querySelector(".form__fieldset");
+const inputsRadio = form.querySelectorAll(".form__radio");
+const inputRadioRepayment = inputsRadio[0];
+const spanInputRadioError = fieldsetRadio.querySelector(".form__msg-erro");
 
-const focusInput = function (e) {
-    const input = e.target;
-    const divInputContainer = e.target.parentElement;
-    const spanError = divInputContainer.nextElementSibling;
-    const spanLabelSecondary = divInputContainer.querySelector(".form__label-secondary");
-    if (!spanLabelSecondary) return;
+if (!form) console.warn("Element form doesn't exist");
+if (!fieldsetRadio) console.warn("Element fieldset doesn't exist");
+
+
+if (!divNumberInputs || !fieldsetRadio || !inputsRadio || !spanInputRadioError) {
+    console.warn("There's some problem with elements of the classes .form__input-container, .form__radio-container, .form__radio, .form__msg-erro");
+}
+
+// format the number input when it's focus  
+const focusNumberInput = function (e) {
+    const numberInput = e.target;
+    const divNumberInput = e.target.parentElement; //.form__input-container
+    const spanInputNumberError = divNumberInput.nextElementSibling; // .form__msg-erro
+    const spanLabelSecondary = divNumberInput.querySelector(".form__label-secondary");
+    if (!divNumberInput || !spanInputNumberError || !spanLabelSecondary) {
+        console.warn("There's some problem with elements of the classes .form__input-container, .form__msg-erro .form__label-secondary");
+        return;
+    }
 
     if (e.type === "focusin") {
-        divInputContainer.classList.add("form__input-container--focus");
-        divInputContainer.classList.remove("form__input-container--hover");
+        divNumberInput.classList.add("form__input-container--focus");
+        divNumberInput.classList.remove("form__input-container--hover");
         if (!spanLabelSecondary.classList.contains("form__label-secondary--error")) {
             spanLabelSecondary.classList.add("form__label-secondary--focus");
         }
     }
 
     if (e.type === "focusout") {
-        divInputContainer.classList.remove("form__input-container--focus");
+        divNumberInput.classList.remove("form__input-container--focus");
         spanLabelSecondary.classList.remove("form__label-secondary--focus");
-        if (input.value !== "") {
-            divInputContainer.classList.remove("form__input-container--error");
-            divInputContainer.classList.add("form__input-container--hover");
+        if (numberInput.value !== "") {
+            divNumberInput.classList.remove("form__input-container--error");
+            divNumberInput.classList.add("form__input-container--hover");
             spanLabelSecondary.classList.remove("form__label-secondary--error");
-            spanError.classList.remove("form__msg-erro--show");
-            input.ariaInvalid = "false";
+            spanInputNumberError.classList.remove("form__msg-erro--show");
+            numberInput.ariaInvalid = "false";
         }
     }
 }
 
-formInputs.forEach((input) => {
-    input.addEventListener("focusin", focusInput);
-    input.addEventListener("focusout", focusInput);
-});
-
 const clickRadio = function (e) {
-    const formRadioContainers = document.querySelectorAll(".form__radio-container");
-    formRadioContainers.forEach((radio) => {
+    divRadioInputs.forEach((radio) => {
         if (radio.classList.contains("form__radio--checked")) {
             radio.classList.remove("form__radio--checked");
         }
     });
-    const clickedFormRadioContainer = e.target.closest(".form__radio-container");
-    if (!clickedFormRadioContainer) return;
-    const isChecked = clickedFormRadioContainer.querySelector(".form__radio").checked;
+    const divRadioInput = e.target.closest(".form__radio-container");
+    if (!divRadioInput) return;
+    const isChecked = divRadioInput.querySelector(".form__radio").checked;
     if (isChecked) {
-        clickedFormRadioContainer.classList.add("form__radio--checked");
+        divRadioInput.classList.add("form__radio--checked");
+        if (spanInputRadioError.classList.contains("form__msg-erro--show")) {
+            spanInputRadioError.classList.remove("form__msg-erro--show");
+            inputRadioRepayment.ariaInvalid = "false";
+        }
     }
 }
 
-formRadios.forEach((radio) => {
-    radio.addEventListener("click", clickRadio);
-});
 
 // check if the inputs are empty
 export const checkEmptyInputs = function (e) {
+
+    // check number inputs
     const divFields = form.querySelectorAll(".form__field");
     let hasError = false;
     if (divFields.length === 0) {
@@ -63,28 +76,51 @@ export const checkEmptyInputs = function (e) {
         return;
     }
     divFields.forEach((divFormField) => {
-        const input = divFormField.querySelector(".form__input");
-        const divInputContainer = divFormField.querySelector(".form__input-container");
+        const numberInput = divFormField.querySelector(".form__input");
+        const divNumberInput = divFormField.querySelector(".form__input-container");
         const spanLabelSecondary = divFormField.querySelector(".form__label-secondary");
-        const spanError = divFormField.querySelector(".form__msg-erro");
-        if (!input || !divInputContainer || !spanLabelSecondary || !spanError) {
+        const spanInputNumberError = divFormField.querySelector(".form__msg-erro");
+        if (!numberInput || !divNumberInput || !spanLabelSecondary || !spanInputNumberError) {
             console.warn("There's some problem with elements of the classes .form__input, .form__input-container, .form__label-secondary, .form__msg-erro");
             return;
         };
-        if (input.value.trim() === "") {
-            divInputContainer.classList.add("form__input-container--error");
-            divInputContainer.classList.remove("form__input-container--hover");
+        if (numberInput.value.trim() === "") {
+            divNumberInput.classList.add("form__input-container--error");
+            divNumberInput.classList.remove("form__input-container--hover");
             spanLabelSecondary.classList.add("form__label-secondary--error");
-            spanError.classList.add("form__msg-erro--show");
-            input.ariaInvalid = "true";
+            spanInputNumberError.classList.add("form__msg-erro--show");
+            numberInput.ariaInvalid = "true";
             hasError = true;
-        } 
-
-        if (hasError === true) {
-            e.preventDefault();
         }
     });
+
+    // check radio inputs
+    let isChecked = false;
+    inputsRadio.forEach((radio) => {
+        if (radio.checked) {
+            isChecked = true;
+        }
+    });
+
+    if (!isChecked) {
+        hasError = true;
+        spanInputRadioError.classList.add("form__msg-erro--show");
+        inputRadioRepayment.ariaInvalid = "true";
+    }
+
+    if (hasError) {
+        e.preventDefault();
+    }
 }
 
+// listen the number inputs
+divNumberInputs.forEach((input) => {
+    input.addEventListener("focusin", focusNumberInput);
+    input.addEventListener("focusout", focusNumberInput);
+});
 
+// listen the radio inputs
+divRadioInputs.forEach((radio) => {
+    radio.addEventListener("click", clickRadio);
+});
 
