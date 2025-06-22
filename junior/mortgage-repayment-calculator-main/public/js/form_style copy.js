@@ -1,12 +1,10 @@
 const form = document.querySelector(".form");
 const divNumberInputs = form.querySelectorAll(".form__input-container");
-const numberInputs = form.querySelectorAll(".form__input");
 const divRadioInputs = form.querySelectorAll(".form__radio-container");
 const fieldsetRadio = form.querySelector(".form__fieldset");
 const inputsRadio = form.querySelectorAll(".form__radio");
 const inputRadioRepayment = inputsRadio[0];
 const spanInputRadioError = fieldsetRadio.querySelector(".form__msg-erro");
-const btnClear = document.querySelector(".content__btn-clear");
 
 if (!form) console.warn("Element form doesn't exist");
 if (!fieldsetRadio) console.warn("Element fieldset doesn't exist");
@@ -48,7 +46,6 @@ const focusNumberInput = function (e) {
     }
 }
 
-// select the radio clicked
 const clickRadio = function (e) {
     divRadioInputs.forEach((radio) => {
         if (radio.classList.contains("form__radio--checked")) {
@@ -111,26 +108,8 @@ export const checkEmptyInputs = function (e) {
     }
 
     if (hasError) {
-        hasError = true;
+        e.preventDefault();
     }
-
-    return hasError;
-}
-
-// clear all inputs and show element "results-shown-here"
-const clearInputs = function (e) {
-
-    numberInputs.forEach((input) => {
-        input.value = "";
-    });
-
-    divRadioInputs.forEach((radio) => {
-        const inputRadio = radio.querySelector(".form__radio");
-        inputRadio.checked = false;
-        if (radio.classList.contains("form__radio--checked")) {
-            radio.classList.remove("form__radio--checked");
-        }
-    });
 }
 
 // listen the number inputs
@@ -144,5 +123,3 @@ divRadioInputs.forEach((radio) => {
     radio.addEventListener("click", clickRadio);
 });
 
-// listen button clear all
-btnClear.addEventListener("click", clearInputs);

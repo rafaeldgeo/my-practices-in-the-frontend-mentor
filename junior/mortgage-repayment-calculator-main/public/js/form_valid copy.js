@@ -1,6 +1,10 @@
+import { checkEmptyInputs } from "./form_style.js"
+
+const form = document.querySelector(".form");
 const numberInputs = document.querySelectorAll(".form__input");
 const inputAmount = document.getElementById("amount");
 const inputRate = document.getElementById("rate");
+
 
 // sanitize inputs because I'm using type="text" in input
 numberInputs.forEach((input) => {
@@ -66,6 +70,5 @@ inputAmount.addEventListener("blur", inputFormatAmount);
 // listen the rate input
 inputRate.addEventListener("blur", inputFormatRate);
 
-
-
-
+// listen submit buttom 
+form.addEventListener("submit", checkEmptyInputs);

@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="/css/pretty-checkbox.min.css" />
     <script src="/js/form_style.js" type="module" defer></script>
     <script src="/js/form_valid.js" type="module" defer></script>
+    <script src="/js/form_submit.js" type="module" defer></script>
   </head>
   <body>
     <div class="container">
@@ -26,7 +27,7 @@
                 Clear All
               </button>
             </div>
-            <form class="form" action="">
+            <form class="form" novalidate>
               <div class="form__field">
                 <label class="form__label" for="amount">Mortgage Amount</label>
                 <div class="form__input-container form__input-container--hover">
@@ -38,6 +39,7 @@
                     class="form__input"
                     type="text"
                     id="amount"
+                    name="amount"
                     autocomplete="off"
                     aria-errormessage="amount-error"
                     aria-describedby="currency"
@@ -57,6 +59,7 @@
                       class="form__input"
                       type="text"
                       id="term"
+                      name="term"
                       autocomplete="off"
                       min="0"
                       aria-errormessage="term-error"
@@ -80,6 +83,7 @@
                       class="form__input"
                       type="text"
                       id="rate"
+                      name="rate"
                       autocomplete="off"
                       min="0"
                       step="0.01"
