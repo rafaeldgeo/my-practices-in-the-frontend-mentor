@@ -9,6 +9,8 @@ app.use(express.urlencoded({ extended: true })); // read datas of the form
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 app.use(express.static(path.join(__dirname, "public")));
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 app.use("/", siteRoutes); // connect the routes of the site
 

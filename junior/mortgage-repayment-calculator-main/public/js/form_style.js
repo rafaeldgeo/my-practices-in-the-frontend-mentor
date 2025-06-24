@@ -1,19 +1,20 @@
 const form = document.querySelector(".form");
 const divNumberInputs = form.querySelectorAll(".form__input-container");
-const numberInputs = form.querySelectorAll(".form__input");
+const inputsNumber = form.querySelectorAll(".form__input");
 const divRadioInputs = form.querySelectorAll(".form__radio-container");
 const fieldsetRadio = form.querySelector(".form__fieldset");
 const inputsRadio = form.querySelectorAll(".form__radio");
 const inputRadioRepayment = inputsRadio[0];
 const spanInputRadioError = fieldsetRadio.querySelector(".form__msg-erro");
 const btnClear = document.querySelector(".content__btn-clear");
+const divResults = document.querySelector(".results");
 
 if (!form) console.warn("Element form doesn't exist");
 if (!fieldsetRadio) console.warn("Element fieldset doesn't exist");
+if (!divResult) console.warn("Element doesn't exist");
 
-
-if (!divNumberInputs || !fieldsetRadio || !inputsRadio || !spanInputRadioError) {
-    console.warn("There's some problem with elements of the classes .form__input-container, .form__radio-container, .form__radio, .form__msg-erro");
+if (!divNumberInputs || !inputsNumber || !fieldsetRadio || !inputsRadio || !spanInputRadioError) {
+    console.warn("There's some problem with elements of the classes .form__input-container, .form__input, .form__radio-container, .form__radio, .form__msg-erro");
 }
 
 // format the number input when it's focus  
@@ -120,7 +121,7 @@ export const checkEmptyInputs = function (e) {
 // clear all inputs and show element "results-shown-here"
 const clearInputs = function (e) {
 
-    numberInputs.forEach((input) => {
+    inputsNumber.forEach((input) => {
         input.value = "";
     });
 
@@ -131,6 +132,11 @@ const clearInputs = function (e) {
             radio.classList.remove("form__radio--checked");
         }
     });
+
+    // if (divResult.classList.contains("results-your")) {
+    //     divResult.
+
+    // }
 }
 
 // listen the number inputs

@@ -26,6 +26,7 @@ numberInputs.forEach((input) => {
 
 // format of the input from input id="amount" 000.000
 const inputFormatAmount = function (e) {
+
     const defineFormatAmount = new Intl.NumberFormat("pt-BR", {
         style: "decimal",
         minimumFractionDigits: 3,
@@ -37,6 +38,7 @@ const inputFormatAmount = function (e) {
 
     valueInputed = valueInputed.replace(",", ".");
     let number = parseFloat(valueInputed);
+    console.log(number);
 
     if (!isNaN(number)) {
         e.target.value = defineFormatAmount.format(number);
@@ -47,7 +49,7 @@ const inputFormatAmount = function (e) {
 
 // format of the input from input id="rate" 0.00
 const inputFormatRate = function (e) {
-    
+
     let valueInputed = e.target.value;
     valueInputed = valueInputed.replace(/[^\d\.]/g, "");
 
