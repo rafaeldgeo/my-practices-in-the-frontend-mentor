@@ -6,7 +6,7 @@ const processForm = require("./public/process-form");
 
 // compile SASS from CSS
 function compileSass() {
-  const scssDir = path.join(__dirname, "public/scss");
+  const scssDir = path.join(__dirname, "src/scss");
   const cssDir = path.join(__dirname, "public/css");
 
   fs.readdirSync(scssDir).forEach((file) => {
@@ -26,7 +26,7 @@ function compileSass() {
 }
 
 // monitors changes in SASS file
-fs.watch(path.join(__dirname, "public/scss"), (event, filename) => {
+fs.watch(path.join(__dirname, "src/scss"), (event, filename) => {
   if (filename && filename.endsWith(".scss")) {
     console.log(`${filename} foi alterado. Recompilando SASS...`);
     compileSass();

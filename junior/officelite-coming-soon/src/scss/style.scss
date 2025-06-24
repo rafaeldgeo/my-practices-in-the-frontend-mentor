@@ -1,0 +1,576 @@
+@use "base";
+@include base.reset;
+
+html,
+body {
+  background-color: base.$background-page;
+  inline-size: 100%;
+}
+
+.container {
+  background-image: url("../assets/home/bg-pattern-header.svg");
+  background-position: center -160px;
+  background-repeat: no-repeat;
+  background-size: 120% auto;
+  inline-size: 100%;
+  margin: 0 auto;
+  max-inline-size: 100vw;
+
+  @include base.breakpoints(sm) {
+    background-position: 528% -13%;
+    background-size: 90% auto;
+    max-inline-size: 768px;
+  }
+
+  @include base.breakpoints(md) {
+    background-size: 75% auto;
+    background-position: 190% -40%;
+    max-inline-size: 1440px;
+  }
+}
+
+:is(.header, .main, .footer) {
+  padding-inline: base.fluidSpace(24);
+
+  @include base.breakpoints(sm) {
+    padding-inline: base.fluidSpace(39, tablet);
+  }
+
+  @include base.breakpoints(md) {
+    padding-inline: base.fluidSpace(165, desktop);
+  }
+}
+
+.header {
+  .logo {
+    padding-block-start: base.fluidSpace(46);
+
+    @include base.breakpoint-between(504.98, 768.98) {
+      padding-block-start: base.fluidSpace(72, tablet);
+    }
+
+    @include base.breakpoints(md) {
+      padding-block-start: base.fluidSpace(81, desktop);
+    }
+
+    &__img {
+      display: block;
+      margin: 0 auto;
+
+      @include base.breakpoints(ex) {
+        margin: 0;
+      }
+    }
+  }
+}
+
+.btn__get-start {
+  width: fit-content;
+  background-color: base.$blue-200;
+  border-radius: base.convertPxToRem(28);
+  box-shadow: 0 25px 25px -10px base.$btn-shadow;
+  color: base.$white;
+  cursor: pointer;
+  display: inline-block;
+  font-size: base.fluidTypo(10, 16);
+  font-weight: 800;
+  line-height: base.fluidLineHeight(10, 16, 1.75);
+  padding: base.fluidSpace(14) base.fluidSpace(41);
+  text-decoration: none;
+
+  @include base.breakpoint-between(504.98, 768.98) {
+    font-size: base.fluidTypo(10, 16, tablet);
+    line-height: base.fluidLineHeight(10, 16, 1.75, tablet);
+    padding: base.fluidSpace(14, tablet) base.fluidSpace(41, tablet);
+  }
+
+  @include base.breakpoints(md) {
+    font-size: base.fluidTypo(10, 16, desktop);
+    line-height: base.fluidLineHeight(10, 16, 1.75, desktop);
+    padding: base.fluidSpace(14, desktop) base.fluidSpace(41, desktop);
+  }
+}
+
+.btn__get-start:hover {
+  background-color: base.$blue-100;
+}
+
+main {
+  position: relative;
+}
+
+.hero {
+  align-items: center;
+  display: flex;
+  flex-flow: column-reverse;
+  gap: base.fluidSpace(64) 0;
+  padding-block: base.fluidSpace(80) base.fluidSpace(100);
+
+  @include base.breakpoint-between(504.98, 768.98) {
+    flex-flow: row;
+    gap: 0 base.fluidSpace(63, tablet);
+    padding-block: base.fluidSpace(104, tablet) base.fluidSpace(140, tablet);
+  }
+
+  @include base.breakpoints(md) {
+    flex-flow: row;
+    gap: 0 base.fluidSpace(95, desktop);
+    padding-block: base.fluidSpace(174, desktop) base.fluidSpace(184, desktop);
+  }
+
+  .content {
+    flex: auto;
+    text-align: center;
+
+    @include base.breakpoint-between(504.98, 768.98) {
+      flex: 0 1 345px;
+      text-align: start;
+    }
+
+    @include base.breakpoints(md) {
+      flex: 0 1 540px;
+      text-align: start;
+    }
+
+    &__title {
+      color: base.$grey-300;
+      font-size: base.fluidTypo(20, 40);
+      font-weight: 800;
+      line-height: base.fluidLineHeight(20, 40, 1.2);
+
+      @include base.breakpoint-between(504.98, 768.98) {
+        font-size: base.fluidTypo(20, 40, tablet);
+        line-height: base.fluidLineHeight(20, 40, 1.2, tablet);
+      }
+
+      @include base.breakpoints(md) {
+        font-size: base.fluidTypo(30, 56, desktop);
+        line-height: base.fluidLineHeight(30, 56, 1.143, desktop);
+      }
+    }
+
+    &__description {
+      color: base.$grey-100;
+      font-size: base.fluidTypo(10, 16);
+      font-weight: 400;
+      line-height: base.fluidLineHeight(10, 16, 1.63);
+      padding-block: base.fluidSpace(24);
+
+      @include base.breakpoint-between(504.98, 768.98) {
+        font-size: base.fluidTypo(10, 16, tablet);
+        line-height: base.fluidLineHeight(10, 16, 1.56, tablet);
+        padding-block: base.fluidSpace(24, tablet) base.fluidSpace(24, tablet);
+      }
+
+      @include base.breakpoints(md) {
+        font-size: base.fluidTypo(10, 18, desktop);
+        line-height: base.fluidLineHeight(10, 18, 1.56, desktop);
+        padding-block: base.fluidSpace(24, desktop) base.fluidSpace(32, desktop);
+      }
+    }
+  }
+
+  .charts {
+    block-size: auto;
+    display: block;
+    inline-size: 52.3%;
+
+    @include base.breakpoint-between(504.98, 768.98) {
+      flex-basis: 281px;
+    }
+
+    @include base.breakpoints(md) {
+      flex-basis: 475px;
+    }
+
+    &__img {
+      block-size: auto;
+      display: block;
+      inline-size: 100%;
+
+      @include base.breakpoint-between(504.98, 768.98) {
+        aspect-ratio: 281 / 314;
+      }
+
+      @include base.breakpoints(md) {
+        aspect-ratio: 475 / 531;
+      }
+    }
+  }
+}
+
+.plans {
+  display: flex;
+  flex-direction: column;
+  gap: base.fluidSpace(32) 0;
+  inline-size: 100%;
+  left: 50%;
+  padding-inline: base.fluidSpace(24);
+  position: absolute;
+  transform: translateX(-50%);
+  z-index: 1;
+
+  @include base.breakpoint-between(504.98, 768.98) {
+    flex-direction: column;
+    gap: base.fluidSpace(24, tablet) 0;
+    padding-inline: base.fluidSpace(39, tablet);
+  }
+
+  @include base.breakpoints(md) {
+    flex-direction: row;
+    gap: 0 base.fluidSpace(30, desktop);
+    padding-inline: base.fluidSpace(165, desktop);
+    top: calc(114% - 8rem);
+  }
+
+  .card {
+    align-content: space-between;
+    background-color: base.$white;
+    border-radius: base.convertPxToRem(13);
+    display: grid;
+    grid-template-columns: minmax(auto, 327px);
+    grid-template-rows: auto;
+    justify-content: center;
+    padding: base.fluidSpace(40) base.fluidSpace(48);
+    text-align: center;
+
+    grid-template-areas:
+      "header"
+      "body"
+      "footer";
+
+    @include base.breakpoint-between(504.98, 768.98) {
+      align-items: center;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto;
+      justify-content: flex-start;
+      padding: base.fluidSpace(48, tablet);
+      text-align: start;
+
+      grid-template-areas:
+        "header body"
+        "header body"
+        "footer body";
+    }
+
+    @include base.breakpoints(md) {
+      grid-template-columns: minmax(auto, 350px);
+      grid-template-rows: auto;
+      padding: base.fluidSpace(40) base.fluidSpace(48);
+      padding: base.fluidSpace(40, desktop);
+
+      grid-template-areas:
+        "header"
+        "body"
+        "footer";
+    }
+
+    &--emphasis {
+      background: no-repeat center -380px / auto url("../assets/home/bg-pattern-pricing.svg")
+        base.$blue-200;
+
+      @include base.breakpoint-between(504.98, 768.98) {
+        background-position: -320px center;
+      }
+    }
+
+    &__header {
+      color: base.$grey-200;
+      grid-area: header;
+    }
+
+    &--emphasis .card__header {
+      color: base.$white;
+    }
+
+    &__title {
+      font-size: base.fluidTypo(16, 20);
+      font-weight: 800;
+      line-height: base.fluidLineHeight(16, 20, 1.4);
+
+      @include base.breakpoint-between(504.98, 768.98) {
+        font-size: base.fluidTypo(16, 20, tablet);
+        line-height: base.fluidLineHeight(16, 20, 1.4, tablet);
+      }
+
+      @include base.breakpoints(md) {
+        font-size: base.fluidTypo(16, 20, desktop);
+        line-height: base.fluidLineHeight(16, 20, 1.4, desktop);
+      }
+    }
+
+    &__price {
+      display: block;
+      font-size: base.fluidTypo(36, 56);
+      font-weight: 800;
+      line-height: base.fluidLineHeight(36, 56, 1.143);
+      padding-block: base.fluidSpace(40) base.fluidSpace(8);
+
+      @include base.breakpoint-between(504.98, 768.98) {
+        font-size: base.fluidTypo(36, 56, tablet);
+        line-height: base.fluidLineHeight(36, 56, 1.143, tablet);
+        padding-block: base.fluidSpace(16, tablet) base.fluidSpace(4, tablet);
+      }
+
+      @include base.breakpoints(md) {
+        font-size: base.fluidTypo(36, 56, desktop);
+        line-height: base.fluidLineHeight(36, 56, 1.143, desktop);
+        padding-block: base.fluidSpace(40, desktop) base.fluidSpace(8, desktop);
+      }
+    }
+
+    &__included-in-plan {
+      font-size: base.fluidTypo(8, 16);
+      font-weight: 400;
+      line-height: base.fluidLineHeight(8, 16, 1.75);
+      padding-block-end: 0;
+
+      @include base.breakpoint-between(504.98, 768.98) {
+        font-size: base.fluidTypo(8, 16, tablet);
+        line-height: base.fluidLineHeight(8, 16, 1.75, tablet);
+        padding-block-end: base.fluidSpace(24, tablet);
+      }
+
+      @include base.breakpoints(md) {
+        font-size: base.fluidTypo(8, 16, desktop);
+        line-height: base.fluidLineHeight(8, 16, 1.75, desktop);
+      }
+    }
+
+    &__body {
+      grid-area: body;
+
+      @include base.breakpoint-between(504.98, 768.98) {
+        display: flex;
+        justify-content: center;
+      }
+
+      @include base.breakpoints(md) {
+      }
+    }
+
+    &__list-resources {
+      color: base.$grey-100;
+      font-size: base.fluidTypo(8, 16);
+      font-weight: 400;
+      line-height: base.fluidLineHeight(8, 16, 1.75);
+      list-style-type: none;
+      padding-block: base.fluidSpace(56) base.fluidSpace(32);
+
+      @include base.breakpoint-between(504.98, 768.98) {
+        font-size: base.fluidTypo(8, 16, tablet);
+        line-height: base.fluidLineHeight(8, 16, 1.75, tablet);
+        padding-block: 0 0;
+      }
+
+      @include base.breakpoints(md) {
+        font-size: base.fluidTypo(8, 16, desktop);
+        line-height: base.fluidLineHeight(8, 16, 1.75, desktop);
+        padding-block: base.fluidSpace(56, desktop) base.fluidSpace(32, desktop);
+      }
+    }
+
+    &--emphasis .card__list-resources {
+      color: base.$white;
+      opacity: 0.75;
+    }
+
+    &__list-item:nth-child(2) {
+      padding-block: base.fluidSpace(16);
+
+      @include base.breakpoint-between(504.98, 768.98) {
+        padding-block: base.fluidSpace(16, tablet);
+      }
+
+      @include base.breakpoints(md) {
+        padding-block: base.fluidSpace(16, desktop);
+      }
+    }
+
+    &__footer {
+      grid-area: footer;
+    }
+
+    &__btn {
+      background-color: base.$btn-background-try-for-free;
+      border: none;
+      border-radius: base.convertPxToRem(28);
+      color: base.$blue-200;
+      cursor: pointer;
+      font-size: base.fluidTypo(8, 16);
+      font-weight: 800;
+      line-height: base.fluidLineHeight(8, 16, 1.75);
+      padding: base.fluidSpace(14) base.fluidSpace(40);
+
+      @include base.breakpoint-between(504.98, 768.98) {
+        font-size: base.fluidTypo(8, 16, tablet);
+        line-height: base.fluidLineHeight(8, 16, 1.75, tablet);
+        padding: base.fluidSpace(14, tablet) base.fluidSpace(40, tablet);
+      }
+
+      @include base.breakpoints(md) {
+        font-size: base.fluidTypo(8, 16, desktop);
+        line-height: base.fluidLineHeight(8, 16, 1.75, desktop);
+        padding: base.fluidSpace(14, desktop) base.fluidSpace(40, desktop);
+      }
+    }
+
+    &--no-emphasis .card__btn:hover {
+      background-color: base.$btn-background-try-for-free-hover;
+    }
+
+    &--emphasis .card__btn {
+      background-color: base.$white;
+    }
+
+    &--emphasis .card__btn:hover {
+      color: base.$blue-100;
+    }
+  }
+}
+
+.footer {
+  background-color: base.$grey-300;
+  background-image: url("../assets/home/bg-pattern-footer.svg");
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  background-size: 300% auto;
+  margin-block-start: base.fluidSpace(794);
+
+  @include base.breakpoint-between(504.98, 768.98) {
+    background-position: center 6%;
+    background-size: 200% auto;
+    margin-block-start: base.fluidSpace(498, tablet);
+  }
+
+  @include base.breakpoints(md) {
+    background-position: -706px -620px;
+    background-size: auto;
+    margin-block-start: base.fluidSpace(254, desktop);
+  }
+}
+
+.offer {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  padding-block: base.fluidSpace(894) base.fluidSpace(76.41);
+  row-gap: base.fluidSpace(40);
+
+  @include base.breakpoint-between(504.98, 768.98) {
+    justify-content: space-between;
+    padding-block: base.fluidSpace(630.85, tablet)
+      base.fluidSpace(76.41, tablet);
+    row-gap: base.fluidSpace(48, tablet);
+  }
+
+  @include base.breakpoints(md) {
+    flex-direction: row;
+    justify-content: space-between;
+    padding-block: base.fluidSpace(336, desktop) base.fluidSpace(67.3, desktop);
+    row-gap: 0;
+  }
+
+  .time-counter {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+
+    @include base.breakpoints(md) {
+      align-items: start;
+    }
+
+    &__title {
+      color: base.$white;
+      font-size: base.fluidTypo(10, 16);
+      font-weight: 800;
+      letter-spacing: 5px;
+      line-height: base.fluidLineHeight(10, 16, 3);
+      text-transform: uppercase;
+
+      &-emphasis {
+        color: base.$blue-100;
+        font-style: normal;
+      }
+
+      @include base.breakpoint-between(504.98, 768.98) {
+        font-size: base.fluidTypo(10, 16, tablet);
+        line-height: base.fluidLineHeight(10, 16, 3, tablet);
+      }
+  
+      @include base.breakpoints(md) {
+        font-size: base.fluidTypo(10, 16);
+        line-height: base.fluidLineHeight(10, 16, 3, desktop);
+      }
+
+    }
+
+    .countdown {
+      column-gap: base.fluidSpace(13);
+      display: flex;
+
+      @include base.breakpoint-between(504.98, 768.98) {
+        column-gap: base.fluidSpace(16, tablet);
+      }
+
+      @include base.breakpoints(md) {
+        column-gap: base.fluidSpace(16, desktop);
+      }
+
+      .countdown__digit {
+        background-color: base.$grey-200;
+        border-radius: 0.8125rem;
+        color: base.$white;
+        display: flex;
+        flex-direction: column;
+        font-weight: 800;
+        padding: base.fluidSpace(16);
+        row-gap: 2.12px;
+        text-align: center;
+        inline-size: clamp(62px, 19.2vw, 72px);
+       
+        @include base.breakpoint-between(504.98, 768.98) {
+          padding: base.fluidSpace(16, tablet);
+          inline-size: clamp(70px, 13.1vw, 100px);
+        }
+
+        @include base.breakpoints(md) {
+          padding: base.fluidSpace(28.5, desktop) base.fluidSpace(16, desktop);
+          inline-size: clamp(70px, 7vw, 100px);
+        }
+      }
+
+      &__time {
+        font-size: base.fluidTypo(16, 32);
+        line-height: base.fluidLineHeight(16, 32, 0.858);
+
+        @include base.breakpoint-between(504.98, 768.98) {
+          font-size: base.fluidTypo(16, 56, tablet);
+          line-height: base.fluidLineHeight(16, 56, 0.858, tablet);
+        }
+
+        @include base.breakpoints(md) {
+          font-size: base.fluidTypo(16, 56, desktop);
+          line-height: base.fluidLineHeight(16, 56, 0.858, desktop);
+        }
+      }
+
+      &__period {
+        font-size: base.fluidTypo(8, 12);
+        line-height: base.fluidLineHeight(8, 12, 1.75);
+        opacity: 0.5;
+      }
+    }
+  }
+}
+
+.attribution {
+  color: base.$white;
+  font-size: 0.6875rem;
+  padding-block-end: 0.6rem;
+  text-align: center;
+
+  &__link {
+    color: base.$blue-200;
+  }
+}
