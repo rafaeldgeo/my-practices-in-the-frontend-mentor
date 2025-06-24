@@ -1,6 +1,7 @@
 import {checkEmptyInputs} from "./form_style.js";
 
 const form = document.querySelector(".form");
+const divResult = document.querySelector(".results");
 
 const submitForm = async function(e) {
     e.preventDefault();
@@ -17,7 +18,19 @@ const submitForm = async function(e) {
         type: formData.get("type")
     };
 
-    console.log(data);
+    try {
+        const response = await fetch("/calculate", {
+            method: "POST", 
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(data)
+        });
+
+        const html = await response.text();
+        divResult.innerHTML = html;
+
+    } catch (error) {
+        console.error("ERRO to calculate Mortage", error);
+    }
 }
 
 // listen submit buttom 

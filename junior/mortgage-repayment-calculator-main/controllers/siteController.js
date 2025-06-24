@@ -3,3 +3,7 @@
 exports.index = (req, res) => {
     res.render("index"); // show the home
 }
+
+exports.calculate = (req, res) => {
+    
+}
