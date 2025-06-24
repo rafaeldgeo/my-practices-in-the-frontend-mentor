@@ -38,9 +38,8 @@ const inputFormatAmount = function (e) {
 
     valueInputed = valueInputed.replace(",", ".");
     let number = parseFloat(valueInputed);
-    console.log(number);
 
-    if (!isNaN(number)) {
+    if (!isNaN(number) && number > 0) {
         e.target.value = defineFormatAmount.format(number);
     } else {
         e.target.value = "";

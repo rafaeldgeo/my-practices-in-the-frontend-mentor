@@ -8,10 +8,11 @@ const inputRadioRepayment = inputsRadio[0];
 const spanInputRadioError = fieldsetRadio.querySelector(".form__msg-erro");
 const btnClear = document.querySelector(".content__btn-clear");
 const divResults = document.querySelector(".results");
+const divResultShown = divResults.querySelector(".results-shown-here").outerHTML;
 
 if (!form) console.warn("Element form doesn't exist");
 if (!fieldsetRadio) console.warn("Element fieldset doesn't exist");
-if (!divResult) console.warn("Element doesn't exist");
+if (!divResults) console.warn("Element doesn't exist");
 
 if (!divNumberInputs || !inputsNumber || !fieldsetRadio || !inputsRadio || !spanInputRadioError) {
     console.warn("There's some problem with elements of the classes .form__input-container, .form__input, .form__radio-container, .form__radio, .form__msg-erro");
@@ -121,10 +122,12 @@ export const checkEmptyInputs = function (e) {
 // clear all inputs and show element "results-shown-here"
 const clearInputs = function (e) {
 
+    // clear inputs number
     inputsNumber.forEach((input) => {
         input.value = "";
     });
 
+    // clear inputs radio
     divRadioInputs.forEach((radio) => {
         const inputRadio = radio.querySelector(".form__radio");
         inputRadio.checked = false;
@@ -133,10 +136,12 @@ const clearInputs = function (e) {
         }
     });
 
-    // if (divResult.classList.contains("results-your")) {
-    //     divResult.
+    // change element result
+    const divResultsYour = divResults.querySelector(".results-your");
 
-    // }
+    if (divResultsYour) {
+        divResults.innerHTML = divResultShown;
+    }
 }
 
 // listen the number inputs

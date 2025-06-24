@@ -13,7 +13,6 @@ const validInputs = (amount, term, rate, type) => {
         typeof rate !== "string" || isNaN(parseFloat(rate)) || parseFloat(rate) <= 0 ||
         !["repayment", "interest"].includes(type)
 
-
     if (isInvalid) {
         return false;
     }
