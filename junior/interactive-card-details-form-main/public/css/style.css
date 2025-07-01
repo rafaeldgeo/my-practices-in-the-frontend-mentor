@@ -57,6 +57,25 @@ body {
   justify-content: center;
 }
 
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  border: 0;
+  padding: 0;
+  margin: -1px;
+  clip: rect(0, 0, 0, 0);
+}
+@supports (clip-path: inset(50%)) {
+  .sr-only {
+    clip: auto;
+    clip: inset(50%);
+  }
+}
+
 .content {
   max-inline-size: 1110px;
   inline-size: 100%;
@@ -90,13 +109,13 @@ body {
   flex-shrink: 1;
 }
 .footer .attribution {
-  color: #21092F;
+  color: #D53AFF;
   font-size: 0.6875rem;
   padding-block: 0.5rem;
   text-align: center;
 }
 .footer .attribution__link {
-  color: #D53AFF;
+  color: #21092F;
 }
 
 /*# sourceMappingURL=style.css.map */
