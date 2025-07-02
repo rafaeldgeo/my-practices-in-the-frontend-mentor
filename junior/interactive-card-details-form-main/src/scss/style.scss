@@ -6,13 +6,12 @@ html,
 body {
   background-color: base.$white;
   block-size: 100vh;
+  inline-size: 100%;
+  max-inline-size: 100vw;
 
   @supports (height: 100dvh) {
     block-size: 100dvh;
   }
-
-  inline-size: 100%;
-  max-inline-size: 100vw;
 }
 
 body {
@@ -78,17 +77,42 @@ body {
 }
 
 .card-front {
+  background: base.$purple-500 url("/images/bg-card-front.png") no-repeat center / cover;
   border-radius: base.convertPxToRem(10);
+  color: base.$white;
+  display: flex;
+  flex-direction: column;
   grid-column: 1 / 6;
   grid-row: 1 / 4;
-  background: url("/images/bg-card-front.png") no-repeat center / cover;
+  justify-content: space-between;
+  padding: base.fluidSpace(28, "desktop") base.fluidSpace(31.93, "desktop");
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    row-gap: base.convertPxToRem(22);
+  }
+  &__number {
+    font-size: base.fluidTypo(18, 28, "desktop");
+    font-weight: 500;
+    letter-spacing: 3.5px;
+    line-height: base.fluidLineHeight(20, 28, 1.29);
+  }
+
+  &__id {
+    display: flex;
+    font-size: base.fluidTypo(10, 14, "desktop");
+    justify-content: space-between;
+    letter-spacing: 2px;
+  }
 }
 
 .card-back {
+  background: base.$gray-200 url("/images/bg-card-back.png") no-repeat center / cover;
   border-radius: base.convertPxToRem(10);
   grid-column: 2 / 7;
   grid-row: 4 / 7;
-  background: url("/images/bg-card-back.png") no-repeat center / cover;
 }
 
 .form {
