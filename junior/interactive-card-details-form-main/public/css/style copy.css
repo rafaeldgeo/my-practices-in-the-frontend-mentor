@@ -65,6 +65,8 @@ body {
   margin: -1px;
   overflow: hidden;
   border: 0;
+  padding: 0;
+  margin: -1px;
   clip: rect(0, 0, 0, 0);
 }
 @supports (clip-path: inset(50%)) {
@@ -79,17 +81,18 @@ body {
   inline-size: 100%;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(6, minmax(auto, 60px));
   gap: min(2.2222222222vw, 2rem) min(2.0833333333vw, 1.875rem);
 }
 
 .card-front {
-  aspect-ratio: 445/244;
   background: #D53AFF url("/images/bg-card-front.png") no-repeat center/cover;
   border-radius: 0.625rem;
   color: #FFFFFF;
   display: flex;
   flex-direction: column;
   grid-column: 1/6;
+  grid-row: 1/4;
   justify-content: space-between;
   padding: min(1.9444444444vw, 1.75rem) min(2.2173611111vw, 1.995625rem);
 }
@@ -97,9 +100,9 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  row-gap: min(1.5277777778vw, 1.375rem);
+  row-gap: 1.375rem;
 }
-.card-front__card-number {
+.card-front__number {
   font-size: clamp(1.125rem, 0.5rem + 1.3888888889vw, 1.75rem);
   font-weight: 500;
   letter-spacing: 3.5px;
@@ -108,110 +111,21 @@ body {
 .card-front__id {
   display: flex;
   font-size: clamp(0.625rem, 0.5rem + 0.4166666667vw, 0.875rem);
-  font-weight: 500;
   justify-content: space-between;
   letter-spacing: 2px;
 }
 
 .card-back {
-  aspect-ratio: 445/244;
   background: #DFDEE0 url("/images/bg-card-back.png") no-repeat center/cover;
   border-radius: 0.625rem;
   grid-column: 2/7;
-  position: relative;
-}
-.card-back__cvc {
-  display: inline;
-  color: #FFFFFF;
-  font-size: clamp(0.625rem, 0.5rem + 0.4166666667vw, 0.875rem);
-  font-weight: 500;
-  letter-spacing: 2px;
-  position: absolute;
-  left: 86%;
-  top: 49%;
-  transform: translate(-86%, -49%);
-}
-
-.customer-datas {
-  grid-column: 8/13;
-  grid-row: 1/3;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  grid-row: 4/7;
 }
 
 .form {
-  inline-size: 100%;
-  max-inline-size: 407px;
-  padding-inline-end: min(1.6666666667vw, 1.5rem);
-  display: flex;
-  flex-direction: column;
-  row-gap: min(2.7777777778vw, 2.5rem);
-}
-.form__container-fields {
-  display: flex;
-  flex-direction: column;
-  row-gap: min(1.6666666667vw, 1.5rem);
-}
-.form__field {
-  display: flex;
-  flex-direction: column;
-  row-gap: min(0.5555555556vw, 0.5rem);
-}
-.form__field-group-row {
-  display: flex;
-  column-gap: min(1.6666666667vw, 1.5rem);
-  justify-content: space-between;
-}
-.form__field-group-row .form__field:nth-child(1) {
-  flex: 0 1 168px;
-}
-.form__field-group-row .form__field:last-child {
-  flex: 0 1 191px;
-}
-.form__label-input {
-  display: block;
-  color: #21092F;
-  text-transform: uppercase;
-  font-size: clamp(0.5rem, 0.5rem + 0.2777777778vw, 0.75rem);
-  line-height: calc(clamp(0.5rem, 0.5rem + 0.2777777778vw, 0.75rem) * 1.25);
-  font-weight: 500;
-}
-.form__input {
-  background-color: #FFFFFF;
-  border: 1px solid #DFDEE0;
-  border-radius: 0.5rem;
-  color: #21092F;
-  font-size: clamp(0.625rem, 0.5rem + 0.6944444444vw, 1.125rem);
-  font-weight: 500;
-  inline-size: 100%;
-  line-height: calc(clamp(0.625rem, 0.5rem + 0.6944444444vw, 1.125rem) * 1.28);
-  padding: min(0.7638888889vw, 0.6875rem) min(1.1111111111vw, 1rem);
-}
-.form__input::placeholder {
-  color: #DFDEE0;
-  font-size: clamp(0.625rem, 0.5rem + 0.6944444444vw, 1.125rem);
-  font-weight: 500;
-  line-height: calc(clamp(0.625rem, 0.5rem + 0.6944444444vw, 1.125rem) * 1.28);
-}
-.form__input:focus {
-  outline: none;
-}
-.form__input-row {
-  column-gap: min(0.5555555556vw, 0.5rem);
-  display: flex;
-}
-
-.btn {
-  background-color: #21092F;
-  border: none;
-  border-radius: 0.5rem;
-  color: #FFFFFF;
-  font-size: clamp(0.625rem, 0.5rem + 0.6944444444vw, 1.125rem);
-  font-weight: 500;
-  inline-size: 100%;
-  padding: min(1.0416666667vw, 0.9375rem);
-  text-align: center;
+  grid-column: 8/12;
+  grid-row: 1/7;
+  background-color: yellow;
 }
 
 .footer {
@@ -227,4 +141,4 @@ body {
   color: #21092F;
 }
 
-/*# sourceMappingURL=style.css.map */
+/*# sourceMappingURL=style%20copy.css.map */
