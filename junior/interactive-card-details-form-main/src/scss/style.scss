@@ -26,17 +26,42 @@ body {
   }
 }
 
+.sr-only {
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+
+  @supports (clip-path: inset(50%)) {
+    clip: auto;
+    clip: inset(50%);
+  }
+}
+
 .container {
   align-items: center;
-  background-image: url("/images/bg-main-desktop.png");
-  background-position: left top;
+  background-image: url("/images/bg-main-mobile.png");
   background-repeat: no-repeat;
-  background-size: clamp(200px, 33.55vw, 483px) 100%;
+  background-size: 100% 240px;
   display: flex;
   flex-direction: column;
   inline-size: 100%;
-  max-inline-size: 1440px;
   min-block-size: 100%;
+
+  @include base.breakpoints(sm) {
+    background-size: 100% 340px;
+  }
+
+  @include base.breakpoints(md) {
+    background-image: url("/images/bg-main-desktop.png");
+    background-position: left top;
+    background-size: clamp(200px, 33.55vw, 483px) 100%;
+    max-inline-size: 1440px;
+  }
 }
 
 .main {
@@ -45,122 +70,229 @@ body {
   flex: 1 0 auto;
   flex-direction: column;
   inline-size: 100%;
-  justify-content: center;
-}
+  justify-content: flex-start;
 
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  border: 0;
-
-  clip: rect(0, 0, 0, 0);
-
-  @supports (clip-path: inset(50%)) {
-    clip: auto;
-    clip: inset(50%);
+  @include base.breakpoints(md) {
+    justify-content: center;
   }
 }
 
 .content {
-  max-inline-size: 1110px;
-  inline-size: 100%;
   display: grid;
-  grid-template-columns: repeat(12, 1fr);
   gap: base.fluidSpace(32, "desktop") base.fluidSpace(30, "desktop");
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: auto;
+  inline-size: 100%;
+
+  @include base.breakpoints(sm) {
+    gap: base.convertPxToRem(9) base.convertPxToRem(30);
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(12, 60px);
+    max-inline-size: 540px;
+    padding-block-start: base.convertPxToRem(32);
+  }
+
+  @include base.breakpoints(md) {
+    grid-template-rows: repeat(2, auto);
+    gap: base.fluidSpace(32, "desktop") base.fluidSpace(30, "desktop");
+    grid-template-columns: repeat(12, 1fr);
+    max-inline-size: 1110px;
+    padding-block-start: 0;
+  }
 }
 
 .card-front {
   aspect-ratio: 445 / 244;
+  border-radius: base.convertPxToRem(10);
   background: base.$purple-500 url("/images/bg-card-front.png") no-repeat center /
     cover;
-  border-radius: base.convertPxToRem(10);
   color: base.$white;
   display: flex;
   flex-direction: column;
-  grid-column: 1 / 6;
   justify-content: space-between;
   padding: base.fluidSpace(28, "desktop") base.fluidSpace(31.93, "desktop");
 
-  &__info {
+  @include base.breakpoints(sm) {
+    grid-column: 1 / -2;
+    grid-row: 3 / -1;
+    padding: base.convertPxToRem(28) base.convertPxToRem(31);
+    z-index: 1;
+  }
+
+  @include base.breakpoints(md) {
+    grid-column: 1 / -8;
+    grid-row: 1 / -2;
+    padding: base.fluidSpace(28, "desktop") base.fluidSpace(31.93, "desktop");
+  }
+
+  &__info-wrapper {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     row-gap: base.fluidSpace(22, "desktop");
+
+    @include base.breakpoints(sm) {
+      row-gap: base.convertPxToRem(22);
+    }
+
+    @include base.breakpoints(md) {
+      row-gap: base.fluidSpace(22, "desktop");
+    }
   }
 
   &__card-number {
     font-size: base.fluidTypo(18, 28, "desktop");
     font-weight: 500;
     letter-spacing: 3.5px;
-    line-height: base.fluidLineHeight(20, 28, 1.29);
+    line-height: base.fluidLineHeight(20, 28, 1.29, "desktop");
+
+    @include base.breakpoints(sm) {
+      font-size: base.convertPxToRem(28);
+      line-height: 1.29;
+    }
+
+    @include base.breakpoints(md) {
+      font-size: base.fluidTypo(18, 28, "desktop");
+      line-height: base.fluidLineHeight(20, 28, 1.29, "desktop");
+    }
   }
 
-  &__id {
+  &__id-wrapper {
     display: flex;
     font-size: base.fluidTypo(10, 14, "desktop");
     font-weight: 500;
     justify-content: space-between;
     letter-spacing: 2px;
+
+    @include base.breakpoints(sm) {
+      font-size: base.convertPxToRem(14);
+    }
+
+    @include base.breakpoints(md) {
+      font-size: base.fluidTypo(10, 14, "desktop");
+    }
   }
 }
 
 .card-back {
   aspect-ratio: 445 / 244;
+  border-radius: base.convertPxToRem(10);
   background: base.$gray-200 url("/images/bg-card-back.png") no-repeat center /
     cover;
-  border-radius: base.convertPxToRem(10);
   grid-column: 2 / 7;
   position: relative;
 
+  @include base.breakpoints(sm) {
+    grid-column: 2 / -1;
+    grid-row: 1 / -9;
+  }
+
+  @include base.breakpoints(md) {
+    grid-column: 2 / -7;
+    grid-row: 2 / -1;
+  }
+
   &__cvc {
-    display: inline;
     color: base.$white;
+    display: inline;
     font-size: base.fluidTypo(10, 14, "desktop");
     font-weight: 500;
+    left: 86%;
     letter-spacing: 2px;
     position: absolute;
-    left: 86%;
     top: 49%;
     transform: translate(-86%, -49%);
+
+    @include base.breakpoints(sm) {
+      font-size: base.convertPxToRem(14);
+    }
+
+    @include base.breakpoints(sm) {
+      font-size: base.fluidTypo(10, 14, "desktop");
+    }
   }
 }
 
 .customer-datas {
-  grid-column: 8 / 13;
-  grid-row: 1 / 3;
   display: flex;
   flex-direction: column;
+  grid-column: 8 / 13;
+  grid-row: 1 / 3;
   justify-content: center;
+
+  @include base.breakpoints(sm) {
+    grid-column: 1 / -1;
+    grid-row: 7 / -1;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @include base.breakpoints(md) {
+    grid-column: 8 / -1;
+    grid-row: 1 / 3;
+  }
 }
 
 .form {
+  display: flex;
+  flex-direction: column;
   inline-size: 100%;
   max-inline-size: 407px;
   padding-inline-end: base.fluidSpace(24, "desktop");
-  display: flex;
-  flex-direction: column;
   row-gap: base.fluidSpace(40, "desktop");
+
+  @include base.breakpoints(sm) {
+    max-inline-size: 383px;
+    padding-inline-end: 0;
+    row-gap: base.convertPxToRem(40);
+  }
+
+  @include base.breakpoints(md) {
+    max-inline-size: 407px;
+    padding-inline-end: base.fluidSpace(24, "desktop");
+    row-gap: base.fluidSpace(40, "desktop");
+  }
 
   &__container-fields {
     display: flex;
     flex-direction: column;
     row-gap: base.fluidSpace(24, "desktop");
+
+    @include base.breakpoints(sm) {
+      row-gap: base.convertPxToRem(24);
+    }
+
+    @include base.breakpoints(md) {
+      row-gap: base.fluidSpace(24, "desktop");
+    }
   }
 
   &__field {
     display: flex;
     flex-direction: column;
     row-gap: base.fluidSpace(8, "desktop");
+
+    @include base.breakpoints(sm) {
+      row-gap: base.convertPxToRem(8);
+    }
+
+    @include base.breakpoints(md) {
+      row-gap: base.fluidSpace(8, "desktop");
+    }
   }
 
   &__field-group-row {
-    display: flex;
     column-gap: base.fluidSpace(24, "desktop");
+    display: flex;
     justify-content: space-between;
+
+    @include base.breakpoints(sm) {
+      column-gap: base.convertPxToRem(24);
+    }
+
+    @include base.breakpoints(md) {
+      column-gap: base.fluidSpace(24, "desktop");
+    }
 
     .form__field:nth-child(1) {
       flex: 0 1 168px;
@@ -172,12 +304,22 @@ body {
   }
 
   &__label-input {
-    display: block;
     color: base.$purple-950;
-    text-transform: uppercase;
+    display: block;
     font-size: base.fluidTypo(8, 12, "desktop");
-    line-height: base.fluidLineHeight(8, 12, 1.25, "desktop");
     font-weight: 500;
+    line-height: base.fluidLineHeight(8, 12, 1.25, "desktop");
+    text-transform: uppercase;
+
+    @include base.breakpoints(sm) {
+      font-size: base.convertPxToRem(12);
+      line-height: 1.25;
+    }
+
+    @include base.breakpoints(md) {
+      font-size: base.fluidTypo(8, 12, "desktop");
+      line-height: base.fluidLineHeight(8, 12, 1.25, "desktop");
+    }
   }
 
   &__input {
@@ -190,13 +332,35 @@ body {
     inline-size: 100%;
     line-height: base.fluidLineHeight(10, 18, 1.28, "desktop");
     padding: base.fluidSpace(11, "desktop") base.fluidSpace(16, "desktop");
-}
+
+    @include base.breakpoints(sm) {
+      font-size: base.convertPxToRem(18);
+      line-height: 1.28;
+      padding: base.convertPxToRem(11) base.convertPxToRem(16);
+    }
+
+    @include base.breakpoints(md) {
+      font-size: base.fluidTypo(10, 18, "desktop");
+      line-height: base.fluidLineHeight(10, 18, 1.28, "desktop");
+      padding: base.fluidSpace(11, "desktop") base.fluidSpace(16, "desktop");
+    }
+  }
 
   &__input::placeholder {
     color: base.$gray-200;
     font-size: base.fluidTypo(10, 18, "desktop");
     font-weight: 500;
     line-height: base.fluidLineHeight(10, 18, 1.28, "desktop");
+
+    @include base.breakpoints(sm) {
+      font-size: base.convertPxToRem(18);
+      line-height: 1.28;
+    }
+
+    @include base.breakpoints(md) {
+      font-size: base.fluidTypo(10, 18, "desktop");
+      line-height: base.fluidLineHeight(10, 18, 1.28, "desktop");
+    }
   }
 
   &__input:focus {
@@ -206,6 +370,33 @@ body {
   &__input-row {
     column-gap: base.fluidSpace(8, "desktop");
     display: flex;
+
+    @include base.breakpoints(sm) {
+      column-gap: base.convertPxToRem(8);
+    }
+
+    @include base.breakpoints(md) {
+      column-gap: base.fluidSpace(8, "desktop");
+    }
+  }
+
+  &__input-error {
+    color: base.$red;
+    display: none;
+    font-size: base.fluidTypo(8, 12, "desktop");
+    font-weight: 500;
+
+    @include base.breakpoints(sm) {
+      font-size: base.convertPxToRem(12);
+    }
+
+    @include base.breakpoints(md) {
+      font-size: base.fluidTypo(8, 12, "desktop");
+    }
+  }
+
+  &__input-error--show {
+    display: block;
   }
 }
 
@@ -219,6 +410,16 @@ body {
   inline-size: 100%;
   padding: base.fluidSpace(15, "desktop");
   text-align: center;
+
+  @include base.breakpoints(sm) {
+    font-size: base.convertPxToRem(18);
+    padding: base.convertPxToRem(15);
+  }
+
+  @include base.breakpoints(md) {
+    font-size: base.fluidTypo(10, 18, "desktop");
+    padding: base.fluidSpace(15, "desktop");
+  }
 }
 
 .footer {
