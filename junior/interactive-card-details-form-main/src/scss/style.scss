@@ -79,10 +79,12 @@ body {
 
 .content {
   display: grid;
-  gap: base.fluidSpace(32, "desktop") base.fluidSpace(30, "desktop");
-  grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: auto;
+  gap: base.fluidSpace(13) 0;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(8, 30px);
+  max-inline-size: 342px;
   inline-size: 100%;
+  padding-block-start: base.convertPxToRem(32);
 
   @include base.breakpoints(sm) {
     gap: base.convertPxToRem(9) base.convertPxToRem(30);
@@ -102,7 +104,7 @@ body {
 }
 
 .card-front {
-  aspect-ratio: 445 / 244;
+  aspect-ratio: 285 / 156.21;
   border-radius: base.convertPxToRem(10);
   background: base.$purple-500 url("/images/bg-card-front.png") no-repeat center /
     cover;
@@ -110,9 +112,13 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: base.fluidSpace(28, "desktop") base.fluidSpace(31.93, "desktop");
+  padding: base.fluidSpace(18.1) base.fluidSpace(19.95);
+  grid-column: 1 / -2;
+  grid-row: 3 / -1;
+  z-index: 1;
 
   @include base.breakpoints(sm) {
+    aspect-ratio: 445 / 244;
     grid-column: 1 / -2;
     grid-row: 3 / -1;
     padding: base.convertPxToRem(28) base.convertPxToRem(31);
@@ -120,6 +126,7 @@ body {
   }
 
   @include base.breakpoints(md) {
+    aspect-ratio: 445 / 244;
     grid-column: 1 / -8;
     grid-row: 1 / -2;
     padding: base.fluidSpace(28, "desktop") base.fluidSpace(31.93, "desktop");
@@ -129,7 +136,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    row-gap: base.fluidSpace(22, "desktop");
+    row-gap: base.fluidSpace(16);
 
     @include base.breakpoints(sm) {
       row-gap: base.convertPxToRem(22);
@@ -141,10 +148,10 @@ body {
   }
 
   &__card-number {
-    font-size: base.fluidTypo(18, 28, "desktop");
+    font-size: base.fluidTypo(10, 18);
     font-weight: 500;
-    letter-spacing: 3.5px;
-    line-height: base.fluidLineHeight(20, 28, 1.29, "desktop");
+    letter-spacing: 2.4px;
+    line-height: base.fluidLineHeight(10, 18, 1.29);
 
     @include base.breakpoints(sm) {
       font-size: base.convertPxToRem(28);
@@ -159,35 +166,40 @@ body {
 
   &__id-wrapper {
     display: flex;
-    font-size: base.fluidTypo(10, 14, "desktop");
+    font-size: base.fluidTypo(6, 9);
     font-weight: 500;
     justify-content: space-between;
-    letter-spacing: 2px;
+    letter-spacing: 1.25px;
 
     @include base.breakpoints(sm) {
       font-size: base.convertPxToRem(14);
+      letter-spacing: 2px;
     }
 
     @include base.breakpoints(md) {
       font-size: base.fluidTypo(10, 14, "desktop");
+      letter-spacing: 2px;
     }
   }
 }
 
 .card-back {
-  aspect-ratio: 445 / 244;
+  aspect-ratio: 285 / 156.21;
   border-radius: base.convertPxToRem(10);
   background: base.$gray-200 url("/images/bg-card-back.png") no-repeat center /
     cover;
-  grid-column: 2 / 7;
   position: relative;
+  grid-column: 2 / -1;
+  grid-row: 1 / 2;
 
   @include base.breakpoints(sm) {
+    aspect-ratio: 445 / 244;
     grid-column: 2 / -1;
     grid-row: 1 / -9;
   }
 
   @include base.breakpoints(md) {
+    aspect-ratio: 445 / 244;
     grid-column: 2 / -7;
     grid-row: 2 / -1;
   }
@@ -195,19 +207,20 @@ body {
   &__cvc {
     color: base.$white;
     display: inline;
-    font-size: base.fluidTypo(10, 14, "desktop");
+    font-size: base.fluidTypo(6, 9);
     font-weight: 500;
     left: 86%;
-    letter-spacing: 2px;
+    letter-spacing: 1.25px;
     position: absolute;
     top: 49%;
     transform: translate(-86%, -49%);
 
     @include base.breakpoints(sm) {
       font-size: base.convertPxToRem(14);
+      letter-spacing: 2px;
     }
 
-    @include base.breakpoints(sm) {
+    @include base.breakpoints(md) {
       font-size: base.fluidTypo(10, 14, "desktop");
     }
   }

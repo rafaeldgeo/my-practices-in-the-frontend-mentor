@@ -92,10 +92,12 @@ body {
 
 .content {
   display: grid;
-  gap: min(2.2222222222vw, 2rem) min(2.0833333333vw, 1.875rem);
-  grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: auto;
+  gap: min(3.4666666667vw, 0.8125rem) 0;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(8, 30px);
+  max-inline-size: 342px;
   inline-size: 100%;
+  padding-block-start: 2rem;
 }
 @media (min-width: 575.98px) {
   .content {
@@ -117,17 +119,21 @@ body {
 }
 
 .card-front {
-  aspect-ratio: 445/244;
+  aspect-ratio: 285/156.21;
   border-radius: 0.625rem;
   background: #D53AFF url("/images/bg-card-front.png") no-repeat center/cover;
   color: #FFFFFF;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: min(1.9444444444vw, 1.75rem) min(2.2173611111vw, 1.995625rem);
+  padding: min(4.8266666667vw, 1.13125rem) min(5.32vw, 1.246875rem);
+  grid-column: 1/-2;
+  grid-row: 3/-1;
+  z-index: 1;
 }
 @media (min-width: 575.98px) {
   .card-front {
+    aspect-ratio: 445/244;
     grid-column: 1/-2;
     grid-row: 3/-1;
     padding: 1.75rem 1.9375rem;
@@ -136,6 +142,7 @@ body {
 }
 @media (min-width: 768.98px) {
   .card-front {
+    aspect-ratio: 445/244;
     grid-column: 1/-8;
     grid-row: 1/-2;
     padding: min(1.9444444444vw, 1.75rem) min(2.2173611111vw, 1.995625rem);
@@ -145,7 +152,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  row-gap: min(1.5277777778vw, 1.375rem);
+  row-gap: min(4.2666666667vw, 1rem);
 }
 @media (min-width: 575.98px) {
   .card-front__info-wrapper {
@@ -158,10 +165,10 @@ body {
   }
 }
 .card-front__card-number {
-  font-size: clamp(1.125rem, 0.5rem + 1.3888888889vw, 1.75rem);
+  font-size: clamp(0.625rem, 0.5rem + 2.6666666667vw, 1.125rem);
   font-weight: 500;
-  letter-spacing: 3.5px;
-  line-height: calc(clamp(1.25rem, 0.5rem + 1.3888888889vw, 1.75rem) * 1.29);
+  letter-spacing: 2.4px;
+  line-height: calc(clamp(0.625rem, 0.5rem + 2.6666666667vw, 1.125rem) * 1.29);
 }
 @media (min-width: 575.98px) {
   .card-front__card-number {
@@ -177,37 +184,42 @@ body {
 }
 .card-front__id-wrapper {
   display: flex;
-  font-size: clamp(0.625rem, 0.5rem + 0.4166666667vw, 0.875rem);
+  font-size: clamp(0.375rem, 0.5rem + 0.2666666667vw, 0.5625rem);
   font-weight: 500;
   justify-content: space-between;
-  letter-spacing: 2px;
+  letter-spacing: 1.25px;
 }
 @media (min-width: 575.98px) {
   .card-front__id-wrapper {
     font-size: 0.875rem;
+    letter-spacing: 2px;
   }
 }
 @media (min-width: 768.98px) {
   .card-front__id-wrapper {
     font-size: clamp(0.625rem, 0.5rem + 0.4166666667vw, 0.875rem);
+    letter-spacing: 2px;
   }
 }
 
 .card-back {
-  aspect-ratio: 445/244;
+  aspect-ratio: 285/156.21;
   border-radius: 0.625rem;
   background: #DFDEE0 url("/images/bg-card-back.png") no-repeat center/cover;
-  grid-column: 2/7;
   position: relative;
+  grid-column: 2/-1;
+  grid-row: 1/2;
 }
 @media (min-width: 575.98px) {
   .card-back {
+    aspect-ratio: 445/244;
     grid-column: 2/-1;
     grid-row: 1/-9;
   }
 }
 @media (min-width: 768.98px) {
   .card-back {
+    aspect-ratio: 445/244;
     grid-column: 2/-7;
     grid-row: 2/-1;
   }
@@ -215,10 +227,10 @@ body {
 .card-back__cvc {
   color: #FFFFFF;
   display: inline;
-  font-size: clamp(0.625rem, 0.5rem + 0.4166666667vw, 0.875rem);
+  font-size: clamp(0.375rem, 0.5rem + 0.2666666667vw, 0.5625rem);
   font-weight: 500;
   left: 86%;
-  letter-spacing: 2px;
+  letter-spacing: 1.25px;
   position: absolute;
   top: 49%;
   transform: translate(-86%, -49%);
@@ -226,9 +238,10 @@ body {
 @media (min-width: 575.98px) {
   .card-back__cvc {
     font-size: 0.875rem;
+    letter-spacing: 2px;
   }
 }
-@media (min-width: 575.98px) {
+@media (min-width: 768.98px) {
   .card-back__cvc {
     font-size: clamp(0.625rem, 0.5rem + 0.4166666667vw, 0.875rem);
   }
