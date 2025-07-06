@@ -56,23 +56,24 @@ body {
   align-items: center;
   background-image: url("/images/bg-main-mobile.png");
   background-repeat: no-repeat;
-  background-size: 100% 240px;
+  background-size: 100% 15rem;
   display: flex;
   flex-direction: column;
   inline-size: 100%;
   min-block-size: 100%;
+  padding-inline: min(4.2666666667vw, 1rem);
 }
 @media (min-width: 575.98px) {
   .container {
-    background-size: 100% 340px;
+    background-size: 100% 21.25rem;
   }
 }
 @media (min-width: 768.98px) {
   .container {
     background-image: url("/images/bg-main-desktop.png");
     background-position: left top;
-    background-size: clamp(200px, 33.55vw, 483px) 100%;
-    max-inline-size: 1440px;
+    background-size: clamp(12.5rem, 33.55vw, 30.1875rem) 100%;
+    max-inline-size: 90rem;
   }
 }
 
@@ -94,8 +95,8 @@ body {
   display: grid;
   gap: min(3.4666666667vw, 0.8125rem) 0;
   grid-template-columns: repeat(6, 1fr);
-  grid-template-rows: repeat(8, 30px);
-  max-inline-size: 342px;
+  grid-template-rows: repeat(8, 1.875rem);
+  max-inline-size: 23.375rem;
   inline-size: 100%;
   padding-block-start: 2rem;
 }
@@ -103,8 +104,8 @@ body {
   .content {
     gap: 0.5625rem 1.875rem;
     grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: repeat(12, 60px);
-    max-inline-size: 540px;
+    grid-template-rows: repeat(12, 3.75rem);
+    max-inline-size: 33.75rem;
     padding-block-start: 2rem;
   }
 }
@@ -113,7 +114,7 @@ body {
     grid-template-rows: repeat(2, auto);
     gap: min(2.2222222222vw, 2rem) min(2.0833333333vw, 1.875rem);
     grid-template-columns: repeat(12, 1fr);
-    max-inline-size: 1110px;
+    max-inline-size: 69.375rem;
     padding-block-start: 0;
   }
 }
@@ -130,6 +131,15 @@ body {
   grid-column: 1/-2;
   grid-row: 3/-1;
   z-index: 1;
+}
+.card-front__logo {
+  inline-size: 3.1875rem;
+  block-size: auto;
+}
+@media (min-width: 575.98px) {
+  .card-front__logo {
+    inline-size: 5.25rem;
+  }
 }
 @media (min-width: 575.98px) {
   .card-front {
@@ -167,7 +177,7 @@ body {
 .card-front__card-number {
   font-size: clamp(0.625rem, 0.5rem + 2.6666666667vw, 1.125rem);
   font-weight: 500;
-  letter-spacing: 2.4px;
+  letter-spacing: minmax(1.6rem, 0.15rem);
   line-height: calc(clamp(0.625rem, 0.5rem + 2.6666666667vw, 1.125rem) * 1.29);
 }
 @media (min-width: 575.98px) {
@@ -187,18 +197,18 @@ body {
   font-size: clamp(0.375rem, 0.5rem + 0.2666666667vw, 0.5625rem);
   font-weight: 500;
   justify-content: space-between;
-  letter-spacing: 1.25px;
+  letter-spacing: 0.078125rem;
 }
 @media (min-width: 575.98px) {
   .card-front__id-wrapper {
     font-size: 0.875rem;
-    letter-spacing: 2px;
+    letter-spacing: 0.125rem;
   }
 }
 @media (min-width: 768.98px) {
   .card-front__id-wrapper {
     font-size: clamp(0.625rem, 0.5rem + 0.4166666667vw, 0.875rem);
-    letter-spacing: 2px;
+    letter-spacing: 0.125rem;
   }
 }
 
@@ -230,7 +240,7 @@ body {
   font-size: clamp(0.375rem, 0.5rem + 0.2666666667vw, 0.5625rem);
   font-weight: 500;
   left: 86%;
-  letter-spacing: 1.25px;
+  letter-spacing: 0.078125rem;
   position: absolute;
   top: 49%;
   transform: translate(-86%, -49%);
@@ -238,7 +248,7 @@ body {
 @media (min-width: 575.98px) {
   .card-back__cvc {
     font-size: 0.875rem;
-    letter-spacing: 2px;
+    letter-spacing: 0.125rem;
   }
 }
 @media (min-width: 768.98px) {
@@ -273,20 +283,20 @@ body {
   display: flex;
   flex-direction: column;
   inline-size: 100%;
-  max-inline-size: 407px;
+  max-inline-size: 25.4375rem;
   padding-inline-end: min(1.6666666667vw, 1.5rem);
   row-gap: min(2.7777777778vw, 2.5rem);
 }
 @media (min-width: 575.98px) {
   .form {
-    max-inline-size: 383px;
+    max-inline-size: 23.9375rem;
     padding-inline-end: 0;
     row-gap: 2.5rem;
   }
 }
 @media (min-width: 768.98px) {
   .form {
-    max-inline-size: 407px;
+    max-inline-size: 25.4375rem;
     padding-inline-end: min(1.6666666667vw, 1.5rem);
     row-gap: min(2.7777777778vw, 2.5rem);
   }
@@ -337,10 +347,10 @@ body {
   }
 }
 .form__field-group-row .form__field:nth-child(1) {
-  flex: 0 1 168px;
+  flex: 0 1 10.5rem;
 }
 .form__field-group-row .form__field:last-child {
-  flex: 0 1 191px;
+  flex: 0 1 11.9375rem;
 }
 .form__label-input {
   color: #21092F;
