@@ -84,33 +84,33 @@ body {
 }
 
 .content {
-  // parei aqui
   display: grid;
-  gap: base.fluidSpace(5) base.fluidSpace(32);
-  grid-template-columns: repeat(8, 1fr);
-  grid-template-rows: repeat(28, base.convertPxToRem(18));
+  gap: base.fluidSpace(13) 0;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(12, base.convertPxToRem(30));
   max-inline-size: base.convertPxToRem(374);
   inline-size: 100%;
   padding-block-start: base.convertPxToRem(32);
 
   @include base.breakpoints(sm) {
-    gap: base.convertPxToRem(8) base.convertPxToRem(30);
+    gap: base.convertPxToRem(9) base.convertPxToRem(30);
     grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: repeat(31, base.convertPxToRem(20));
+    grid-template-rows: repeat(12, base.convertPxToRem(60));
     max-inline-size: base.convertPxToRem(540);
     padding-block-start: base.convertPxToRem(32);
   }
 
   @include base.breakpoints(md) {
+    grid-template-rows: repeat(2, auto);
     gap: base.fluidSpace(32, "desktop") base.fluidSpace(30, "desktop");
     grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: repeat(2, auto);
     max-inline-size: base.convertPxToRem(1110);
     padding-block-start: 0;
   }
 }
 
 .card-front {
+  aspect-ratio: 285 / 156.21;
   border-radius: base.convertPxToRem(10);
   background: base.$purple-500 url("/images/bg-card-front.png") no-repeat center /
     cover;
@@ -119,8 +119,8 @@ body {
   flex-direction: column;
   justify-content: space-between;
   padding: base.fluidSpace(18.1) base.fluidSpace(19.95);
-  grid-column: 1 / 7;
-  grid-row: 5 / span 7;
+  grid-column: 1 / -2;
+  grid-row: 3 / -7;
   z-index: 1;
 
   &__logo {
@@ -133,9 +133,11 @@ body {
   }
 
   @include base.breakpoints(sm) {
+    aspect-ratio: 445 / 244;
     grid-column: 1 / -2;
-    grid-row: 6 / span 9;
+    grid-row: 3 / -1;
     padding: base.convertPxToRem(28) base.convertPxToRem(31);
+    z-index: 1;
   }
 
   @include base.breakpoints(md) {
@@ -143,7 +145,6 @@ body {
     grid-column: 1 / -8;
     grid-row: 1 / -2;
     padding: base.fluidSpace(28, "desktop") base.fluidSpace(31.93, "desktop");
-    z-index: 0;
   }
 
   &__info-wrapper {
@@ -198,16 +199,18 @@ body {
 }
 
 .card-back {
+  aspect-ratio: 285 / 156.21;
   border-radius: base.convertPxToRem(10);
   background: base.$gray-200 url("/images/bg-card-back.png") no-repeat center /
     cover;
   position: relative;
   grid-column: 2 / -1;
-  grid-row: 1 / span 7;
+  grid-row: 1 / 2;
 
   @include base.breakpoints(sm) {
+    aspect-ratio: 445 / 244;
     grid-column: 2 / -1;
-    grid-row: 1 / span 9;
+    grid-row: 1 / -9;
   }
 
   @include base.breakpoints(md) {
@@ -242,13 +245,14 @@ body {
   display: flex;
   flex-direction: column;
   grid-column: 1 / -1;
-  grid-row: 14 / span 15;
+  grid-row: 7 / -1;
   justify-content: flex-start;
-    
+  padding-block-start: base.fluidSpace(28.79);
+
   @include base.breakpoints(sm) {
     align-items: center;
     grid-column: 1 / -1;
-    grid-row: 17 / span 13;
+    grid-row: 7 / -1;
     justify-content: center;
     padding-block-start: 0;
   }
@@ -265,8 +269,7 @@ body {
   inline-size: 100%;
   max-inline-size: base.convertPxToRem(407);
   padding-inline-end: 0;
-  padding-inline: base.fluidSpace(8);
-  row-gap: base.fluidSpace(24);
+  row-gap: base.fluidSpace(40);
 
   @include base.breakpoints(sm) {
     max-inline-size: base.convertPxToRem(383);
@@ -275,7 +278,7 @@ body {
 
   @include base.breakpoints(md) {
     max-inline-size: base.convertPxToRem(407);
-    padding-inline: 0 base.fluidSpace(24, "desktop");
+    padding-inline-end: base.fluidSpace(24, "desktop");
     row-gap: base.fluidSpace(40, "desktop");
   }
 
