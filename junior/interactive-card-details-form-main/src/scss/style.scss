@@ -84,12 +84,11 @@ body {
 }
 
 .content {
-  // parei aqui
   display: grid;
-  gap: base.fluidSpace(5) base.fluidSpace(32);
-  grid-template-columns: repeat(8, 1fr);
-  grid-template-rows: repeat(28, base.convertPxToRem(18));
-  max-inline-size: base.convertPxToRem(374);
+  gap: base.fluidSpace(5) base.fluidSpace(2);
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(32, base.convertPxToRem(18));
+  max-inline-size: base.convertPxToRem(342);
   inline-size: 100%;
   padding-block-start: base.convertPxToRem(32);
 
@@ -119,7 +118,7 @@ body {
   flex-direction: column;
   justify-content: space-between;
   padding: base.fluidSpace(18.1) base.fluidSpace(19.95);
-  grid-column: 1 / 7;
+  grid-column: 1 / -3;
   grid-row: 5 / span 7;
   z-index: 1;
 
@@ -202,7 +201,7 @@ body {
   background: base.$gray-200 url("/images/bg-card-back.png") no-repeat center /
     cover;
   position: relative;
-  grid-column: 2 / -1;
+  grid-column: 3 / -1;
   grid-row: 1 / span 7;
 
   @include base.breakpoints(sm) {
@@ -242,11 +241,11 @@ body {
   display: flex;
   flex-direction: column;
   grid-column: 1 / -1;
-  grid-row: 14 / span 15;
+  grid-row: 14 / -1;
+  align-items: center;
   justify-content: flex-start;
-    
+
   @include base.breakpoints(sm) {
-    align-items: center;
     grid-column: 1 / -1;
     grid-row: 17 / span 13;
     justify-content: center;
@@ -263,9 +262,8 @@ body {
   display: flex;
   flex-direction: column;
   inline-size: 100%;
-  max-inline-size: base.convertPxToRem(407);
+  max-inline-size: base.convertPxToRem(327);
   padding-inline-end: 0;
-  padding-inline: base.fluidSpace(8);
   row-gap: base.fluidSpace(24);
 
   @include base.breakpoints(sm) {
@@ -274,8 +272,7 @@ body {
   }
 
   @include base.breakpoints(md) {
-    max-inline-size: base.convertPxToRem(407);
-    padding-inline: 0 base.fluidSpace(24, "desktop");
+    max-inline-size: base.convertPxToRem(383);
     row-gap: base.fluidSpace(40, "desktop");
   }
 
@@ -321,15 +318,16 @@ body {
     }
 
     .form__field:nth-child(1) {
-      flex: 0 1 base.convertPxToRem(135);
+      flex: 0 1 base.convertPxToRem(168);
     }
 
     .form__field:last-child {
-      flex: 0 1 base.convertPxToRem(191);
+      flex: 0 1 base.convertPxToRem(135);
 
-       @include base.breakpoints(sm) {
-        flex: 0 1 base.convertPxToRem(135);
+      @include base.breakpoints(sm) {
+        flex: 0 1 base.convertPxToRem(191);
       }
+
     }
   }
 
@@ -412,7 +410,7 @@ body {
 
   &__input-error {
     color: base.$red;
-    display: none;
+    display: block;
     font-size: base.fluidTypo(8, 12);
     font-weight: 500;
 
