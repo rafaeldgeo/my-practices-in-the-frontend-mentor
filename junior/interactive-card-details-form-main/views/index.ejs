@@ -11,6 +11,7 @@
     />
     <title>Frontend Mentor | Interactive card details form</title>
     <link rel="stylesheet" href="/css/style.css" />
+    <script type="module" src="/js/form_style.js"></script>
   </head>
   <body>
     <div class="container">
@@ -51,17 +52,19 @@
                   <label class="form__label-input" for="inputCardHolder"
                     >Cardholder Name</label
                   >
-                  <input
-                    class="form__input"
-                    type="text"
-                    name="name"
-                    id="inputCardHolder"
-                    placeholder="e.g. Jane Appleseed"
-                    autocomplete="true"
-                    aria-errormessage="inputErrorName"
-                  />
+                  <div class="form__input-wrapper">
+                    <input
+                      class="form__input"
+                      type="text"
+                      name="name"
+                      id="inputCardHolder"
+                      placeholder="e.g. Jane Appleseed"
+                      autocomplete="name"
+                      aria-errormessage="inputErrorName"
+                    />
+                  </div>
                   <span
-                    class="form__input-error"
+                    class="form__msg-error"
                     id="inputErrorName"
                     role="alert"
                     >Can’t be blank</span
@@ -71,16 +74,18 @@
                   <label class="form__label-input" for="inputCardNumber"
                     >Card Number</label
                   >
-                  <input
-                    class="form__input"
-                    type="text"
-                    name="number"
-                    id="inputCardNumber"
-                    placeholder="e.g. 1234 5678 9123 0000"
-                    aria-errormessage="inputErrorNumber"
-                  />
+                  <div class="form__input-wrapper">
+                    <input
+                      class="form__input"
+                      type="text"
+                      name="number"
+                      id="inputCardNumber"
+                      placeholder="e.g. 1234 5678 9123 0000"
+                      aria-errormessage="inputErrorNumber"
+                    />
+                  </div>
                   <span
-                    class="form__input-error"
+                    class="form__msg-error"
                     id="inputErrorNumber"
                     role="alert"
                     >Wrong format, numbers only</span
@@ -93,22 +98,26 @@
                       Exp. Date (MM/YY)</label
                     >
                     <div class="form__input-row">
-                      <input
-                        class="form__input"
-                        type="text"
-                        name="month"
-                        id="inputExpDateMonth"
-                        placeholder="MM"
-                      />
-                      <input
-                        class="form__input"
-                        type="text"
-                        name="year"
-                        id="expDateYear"
-                        placeholder="YY"
-                      />
+                      <div class="form__input-wrapper">
+                        <input
+                          class="form__input"
+                          type="text"
+                          name="month"
+                          id="inputExpDateMonth"
+                          placeholder="MM"
+                        />
+                      </div>
+                      <div class="form__input-wrapper">
+                        <input
+                          class="form__input"
+                          type="text"
+                          name="year"
+                          id="expDateYear"
+                          placeholder="YY"
+                        />
+                      </div>
                     </div>
-                    <span class="form__input-error" id="" role="alert"
+                    <span class="form__msg-error" id="" role="alert"
                       >Can’t be blank</span
                     >
                     <!-- aviso de erro vai depender do campo preenchido, verificar com JS -->
@@ -117,16 +126,18 @@
                     <label class="form__label-input" for="inputCardCvc"
                       >CVC</label
                     >
-                    <input
-                      class="form__input"
-                      type="text"
-                      name="cvc"
-                      id="inputCardCvc"
-                      placeholder="e.g. 123"
-                      aria-errormessage="inputErrorCvc"
-                    />
+                    <div class="form__input-wrapper">
+                      <input
+                        class="form__input"
+                        type="text"
+                        name="cvc"
+                        id="inputCardCvc"
+                        placeholder="e.g. 123"
+                        aria-errormessage="inputErrorCvc"
+                      />
+                    </div>
                     <span
-                      class="form__input-error"
+                      class="form__msg-error"
                       id="inputErrorCvc"
                       role="alert"
                       >Can’t be blank</span
@@ -136,6 +147,14 @@
               </div>
               <input class="btn" type="submit" value="Confirm" />
             </form>
+            <!-- <div class="confirm-add">
+              <img class="confirm-add__icon" src="/images/icon-complete.svg" alt="">
+              <div class="confirm-add__content">
+                <p class="confirm-add__title">THANK YOU!</p>
+                <p class="confirm-add__message">We’ve added your card details</p>
+              </div>
+              <button class="btn" type="button">Continue</button>
+            </div> -->
           </div>
         </div>
       </main>

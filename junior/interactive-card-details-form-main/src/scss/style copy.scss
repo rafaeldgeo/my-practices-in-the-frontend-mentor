@@ -332,7 +332,6 @@ body {
 
   &__label-input {
     color: base.$purple-950;
-    cursor: pointer;
     display: block;
     font-size: base.fluidTypo(8, 12);
     font-weight: 500;
@@ -351,15 +350,9 @@ body {
   }
 
   &__input-wrapper {
-    background-image: none;
-    border-radius: base.convertPxToRem(8);
-    padding: base.convertPxToRem(1);
+    background-color: red;
   }
 
-  &__input-wrapper--active {
-    background-image: base.$gradient2;
-  }
- 
   &__input {
     background-color: base.$white;
     border: 1px solid base.$gray-200;
@@ -401,14 +394,8 @@ body {
     }
   }
 
-  &__input:focus,
-  &__input:hover {
+  &__input:focus {
     outline: none;
-    border: 1px solid transparent;
-  }
-
-  &__input--error {
-    border: 1px solid base.$red;
   }
 
   &__input-row {
@@ -424,7 +411,7 @@ body {
     }
   }
 
-  &__msg-error {
+  &__input-error {
     color: base.$red;
     display: none;
     font-size: base.fluidTypo(8, 12);
@@ -439,7 +426,7 @@ body {
     }
   }
 
-  &__msg-error--show {
+  &__input-error--show {
     display: block;
   }
 }
@@ -449,7 +436,6 @@ body {
   border: none;
   border-radius: base.convertPxToRem(8);
   color: base.$white;
-  cursor: pointer;
   font-size: base.fluidTypo(10, 18);
   font-weight: 500;
   inline-size: 100%;
@@ -465,10 +451,6 @@ body {
     font-size: base.fluidTypo(10, 18, "desktop");
     padding: base.fluidSpace(15, "desktop");
   }
-}
-
-.btn:focus {
-  outline-color: base.$orange;
 }
 
 .confirm-add {
