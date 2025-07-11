@@ -10,8 +10,10 @@
       href="/images/favicon-32x32.png"
     />
     <title>Frontend Mentor | Interactive card details form</title>
-    <link rel="stylesheet" href="/css/style.css" />
-    <script type="module" src="/js/form_style.js"></script>
+    <link rel="stylesheet" href="/css/style.css"/>
+    <script type="module" src="/js/form_style.js" defer></script>
+    <script type="module" src="/js/form_valid.js" defer></script>
+    <script type="module" src="/js/form_submit.js" defer></script>
   </head>
   <body>
     <div class="container">
@@ -145,7 +147,7 @@
                   </div>
                 </div>
               </div>
-              <input class="btn" type="submit" value="Confirm" />
+              <input class="btn" id="btn-confirm" type="submit" value="Confirm" />
             </form>
             <!-- <div class="confirm-add">
               <img class="confirm-add__icon" src="/images/icon-complete.svg" alt="">
@@ -153,7 +155,7 @@
                 <p class="confirm-add__title">THANK YOU!</p>
                 <p class="confirm-add__message">We’ve added your card details</p>
               </div>
-              <button class="btn" type="button">Continue</button>
+              <button class="btn" id="btn-continue" type="button">Continue</button>
             </div> -->
           </div>
         </div>

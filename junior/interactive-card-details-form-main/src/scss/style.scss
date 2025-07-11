@@ -351,18 +351,23 @@ body {
   }
 
   &__input-wrapper {
-    background-image: none;
+    background: base.$gray-200;
     border-radius: base.convertPxToRem(8);
     padding: base.convertPxToRem(1);
   }
 
-  &__input-wrapper--active {
-    background-image: base.$gradient2;
+  &__input-wrapper--hover-focus {
+    background: base.$gradient2;
   }
- 
+
+  &__input-wrapper--error-border {
+    background: base.$red;
+  }
+
   &__input {
+    outline: none;
     background-color: base.$white;
-    border: 1px solid base.$gray-200;
+    border: 1px solid transparent;
     border-radius: base.convertPxToRem(8);
     color: base.$purple-950;
     font-size: base.fluidTypo(10, 18);
@@ -401,14 +406,8 @@ body {
     }
   }
 
-  &__input:focus,
-  &__input:hover {
+  &__input:focus {
     outline: none;
-    border: 1px solid transparent;
-  }
-
-  &__input--error {
-    border: 1px solid base.$red;
   }
 
   &__input-row {
@@ -492,7 +491,8 @@ body {
     padding-block: base.fluidSpace(32) base.fluidSpace(48);
 
     @include base.breakpoints(md) {
-      padding-block: base.fluidSpace(32, "desktop") base.fluidSpace(48, "desktop");
+      padding-block: base.fluidSpace(32, "desktop")
+        base.fluidSpace(48, "desktop");
     }
   }
 
@@ -503,8 +503,8 @@ body {
 
     @include base.breakpoints(md) {
       font-size: base.fluidTypo(18, 28, "desktop");
-     }
-   }
+    }
+  }
 
   &__message {
     color: base.$gray-400;

@@ -11,8 +11,8 @@ if (divFormFieldAll === 0 || divInputWrapperAll.length === 0 || inputAll.length 
 // add and remove border of the divInputWrapper
 const toggleStyleBorder = (input, activate = true) => {
     const divInputWrapper = input.parentElement; // .form__input-wrapper
-    if (!divInputWrapper) console.warn("The parent element not found")
-    divInputWrapper.classList.toggle("form__input-wrapper--active", activate) //change state of the border
+    if (!divInputWrapper) console.warn("The parent element not found");
+    divInputWrapper.classList.toggle("form__input-wrapper--hover-focus", activate); //change state of the border
 }
 
 for (const input of inputAll) {
@@ -37,29 +37,29 @@ for (const input of inputAll) {
 }
 
 // check if inputs are empty
-function checkEmptyInput() {
+export function checkEmptyInput() {
     let hasError = false;
 
     for (const divFormField of divFormFieldAll) {
-        const inputAll = divFormField.querySelectorAll(".form__input");
         const spanError = divFormField.querySelector(".form__msg-error");
         inputAll.forEach(input => {
+            const divFormInputWapper = input.parentElement;
             if (input.value.length === 0) {
                 spanError.classList.add("form__msg-error--show");
-                input.classList.add("form__input--error");
+                divFormInputWapper.classList.add("form__input-wrapper--error-border");
                 input.setAttribute("aria-invalid", true);
                 hasError = true;
             } else {
+                divFormInputWapper.classList.remove("form__input-wrapper--error-border");
                 spanError.classList.remove("form__msg-error--show");
-                input.classList.remove("form__input--error");
-                hasError = false;
                 input.setAttribute("aria-invalid", false);
             }
         });
-        
+
     }
     return hasError;
 }
 
-checkEmptyInput();
+
+// checkEmptyInput();
 
