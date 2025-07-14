@@ -36,7 +36,7 @@ for (const input of inputAll) {
     })
 }
 
-// check if inputs are empty
+// check if inputs are empty and add and remove red border in the divInputWrapper and shows message error
 export function checkEmptyInput() {
     let hasError = false;
 
@@ -59,7 +59,4 @@ export function checkEmptyInput() {
     }
     return hasError;
 }
-
-
-// checkEmptyInput();
 
