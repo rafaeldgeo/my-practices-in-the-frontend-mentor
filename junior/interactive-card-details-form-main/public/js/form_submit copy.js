@@ -1,15 +1,14 @@
 "use strict";
-import { checkInputs } from "./form_valid.js";
+import { checkEmptyInput } from "./form_style.js";
 
 const form = document.querySelector(".form");
 if (!form) throw new Error("Form not found");
 
 form.addEventListener("submit", (e) => {
-    let hasError = checkInputs();
+    let hasError = checkEmptyInput();
     if (hasError) {
         e.preventDefault();
-        return; 
-    } 
+    }
 });
 
 

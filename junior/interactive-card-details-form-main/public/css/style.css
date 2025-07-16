@@ -447,7 +447,7 @@ body {
 }
 .form__msg-error {
   color: #FF5050;
-  display: none;
+  display: block;
   font-size: clamp(0.5rem, 0.5rem + 1.0666666667vw, 0.75rem);
   font-weight: 500;
 }

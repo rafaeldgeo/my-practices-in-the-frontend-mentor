@@ -37,26 +37,26 @@ for (const input of inputAll) {
 }
 
 // check if inputs are empty and add and remove red border in the divInputWrapper and shows message error
+export function checkEmptyInput() {
+    let hasError = false;
 
-// enviar um inputall para a função que vai verificar se ele está vazio ou não e retornar o erro
+    for (const divFormField of divFormFieldAll) {
+        const spanError = divFormField.querySelector(".form__msg-error");
+        inputAll.forEach(input => {
+            const divFormInputWapper = input.parentElement;
+            if (input.value.length === 0) {
+                spanError.classList.add("form__msg-error--show");
+                divFormInputWapper.classList.add("form__input-wrapper--error-border");
+                input.setAttribute("aria-invalid", true);
+                hasError = true;
+            } else {
+                divFormInputWapper.classList.remove("form__input-wrapper--error-border");
+                spanError.classList.remove("form__msg-error--show");
+                input.setAttribute("aria-invalid", false);
+            }
+        });
 
-export const toggleStyleBorderError = (input, activate = true) => {
-    const divInputWrapper = input.parentElement; 
-    divInputWrapper.classList.toggle("form__input-wrapper--error-border", activate);
-}
-
-export const setMsgError = (errorType, spanError) => {
-    switch (errorType) {
-        case "input empty" :
-            spanError.textContent = "Can’t be blank";
-            spanError.classList.add("form__msg-error--show");
-            break;
-        case "no error" :
-            spanError.textContent = "";
-            spanError.classList.remove("form__msg-error--show");
-            break;
-        default :
     }
+    return hasError;
 }
-
 

@@ -1,22 +1,19 @@
 "use strict";
-import { toggleStyleBorderError, setMsgError } from "./form_style.js";
 
 const form = document.querySelector(".form");
 if (!form) throw new Error("Form not found");
-
-const divFormFieldAll = form.querySelectorAll(".form__field");
 
 const inputAll = form.querySelectorAll(".form__input");
 if (inputAll.length === 0) console.warn("There isn't input");
 
 // sanitize inputs because I'm using type="text" in input
-const sanitizeInput = (e) => {
+function sanitizeInput(e) {
     let valueInputed = e.target.value;
-
+    
     if (!e.target.name) {
         console.warn("input there isn't name");
         return;
-    }
+    } 
 
     switch (e.target.name) {
         case "cardholder":
@@ -35,34 +32,8 @@ const sanitizeInput = (e) => {
     e.target.value = valueInputed;
 }
 
-export const checkEmptyInput = (inputs, spanError) => {
-    let hasError = false;
-    inputs.forEach((input) => {
-        if (input.value.length === 0) {
-            toggleStyleBorderError(input, true);
-            setMsgError("input empty", spanError);
-            hasError = true;
-        } else {
-            toggleStyleBorderError(input, false);
-            setMsgError("no error", spanError);
-        }
-    });
-    return hasError;
-
-}
-
-export function checkInputs() {
-    let hasError = false;
-
-    for (const divFormField of divFormFieldAll) {
-        const inputAllInDivFormField = divFormField.querySelectorAll(".form__input");
-        const spanError = divFormField.querySelector(".form__msg-error");
-        hasError = checkEmptyInput(inputAllInDivFormField, spanError);
-    }
-    return hasError;
-}
-
-
 inputAll.forEach((input) => {
     input.addEventListener("input", sanitizeInput);
 });
+
+

@@ -425,7 +425,7 @@ body {
 
   &__msg-error {
     color: base.$red;
-    display: none;
+    display: block;
     font-size: base.fluidTypo(8, 12);
     font-weight: 500;
 
