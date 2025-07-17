@@ -40,22 +40,29 @@ for (const input of inputAll) {
 
 // enviar um inputall para a função que vai verificar se ele está vazio ou não e retornar o erro
 
-export const toggleStyleBorderError = (input, activate = true) => {
-    const divInputWrapper = input.parentElement; 
+export const toggleStyleBorderError = (input, spanError, activate = true) => {
+    const divInputWrapper = input.parentElement;
     divInputWrapper.classList.toggle("form__input-wrapper--error-border", activate);
+    if (activate) {
+        spanError.setAttribute("id", input.id);
+        input.setAttribute("aria-invalid", true);
+    } else {
+        spanError.removeAttribute("id");
+        input.setAttribute("aria-invalid", false);
+    }
 }
 
 export const setMsgError = (errorType, spanError) => {
     switch (errorType) {
-        case "input empty" :
+        case "input empty":
             spanError.textContent = "Can’t be blank";
             spanError.classList.add("form__msg-error--show");
             break;
-        case "no error" :
+        case "no error":
             spanError.textContent = "";
             spanError.classList.remove("form__msg-error--show");
             break;
-        default :
+        default:
     }
 }
 

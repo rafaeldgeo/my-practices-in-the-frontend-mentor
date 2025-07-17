@@ -10,6 +10,7 @@ form.addEventListener("submit", (e) => {
         e.preventDefault();
         return; 
     } 
+     e.preventDefault();
 });
 
 
