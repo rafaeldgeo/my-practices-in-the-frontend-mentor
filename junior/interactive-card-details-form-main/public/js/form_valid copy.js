@@ -18,17 +18,33 @@ const sanitizeInput = (e) => {
         return;
     }
 
+    // limit the quantity of caracters in the input
+    const limitValueInput = (valueInputed, maxLength) => {
+        if (valueInputed.length > maxLength) {
+            valueInputed = valueInputed.slice(0, maxLength);
+            return valueInputed;
+        }
+        return valueInputed;
+    }
+
     switch (e.target.name) {
         case "cardholder":
             valueInputed = valueInputed.replace(/\d/g, ""); // remove number, allow only letters
+            valueInputed = limitValueInput(valueInputed, 30);
             break;
         case "cardnumber":
             valueInputed = valueInputed.replace(/[^a-zA-Z0-9]/g, ""); // allow only number and letters
+            valueInputed = valueInputed.replace(/(.{4})(?=.)/g, "$1 ").toUpperCase(); // format the group 4 digits and space and upper letter
+            valueInputed = limitValueInput(valueInputed, 19);
             break;
         case "expmonth":
         case "expyear":
+            valueInputed = valueInputed.replace(/\D/g, ""); // remove any caracteres, allow only numbers
+            valueInputed = limitValueInput(valueInputed, 2);
+            break;
         case "cardcvc":
             valueInputed = valueInputed.replace(/\D/g, ""); // remove any caracteres, allow only numbers
+            valueInputed = limitValueInput(valueInputed, 3);
             break;
         default:
     }
@@ -40,24 +56,36 @@ const checkEmptyInput = (inputs, spanError) => {
     let hasError = false;
     inputs.forEach((input) => {
         if (input.value.length === 0) {
-            toggleStyleBorderError(input, true);
+            toggleStyleBorderError(input, spanError, true);
             setMsgError("input empty", spanError);
             hasError = true;
         } else {
-            toggleStyleBorderError(input, false);
+            toggleStyleBorderError(input, spanError, false);
             setMsgError("no error", spanError);
         }
     });
     return hasError;
 }
 
+
 const validInput = (inputs, spanError) => {
     let hasError = false;
     inputs.forEach((input) => {
-        
+
+        switch (input.name) {
+            case "cardnumber":
+                hasError = (/[A-Z]/.test(input.value));
+                break;
+            case "expmonth":
+            case "expyear":
+            case "cardcvc":
+                console.log("os 3");
+                break;
+            default:
+        }
+
 
     });
-
 }
 
 
@@ -70,7 +98,7 @@ export function checkInputs() {
         const spanError = divFormField.querySelector(".form__msg-error");
         hasError = checkEmptyInput(inputAllInDivFormField, spanError);
         if (!hasError) {
-            console.log("sem erro");
+            validInput(inputAllInDivFormField, spanError);
         }
     }
     return hasError;

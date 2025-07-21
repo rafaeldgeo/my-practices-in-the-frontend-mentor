@@ -15,6 +15,7 @@ const toggleStyleBorder = (input, activate = true) => {
     divInputWrapper.classList.toggle("form__input-wrapper--hover-focus", activate); //change state of the border
 }
 
+// define styles of the borders
 for (const input of inputAll) {
 
     input.addEventListener("mouseenter", () => {
@@ -36,10 +37,7 @@ for (const input of inputAll) {
     })
 }
 
-// check if inputs are empty and add and remove red border in the divInputWrapper and shows message error
-
-// enviar um inputall para a função que vai verificar se ele está vazio ou não e retornar o erro
-
+// set error styles 
 export const toggleStyleBorderError = (input, spanError, activate = true) => {
     const divInputWrapper = input.parentElement;
     divInputWrapper.classList.toggle("form__input-wrapper--error-border", activate);
@@ -52,10 +50,19 @@ export const toggleStyleBorderError = (input, spanError, activate = true) => {
     }
 }
 
+// set error messages
 export const setMsgError = (errorType, spanError) => {
     switch (errorType) {
         case "input empty":
             spanError.textContent = "Can’t be blank";
+            spanError.classList.add("form__msg-error--show");
+            break;
+        case "number only":
+            spanError.textContent = "Wrong format, number only";
+            spanError.classList.add("form__msg-error--show");
+            break;
+        case "wrong format":
+            spanError.textContent = "Wrong format";
             spanError.classList.add("form__msg-error--show");
             break;
         case "no error":
