@@ -194,6 +194,10 @@ body {
       letter-spacing: base.convertPxToRem(2);
     }
   }
+
+  &__cardholder-name {
+    text-transform: uppercase;
+  }
 }
 
 .card-back {
@@ -305,10 +309,9 @@ body {
   }
 
   &__field-group-row {
-    column-gap: base.fluidSpace(24);
+     column-gap: base.fluidSpace(8);
     display: flex;
-    justify-content: space-between;
-
+        
     @include base.breakpoints(sm) {
       column-gap: base.convertPxToRem(24);
     }
@@ -317,17 +320,25 @@ body {
       column-gap: base.fluidSpace(24, "desktop");
     }
 
-    .form__field:nth-child(1) {
-      flex: 0 1 base.convertPxToRem(168);
+    .form__field-row {
+      flex: 0 1 base.convertPxToRem(180);
     }
 
-    .form__field:last-child {
+    .form__field--into-group-row {
+      row-gap: base.fluidSpace(8);
       flex: 0 1 base.convertPxToRem(135);
 
-      @include base.breakpoints(sm) {
-        flex: 0 1 base.convertPxToRem(191);
+
+       @include base.breakpoints(sm) {
+        flex: 0 1 base.convertPxToRem(179);
       }
     }
+  }
+
+  &__field-row {
+    display: flex;
+    flex-direction: column;
+    row-gap: base.fluidSpace(8);
   }
 
   &__label-input {

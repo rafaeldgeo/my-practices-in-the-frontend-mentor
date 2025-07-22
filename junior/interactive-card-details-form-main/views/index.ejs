@@ -10,10 +10,12 @@
       href="/images/favicon-32x32.png"
     />
     <title>Frontend Mentor | Interactive card details form</title>
-    <link rel="stylesheet" href="/css/style.css"/>
+    <link rel="stylesheet" href="/css/style.css" />
     <script type="module" src="/js/form_style.js" defer></script>
     <script type="module" src="/js/form_valid.js" defer></script>
     <script type="module" src="/js/form_submit.js" defer></script>
+    <script type="module" src="/js/card_data.js" defer></script>
+
   </head>
   <body>
     <div class="container">
@@ -37,7 +39,7 @@
                 </p>
                 <p class="sr-only" id="expDate">Exp. Date (MM/YY)</p>
                 <p class="card-front__exp-date" aria-labelledby="expDate">
-                  00/00
+                  <span class="card-front__month">00</span>/<span class="card-front__year">00</span>
                 </p>
               </div>
             </div>
@@ -68,8 +70,8 @@
                   <span
                     class="form__msg-error"
                     role="alert"
-                    ></span
-                  >
+                    id="inputErrorName"
+                  ></span>
                 </div>
                 <div class="form__field">
                   <label class="form__label-input" for="inputCardNumber"
@@ -86,41 +88,46 @@
                     />
                   </div>
                   <span
-                    class="form__msg-error" 
+                    class="form__msg-error"
                     role="alert"
-                    ></span
-                  >
+                    id="inputErrorNumber"
+                  ></span>
                 </div>
                 <div class="form__field-group-row">
-                  <div class="form__field">
+                  <div class="form__field-row">
                     <label class="form__label-input" for="inputExpDateMonth">
                       Exp. Date (MM/YY)</label
                     >
                     <div class="form__input-row">
-                      <div class="form__input-wrapper">
-                        <input
-                          class="form__input"
-                          type="text"
-                          name="expmonth"
-                          id="inputExpDateMonth"
-                          placeholder="MM"
-                        />
+                      <div class="form__field">
+                        <div class="form__input-wrapper">
+                          <input
+                            class="form__input"
+                            type="text"
+                            name="expmonth"
+                            id="inputExpDateMonth"
+                            placeholder="MM"
+                            aria-errormessage="inputErrorMonth"
+                          />
+                        </div>
+                        <span class="form__msg-error" role="alert" id="inputErrorMonth"></span>
                       </div>
-                      <div class="form__input-wrapper">
-                        <input
-                          class="form__input"
-                          type="text"
-                          name="expyear"
-                          id="inputexpDateYear"
-                          placeholder="YY"
-                        />
+                      <div class="form__field">
+                        <div class="form__input-wrapper">
+                          <input
+                            class="form__input"
+                            type="text"
+                            name="expyear"
+                            id="inputExpDateYear"
+                            placeholder="YY"
+                            aria-errormessage="inputErrorYear"
+                          />
+                        </div>
+                        <span class="form__msg-error" role="alert" id="inputErrorYear"></span>
                       </div>
                     </div>
-                    <span class="form__msg-error"  role="alert"
-                      ></span
-                    >
                   </div>
-                  <div class="form__field">
+                  <div class="form__field form__field--into-group-row">
                     <label class="form__label-input" for="inputCardCvc"
                       >CVC</label
                     >
@@ -134,15 +141,16 @@
                         aria-errormessage="inputErrorCvc"
                       />
                     </div>
-                    <span
-                      class="form__msg-error"
-                      role="alert"
-                      ></span
-                    >
+                    <span class="form__msg-error" role="alert" id="inputErrorCvc"></span>
                   </div>
                 </div>
               </div>
-              <input class="btn" id="btn-confirm" type="submit" value="Confirm" />
+              <input
+                class="btn"
+                id="btn-confirm"
+                type="submit"
+                value="Confirm"
+              />
             </form>
             <!-- <div class="confirm-add">
               <img class="confirm-add__icon" src="/images/icon-complete.svg" alt="">

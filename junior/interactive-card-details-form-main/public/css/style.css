@@ -209,6 +209,9 @@ body {
     letter-spacing: 0.125rem;
   }
 }
+.card-front__cardholder-name {
+  text-transform: uppercase;
+}
 
 .card-back {
   border-radius: 0.625rem;
@@ -327,9 +330,8 @@ body {
   }
 }
 .form__field-group-row {
-  column-gap: min(6.4vw, 1.5rem);
+  column-gap: min(2.1333333333vw, 0.5rem);
   display: flex;
-  justify-content: space-between;
 }
 @media (min-width: 575.98px) {
   .form__field-group-row {
@@ -341,16 +343,22 @@ body {
     column-gap: min(1.6666666667vw, 1.5rem);
   }
 }
-.form__field-group-row .form__field:nth-child(1) {
-  flex: 0 1 10.5rem;
+.form__field-group-row .form__field-row {
+  flex: 0 1 11.25rem;
 }
-.form__field-group-row .form__field:last-child {
+.form__field-group-row .form__field--into-group-row {
+  row-gap: min(2.1333333333vw, 0.5rem);
   flex: 0 1 8.4375rem;
 }
 @media (min-width: 575.98px) {
-  .form__field-group-row .form__field:last-child {
-    flex: 0 1 11.9375rem;
+  .form__field-group-row .form__field--into-group-row {
+    flex: 0 1 11.1875rem;
   }
+}
+.form__field-row {
+  display: flex;
+  flex-direction: column;
+  row-gap: min(2.1333333333vw, 0.5rem);
 }
 .form__label-input {
   color: #21092F;

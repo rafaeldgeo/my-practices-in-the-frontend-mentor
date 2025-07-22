@@ -38,15 +38,13 @@ for (const input of inputAll) {
 }
 
 // set error styles 
-export const toggleStyleBorderError = (input, spanError, activate = true) => {
+export const toggleStyleBorderError = (input, activate = true) => {
     const divInputWrapper = input.parentElement;
     divInputWrapper.classList.toggle("form__input-wrapper--error-border", activate);
     if (activate) {
-        spanError.setAttribute("id", input.id);
-        input.setAttribute("aria-invalid", true);
+        input.setAttribute("aria-invalid", "true");
     } else {
-        spanError.removeAttribute("id");
-        input.setAttribute("aria-invalid", false);
+        input.setAttribute("aria-invalid", "false");
     }
 }
 
