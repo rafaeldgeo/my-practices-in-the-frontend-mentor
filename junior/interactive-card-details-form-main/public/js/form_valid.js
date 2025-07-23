@@ -66,43 +66,41 @@ const validValueInput = (input, expression, typeError, spanError) => {
     return hasInvalidInput;
 };
 
-// check all values inputed
-const checkValueInput = (inputAll, spanError) => {
+//check all values inputed
+const checkValueInput = (input, spanError) => {
     let inputValueError = false;
-    inputAll.forEach((input) => {
 
-        switch (input.name) {
-            case "cardnumber":
-                inputValueError = validValueInput(input, /[A-Z]/.test(input.value) || input.value.length < 19, "number only", spanError) || inputValueError;
-                break;
-            case "expmonth":
-                inputValueError = validValueInput(input, Number(input.value) === 0 || Number(input.value) > 12 || input.value.length < 2, "wrong format", spanError) || inputValueError;
-                break;
-            case "expyear":
-                inputValueError = validValueInput(input, Number(input.value) === 0 || input.value.length < 2, "wrong format", spanError) || inputValueError;
-                break;
-            case "cardcvc":
-                inputValueError = validValueInput(input, Number(input.value) === 0 || input.value.length < 3, "wrong format", spanError) || inputValueError;
-                break;
-            default:
-        }
-    });
+    switch (input.name) {
+        case "cardnumber":
+            inputValueError = validValueInput(input, /[A-Z]/.test(input.value) || input.value.length < 19, "number only", spanError) || inputValueError;
+            break;
+        case "expmonth":
+            inputValueError = validValueInput(input, Number(input.value) === 0 || Number(input.value) > 12 || input.value.length < 2, "wrong format", spanError) || inputValueError;
+            break;
+        case "expyear":
+            inputValueError = validValueInput(input, Number(input.value) === 0 || input.value.length < 2, "wrong format", spanError) || inputValueError;
+            break;
+        case "cardcvc":
+            inputValueError = validValueInput(input, Number(input.value) === 0 || input.value.length < 3, "wrong format", spanError) || inputValueError;
+            break;
+        default:
+    }
+
     return inputValueError;
 }
 
 // check if the inputs are empty
-const checkEmptyInput = (inputAll, spanError) => {
+const checkEmptyInput = (input, spanError) => {
     let hasEmptyInput = false;
-    inputAll.forEach((input) => {   // it's necessary because there are two inputs that sharing same error
-        if (input.value.length === 0) {
-            toggleStyleBorderError(input, true);
-            setMsgError("input empty", spanError);
-            hasEmptyInput = true;
-        } else {
-            toggleStyleBorderError(input, false);
-            setMsgError("no error", spanError);
-        }
-    });
+
+    if (input.value.length === 0) {
+        toggleStyleBorderError(input, true);
+        setMsgError("input empty", spanError);
+        hasEmptyInput = true;
+    } else {
+        toggleStyleBorderError(input, false);
+        setMsgError("no error", spanError);
+    }
     return hasEmptyInput;
 }
 
@@ -111,11 +109,11 @@ export function checkInputs() {
     let anyInputHasError = false;
 
     for (const divFormField of divFormFieldAll) {
-        const inputAllInDivFormField = divFormField.querySelectorAll(".form__input");
+        const inputAllInDivFormField = divFormField.querySelector(".form__input");
         const spanError = divFormField.querySelector(".form__msg-error");
-        anyInputHasError = checkEmptyInput(inputAllInDivFormField, spanError); // check if the inputs are empty (true) or full (false)
-        if (!anyInputHasError) {
-            anyInputHasError = checkValueInput(inputAllInDivFormField, spanError); // check values if the inputs aren't empty
+        anyInputHasError = checkEmptyInput(inputAllInDivFormField, spanError) || anyInputHasError; // check if the inputs are empty (true) or full (false)
+        if (!anyInputHasError) { // only enter if anyInputHasError is false
+            anyInputHasError = checkValueInput(inputAllInDivFormField, spanError); 
         }
     }
     return anyInputHasError;
