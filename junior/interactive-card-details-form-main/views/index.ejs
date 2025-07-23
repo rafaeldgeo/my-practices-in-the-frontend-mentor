@@ -19,6 +19,7 @@
   <body>
     <div class="container">
       <main class="main">
+        <h1 class="sr-only">Interactive card details form</h1>
         <div class="content">
           <figure class="card-front">
             <figcaption class="sr-only">Credit Card front</figcaption>
@@ -38,7 +39,10 @@
                 </p>
                 <p class="sr-only" id="expDate">Exp. Date (MM/YY)</p>
                 <p class="card-front__exp-date" aria-labelledby="expDate">
-                  <span class="card-front__month">00</span>/<span class="card-front__year">00</span>
+                  <span class="card-front__month">00</span>/<span
+                    class="card-front__year"
+                    >00</span
+                  >
                 </p>
               </div>
             </div>
@@ -106,12 +110,16 @@
                             type="text"
                             name="expmonth"
                             id="inputExpDateMonth"
-                            autocomplete="cc-exp-month" 
+                            autocomplete="cc-exp-month"
                             placeholder="MM"
                             aria-errormessage="inputErrorMonth"
                           />
                         </div>
-                        <span class="form__msg-error" role="alert" id="inputErrorMonth"></span>
+                        <span
+                          class="form__msg-error"
+                          role="alert"
+                          id="inputErrorMonth"
+                        ></span>
                       </div>
                       <div class="form__field">
                         <div class="form__input-wrapper">
@@ -121,11 +129,15 @@
                             name="expyear"
                             id="inputExpDateYear"
                             placeholder="YY"
-                            autocomplete="cc-exp-year" 
+                            autocomplete="cc-exp-year"
                             aria-errormessage="inputErrorYear"
                           />
                         </div>
-                        <span class="form__msg-error" role="alert" id="inputErrorYear"></span>
+                        <span
+                          class="form__msg-error"
+                          role="alert"
+                          id="inputErrorYear"
+                        ></span>
                       </div>
                     </div>
                   </div>
@@ -140,20 +152,21 @@
                         name="cardcvc"
                         id="inputCardCvc"
                         placeholder="e.g. 123"
-                        autocomplete="cc-csc" 
+                        autocomplete="cc-csc"
                         aria-errormessage="inputErrorCvc"
                       />
                     </div>
-                    <span class="form__msg-error" role="alert" id="inputErrorCvc"></span>
+                    <span
+                      class="form__msg-error"
+                      role="alert"
+                      id="inputErrorCvc"
+                    ></span>
                   </div>
                 </div>
               </div>
-              <input
-                class="btn"
-                id="btn-confirm"
-                type="submit"
-                value="Confirm"
-              />
+              <button class="btn" id="btn-confirm" type="submit">
+                Confirm
+              </button>
             </form>
           </div>
         </div>
