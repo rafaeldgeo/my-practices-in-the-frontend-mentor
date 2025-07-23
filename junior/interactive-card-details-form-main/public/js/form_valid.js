@@ -72,7 +72,7 @@ const checkValueInput = (input, spanError) => {
 
     switch (input.name) {
         case "cardnumber":
-            inputValueError = validValueInput(input, /[A-Z]/.test(input.value) || input.value.length < 19, "number only", spanError) || inputValueError;
+            inputValueError = validValueInput(input, /[A-Z]/.test(input.value) || input.value.length < 19, "number only", spanError) || inputValueError; // Avoid overwriting previous error (if an error already occurred, continue with true)
             break;
         case "expmonth":
             inputValueError = validValueInput(input, Number(input.value) === 0 || Number(input.value) > 12 || input.value.length < 2, "wrong format", spanError) || inputValueError;

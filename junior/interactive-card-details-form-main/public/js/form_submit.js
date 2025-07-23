@@ -36,6 +36,10 @@ const submitForm = async function (e) {
         divCustomerDatas.innerHTML = html;  // insert in HTML the div confirm with message ok!
 
         const btnContinue = document.querySelector("#btn-continue");
+        if (!btnContinue) {
+            console.warn("buttom continue don't found");
+        }
+
         btnContinue.addEventListener("click", () => {
             window.location.reload(); // reload page 
         })

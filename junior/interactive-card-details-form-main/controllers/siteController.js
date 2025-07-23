@@ -26,7 +26,7 @@ exports.customerdata = (req, res) => {
     let hasError = hasInvalidInputs(cardholder, cardnumber, expmonth, expyear, cardcvc);
 
     if (hasError) {
-        return res.status(422).json({ error: "The datas sent aren't allowed!" });
+        return res.status(422).json({ error: "Invalid form input. Please check the data." });
     }
 
     res.render("confirm");

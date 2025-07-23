@@ -6,12 +6,16 @@ if (!form) throw new Error("Form not found");
 const divFormFieldAll = form.querySelectorAll(".form__field");
 const divInputWrapperAll = form.querySelectorAll(".form__input-wrapper");
 const inputAll = form.querySelectorAll(".form__input");
-if (divFormFieldAll === 0 || divInputWrapperAll.length === 0 || inputAll.length === 0) console.warn("class .form__field, .form__input-wrapper or .form__input not found ");
+if (divFormFieldAll.length === 0 || divInputWrapperAll.length === 0 || inputAll.length === 0) console.warn("class .form__field, .form__input-wrapper or .form__input not found ");
 
 // add and remove border of the divInputWrapper
 const toggleStyleBorder = (input, activate = true) => {
     const divInputWrapper = input.parentElement; // .form__input-wrapper
-    if (!divInputWrapper) console.warn("The parent element not found");
+    if (!divInputWrapper) {
+        console.warn("The parent element not found");
+        return;
+    }
+
     divInputWrapper.classList.toggle("form__input-wrapper--hover-focus", activate); //change state of the border
 }
 
@@ -40,6 +44,10 @@ for (const input of inputAll) {
 // set error styles 
 export const toggleStyleBorderError = (input, activate = true) => {
     const divInputWrapper = input.parentElement;
+    if (!divInputWrapper) {
+        console.log("The parent element not found");
+        return;
+    }
     divInputWrapper.classList.toggle("form__input-wrapper--error-border", activate);
     if (activate) {
         input.setAttribute("aria-invalid", "true");

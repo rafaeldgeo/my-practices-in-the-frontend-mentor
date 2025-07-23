@@ -62,7 +62,7 @@
                       name="cardholder"
                       id="inputCardHolder"
                       placeholder="e.g. Jane Appleseed"
-                      autocomplete="name"
+                      autocomplete="cc-name"
                       aria-errormessage="inputErrorName"
                     />
                   </div>
@@ -83,6 +83,7 @@
                       name="cardnumber"
                       id="inputCardNumber"
                       placeholder="e.g. 1234 5678 9123 0000"
+                      autocomplete="cc-number"
                       aria-errormessage="inputErrorNumber"
                     />
                   </div>
@@ -105,6 +106,7 @@
                             type="text"
                             name="expmonth"
                             id="inputExpDateMonth"
+                            autocomplete="cc-exp-month" 
                             placeholder="MM"
                             aria-errormessage="inputErrorMonth"
                           />
@@ -119,6 +121,7 @@
                             name="expyear"
                             id="inputExpDateYear"
                             placeholder="YY"
+                            autocomplete="cc-exp-year" 
                             aria-errormessage="inputErrorYear"
                           />
                         </div>
@@ -137,6 +140,7 @@
                         name="cardcvc"
                         id="inputCardCvc"
                         placeholder="e.g. 123"
+                        autocomplete="cc-csc" 
                         aria-errormessage="inputErrorCvc"
                       />
                     </div>
