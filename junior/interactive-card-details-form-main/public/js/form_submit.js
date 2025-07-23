@@ -20,9 +20,9 @@ const submitForm = async function (e) {
     const data = {
         cardholder: formData.get("cardholder"),
         cardnumber: formData.get("cardnumber"),
-        expmonth: parseInt(formData.get("expmonth")),
-        expyear: parseInt(formData.get("expyear")),
-        cardcvc: parseInt(formData.get("cardcvc"))
+        expmonth: formData.get("expmonth"),
+        expyear: formData.get("expyear"),
+        cardcvc: formData.get("cardcvc")
     };
 
     try {
