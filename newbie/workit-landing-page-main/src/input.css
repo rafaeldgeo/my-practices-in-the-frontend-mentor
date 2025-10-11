@@ -1,0 +1,89 @@
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Manrope:wght@200..800&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --color-cgreen: #44ffa1;
+  --color-cpurple-900: #24053e;
+  --color-cpurple-500: #584d62;
+  --color-cpurple-100: #fcf8ff;
+  --font-manrope: "Manrope", sans-serif;
+  --font-fraunces: "Fraunces", serif;
+  --text-title: clamp(1.5rem, 3.65vw, 2rem);
+  --text-paragraph: min(1rem, 2.08vw, 1.125rem);
+}
+
+main section:nth-child(n)::before {
+  clip-path: ellipse(53% 100% at 50% 0%);
+  content: "";
+  display: block;
+  height: 1.5rem;
+  overflow: hidden;
+  width: 100%;
+}
+
+main section:nth-child(1)::before {
+  background-color: var(--color-cpurple-900);
+  margin-block-end: clamp(5rem, 21.34vw, 8.5rem);
+}
+
+main section:nth-child(2)::before {
+  background-color: var(--color-cpurple-100);
+}
+
+@media screen and (min-width: 48rem) {
+  header > div::before {
+    content: url("../assets/images/bg-pattern-1.svg");
+    position: absolute;
+    left: -14.0625rem;
+    top: 3.75rem;
+  }
+
+  header > div::after {
+    content: url("../assets/images/bg-pattern-2.svg");
+    position: absolute;
+    right: -5.625rem;
+    bottom: 1.25rem;
+  }
+
+  main section:nth-child(n)::before {
+    clip-path: ellipse(53% 100% at 50% 0%);
+    height: 3.5rem;
+  }
+
+  main section:nth-child(1)::before {
+    margin-block-end: clamp(8.5rem, 12.58vw, 10.0625rem);
+  }
+
+  main > section > div > div::after {
+    bottom: -7.5rem;
+    content: url("../assets/images/bg-pattern-3.svg");
+    position: absolute;
+    right: 0;
+  }
+}
+
+@media screen and (min-width: 80rem) {
+  header > div::before {
+    left: -5.625rem;
+    top: 8.125rem;
+  }
+
+   header > div::after {
+    bottom: 10.625rem;
+    right: -2.5rem;
+ }
+
+  main section:nth-child(n)::before {
+    height: 4.5rem;
+    clip-path: ellipse(53% 100% at 50% 0%);
+  }
+
+  main section:nth-child(1)::before {
+    margin-block-end: 10.0625rem;
+  }
+
+  main > section > div > div::after {
+    bottom: -4.375rem;
+    right: 6.875rem;
+  }
+}
