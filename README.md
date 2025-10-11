@@ -6,6 +6,7 @@ Practices in [Frontend Mentor Website](https://www.frontendmentor.io/)
 ![HTML](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
 ![CSS](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
 ![SASS](https://img.shields.io/badge/SASS-hotpink.svg?style=for-the-badge&logo=SASS&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
 ![Bootstrap](https://img.shields.io/badge/bootstrap-%238511FA.svg?style=for-the-badge&logo=bootstrap&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E)
 ![NodeJs](https://img.shields.io/badge/Node%20js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
@@ -42,7 +43,8 @@ Practices in [Frontend Mentor Website](https://www.frontendmentor.io/)
 * 23- [Meeting-landing-page](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/newbie/meet-landing-page/):link: | **SASS -> CSS**  <sup>grid + flexbox + media queries + BEM</sup>
 * 24- [Skilled-elearning-landing-page](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/newbie/skilled-elearning-landing-page/):link: | **SASS -> CSS**  <sup>grid + flexbox + media queries + BEM</sup>
 * 25- [Pod-request-access-landing-page](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/newbie/pod-request-access-landing-page/):link: | **SASS -> CSS**  <sup>grid + flexbox + media queries + BEM</sup> | **JS** <sup>Vanilla</sup>
-* 26- [Equalizer-landing-page](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/newbie/equalizer-landing-page/):link: | **BOOTSTRAP 5** customized with **SASS** 
+* 26- [Equalizer-landing-page](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/newbie/equalizer-landing-page/):link: | **BOOTSTRAP 5** customized with **SASS**
+* 27- [Workit-landing-page-main](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/newbie/workit-landing-page-main/):link: | **TAILWIND CSS**
 
 
 ## Level: junior<sup>2</sup>
