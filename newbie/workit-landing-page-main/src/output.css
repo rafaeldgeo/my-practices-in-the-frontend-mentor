@@ -191,9 +191,6 @@
   .relative {
     position: relative;
   }
-  .static {
-    position: static;
-  }
   .-top-\[14\.5rem\] {
     top: calc(14.5rem * -1);
   }
