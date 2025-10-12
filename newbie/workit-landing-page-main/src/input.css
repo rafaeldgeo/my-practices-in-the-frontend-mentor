@@ -54,7 +54,7 @@ main section:nth-child(2)::before {
     margin-block-end: clamp(8.5rem, 12.58vw, 10.0625rem);
   }
 
-  main > section > div > div::after {
+  main > section > div > div > div::after {
     bottom: -7.5rem;
     content: url("../assets/images/bg-pattern-3.svg");
     position: absolute;
@@ -82,7 +82,7 @@ main section:nth-child(2)::before {
     margin-block-end: 10.0625rem;
   }
 
-  main > section > div > div::after {
+  main > section > div > div > div::after {
     bottom: -4.375rem;
     right: 6.875rem;
   }
