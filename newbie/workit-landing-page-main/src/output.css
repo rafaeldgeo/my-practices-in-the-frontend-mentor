@@ -242,6 +242,9 @@
   .w-70 {
     width: calc(var(--spacing) * 70);
   }
+  .w-fit {
+    width: fit-content;
+  }
   .w-full {
     width: 100%;
   }
@@ -250,9 +253,6 @@
   }
   .max-w-\[10ch\] {
     max-width: 10ch;
-  }
-  .max-w-\[11\.9375rem\] {
-    max-width: 11.9375rem;
   }
   .max-w-\[20\.0625rem\] {
     max-width: 20.0625rem;
@@ -503,11 +503,6 @@
   .sm\:w-14 {
     @media (width >= 40rem) {
       width: calc(var(--spacing) * 14);
-    }
-  }
-  .sm\:max-w-\[12\.9375rem\] {
-    @media (width >= 40rem) {
-      max-width: 12.9375rem;
     }
   }
   .sm\:max-w-\[31\.5rem\] {
