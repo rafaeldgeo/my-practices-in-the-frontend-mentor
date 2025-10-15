@@ -1,0 +1,7 @@
+@use "base";
+
+@include base.reset;
+
+body {
+    background-color: red;
+}
