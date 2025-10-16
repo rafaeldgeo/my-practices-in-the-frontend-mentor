@@ -4,23 +4,90 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png">
+  <link
+      rel="preload"
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
+      />
+    </noscript>
   <link rel="stylesheet" href="./src/css/style.css">
   <title>Frontend Mentor | Single-page design portfolio</title>
 </head>
 <body>
+  <div class="container">
+    <header class="header">
+      <div class="header__content">
+        <img class="logo" src="./assets/logo.svg" alt="black square with a white circle into it" width="150" height="150">
+        <button class="btn__free-consultation" type="button">Free Consultation</button>
+      </div>
+      <section class="hero" aria-labelledby="title-hero">
+        <h1 class="hero__title" id="title-hero">Design solutions made easy</h1>
+        <p class="hero__text">With over ten years of experience in various design disciplines, I’m your one-stop shop for your design needs.</p>
+      </section>
+    </header>
+    <main>
+      <section class="services" aria-label="services">
+        <ul class="services-list">
+          <li class="services-item">
+            <h2 class="services-item__title">Graphic Design</h2>
+          </li>
+          <li class="services-item">
+            <h2 class="services-item__title">UI/UX</h2>
+          </li>
+          <li class="services-item">
+            <h2 class="services-item__title">Apps</h2>
+          </li>
+          <li class="services-item">
+            <h2 class="services-item__title">Photography</h2>
+          </li>
+          <li class="services-item">
+            <h2 class="services-item__title">Illustrations</h2>
+          </li>
+          <li class="services-item">
+            <h2 class="services-item__title">Motion Graphics</h2>
+          </li>
+        </ul>
+      </section>
+    </main>
+    <footer>
+      <div class="footer__content">
+        <img class="logo" src="./assets/logo.svg" alt="black square with a white circle into it" width="150" height="150">
+        <button class="btn__free-consultation" type="button">Free Consultation</button>
+      </div>
+      <div class="attribution">
+          Challenge by
+          <a
+            class="attribution__link"
+            href="https://www.frontendmentor.io/profile/rafaeldgeo"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Frontend Mentor</a
+          >. Coded by
+          <a
+            class="attribution__link"
+            href="https://www.linkedin.com/in/rafaeldgeo/"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Rafael Dias de Almeida</a
+          >.
+        </div>
+    </footer>
+  </div>
 
-  Free Consultation
 
-  Design solutions made easy
+  
 
-  With over ten years of experience in various design disciplines, I’m your one-stop shop for your design needs.
+  
 
-  Graphic Design
-  UI/UX
-  Apps
-  Photography
-  Illustrations
-  Motion Graphics
+  
+
+ 
 
   I’m Amy, and I’d love to work on your next project
 
