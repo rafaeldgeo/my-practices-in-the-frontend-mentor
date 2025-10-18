@@ -1,10 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png">
-  <link
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/favicon-32x32.png"
+    />
+    <link
       rel="preload"
       href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
       as="style"
@@ -16,51 +21,227 @@
         href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
       />
     </noscript>
-  <link rel="stylesheet" href="./src/css/style.css">
-  <title>Frontend Mentor | Single-page design portfolio</title>
-</head>
-<body>
-  <div class="container">
-    <header class="header">
-      <div class="header__content">
-        <img class="logo" src="./assets/logo.svg" alt="black square with a white circle into it" width="150" height="150">
-        <button class="btn__free-consultation" type="button">Free Consultation</button>
-      </div>
-      <section class="hero" aria-labelledby="title-hero">
-        <h1 class="hero__title" id="title-hero">Design solutions made easy</h1>
-        <p class="hero__text">With over ten years of experience in various design disciplines, I’m your one-stop shop for your design needs.</p>
-      </section>
-    </header>
-    <main>
-      <section class="services" aria-label="services">
-        <ul class="services-list">
-          <li class="services-item">
-            <h2 class="services-item__title">Graphic Design</h2>
-          </li>
-          <li class="services-item">
-            <h2 class="services-item__title">UI/UX</h2>
-          </li>
-          <li class="services-item">
-            <h2 class="services-item__title">Apps</h2>
-          </li>
-          <li class="services-item">
-            <h2 class="services-item__title">Photography</h2>
-          </li>
-          <li class="services-item">
-            <h2 class="services-item__title">Illustrations</h2>
-          </li>
-          <li class="services-item">
-            <h2 class="services-item__title">Motion Graphics</h2>
-          </li>
-        </ul>
-      </section>
-    </main>
-    <footer>
-      <div class="footer__content">
-        <img class="logo" src="./assets/logo.svg" alt="black square with a white circle into it" width="150" height="150">
-        <button class="btn__free-consultation" type="button">Free Consultation</button>
-      </div>
-      <div class="attribution">
+    <link rel="stylesheet" href="./src/css/style.css" />
+    <title>Frontend Mentor | Single-page design portfolio</title>
+  </head>
+  <body>
+    <div class="container">
+      <header class="header">
+        <div class="header__content">
+          <img
+            class="logo"
+            src="./assets/logo.svg"
+            alt="black square with a white circle into it"
+            width="150"
+            height="150"
+          />
+          <button class="btn__free-consultation btn__free-consultation--primary" type="button">
+            Free Consultation
+          </button>
+        </div>
+        <section class="hero" aria-labelledby="title-hero">
+          <h1 class="hero__title" id="title-hero">
+            Design solutions made easy
+          </h1>
+          <p class="hero__text">
+            With over ten years of experience in various design disciplines, I’m
+            your one-stop shop for your design needs.
+          </p>
+        </section>
+      </header>
+      <main>
+        <section class="services" aria-label="services">
+          <ul class="services-list">
+            <li class="services-item">
+              <img
+                src="./assets/pattern-graphic-design.svg"
+                alt=""
+                width="128"
+                height="192"
+              />
+              <span class="services-item__title">Graphic Design</span>
+            </li>
+            <li class="services-item">
+              <img
+                class="services-item__img-pattern"
+                src="./assets/pattern-ui-ux.svg"
+                alt=""
+                width="64"
+                height="64"
+              />
+              <span class="services-item__title">UI/UX</span>
+            </li>
+            <li class="services-item">
+              <img
+                class="services-item__img-pattern"
+                src="./assets/pattern-apps.svg"
+                alt=""
+                width="64"
+                height="64"
+              />
+              <span class="services-item__title">Apps</span>
+            </li>
+            <li class="services-item">
+              <img
+                class="services-item__img-pattern"
+                src="./assets/pattern-illustrations.svg"
+                alt=""
+                width="128"
+                height="64"
+              />
+              <span class="services-item__title">Photography</span>
+            </li>
+            <li class="services-item">
+              <img
+                class="services-item__img-pattern"
+                src="./assets/pattern-photography.svg"
+                alt=""
+                width="160"
+                height="64"
+              />
+              <span class="services-item__title">Illustrations</span>
+            </li>
+            <li class="services-item">
+              <img
+                class="services-item__img-pattern"
+                src="./assets/pattern-motion-graphics.svg"
+                alt=""
+                width="128"
+                height="64"
+              />
+              <span class="services-item__title">Motion Graphics</span>
+            </li>
+          </ul>
+        </section>
+        <section class="about" aria-labelledby="title-about">
+          <img
+            class="about__img-amy"
+            src="./assets/image-amy.webp"
+            alt="A white blode girl smilling. She is wearing a blue jacket and a gray shirt"
+          />
+          <div class="about__content">
+            <h2 class="about__title" id="title-about">
+              I’m Amy, and I’d love to work on your next project
+            </h2>
+            <p class="about__text">
+              I love working with others to create beautiful design solutions.
+              I’ve designed everything from brand illustrations to complete
+              mobile apps. I’m also handy with a camera!
+            </p>
+            <button class="btn__free-consultation btn__free-consultation--secondary" type="button">
+              Free Consultation
+            </button>
+          </div>
+        </section>
+        <section class="my-work" aria-labelledby="title-my-work">
+          <h2 class="my-work__title" id="title-my-work">My Work</h2>
+          <ul class="my-work__list">
+            <li class="my-work__item">
+              <img
+                src="./assets/image-slide-1.jpg"
+                alt="Light blue lines in moviment"
+                width="540"
+                height="360"
+              />
+            </li>
+            <li class="my-work__item">
+              <img
+                src="./assets/image-slide-2.jpg"
+                alt="light blue background color with several blue dark abstract elements"
+                width="540"
+                height="360"
+              />
+            </li>
+            <li class="my-work__item">
+              <img
+                src="./assets/image-slide-3.jpg"
+                alt="A hand holding a colorful newspaper"
+                width="540"
+                height="360"
+              />
+            </li>
+            <li class="my-work__item">
+              <img
+                src="./assets/image-slide-4.jpg"
+                alt="A stack of the folder and LP"
+                width="540"
+                height="360"
+              />
+            </li>
+            <li class="my-work__item">
+              <img
+                src="./assets/image-slide-5.jpg"
+                alt="A hand holding a smarthpone"
+                width="540"
+                height="360"
+              />
+            </li>
+          </ul>
+          <div class="my-work__control" aria-label="carousel controls">
+            <button
+              class="my-work__btn"
+              type="button"
+              aria-label="Previous slide"
+            >
+              <svg
+                class="my-work__arrow"
+                viewBox="0 0 15 16"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+              >
+                <path
+                  fill="#FFF"
+                  d="M8 0 0 8l8 8 1.687-1.687-5.121-5.12h10.241V6.807H4.566l5.121-5.12z"
+                />
+              </svg>
+            </button>
+
+            <button class="my-work__btn" type="button" aria-label="Next slide">
+              <svg
+                class="my-work__arrow"
+                width="15"
+                height="16"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+              >
+                <path
+                  fill="#FFF"
+                  d="m6.808 16 8-8-8-8-1.687 1.687 5.121 5.12H.001v2.386h10.241l-5.121 5.12z"
+                />
+              </svg>
+            </button>
+          </div>
+        </section>
+        <section class="book-call" aria-labelledby="title-book-call">
+          <div class="book-call__content">
+            <h2 class="book-call__title" id="title-book-call">
+              Book a call with me
+            </h2>
+            <p class="book-call__text">
+              I’d love to have a chat to see how I can help you. The best first
+              step is for us to discuss your project during a free consultation.
+              Then we can move forward from there.
+            </p>
+          </div>
+          <button class="btn__free-consultation btn__free-consultation--secondary" type="button">
+            Free Consultation
+          </button>
+        </section>
+      </main>
+      <footer>
+        <div class="footer__content">
+          <img
+            class="logo"
+            src="./assets/logo.svg"
+            alt="black square with a white circle into it"
+            width="150"
+            height="150"
+          />
+          <button class="btn__free-consultation btn__free-consultation--primary" type="button">
+            Free Consultation
+          </button>
+        </div>
+        <div class="attribution">
           Challenge by
           <a
             class="attribution__link"
@@ -77,35 +258,7 @@
             >Rafael Dias de Almeida</a
           >.
         </div>
-    </footer>
-  </div>
-
-
-  
-
-  
-
-  
-
- 
-
-  I’m Amy, and I’d love to work on your next project
-
-  I love working with others to create beautiful design solutions. I’ve designed everything from brand illustrations 
-  to complete mobile apps. I’m also handy with a camera!
-
-  Free Consultation
-
-  My Work
-
-  Book a call with me
-
-  I’d love to have a chat to see how I can help you. The best first step is for us to discuss your project during a 
-  free consultation. Then we can move forward from there.
-
-  Free Consultation
-
-  Free Consultation
-
-</body>
+      </footer>
+    </div>
+  </body>
 </html>
