@@ -2,6 +2,56 @@
 
 @include base.reset;
 
+html,
 body {
+  background-color: base.$neutral-200;
+  inline-size: 100%;
+  max-inline-size: 100vw;
+  min-block-size: 100vh;
+
+  // fallback old browsers
+  @supports (min-block-size: 100svh) {
+    min-block-size: 100svh;
+    // small view
+  }
+
+  @supports (min-block-size: 100dvh) {
+    min-block-size: 100dvh;
+    // dynamic view
+  }
+}
+
+.container {
+  margin-inline: auto;
+  max-inline-size: 90rem;
+  overflow-x: hidden;
+  background-color: aqua;
+
+  @include base.breakpoint(xs) {
+    background-color: blue;
+  }
+
+  @include base.breakpoint(sm) {
     background-color: red;
+  }
+
+  @include base.breakpoint(md) {
+    background-color: yellow;
+  }
+
+  @include base.breakpoint(lg) {
+    background-color: green;
+  }
+
+  @include base.breakpoint(xl) {
+    background-color: purple;
+  }
+
+  @include base.breakpoint(xxl) {
+    background-color: pink;
+  }
+}
+
+.teste {
+    font-size: base.fluidFont(10, 30, small-mobile);
 }

@@ -7,8 +7,65 @@
   font-family: "Plus Jakarta Sans", sans-serif;
 }
 
+html,
 body {
-  background-color: red;
+  background-color: #fff7f0;
+  inline-size: 100%;
+  max-inline-size: 100vw;
+  min-block-size: 100vh;
+}
+@supports (min-block-size: 100svh) {
+  html,
+  body {
+    min-block-size: 100svh;
+  }
+}
+@supports (min-block-size: 100dvh) {
+  html,
+  body {
+    min-block-size: 100dvh;
+  }
+}
+
+.container {
+  margin-inline: auto;
+  max-inline-size: 90rem;
+  overflow-x: hidden;
+  background-color: aqua;
+}
+@media (max-width: 23.4375rem) {
+  .container {
+    background-color: blue;
+  }
+}
+@media (min-width: 36rem) {
+  .container {
+    background-color: red;
+  }
+}
+@media (min-width: 48rem) {
+  .container {
+    background-color: yellow;
+  }
+}
+@media (min-width: 62rem) {
+  .container {
+    background-color: green;
+  }
+}
+@media (min-width: 75rem) {
+  .container {
+    background-color: purple;
+  }
+}
+@media (min-width: 90rem) {
+  .container {
+    background-color: pink;
+  }
+}
+
+.teste {
+  font-size: clamp(0.625rem, 0.5rem + 5.8666666667vw, 1.875rem);
 }
 
 /*# sourceMappingURL=style.css.map */

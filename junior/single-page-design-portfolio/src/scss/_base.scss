@@ -1,21 +1,24 @@
 @use "sass:map";
 @use "sass:math";
+@use "breakpoints";
+@forward "breakpoints";
 
 $neutral-900: #030303;
-$neutral-400: #6A6662;
-$neutral-200: #FFF7F0;
-$neutral-0: #FFFFFF;
-$light-red-500: #E16B5B;
-$galactic-blue-500: #755CDE;
-$summer-yellow-500: #F6A560;
-$pink-500: #F39E9E;
-$cyan-500: #61C4B7;
+$neutral-400: #6a6662;
+$neutral-200: #fff7f0;
+$neutral-0: #ffffff;
+$light-red-500: #e16b5b;
+$galactic-blue-500: #755cde;
+$summer-yellow-500: #f6a560;
+$pink-500: #f39e9e;
+$cyan-500: #61c4b7;
 $dark-purple-500: #552049;
 $font: "Plus Jakarta Sans", sans-serif;
 $deviceList: (
-  "mobile": 375,
-  "tablet": 768,
-  "desktop": 1440,
+  small-mobile: 375,
+  mobile-first: 576,
+  tablet: 768,
+  desktop: 1440,
 );
 
 //reset onfig
@@ -30,60 +33,23 @@ $deviceList: (
   }
 }
 
-//breakpoints
-@mixin breakpoints($size) {
-  @if $size == ex {
-    @media (min-width: 375.98px) {
-      @content;
-    }
-  } @else if $size == sm {
-    @media (min-width: 575.98px) {
-      @content;
-    }
-  } @else if $size == md {
-    @media (min-width: 768.98px) {
-      @content;
-    }
-  } @else if $size == lg {
-    @media (min-width: 991.98px) {
-      @content;
-    }
-  } @else if $size == xl {
-    @media (min-width: 1199.98px) {
-      @content;
-    }
-  } @else if $size == xxl {
-    @media (min-width: 1399.98px) {
-      @content;
-    }
-  } @else {
-    @error "You must define a size valid - ex, sm, md, lg, xl, xxl";
-  }
-}
-
-// breakpoint between views
-@mixin breakpoint-between($min, $max) {
-  @media (min-width: #{$min}px) and (max-width: #{$max}px) {
-    @content;
-  }
-}
-
 // convert px to rem
+$base-font-size: 16;
 @function convertPxToRem($sizePx) {
-  @return math.div($sizePx, 16) * 1rem;
+  @return math.div($sizePx, $base-font-size) * 1rem;
 }
 
 // calculate the view size from device
 @function calculateVw($sizePx, $device) {
-  $sizeView: map.get($deviceList, $device);
+  $sizeView: map-get($deviceList, $device);
   $sizeVw: (math.div($sizePx, $sizeView) * 100) * 1vw;
 
   @return $sizeVw;
 }
 
 // define the fluid space using min(vw, rem)
-@function fluidSpace($sizePx, $device: "mobile") {
-  @if map.get($deviceList, $device) {
+@function fluidSpace($sizePx, $device: "mobile-first") {
+  @if map-get($deviceList, $device) {
     @return min(calculateVw($sizePx, $device), convertPxToRem($sizePx));
   } @else {
     @error "You must define one device valid";
@@ -91,28 +57,17 @@ $deviceList: (
 }
 
 // define the fluid typography using clamp(rem, vw, rem)
-@function fluidTypo($sizePxMin, $sizePxMax, $device: "mobile") {
-  @if map.get($deviceList, $device) {
-    $sizePx: $sizePxMax - 8;
+@function fluidFont(
+$sizePxMin, 
+$sizePxMax, 
+$device: "mobile-first") {
+  @if map-get($deviceList, $device) {
+    $sizeVwPx: $sizePxMax - 8;
     @return clamp(
       convertPxToRem($sizePxMin),
-      0.5rem + calculateVw($sizePx, $device),
+      0.5rem + calculateVw($sizeVwPx, $device),
       convertPxToRem($sizePxMax)
     );
-  } @else {
-    @error "You must define one device valid";
-  }
-}
-
-//define the fluid line height using calc(clamp(rem, vw, rem) * number)
-@function fluidLineHeight(
-  $sizePxMin,
-  $sizePxMax,
-  $lineHeight,
-  $device: "mobile"
-) {
-  @if map.get($deviceList, $device) {
-    @return calc(fluidTypo($sizePxMin, $sizePxMax, $device) * $lineHeight);
   } @else {
     @error "You must define one device valid";
   }
