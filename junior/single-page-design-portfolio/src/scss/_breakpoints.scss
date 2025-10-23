@@ -9,11 +9,11 @@ $breakpoints: (
   xl: 75rem,
   xxl: 90rem,
 );
-//ex:375px;sm:576px;md:768px;992px;1200px;1440px
+//ex:375px;sm:576px;md:768px;lg:992px;xl:1200px;xxl:1440px
 
 // breakpoint standard
 @mixin breakpoint($size) {
-  $value: map-get($breakpoints, $size);
+  $value: map.get($breakpoints, $size);
 
   @if $size == xs {
     @media (max-width: #{$value}) {

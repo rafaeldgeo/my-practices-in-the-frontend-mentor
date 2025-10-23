@@ -22,36 +22,26 @@ body {
 }
 
 .container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(3, auto);
   margin-inline: auto;
   max-inline-size: 90rem;
   overflow-x: hidden;
-  background-color: aqua;
+  row-gap: base.fluidSpace(64, 120, 768, 80);
 
-  @include base.breakpoint(xs) {
-    background-color: blue;
+  @include base.breakpoint("xs") {
+    row-gap: base.fluidSpace(30, 64, 375);
   }
-
-  @include base.breakpoint(sm) {
-    background-color: red;
-  }
-
-  @include base.breakpoint(md) {
-    background-color: yellow;
-  }
-
-  @include base.breakpoint(lg) {
-    background-color: green;
-  }
-
-  @include base.breakpoint(xl) {
-    background-color: purple;
-  }
-
-  @include base.breakpoint(xxl) {
-    background-color: pink;
-  }
+  
 }
 
-.teste {
-    font-size: base.fluidFont(10, 30, small-mobile);
+.header {
+  padding-block-start: base.fluidSpace(24, 32, 992); 
+  padding-inline: base.fluidSpace(16, 66, 768, 32);
+
+  .header__content {
+    margin-inline: auto;
+    max-inline-size: 69.375rem;
+  }
 }

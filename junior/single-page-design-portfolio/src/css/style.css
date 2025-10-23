@@ -28,44 +28,27 @@ body {
 }
 
 .container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(3, auto);
   margin-inline: auto;
   max-inline-size: 90rem;
   overflow-x: hidden;
-  background-color: aqua;
+  row-gap: clamp(4rem, 10.4166666667vw, 7.5rem);
 }
 @media (max-width: 23.4375rem) {
   .container {
-    background-color: blue;
-  }
-}
-@media (min-width: 36rem) {
-  .container {
-    background-color: red;
-  }
-}
-@media (min-width: 48rem) {
-  .container {
-    background-color: yellow;
-  }
-}
-@media (min-width: 62rem) {
-  .container {
-    background-color: green;
-  }
-}
-@media (min-width: 75rem) {
-  .container {
-    background-color: purple;
-  }
-}
-@media (min-width: 90rem) {
-  .container {
-    background-color: pink;
+    row-gap: clamp(1.875rem, 17.0666666667vw, 4rem);
   }
 }
 
-.teste {
-  font-size: clamp(0.625rem, 0.5rem + 5.8666666667vw, 1.875rem);
+.header {
+  padding-block-start: clamp(1.5rem, 3.2258064516vw, 2rem);
+  padding-inline: clamp(1rem, 4.1666666667vw, 4.125rem);
+}
+.header .header__content {
+  margin-inline: auto;
+  max-inline-size: 69.375rem;
 }
 
 /*# sourceMappingURL=style.css.map */
