@@ -34,21 +34,60 @@ body {
   margin-inline: auto;
   max-inline-size: 90rem;
   overflow-x: hidden;
-  row-gap: clamp(4rem, 10.4166666667vw, 7.5rem);
+  row-gap: min(17.0666666667vw, 4rem);
 }
-@media (max-width: 23.4375rem) {
+@media (min-width: 48rem) {
   .container {
-    row-gap: clamp(1.875rem, 17.0666666667vw, 4rem);
+    row-gap: min(10.4166666667vw, 5rem);
+  }
+}
+@media (min-width: 62rem) {
+  .container {
+    row-gap: min(8.3333333333vw, 7.5rem);
   }
 }
 
 .header {
-  padding-block-start: clamp(1.5rem, 3.2258064516vw, 2rem);
-  padding-inline: clamp(1rem, 4.1666666667vw, 4.125rem);
+  padding-block-start: 1.5rem;
 }
-.header .header__content {
+@media (min-width: 36rem) {
+  .header {
+    padding-block-start: 2rem;
+  }
+}
+.header__content {
   margin-inline: auto;
-  max-inline-size: 69.375rem;
+  padding-inline: min(4.2666666667vw, 1rem);
+  inline-size: 100%;
+}
+@media (min-width: 48rem) {
+  .header__content {
+    padding-inline: min(4.1666666667vw, 2rem);
+  }
+}
+@media (min-width: 62rem) {
+  .header__content {
+    padding-inline: min(11.4583333333vw, 10.3125rem);
+  }
+}
+
+.footer__content {
+  margin-inline: auto;
+  padding-inline: min(4.2666666667vw, 1rem);
+  inline-size: 100%;
+  padding-block-end: 1.5rem;
+}
+@media (min-width: 48rem) {
+  .footer__content {
+    padding-inline: min(4.1666666667vw, 2rem);
+    padding-block-end: min(5.2083333333vw, 2.5rem);
+  }
+}
+@media (min-width: 62rem) {
+  .footer__content {
+    padding-inline: min(11.4583333333vw, 10.3125rem);
+    padding-block-end: min(4.4444444444vw, 4rem);
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

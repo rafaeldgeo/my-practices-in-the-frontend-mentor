@@ -15,12 +15,9 @@ $cyan-500: #61c4b7;
 $dark-purple-500: #552049;
 $font: "Plus Jakarta Sans", sans-serif;
 $deviceList: (
-  xs: 375,   // iPhone SE / base mobile
-  sm: 576,   // smartphone
-  md: 768,   // tablets
-  lg: 992,   // notebooks 
-  xl: 1200,  // desktops 
-  xxl: 1440  // wide
+  "mobile": 375,
+  "tablet": 768,
+  "desktop": 1440,
 );
 
 //reset onfig
@@ -49,75 +46,21 @@ $base-font-size: 16;
   @return $sizeVw;
 }
 
-//define the fluid space using min(vw, rem)
-// @function fluidSpace($minPx, $maxPx, vwBase) {
-//     $sizeVw: calculateVw($sizePx, $device);
-//     $sizeRem: convertPxToRem($sizePx);
-
-
-//   @if map-get($deviceList, $device) {
-//     @return clamp($sizeRem * $ratio, $sizeVw, $sizeRem);
-//   } @else {
-//     @error "You must define one device valid";
-//   }
-// }
-
-// @function fluidSpace($min, $max, $vwBase) {
-//   $vw: (($max - $min) / $vwBase) * 100;
-//   @return clamp(
-//     convertPxToRem($min),
-//     #{$vw}vw,
-//     convertPxToRem($max)
-//   );
-// }
-
-@function fluidSpace($minPx, $maxPx, $vwBase, $idealPx: null) {
-  
-  // validation
-  @if ($minPx > $maxPx) {
-    @error "Invalid range: the minimum value (#{$minPx}) cannot be greater than the maximum (#{$maxPx}).";
+// define the fluid space using min(vw, rem)
+@function fluidSpace($sizePx, $device: "mobile") {
+  @if map.get($deviceList, $device) {
+    @return min(calculateVw($sizePx, $device), convertPxToRem($sizePx));
+  } @else {
+    @error "You must define one device valid";
   }
-
-  @if $idealPx == null {
-    $idealPx: $maxPx;
-  } @else if ($idealPx > $maxPx) {
-    @error "Invalid ideal: the ideal value (#{$idealPx}) cannot exceed the maximum (#{$maxPx}).";
-  }
-
-  // calcule
-  $minRem: convertPxToRem($minPx);
-  $maxRem: convertPxToRem($maxPx);
-  $vwValue: ($idealPx / $vwBase) * 100;
-
-  @return clamp($minRem, #{$vwValue}vw, $maxRem);
 }
-
-// @function fluidSpace($sizePxMin, $sizePxMax, $device: "sm") {
-//   @if map-get($deviceList, $device) {
-//     $sizeVw: calculateVw($sizePxMax, $device);
-//     $sizeRemMin: convertPxToRem($sizePxMin);
-//     $sizeRemMax: convertPxToRem($sizePxMax);
-//     @return clamp($sizeRemMin, $sizeVw, $sizeRemMax);
-//   } @else {
-//     @error "You must define one device valid";
-//   }
-// }
-
-// @function fluidSpace($sizePx, $device: "sm") {
-//   @if map-get($deviceList, $device) {
-//     @return min(calculateVw($sizePx, $device), convertPxToRem($sizePx));
-//   } @else {
-//     @error "You must define one device valid";
-//   }
-// }
-
 
 // define the fluid typography using clamp(rem, vw, rem)
 @function fluidFont(
 $sizePxMin, 
 $sizePxMax, 
-$device: "sm") {
-  @if map-get($deviceList, $device) {
+$device: "mobile") {
+  @if map.get($deviceList, $device) {
     $sizeVwPx: $sizePxMax - 8;
     @return clamp(
       convertPxToRem($sizePxMin),

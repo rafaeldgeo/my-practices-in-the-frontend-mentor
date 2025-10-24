@@ -28,20 +28,57 @@ body {
   margin-inline: auto;
   max-inline-size: 90rem;
   overflow-x: hidden;
-  row-gap: base.fluidSpace(64, 120, 768, 80);
+  row-gap: base.fluidSpace(64);
 
-  @include base.breakpoint("xs") {
-    row-gap: base.fluidSpace(30, 64, 375);
+  @include base.breakpoint("md") {
+    row-gap: base.fluidSpace(80, "tablet");
   }
-  
+
+  @include base.breakpoint("lg") {
+    row-gap: base.fluidSpace(120, "desktop");
+  }
 }
 
 .header {
-  padding-block-start: base.fluidSpace(24, 32, 992); 
-  padding-inline: base.fluidSpace(16, 66, 768, 32);
+  padding-block-start: base.convertPxToRem(24);
 
-  .header__content {
+  @include base.breakpoint("sm") {
+    padding-block-start: base.convertPxToRem(32);
+  }
+
+  &__content {
     margin-inline: auto;
-    max-inline-size: 69.375rem;
+    padding-inline: base.fluidSpace(16);
+    inline-size: 100%;
+
+    @include base.breakpoint("md") {
+      padding-inline: base.fluidSpace(32, "tablet");
+    }
+
+    @include base.breakpoint("lg") {
+      padding-inline: base.fluidSpace(165, "desktop");
+    }
+  }
+}
+
+.main {
+}
+
+.footer {
+  &__content {
+    margin-inline: auto;
+    padding-inline: base.fluidSpace(16);
+    inline-size: 100%;
+    padding-block-end: base.convertPxToRem(24);
+
+    @include base.breakpoint("md") {
+      padding-inline: base.fluidSpace(32, "tablet");
+      padding-block-end: base.fluidSpace(40, "tablet");
+    }
+
+    @include base.breakpoint("lg") {
+      padding-inline: base.fluidSpace(165, "desktop");
+      padding-block-end: base.fluidSpace(64, "desktop");
+    }
   }
 }
