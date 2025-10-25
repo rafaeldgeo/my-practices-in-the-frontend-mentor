@@ -69,10 +69,9 @@ body {
     row-gap: min(8.3333333333vw, 4rem);
   }
 }
-@media (min-width: 62rem) {
+@media (min-width: 75rem) {
   .header__content {
     padding-inline: min(11.4583333333vw, 10.3125rem);
-    row-gap: min(5.8333333333vw, 5.25rem);
   }
 }
 
@@ -164,6 +163,72 @@ body {
   .hero__text {
     max-inline-size: 35.5rem;
   }
+}
+
+.services__list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(6, 182px);
+  grid-template-areas: "graphic graphic" "graphic graphic" "ui apps" "illustrations illustrations" "photography photography" "motion motion";
+  gap: 20px;
+  list-style-type: none;
+}
+@media (min-width: 36rem) {
+  .services__list {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(3, 182px);
+    grid-template-areas: "graphic graphic ui apps" "graphic graphic illustrations illustrations" "photography photography motion motion";
+  }
+}
+@media (min-width: 75rem) {
+  .services__list {
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(2, 182px);
+    grid-template-areas: "graphic graphic ui apps photography photography" "graphic graphic illustrations illustrations motion motion";
+  }
+}
+.services__item {
+  position: relative;
+  border-radius: 0.5rem;
+  padding: 1.25rem;
+}
+.services__item--graphic {
+  grid-area: graphic;
+  background-color: #755cde;
+}
+.services__item--ui {
+  grid-area: ui;
+  background-color: #f6a560;
+}
+.services__item--apps {
+  grid-area: apps;
+  background-color: #f39e9e;
+}
+.services__item--illustrations {
+  grid-area: illustrations;
+  background-color: #e16b5b;
+}
+.services__item--photography {
+  grid-area: photography;
+  background-color: #61c4b7;
+}
+.services__item--motion {
+  grid-area: motion;
+  background-color: #552049;
+}
+.services__item-img-pattern {
+  position: absolute;
+  right: 20px;
+}
+.services__item-title {
+  position: absolute;
+  bottom: 20px;
+  display: block;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 1.5rem;
+  line-height: 1.3;
+  text-align: start;
 }
 
 .footer__content {

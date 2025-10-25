@@ -59,9 +59,8 @@ body {
       row-gap: base.fluidSpace(64, "tablet");
     }
 
-    @include base.breakpoint("lg") {
+    @include base.breakpoint("xl") {
       padding-inline: base.fluidSpace(165, "desktop");
-      row-gap: base.fluidSpace(84, "desktop");
     }
   }
 }
@@ -170,6 +169,93 @@ body {
 }
 
 .main {
+}
+
+.services {
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(6, 182px);
+    grid-template-areas:
+      "graphic graphic"
+      "graphic graphic"
+      "ui apps"
+      "illustrations illustrations"
+      "photography photography"
+      "motion motion";
+    gap: 20px;
+    list-style-type: none;
+
+    @include base.breakpoint("sm") {
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(3, 182px);
+      grid-template-areas:
+        "graphic graphic ui apps"
+        "graphic graphic illustrations illustrations"
+        "photography photography motion motion";
+    }
+
+    @include base.breakpoint("xl") {
+      grid-template-columns: repeat(6, 1fr);
+      grid-template-rows: repeat(2, 182px);
+      grid-template-areas:
+        "graphic graphic ui apps photography photography"
+        "graphic graphic illustrations illustrations motion motion";
+    }
+  }
+
+  &__item {
+    position: relative;
+    border-radius: base.convertPxToRem(8);
+    padding: base.convertPxToRem(20); // verificar
+
+    &--graphic {
+      grid-area: graphic;
+      background-color: base.$galactic-blue-500;
+    }
+
+    &--ui {
+      grid-area: ui;
+      background-color: base.$summer-yellow-500;
+    }
+
+    &--apps {
+      grid-area: apps;
+      background-color: base.$pink-500;
+    }
+
+    &--illustrations {
+      grid-area: illustrations;
+
+      background-color: base.$light-red-500;
+    }
+
+    &--photography {
+      grid-area: photography;
+      background-color: base.$cyan-500;
+    }
+
+    &--motion {
+      grid-area: motion;
+      background-color: base.$dark-purple-500;
+    }
+  }
+
+  &__item-img-pattern {
+    position: absolute;
+    right: 20px;
+  }
+
+  &__item-title {
+    position: absolute;
+    bottom: 20px;
+    display: block;
+    color: base.$neutral-0;
+    font-weight: 700;
+    font-size: base.convertPxToRem(24);
+    line-height: 1.3;
+    text-align: start;
+  }
 }
 
 .footer {
