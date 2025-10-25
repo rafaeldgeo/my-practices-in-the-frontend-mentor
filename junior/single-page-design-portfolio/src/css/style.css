@@ -56,18 +56,113 @@ body {
   }
 }
 .header__content {
+  display: flex;
+  flex-direction: column;
+  row-gap: min(10.6666666667vw, 2.5rem);
+  inline-size: 100%;
   margin-inline: auto;
   padding-inline: min(4.2666666667vw, 1rem);
-  inline-size: 100%;
 }
 @media (min-width: 48rem) {
   .header__content {
     padding-inline: min(4.1666666667vw, 2rem);
+    row-gap: min(8.3333333333vw, 4rem);
   }
 }
 @media (min-width: 62rem) {
   .header__content {
     padding-inline: min(11.4583333333vw, 10.3125rem);
+    row-gap: min(5.8333333333vw, 5.25rem);
+  }
+}
+
+.cta-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.cta-bar__logo {
+  block-size: auto;
+  display: block;
+  inline-size: clamp(3rem, 8.34vw, 4rem);
+}
+
+.btn__free-consultation {
+  border: none;
+  border-radius: 9999rem;
+  color: #ffffff;
+  display: inline-block;
+  font-size: 1rem;
+  font-weight: 700;
+  inline-size: fit-content;
+  line-height: 1.5;
+  padding: 0.875rem min(6.25vw, 3rem);
+  cursor: pointer;
+}
+.btn__free-consultation--primary {
+  background-color: #030303;
+}
+.btn__free-consultation--primary:hover {
+  background-color: #755cde;
+}
+.btn__free-consultation--primary:focus {
+  outline-color: #755cde;
+  outline-offset: 0.1875rem;
+}
+.btn__free-consultation--secondary {
+  background-color: #e16b5b;
+}
+.btn__free-consultation--secondary:hover {
+  background-color: #f6a560;
+}
+.btn__free-consultation--secondary:focus {
+  outline-color: #e16b5b;
+  outline-offset: 0.1875rem;
+}
+
+.about {
+  margin-inline: auto;
+  padding-inline: min(4.2666666667vw, 1rem);
+  inline-size: 100%;
+}
+@media (min-width: 48rem) {
+  .about {
+    padding-inline: min(4.1666666667vw, 2rem);
+  }
+}
+@media (min-width: 62rem) {
+  .about {
+    padding-inline: min(11.4583333333vw, 10.3125rem);
+  }
+}
+.hero {
+  text-align: center;
+}
+.hero__title {
+  color: #030303;
+  display: inline-block;
+  font-size: clamp(2.5rem, 0.5rem + 3.3333333333vw, 3.5rem);
+  font-weight: 700;
+  line-height: 1.2;
+  max-inline-size: 15ch;
+  padding-block-end: 1.25rem;
+}
+@media (min-width: 48rem) {
+  .hero__title {
+    max-inline-size: 100%;
+    line-height: 1.3;
+  }
+}
+.hero__text {
+  margin-inline: auto;
+  font-weight: 500;
+  color: #6a6662;
+  font-size: clamp(1rem, 0.5rem + 2.6666666667vw, 1.125rem);
+  line-height: 1.5;
+}
+@media (min-width: 36rem) {
+  .hero__text {
+    max-inline-size: 35.5rem;
   }
 }
 
