@@ -51,7 +51,6 @@ body {
     flex-direction: column;
     row-gap: base.fluidSpace(40);
     inline-size: 100%;
-    margin-inline: auto;
     padding-inline: base.fluidSpace(16);
 
     @include base.breakpoint("md") {
@@ -81,10 +80,10 @@ body {
   }
 }
 
-.btn__free-consultation {
+.btn {
   border: none;
   border-radius: 9999rem;
-  color: base.$neutral-0;
+  color: base.$neutral-200;
   display: inline-block;
   font-size: 1rem;
   font-weight: 700;
@@ -117,23 +116,6 @@ body {
   &--secondary:focus {
     outline-color: base.$light-red-500;
     outline-offset: base.convertPxToRem(3);
-  }
-}
-
-.about {
-  margin-inline: auto;
-  padding-inline: base.fluidSpace(16);
-  inline-size: 100%;
-
-  @include base.breakpoint("md") {
-    padding-inline: base.fluidSpace(32, "tablet");
-  }
-
-  @include base.breakpoint("lg") {
-    padding-inline: base.fluidSpace(165, "desktop");
-  }
-
-  &__content {
   }
 }
 
@@ -258,21 +240,149 @@ body {
   }
 }
 
+.about {
+  margin-inline: auto;
+  padding-inline: base.fluidSpace(16);
+  inline-size: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: base.fluidSpace(24) 0;
+
+  @include base.breakpoint("md") {
+    padding-inline: base.fluidSpace(32, "tablet");
+  }
+
+  @include base.breakpoint("xl") {
+    flex-direction: row;
+    padding-inline: base.fluidSpace(165, "desktop");
+    gap: 0 base.fluidSpace(125, "desktop");
+  }
+
+  &__img-amy {
+    block-size: auto;
+    display: block;
+    inline-size: clamp(
+      base.convertPxToRem(300),
+      39.06vw,
+      base.convertPxToRem(445)
+    );
+    object-fit: contain;
+
+    @include base.breakpoint("xs") {
+      inline-size: 100%;
+      max-inline-size: base.convertPxToRem(300);
+    }
+  }
+
+  &__content {
+    text-align: center;
+
+    @include base.breakpoint("xl") {
+      text-align: start;
+    }
+  }
+
+  &__title {
+    color: base.$neutral-900;
+    font-size: base.fluidFont(20, 40);
+    line-height: 1.3;
+    font-weight: 700;
+  }
+
+  &__text {
+    color: base.$neutral-400;
+    line-height: 1.5;
+    font-weight: 500;
+    font-size: base.fluidFont(16, 18);
+    padding-block: base.fluidSpace(20) base.fluidSpace(32);
+
+    @include base.breakpoint("lg") {
+      padding-block: base.fluidSpace(32, "desktop");
+    }
+  }
+}
+
 .footer {
   &__content {
-    margin-inline: auto;
-    padding-inline: base.fluidSpace(16);
+    display: flex;
+    flex-direction: column;
+    row-gap: base.fluidSpace(40);
     inline-size: 100%;
-    padding-block-end: base.convertPxToRem(24);
+    padding-inline: base.fluidSpace(16);
 
     @include base.breakpoint("md") {
       padding-inline: base.fluidSpace(32, "tablet");
-      padding-block-end: base.fluidSpace(40, "tablet");
+      row-gap: base.fluidSpace(64, "tablet");
     }
 
-    @include base.breakpoint("lg") {
+    @include base.breakpoint("xl") {
       padding-inline: base.fluidSpace(165, "desktop");
-      padding-block-end: base.fluidSpace(64, "desktop");
     }
+  }
+
+  .attribution {
+    flex-shrink: 0;
+    color: base.$dark-purple-500;
+    font-size: 0.6875rem;
+    padding-block-start: base.fluidSpace(24);
+    padding-block-end: base.fluidSpace(10);
+    text-align: center;
+
+    @include base.breakpoint("md") {
+      padding-block-start: base.fluidSpace(40);
+    }
+
+    @include base.breakpoint("xl") {
+      padding-block-start: base.fluidSpace(64);
+    }
+  }
+
+  .attribution__link {
+    color: base.$galactic-blue-500;
+  }
+}
+
+.book-call {
+  background-color: base.$neutral-900;
+  border-radius: base.convertPxToRem(10);
+  color: base.$neutral-200;
+  padding: base.fluidSpace(40) base.fluidSpace(16);
+  display: flex;
+  flex-direction: column;
+  gap: base.fluidSpace(40) 0;
+  inline-size: 100%;
+  align-items: center;
+
+  @include base.breakpoint("md") {
+    padding: base.fluidSpace(64, "tablet") base.fluidSpace(82, "tablet");
+  }
+
+  @include base.breakpoint("xl") {
+    padding: base.fluidSpace(64, "desktop") base.fluidSpace(82, "desktop");
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  &__content {
+    text-align: center;
+
+    @include base.breakpoint("xl") {
+      flex: 0 1 base.convertPxToRem(540);
+      text-align: start;
+    }
+  }
+
+  &__title {
+    font-size: base.fluidFont(30, 40);
+    font-weight: 700;
+    line-height: 1.3;
+  }
+
+  &__text {
+    font-size: base.fluidFont(16, 18);
+    font-weight: 500;
+    line-height: 1.5;
+    padding-block-start: base.convertPxToRem(24);
   }
 }
