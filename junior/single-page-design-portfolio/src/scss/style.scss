@@ -27,7 +27,6 @@ body {
   grid-template-rows: repeat(3, auto);
   margin-inline: auto;
   max-inline-size: 90rem;
-  overflow-x: hidden;
   row-gap: base.fluidSpace(64);
 
   @include base.breakpoint("md") {
@@ -151,6 +150,18 @@ body {
 }
 
 .main {
+  display: flex;
+  flex-direction: column;
+  inline-size: 100%;
+  row-gap: base.fluidSpace(64);
+
+  @include base.breakpoint("md") {
+    row-gap: base.fluidSpace(80, "tablet");
+  }
+
+  @include base.breakpoint("lg") {
+    row-gap: base.fluidSpace(120, "desktop");
+  }
 }
 
 .services {
@@ -300,6 +311,93 @@ body {
     @include base.breakpoint("lg") {
       padding-block: base.fluidSpace(32, "desktop");
     }
+  }
+}
+
+.my-work {
+  inline-size: 100%;
+  display: flex;
+  flex-direction: column;
+  row-gap: base.fluidSpace(40);
+  align-items: center;
+
+  @include base.breakpoint("md") {
+    row-gap: base.fluidSpace(48, "tablet");
+  }
+
+  &__title {
+    font-size: base.fluidFont(20, 40);
+    font-weight: 700;
+    line-height: 1.3;
+  }
+}
+
+.carousel {
+  position: relative;
+  overflow: hidden;
+  inline-size: 100%;
+
+  &__list {
+    column-gap: base.fluidSpace(20);
+    display: flex;
+    justify-content: center;
+    list-style: none;
+
+    @include base.breakpoint("md") {
+      column-gap: base.fluidSpace(32, "tablet");
+    }
+  }
+
+  &__item {
+    block-size: auto;
+    flex: 0 0 auto;
+  }
+
+  &__img {
+    border-radius: 10px;
+    block-size: auto;
+    display: block;
+    inline-size: clamp(270px, 46.875vw, 540px);
+    max-inline-size: 100%;
+    object-fit: contain;
+  }
+
+  &__control {
+    column-gap: 1rem;
+    display: inline-flex;
+  }
+
+  &__control-btn {
+    align-items: center;
+    background-color: base.$neutral-900;
+    block-size: clamp(base.convertPxToRem(48), 8.33vw, base.convertPxToRem(64));
+    border: none;
+    border-radius: 9999rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+
+    inline-size: clamp(
+      base.convertPxToRem(48),
+      8.33vw,
+      base.convertPxToRem(64)
+    );
+  }
+
+  &__control-btn:hover {
+    background-color: base.$galactic-blue-500;
+  }
+
+  &__control-btn:focus {
+    outline-color: base.$galactic-blue-500;
+    outline-offset: base.convertPxToRem(3);
+  }
+
+  &__btn-arrow {
+    block-size: 1rem;
+    display: block;
+    inline-size: base.convertPxToRem(14.81);
+    object-fit: contain;
   }
 }
 
