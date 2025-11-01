@@ -21,10 +21,6 @@ body {
   }
 }
 
-* {
-  // border: 1px solid red;
-}
-
 .container {
   display: grid;
   grid-template-columns: 1fr;
@@ -345,15 +341,15 @@ body {
     column-gap: base.fluidSpace(20);
     display: flex;
     list-style: none;
-    transform: translateX(-137.5%);
-    
+    transform: translateX(-140%);
+
     @include base.breakpoint("md") {
-      transform: translateX(-134.5%);
-      column-gap: base.fluidSpace(32);
+      column-gap: base.fluidSpace(32, "tablet");
+      transform: translateX(-140%);
     }
 
     @include base.breakpoint("lg") {
-      transform: translateX(-50%);
+      transform: translateX(-48%);
     }
   }
 
@@ -361,12 +357,8 @@ body {
     block-size: auto;
     flex: 0 0 72%;
 
-    @include base.breakpoint("md") {
-      flex: 0 0 70.574%;
-    }
-
     @include base.breakpoint("lg") {
-      flex: 0 0 38.1495%;
+      flex: 0 0 37.5%;
     }
   }
 
@@ -374,8 +366,9 @@ body {
     border-radius: base.convertPxToRem(10);
     block-size: auto;
     display: block;
+    // inline-size: clamp(270px, 46.875vw, 540px);
     inline-size: 100%;
-    object-fit: cover;
+    object-fit: contain;
   }
 
   &__control {
