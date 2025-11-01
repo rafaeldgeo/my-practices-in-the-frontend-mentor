@@ -318,17 +318,11 @@ body {
   column-gap: min(5.3333333333vw, 1.25rem);
   display: flex;
   list-style: none;
-  transform: translateX(-137.5%);
+  transition: transform 0.5s ease;
 }
 @media (min-width: 48rem) {
   .carousel__list {
-    transform: translateX(-134.5%);
     column-gap: min(8.5333333333vw, 2rem);
-  }
-}
-@media (min-width: 62rem) {
-  .carousel__list {
-    transform: translateX(-50%);
   }
 }
 .carousel__item {
@@ -337,12 +331,12 @@ body {
 }
 @media (min-width: 48rem) {
   .carousel__item {
-    flex: 0 0 70.574%;
+    flex: 0 0 70.314%;
   }
 }
 @media (min-width: 62rem) {
   .carousel__item {
-    flex: 0 0 38.1495%;
+    flex: 0 0 37.5%;
   }
 }
 .carousel__img {

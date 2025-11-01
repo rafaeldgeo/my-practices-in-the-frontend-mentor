@@ -345,15 +345,16 @@ body {
     column-gap: base.fluidSpace(20);
     display: flex;
     list-style: none;
-    transform: translateX(-137.5%);
+    transition: transform 0.5s ease;
+    // transform: translateX(-218%);
     
     @include base.breakpoint("md") {
-      transform: translateX(-134.5%);
+      // transform: translateX(-208%);
       column-gap: base.fluidSpace(32);
     }
 
     @include base.breakpoint("lg") {
-      transform: translateX(-50%);
+      // transform: translateX(-88%);
     }
   }
 
@@ -362,11 +363,11 @@ body {
     flex: 0 0 72%;
 
     @include base.breakpoint("md") {
-      flex: 0 0 70.574%;
+      flex: 0 0 70.314%;
     }
 
     @include base.breakpoint("lg") {
-      flex: 0 0 38.1495%;
+      flex: 0 0 37.5%;
     }
   }
 
