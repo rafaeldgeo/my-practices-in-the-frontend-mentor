@@ -318,7 +318,8 @@ body {
   column-gap: min(5.3333333333vw, 1.25rem);
   display: flex;
   list-style: none;
-  transition: transform 0.5s ease;
+  justify-content: center;
+  align-items: center;
 }
 @media (min-width: 48rem) {
   .carousel__list {

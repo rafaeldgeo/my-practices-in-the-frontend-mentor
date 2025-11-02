@@ -345,11 +345,10 @@ body {
     column-gap: base.fluidSpace(20);
     display: flex;
     list-style: none;
-    transition: transform 0.5s ease;
-    // transform: translateX(-218%);
+    justify-content: center;
+    align-items: center;
     
     @include base.breakpoint("md") {
-      // transform: translateX(-208%);
       column-gap: base.fluidSpace(32);
     }
 
