@@ -72,5 +72,6 @@ Practices in [Frontend Mentor Website](https://www.frontendmentor.io/)
 * 21- [Officelite-coming-soon-site](https://rafaeldgeo-officelite-coming-soon-site.onrender.com):link: | **JS** <sup>Vanilla</sup> | **NODE.JS** <sup>create Web Server in render.com + routes</sup><sup>:heavy_exclamation_mark:***please. wait 50 seconds for the site opening***</sup>
 * 22- [Mortgage-repayment-calculator](https://rafaeldgeo-mortgage-repayment-calc.onrender.com/):link: | **JS** <sup>Vanilla</sup> | **EXPRESS.JS + FETCH + EJS** <sup>create Web Server in render.com</sup><sup>:heavy_exclamation_mark:***please. wait 50 seconds for the site opening***</sup>
 * 23- [Interactive-card-details-form](https://rafaeldgeo-interactive-card.onrender.com/):link: | **JS** <sup>Vanilla</sup> | **EXPRESS.JS + FETCH + EJS** <sup>create Web Server in render.com</sup><sup>:heavy_exclamation_mark:***please. wait 50 seconds for the site opening***</sup>
+* 24- [Single-page-design-portfolio](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/junior/single-page-design-portfolio/):link: | **JS** <sup>Vanilla</sup>
 
 **My Frontend Mentor: [@rafaeldgeo](https://www.frontendmentor.io/profile/rafaeldgeo)**:link:
