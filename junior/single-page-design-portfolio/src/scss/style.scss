@@ -400,6 +400,7 @@ body {
   &__control-btn:focus {
     outline-color: base.$galactic-blue-500;
     outline-offset: base.convertPxToRem(3);
+    background-color: base.$galactic-blue-500;
   }
 
   &__btn-arrow {
