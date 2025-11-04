@@ -21,10 +21,6 @@ body {
   }
 }
 
-* {
-  // border: 1px solid red;
-}
-
 .container {
   display: grid;
   grid-template-columns: 1fr;
@@ -347,13 +343,10 @@ body {
     list-style: none;
     justify-content: center;
     align-items: center;
+    transition: transform 0.5s ease;
     
     @include base.breakpoint("md") {
       column-gap: base.fluidSpace(32);
-    }
-
-    @include base.breakpoint("lg") {
-      // transform: translateX(-88%);
     }
   }
 

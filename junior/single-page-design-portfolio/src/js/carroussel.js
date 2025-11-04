@@ -16,30 +16,28 @@ if (carouselList.childElementCount === 0) {
 let currentIndex = 0;
 updateCarouselPosition();
 
+// it gets size of image with gap. It's important for fluid responsive and position
 function getSlideWidth() {
     const slide = slides[0];
     const gap = parseFloat(getComputedStyle(carouselList).columnGap) || 0;
     return slide.offsetWidth + gap;
 }
 
+// Update position of slides acordin with view
 function updateCarouselPosition() {
     const offset = - getSlideWidth() * currentIndex;
-    carouselList.style.transform = `translateX(${offset}px)`;
+    carouselList.style.transform = `translateX(${offset}px)`;    
 }
 
+// listen button and next slide
 nextBtn.addEventListener("click", () => {
-    if (currentIndex < slides.length - 3) {
-        carouselList.style.transition = "transform 0.5s ease";
-        currentIndex++;
-    }
+    if (currentIndex < slides.length - 3) currentIndex++;
     updateCarouselPosition()
 });
 
+// listen button and next slide
 previousBtn.addEventListener("click", () => {
-    carouselList.style.transition = "transform 0.5s ease";
-    if (currentIndex > 0) {
-        currentIndex--;
-    }
+    if (currentIndex >= -1) currentIndex--;
     updateCarouselPosition();
 });
 
