@@ -1,0 +1,73 @@
+@use "sass:map";
+@use "sass:math";
+@use "breakpoints";
+@forward "breakpoints";
+
+$neutral-900: #030303;
+$neutral-400: #6a6662;
+$neutral-200: #fff7f0;
+$neutral-0: #ffffff;
+$light-red-500: #e16b5b;
+$galactic-blue-500: #755cde;
+$summer-yellow-500: #f6a560;
+$pink-500: #f39e9e;
+$cyan-500: #61c4b7;
+$dark-purple-500: #552049;
+$font: "Plus Jakarta Sans", sans-serif;
+$deviceList: (
+  "mobile": 375,
+  "tablet": 768,
+  "desktop": 1440,
+);
+
+//reset onfig
+@mixin reset {
+  *,
+  *::before,
+  *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: $font;
+  }
+}
+
+// convert px to rem
+$base-font-size: 16;
+@function convertPxToRem($sizePx) {
+  @return math.div($sizePx, $base-font-size) * 1rem;
+}
+
+// calculate the view size from device
+@function calculateVw($sizePx, $device) {
+  $sizeView: map.get($deviceList, $device);
+  $sizeVw: (math.div($sizePx, $sizeView) * 100) * 1vw;
+
+  @return $sizeVw;
+}
+
+// define the fluid space using min(vw, rem)
+@function fluidSpace($sizePx, $device: "mobile") {
+  @if map.get($deviceList, $device) {
+    @return min(calculateVw($sizePx, $device), convertPxToRem($sizePx));
+  } @else {
+    @error "You must define one device valid";
+  }
+}
+
+// define the fluid typography using clamp(rem, vw, rem)
+@function fluidFont(
+$sizePxMin, 
+$sizePxMax, 
+$device: "mobile") {
+  @if map.get($deviceList, $device) {
+    $sizeVwPx: $sizePxMax - 8;
+    @return clamp(
+      convertPxToRem($sizePxMin),
+      0.5rem + calculateVw($sizeVwPx, $device),
+      convertPxToRem($sizePxMax)
+    );
+  } @else {
+    @error "You must define one device valid";
+  }
+}

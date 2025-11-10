@@ -1,0 +1,18 @@
+{
+  "name": "character-counter",
+  "version": "1.0.0",
+  "description": "![Design preview for the Character counter coding challenge](./preview.jpg)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:css": "sass src/scss:public/css --no-source-map --style=compressed",
+    "watch:css": "sass src/scss:public/css --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "sass": "^1.93.2"
+  }
+}

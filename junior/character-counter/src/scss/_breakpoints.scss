@@ -1,0 +1,36 @@
+@use "sass:map";
+@use "sass:math";
+
+$breakpoints: (
+  xs: 23.4375rem,
+  sm: 36rem,
+  md: 48rem,
+  lg: 62rem,
+  xl: 75rem,
+  xxl: 90rem,
+);
+//ex:375px;sm:576px;md:768px;lg:992px;xl:1200px;xxl:1440px
+
+// breakpoint standard
+@mixin breakpoint($size) {
+  $value: map.get($breakpoints, $size);
+
+  @if $size == xs {
+    @media (max-width: #{$value}) {
+      @content;
+    }
+  }@else if $value {
+    @media (min-width: #{$value}) {
+      @content;
+    }
+  } @else {
+    @error "Invalid breakpoint: '#{$size}'. Use ex, sm, md, lg, xl, or xxl.";
+  }
+}
+
+// breakpoint between views alternative
+@mixin breakpoint-between($min, $max) {
+  @media (min-width: #{$min}rem) and (max-width: #{$max}rem) {
+    @content;
+  }
+}
