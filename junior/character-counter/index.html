@@ -1,34 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
-  <link rel="stylesheet" href="./public/css/style.css">
-  <title>Frontend Mentor | Character counter</title>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/images/favicon-32x32.png"
+    />
+    <link rel="stylesheet" href="./public/css/style.css" />
+    <title>Frontend Mentor | Character counter</title>
+  </head>
+  <body>
+    <div class="container">
+      <header class="header">
+        <img
+          class="header__logo-img"
+          src="./assets/images/logo-dark-theme.svg"
+          data-src-logo-light="./assets/images/logo-light-theme.svg"
+          alt="logo"
+          width="246"
+          height="40"
+        />
+        <button
+          class="header__btn"
+          type="button"
+          aria-label="Active modo light"
+        >
+          <img
+            class="haeder__btn-icon"
+            src="./assets/images/icon-sun.svg"
+            data-src-btn-light="./assets/images/icon-moon.svg"
+            alt=""
+            width="22"
+            height="22"
+          />
+        </button>
+      </header>
+      <main class="main">
+        <h1 class="title">
+          Analyze your text in real-time. Start typing here… (or paste your
+          text) Exclude Spaces Set Character Limit Approx. reading time:
+        </h1>
+        <form class="form">
+          <textarea class="form__text" name="text" id="text" aria-label="insert your text to be analyze"></textarea>
+          <div class="form__error" aria-describedby="limitReached" aria-atomic="false">
+            <img class="form__icon-info" src="./assets/images/icon-info.svg" alt="" width="14" height="15"><span class="form__text-info" id="limitReached">Limit reached! Your text exceeds 300 characters.</span>
+          </div>
+          <div class="form__inputs">
+            <input class="form__checkbox" type="checkbox" name="exclude_spaces" id="excludeSpaces">Exclude Spaces
+            <input class="form__checkbox" type="checkbox" name="limit_caracters" id="limitCaracters">Set Characters Limit
+            <input class="form__input" type="text" name="qtd_caracters" id="qtdCaracters" aria-label="insert a number for limit of characters">
+          </div>
+          <span>Approx. reading time: &lt; 1 minute</span>
+        </form>
+      </main>
+      <footer class="footer">
+        Challenge by
+        <a
+          class="footer__link"
+          href="https://www.frontendmentor.io/profile/rafaeldgeo"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Frontend Mentor</a
+        >. Coded by
+        <a
+          class="footer__link"
+          href="https://www.linkedin.com/in/rafaeldgeo/"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Rafael Dias de Almeida</a
+        >.
+      </footer>
+    </div>
 
-  Analyze your text in real-time.
+    <!-- Insert number -->
+    minutes
 
-  Start typing here… (or paste your text)
+    <!-- Insert number -->
+    Total Characters
 
-  Exclude Spaces
-  Set Character Limit
+    <!-- Insert number -->
+    Word Count
 
-  Approx. reading time: <!-- Insert number --> minutes
-
-  <!-- Insert number -->
-  Total Characters
-
-  <!-- Insert number -->
-  Word Count
-
-  <!-- Insert number -->
-  Sentence Count
-
-  Letter Density
-  No characters found. Start typing to see letter density.
-
-</body>
+    <!-- Insert number -->
+    Sentence Count Letter Density No characters found. Start typing to see
+    letter density.
+  </body>
 </html>
