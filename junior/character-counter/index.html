@@ -10,6 +10,12 @@
       href="./assets/images/favicon-32x32.png"
     />
     <link rel="stylesheet" href="./public/css/style.css" />
+    <link
+      rel="preload"
+      as="image"
+      href="./assets/images/logo-light-theme.svg"
+    />
+    <link rel="preload" as="image" href="./assets/images/icon-moon.svg" />
     <title>Frontend Mentor | Character counter</title>
   </head>
   <body>
@@ -44,17 +50,99 @@
           text) Exclude Spaces Set Character Limit Approx. reading time:
         </h1>
         <form class="form">
-          <textarea class="form__text" name="text" id="text" aria-label="insert your text to be analyze"></textarea>
-          <div class="form__error" aria-describedby="limitReached" aria-atomic="false">
-            <img class="form__icon-info" src="./assets/images/icon-info.svg" alt="" width="14" height="15"><span class="form__text-info" id="limitReached">Limit reached! Your text exceeds 300 characters.</span>
+          <textarea
+            class="form__text"
+            name="text"
+            id="text"
+            aria-label="insert your text to be analyze"
+            placeholder="Start typing here… (or paste your text)"
+          ></textarea>
+          <div
+            class="form__error"
+            aria-describedby="limit-reached"
+            aria-atomic="false"
+          >
+            <img
+              class="form__icon-info"
+              src="./assets/images/icon-info.svg"
+              alt=""
+              width="14"
+              height="15"
+            /><span class="form__text-info" id="limit-reached"
+              >Limit reached! Your text exceeds 300 characters.</span
+            >
           </div>
-          <div class="form__inputs">
-            <input class="form__checkbox" type="checkbox" name="exclude_spaces" id="excludeSpaces">Exclude Spaces
-            <input class="form__checkbox" type="checkbox" name="limit_caracters" id="limitCaracters">Set Characters Limit
-            <input class="form__input" type="text" name="qtd_caracters" id="qtdCaracters" aria-label="insert a number for limit of characters">
+          <div class="form__settings">
+            <div class="form__inputs">
+              <input
+                class="form__checkbox"
+                type="checkbox"
+                name="exclude_spaces"
+                id="exclude-spaces"
+              />Exclude Spaces
+              <input
+                class="form__checkbox"
+                type="checkbox"
+                name="limit_caracters"
+                id="limit-caracters"
+              />Set Characters Limit
+              <input
+                class="form__input"
+                type="text"
+                name="qtd_caracters"
+                id="qtd-caracters"
+                aria-label="insert a number for limit of characters"
+              />
+            </div>
+            <span class="form__reading-time-label"
+              >Approx. reading time:
+              <span class="form__reading-time-result">
+                &lt; 1 minute</span
+              ></span
+            >
           </div>
-          <span>Approx. reading time: &lt; 1 minute</span>
         </form>
+        <ul class="stats" aria-label="Analysis statistics">
+          <li class="stats__card stats__card--total-characters">
+            <span class="stats__title">Total Characters</span>
+            <span class="stats__value" id="total-characters">00</span>
+          </li>
+          <li class="stats__card stats__card--word-count">
+            <span class="stats__title">Word Count</span>
+            <span class="stats__value" id="word-count">00</span>
+          </li>
+          <li class="stats__card stats__card--sentence-count">
+            <span class="stats__title">Sentence Count</span>
+            <span class="stats__value" id="sentence-count">00</span>
+          </li>
+        </ul>
+        <section class="density">
+          <h2 class="density__title">Letter Density</h2>
+          <span class="density__no-characters"
+            >Sentence Count Letter Density No characters found. Start typing to
+            see letter density.</span
+          >
+          <ul class="chart">
+            <li class="chart__item">
+              <span class="chart__title" id="letter-e">E</span>
+              <div class="chart__bar">
+                <div
+                  class="chart__progress-bar"
+                  role="progressbar"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                  aria-valuenow="16.06"
+                  aria-labelledby="letter-e"
+                ></div>
+              </div>
+              <span class="chart__result"
+                ><span class="chart__value">40</span
+                ><span class="chart__percent">(16.06%)</span></span
+              >
+            </li>
+          </ul>
+          <button type="button">See more ... less</button>
+        </section>
       </main>
       <footer class="footer">
         Challenge by
@@ -74,18 +162,5 @@
         >.
       </footer>
     </div>
-
-    <!-- Insert number -->
-    minutes
-
-    <!-- Insert number -->
-    Total Characters
-
-    <!-- Insert number -->
-    Word Count
-
-    <!-- Insert number -->
-    Sentence Count Letter Density No characters found. Start typing to see
-    letter density.
   </body>
 </html>
