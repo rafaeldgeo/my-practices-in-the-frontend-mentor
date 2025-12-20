@@ -20,21 +20,21 @@ body {
   inline-size: 100%;
   margin-inline: auto;
   max-inline-size: base.convertPxToRem(1440);
+  padding-inline: base.convertPxToRem(16);
+
+  @include base.breakpoint("md") {
+    padding-inline: base.fluidSpace(32, "tablet");
+  }
 }
 
 .header {
   flex: 0 0 auto;
-  padding: base.convertPxToRem(16) base.convertPxToRem(16);
   inline-size: 100%;
   max-inline-size: base.convertPxToRem(990);
-
-  @include base.breakpoint("md") {
-    padding: base.fluidSpace(16, "tablet") base.fluidSpace(32, "tablet");
-  }
+  padding-block: base.convertPxToRem(16);
 
   @include base.breakpoint("lg") {
-    padding: base.fluidSpace(32, "desktop") base.fluidSpace(32, "desktop")
-      base.fluidSpace(42, "desktop") base.fluidSpace(32, "desktop");
+    padding: base.fluidSpace(34, "desktop") 0;
   }
 
   &__content {
@@ -42,10 +42,168 @@ body {
     display: flex;
     justify-content: space-between;
   }
+
+  &__btn {
+    align-items: center;
+    background-color: base.$neutral-700;
+    border: none;
+    border-radius: base.convertPxToRem(6);
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    padding: base.convertPxToRem(6);
+
+    @include base.breakpoint("md") {
+      padding: base.convertPxToRem(11);
+    }
+  }
+
+  &__btn-icon {
+    block-size: auto;
+    max-inline-size: base.convertPxToRem(20);
+
+    @include base.breakpoint("md") {
+      max-inline-size: base.convertPxToRem(22);
+    }
+  }
 }
 
 .main {
   flex: 1 1 auto;
+  inline-size: 100%;
+  max-inline-size: base.convertPxToRem(990);
+  color: base.$neutral-200;
+}
+
+.title {
+  color: base.$neutral-100;
+  font-size: base.fluidFont(36, 40);
+  font-weight: 700;
+  letter-spacing: -1px;
+  line-height: 1;
+  margin-inline: auto;
+  max-inline-size: 12ch;
+  text-align: center;
+  padding-block: base.fluidSpace(40);
+
+  @include base.breakpoint("sm") {
+    font-size: base.fluidFont(50, 64, "tablet");
+  }
+
+  @include base.breakpoint("lg") {
+    padding-block: base.fluidSpace(48, "desktop");
+  }
+}
+
+.form {
+  &__text {
+    background-color: base.$neutral-800;
+    block-size: base.convertPxToRem(200);
+    border: 2px solid base.$neutral-700;
+    border-radius: base.convertPxToRem(12);
+    box-shadow: 0 2px 5px 0 #0f0f0f;
+    color: base.$neutral-200;
+    font-size: base.convertPxToRem(20);
+    inline-size: 100%;
+    letter-spacing: -1px;
+    line-height: 1.4;
+    padding: base.convertPxToRem(16);
+    font-weight: 400;
+
+    @include base.breakpoint("md") {
+      padding: base.convertPxToRem(20);
+    }
+  }
+
+  &__text::placeholder {
+    color: base.$neutral-200;
+  }
+
+  &__text:focus {
+    border: 2px solid base.$purple-500;
+    outline: none;
+    box-shadow: 0 0 10px 0 base.$purple-400;
+  }
+
+  &__text--error {
+    border: 2px solid base.$orange-500;
+    box-shadow: 0 0 8px 0 base.$orange-500;
+  }
+
+  &__error {
+    display: none;
+    align-items: center;
+    column-gap: base.convertPxToRem(8);
+    padding-block-end: base.convertPxToRem(16);
+  }
+
+  &__text-error {
+    color: base.$orange-500;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.4;
+  }
+
+  &__settings {
+    display: flex;
+    flex-direction: column;
+    font-size: 1rem;
+    font-weight: 400;
+    justify-content: space-between;
+    line-height: 1.3;
+    padding-top: base.convertPxToRem(14);
+    row-gap: base.convertPxToRem(12);
+
+    @include base.breakpoint("md") {
+      flex-direction: row;
+      row-gap: 0;
+    }
+  }
+
+  &__inputs {
+    display: flex;
+    flex-direction: column;
+    row-gap: base.convertPxToRem(12);
+    column-gap: base.convertPxToRem(24);
+
+    @include base.breakpoint("sm") {
+      flex-direction: row;
+      row-gap: 0;
+    }
+  }
+
+  &__label {
+    display: flex;
+    column-gap: base.convertPxToRem(10);
+    padding-block: base.convertPxToRem(4);
+  }
+
+  &__checkbox {
+  }
+
+  &__input-limit-caracters {
+    display: flex;
+    column-gap: base.convertPxToRem(10);
+  }
+
+  &__input {
+    background-color: transparent;
+    border: 1px solid base.$neutral-600;
+    border-radius: base.convertPxToRem(6);
+    color: base.$neutral-0;
+    font-size: 1rem;
+    padding: base.convertPxToRem(4) base.convertPxToRem(12);
+    width: base.convertPxToRem(56);
+  }
+
+  &__input:focus {
+    border: 1px solid base.$purple-500;
+    outline: none;
+  }
+
+  &__reading-time-label {
+    padding-block: base.convertPxToRem(4) 0;
+  }
 }
 
 .footer {

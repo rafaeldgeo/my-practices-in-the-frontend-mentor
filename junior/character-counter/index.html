@@ -36,7 +36,7 @@
             aria-label="Active modo light"
           >
             <img
-              class="haeder__btn-icon"
+              class="header__btn-icon"
               src="./assets/images/icon-sun.svg"
               data-src-btn-light="./assets/images/icon-moon.svg"
               alt=""
@@ -47,10 +47,7 @@
         </div>
       </header>
       <main class="main">
-        <h1 class="title">
-          Analyze your text in real-time. Start typing here… (or paste your
-          text) Exclude Spaces Set Character Limit Approx. reading time:
-        </h1>
+        <h1 class="title">Analyze your text in real-time.</h1>
         <form class="form">
           <textarea
             class="form__text"
@@ -65,36 +62,43 @@
             aria-atomic="false"
           >
             <img
-              class="form__icon-info"
+              class="form__icon-error"
               src="./assets/images/icon-info.svg"
               alt=""
               width="14"
               height="15"
-            /><span class="form__text-info" id="limit-reached"
+            /><span class="form__text-error" id="limit-reached"
               >Limit reached! Your text exceeds 300 characters.</span
             >
           </div>
           <div class="form__settings">
             <div class="form__inputs">
-              <input
-                class="form__checkbox"
-                type="checkbox"
-                name="exclude_spaces"
-                id="exclude-spaces"
-              />Exclude Spaces
-              <input
-                class="form__checkbox"
-                type="checkbox"
-                name="limit_caracters"
-                id="limit-caracters"
-              />Set Characters Limit
-              <input
-                class="form__input"
-                type="text"
-                name="qtd_caracters"
-                id="qtd-caracters"
-                aria-label="insert a number for limit of characters"
-              />
+              <label class="form__label">
+                <input
+                  class="form__checkbox"
+                  type="checkbox"
+                  name="exclude_spaces"
+                  id="exclude-spaces"
+                />
+                Exclude Spaces
+              </label>
+              <div class="form__input-limit-caracters">
+                <label class="form__label">
+                  <input
+                    class="form__checkbox"
+                    type="checkbox"
+                    name="limit_caracters"
+                    id="limit-caracters"
+                  />Set Characters Limit</label
+                >
+                <input
+                  class="form__input"
+                  type="text"
+                  name="qtd_caracters"
+                  id="qtd-caracters"
+                  aria-label="insert a number for limit of characters"
+                />
+              </div>
             </div>
             <span class="form__reading-time-label"
               >Approx. reading time:
