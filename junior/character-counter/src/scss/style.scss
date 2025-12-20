@@ -2,6 +2,52 @@
 
 @include base.reset;
 
+html,
 body {
-    background-color: red;
+  background-color: base.$neutral-900;
+  inline-size: 100%;
+  max-inline-size: 100vw;
+
+  @include base.layoutViewportHeight;
+}
+
+.container {
+  @include base.layoutViewportHeight;
+  align-items: center;
+  background-image: url("/assets/images/bg-dark-theme.png");
+  display: flex;
+  flex-direction: column;
+  inline-size: 100%;
+  margin-inline: auto;
+  max-inline-size: base.convertPxToRem(1440);
+}
+
+.header {
+  flex: 0 0 auto;
+  padding: base.convertPxToRem(16) base.convertPxToRem(16);
+  inline-size: 100%;
+  max-inline-size: base.convertPxToRem(990);
+
+  @include base.breakpoint("md") {
+    padding: base.fluidSpace(16, "tablet") base.fluidSpace(32, "tablet");
+  }
+
+  @include base.breakpoint("lg") {
+    padding: base.fluidSpace(32, "desktop") base.fluidSpace(32, "desktop")
+      base.fluidSpace(42, "desktop") base.fluidSpace(32, "desktop");
+  }
+
+  &__content {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.main {
+  flex: 1 1 auto;
+}
+
+.footer {
+  flex-shrink: 0;
 }

@@ -10,39 +10,41 @@
       href="./assets/images/favicon-32x32.png"
     />
     <link rel="stylesheet" href="./public/css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      rel="preload"
-      as="image"
-      href="./assets/images/logo-light-theme.svg"
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
+      rel="stylesheet"
     />
-    <link rel="preload" as="image" href="./assets/images/icon-moon.svg" />
     <title>Frontend Mentor | Character counter</title>
   </head>
   <body>
     <div class="container">
       <header class="header">
-        <img
-          class="header__logo-img"
-          src="./assets/images/logo-dark-theme.svg"
-          data-src-logo-light="./assets/images/logo-light-theme.svg"
-          alt="logo"
-          width="246"
-          height="40"
-        />
-        <button
-          class="header__btn"
-          type="button"
-          aria-label="Active modo light"
-        >
+        <div class="header__content">
           <img
-            class="haeder__btn-icon"
-            src="./assets/images/icon-sun.svg"
-            data-src-btn-light="./assets/images/icon-moon.svg"
-            alt=""
-            width="22"
-            height="22"
+            class="header__logo-img"
+            src="./assets/images/logo-dark-theme.svg"
+            data-src-logo-light="./assets/images/logo-light-theme.svg"
+            alt="logo"
+            width="246"
+            height="40"
           />
-        </button>
+          <button
+            class="header__btn"
+            type="button"
+            aria-label="Active modo light"
+          >
+            <img
+              class="haeder__btn-icon"
+              src="./assets/images/icon-sun.svg"
+              data-src-btn-light="./assets/images/icon-moon.svg"
+              alt=""
+              width="22"
+              height="22"
+            />
+          </button>
+        </div>
       </header>
       <main class="main">
         <h1 class="title">

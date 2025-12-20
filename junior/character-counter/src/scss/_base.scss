@@ -4,16 +4,18 @@
 @forward "breakpoints";
 
 $neutral-900: #030303;
-$neutral-400: #6a6662;
-$neutral-200: #fff7f0;
+$neutral-800: #21222c;
+$neutral-700: #2a2b37;
+$neutral-600: #404254;
+$neutral-200: #e4e4ef;
+$neutral-100: #f2f2f7;
 $neutral-0: #ffffff;
-$light-red-500: #e16b5b;
-$galactic-blue-500: #755cde;
-$summer-yellow-500: #f6a560;
-$pink-500: #f39e9e;
-$cyan-500: #61c4b7;
-$dark-purple-500: #552049;
-$font: "Plus Jakarta Sans", sans-serif;
+$blue-500: #c27cf8;
+$blue-400: #d3a0fa;
+$yellow-500: #ff9f00;
+$orange-500: #fe8159;
+$orange-800: #da3701;
+$font: "DM Sans", sans-serif;
 $deviceList: (
   "mobile": 375,
   "tablet": 768,
@@ -29,6 +31,21 @@ $deviceList: (
     padding: 0;
     box-sizing: border-box;
     font-family: $font;
+  }
+}
+
+// define height for all devices. Use in elements html, body and container
+@mixin layoutViewportHeight {
+  min-block-size: 100vh;
+  // fallback old browsers
+  @supports (min-block-size: 100svh) {
+    min-block-size: 100svh;
+    // small view
+  }
+
+  @supports (min-block-size: 100dvh) {
+    min-block-size: 100dvh;
+    // dynamic view
   }
 }
 
@@ -56,10 +73,7 @@ $base-font-size: 16;
 }
 
 // define the fluid typography using clamp(rem, vw, rem)
-@function fluidFont(
-$sizePxMin, 
-$sizePxMax, 
-$device: "mobile") {
+@function fluidFont($sizePxMin, $sizePxMax, $device: "mobile") {
   @if map.get($deviceList, $device) {
     $sizeVwPx: $sizePxMax - 8;
     @return clamp(
