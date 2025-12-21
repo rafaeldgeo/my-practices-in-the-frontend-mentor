@@ -80,6 +80,14 @@
                   name="exclude_spaces"
                   id="exclude-spaces"
                 />
+                <span class="form__checkbox-custom">
+                  <img
+                    class="form__icon-check"
+                    src="./assets/images/icon-check.svg"
+                    alt=""
+                    aria-hidden="true"
+                  />
+                </span>
                 Exclude Spaces
               </label>
               <div class="form__input-limit-caracters">
@@ -89,8 +97,17 @@
                     type="checkbox"
                     name="limit_caracters"
                     id="limit-caracters"
-                  />Set Characters Limit</label
-                >
+                  />
+                  <span class="form__checkbox-custom">
+                    <img
+                      class="form__icon-check"
+                      src="./assets/images/icon-check.svg"
+                      alt=""
+                      aria-hidden="true"
+                    />
+                  </span>
+                  Set Characters Limit
+                </label>
                 <input
                   class="form__input"
                   type="text"
@@ -108,46 +125,48 @@
             >
           </div>
         </form>
-        <ul class="stats" aria-label="Analysis statistics">
-          <li class="stats__card stats__card--total-characters">
-            <span class="stats__title">Total Characters</span>
-            <span class="stats__value" id="total-characters">00</span>
-          </li>
-          <li class="stats__card stats__card--word-count">
-            <span class="stats__title">Word Count</span>
-            <span class="stats__value" id="word-count">00</span>
-          </li>
-          <li class="stats__card stats__card--sentence-count">
-            <span class="stats__title">Sentence Count</span>
-            <span class="stats__value" id="sentence-count">00</span>
-          </li>
-        </ul>
-        <section class="density">
-          <h2 class="density__title">Letter Density</h2>
-          <span class="density__no-characters"
-            >Sentence Count Letter Density No characters found. Start typing to
-            see letter density.</span
-          >
-          <ul class="chart">
-            <li class="chart__item">
-              <span class="chart__title" id="letter-e">E</span>
-              <div class="chart__bar">
-                <div
-                  class="chart__progress-bar"
-                  role="progressbar"
-                  aria-valuemin="0"
-                  aria-valuemax="100"
-                  aria-valuenow="16.06"
-                  aria-labelledby="letter-e"
-                ></div>
-              </div>
-              <span class="chart__result"
-                ><span class="chart__value">40</span
-                ><span class="chart__percent">(16.06%)</span></span
-              >
+        <section class="stats" aria-label="Analysis statistics">
+          <ul class="card">
+            <li class="card__item card__item--total-characters">
+              <span class="card__title">Total Characters</span>
+              <span class="card__value" id="total-characters">00</span>
+            </li>
+            <li class="card__item card__item--word-count">
+              <span class="card__title">Word Count</span>
+              <span class="card__value" id="word-count">00</span>
+            </li>
+            <li class="card__item card__item--sentence-count">
+              <span class="card__title">Sentence Count</span>
+              <span class="card__value" id="sentence-count">00</span>
             </li>
           </ul>
-          <button type="button">See more ... less</button>
+          <div class="density">
+            <h2 class="density__title">Letter Density</h2>
+            <span class="density__no-characters"
+              >Sentence Count Letter Density No characters found. Start typing
+              to see letter density.</span
+            >
+            <ul class="chart">
+              <li class="chart__item">
+                <span class="chart__title" id="letter-e">E</span>
+                <div class="chart__bar">
+                  <div
+                    class="chart__progress-bar"
+                    role="progressbar"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                    aria-valuenow="16.06"
+                    aria-labelledby="letter-e"
+                  ></div>
+                </div>
+                <span class="chart__result"
+                  ><span class="chart__value">40</span
+                  ><span class="chart__percent">(16.06%)</span></span
+                >
+              </li>
+            </ul>
+            <button type="button">See more ... less</button>
+          </div>
         </section>
       </main>
       <footer class="footer">
