@@ -45,6 +45,7 @@ body {
   &__content {
     align-items: center;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
   }
 
@@ -61,6 +62,10 @@ body {
     @include base.breakpoint("md") {
       padding: base.convertPxToRem(11);
     }
+  }
+
+  &__btn:focus {
+    outline: 1px solid base.$purple-500;
   }
 
   &__btn-icon {
@@ -91,7 +96,7 @@ body {
   color: base.$neutral-100;
   font-size: base.fluidFont(36, 40);
   font-weight: 700;
-  letter-spacing: -1px;
+  letter-spacing: base.convertPxToRem(-1);
   line-height: 1;
   margin-inline: auto;
   max-inline-size: 12ch;
@@ -112,7 +117,7 @@ body {
     color: base.$neutral-200;
     font-size: base.convertPxToRem(20);
     inline-size: 100%;
-    letter-spacing: -1px;
+    letter-spacing: base.convertPxToRem(-1);
     line-height: 1.4;
     padding: base.convertPxToRem(16);
     font-weight: 400;
@@ -148,6 +153,7 @@ body {
     color: base.$orange-500;
     font-size: 1rem;
     font-weight: 400;
+    letter-spacing: base.convertPxToRem(-0.6);
     line-height: 1.4;
   }
 
@@ -157,6 +163,7 @@ body {
     font-size: 1rem;
     font-weight: 400;
     justify-content: space-between;
+    letter-spacing: base.convertPxToRem(-0.6);
     line-height: 1.3;
     padding-top: base.convertPxToRem(14);
     row-gap: base.convertPxToRem(12);
@@ -219,7 +226,6 @@ body {
 
   .form__checkbox-custom:hover {
     border: 1px solid base.$neutral-0;
-
   }
 
   &__checkbox:checked + .form__checkbox-custom .form__icon-check {
@@ -239,6 +245,7 @@ body {
     font-size: 1rem;
     padding: base.convertPxToRem(4) base.convertPxToRem(12);
     width: base.convertPxToRem(56);
+    letter-spacing: base.convertPxToRem(-0.6);
   }
 
   &__input:focus {
@@ -260,6 +267,7 @@ body {
   flex: auto;
   flex-direction: column;
   list-style: none;
+  padding-block-end: base.fluidSpace(24);
   row-gap: 1rem;
 
   @include base.breakpoint("sm") {
@@ -279,52 +287,118 @@ body {
 
     @include base.breakpoint("xs") {
       background-position: 125% center;
-     }
+    }
 
     @include base.breakpoint("sm") {
       background-position: 195% center;
       flex: 0 1 base.convertPxToRem(319);
       padding: base.fluidSpace(25, "tablet") base.fluidSpace(12, "tablet");
-     }
+    }
 
     @include base.breakpoint("md") {
       background-position: 118% center;
-     }
-   }
+    }
+  }
 
   &__item--total-characters {
     background-color: base.$purple-400;
     background-image: url("/assets/images/pattern-character-count.svg");
-   }
+  }
 
   &__item--word-count {
     background-color: base.$yellow-500;
     background-image: url("/assets/images/pattern-word-count.svg");
-   }
+  }
 
   &__item--sentence-count {
     background-color: base.$orange-500;
     background-image: url("/assets/images/pattern-sentence-count.svg");
-   }
+  }
 
   &__value {
     font-size: base.fluidFont(36, 40);
     font-weight: 700;
-    letter-spacing: -1px;
+    letter-spacing: base.convertPxToRem(-1);
     line-height: 1;
 
     @include base.breakpoint("sm") {
       font-size: base.fluidFont(50, 64, "tablet");
-     }
-   }
+    }
+  }
 
   &__title {
     font-size: base.convertPxToRem(20);
     font-weight: 400;
+    letter-spacing: base.convertPxToRem(-0.6);
     line-height: 1.4;
-   }
+  }
+}
+
+.density {
+  &__title {
+    font-size: base.convertPxToRem(24);
+    font-weight: 600;
+    letter-spacing: base.convertPxToRem(-1);
+    line-height: 1.3;
+    padding-block-end: base.fluidSpace(24);
+  }
+
+  &__no-characters {
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.3;
+  }
+
+  &__btn-collapsed {
+    background-color: transparent;
+    border: none;
+    color: base.$neutral-0;
+    column-gap: base.convertPxToRem(8);
+    cursor: pointer;
+    display: flex;
+    font-size: base.convertPxToRem(20);
+    font-weight: 400;
+    letter-spacing: base.convertPxToRem(-0.6);
+    line-height: 1.4;
+    padding-block-start: base.convertPxToRem(8);
+  }
+}
+
+.chart {
+  &__item {
+    align-items: center;
+    column-gap: base.convertPxToRem(14);
+    display: flex;
+    font-size: 1rem;
+    font-weight: 400;
+    letter-spacing: base.convertPxToRem(-0.6);
+    line-height: 1.3;
+    padding-block-end: base.convertPxToRem(12);
+  }
+
+  &__bar {
+    background-color: base.$neutral-800;
+    block-size: base.convertPxToRem(16);
+    border-radius: base.convertPxToRem(999);
+    flex: 1 1 auto;
+  }
+
+  &__progress-bar {
+    background-color: base.$purple-400;
+    block-size: 100%;
+    border-radius: base.convertPxToRem(999);
+    inline-size: 50%;
+  }
 }
 
 .footer {
   flex-shrink: 0;
+  color: base.$neutral-600;
+  font-size: 0.6875rem;
+  padding-block-end: base.fluidSpace(10);
+  text-align: center;
+
+  &__link {
+    color: base.$orange-500;
+  }
 }

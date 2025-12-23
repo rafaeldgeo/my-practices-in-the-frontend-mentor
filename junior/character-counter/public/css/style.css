@@ -76,6 +76,7 @@ body {
 .header__content {
   align-items: center;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
 }
 .header__btn {
@@ -92,6 +93,9 @@ body {
   .header__btn {
     padding: 0.6875rem;
   }
+}
+.header__btn:focus {
+  outline: 1px solid #c27cf8;
 }
 .header__btn-icon {
   block-size: auto;
@@ -122,7 +126,7 @@ body {
   color: #f2f2f7;
   font-size: clamp(2.25rem, 0.5rem + 8.5333333333vw, 2.5rem);
   font-weight: 700;
-  letter-spacing: -1px;
+  letter-spacing: -0.0625rem;
   line-height: 1;
   margin-inline: auto;
   max-inline-size: 12ch;
@@ -143,7 +147,7 @@ body {
   color: #e4e4ef;
   font-size: 1.25rem;
   inline-size: 100%;
-  letter-spacing: -1px;
+  letter-spacing: -0.0625rem;
   line-height: 1.4;
   padding: 1rem;
   font-weight: 400;
@@ -175,6 +179,7 @@ body {
   color: #fe8159;
   font-size: 1rem;
   font-weight: 400;
+  letter-spacing: -0.0375rem;
   line-height: 1.4;
 }
 .form__settings {
@@ -183,6 +188,7 @@ body {
   font-size: 1rem;
   font-weight: 400;
   justify-content: space-between;
+  letter-spacing: -0.0375rem;
   line-height: 1.3;
   padding-top: 0.875rem;
   row-gap: 0.75rem;
@@ -255,6 +261,7 @@ body {
   font-size: 1rem;
   padding: 0.25rem 0.75rem;
   width: 3.5rem;
+  letter-spacing: -0.0375rem;
 }
 .form__input:focus {
   border: 1px solid #c27cf8;
@@ -273,6 +280,7 @@ body {
   flex: auto;
   flex-direction: column;
   list-style: none;
+  padding-block-end: min(6.4vw, 1.5rem);
   row-gap: 1rem;
 }
 @media (min-width: 36rem) {
@@ -323,7 +331,7 @@ body {
 .card__value {
   font-size: clamp(2.25rem, 0.5rem + 8.5333333333vw, 2.5rem);
   font-weight: 700;
-  letter-spacing: -1px;
+  letter-spacing: -0.0625rem;
   line-height: 1;
 }
 @media (min-width: 36rem) {
@@ -334,11 +342,68 @@ body {
 .card__title {
   font-size: 1.25rem;
   font-weight: 400;
+  letter-spacing: -0.0375rem;
   line-height: 1.4;
+}
+
+.density__title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -0.0625rem;
+  line-height: 1.3;
+  padding-block-end: min(6.4vw, 1.5rem);
+}
+.density__no-characters {
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.3;
+}
+.density__btn-collapsed {
+  background-color: transparent;
+  border: none;
+  color: #ffffff;
+  column-gap: 0.5rem;
+  cursor: pointer;
+  display: flex;
+  font-size: 1.25rem;
+  font-weight: 400;
+  letter-spacing: -0.0375rem;
+  line-height: 1.4;
+  padding-block-start: 0.5rem;
+}
+
+.chart__item {
+  align-items: center;
+  column-gap: 0.875rem;
+  display: flex;
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: -0.0375rem;
+  line-height: 1.3;
+  padding-block-end: 0.75rem;
+}
+.chart__bar {
+  background-color: #21222c;
+  block-size: 1rem;
+  border-radius: 62.4375rem;
+  flex: 1 1 auto;
+}
+.chart__progress-bar {
+  background-color: #d3a0fa;
+  block-size: 100%;
+  border-radius: 62.4375rem;
+  inline-size: 50%;
 }
 
 .footer {
   flex-shrink: 0;
+  color: #404254;
+  font-size: 0.6875rem;
+  padding-block-end: min(2.6666666667vw, 0.625rem);
+  text-align: center;
+}
+.footer__link {
+  color: #fe8159;
 }
 
 /*# sourceMappingURL=style.css.map */
