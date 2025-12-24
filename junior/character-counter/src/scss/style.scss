@@ -4,11 +4,11 @@
 
 html,
 body {
+  @include base.layoutViewportHeight;
   background-color: base.$neutral-900;
+  color: base.$neutral-200;
   inline-size: 100%;
   max-inline-size: 100vw;
-
-  @include base.layoutViewportHeight;
 }
 
 .container {
@@ -84,7 +84,6 @@ body {
   flex-direction: column;
   inline-size: 100%;
   max-inline-size: base.convertPxToRem(990);
-  color: base.$neutral-200;
   row-gap: base.convertPxToRem(40);
 
   @include base.breakpoint("lg") {
@@ -113,7 +112,7 @@ body {
     block-size: base.convertPxToRem(200);
     border: 2px solid base.$neutral-700;
     border-radius: base.convertPxToRem(12);
-    box-shadow: 0 2px 5px 0 #0f0f0f;
+
     color: base.$neutral-200;
     font-size: base.convertPxToRem(20);
     inline-size: 100%;
@@ -221,11 +220,8 @@ body {
   }
 
   &__checkbox:focus + .form__checkbox-custom {
-    border: 1px solid base.$purple-500;
-  }
-
-  .form__checkbox-custom:hover {
-    border: 1px solid base.$neutral-0;
+    border: 1px solid base.$neutral-200;
+    outline: 1px solid base.$purple-500;
   }
 
   &__checkbox:checked + .form__checkbox-custom .form__icon-check {
@@ -238,6 +234,7 @@ body {
   }
 
   &__input {
+    visibility: hidden;
     background-color: transparent;
     border: 1px solid base.$neutral-600;
     border-radius: base.convertPxToRem(6);
@@ -246,6 +243,10 @@ body {
     padding: base.convertPxToRem(4) base.convertPxToRem(12);
     width: base.convertPxToRem(56);
     letter-spacing: base.convertPxToRem(-0.6);
+  }
+
+  &__input--active {
+    visibility: visible;
   }
 
   &__input:focus {
@@ -340,7 +341,7 @@ body {
     font-weight: 600;
     letter-spacing: base.convertPxToRem(-1);
     line-height: 1.3;
-    padding-block-end: base.fluidSpace(24);
+    padding-block-end: base.fluidSpace(20);
   }
 
   &__no-characters {
@@ -352,15 +353,29 @@ body {
   &__btn-collapsed {
     background-color: transparent;
     border: none;
-    color: base.$neutral-0;
     column-gap: base.convertPxToRem(8);
     cursor: pointer;
     display: flex;
+    color: base.$neutral-0;
     font-size: base.convertPxToRem(20);
     font-weight: 400;
     letter-spacing: base.convertPxToRem(-0.6);
     line-height: 1.4;
     padding-block-start: base.convertPxToRem(8);
+    position: relative;
+  }
+
+  &__btn-arrow {
+    fill: base.$neutral-0;
+    left: 110%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50, -50);
+    transform: rotate(0);
+  }
+
+  &__btn-arrow--up {
+    transform: rotate(180deg);
   }
 }
 
@@ -393,12 +408,58 @@ body {
 
 .footer {
   flex-shrink: 0;
-  color: base.$neutral-600;
   font-size: 0.6875rem;
   padding-block-end: base.fluidSpace(10);
   text-align: center;
 
   &__link {
     color: base.$orange-500;
+  }
+}
+
+.light-mode {
+  background-color: base.$neutral-0;
+  color: base.$neutral-900;
+
+  .container {
+    background-image: url("/assets/images/bg-light-theme.png");
+  }
+
+  .header__btn {
+    background-color: base.$neutral-100;
+  }
+
+  .title {
+    color: base.$neutral-900;
+  }
+
+  .form__text {
+    background-color: base.$neutral-100;
+    border: 2px solid base.$neutral-200;
+    color: base.$neutral-700;
+  }
+
+  .form__text::placeholder {
+    color: base.$neutral-700;
+  }
+
+  .form__checkbox-custom {
+    border: 1px solid base.$neutral-900;
+  }
+
+  .form__input {
+    color: base.$neutral-900;
+  }
+
+  .density__btn-arrow {
+    fill: base.$neutral-900;
+  }
+
+  .density__btn-collapsed {
+    color: base.$neutral-900;
+  }
+
+  .chart__bar {
+    background-color: base.$neutral-200;
   }
 }

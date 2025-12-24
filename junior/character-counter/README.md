@@ -24,9 +24,6 @@ Your users should be able to:
 - Receive a warning message if their text exceeds their character limit
 - See the approximate reading time of their text
 - Analyze the letter density of their text
-- Select their color theme
-- View the optimal layout for the interface depending on their device's screen size
-- See hover and focus states for all interactive elements on the page
 
 Want some support on the challenge? [Join our community](https://www.frontendmentor.io/community) and ask questions in the **#help** channel.
 
