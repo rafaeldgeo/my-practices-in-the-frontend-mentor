@@ -279,12 +279,13 @@ body {
   &__item {
     background-position: 115% center;
     background-repeat: no-repeat;
+    background-size: contain;
     border-radius: base.convertPxToRem(12);
     color: base.$neutral-900;
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
+    justify-content: flex-start;
     padding: base.fluidSpace(25) base.fluidSpace(12);
-    row-gap: base.convertPxToRem(8);
 
     @include base.breakpoint("xs") {
       background-position: 125% center;
@@ -299,6 +300,12 @@ body {
     @include base.breakpoint("md") {
       background-position: 118% center;
     }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column-reverse;
+    row-gap: base.convertPxToRem(8);
   }
 
   &__item--total-characters {
@@ -332,6 +339,16 @@ body {
     font-weight: 400;
     letter-spacing: base.convertPxToRem(-0.6);
     line-height: 1.4;
+  }
+
+  &__title-no-space {
+    display: none;
+    font-size: 1rem;
+    line-height: 1.3;
+  }
+
+  &__title-no-space--active {
+    display: inline-block;
   }
 }
 

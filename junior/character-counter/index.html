@@ -129,16 +129,22 @@
         <section class="stats" aria-label="Analysis statistics">
           <ul class="card">
             <li class="card__item card__item--total-characters">
-              <span class="card__title">Total Characters</span>
-              <span class="card__value" id="total-characters">00</span>
+              <div class="card__content">
+                <span class="card__title">Total Characters <span class="card__title-no-space" aria-hidden="true" aria-live="polite">(no space)</span></span>
+                <span class="card__value" id="characters">00</span>
+              </div>
             </li>
             <li class="card__item card__item--word-count">
-              <span class="card__title">Word Count</span>
-              <span class="card__value" id="word-count">00</span>
+              <div class="card__content">
+                <span class="card__title">Word Count</span>
+                <span class="card__value" id="words">00</span>
+              </div>
             </li>
             <li class="card__item card__item--sentence-count">
-              <span class="card__title">Sentence Count</span>
-              <span class="card__value" id="sentence-count">00</span>
+              <div class="card__content">
+                <span class="card__title">Sentence Count</span>
+                <span class="card__value" id="sentences">00</span>
+              </div>
             </li>
           </ul>
           <div class="density">

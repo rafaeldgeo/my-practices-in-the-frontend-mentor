@@ -296,12 +296,13 @@ body {
 .card__item {
   background-position: 115% center;
   background-repeat: no-repeat;
+  background-size: contain;
   border-radius: 0.75rem;
   color: #030303;
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
+  justify-content: flex-start;
   padding: min(6.6666666667vw, 1.5625rem) min(3.2vw, 0.75rem);
-  row-gap: 0.5rem;
 }
 @media (max-width: 23.4375rem) {
   .card__item {
@@ -319,6 +320,11 @@ body {
   .card__item {
     background-position: 118% center;
   }
+}
+.card__content {
+  display: flex;
+  flex-direction: column-reverse;
+  row-gap: 0.5rem;
 }
 .card__item--total-characters {
   background-color: #d3a0fa;
@@ -348,6 +354,14 @@ body {
   font-weight: 400;
   letter-spacing: -0.0375rem;
   line-height: 1.4;
+}
+.card__title-no-space {
+  display: none;
+  font-size: 1rem;
+  line-height: 1.3;
+}
+.card__title-no-space--active {
+  display: inline-block;
 }
 
 .density__title {
