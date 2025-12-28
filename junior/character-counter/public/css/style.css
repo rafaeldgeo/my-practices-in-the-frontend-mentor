@@ -167,17 +167,20 @@ body {
   outline: none;
   box-shadow: 0 0 10px 0 #d3a0fa;
 }
-.form__text--error {
+.form__text--error, .form__text--error:focus {
   border: 2px solid #fe8159;
   box-shadow: 0 0 8px 0 #fe8159;
 }
-.form__error {
+.form__warning-limit-characters {
   display: none;
+}
+.form__warning-limit-characters--active {
   align-items: center;
   column-gap: 0.5rem;
-  padding-block-end: 1rem;
+  display: flex;
+  padding-block-start: 0.75rem;
 }
-.form__text-error {
+.form__warning-limit-msg {
   color: #fe8159;
   font-size: 1rem;
   font-weight: 400;

@@ -59,19 +59,22 @@
             placeholder="Start typing here… (or paste your text)"
           ></textarea>
           <div
-            class="form__error"
-            aria-describedby="limit-reached"
-            aria-atomic="false"
+            class="form__warning-limit-characters"
+            aria-live="polite"
+            aria-hidden="true"
           >
             <img
-              class="form__icon-error"
+              class="form__warning-icon"
               src="./assets/images/icon-info.svg"
               alt=""
               width="14"
               height="15"
-            /><span class="form__text-error" id="limit-reached"
-              >Limit reached! Your text exceeds 300 characters.</span
-            >
+            />
+            <span class="form__warning-limit-msg">
+              Limit reached! Your text exceeds
+              <span class="form__warning-limit-value">0</span>
+              characters.
+            </span>
           </div>
           <div class="form__settings">
             <div class="form__inputs">
@@ -130,7 +133,15 @@
           <ul class="card">
             <li class="card__item card__item--total-characters">
               <div class="card__content">
-                <span class="card__title">Total Characters <span class="card__title-no-space" aria-hidden="true" aria-live="polite">(no space)</span></span>
+                <span class="card__title"
+                  >Total Characters
+                  <span
+                    class="card__title-no-space"
+                    aria-hidden="true"
+                    aria-live="polite"
+                    >(no space)</span
+                  ></span
+                >
                 <span class="card__value" id="characters">00</span>
               </div>
             </li>

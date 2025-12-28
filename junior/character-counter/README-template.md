@@ -24,8 +24,6 @@ This is a solution to the [Character counter challenge on Frontend Mentor](https
 
 Users should be able to:
 
-- Analyze the character, word, and sentence counts for their text
-- Exclude/Include spaces in their character count
 - Receive a warning message if their text exceeds their character limit
 - See the approximate reading time of their text
 - Analyze the letter density of their text

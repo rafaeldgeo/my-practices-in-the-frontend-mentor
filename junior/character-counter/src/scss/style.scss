@@ -136,19 +136,24 @@ body {
     box-shadow: 0 0 10px 0 base.$purple-400;
   }
 
-  &__text--error {
+  &__text--error,
+  &__text--error:focus {
     border: 2px solid base.$orange-500;
     box-shadow: 0 0 8px 0 base.$orange-500;
   }
 
-  &__error {
+  &__warning-limit-characters {
     display: none;
-    align-items: center;
-    column-gap: base.convertPxToRem(8);
-    padding-block-end: base.convertPxToRem(16);
   }
 
-  &__text-error {
+  &__warning-limit-characters--active {
+    align-items: center;
+    column-gap: base.convertPxToRem(8);
+    display: flex;
+    padding-block-start: base.convertPxToRem(12);
+  }
+
+  &__warning-limit-msg {
     color: base.$orange-500;
     font-size: 1rem;
     font-weight: 400;
