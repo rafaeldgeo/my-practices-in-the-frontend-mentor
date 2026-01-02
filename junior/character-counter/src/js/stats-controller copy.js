@@ -23,6 +23,18 @@ function readUIState() {
     }
 }
 
+// Get the values of the states
+function calculateState({ text, limitDefined, isExcludeSpaces, isLimitActive }) {
+    const characters = countCharacters(text, isExcludeSpaces ? "noSpaces" : "original");
+    const { totalWords, totalSentences } = countWordsSenteces(text);
+    const readingTime = calcReadingTime(totalWords);
+    const limitCharacters = !isExcludeSpaces && isLimitActive
+        ? checkLimitCharacters(characters, limitDefined)
+        : { isExceed: false, value: undefined };
+
+    return {characters, words: totalWords, sentences: totalSentences, readingTime, isExcludeSpaces, limitCharacters};
+}
+
 // Sanitize input when the user types letter and symbols
 function handleLimitInput(){
     const sanitizeValue = sanitizeLimitInput(inputLimitCharacters.value);

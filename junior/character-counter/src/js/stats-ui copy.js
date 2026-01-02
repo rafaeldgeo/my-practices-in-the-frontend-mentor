@@ -65,9 +65,11 @@ export function updateUI(states) {
     // show mensagem exceeds limit defined
     if (states["limitCharacters"].isExceed) {
         spanWarningLimitValue.textContent = states["limitCharacters"].value;
-        diVWarningLimit.setAttribute("aria-hidden", false);
+        diVWarningLimit.setAttribute("aria-hidden", "false");
+        textArea.setAttribute("disabled", "disabled");
     } else {
-        diVWarningLimit.setAttribute("aria-hidden", true);
+        diVWarningLimit.setAttribute("aria-hidden", "true");
+        textArea.removeAttribute("disabled");
     }
     textArea.classList.toggle("form__text--error", states["limitCharacters"].isExceed);
     diVWarningLimit.classList.toggle("form__warning-limit-characters--active", states["limitCharacters"].isExceed);

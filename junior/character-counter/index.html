@@ -18,7 +18,7 @@
     />
     <title>Frontend Mentor | Character counter</title>
     <script type="module" src="/src/js/light-mode.js" defer></script>
-    <script type="module" src="./src/js/main.js" defer></script>
+    <script type="module" src="/src/js/main.js" defer></script>
   </head>
   <body>
     <div class="container">
@@ -142,19 +142,19 @@
                     >(no space)</span
                   ></span
                 >
-                <span class="card__value" id="characters">00</span>
+                <span class="card__value" id="characters" data-count="totalCharacters">00</span>
               </div>
             </li>
             <li class="card__item card__item--word-count">
               <div class="card__content">
                 <span class="card__title">Word Count</span>
-                <span class="card__value" id="words">00</span>
+                <span class="card__value" id="words" data-count="totalWords">00</span>
               </div>
             </li>
             <li class="card__item card__item--sentence-count">
               <div class="card__content">
                 <span class="card__title">Sentence Count</span>
-                <span class="card__value" id="sentences">00</span>
+                <span class="card__value" id="sentences" data-count="totalSenteces">00</span>
               </div>
             </li>
           </ul>
