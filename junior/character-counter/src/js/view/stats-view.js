@@ -1,10 +1,12 @@
 const spanCardsValue = document.querySelectorAll(".card__value");
 const spanNoSpace = document.querySelector(".card__title-no-space");
+const spanReadingTime = document.querySelector(".form__reading-time-result");
 
 // update data of the cards
 export function upDateCards(metrics, isExcludeSpaces) {
 
     showLabelNoSpaces(isExcludeSpaces);
+    updateReadingTime(metrics.readingTime);
 
     // show result in the cards
     spanCardsValue.forEach(card => {
@@ -26,6 +28,17 @@ function showLabelNoSpaces(isChecked) {
         spanNoSpace.setAttribute("aria-hidden", "true");
     }
     spanNoSpace.classList.toggle("card__title-no-space--active", isChecked);
+}
+
+// update reading time
+function updateReadingTime(readingTime) {
+    if (readingTime === 0) {
+        spanReadingTime.textContent = "0 minute";
+    } else if (readingTime > 0 && readingTime < 1) {
+        spanReadingTime.textContent = "< 1 minute";
+    } else {
+        spanReadingTime.textContent = `${Math.ceil(readingTime)} minutes`;
+    }
 }
 
 

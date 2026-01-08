@@ -11,8 +11,3 @@ export const appState = {
 
     }
 }
-
-
-// isActived: false,
-//             isExceed: false,
-//             limitDefined: undefined
