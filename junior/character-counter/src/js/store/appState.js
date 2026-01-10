@@ -5,7 +5,8 @@ export const appState = {
         limitCharacters: false
     },
     limitCharacters: {
-
+        isExceed: false,
+        limitDefined: undefined
     },
     metrics: {
 

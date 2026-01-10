@@ -1,9 +1,9 @@
 // check the limit of characters 
 export function checkLimitCharacters(numCharacters, valueLimit) {
     if (valueLimit > 0 && numCharacters >= valueLimit) {
-        return { isExceed: true, limitDefined: valueLimit };
+        return true;
     } else {
-        return { isExceed: false, limitDefined: valueLimit };
+        return false;
     }
 }
 

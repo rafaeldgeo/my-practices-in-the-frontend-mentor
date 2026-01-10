@@ -9,7 +9,6 @@ export function showInputLimitCharacters(isChecked) {
     if (isChecked) {
         inputLimitCharacters.classList.add("form__input--active");
         inputLimitCharacters.setAttribute("aria-hidden", "false");
-        // inputLimitCharacters.focus();
     } else {
         inputLimitCharacters.setAttribute("aria-hidden", "true");
         inputLimitCharacters.classList.remove("form__input--active");
@@ -35,15 +34,14 @@ export function handleLimitInput() {
     inputLimitCharacters.value = sanitizeValue;
 }
 
-
+// update warming messages
 export function updateExceedLimit(isExceed, limitDefined) {
+    
     if (isExceed) {
         spanWarningLimitValue.textContent = limitDefined;
         diVWarningLimit.setAttribute("aria-hidden", "false");
-        // textArea.setAttribute("disabled", "disabled");
     } else {
         diVWarningLimit.setAttribute("aria-hidden", "true");
-        // textArea.removeAttribute("disabled");
     }
     textArea.classList.toggle("form__text--error", isExceed);
     diVWarningLimit.classList.toggle("form__warning-limit-characters--active", isExceed);
