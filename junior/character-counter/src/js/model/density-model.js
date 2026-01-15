@@ -4,13 +4,15 @@ export function handleDensity(text) {
     const textLowerCase = text.toLowerCase(text);
     const letters = textLowerCase.match(PATTERN_ONLY_LETTERS);
     if (!letters) return;
-
+    
     const totalLettersInText = letters.length;
-    // const numberOfLetters = sortByNumberOfLetters(countLetters(letters));
-    const numberOfLetters = countLetters(letters);
-    calculeDensity(numberOfLetters, totalLettersInText);
+    const resultCountLetters = countLetters(letters);
+    const resultStatus = calculeDensity(resultCountLetters, totalLettersInText);
+
+    return resultStatus;
 }
 
+// counter the letters and return a map with letter and number
 function countLetters(letters) {
 
     const numberOfLetters = letters.reduce((acc, letter) => {
@@ -25,26 +27,48 @@ function countLetters(letters) {
     return numberOfLetters;
 }
 
-function calculeDensity(numberOfLetters, totalLettersInText){
-    const densityResult = [];
-    for (const key in numberOfLetters) {
-        const count = numberOfLetters[key];
+// calculate the density
+function calculeDensity(resultCountLetters, totalLettersInText){
+    const ResultComposition = [];
+    for (const key in resultCountLetters) {
+        const count = resultCountLetters[key];
         const percentage = (count / totalLettersInText) * 100;
-        densityResult.push({letter: key, count: count, percentage: percentage});
+        ResultComposition.push({letter: key, count: count, percentage: percentage});
     }
-    console.log(densityResult);
-    return densityResult;
+    return ResultComposition;
 }
 
+// sort by larger number of letter
+export function sortByNumberOfLetters(resultNumberOfLetters){
+    const copyResultNumberOfLetters = [...resultNumberOfLetters];
+    const sorted = copyResultNumberOfLetters.sort((a,b) => {
+        return b.count - a.count;
+    });
+    return sorted;
+}
 
-
-
-
-
-function sortByNumberOfLetters(resultNumberOfLetters){
+export function handlResultDensity(densityResult){
+    if (!densityResult) return;
+    const teste = true;
+    let batata;
+    const resultSorted = sortByNumberOfLetters(densityResult);
+    if (teste) {
+        batata = generetTop5Result(resultSorted);
+    } else {
+        return resultSorted;
+    }
+    console.log(batata);
     
-
 }
+
+function generetTop5Result(resultSorted){
+    const top5 = resultSorted.filter(function(result, place) {
+        return place < 5;
+    });
+    return top5;
+}
+
+
 
 
 

@@ -10,5 +10,8 @@ export const appState = {
     },
     metrics: {
 
+    },
+    density: {
+
     }
 }
