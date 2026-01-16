@@ -372,7 +372,7 @@ body {
     line-height: 1.3;
   }
 
-  &__btn-collapsed {
+  &__btn {
     background-color: transparent;
     border: none;
     column-gap: base.convertPxToRem(8);
@@ -477,7 +477,7 @@ body {
     fill: base.$neutral-900;
   }
 
-  .density__btn-collapsed {
+  .density__btn {
     color: base.$neutral-900;
   }
 

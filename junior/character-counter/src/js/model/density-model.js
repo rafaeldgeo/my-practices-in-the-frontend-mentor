@@ -4,7 +4,7 @@ export function handleDensity(text) {
     const textLowerCase = text.toLowerCase(text);
     const letters = textLowerCase.match(PATTERN_ONLY_LETTERS);
     if (!letters) return;
-    
+
     const totalLettersInText = letters.length;
     const resultCountLetters = countLetters(letters);
     const resultStatus = calculeDensity(resultCountLetters, totalLettersInText);
@@ -28,41 +28,52 @@ function countLetters(letters) {
 }
 
 // calculate the density
-function calculeDensity(resultCountLetters, totalLettersInText){
+function calculeDensity(resultCountLetters, totalLettersInText) {
     const ResultComposition = [];
     for (const key in resultCountLetters) {
         const count = resultCountLetters[key];
         const percentage = (count / totalLettersInText) * 100;
-        ResultComposition.push({letter: key, count: count, percentage: percentage});
+        ResultComposition.push({ letter: key, count: count, percentage: percentage.toFixed(2) });
     }
     return ResultComposition;
 }
 
 // sort by larger number of letter
-export function sortByNumberOfLetters(resultNumberOfLetters){
+export function sortByNumberOfLetters(resultNumberOfLetters) {
     const copyResultNumberOfLetters = [...resultNumberOfLetters];
-    const sorted = copyResultNumberOfLetters.sort((a,b) => {
+    const sorted = copyResultNumberOfLetters.sort((a, b) => {
         return b.count - a.count;
     });
     return sorted;
 }
 
-export function handlResultDensity(densityResult){
-    if (!densityResult) return;
-    const teste = true;
-    let batata;
-    const resultSorted = sortByNumberOfLetters(densityResult);
-    if (teste) {
-        batata = generetTop5Result(resultSorted);
-    } else {
-        return resultSorted;
-    }
-    console.log(batata);
-    
-}
+// export function handlResultDensity(densityResult){
+//     if (!densityResult) return;
+//     const teste = true;
+//     let batata;
+//     const resultSorted = sortByNumberOfLetters(densityResult);
+//     if (teste) {
+//         batata = generetTop5Result(resultSorted);
+//     } else {
+//         console.log(resultSorted);
+//         batata = resultSorted;
+//         return resultSorted;
+//     }
+//     console.log(batata);
 
-function generetTop5Result(resultSorted){
-    const top5 = resultSorted.filter(function(result, place) {
+// }
+
+// export function handlResultDensity(densityResult){
+//     if (!densityResult) return;
+//     const resultSorted = sortByNumberOfLetters(densityResult);
+//     return generetTop5Result(resultSorted);
+// }
+
+
+export function generetTop5Result(densityResult) {
+    if (!densityResult) return;
+    const resultSorted = sortByNumberOfLetters(densityResult);
+    const top5 = resultSorted.filter(function (result, place) {
         return place < 5;
     });
     return top5;
