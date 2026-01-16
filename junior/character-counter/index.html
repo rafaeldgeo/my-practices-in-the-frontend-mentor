@@ -142,19 +142,31 @@
                     >(no space)</span
                   ></span
                 >
-                <span class="card__value" id="characters" data-count="totalCharacters">00</span>
+                <span
+                  class="card__value"
+                  id="characters"
+                  data-count="totalCharacters"
+                  >00</span
+                >
               </div>
             </li>
             <li class="card__item card__item--word-count">
               <div class="card__content">
                 <span class="card__title">Word Count</span>
-                <span class="card__value" id="words" data-count="totalWords">00</span>
+                <span class="card__value" id="words" data-count="totalWords"
+                  >00</span
+                >
               </div>
             </li>
             <li class="card__item card__item--sentence-count">
               <div class="card__content">
                 <span class="card__title">Sentence Count</span>
-                <span class="card__value" id="sentences" data-count="totalSenteces">00</span>
+                <span
+                  class="card__value"
+                  id="sentences"
+                  data-count="totalSenteces"
+                  >00</span
+                >
               </div>
             </li>
           </ul>
@@ -164,95 +176,23 @@
               >Sentence Count Letter Density No characters found. Start typing
               to see letter density.</span
             >
-            <ul class="chart">
-              <!-- <li class="chart__item">
-                <span class="chart__title" id="letter-e">E</span>
-                <div class="chart__bar">
-                  <div
-                    class="chart__progress-bar"
-                    role="progressbar"
-                    aria-valuemin="0"
-                    aria-valuemax="100"
-                    aria-valuenow="16.06"
-                    aria-labelledby="letter-e"
-                  ></div>
-                </div>
-                <span class="chart__result"
-                  ><span class="chart__value">40</span
-                  ><span class="chart__percent"> (16.06%)</span></span
+            <div class="density__result">
+              <button class="density__btn" type="button" aria-expanded="false">
+                See more
+                <svg
+                  class="density__btn-arrow"
+                  width="11"
+                  height="7"
+                  viewBox="0 0 11 7"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
                 >
-              </li>
-              <li class="chart__item">
-                <span class="chart__title" id="letter-e">E</span>
-                <div class="chart__bar">
-                  <div
-                    class="chart__progress-bar"
-                    role="progressbar"
-                    aria-valuemin="0"
-                    aria-valuemax="100"
-                    aria-valuenow="16.06"
-                    aria-labelledby="letter-e"
-                  ></div>
-                </div>
-                <span class="chart__result"
-                  ><span class="chart__value">40</span
-                  ><span class="chart__percent"> (16.06%)</span></span
-                >
-              </li>
-              <li class="chart__item">
-                <span class="chart__title" id="letter-e">E</span>
-                <div class="chart__bar">
-                  <div
-                    class="chart__progress-bar"
-                    role="progressbar"
-                    aria-valuemin="0"
-                    aria-valuemax="100"
-                    aria-valuenow="16.06"
-                    aria-labelledby="letter-e"
-                  ></div>
-                </div>
-                <span class="chart__result"
-                  ><span class="chart__value">40</span
-                  ><span class="chart__percent"> (16.06%)</span></span
-                >
-              </li>
-              <li class="chart__item">
-                <span class="chart__title" id="letter-e">E</span>
-                <div class="chart__bar">
-                  <div
-                    class="chart__progress-bar"
-                    role="progressbar"
-                    aria-valuemin="0"
-                    aria-valuemax="100"
-                    aria-valuenow="16.06"
-                    aria-labelledby="letter-e"
-                  ></div>
-                </div>
-                <span class="chart__result"
-                  ><span class="chart__value">40</span
-                  ><span class="chart__percent"> (16.06%)</span></span
-                >
-              </li> -->
-            </ul>
-            <button
-              class="density__btn"
-              type="button"
-              aria-expanded="false"
-            >
-              See more
-              <svg
-                class="density__btn-arrow"
-                width="11"
-                height="7"
-                viewBox="0 0 11 7"
-                xmlns="http://www.w3.org/2000/svg"
-                aria-hidden="true"
-              >
-                <path
-                  d="M4.78125 5.875L0.15625 1.28125C0 1.15625 0 0.90625 0.15625 0.75L0.78125 0.15625C0.9375 0 1.15625 0 1.3125 0.15625L5.0625 3.84375L8.78125 0.15625C8.9375 0 9.1875 0 9.3125 0.15625L9.9375 0.75C10.0938 0.90625 10.0938 1.15625 9.9375 1.28125L5.3125 5.875C5.15625 6.03125 4.9375 6.03125 4.78125 5.875Z"
-                />
-              </svg>
-            </button>
+                  <path
+                    d="M4.78125 5.875L0.15625 1.28125C0 1.15625 0 0.90625 0.15625 0.75L0.78125 0.15625C0.9375 0 1.15625 0 1.3125 0.15625L5.0625 3.84375L8.78125 0.15625C8.9375 0 9.1875 0 9.3125 0.15625L9.9375 0.75C10.0938 0.90625 10.0938 1.15625 9.9375 1.28125L5.3125 5.875C5.15625 6.03125 4.9375 6.03125 4.78125 5.875Z"
+                  />
+                </svg>
+              </button>
+            </div>
           </div>
         </section>
       </main>

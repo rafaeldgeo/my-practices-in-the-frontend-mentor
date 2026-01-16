@@ -5,8 +5,9 @@ import { upDateCards } from "../view/stats-view.js";
 import { showInputLimitCharacters } from "../view/limit-characters-input-view.js"
 import { checkExceedLimitCharacters } from "../controller/limit-input-controller.js";
 import { handleTextInput } from "../controller/text-input-controller.js";
-import { handleDensity, generetTop5Result } from "../model/density-model.js";
-import { displayTop5Charts } from "../view/density-view.js";
+import { handleDensity } from "../model/density-model.js";
+import { displayCharts } from "../view/density-view.js";
+import { handleResultDensity } from "../controller/density-controller.js";
 
 const textArea = document.querySelector(".form__text");
 const checkboxExcludeSpaces = document.querySelector("#exclude-spaces");
@@ -24,9 +25,7 @@ export function updateApp() {
     upDateCards(appState.metrics, appState.checkbox.excludeSpaces);
     checkExceedLimitCharacters(appState.metrics.totalCharacters, appState.checkbox.limitCharacters);
     appState.density = handleDensity(appState.text);
-    let top5 = generetTop5Result(appState.density);
-    displayTop5Charts(top5);
-
+    handleResultDensity(appState.density);
 }
 
 textArea.addEventListener("input", updateApp);

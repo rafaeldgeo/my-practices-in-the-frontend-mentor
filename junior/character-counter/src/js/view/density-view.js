@@ -1,38 +1,49 @@
-const spanMsgNoCharacters = document.querySelector(".density__no-characters");
-const listCharts = document.querySelector(".chart");
-const btnSeeResult = document.querySelector(".density__btn");
 
-console.log(btnSeeResult.getAttribute("aria-expanded"));
+const divResult = document.querySelector(".density__result");
 
-// btnSeeResult.addEventListener("click", updateApp);
+const list = document.createElement("ul");
+list.classList.add("chart");
 
-export function displayTop5Charts(top5List) {
-    let result;
-    if (!top5List) {
-        result = ""
-        listCharts.innerHTML = result;
-        return;
-    };
+
+export function displayCharts(densitySorted, typOfResult) {
+    let result = "";
+
+    const top5 = densitySorted.filter(function (result, place) {
+        return place < 5;
+    });
+
+    const numberOfChartToShow = typOfResult === "top5" ? top5 : densitySorted;   
     
-    top5List.forEach(chat => {
-        result += 
-        `<li class="chart__item">
-            <span class="chart__title" id="letter-${chat.letter}">${chat.letter.toUpperCase()}</span>
+    for (const chart of numberOfChartToShow) {
+        result +=
+            `<li class="chart__item">
+            <span class="chart__title" id="letter-${chart.letter}">${chart.letter.toUpperCase()}</span>
             <div class="chart__bar">
                 <div class="chart__progress-bar"
                     role="progressbar"
                     aria-valuemin="0"
                     aria-valuemax="100"
-                    aria-valuenow="16.06"
-                    aria-labelledby="letter-e"
+                    aria-valuenow="${chart.percentage}"
+                    aria-labelledby="letter-${chart.letter}"
                 </div>
             </div>
             <span class="chart__result">
-                <span class="chart__value">${chat.count}</span>
-                <span class="chart__percent">${chat.percentage}%</span>
+                <span class="chart__value">${chart.count}</span>
+                <span class="chart__percent">${chart.percentage}%</span>
             </span>
-        </li>\n`
-    });
-    listCharts.innerHTML = result;
-    // console.log(result);
+        </li>`
+    }
+
+    list.innerHTML = result;
+    divResult.prepend(list)
 }
+
+
+// export function generetTop5Result(densityResult) {
+//     const resultSorted = sortByNumberOfLetters(densityResult);
+//     const top5 = resultSorted.filter(function (result, place) {
+//         return place < 5;
+//     });
+//     return top5;
+// }
+

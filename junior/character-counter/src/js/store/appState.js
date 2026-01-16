@@ -13,5 +13,6 @@ export const appState = {
     },
     density: {
 
-    }
+    },
+    displayDensityResult: "top5"
 }
