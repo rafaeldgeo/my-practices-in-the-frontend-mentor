@@ -14,5 +14,8 @@ export const appState = {
     density: {
 
     },
-    displayDensityResult: "top5"
+    displayDensityResult: {
+        descendingOrder: {},
+        modeVisualize: "top5"
+    }
 }

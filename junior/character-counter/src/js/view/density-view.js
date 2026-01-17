@@ -1,20 +1,12 @@
 
 const divResult = document.querySelector(".density__result");
-
 const list = document.createElement("ul");
 list.classList.add("chart");
 
-
-export function displayCharts(densitySorted, typOfResult) {
+export function displayCharts(filter) {
     let result = "";
-
-    const top5 = densitySorted.filter(function (result, place) {
-        return place < 5;
-    });
-
-    const numberOfChartToShow = typOfResult === "top5" ? top5 : densitySorted;   
     
-    for (const chart of numberOfChartToShow) {
+    for (const chart of filter) {
         result +=
             `<li class="chart__item">
             <span class="chart__title" id="letter-${chart.letter}">${chart.letter.toUpperCase()}</span>
@@ -37,13 +29,4 @@ export function displayCharts(densitySorted, typOfResult) {
     list.innerHTML = result;
     divResult.prepend(list)
 }
-
-
-// export function generetTop5Result(densityResult) {
-//     const resultSorted = sortByNumberOfLetters(densityResult);
-//     const top5 = resultSorted.filter(function (result, place) {
-//         return place < 5;
-//     });
-//     return top5;
-// }
 
