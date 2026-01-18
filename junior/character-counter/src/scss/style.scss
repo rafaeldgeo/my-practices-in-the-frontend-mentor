@@ -14,7 +14,7 @@ body {
 .container {
   @include base.layoutViewportHeight;
   align-items: center;
-  background-image: url("../assets/images/bg-dark-theme.png");
+  background-image: url("./assets/images/bg-dark-theme.png");
   display: flex;
   flex-direction: column;
   inline-size: 100%;
@@ -315,17 +315,17 @@ body {
 
   &__item--total-characters {
     background-color: base.$purple-400;
-    background-image: url("../assets/images/pattern-character-count.svg");
+    background-image: url("./assets/images/pattern-character-count.svg");
   }
 
   &__item--word-count {
     background-color: base.$yellow-500;
-    background-image: url("../assets/images/pattern-word-count.svg");
+    background-image: url("./assets/images/pattern-word-count.svg");
   }
 
   &__item--sentence-count {
     background-color: base.$orange-500;
-    background-image: url("../assets/images/pattern-sentence-count.svg");
+    background-image: url("./assets/images/pattern-sentence-count.svg");
   }
 
   &__value {
