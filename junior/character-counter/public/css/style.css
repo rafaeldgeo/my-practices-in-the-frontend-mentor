@@ -375,6 +375,13 @@ body {
   padding-block-end: min(5.3333333333vw, 1.25rem);
 }
 .density__no-characters {
+  display: inline;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.3;
+}
+.density__no-characters--hidden {
+  display: none;
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.3;
@@ -384,7 +391,7 @@ body {
   border: none;
   column-gap: 0.5rem;
   cursor: pointer;
-  display: flex;
+  display: none;
   color: #ffffff;
   font-size: 1.25rem;
   font-weight: 400;
@@ -392,6 +399,9 @@ body {
   line-height: 1.4;
   padding-block-start: 0.5rem;
   position: relative;
+}
+.density__btn--show {
+  display: flex;
 }
 .density__btn-arrow {
   fill: #ffffff;
@@ -411,21 +421,30 @@ body {
   display: flex;
   font-size: 1rem;
   font-weight: 400;
+  inline-size: 100%;
   letter-spacing: -0.0375rem;
   line-height: 1.3;
   padding-block-end: 0.75rem;
+}
+.chart__title {
+  flex-basis: 1rem;
 }
 .chart__bar {
   background-color: #21222c;
   block-size: 1rem;
   border-radius: 62.4375rem;
-  flex: 1 1 auto;
+  flex: 0 1 53.6875rem;
 }
 .chart__progress-bar {
   background-color: #d3a0fa;
   block-size: 100%;
   border-radius: 62.4375rem;
-  inline-size: 50%;
+  inline-size: var(--progress);
+}
+.chart__result {
+  flex: auto;
+  text-align: end;
+  text-wrap: nowrap;
 }
 
 .footer {
