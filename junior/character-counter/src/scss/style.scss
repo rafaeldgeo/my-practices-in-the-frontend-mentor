@@ -14,7 +14,7 @@ body {
 .container {
   @include base.layoutViewportHeight;
   align-items: center;
-  background-image: url("../../assets/images/logo-dark-theme.svg");
+  background-image: url("../../assets/images/bg-dark-theme.png");
   display: flex;
   flex-direction: column;
   inline-size: 100%;
@@ -467,7 +467,7 @@ body {
   color: base.$neutral-900;
 
   .container {
-    background-image: url("../../assets/images/logo-light-theme.svg");
+    background-image: url("../../assets/images/bg-light-theme.png");
   }
 
   .header__btn {
