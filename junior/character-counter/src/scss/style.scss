@@ -358,6 +358,9 @@ body {
 }
 
 .density {
+  min-block-size: base.convertPxToRem(252);
+
+
   &__title {
     font-size: base.convertPxToRem(24);
     font-weight: 600;
