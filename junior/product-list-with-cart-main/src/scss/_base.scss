@@ -1,0 +1,87 @@
+@use "sass:map";
+@use "sass:math";
+@use "breakpoints";
+@forward "breakpoints";
+
+$neutral-900: #030303;
+$neutral-800: #21222c;
+$neutral-700: #2a2b37;
+$neutral-600: #404254;
+$neutral-200: #e4e4ef;
+$neutral-100: #f2f2f7;
+$neutral-0: #ffffff;
+$purple-500: #c27cf8;
+$purple-400: #d3a0fa;
+$yellow-500: #ff9f00;
+$orange-500: #fe8159;
+$orange-800: #da3701;
+$font: "DM Sans", sans-serif;
+$deviceList: (
+  "mobile": 375,
+  "tablet": 768,
+  "desktop": 1440,
+);
+
+//reset onfig
+@mixin reset {
+  *,
+  *::before,
+  *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: $font;
+  }
+}
+
+// define height for all devices. Use in elements html, body and container
+@mixin layoutViewportHeight {
+  min-block-size: 100vh;
+  // fallback old browsers
+  @supports (min-block-size: 100svh) {
+    min-block-size: 100svh;
+    // small view
+  }
+
+  @supports (min-block-size: 100dvh) {
+    min-block-size: 100dvh;
+    // dynamic view
+  }
+}
+
+// convert px to rem
+$base-font-size: 16;
+@function convertPxToRem($sizePx) {
+  @return math.div($sizePx, $base-font-size) * 1rem;
+}
+
+// calculate the view size from device
+@function calculateVw($sizePx, $device) {
+  $sizeView: map.get($deviceList, $device);
+  $sizeVw: (math.div($sizePx, $sizeView) * 100) * 1vw;
+
+  @return $sizeVw;
+}
+
+// define the fluid space using min(vw, rem)
+@function fluidSpace($sizePx, $device: "mobile") {
+  @if map.get($deviceList, $device) {
+    @return min(calculateVw($sizePx, $device), convertPxToRem($sizePx));
+  } @else {
+    @error "You must define one device valid";
+  }
+}
+
+// define the fluid typography using clamp(rem, vw, rem)
+@function fluidFont($sizePxMin, $sizePxMax, $device: "mobile") {
+  @if map.get($deviceList, $device) {
+    $sizeVwPx: $sizePxMax - 8;
+    @return clamp(
+      convertPxToRem($sizePxMin),
+      0.5rem + calculateVw($sizeVwPx, $device),
+      convertPxToRem($sizePxMax)
+    );
+  } @else {
+    @error "You must define one device valid";
+  }
+}
