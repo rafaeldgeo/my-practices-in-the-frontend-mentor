@@ -5,22 +5,24 @@ import { createModal } from "../model/model.js";
 export function createController(catalog) {
     const model = createModal();
 
-    function onAddProduct(productName){
-        const product = findProductByName(catalog,productName);
-        model.addItem(product);
+    function onAddProduct(productName) {
+        const product = findProductByName(catalog, productName);
+        const order = model.addItem(product);
+        console.log(order);
     }
 
     function onRemoveProduct(productName) {
-        const product = findProductByName(catalog,productName);
-        model.removeItem(product.name);
+        const order = model.removeItem(productName);
+        console.log(order);
     }
 
+    
     onAddProduct("Waffle with Berries");
     onAddProduct("Waffle with Berries");
-    onAddProduct("Waffle with Berries");
-    onRemoveProduct("Waffle with Berries");
-    // onRemoveProduct("Waffle with Berries");
+    //onAddProduct("Waffle with Berries");
+    //onRemoveProduct("Waffle with Berries");
+    //onRemoveProduct("Waffle with Berries");
     //onRemoveProduct("Waffle with Berries");
 
-    
+
 }

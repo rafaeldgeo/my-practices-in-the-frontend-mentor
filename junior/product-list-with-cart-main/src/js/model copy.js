@@ -24,17 +24,17 @@ let cartItens = [{
     price: 5.50,
 }];
 
-const calculateTotalPerDessert = (items) => {
-    const TotalPerDessert = items.reduce((acc, item) => {
-        if (item.name in acc) {
-            acc[item.name]++
-        } else {
-            acc[item.name] = 1;
-        }
-        return acc;
-    }, {});
-    return TotalPerDessert;
-}
+// const calculateTotalPerDessert = (items) => {
+//     const TotalPerDessert = items.reduce((acc, item) => {
+//         if (item.name in acc) {
+//             acc[item.name]++
+//         } else {
+//             acc[item.name] = 1;
+//         }
+//         return acc;
+//     }, {});
+//     return TotalPerDessert;
+// }
 
 const calculateOrderTotal = (items) => {
     const totalOrder = items.reduce((acc, item) => {

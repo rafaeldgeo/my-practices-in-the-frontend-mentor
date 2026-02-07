@@ -1,6 +1,7 @@
 export function createModal() {
     const cart = [];
 
+    // add item into the cart
     function addItem(product) {
 
         const found = cart.find((item) => item.name === product.name);
@@ -10,28 +11,67 @@ export function createModal() {
         } else {
             found.quantity++;
         }
+
+        return snapShot();
     }
 
+    // remove item into the cart
     function removeItem(productName) {
 
         const foundIndex = cart.findIndex((item) => item.name === productName);
         const item = cart[foundIndex];
 
+        if (foundIndex === -1) {
+            return;  // ver comportamento quando fizer interação na view, apertar botão de retirar mesmo sendo zero
+        } 
+
         if (item && item.quantity > 1) {
             item.quantity--;
-        }
-
-        if (item && item.quantity === 1) {
-            cart.splice(item, 1);
-        }
-
-        if (foundIndex === -1) return;
+        } else if (item && item.quantity === 1) {
+            cart.splice(foundIndex, 1);
+        } 
+        
+        return snapShot();
     }
 
-    console.log(cart);
+    // calculate the total items into the cart
+    function calculateOrderItemsTotal() {
+        const totalItems = cart.reduce((acc, item) => {
+            return acc + item.quantity;
+        }, 0);
+        return totalItems;
+    }
+    
+    // calculate the total price of the order
+    function calculateOrderPriceTotal() {
+        const totalOrderPrice = cart.reduce((acc, item) => {
+            return acc + (item.price * item.quantity)
+        }, 0);
+        return totalOrderPrice;
+    }
+
+    // let orderStatus = () => {
+    //     if (cart.length === 0) {
+    //         return "not started"
+    //     } else
+    // }
+
+
+
+    
+    // return the datas that will be render by view
+    function snapShot(){
+        return {
+            items: cart.map((item) => {
+                return {...item, total: item.price * item.quantity }
+            }),
+            totalItems: calculateOrderItemsTotal(),
+            totalOrderPrice: calculateOrderPriceTotal()
+        }
+    }
 
     return {
         addItem,
-        removeItem
+        removeItem,
     }
 }
