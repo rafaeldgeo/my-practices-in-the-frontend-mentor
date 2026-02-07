@@ -10,8 +10,17 @@ export function createController(catalog) {
         model.addItem(product);
     }
 
+    function onRemoveProduct(productName) {
+        const product = findProductByName(catalog,productName);
+        model.removeItem(product.name);
+    }
+
     onAddProduct("Waffle with Berries");
     onAddProduct("Waffle with Berries");
+    onAddProduct("Waffle with Berries");
+    onRemoveProduct("Waffle with Berries");
+    // onRemoveProduct("Waffle with Berries");
+    //onRemoveProduct("Waffle with Berries");
 
     
 }
