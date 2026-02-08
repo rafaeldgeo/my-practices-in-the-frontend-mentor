@@ -1,10 +1,7 @@
 import { findProductByName } from "../model/findProductByName.js";
-import "../model/model.js";
-import { createModal } from "../model/model.js";
 
-export function createController(catalog) {
-    const model = createModal();
-
+export function createController({catalog, model}) {
+    
     function onAddProduct(productName) {
         const product = findProductByName(catalog, productName);
         const order = model.addItem(product);
@@ -16,13 +13,13 @@ export function createController(catalog) {
         console.log(order);
     }
 
-    
-    onAddProduct("Waffle with Berries");
-    onAddProduct("Waffle with Berries");
-    //onAddProduct("Waffle with Berries");
-    //onRemoveProduct("Waffle with Berries");
-    //onRemoveProduct("Waffle with Berries");
-    //onRemoveProduct("Waffle with Berries");
+    function onConfirmOrder(){
+        model.updateStatus("ORDER_CONFIRMED");
+    }
 
-
+    return {
+        onAddProduct,
+        onRemoveProduct,
+        onConfirmOrder,
+    }
 }
