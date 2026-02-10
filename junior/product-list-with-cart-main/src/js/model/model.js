@@ -49,6 +49,14 @@ export function createModel() {
         return totalOrderPrice;
     }
 
+    // remove the item from the cart
+    function removeItemCart(productName) {
+        const foundIndex = cart.findIndex((item) => item.name === productName);
+
+        if (foundIndex === -1) return;
+        cart.splice(foundIndex, 1);
+    }
+
     // update status of the order
     function updateStatus(event) {
         switch (event) {
@@ -65,7 +73,6 @@ export function createModel() {
                 break;
             default:
         }
-        console.log(orderStatus);
         return orderStatus;
     }
 
@@ -83,6 +90,7 @@ export function createModel() {
     return {
         addItem,
         removeItem,
+        removeItemCart,
         updateStatus
     }
 }

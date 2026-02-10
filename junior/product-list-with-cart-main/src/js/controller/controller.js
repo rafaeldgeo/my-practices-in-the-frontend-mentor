@@ -1,25 +1,28 @@
 import { findProductByName } from "../model/findProductByName.js";
 
-export function createController({catalog, model}) {
-    
+export function createController({ catalog, model }) {
+
     function onAddProduct(productName) {
         const product = findProductByName(catalog, productName);
         const order = model.addItem(product);
-        console.log(order);
     }
 
     function onRemoveProduct(productName) {
         const order = model.removeItem(productName);
-        console.log(order);
     }
 
-    function onConfirmOrder(){
+    function onConfirmOrder() {
         model.updateStatus("ORDER_CONFIRMED");
+    }
+
+    function onRemoveItemCart(productName) {
+        model.removeItemCart(productName);
     }
 
     return {
         onAddProduct,
         onRemoveProduct,
-        onConfirmOrder,
+        onRemoveItemCart,
+        onConfirmOrder
     }
 }
