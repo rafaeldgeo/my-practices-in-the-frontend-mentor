@@ -20,9 +20,22 @@
           <h1 class="deserts__title">Desserts</h1>
           <ul class="deserts__list">
             <li class="product-card">
-              <div class="product-card__photo"></div>
+              <div class="product-card__body">
+                <h3 class="product-card__name">Waffle with Berries</h3>
+                <span class="product-card__category">Waffle</span>
+                <span class="product-card__price">$6.50</span>
+              </div>
+              <picture class="product-card__photo-wrapper">
+                <source media="(min-width: 1024px)" srcset="public/assets/images/image-waffle-desktop.jpg">
+                <source media="(min-width: 768px)" srcset="public/assets/images/image-waffle-tablet.jpg">
+                <img class="product-card__photo" src="public/assets/images/image-waffle-mobile.jpg" alt="" width="654" height="424">
+              </picture>
               <div class="product-card__actions">
-                <div class="product-card__add">
+                <button
+                  class="product-card__add"
+                  type="button"
+                  data-name="Waffle with Berries"
+                >
                   <img
                     class="product-card__icon-add"
                     src="public/assets/images/icon-add-to-cart.svg"
@@ -31,9 +44,14 @@
                     height="20"
                   />
                   <span class="product-card__msg-add">Add to Cart</span>
-                </div>
+                </button>
                 <div class="product-card__quantity">
-                  <button class="product-card__btn-quantity" type="button">
+                  <button
+                    class="product-card__btn-quantity"
+                    type="button"
+                    aria-label="remove the dessert from the cart"
+                    data-name="Waffle with Berries"
+                  >
                     <img
                       class="product-card__icon-quantity"
                       src="public/assets/images/icon-increment-quantity.svg"
@@ -42,8 +60,13 @@
                       height="10"
                     />
                   </button>
-                  <span class="product-card__total">4</span>
-                  <button class="product-card__btn-quantity" type="button">
+                  <span class="product-card__total" aria-live="polite">4</span>
+                  <button
+                    class="product-card__btn-quantity"
+                    type="button"
+                    aria-label="add the dessert to the cart"
+                    data-name="Waffle with Berries"
+                  >
                     <img
                       class="product-card__icon-quantity"
                       src="public/assets/images/icon-increment-quantity.svg"
@@ -53,11 +76,6 @@
                     />
                   </button>
                 </div>
-              </div>
-              <div class="product-card__body">
-                <h3 class="product-card__name">Waffle with Berries</h3>
-                <span class="product-card__category">Waffle</span>
-                <span class="product-card__price">$6.50</span>
               </div>
             </li>
           </ul>
@@ -82,15 +100,20 @@
                 <div class="product__item-details">
                   <h4 class="product__item-name">Classic Tiramisu</h4>
                   <div class="product__item-order">
-                    <span class="product__item-qtd">1x</span>
-                    <span class="product__item-price">@$5.50</span>
-                    <span class="product__item-total">$5.50</span>
+                    <span class="product__item-qtd" aria-live="polite">1x</span>
+                    <span class="product__item-price" aria-live="polite"
+                      >@$5.50</span
+                    >
+                    <span class="product__item-total" aria-live="polite"
+                      >$5.50</span
+                    >
                   </div>
                 </div>
                 <button
                   class="cart__btn-remove"
                   type="button"
                   aria-label="remove item of the cart"
+                  data-name="Classic Tiramisu"
                 >
                   <img
                     class="cart__icon-remove-item"
@@ -148,4 +171,55 @@
     to Cart Salted Caramel Brownie Brownie 4.50 Add to Cart Vanilla Panna Cotta
     Panna Cotta 6.50 Add to Cart
   </body>
+  <div
+    class="modal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="modal-title"
+  >
+  <div class="modal__overlay"></div>
+    <div class="modal__container">
+      <div class="modal__header">
+        <img
+          class="modal__icon-confirmed"
+          src="public/assets/images/icon-order-confirmed.svg"
+          alt=""
+          width="48"
+          height="48"
+        />
+        <h2 class="modal__title" id="modal-title">Order Confirmed</h2>
+        <span class="modal__msg">We hope you enjoy your food!</span>
+      </div>
+      <div class="modal__body">
+        <ul class="modal__list">
+          <li class="modal__item">
+            <div class="modal__item-photo-wrapper">
+              <img
+                class="modal__item-photo"
+                src="public/assets/images/image-tiramisu-thumbnail.jpg"
+                alt=""
+                width="100"
+                height="96"
+              />
+            </div>
+            <div class="modal__item-details">
+              <h3 class="modal__item-name">Classic Tiramisu</h3>
+              <div class="modal__item-values">
+                <span class="modal__item-quantity">1x</span>
+                <span class="modal__item-price">@$5.50</span>
+              </div>
+              <span class="modal__item-price-total"></span>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="modal__footer">
+        <div class="modal__total">
+          <span class="modal__total-label">Order Total</span>
+          <span class="modal__total-order">$46.50</span>
+        </div>
+        <button class="modal__btn" type="button">Start New Order</button>
+      </div>
+    </div>
+  </div>
 </html>
