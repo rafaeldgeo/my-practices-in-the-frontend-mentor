@@ -1,3 +1,120 @@
+@use "base";
+
+@include base.reset;
+
+html,
 body {
-    background-color: red;
+  @include base.layoutViewportHeight;
+  background-color: base.$rose-50;
+  inline-size: 100%;
+  max-inline-size: 100vw;
+}
+
+.container {
+  @include base.layoutViewportHeight;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  inline-size: 100%;
+  margin-inline: auto;
+  max-inline-size: base.convertPxToRem(1440);
+  padding: base.fluidSpace(24);
+
+  @include base.breakpoint("md") {
+    padding: base.fluidSpace(40, "tablet");
+  }
+
+  @include base.breakpoint("xxl") {
+    padding: base.fluidSpace(88, "desktop") base.fluidSpace(112, "desktop");
+  }
+}
+
+.main {
+  display: grid;
+  flex: 1 1 auto;
+  grid-template-columns: 1fr;
+  inline-size: 100%;
+  max-inline-size: 100vw;
+
+  @include base.breakpoint("lg") {
+    column-gap: base.fluidSpace(32, "desktop");
+    grid-template-columns: minmax(400px, 1fr) base.convertPxToRem(384);
+  }
+}
+
+.deserts {
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: base.fluidSpace(32);
+
+  &__title {
+    color: base.$rose-900;
+    font-weight: 700;
+    line-height: 1.2;
+    font-size: base.fluidFont(30, 40);
+  }
+
+  &__list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr;
+
+    @include base.breakpoint("lg") {
+      grid-template-columns: repeat(auto-fit, minmax(base.convertPxToRem(200),base.convertPxToRem(250.67)));
+      gap: base.fluidSpace(32, "desktop") base.fluidSpace(24, "desktop");
+    }
+  }
+}
+
+.product-card {
+  display: flex;
+  flex-direction: column-reverse;
+  position: relative;
+  row-gap: 38px;
+ 
+  &__photo {
+    border-radius: base.convertPxToRem(8);
+    display: block;
+    inline-size: 100%;
+    max-inline-size: 100%;
+    block-size: 100%;
+    object-fit: contain;
+  }
+
+  &__actions {
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    transform: translate(-50%, -100%);
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    row-gap: base.convertPxToRem(4);
+  }
+
+  &__category {
+    color: base.$rose-500;
+    font-size: base.fluidFont(10, 14);
+    font-weight: 400;
+   }
+
+   &__name {
+    color: base.$rose-900;
+    font-weight: 600;
+    font-size: base.fluidFont(14, 16);
+   }
+
+   &__price {
+    color: base.$red;
+    font-size: base.fluidFont(14, 16);
+    font-weight: 600;
+ }
+
+
+}
+
+.footer {
+  flex-shrink: 0;
 }

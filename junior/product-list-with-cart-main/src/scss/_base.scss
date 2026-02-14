@@ -2,20 +2,19 @@
 @use "sass:math";
 @use "breakpoints";
 @forward "breakpoints";
+@use "fonts";
 
-$neutral-900: #030303;
-$neutral-800: #21222c;
-$neutral-700: #2a2b37;
-$neutral-600: #404254;
-$neutral-200: #e4e4ef;
-$neutral-100: #f2f2f7;
-$neutral-0: #ffffff;
-$purple-500: #c27cf8;
-$purple-400: #d3a0fa;
-$yellow-500: #ff9f00;
-$orange-500: #fe8159;
-$orange-800: #da3701;
-$font: "DM Sans", sans-serif;
+$red: #C73B0F;
+$rose-900: #260F08;
+$rose-500: #87635A;
+$rose-400: #AD8A85;
+$rose-300: #CAAFA7;
+$rose-100: #F5EEEC;
+$rose-50: #ffffff;
+$green: #1EA575;
+$black: #000000;
+$white: #FFFFFF;
+$font: "Red Hat Text", sans-serif;
 $deviceList: (
   "mobile": 375,
   "tablet": 768,

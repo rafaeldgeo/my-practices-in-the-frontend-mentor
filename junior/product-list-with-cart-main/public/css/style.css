@@ -1,5 +1,162 @@
+@font-face {
+  font-family: "Red Hat Text";
+  src: url("/public/fonts/RedHatText-VariableFont_wght.woff2");
+  font-weight: 400 600 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Red Hat Text";
+  src: url("/public/fonts/RedHatText-Italic-VariableFont_wght.woff2");
+  font-weight: 400 600 700;
+  font-style: italic;
+  font-display: swap;
+}
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Red Hat Text", sans-serif;
+}
+
+html,
 body {
-  background-color: red;
+  min-block-size: 100vh;
+}
+@supports (min-block-size: 100svh) {
+  html,
+  body {
+    min-block-size: 100svh;
+  }
+}
+@supports (min-block-size: 100dvh) {
+  html,
+  body {
+    min-block-size: 100dvh;
+  }
+}
+html,
+body {
+  background-color: #ffffff;
+  inline-size: 100%;
+  max-inline-size: 100vw;
+}
+
+.container {
+  min-block-size: 100vh;
+}
+@supports (min-block-size: 100svh) {
+  .container {
+    min-block-size: 100svh;
+  }
+}
+@supports (min-block-size: 100dvh) {
+  .container {
+    min-block-size: 100dvh;
+  }
+}
+.container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  inline-size: 100%;
+  margin-inline: auto;
+  max-inline-size: 90rem;
+  padding: min(6.4vw, 1.5rem);
+}
+@media (min-width: 48rem) {
+  .container {
+    padding: min(5.2083333333vw, 2.5rem);
+  }
+}
+@media (min-width: 90rem) {
+  .container {
+    padding: min(6.1111111111vw, 5.5rem) min(7.7777777778vw, 7rem);
+  }
+}
+
+.main {
+  display: grid;
+  flex: 1 1 auto;
+  grid-template-columns: 1fr;
+  inline-size: 100%;
+  max-inline-size: 100vw;
+}
+@media (min-width: 62rem) {
+  .main {
+    column-gap: min(2.2222222222vw, 2rem);
+    grid-template-columns: minmax(400px, 1fr) 24rem;
+  }
+}
+
+.deserts {
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: min(8.5333333333vw, 2rem);
+}
+.deserts__title {
+  color: #260F08;
+  font-weight: 700;
+  line-height: 1.2;
+  font-size: clamp(1.875rem, 0.5rem + 8.5333333333vw, 2.5rem);
+}
+.deserts__list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 62rem) {
+  .deserts__list {
+    grid-template-columns: repeat(auto-fit, minmax(12.5rem, 15.666875rem));
+    gap: min(2.2222222222vw, 2rem) min(1.6666666667vw, 1.5rem);
+  }
+}
+
+.product-card {
+  display: flex;
+  flex-direction: column-reverse;
+  position: relative;
+  row-gap: 38px;
+}
+.product-card__photo {
+  border-radius: 0.5rem;
+  display: block;
+  inline-size: 100%;
+  max-inline-size: 100%;
+  block-size: 100%;
+  object-fit: contain;
+}
+.product-card__actions {
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translate(-50%, -100%);
+}
+.product-card__body {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.25rem;
+}
+.product-card__category {
+  color: #87635A;
+  font-size: clamp(0.625rem, 0.5rem + 1.6vw, 0.875rem);
+  font-weight: 400;
+}
+.product-card__name {
+  color: #260F08;
+  font-weight: 600;
+  font-size: clamp(0.875rem, 0.5rem + 2.1333333333vw, 1rem);
+}
+.product-card__price {
+  color: #C73B0F;
+  font-size: clamp(0.875rem, 0.5rem + 2.1333333333vw, 1rem);
+  font-weight: 600;
+}
+
+.footer {
+  flex-shrink: 0;
 }
 
 /*# sourceMappingURL=style.css.map */
