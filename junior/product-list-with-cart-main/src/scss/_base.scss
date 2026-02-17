@@ -66,11 +66,10 @@ $base-font-size: 16;
 
 // define the fluid space using min(vw, rem)
 @function fluidSpace($sizePx, $device: "mobile") {
-  @if map.get($deviceList, $device) {
-    @return min(calculateVw($sizePx, $device), convertPxToRem($sizePx));
-  } @else {
-    @error "You must define one device valid";
-  }
+  $vw: calculateVw($sizePx, $device);
+  $rem: convertPxToRem($sizePx);
+
+  @return min(#{$vw}, #{$rem});
 }
 
 // define the fluid typography using clamp(rem, vw, rem)

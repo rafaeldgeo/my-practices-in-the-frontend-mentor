@@ -45,8 +45,19 @@ body {
   gap: base.fluidSpace(32) 0;
 
   @include base.breakpoint("lg") {
+    gap: 0 base.fluidSpace(32, "tablet");
+    grid-template-columns: 1fr base.convertPxToRem(384);
+  }
+
+  @include base.breakpoint("xl") {
     gap: 0 base.fluidSpace(32, "desktop");
-    grid-template-columns: minmax(400px, 1fr) base.convertPxToRem(384);
+    grid-template-columns: minmax(base.convertPxToRem(688), 1fr) 1fr;
+  }
+
+  @include base.breakpoint("xxl") {
+    grid-template-columns:
+      minmax(base.convertPxToRem(800), 1fr)
+      base.convertPxToRem(384);
   }
 }
 
@@ -68,12 +79,25 @@ body {
     display: grid;
     grid-template-columns: 1fr;
 
+    @include base.breakpoint("sm") {
+      grid-template-columns: repeat(2, 1fr);
+      gap: base.fluidSpace(32, "tablet") base.fluidSpace(24, "tablet");
+    }
+
+    @include base.breakpoint("md") {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
     @include base.breakpoint("lg") {
+      grid-template-columns: repeat(2, 1fr);
+      gap: base.fluidSpace(32, "desktop") base.fluidSpace(24, "desktop");
+    }
+
+    @include base.breakpoint("xxl") {
       grid-template-columns: repeat(
         auto-fit,
         minmax(base.convertPxToRem(200), base.convertPxToRem(250.67))
       );
-      gap: base.fluidSpace(32, "desktop") base.fluidSpace(24, "desktop");
     }
   }
 }

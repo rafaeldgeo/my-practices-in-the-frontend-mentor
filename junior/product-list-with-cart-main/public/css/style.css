@@ -94,8 +94,19 @@ body {
 }
 @media (min-width: 62rem) {
   .main {
+    gap: 0 min(4.1666666667vw, 2rem);
+    grid-template-columns: 1fr 24rem;
+  }
+}
+@media (min-width: 75rem) {
+  .main {
     gap: 0 min(2.2222222222vw, 2rem);
-    grid-template-columns: minmax(400px, 1fr) 24rem;
+    grid-template-columns: minmax(43rem, 1fr) 1fr;
+  }
+}
+@media (min-width: 90rem) {
+  .main {
+    grid-template-columns: minmax(50rem, 1fr) 24rem;
   }
 }
 
@@ -116,10 +127,26 @@ body {
   display: grid;
   grid-template-columns: 1fr;
 }
+@media (min-width: 36rem) {
+  .deserts__list {
+    grid-template-columns: repeat(2, 1fr);
+    gap: min(4.1666666667vw, 2rem) min(3.125vw, 1.5rem);
+  }
+}
+@media (min-width: 48rem) {
+  .deserts__list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
 @media (min-width: 62rem) {
   .deserts__list {
-    grid-template-columns: repeat(auto-fit, minmax(12.5rem, 15.666875rem));
+    grid-template-columns: repeat(2, 1fr);
     gap: min(2.2222222222vw, 2rem) min(1.6666666667vw, 1.5rem);
+  }
+}
+@media (min-width: 90rem) {
+  .deserts__list {
+    grid-template-columns: repeat(auto-fit, minmax(12.5rem, 15.666875rem));
   }
 }
 

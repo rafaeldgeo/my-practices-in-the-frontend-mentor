@@ -2,14 +2,14 @@
 @use "sass:math";
 
 $breakpoints: (
-  xs: 23.4375rem,
-  sm: 36rem,
-  md: 48rem,
-  lg: 62rem,
-  xl: 75rem,
-  xxl: 90rem,
+  xs: 23.4375rem, // 375
+  sm: 36rem, // 576
+  md: 48rem, // 768
+  lg: 62rem, // 992
+  xl: 75rem, // 1200
+  xxl: 90rem, // 1440
 );
-//ex:375px;sm:576px;md:768px;lg:992px;xl:1200px;xxl:1440px
+
 
 // breakpoint standard
 @mixin breakpoint($size) {
