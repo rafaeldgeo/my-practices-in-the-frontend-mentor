@@ -85,12 +85,13 @@ body {
 }
 
 .main {
+  align-content: flex-start;
   display: grid;
   flex: 1 1 auto;
+  gap: min(8.5333333333vw, 2rem) 0;
   grid-template-columns: 1fr;
   inline-size: 100%;
   max-inline-size: 100vw;
-  gap: min(8.5333333333vw, 2rem) 0;
 }
 @media (min-width: 62rem) {
   .main {
@@ -110,42 +111,42 @@ body {
   }
 }
 
-.deserts {
+.desserts {
   display: grid;
   grid-template-columns: 1fr;
   row-gap: min(8.5333333333vw, 2rem);
   grid-template-rows: min-content;
 }
-.deserts__title {
+.desserts__title {
   color: #260F08;
   font-weight: 700;
   line-height: 1.2;
   font-size: clamp(1.875rem, 0.5rem + 8.5333333333vw, 2.5rem);
 }
-.deserts__list {
+.desserts__list {
   list-style: none;
   display: grid;
   grid-template-columns: 1fr;
 }
 @media (min-width: 36rem) {
-  .deserts__list {
+  .desserts__list {
     grid-template-columns: repeat(2, 1fr);
     gap: min(4.1666666667vw, 2rem) min(3.125vw, 1.5rem);
   }
 }
 @media (min-width: 48rem) {
-  .deserts__list {
+  .desserts__list {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 @media (min-width: 62rem) {
-  .deserts__list {
+  .desserts__list {
     grid-template-columns: repeat(2, 1fr);
     gap: min(2.2222222222vw, 2rem) min(1.6666666667vw, 1.5rem);
   }
 }
 @media (min-width: 90rem) {
-  .deserts__list {
+  .desserts__list {
     grid-template-columns: repeat(auto-fit, minmax(12.5rem, 15.666875rem));
   }
 }
@@ -155,6 +156,7 @@ body {
   flex-direction: column-reverse;
   position: relative;
   row-gap: min(10.1333333333vw, 2.375rem);
+  border: 2px solid transparent;
 }
 .product-card__photo {
   border-radius: 0.5rem;
@@ -163,6 +165,10 @@ body {
   max-inline-size: 100%;
   block-size: 100%;
   object-fit: contain;
+  border: 2px solid transparent;
+}
+.product-card__photo--selected {
+  border: 2px solid #C73B0F;
 }
 .product-card__actions {
   position: absolute;
@@ -210,13 +216,19 @@ body {
   border: 1px solid #C73B0F;
   color: #C73B0F;
 }
+.product-card__btn-add--hidden {
+  display: none;
+}
 .product-card__quantity {
-  display: flex;
+  display: none;
   justify-content: space-between;
   padding: min(3.3333333333vw, 0.78125rem) min(3.2vw, 0.75rem);
   background-color: #C73B0F;
   border-radius: 62.4375rem;
   inline-size: clamp(8.75rem, 43vw, 10rem);
+}
+.product-card__quantity--show {
+  display: flex;
 }
 .product-card__btn-quantity {
   background-color: transparent;

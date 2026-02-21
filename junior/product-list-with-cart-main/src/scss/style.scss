@@ -37,12 +37,13 @@ body {
 }
 
 .main {
+  align-content: flex-start;
   display: grid;
   flex: 1 1 auto;
+  gap: base.fluidSpace(32) 0;
   grid-template-columns: 1fr;
   inline-size: 100%;
   max-inline-size: 100vw;
-  gap: base.fluidSpace(32) 0;
 
   @include base.breakpoint("lg") {
     gap: 0 base.fluidSpace(32, "tablet");
@@ -61,7 +62,7 @@ body {
   }
 }
 
-.deserts {
+.desserts {
   display: grid;
   grid-template-columns: 1fr;
   row-gap: base.fluidSpace(32);
@@ -107,6 +108,7 @@ body {
   flex-direction: column-reverse;
   position: relative;
   row-gap: base.fluidSpace(38);
+  border: 2px solid transparent;
 
   &__photo {
     border-radius: base.convertPxToRem(8);
@@ -115,6 +117,11 @@ body {
     max-inline-size: 100%;
     block-size: 100%;
     object-fit: contain;
+    border: 2px solid transparent;
+  }
+
+  &__photo--selected {
+    border: 2px solid base.$red;
   }
 
   &__actions {
@@ -174,8 +181,12 @@ body {
     color: base.$red;
   }
 
+  &__btn-add--hidden {
+    display: none;
+  }
+
   &__quantity {
-    display: flex;
+    display: none;
     justify-content: space-between;
     padding: base.fluidSpace(12.5) base.fluidSpace(12);
     background-color: base.$red;
@@ -185,6 +196,10 @@ body {
       43vw,
       base.convertPxToRem(160)
     );
+  }
+
+  &__quantity--show {
+    display: flex;
   }
 
   &__btn-quantity {

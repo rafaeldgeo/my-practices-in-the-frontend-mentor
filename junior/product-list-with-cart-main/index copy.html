@@ -1,0 +1,736 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="public/assets/images/favicon-32x32.png"
+    />
+    <link rel="stylesheet" href="/public/css/style.css" />
+    <title>Frontend Mentor | Product list with cart</title>
+    <script type="module" src="src/js/main.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <main class="main">
+        <section class="deserts">
+          <h1 class="deserts__title">Desserts</h1>
+          <ul class="deserts__list">
+            <li class="product-card">
+              <div class="product-card__body">
+                <span class="product-card__category">Waffle</span>
+                <h3 class="product-card__name">Waffle with Berries</h3>
+                <span class="product-card__price">$6.50</span>
+              </div>
+              <picture class="product-card__photo-wrapper">
+                <source
+                  media="(min-width: 1024px)"
+                  srcset="public/assets/images/image-waffle-desktop.jpg"
+                />
+                <source
+                  media="(min-width: 768px)"
+                  srcset="public/assets/images/image-waffle-tablet.jpg"
+                />
+                <img
+                  class="product-card__photo"
+                  src="public/assets/images/image-waffle-mobile.jpg"
+                  alt=""
+                  width="654"
+                  height="424"
+                />
+              </picture>
+              <div class="product-card__actions">
+                <!-- <button
+                    class="product-card__btn-add"
+                    type="button"
+                    data-name="Waffle with Berries"
+                  >
+                    <img
+                      class="product-card__icon-add"
+                      src="public/assets/images/icon-add-to-cart.svg"
+                      alt=""
+                      width="21"
+                      height="20"
+                    />
+                    <span class="product-card__msg-add">Add to Cart</span>
+                  </button> -->
+                <div class="product-card__quantity">
+                  <button
+                    class="product-card__btn-quantity"
+                    type="button"
+                    aria-label="remove the dessert from the cart"
+                    data-name="Waffle with Berries"
+                  >
+                    <span>
+                      <svg
+                        class="product-card__icon-quantity"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="10"
+                        height="10"
+                        viewBox="0 0 10 2"
+                      >
+                        <path fill="#ffffff" d="M0 .375h10v1.25H0V.375Z" />
+                      </svg>
+                    </span>
+                  </button>
+                  <span class="product-card__total" aria-live="polite">1</span>
+                  <button
+                    class="product-card__btn-quantity"
+                    type="button"
+                    aria-label="add the dessert to the cart"
+                    data-name="Waffle with Berries"
+                  >
+                    <svg
+                      class="product-card__icon-quantity"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="10"
+                      height="10"
+                      viewBox="0 0 10 10"
+                    >
+                      <path
+                        fill="#ffffff"
+                        d="M10 4.375H5.625V0h-1.25v4.375H0v1.25h4.375V10h1.25V5.625H10v-1.25Z"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </li>
+             <li class="product-card">
+              <div class="product-card__body">
+                <span class="product-card__category">Waffle</span>
+                <h3 class="product-card__name">Waffle with Berries</h3>
+                <span class="product-card__price">$6.50</span>
+              </div>
+              <picture class="product-card__photo-wrapper">
+                <source
+                  media="(min-width: 1024px)"
+                  srcset="public/assets/images/image-waffle-desktop.jpg"
+                />
+                <source
+                  media="(min-width: 768px)"
+                  srcset="public/assets/images/image-waffle-tablet.jpg"
+                />
+                <img
+                  class="product-card__photo"
+                  src="public/assets/images/image-waffle-mobile.jpg"
+                  alt=""
+                  width="654"
+                  height="424"
+                />
+              </picture>
+              <div class="product-card__actions">
+                <!-- <button
+                    class="product-card__btn-add"
+                    type="button"
+                    data-name="Waffle with Berries"
+                  >
+                    <img
+                      class="product-card__icon-add"
+                      src="public/assets/images/icon-add-to-cart.svg"
+                      alt=""
+                      width="21"
+                      height="20"
+                    />
+                    <span class="product-card__msg-add">Add to Cart</span>
+                  </button> -->
+                <div class="product-card__quantity">
+                  <button
+                    class="product-card__btn-quantity"
+                    type="button"
+                    aria-label="remove the dessert from the cart"
+                    data-name="Waffle with Berries"
+                  >
+                    <span>
+                      <svg
+                        class="product-card__icon-quantity"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="10"
+                        height="10"
+                        viewBox="0 0 10 2"
+                      >
+                        <path fill="#ffffff" d="M0 .375h10v1.25H0V.375Z" />
+                      </svg>
+                    </span>
+                  </button>
+                  <span class="product-card__total" aria-live="polite">1</span>
+                  <button
+                    class="product-card__btn-quantity"
+                    type="button"
+                    aria-label="add the dessert to the cart"
+                    data-name="Waffle with Berries"
+                  >
+                    <svg
+                      class="product-card__icon-quantity"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="10"
+                      height="10"
+                      viewBox="0 0 10 10"
+                    >
+                      <path
+                        fill="#ffffff"
+                        d="M10 4.375H5.625V0h-1.25v4.375H0v1.25h4.375V10h1.25V5.625H10v-1.25Z"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </li>
+             <li class="product-card">
+              <div class="product-card__body">
+                <span class="product-card__category">Waffle</span>
+                <h3 class="product-card__name">Waffle with Berries</h3>
+                <span class="product-card__price">$6.50</span>
+              </div>
+              <picture class="product-card__photo-wrapper">
+                <source
+                  media="(min-width: 1024px)"
+                  srcset="public/assets/images/image-waffle-desktop.jpg"
+                />
+                <source
+                  media="(min-width: 768px)"
+                  srcset="public/assets/images/image-waffle-tablet.jpg"
+                />
+                <img
+                  class="product-card__photo"
+                  src="public/assets/images/image-waffle-mobile.jpg"
+                  alt=""
+                  width="654"
+                  height="424"
+                />
+              </picture>
+              <div class="product-card__actions">
+                <!-- <button
+                    class="product-card__btn-add"
+                    type="button"
+                    data-name="Waffle with Berries"
+                  >
+                    <img
+                      class="product-card__icon-add"
+                      src="public/assets/images/icon-add-to-cart.svg"
+                      alt=""
+                      width="21"
+                      height="20"
+                    />
+                    <span class="product-card__msg-add">Add to Cart</span>
+                  </button> -->
+                <div class="product-card__quantity">
+                  <button
+                    class="product-card__btn-quantity"
+                    type="button"
+                    aria-label="remove the dessert from the cart"
+                    data-name="Waffle with Berries"
+                  >
+                    <span>
+                      <svg
+                        class="product-card__icon-quantity"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="10"
+                        height="10"
+                        viewBox="0 0 10 2"
+                      >
+                        <path fill="#ffffff" d="M0 .375h10v1.25H0V.375Z" />
+                      </svg>
+                    </span>
+                  </button>
+                  <span class="product-card__total" aria-live="polite">1</span>
+                  <button
+                    class="product-card__btn-quantity"
+                    type="button"
+                    aria-label="add the dessert to the cart"
+                    data-name="Waffle with Berries"
+                  >
+                    <svg
+                      class="product-card__icon-quantity"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="10"
+                      height="10"
+                      viewBox="0 0 10 10"
+                    >
+                      <path
+                        fill="#ffffff"
+                        d="M10 4.375H5.625V0h-1.25v4.375H0v1.25h4.375V10h1.25V5.625H10v-1.25Z"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </li>
+             <li class="product-card">
+              <div class="product-card__body">
+                <span class="product-card__category">Waffle</span>
+                <h3 class="product-card__name">Waffle with Berries</h3>
+                <span class="product-card__price">$6.50</span>
+              </div>
+              <picture class="product-card__photo-wrapper">
+                <source
+                  media="(min-width: 1024px)"
+                  srcset="public/assets/images/image-waffle-desktop.jpg"
+                />
+                <source
+                  media="(min-width: 768px)"
+                  srcset="public/assets/images/image-waffle-tablet.jpg"
+                />
+                <img
+                  class="product-card__photo"
+                  src="public/assets/images/image-waffle-mobile.jpg"
+                  alt=""
+                  width="654"
+                  height="424"
+                />
+              </picture>
+              <div class="product-card__actions">
+                <!-- <button
+                    class="product-card__btn-add"
+                    type="button"
+                    data-name="Waffle with Berries"
+                  >
+                    <img
+                      class="product-card__icon-add"
+                      src="public/assets/images/icon-add-to-cart.svg"
+                      alt=""
+                      width="21"
+                      height="20"
+                    />
+                    <span class="product-card__msg-add">Add to Cart</span>
+                  </button> -->
+                <div class="product-card__quantity">
+                  <button
+                    class="product-card__btn-quantity"
+                    type="button"
+                    aria-label="remove the dessert from the cart"
+                    data-name="Waffle with Berries"
+                  >
+                    <span>
+                      <svg
+                        class="product-card__icon-quantity"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="10"
+                        height="10"
+                        viewBox="0 0 10 2"
+                      >
+                        <path fill="#ffffff" d="M0 .375h10v1.25H0V.375Z" />
+                      </svg>
+                    </span>
+                  </button>
+                  <span class="product-card__total" aria-live="polite">1</span>
+                  <button
+                    class="product-card__btn-quantity"
+                    type="button"
+                    aria-label="add the dessert to the cart"
+                    data-name="Waffle with Berries"
+                  >
+                    <svg
+                      class="product-card__icon-quantity"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="10"
+                      height="10"
+                      viewBox="0 0 10 10"
+                    >
+                      <path
+                        fill="#ffffff"
+                        d="M10 4.375H5.625V0h-1.25v4.375H0v1.25h4.375V10h1.25V5.625H10v-1.25Z"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </li>
+             <li class="product-card">
+              <div class="product-card__body">
+                <span class="product-card__category">Waffle</span>
+                <h3 class="product-card__name">Waffle with Berries</h3>
+                <span class="product-card__price">$6.50</span>
+              </div>
+              <picture class="product-card__photo-wrapper">
+                <source
+                  media="(min-width: 1024px)"
+                  srcset="public/assets/images/image-waffle-desktop.jpg"
+                />
+                <source
+                  media="(min-width: 768px)"
+                  srcset="public/assets/images/image-waffle-tablet.jpg"
+                />
+                <img
+                  class="product-card__photo"
+                  src="public/assets/images/image-waffle-mobile.jpg"
+                  alt=""
+                  width="654"
+                  height="424"
+                />
+              </picture>
+              <div class="product-card__actions">
+                <!-- <button
+                    class="product-card__btn-add"
+                    type="button"
+                    data-name="Waffle with Berries"
+                  >
+                    <img
+                      class="product-card__icon-add"
+                      src="public/assets/images/icon-add-to-cart.svg"
+                      alt=""
+                      width="21"
+                      height="20"
+                    />
+                    <span class="product-card__msg-add">Add to Cart</span>
+                  </button> -->
+                <div class="product-card__quantity">
+                  <button
+                    class="product-card__btn-quantity"
+                    type="button"
+                    aria-label="remove the dessert from the cart"
+                    data-name="Waffle with Berries"
+                  >
+                    <span>
+                      <svg
+                        class="product-card__icon-quantity"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="10"
+                        height="10"
+                        viewBox="0 0 10 2"
+                      >
+                        <path fill="#ffffff" d="M0 .375h10v1.25H0V.375Z" />
+                      </svg>
+                    </span>
+                  </button>
+                  <span class="product-card__total" aria-live="polite">1</span>
+                  <button
+                    class="product-card__btn-quantity"
+                    type="button"
+                    aria-label="add the dessert to the cart"
+                    data-name="Waffle with Berries"
+                  >
+                    <svg
+                      class="product-card__icon-quantity"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="10"
+                      height="10"
+                      viewBox="0 0 10 10"
+                    >
+                      <path
+                        fill="#ffffff"
+                        d="M10 4.375H5.625V0h-1.25v4.375H0v1.25h4.375V10h1.25V5.625H10v-1.25Z"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </li>
+             <li class="product-card">
+              <div class="product-card__body">
+                <span class="product-card__category">Waffle</span>
+                <h3 class="product-card__name">Waffle with Berries</h3>
+                <span class="product-card__price">$6.50</span>
+              </div>
+              <picture class="product-card__photo-wrapper">
+                <source
+                  media="(min-width: 1024px)"
+                  srcset="public/assets/images/image-waffle-desktop.jpg"
+                />
+                <source
+                  media="(min-width: 768px)"
+                  srcset="public/assets/images/image-waffle-tablet.jpg"
+                />
+                <img
+                  class="product-card__photo"
+                  src="public/assets/images/image-waffle-mobile.jpg"
+                  alt=""
+                  width="654"
+                  height="424"
+                />
+              </picture>
+              <div class="product-card__actions">
+                <!-- <button
+                    class="product-card__btn-add"
+                    type="button"
+                    data-name="Waffle with Berries"
+                  >
+                    <img
+                      class="product-card__icon-add"
+                      src="public/assets/images/icon-add-to-cart.svg"
+                      alt=""
+                      width="21"
+                      height="20"
+                    />
+                    <span class="product-card__msg-add">Add to Cart</span>
+                  </button> -->
+                <div class="product-card__quantity">
+                  <button
+                    class="product-card__btn-quantity"
+                    type="button"
+                    aria-label="remove the dessert from the cart"
+                    data-name="Waffle with Berries"
+                  >
+                    <span>
+                      <svg
+                        class="product-card__icon-quantity"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="10"
+                        height="10"
+                        viewBox="0 0 10 2"
+                      >
+                        <path fill="#ffffff" d="M0 .375h10v1.25H0V.375Z" />
+                      </svg>
+                    </span>
+                  </button>
+                  <span class="product-card__total" aria-live="polite">1</span>
+                  <button
+                    class="product-card__btn-quantity"
+                    type="button"
+                    aria-label="add the dessert to the cart"
+                    data-name="Waffle with Berries"
+                  >
+                    <svg
+                      class="product-card__icon-quantity"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="10"
+                      height="10"
+                      viewBox="0 0 10 10"
+                    >
+                      <path
+                        fill="#ffffff"
+                        d="M10 4.375H5.625V0h-1.25v4.375H0v1.25h4.375V10h1.25V5.625H10v-1.25Z"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </li>
+           
+          </ul>
+        </section>
+        <section class="cart">
+          <h2 class="cart__title">Your Cart (0)</h2>
+          <!-- <div class="cart__state cart__state--empty">
+            <img
+              class="cart__img-empty"
+              src="public/assets/images/illustration-empty-cart.svg"
+              alt="A cake with a slice removed"
+              width="128"
+              height="128"
+            />
+            <span class="cart__msg-empty"
+              >Your added items will appear here</span
+            >
+          </div> -->
+          <div class="cart__state cart__state--full">
+            <ul class="cart__list">
+              <li class="cart__item">
+                <div class="cart__item-product">
+                  <div class="cart__item-details">
+                    <h4 class="cart__item-name">Classic Tiramisu</h4>
+                    <div class="cart__item-order">
+                      <span class="cart__item-qtd" aria-live="polite">1x</span>
+                      <span class="cart__item-price" aria-live="polite"
+                        >@$5.50</span
+                      >
+                      <span class="cart__item-total" aria-live="polite"
+                        ><strong>$5.50</strong></span
+                      >
+                    </div>
+                  </div>
+                  <button
+                    class="cart__btn-remove"
+                    type="button"
+                    aria-label="remove item of the cart"
+                    data-name="Classic Tiramisu"
+                  >
+                    <svg
+                      class="cart__icon-remove-item"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="10"
+                      height="10"
+                      fill="none"
+                      viewBox="0 0 10 10"
+                    >
+                      <path
+                        fill="#AD8A85"
+                        d="M8.375 9.375 5 6 1.625 9.375l-1-1L4 5 .625 1.625l1-1L5 4 8.375.625l1 1L6 5l3.375 3.375-1 1Z"
+                      />
+                    </svg>
+                  </button>
+                </div>
+                <hr class="cart__bar" />
+              </li>
+              <li class="cart__item">
+                <div class="cart__item-product">
+                  <div class="cart__item-details">
+                    <h4 class="cart__item-name">Classic Tiramisu</h4>
+                    <div class="cart__item-order">
+                      <span class="cart__item-qtd" aria-live="polite">1x</span>
+                      <span class="cart__item-price" aria-live="polite"
+                        >@$5.50</span
+                      >
+                      <span class="cart__item-total" aria-live="polite"
+                        ><strong>$5.50</strong></span
+                      >
+                    </div>
+                  </div>
+                  <button
+                    class="cart__btn-remove"
+                    type="button"
+                    aria-label="remove item of the cart"
+                    data-name="Classic Tiramisu"
+                  >
+                    <svg
+                      class="cart__icon-remove-item"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="10"
+                      height="10"
+                      fill="none"
+                      viewBox="0 0 10 10"
+                    >
+                      <path
+                        fill="#AD8A85"
+                        d="M8.375 9.375 5 6 1.625 9.375l-1-1L4 5 .625 1.625l1-1L5 4 8.375.625l1 1L6 5l3.375 3.375-1 1Z"
+                      />
+                    </svg>
+                  </button>
+                </div>
+                <hr class="cart__bar" />
+              </li>
+            </ul>
+            <div class="cart__total">
+              <span class="cart__total-label">Order Total</span>
+              <span class="order__total-value"><strong>$46.50</strong></span>
+            </div>
+            <div class="cart__carbon-neutral">
+              <img
+                class="cart__icon-tree"
+                src="public/assets/images/icon-carbon-neutral.svg"
+                alt=""
+                width="21"
+                height="20"
+              />
+              <span class="cart__carbon-neutral-msg"
+                >This is a <strong>carbon-neutral</strong> delivery</span
+              >
+            </div>
+            <button class="cart__btn-confirm-order" type="button">
+              Confirm Order
+            </button>
+          </div>
+        </section>
+      </main>
+      <footer class="footer">
+        Challenge by
+        <a
+          class="footer__link"
+          href="https://www.frontendmentor.io/profile/rafaeldgeo"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Frontend Mentor</a
+        >. Coded by
+        <a
+          class="footer__link"
+          href="https://www.linkedin.com/in/rafaeldgeo/"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Rafael Dias de Almeida</a
+        >.
+      </footer>
+    </div>
+
+    <!-- <div
+      class="modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modal-title"
+    >
+      <div class="modal__overlay"></div>
+      <div class="modal__container">
+        <div class="modal__header">
+          <img
+            class="modal__icon-confirmed"
+            src="public/assets/images/icon-order-confirmed.svg"
+            alt=""
+            width="42"
+            height="42"
+          />
+          <h2 class="modal__title" id="modal-title">Order Confirmed</h2>
+          <span class="modal__msg">We hope you enjoy your food!</span>
+        </div>
+        <div class="modal__body">
+          <ul class="modal__list">
+            <li class="modal__item">
+              <div class="modal__item-product">
+                <div class="modal__item-photo-wrapper">
+                  <img
+                    class="modal__item-photo"
+                    src="public/assets/images/image-tiramisu-thumbnail.jpg"
+                    alt=""
+                    width="100"
+                    height="96"
+                  />
+                </div>
+                <div class="modal__item-details">
+                  <h3 class="modal__item-name">Classic Tiramisu</h3>
+                  <div class="modal__item-values">
+                    <span class="modal__item-quantity">1x</span>
+                    <span class="modal__item-price">@$ 5.50</span>
+                  </div>
+                </div>
+                <span class="modal__item-price-total">$5.50</span>
+              </div>
+              <hr class="modal__bar">
+            </li>
+            <li class="modal__item">
+              <div class="modal__item-product">
+                <div class="modal__item-photo-wrapper">
+                  <img
+                    class="modal__item-photo"
+                    src="public/assets/images/image-tiramisu-thumbnail.jpg"
+                    alt=""
+                    width="100"
+                    height="96"
+                  />
+                </div>
+                <div class="modal__item-details">
+                  <h3 class="modal__item-name">Classic Tiramisu</h3>
+                  <div class="modal__item-values">
+                    <span class="modal__item-quantity">1x</span>
+                    <span class="modal__item-price">@$ 5.50</span>
+                  </div>
+                </div>
+                <span class="modal__item-price-total">$5.50</span>
+              </div>
+              <hr class="modal__bar">
+            </li>
+             <li class="modal__item">
+              <div class="modal__item-product">
+                <div class="modal__item-photo-wrapper">
+                  <img
+                    class="modal__item-photo"
+                    src="public/assets/images/image-tiramisu-thumbnail.jpg"
+                    alt=""
+                    width="100"
+                    height="96"
+                  />
+                </div>
+                <div class="modal__item-details">
+                  <h3 class="modal__item-name">Classic Tiramisu</h3>
+                  <div class="modal__item-values">
+                    <span class="modal__item-quantity">1x</span>
+                    <span class="modal__item-price">@$ 5.50</span>
+                  </div>
+                </div>
+                <span class="modal__item-price-total">$5.50</span>
+              </div>
+              <hr class="modal__bar">
+            </li>
+          </ul>
+          <div class="modal__total">
+            <span class="modal__total-label">Order Total</span>
+            <span class="modal__total-order"><strong>$46.50</strong></span>
+          </div>
+        </div>
+        <div class="modal__footer">
+          <button class="modal__btn-new-order" type="button">Start New Order</button>
+        </div>
+      </div>
+    </div> -->
+  </body>
+</html>

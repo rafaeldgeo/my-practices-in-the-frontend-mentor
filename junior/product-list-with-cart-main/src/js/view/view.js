@@ -1,12 +1,22 @@
-export function createView(controller) {
-    
-    controller.onAddProduct("Waffle with Berries");
-    controller.onAddProduct("Waffle with Berries");
-    //onAddProduct("Waffle with Berries");
-    //controller.onRemoveProduct("Waffle with Berries");
-    //controller.onRemoveProduct("Waffle with Berries");
-    //onRemoveProduct("Waffle with Berries");
-    //controller.onRemoveItemCart("Waffle with Berries");
+import { buildProductCards } from "./productCards.js";
+import { bindProductCardEvents } from "./productCardEvents.js";
 
-    //controller.onConfirmOrder();
+export function createView(controller) {
+
+    controller.bindView({
+        renderCatalog
+    });
+
+    function renderCatalog(products, order) {
+        const dessertList = document.querySelector(".desserts__list");
+        dessertList.innerHTML = "";
+
+        products.forEach(product => {
+            dessertList.appendChild(buildProductCards(product, order));
+        })
+
+        bindProductCardEvents(dessertList, controller);
+    }
+
+    return { renderCatalog };
 }

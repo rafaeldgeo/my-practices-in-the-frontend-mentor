@@ -9,6 +9,7 @@ async function bootstrap() {
         const model = createModel();
         const controller = createController({catalog: catalogProducts, model});
         createView(controller);
+        controller.init();
     } catch (error) {
         console.error("Erro to init the application", error.message);
     }
