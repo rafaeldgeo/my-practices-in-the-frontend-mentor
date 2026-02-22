@@ -22,6 +22,7 @@ export function createController({ catalog, model }) {
 
     function onRemoveProduct(productName) {
         order = model.removeItem(productName);
+        view.renderCatalog(products, order);
     }
 
     function onConfirmOrder() {

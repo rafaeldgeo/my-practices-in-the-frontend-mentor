@@ -1,4 +1,4 @@
-export function buildProductCards(product, order) {    
+export function buildProductCards(product, order) {
     const li = document.createElement("li");
     li.className = "product-card";
     li.innerHTML = template(product, order);
@@ -6,7 +6,12 @@ export function buildProductCards(product, order) {
 }
 
 function template(product, order) {
+    let qtdItens = 0;
     const isIntoCart = order.items.some((item) => item.name === product.name);
+    if (isIntoCart) {
+        qtdItens = order.items.find((item) => item.name === product.name);
+        console.log(qtdItens.quantity)
+    }
     return `<div class="product-card__body">
                 <span class="product-card__category">${product.category}</span>
                 <h3 class="product-card__name">${product.name}</h3>
@@ -51,6 +56,7 @@ function template(product, order) {
                     type="button"
                     aria-label="remove the dessert from the cart"
                     data-name="${product.name}"
+                    data-action="decrease"
                     >    
                         <svg
                         class="product-card__icon-quantity"
@@ -62,12 +68,13 @@ function template(product, order) {
                             <path fill="#ffffff" d="M0 .375h10v1.25H0V.375Z" />
                         </svg>   
                     </button>
-                    <span class="product-card__total" aria-live="polite">1</span>
+                    <span class="product-card__total" aria-live="polite">${qtdItens.quantity}</span>
                     <button
                     class="product-card__btn-quantity"
                     type="button"
                     aria-label="add the dessert to the cart"
                     data-name="${product.name}"
+                    data-action="increase"
                     >
                         <svg
                         class="product-card__icon-quantity"
