@@ -3,7 +3,11 @@ import { getCatalogSnapshot } from "../model/getCatalogSnapshot.js";
 
 export function createController({ catalog, model }) {
     let view = null;
-    let order = {items:[]};
+    let order = { items: [],
+                  totalItems: 0,
+                  totalOrderPrice: 0
+                };
+
     const products = getCatalogSnapshot(catalog);
 
     function bindView(viewInstance) {
@@ -12,17 +16,20 @@ export function createController({ catalog, model }) {
 
     function init() {
         view.renderCatalog(products, order);
+        view.renderCart(order);
     }
 
     function onAddProduct(productName) {
         const product = findProductByName(catalog, productName);
         order = model.addItem(product);
         view.renderCatalog(products, order);
+        view.renderCart(order);
     }
 
     function onRemoveProduct(productName) {
         order = model.removeItem(productName);
         view.renderCatalog(products, order);
+        view.renderCart(order);
     }
 
     function onConfirmOrder() {

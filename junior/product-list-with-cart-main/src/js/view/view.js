@@ -1,10 +1,12 @@
 import { buildProductCards } from "./productCards.js";
 import { bindProductCardEvents } from "./productCardEvents.js";
+import { buildCart } from "./cart.js";
 
 export function createView(controller) {
 
     controller.bindView({
-        renderCatalog
+        renderCatalog,
+        renderCart
     });
 
     function renderCatalog(products, order) {
@@ -18,5 +20,15 @@ export function createView(controller) {
         bindProductCardEvents(dessertList, controller);
     }
 
-    return { renderCatalog };
+    function renderCart(order){
+        const cart = document.querySelector(".cart"); 
+        console.log(order);
+        
+        cart.innerHTML = buildCart(order);
+    }
+
+    return { 
+        renderCatalog,
+        renderCart 
+    };
 }

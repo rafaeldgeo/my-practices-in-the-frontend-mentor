@@ -79,6 +79,7 @@ body {
     list-style: none;
     display: grid;
     grid-template-columns: 1fr;
+    gap: base.fluidSpace(32) 0;
 
     @include base.breakpoint("sm") {
       grid-template-columns: repeat(2, 1fr);
@@ -230,12 +231,6 @@ body {
   }
 }
 
-.cart__state {
-  display: flex;
-  flex-direction: column;
-  row-gap: base.fluidSpace(24);
-}
-
 .cart {
   background-color: base.$white;
   border-radius: base.convertPxToRem(12);
@@ -251,21 +246,32 @@ body {
     font-size: base.fluidFont(22, 24);
   }
 
-  &__state {
+  &__empty {
     inline-size: 100%;
-  }
-
-  &__state--empty {
     align-items: center;
     display: flex;
     flex-direction: column;
     row-gap: base.fluidSpace(16);
   }
 
+  &__empty--hidden {
+    display: none;
+  }
+
   &__msg-empty {
     color: base.$rose-500;
     font-size: base.fluidFont(12, 14);
     font-weight: 600;
+  }
+
+  &__full {
+    display: none;
+    flex-direction: column;
+    row-gap: base.fluidSpace(24);
+  }
+
+  &__full--show {
+    display: flex;
   }
 
   &__list {

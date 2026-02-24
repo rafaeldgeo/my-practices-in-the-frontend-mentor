@@ -10,7 +10,6 @@ function template(product, order) {
     const isIntoCart = order.items.some((item) => item.name === product.name);
     if (isIntoCart) {
         qtdItens = order.items.find((item) => item.name === product.name);
-        console.log(qtdItens.quantity)
     }
     return `<div class="product-card__body">
                 <span class="product-card__category">${product.category}</span>
