@@ -11,6 +11,5 @@ export function getCatalogSnapshot(catalog) {
             thumbnail: item.image.thumbnail
         }
     })
-
     return product;
 }

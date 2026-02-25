@@ -1,12 +1,15 @@
 import { buildProductCards } from "./productCards.js";
 import { bindProductCardEvents } from "./productCardEvents.js";
 import { buildCart } from "./cart.js";
+import { bindCartEvents } from "./cartEvents.js";
+import { buildModal } from "./modal.js";
 
 export function createView(controller) {
 
     controller.bindView({
         renderCatalog,
-        renderCart
+        renderCart,
+        renderModal
     });
 
     function renderCatalog(products, order) {
@@ -20,15 +23,23 @@ export function createView(controller) {
         bindProductCardEvents(dessertList, controller);
     }
 
-    function renderCart(order){
-        const cart = document.querySelector(".cart"); 
-        console.log(order);
-        
+    function renderCart(order) {
+        const cart = document.querySelector(".cart");
         cart.innerHTML = buildCart(order);
+        
+        if (order.totalItems > 0) {
+             bindCartEvents(cart, controller);
+        }
     }
 
-    return { 
+    function renderModal(order){
+        const body = document.querySelector("body");
+        body.innerHTML = buildModal(order);
+    }
+
+    return {
         renderCatalog,
-        renderCart 
+        renderCart,
+        renderModal
     };
 }

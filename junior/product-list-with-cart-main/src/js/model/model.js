@@ -21,7 +21,7 @@ export function createModel() {
         const item = cart[foundIndex];
 
         if (foundIndex === -1) {
-            return snapShot();  // ver comportamento quando fizer interação na view, apertar botão de retirar mesmo sendo zero
+            return snapShot();
         }
 
         if (item && item.quantity > 1) {
@@ -55,6 +55,8 @@ export function createModel() {
 
         if (foundIndex === -1) return;
         cart.splice(foundIndex, 1);
+        updateStatus("ITEM_REMOVED");
+        return snapShot();
     }
 
     // update status of the order
@@ -73,6 +75,7 @@ export function createModel() {
                 break;
             default:
         }
+        console.log(orderStatus);
         return orderStatus;
     }
 
@@ -84,6 +87,7 @@ export function createModel() {
             }),
             totalItems: calculateOrderItemsTotal(),
             totalOrderPrice: calculateOrderPriceTotal()
+            
         }
     }
 

@@ -34,10 +34,14 @@ export function createController({ catalog, model }) {
 
     function onConfirmOrder() {
         model.updateStatus("ORDER_CONFIRMED");
+        console.log("entrou");
+        view.renderModal(order);
     }
 
     function onRemoveItemCart(productName) {
-        model.removeItemCart(productName);
+        order = model.removeItemCart(productName);
+        view.renderCatalog(products, order);
+        view.renderCart(order);
     }
 
     return {

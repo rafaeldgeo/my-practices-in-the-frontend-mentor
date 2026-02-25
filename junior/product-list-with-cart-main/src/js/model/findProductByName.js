@@ -1,6 +1,7 @@
 export function findProductByName(catalog, name) {
 
     const product = catalog.find((item) => item.name === name);
+    
 
     if (!product) {
         throw new Error("Product don't found!");
@@ -8,7 +9,8 @@ export function findProductByName(catalog, name) {
 
     return {
         name: product.name,
-        price: product.price
+        price: product.price,
+        thumbnail: product.image.thumbnail
     };
     
 }
