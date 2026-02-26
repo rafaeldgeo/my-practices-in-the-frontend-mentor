@@ -3,6 +3,7 @@ import { bindProductCardEvents } from "./productCardEvents.js";
 import { buildCart } from "./cart.js";
 import { bindCartEvents } from "./cartEvents.js";
 import { buildModal } from "./modal.js";
+import { bindModalEvent } from "./modalEvents.js";
 
 export function createView(controller) {
 
@@ -26,15 +27,23 @@ export function createView(controller) {
     function renderCart(order) {
         const cart = document.querySelector(".cart");
         cart.innerHTML = buildCart(order);
-        
+
         if (order.totalItems > 0) {
-             bindCartEvents(cart, controller);
+            bindCartEvents(cart, controller);
         }
     }
 
-    function renderModal(order){
+    function renderModal(order) {
         const body = document.querySelector("body");
-        body.innerHTML = buildModal(order);
+        if (order.totalItems > 0) {
+            body.innerHTML += buildModal(order);
+            body.classList.add("no-scroll");
+            bindModalEvent(controller);
+        } else if (order.totalItems === 0) {
+            body.classList.remove("no-scroll");
+            const modal = document.querySelector(".modal");
+            body.removeChild(modal);
+        }
     }
 
     return {

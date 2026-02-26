@@ -75,8 +75,13 @@ export function createModel() {
                 break;
             default:
         }
-        console.log(orderStatus);
         return orderStatus;
+    }
+
+    function emptyCart() {
+        cart.splice(0);
+        updateStatus("ITEM_REMOVED");
+        return snapShot();
     }
 
     // return the datas that will be render by view
@@ -87,7 +92,7 @@ export function createModel() {
             }),
             totalItems: calculateOrderItemsTotal(),
             totalOrderPrice: calculateOrderPriceTotal()
-            
+
         }
     }
 
@@ -95,6 +100,7 @@ export function createModel() {
         addItem,
         removeItem,
         removeItemCart,
-        updateStatus
+        updateStatus,
+        emptyCart
     }
 }

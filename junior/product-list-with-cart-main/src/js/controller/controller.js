@@ -3,10 +3,11 @@ import { getCatalogSnapshot } from "../model/getCatalogSnapshot.js";
 
 export function createController({ catalog, model }) {
     let view = null;
-    let order = { items: [],
-                  totalItems: 0,
-                  totalOrderPrice: 0
-                };
+    let order = {
+        items: [],
+        totalItems: 0,
+        totalOrderPrice: 0
+    };
 
     const products = getCatalogSnapshot(catalog);
 
@@ -34,8 +35,14 @@ export function createController({ catalog, model }) {
 
     function onConfirmOrder() {
         model.updateStatus("ORDER_CONFIRMED");
-        console.log("entrou");
         view.renderModal(order);
+    }
+
+    function onNewOrder() {
+        order = model.emptyCart();
+        view.renderModal(order);
+        view.renderCatalog(products, order);
+        view.renderCart(order);
     }
 
     function onRemoveItemCart(productName) {
@@ -50,6 +57,7 @@ export function createController({ catalog, model }) {
         onAddProduct,
         onRemoveProduct,
         onRemoveItemCart,
-        onConfirmOrder
+        onConfirmOrder,
+        onNewOrder
     }
 }
