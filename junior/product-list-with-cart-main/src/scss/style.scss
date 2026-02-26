@@ -418,9 +418,19 @@ body {
     inline-size: 100%;
     padding: base.fluidSpace(40) base.fluidSpace(24);
     row-gap: base.fluidSpace(32);
+    overflow-y: auto;
+    block-size: 100vh;
+    
+    @supports (min-block-size: 100svh) {
+      block-size: 100svh;
+    }
+
+    @supports (min-block-size: 100dvh) {
+      block-size: 100dvh;
+    }
 
     @include base.breakpoint("md") {
-      block-size: fit-content;
+      block-size: base.convertPxToRem(685);
       max-inline-size: base.convertPxToRem(688);
       padding: base.convertPxToRem(40);
     }

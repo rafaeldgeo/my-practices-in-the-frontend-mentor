@@ -1,6 +1,7 @@
 import { findProductByName } from "../model/findProductByName.js";
 import { getCatalogSnapshot } from "../model/getCatalogSnapshot.js";
 
+
 export function createController({ catalog, model }) {
     let view = null;
     let order = {
@@ -9,17 +10,21 @@ export function createController({ catalog, model }) {
         totalOrderPrice: 0
     };
 
+    // build catalog data
     const products = getCatalogSnapshot(catalog);
 
+    // conect function from view
     function bindView(viewInstance) {
         view = viewInstance;
     }
 
+    // initialization
     function init() {
         view.renderCatalog(products, order);
         view.renderCart(order);
     }
 
+    // increase product
     function onAddProduct(productName) {
         const product = findProductByName(catalog, productName);
         order = model.addItem(product);
@@ -27,17 +32,20 @@ export function createController({ catalog, model }) {
         view.renderCart(order);
     }
 
+    // decrease product
     function onRemoveProduct(productName) {
         order = model.removeItem(productName);
         view.renderCatalog(products, order);
         view.renderCart(order);
     }
-
+    
+    // confirmation order
     function onConfirmOrder() {
         model.updateStatus("ORDER_CONFIRMED");
         view.renderModal(order);
     }
 
+    // start new order 
     function onNewOrder() {
         order = model.emptyCart();
         view.renderModal(order);
@@ -45,6 +53,7 @@ export function createController({ catalog, model }) {
         view.renderCart(order);
     }
 
+    // remove item from cart
     function onRemoveItemCart(productName) {
         order = model.removeItemCart(productName);
         view.renderCatalog(products, order);

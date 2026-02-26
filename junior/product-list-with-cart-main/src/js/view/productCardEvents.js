@@ -7,6 +7,7 @@ export function bindProductCardEvents(dessertList, controller) {
         })
     });
 
+    // controller events
     function dispatchUserIntent(btnClicked) {
         const product = btnClicked.dataset.name;
         const action = btnClicked.dataset.action;

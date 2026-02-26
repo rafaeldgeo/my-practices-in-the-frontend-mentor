@@ -64,6 +64,7 @@ export function createModel() {
         switch (event) {
             case "ITEM_ADD":
             case "ITEM_REMOVED":
+            case "EMPTY_CART":
                 if (calculateOrderItemsTotal() > 0) {
                     orderStatus = "IN_PROGRESS";
                 } else {
@@ -78,9 +79,10 @@ export function createModel() {
         return orderStatus;
     }
 
+    // empty cart to new order
     function emptyCart() {
         cart.splice(0);
-        updateStatus("ITEM_REMOVED");
+        updateStatus("EMPTY_CART");
         return snapShot();
     }
 

@@ -13,6 +13,7 @@ export function createView(controller) {
         renderModal
     });
 
+    // render catalog
     function renderCatalog(products, order) {
         const dessertList = document.querySelector(".desserts__list");
         dessertList.innerHTML = "";
@@ -24,6 +25,7 @@ export function createView(controller) {
         bindProductCardEvents(dessertList, controller);
     }
 
+    // render cart
     function renderCart(order) {
         const cart = document.querySelector(".cart");
         cart.innerHTML = buildCart(order);
@@ -33,16 +35,17 @@ export function createView(controller) {
         }
     }
 
+    // render modal
     function renderModal(order) {
+        const modalRoot = document.querySelector(".modal-root");
         const body = document.querySelector("body");
         if (order.totalItems > 0) {
-            body.innerHTML += buildModal(order);
+            modalRoot.innerHTML = buildModal(order);
             body.classList.add("no-scroll");
             bindModalEvent(controller);
         } else if (order.totalItems === 0) {
             body.classList.remove("no-scroll");
-            const modal = document.querySelector(".modal");
-            body.removeChild(modal);
+            modalRoot.innerHTML = "";
         }
     }
 
