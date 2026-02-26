@@ -73,6 +73,7 @@ Practices in [Frontend Mentor Website](https://www.frontendmentor.io/)
 * 22- [Mortgage-repayment-calculator](https://rafaeldgeo-mortgage-repayment-calc.onrender.com/):link: | **JS** <sup>Vanilla</sup> | **EXPRESS.JS + FETCH + EJS** <sup>create Web Server in render.com</sup><sup>:heavy_exclamation_mark:***please. wait 50 seconds for the site opening***</sup>
 * 23- [Interactive-card-details-form](https://rafaeldgeo-interactive-card.onrender.com/):link: | **JS** <sup>Vanilla</sup> | **EXPRESS.JS + FETCH + EJS** <sup>create Web Server in render.com</sup><sup>:heavy_exclamation_mark:***please. wait 50 seconds for the site opening***</sup>
 * 24- [Single-page-design-portfolio](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/junior/single-page-design-portfolio/):link: | **JS** <sup>Vanilla</sup>
-* 25- [Character-counter](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/junior/character-counter/):link: | **JS** <sup>Vanilla</sup>
+* 25- [Character-counter](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/junior/character-counter/):link: | **JS** <sup>Vanilla + MVC</sup>
+* 26- [Product-list-with-cart-main](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/junior/product-list-with-cart-main/):link: | **JS** <sup>Vanilla + MVC</sup>
 
 **My Frontend Mentor: [@rafaeldgeo](https://www.frontendmentor.io/profile/rafaeldgeo)**:link:
