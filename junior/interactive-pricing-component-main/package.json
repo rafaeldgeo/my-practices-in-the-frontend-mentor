@@ -1,0 +1,17 @@
+{
+  "name": "interactive-pricing-component-main",
+  "version": "1.0.0",
+  "description": "![Design preview for the Interactive pricing component coding challenge](./design/desktop-preview.jpg)",
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:css": "sass src/scss:public/css --no-source-map --style=compressed",
+    "watch:css": "sass src/scss:public/css --watch"
+  },
+  "dependencies": {
+    "sass": "^1.97.3"
+  }
+}

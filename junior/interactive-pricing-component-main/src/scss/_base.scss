@@ -1,0 +1,87 @@
+@use "sass:map";
+@use "sass:math";
+@use "breakpoints";
+@forward "breakpoints";
+@use "fonts";
+
+$red: #C73B0F;
+$red-900: #772309;
+$rose-900: #260F08;
+$rose-500: #87635A;
+$rose-400: #AD8A85;
+$rose-300: #CAAFA7;
+$rose-100: #F5EEEC;
+$rose-50: #FCF8F6;
+$green: #1EA575;
+$black: #000000;
+$white: #FFFFFF;
+$modal-gray-alpha: rgba(000, 000, 000, 0.8);
+$font: "Red Hat Text", sans-serif;
+$deviceList: (
+  "mobile": 375,
+  "tablet": 768,
+  "desktop": 1440,
+);
+
+//reset onfig
+@mixin reset {
+  *,
+  *::before,
+  *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: $font;
+  }
+}
+
+// define height for all devices. Use in elements html, body and container
+@mixin layoutViewportHeight {
+  min-block-size: 100vh;
+  // fallback old browsers
+  @supports (min-block-size: 100svh) {
+    min-block-size: 100svh;
+    // small view
+  }
+
+  @supports (min-block-size: 100dvh) {
+    min-block-size: 100dvh;
+    // dynamic view
+  }
+}
+
+// convert px to rem
+$base-font-size: 16;
+@function convertPxToRem($sizePx) {
+  @return math.div($sizePx, $base-font-size) * 1rem;
+}
+
+// calculate the view size from device
+@function calculateVw($sizePx, $device) {
+  $sizeView: map.get($deviceList, $device);
+  $sizeVw: (math.div($sizePx, $sizeView) * 100) * 1vw;
+
+  @return $sizeVw;
+}
+
+// define the fluid space using min(vw, rem)
+@function fluidSpace($sizePx, $device: "mobile") {
+  $vw: calculateVw($sizePx, $device);
+  $rem: convertPxToRem($sizePx);
+
+  @return min(#{$vw}, #{$rem});
+}
+
+// define the fluid typography using clamp(rem, vw, rem)
+@function fluidFont($sizePxMin, $sizePxMax, $device: "mobile") {
+  @if map.get($deviceList, $device) {
+    $sizeVwPx: $sizePxMax - 8;
+    @return clamp(
+      convertPxToRem($sizePxMin),
+      0.5rem + calculateVw($sizeVwPx, $device),
+      convertPxToRem($sizePxMax)
+    );
+  } @else {
+    @error "You must define one device valid";
+  }
+}
