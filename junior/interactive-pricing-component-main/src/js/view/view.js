@@ -1,4 +1,4 @@
 export function createView(controller){
-    console.log("view criada")    
-
+    controller.onChangePageviewsSlider(1);
+    controller.onToggleBilling("Yearly");
 }

@@ -1,16 +1,24 @@
 export function createController(model) {
+    const tierDefaultIndex = 2;
 
     function init() {
-        model.setCurrentTier(2);
+        model.setCurrentTier(tierDefaultIndex);
+        model.subscribe((snapshot) => {
+            console.log(snapshot);
+        })
     }
 
-    model.subscribe((snapshot) => {
-        console.log(snapshot);
-    })
+    function onChangePageviewsSlider(tierIndex) {
+        model.setCurrentTier(tierIndex);
+    }
 
-    model.setCurrentTier(2)
+    function onToggleBilling(period) {
+        model.setBillingPeriod(period);
+    }
 
     return {
         init,
+        onChangePageviewsSlider,
+        onToggleBilling
     }
 }

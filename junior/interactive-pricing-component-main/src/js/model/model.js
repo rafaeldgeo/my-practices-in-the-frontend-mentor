@@ -25,11 +25,11 @@ export function createModel() {
         observers.forEach((observer) => observer(snapshot));
     }
 
-    function setCurrentTier(tier) {
-        if (!Number.isInteger(tier) || (tier < 0 || tier > tiers.length - 1)) {
+    function setCurrentTier(tierIndex) {
+        if (!Number.isInteger(tierIndex) || (tierIndex < 0 || tierIndex > tiers.length - 1)) {
             return;
         }
-        state.tierIndex = tier;
+        state.tierIndex = tierIndex;
         notify();
     }
 
