@@ -23,38 +23,53 @@
       </header>
       <main class="main">
         <section class="price-group">
-          <div class="price-group__header" aria-live="polite">
-            <span class="price-group__pageviews" id="pageviews-value">100K pageviews</span>
-            <span class="price-group__price-value">$16.00 /month</span>
-          </div>
-          <div class="price-group__body">
-            <label class="sr-only" for="pageviews">Pageviews amount</label>
-            <input
-              class="price-group__pageviews-slider"
-              type="range"
-              name="pageviews"
-              id="pageviews"
-              min="0"
-              max="4"
-              aria-describedby="pageviews-value"
-            />
-
-            <fieldset class="price-group__billing">
+          <div class="price-group__setup">
+            <span class="price-group__pageviews" id="pageviews-value"
+              >100K pageviews</span
+            >
+            <div class="price-group__price-wrapper">
+              <strong class="price-group__price">$16.00</strong>
+              <span class="price-group__period">/month</span>
+            </div>
+            <div class="pageviews-slider">
+              <label class="sr-only" for="pageviews">Pageviews amount</label>
+              <input
+                class="pageviews-slider__range"
+                type="range"
+                name="pageviews"
+                id="pageviews"
+                min="0"
+                max="4"
+                aria-describedby="pageviews-value"
+              />
+            </div>
+            <fieldset class="billing">
               <legend class="sr-only">Billing period</legend>
 
-              <label>
-                <input type="radio" name="billing" value="monthly" checked />
+              <label class="billing__label">
+                <input
+                  class="billing__radio"
+                  type="radio"
+                  name="billing"
+                  value="monthly"
+                  checked
+                />
                 Monthly Billing
               </label>
 
-              <label>
-                <input type="radio" name="billing" value="yearly" />
+              <label class="billing__label">
+                <input
+                  class="billing__radio"
+                  type="radio"
+                  name="billing"
+                  value="yearly"
+                />
                 Yearly Billing
-                <span class="price-group__option--discount">25% discount</span>
+                <span class="billing__discount">25% discount</span>
               </label>
             </fieldset>
           </div>
-          <div class="price-group__footer">
+          <div class="price-group__info">
             <ul class="price-group__list-benefits">
               <li>
                 <img

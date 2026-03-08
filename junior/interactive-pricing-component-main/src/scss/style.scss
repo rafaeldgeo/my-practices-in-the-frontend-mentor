@@ -1,3 +1,189 @@
+@use "base";
+
+@include base.reset;
+
+html,
 body {
-    background-color: red;
+  @include base.layoutViewportHeight;
+  background-color: base.$blue-100;
+  inline-size: 100%;
+  max-inline-size: 100vw;
+}
+
+.container {
+  @include base.layoutViewportHeight;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  inline-size: 100%;
+  margin-inline: auto;
+  max-inline-size: base.convertPxToRem(1440);
+  padding-inline: base.fluidSpace(24);
+}
+
+.header {
+  display: flex;
+  flex: 0 1 auto;
+  flex-direction: column;
+  justify-content: center;
+  row-gap: base.convertPxToRem(8);
+  text-align: center;
+
+  @include base.breakpoint("sm") {
+    row-gap: base.convertPxToRem(12);
+  }
+
+  &__title {
+    font-size: base.fluidFont(18, 20);
+    font-weight: 800;
+    color: base.$blue-500;
+
+    @include base.breakpoint("sm") {
+      font-size: base.fluidFont(20, 28, "tablet");
+    }
+  }
+
+  &__msg {
+    color: base.$gray-300;
+    display: block;
+    font-size: base.fluidFont(10, 13);
+    font-weight: 600;
+    inline-size: 100%;
+    line-height: 1.8;
+    margin-inline: auto;
+
+    @include base.breakpoint("xs") {
+      max-width: 25ch;
+    }
+
+    @include base.breakpoint("sm") {
+      font-size: base.fluidFont(13, 15, "tablet");
+      line-height: 1.3;
+    }
+  }
+}
+
+.main {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  inline-size: 100%;
+}
+
+.price-group {
+  background-color: base.$white;
+  block-size: fit-content;
+  border-radius: base.convertPxToRem(8);
+  inline-size: 100%;
+  max-inline-size: base.convertPxToRem(540);
+  position: relative;
+  padding: base.fluidSpace(34) base.fluidSpace(24) base.fluidSpace(32)
+    base.fluidSpace(24);
+
+  @include base.breakpoint("sm") {
+    padding: base.fluidSpace(40, "tablet") base.fluidSpace(48, "tablet")
+      base.fluidSpace(32, "tablet") base.fluidSpace(46, "tablet");
+  }
+
+  &__setup {
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: base.fluidSpace(24);
+    grid-template-areas:
+      "pageviews"
+      "slider-wrapper"
+      "price-wrapper";
+
+    @include base.breakpoint("sm") {
+      align-items: center;
+      column-gap: base.convertPxToRem(8);
+      grid-template-columns: repeat(2, 1fr);
+
+      grid-template-areas:
+        "pageviews price-wrapper"
+        "slider-wrapper slider-wrapper";
+    }
+  }
+
+  &__pageviews {
+    color: base.$gray-300;
+    font-size: base.fluidFont(10, 12);
+    font-weight: 800;
+    grid-area: pageviews;
+    justify-self: center;
+    letter-spacing: base.convertPxToRem(1.71);
+    text-transform: uppercase;
+
+    @include base.breakpoint("sm") {
+      justify-self: start;
+    }
+  }
+
+  &__price-wrapper {
+    align-items: center;
+    column-gap: base.convertPxToRem(10);
+    display: flex;
+    grid-area: price-wrapper;
+    justify-self: center;
+
+    @include base.breakpoint("sm") {
+      column-gap: base.convertPxToRem(8);
+      justify-self: end;
+    }
+  }
+
+  &__price {
+    color: base.$blue-500;
+    font-size: base.fluidFont(30, 32);
+    font-weight: 800;
+    letter-spacing: base.convertPxToRem(-0.8);
+
+    @include base.breakpoint("sm") {
+      font-size: base.fluidFont(32, 40, "tablet");
+      letter-spacing: base.convertPxToRem(-1);
+    }
+  }
+
+  &__period {
+    color: base.$gray-300;
+    font-size: base.fluidFont(12, 14);
+    font-weight: 600;
+
+    @include base.breakpoint("sm") {
+      font-size: base.fluidFont(14, 16, "tablet");
+    }
+  }
+}
+
+.pageviews-slider {
+  grid-area: slider-wrapper;
+
+  &__range {
+    inline-size: 100%;
+  }
+}
+
+.sr-only {
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+.footer {
+  flex-shrink: 0;
+  font-size: base.convertPxToRem(11);
+  padding-block: base.fluidSpace(10);
+  text-align: center;
+  color: base.$blue-500;
+
+  &__link {
+    color: base.$red-200;
+  }
 }

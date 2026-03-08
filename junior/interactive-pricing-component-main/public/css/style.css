@@ -1,1 +1,217 @@
-body{background-color:red}
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Manrope:wght@200..800&display=swap");
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Manrope", sans-serif;
+}
+
+html,
+body {
+  min-block-size: 100vh;
+}
+@supports (min-block-size: 100svh) {
+  html,
+  body {
+    min-block-size: 100svh;
+  }
+}
+@supports (min-block-size: 100dvh) {
+  html,
+  body {
+    min-block-size: 100dvh;
+  }
+}
+html,
+body {
+  background-color: #F9FAFF;
+  inline-size: 100%;
+  max-inline-size: 100vw;
+}
+
+.container {
+  min-block-size: 100vh;
+}
+@supports (min-block-size: 100svh) {
+  .container {
+    min-block-size: 100svh;
+  }
+}
+@supports (min-block-size: 100dvh) {
+  .container {
+    min-block-size: 100dvh;
+  }
+}
+.container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  inline-size: 100%;
+  margin-inline: auto;
+  max-inline-size: 90rem;
+  padding-inline: min(6.4vw, 1.5rem);
+}
+
+.header {
+  display: flex;
+  flex: 0 1 auto;
+  flex-direction: column;
+  justify-content: center;
+  row-gap: 0.5rem;
+  text-align: center;
+}
+@media (min-width: 36rem) {
+  .header {
+    row-gap: 0.75rem;
+  }
+}
+.header__title {
+  font-size: clamp(1.125rem, 0.5rem + 3.2vw, 1.25rem);
+  font-weight: 800;
+  color: #293356;
+}
+@media (min-width: 36rem) {
+  .header__title {
+    font-size: clamp(1.25rem, 0.5rem + 2.6041666667vw, 1.75rem);
+  }
+}
+.header__msg {
+  color: #848EAD;
+  display: block;
+  font-size: clamp(0.625rem, 0.5rem + 1.3333333333vw, 0.8125rem);
+  font-weight: 600;
+  inline-size: 100%;
+  line-height: 1.8;
+  margin-inline: auto;
+}
+@media (max-width: 23.4375rem) {
+  .header__msg {
+    max-width: 25ch;
+  }
+}
+@media (min-width: 36rem) {
+  .header__msg {
+    font-size: clamp(0.8125rem, 0.5rem + 0.9114583333vw, 0.9375rem);
+    line-height: 1.3;
+  }
+}
+
+.main {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  inline-size: 100%;
+}
+
+.price-group {
+  background-color: #FFFFFF;
+  block-size: fit-content;
+  border-radius: 0.5rem;
+  inline-size: 100%;
+  max-inline-size: 33.75rem;
+  position: relative;
+  padding: min(9.0666666667vw, 2.125rem) min(6.4vw, 1.5rem) min(8.5333333333vw, 2rem) min(6.4vw, 1.5rem);
+}
+@media (min-width: 36rem) {
+  .price-group {
+    padding: min(5.2083333333vw, 2.5rem) min(6.25vw, 3rem) min(4.1666666667vw, 2rem) min(5.9895833333vw, 2.875rem);
+  }
+}
+.price-group__setup {
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: min(6.4vw, 1.5rem);
+  grid-template-areas: "pageviews" "slider-wrapper" "price-wrapper";
+}
+@media (min-width: 36rem) {
+  .price-group__setup {
+    align-items: center;
+    column-gap: 0.5rem;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas: "pageviews price-wrapper" "slider-wrapper slider-wrapper";
+  }
+}
+.price-group__pageviews {
+  color: #848EAD;
+  font-size: clamp(0.625rem, 0.5rem + 1.0666666667vw, 0.75rem);
+  font-weight: 800;
+  grid-area: pageviews;
+  justify-self: center;
+  letter-spacing: 0.106875rem;
+  text-transform: uppercase;
+}
+@media (min-width: 36rem) {
+  .price-group__pageviews {
+    justify-self: start;
+  }
+}
+.price-group__price-wrapper {
+  align-items: center;
+  column-gap: 0.625rem;
+  display: flex;
+  grid-area: price-wrapper;
+  justify-self: center;
+}
+@media (min-width: 36rem) {
+  .price-group__price-wrapper {
+    column-gap: 0.5rem;
+    justify-self: end;
+  }
+}
+.price-group__price {
+  color: #293356;
+  font-size: clamp(1.875rem, 0.5rem + 6.4vw, 2rem);
+  font-weight: 800;
+  letter-spacing: -0.05rem;
+}
+@media (min-width: 36rem) {
+  .price-group__price {
+    font-size: clamp(2rem, 0.5rem + 4.1666666667vw, 2.5rem);
+    letter-spacing: -0.0625rem;
+  }
+}
+.price-group__period {
+  color: #848EAD;
+  font-size: clamp(0.75rem, 0.5rem + 1.6vw, 0.875rem);
+  font-weight: 600;
+}
+@media (min-width: 36rem) {
+  .price-group__period {
+    font-size: clamp(0.875rem, 0.5rem + 1.0416666667vw, 1rem);
+  }
+}
+
+.pageviews-slider {
+  grid-area: slider-wrapper;
+}
+.pageviews-slider__range {
+  inline-size: 100%;
+}
+
+.sr-only {
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+.footer {
+  flex-shrink: 0;
+  font-size: 0.6875rem;
+  padding-block: min(2.6666666667vw, 0.625rem);
+  text-align: center;
+  color: #293356;
+}
+.footer__link {
+  color: #FF8C66;
+}
+
+/*# sourceMappingURL=style.css.map */
