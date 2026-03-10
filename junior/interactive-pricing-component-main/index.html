@@ -43,61 +43,73 @@
                 aria-describedby="pageviews-value"
               />
             </div>
-            <fieldset class="billing">
+            <fieldset class="billing-switch">
               <legend class="sr-only">Billing period</legend>
 
-              <label class="billing__label">
+              <label class="billing-switch__option">
                 <input
-                  class="billing__radio"
+                  class="billing-switch__radio"
                   type="radio"
                   name="billing"
                   value="monthly"
                   checked
                 />
-                Monthly Billing
+                <span class="billing-switch__label">Monthly Billing</span>
               </label>
 
-              <label class="billing__label">
+              <div class="switch">
+                <span class="switch__thumb"></span>
+              </div>
+
+              <label class="billing-switch__option">
                 <input
-                  class="billing__radio"
+                  class="billing-switch__radio"
                   type="radio"
                   name="billing"
                   value="yearly"
                 />
-                Yearly Billing
-                <span class="billing__discount">25% discount</span>
+                <span class="billing-switch__label">Yearly Billing</span>
+                <div class="billing-switch__discount">
+                  <span class="billing-switch__discount-value">25%</span>
+                  <span class="billing-switch__discount-label">discount</span>
+                </div>
               </label>
             </fieldset>
           </div>
           <div class="price-group__info">
             <ul class="price-group__list-benefits">
-              <li>
-                <img
+              <li class="price-group__item">
+                <img 
+                  class="price-group__icon-item"
                   src="public/images/icon-check.svg"
                   alt=""
                   width="9"
                   height="8"
-                />Unlimited websites
+                />
+                <span>Unlimited websites</span>
               </li>
-              <li>
+              <li class="price-group__item">
                 <img
+                  class="price-group__icon-item"
                   src="public/images/icon-check.svg"
                   alt=""
                   width="9"
                   height="8"
-                />100% data ownership
+                />
+                <span>100% data ownership</span>
               </li>
-              <li>
+              <li class="price-group__item">
                 <img
+                  class="price-group__icon-item"
                   src="public/images/icon-check.svg"
                   alt=""
                   width="9"
                   height="8"
-                />Email reports
+                /><span>Email reports</span>
               </li>
             </ul>
-            <div class="button-wrapper">
-              <button type="button">Start my trial</button>
+            <div class="price-group__btn-wrapper">
+              <button class="price-group__btn" type="button">Start my trial</button>
             </div>
           </div>
         </section>
