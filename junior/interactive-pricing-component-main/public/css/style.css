@@ -234,9 +234,58 @@ body {
 
 .pageviews-slider {
   grid-area: slider-wrapper;
+  position: relative;
+  padding-block-end: min(6.4vw, 1.5rem);
+}
+@media (min-width: 36rem) {
+  .pageviews-slider {
+    padding-block-end: min(10.6666666667vw, 2.5rem);
+  }
 }
 .pageviews-slider__range {
   inline-size: 100%;
+  left: 0;
+  opacity: 1;
+  position: absolute;
+  top: 0;
+  z-index: 1;
+  cursor: pointer;
+}
+
+.slider-fake {
+  position: absolute;
+  transform: translate(0, 60%);
+  top: 0;
+  left: 0;
+  height: 0.5rem;
+  width: 100%;
+  background-color: #ECF0FB;
+  border-radius: 0.3125rem;
+}
+.slider-fake__bar-progress {
+  position: relative;
+  background-color: #A5F3EB;
+  height: 0.5rem;
+  width: 25%;
+  border-radius: 0.3125rem;
+}
+.slider-fake__thumb {
+  align-items: center;
+  background-color: #10D8C4;
+  border-radius: 62.4375rem;
+  display: flex;
+  height: 2.5rem;
+  justify-content: center;
+  left: 100%;
+  position: absolute;
+  top: 0;
+  transform: translate(-40%, -40%);
+  width: 2.5rem;
+  box-shadow: 0 15px 30px 0 hsla(174, 100%, 50%, 0.6);
+}
+
+.pageviews-slider__range:hover ~ .slider-fake .slider-fake__thumb {
+  background-color: #7AEADF;
 }
 
 .billing-switch {
@@ -249,7 +298,7 @@ body {
   justify-content: end;
   padding-inline-end: min(4.5333333333vw, 1.0625rem);
 }
-.billing-switch__option {
+.billing-switch__label {
   display: flex;
   column-gap: 0.5625rem;
   color: #848EAD;
@@ -264,6 +313,12 @@ body {
   font-size: 0.625rem;
   font-weight: 800;
   padding: 0.125rem 0.375rem;
+}
+.billing-switch__radio {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
 }
 
 .switch {
@@ -284,8 +339,12 @@ body {
   border-radius: 62.4375rem;
 }
 
-input:checked + .switch__thumb::before {
-  transform: translateX(20px);
+.switch:hover {
+  background-color: #7AEADF;
+}
+
+#yearly:checked ~ .switch .switch__thumb {
+  transform: translateX(1.3125rem);
 }
 
 .sr-only {

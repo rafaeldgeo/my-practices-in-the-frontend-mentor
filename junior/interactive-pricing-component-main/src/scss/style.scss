@@ -213,10 +213,68 @@ body {
 
 .pageviews-slider {
   grid-area: slider-wrapper;
+  position: relative;
+  padding-block-end: base.fluidSpace(24);
+
+  @include base.breakpoint("sm") {
+    padding-block-end: base.fluidSpace(40);
+  }
 
   &__range {
     inline-size: 100%;
+    left: 0;
+    opacity: 1;
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    cursor: pointer;
   }
+}
+
+.slider-fake {
+  position: absolute;
+  transform: translate(0, 60%);
+  top: 0;
+  left: 0;
+  height: base.convertPxToRem(8);
+  width: 100%;
+  background-color: base.$gray-100;
+  border-radius: base.convertPxToRem(5);
+
+  &__bar-progress {
+    position: relative;
+    background-color: base.$cyan-100;
+    height: base.convertPxToRem(8);
+    width: 25%;
+    border-radius: base.convertPxToRem(5);
+  }
+  &__thumb {
+    align-items: center;
+    background-color: base.$cyan-200;
+    border-radius: base.convertPxToRem(999);
+    display: flex;
+    height: base.convertPxToRem(40);
+    justify-content: center;
+    left: 100%;
+    position: absolute;
+    top: 0;
+    transform: translate(-40%, -40%);
+    width: base.convertPxToRem(40);
+    // cursor: pointer;
+    box-shadow: 0 15px 30px 0 base.$shadow-slider;
+  }
+}
+
+// &__thumb--grabbing {
+//   cursor: grabbing;
+// }
+
+// &__thumb:hover {
+//   background-color: base.$cyan-150;
+// }
+
+.pageviews-slider__range:hover ~ .slider-fake .slider-fake__thumb {
+  background-color: base.$cyan-150;
 }
 
 .billing-switch {
@@ -229,7 +287,7 @@ body {
   justify-content: end;
   padding-inline-end: base.fluidSpace(17);
 
-  &__option {
+  &__label {
     display: flex;
     column-gap: base.convertPxToRem(9);
     color: base.$gray-300;
@@ -247,12 +305,12 @@ body {
     padding: base.convertPxToRem(2) base.convertPxToRem(6);
   }
 
-  // &__radio {
-  //   position: absolute;
-  //   opacity: 0;
-  //   width: 0;
-  //   height: 0;
-  // }
+  &__radio {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
 }
 
 .switch {
@@ -274,8 +332,12 @@ body {
   }
 }
 
-input:checked + .switch__thumb::before {
-  transform: translateX(20px);
+.switch:hover {
+  background-color: base.$cyan-150;
+}
+
+#yearly:checked ~ .switch .switch__thumb {
+  transform: translateX(base.convertPxToRem(21));
 }
 
 .sr-only {
