@@ -1,11 +1,14 @@
 export function createController(model) {
-    const tierDefaultIndex = 2;
+    let view = null;
+
+    function bindView(viewInstance) {
+        view = viewInstance;
+    }
 
     function init() {
-        model.setCurrentTier(tierDefaultIndex);
         model.subscribe((snapshot) => {
-            console.log(snapshot);
-        })
+            view.renderUI(snapshot);
+        });
     }
 
     function onChangePageviewsSlider(tierIndex) {
@@ -18,6 +21,7 @@ export function createController(model) {
 
     return {
         init,
+        bindView,
         onChangePageviewsSlider,
         onToggleBilling
     }

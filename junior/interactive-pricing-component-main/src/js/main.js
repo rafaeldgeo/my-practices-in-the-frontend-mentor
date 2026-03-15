@@ -6,8 +6,8 @@ function bootstrap() {
     try {
         const model = createModel();
         const controller = createController(model);
-        controller.init();
         createView(controller);
+        controller.init();
     } catch (error) {
         console.error("Erro to init the application", error.message);
     }

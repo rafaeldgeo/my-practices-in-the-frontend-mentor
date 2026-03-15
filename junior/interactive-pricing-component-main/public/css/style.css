@@ -245,7 +245,7 @@ body {
 .pageviews-slider__range {
   inline-size: 100%;
   left: 0;
-  opacity: 1;
+  opacity: 0;
   position: absolute;
   top: 0;
   z-index: 1;
@@ -263,11 +263,12 @@ body {
   border-radius: 0.3125rem;
 }
 .slider-fake__bar-progress {
+  --slider-progress: 50%;
   position: relative;
   background-color: #A5F3EB;
   height: 0.5rem;
-  width: 25%;
   border-radius: 0.3125rem;
+  width: var(--slider-progress);
 }
 .slider-fake__thumb {
   align-items: center;
@@ -286,6 +287,10 @@ body {
 
 .pageviews-slider__range:hover ~ .slider-fake .slider-fake__thumb {
   background-color: #7AEADF;
+}
+
+.pageviews-slider__range:active ~ .slider-fake .slider-fake__thumb {
+  background-color: #24AEA1;
 }
 
 .billing-switch {

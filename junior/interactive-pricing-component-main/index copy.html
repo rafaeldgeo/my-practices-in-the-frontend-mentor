@@ -40,31 +40,40 @@
                 id="pageviews"
                 min="0"
                 max="4"
+                step="1"
                 aria-describedby="pageviews-value"
+                value="2"
               />
             </div>
             <fieldset class="billing-switch">
               <legend class="sr-only">Billing period</legend>
 
-              <label class="billing-switch__option">
-                <input
-                  class="billing-switch__radio"
-                  type="radio"
-                  name="billing"
-                  value="monthly"
-                  checked
-                />
-                <span class="billing-switch__label">Monthly Billing</span>
-              </label>
+              <input
+                class="billing-switch__radio"
+                type="radio"
+                name="billing"
+                value="monthly"
+                checked
+                id="monthly"
+              />
+              <input
+                class="billing-switch__radio"
+                type="radio"
+                name="billing"
+                value="yearly"
+                id="yearly"
+              />
 
-              <label class="billing-switch__option">
-                <input
-                  class="billing-switch__radio"
-                  type="radio"
-                  name="billing"
-                  value="yearly"
-                />
-                <span class="billing-switch__label">Yearly Billing</span>
+              <label class="billing-switch__label" for="monthly"
+                >Monthly Billing</label
+              >
+
+              <div class="switch">
+                <div class="switch__thumb"></div>
+              </div>
+
+              <label class="billing-switch__label" for="yearly"
+                >Yearly Billing
                 <div class="billing-switch__discount">
                   <span class="billing-switch__discount-value">25%</span>
                   <span class="billing-switch__discount-label">discount</span>
@@ -75,7 +84,7 @@
           <div class="price-group__info">
             <ul class="price-group__list-benefits">
               <li class="price-group__item">
-                <img 
+                <img
                   class="price-group__icon-item"
                   src="public/images/icon-check.svg"
                   alt=""
@@ -105,7 +114,9 @@
               </li>
             </ul>
             <div class="price-group__btn-wrapper">
-              <button class="price-group__btn" type="button">Start my trial</button>
+              <button class="price-group__btn" type="button">
+                Start my trial
+              </button>
             </div>
           </div>
         </section>

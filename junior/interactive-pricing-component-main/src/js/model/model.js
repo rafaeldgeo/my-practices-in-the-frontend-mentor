@@ -2,7 +2,7 @@ export function createModel() {
 
     let state = {
         tierIndex: 2,
-        billingPeriod: "Monthly"
+        billingPeriod: "monthly"
     }
     const ANNUAL_DISCOUNT = 0.25;
 
@@ -18,6 +18,7 @@ export function createModel() {
 
     function subscribe(observerFn) {
         observers.push(observerFn);
+        observerFn(getSnapshot());
     }
 
     function notify() {
@@ -26,15 +27,14 @@ export function createModel() {
     }
 
     function setCurrentTier(tierIndex) {
-        if (!Number.isInteger(tierIndex) || (tierIndex < 0 || tierIndex > tiers.length - 1)) {
-            return;
-        }
+        tierIndex = Number(tierIndex);
+        if (!Number.isInteger(tierIndex) || (tierIndex < 0 || tierIndex > tiers.length - 1)) return;
         state.tierIndex = tierIndex;
         notify();
     }
 
     function setBillingPeriod(period) {
-        if (period != "Monthly" && period != "Yearly") return;
+        if (period != "monthly" && period != "yearly") return;
         state.billingPeriod = period;
         notify();
     }
@@ -58,9 +58,9 @@ export function createModel() {
     function definePrice() {
         const price = calculatePrice();
         const billingPeriod = state.billingPeriod;
-        if (billingPeriod === "Monthly") {
+        if (billingPeriod === "monthly") {
             return price.monthly;
-        } else if (billingPeriod === "Yearly") {
+        } else if (billingPeriod === "yearly") {
             return price.yearly;
         }
     }
@@ -68,6 +68,7 @@ export function createModel() {
     function getSnapshot() {
         const tierSelected = getTier();
         return {
+            tierIndex: state.tierIndex,
             pageviews: tierSelected.pageviews,
             price: definePrice(),
             billingPeriod: state.billingPeriod
