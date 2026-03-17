@@ -13,19 +13,22 @@ export function createModel() {
         { pageviews: "500k", monthlyPrice: 24 },
         { pageviews: "1M", monthlyPrice: 36 }
     ];
-
+    
     let observers = [];
 
+    // subscribe observe from controller and init state of view
     function subscribe(observerFn) {
         observers.push(observerFn);
         observerFn(getSnapshot());
     }
 
+    // notify change
     function notify() {
         const snapshot = getSnapshot();
         observers.forEach((observer) => observer(snapshot));
     }
 
+    // set value of the range
     function setCurrentTier(tierIndex) {
         tierIndex = Number(tierIndex);
         if (!Number.isInteger(tierIndex) || (tierIndex < 0 || tierIndex > tiers.length - 1)) return;
@@ -33,22 +36,26 @@ export function createModel() {
         notify();
     }
 
+    // set type of period
     function setBillingPeriod(period) {
         if (period != "monthly" && period != "yearly") return;
         state.billingPeriod = period;
         notify();
     }
 
+    // set state when click on switch
     function toggleBillingPeriod(){
         const billingPeriodSelected = state.billingPeriod === "monthly" ? "yearly" : "monthly";
         state.billingPeriod = billingPeriodSelected;
         notify();
     }
 
+    // get the tier
     function getTier() {
         return tiers.at(state.tierIndex);
     }
 
+    // calcule the price
     function calculatePrice() {
         const tierSelected = getTier();
         const monthPrice = tierSelected.monthlyPrice;
@@ -61,6 +68,7 @@ export function createModel() {
         }
     }
 
+    // define the price by period
     function definePrice() {
         const price = calculatePrice();
         const billingPeriod = state.billingPeriod;
@@ -71,6 +79,7 @@ export function createModel() {
         }
     }
 
+    // return the dates
     function getSnapshot() {
         const tierSelected = getTier();
         return {

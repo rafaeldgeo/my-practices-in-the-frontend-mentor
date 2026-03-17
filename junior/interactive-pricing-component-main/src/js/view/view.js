@@ -14,11 +14,13 @@ export function createView(controller) {
         renderUI
     });
 
+    // listener the original range
     range.addEventListener("input", function () {
         const tierIndex = Number(this.value);
         controller.onChangePageviewsSlider(tierIndex);
     });
 
+    // listener the click on radio
     radios.forEach(radio => {
         radio.addEventListener("change", (e) => {
             const period = e.target.value;
@@ -26,21 +28,25 @@ export function createView(controller) {
         })
     });
 
+    // listener the switch
     switchBtn.addEventListener("click", function() {
         controller.onToggleSwitch();
     });
 
+    // update the period of the radio
     function updateBillingPeriodUI(snapshot){
         const period = snapshot.billingPeriod;
         radios.forEach(radio => { radio.checked = radio.value === period });
     }
 
+    // render the text
     function renderPageViews(snapshot){
         pageviewsValue.textContent = snapshot.pageviews;
         price.textContent = snapshot.price.toFixed(2);
         period.textContent = `/${snapshot.billingPeriod}`;
     }
 
+    // rende the slider fake
     function renderSliderFake(snapshot) {
         const currentIndex = snapshot.tierIndex;
         const progressBarValue = currentIndex / 4 * 100;
@@ -48,6 +54,7 @@ export function createView(controller) {
         pageviews.appendChild(sliderFake);
     }
 
+    // center render
     function renderUI(snapshot){
         renderPageViews(snapshot);
         renderSliderFake(snapshot);
@@ -59,6 +66,7 @@ export function createView(controller) {
     }
 }
 
+// create the slider fake
 function buildSliderFake(progressBarValue) {
     return `
         <div class="slider-fake__bar-progress" style="--slider-progress: ${progressBarValue}%">
@@ -74,5 +82,3 @@ function buildSliderFake(progressBarValue) {
         </div>
     `;
 }
-
-
