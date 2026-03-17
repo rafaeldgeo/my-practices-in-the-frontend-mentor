@@ -42,7 +42,7 @@ export function createView(controller) {
     // render the text
     function renderPageViews(snapshot){
         pageviewsValue.textContent = snapshot.pageviews;
-        price.textContent = snapshot.price.toFixed(2);
+        price.textContent = `$${snapshot.price.toFixed(2)}`;
         period.textContent = `/${snapshot.billingPeriod}`;
     }
 
@@ -82,3 +82,4 @@ function buildSliderFake(progressBarValue) {
         </div>
     `;
 }
+
