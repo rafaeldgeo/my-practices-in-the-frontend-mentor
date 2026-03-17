@@ -11,7 +11,7 @@ body {
 }
 
 body {
-  background: url("./public/images/bg-pattern.svg") no-repeat top center / 100% 50%;
+  background: url("./images/bg-pattern.svg") no-repeat top center / 100% 50%;
 }
 
 .container {
@@ -32,7 +32,7 @@ body {
   justify-content: center;
   row-gap: base.convertPxToRem(8);
   text-align: center;
-  background: url("./public/images/pattern-circles.svg") no-repeat center center;
+  background: url("./images/pattern-circles.svg") no-repeat center center;
 
   @include base.breakpoint("sm") {
     flex: 0 1 base.convertPxToRem(266);
