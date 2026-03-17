@@ -39,6 +39,12 @@ export function createModel() {
         notify();
     }
 
+    function toggleBillingPeriod(){
+        const billingPeriodSelected = state.billingPeriod === "monthly" ? "yearly" : "monthly";
+        state.billingPeriod = billingPeriodSelected;
+        notify();
+    }
+
     function getTier() {
         return tiers.at(state.tierIndex);
     }
@@ -78,6 +84,7 @@ export function createModel() {
     return {
         subscribe,
         setCurrentTier,
-        setBillingPeriod
+        setBillingPeriod,
+        toggleBillingPeriod
     }
 }

@@ -7,7 +7,6 @@ export function createView(controller) {
     const range = document.querySelector(".pageviews-slider__range");
     const radios = document.querySelectorAll(".billing-switch__radio");
     const switchBtn = document.querySelector(".switch");
-    let periodSelected = null;
     const sliderFake = document.createElement("div");
     sliderFake.classList.add("slider-fake");
 
@@ -27,15 +26,13 @@ export function createView(controller) {
         })
     });
 
-
-    // pertence algo estado
     switchBtn.addEventListener("click", function() {
-        const period = periodSelected === "monthly" ? "yearly" : "monthly";
-         controller.onToggleBilling(period);
+        controller.onToggleSwitch();
     });
 
-    function checkPeriod(snapshot){
-        periodSelected = snapshot.billingPeriod;
+    function updateBillingPeriodUI(snapshot){
+        const period = snapshot.billingPeriod;
+        radios.forEach(radio => { radio.checked = radio.value === period });
     }
 
     function renderPageViews(snapshot){
@@ -54,7 +51,7 @@ export function createView(controller) {
     function renderUI(snapshot){
         renderPageViews(snapshot);
         renderSliderFake(snapshot);
-        checkPeriod(snapshot);
+        updateBillingPeriodUI(snapshot);
     }
 
     return {

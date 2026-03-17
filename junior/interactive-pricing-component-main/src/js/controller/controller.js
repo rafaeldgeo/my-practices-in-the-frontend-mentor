@@ -19,10 +19,15 @@ export function createController(model) {
         model.setBillingPeriod(period);
     }
 
+    function onToggleSwitch(){
+        model.toggleBillingPeriod();
+    }
+
     return {
         init,
         bindView,
         onChangePageviewsSlider,
-        onToggleBilling
+        onToggleBilling,
+        onToggleSwitch
     }
 }

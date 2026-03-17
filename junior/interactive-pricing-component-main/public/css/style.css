@@ -31,6 +31,10 @@ body {
   max-inline-size: 100vw;
 }
 
+body {
+  background: url("/public/images/bg-pattern.svg") no-repeat top center/100% 50%;
+}
+
 .container {
   min-block-size: 100vh;
 }
@@ -56,14 +60,16 @@ body {
 
 .header {
   display: flex;
-  flex: 0 1 auto;
+  flex: 0 1 14.625rem;
   flex-direction: column;
   justify-content: center;
   row-gap: 0.5rem;
   text-align: center;
+  background: url("/public/images/pattern-circles.svg") no-repeat center center;
 }
 @media (min-width: 36rem) {
   .header {
+    flex: 0 1 16.625rem;
     row-gap: 0.75rem;
   }
 }
@@ -102,7 +108,7 @@ body {
   flex: 1 1 auto;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   inline-size: 100%;
 }
@@ -122,7 +128,7 @@ body {
   grid-template-rows: repeat(4, auto);
   row-gap: min(6.4vw, 1.5rem);
   grid-template-areas: "pageviews" "slider-wrapper" "price-wrapper" "billingswitch";
-  padding: min(9.0666666667vw, 2.125rem) min(2.9333333333vw, 0.6875rem) min(10.1333333333vw, 2.375rem) min(2.9333333333vw, 0.6875rem);
+  padding: min(9.0666666667vw, 2.125rem) min(6.4vw, 1.5rem) min(10.1333333333vw, 2.375rem) min(6.4vw, 1.5rem);
 }
 @media (min-width: 36rem) {
   .price-group__setup {
@@ -301,11 +307,16 @@ body {
   column-gap: min(3.2vw, 0.75rem);
   align-items: center;
   justify-content: end;
-  padding-inline-end: min(4.5333333333vw, 1.0625rem);
+  padding-inline-end: 0;
+}
+@media (min-width: 36rem) {
+  .billing-switch {
+    padding-inline-end: min(4.5333333333vw, 1.0625rem);
+  }
 }
 .billing-switch__label {
   display: flex;
-  column-gap: 0.5625rem;
+  column-gap: 0.3125rem;
   color: #848EAD;
   font-size: clamp(0.625rem, 0.5rem + 1.0666666667vw, 0.75rem);
   font-weight: 600;
@@ -318,6 +329,14 @@ body {
   font-size: 0.625rem;
   font-weight: 800;
   padding: 0.125rem 0.375rem;
+}
+.billing-switch__discount-label {
+  display: none;
+}
+@media (min-width: 36rem) {
+  .billing-switch__discount-label {
+    display: inline-block;
+  }
 }
 .billing-switch__radio {
   position: absolute;

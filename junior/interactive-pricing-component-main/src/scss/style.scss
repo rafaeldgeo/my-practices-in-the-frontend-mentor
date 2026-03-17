@@ -10,6 +10,10 @@ body {
   max-inline-size: 100vw;
 }
 
+body {
+  background: url("/public/images/bg-pattern.svg") no-repeat top center / 100% 50%;
+}
+
 .container {
   @include base.layoutViewportHeight;
   align-items: center;
@@ -23,13 +27,15 @@ body {
 
 .header {
   display: flex;
-  flex: 0 1 auto;
+  flex: 0 1 base.convertPxToRem(234);
   flex-direction: column;
   justify-content: center;
   row-gap: base.convertPxToRem(8);
   text-align: center;
+  background: url("/public/images/pattern-circles.svg") no-repeat center center;
 
   @include base.breakpoint("sm") {
+    flex: 0 1 base.convertPxToRem(266);
     row-gap: base.convertPxToRem(12);
   }
 
@@ -67,7 +73,7 @@ body {
   flex: 1 1 auto;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   inline-size: 100%;
 }
@@ -91,8 +97,8 @@ body {
       "slider-wrapper"
       "price-wrapper"
       "billingswitch";
-    padding: base.fluidSpace(34) base.fluidSpace(11) base.fluidSpace(38)
-      base.fluidSpace(11);
+    padding: base.fluidSpace(34) base.fluidSpace(24) base.fluidSpace(38)
+      base.fluidSpace(24);
 
     @include base.breakpoint("sm") {
       align-items: center;
@@ -274,7 +280,6 @@ body {
   background-color: base.$cyan-300;
 }
 
-
 .billing-switch {
   grid-area: billingswitch;
   display: flex;
@@ -283,11 +288,15 @@ body {
   column-gap: base.fluidSpace(12);
   align-items: center;
   justify-content: end;
-  padding-inline-end: base.fluidSpace(17);
+  padding-inline-end: 0;
+
+  @include base.breakpoint("sm") {
+    padding-inline-end: base.fluidSpace(17);
+  }
 
   &__label {
     display: flex;
-    column-gap: base.convertPxToRem(9);
+    column-gap: base.convertPxToRem(5);
     color: base.$gray-300;
     font-size: base.fluidFont(10, 12);
     font-weight: 600;
@@ -301,6 +310,14 @@ body {
     font-size: base.convertPxToRem(10);
     font-weight: 800;
     padding: base.convertPxToRem(2) base.convertPxToRem(6);
+  }
+
+  &__discount-label {
+    display: none;
+
+    @include base.breakpoint("sm") {
+      display: inline-block;
+    }
   }
 
   &__radio {
