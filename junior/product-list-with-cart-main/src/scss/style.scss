@@ -381,14 +381,7 @@ body {
 
 .footer {
   flex-shrink: 0;
-  font-size: base.convertPxToRem(11);
-  padding-block: base.fluidSpace(40) base.fluidSpace(10);
-  text-align: center;
-  color: base.$black;
-
-  &__link {
-    color: base.$red;
-  }
+  
 }
 
 .modal {
