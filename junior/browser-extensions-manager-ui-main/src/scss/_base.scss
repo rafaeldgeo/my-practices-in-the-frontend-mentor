@@ -1,0 +1,93 @@
+@use "sass:map";
+@use "sass:math";
+@use "breakpoints";
+@forward "breakpoints";
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Manrope:wght@200..800&display=swap');
+
+$cyan-100: #A5F3EB;
+$cyan-150: #7AEADF;
+$cyan-200: #10D8C4;
+$cyan-300: #24AEA1;
+$red-100: #FEEDE8;
+$red-200: #FF8C66;
+$blue-100: #F9FAFF;
+$blue-200: #BDD2FF;
+$blue-500: #293356;
+$gray-100: #ECF0FB;
+$gray-200: #CFD8EF;
+$gray-300: #848EAD;
+$shadow: hsla(230, 29%, 61%, 0.15);
+$shadow-slider: hsla(174, 100%, 50%, 0.60);
+$white: #FFFFFF;
+
+$black: rgba(000, 000, 000, 0.8);
+$font: "Manrope", sans-serif;
+$deviceList: (
+  "mobile": 375,
+  "tablet": 768,
+  "desktop": 1440,
+);
+
+//reset onfig
+@mixin reset {
+  *,
+  *::before,
+  *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: $font;
+  }
+}
+
+// define height for all devices. Use in elements html, body and container
+@mixin layoutViewportHeight {
+  min-block-size: 100vh;
+  // fallback old browsers
+  @supports (min-block-size: 100svh) {
+    min-block-size: 100svh;
+    // small view
+  }
+
+  @supports (min-block-size: 100dvh) {
+    min-block-size: 100dvh;
+    // dynamic view
+  }
+}
+
+// convert px to rem
+$base-font-size: 16;
+@function convertPxToRem($sizePx) {
+  @return math.div($sizePx, $base-font-size) * 1rem;
+}
+
+// calculate the view size from device
+@function calculateVw($sizePx, $device) {
+  $sizeView: map.get($deviceList, $device);
+  $sizeVw: (math.div($sizePx, $sizeView) * 100) * 1vw;
+
+  @return $sizeVw;
+}
+
+// define the fluid space using min(vw, rem)
+@function fluidSpace($sizePx, $device: "mobile") {
+  $vw: calculateVw($sizePx, $device);
+  $rem: convertPxToRem($sizePx);
+
+  @return min(#{$vw}, #{$rem});
+}
+
+// define the fluid typography using clamp(rem, vw, rem)
+@function fluidFont($sizePxMin, $sizePxMax, $device: "mobile") {
+  @if map.get($deviceList, $device) {
+    $sizeVwPx: $sizePxMax - 8;
+    @return clamp(
+      convertPxToRem($sizePxMin),
+      0.5rem + calculateVw($sizeVwPx, $device),
+      convertPxToRem($sizePxMax)
+    );
+  } @else {
+    @error "You must define one device valid";
+  }
+}

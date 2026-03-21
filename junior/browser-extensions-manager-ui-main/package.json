@@ -7,6 +7,11 @@
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:css": "sass src/scss:css --no-source-map --style=compressed",
+    "watch:css": "sass src/scss:css --watch"
+  },
+  "dependencies": {
+    "sass": "^1.98.0"
   }
 }
