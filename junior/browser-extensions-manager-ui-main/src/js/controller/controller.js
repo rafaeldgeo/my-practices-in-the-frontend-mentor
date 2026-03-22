@@ -1,3 +1,12 @@
 export function createController(model){
-    console.log("controller criado");
+    
+    async function init() {
+        await model.loadExtensions();
+        console.log(model.getFilteredExtensions());
+    }
+
+
+    return {
+        init,
+    }
 }

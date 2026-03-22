@@ -5,7 +5,8 @@ import { createView } from "./view/view.js";
 function bootstrap(){
     const model = createModel();
     const controller = createController(model);
-    const view = createView(controller);
+    createView(controller);
+    controller.init();
 }
 
 bootstrap()
