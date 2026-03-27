@@ -17,9 +17,14 @@ export function createModel() {
                 throw new Error(`Erro in request: ${response.status}`);
             }
 
-            const data = await response.json();
-            state.extensions = data;
+            const datas = await response.json();
             state.status = "success";
+            state.extensions = datas.map((rawExtensions) => {
+                return {
+                    ...rawExtensions,
+                    id: crypto.randomUUID()
+                }
+            });
 
         } catch (error) {
             state.status = "error";
@@ -48,10 +53,31 @@ export function createModel() {
         }
     }
 
+    function removeExtension(id) {
+        state.extensions = state.extensions.filter((extension) => extension.id !== id);
+    }
+
+    function toggleStatusExtension(id){
+        state.extensions = state.extensions.filter((extension) => {
+            if (extension.id === id) {
+                if (extension.isActive) {
+                    extension.isActive = false;
+                    return extension;
+                } else {
+                    extension.isActive = true;
+                }
+            }
+        });
+    }
+
+    
+
     return {
         loadExtensions,
         toggleTheme,
         selectFilter,
-        getFilteredExtensions
+        getFilteredExtensions,
+        removeExtension,
+        toggleStatusExtension
     }
 }
