@@ -7,8 +7,17 @@ export function createModel() {
         status: 'idle'    // UI
     }
 
+    let observers = [];
+
+    function subscribe(observerFn) {
+        observers.push(observerFn);
+    }
+
+    function notify(){
+        observers.forEach((observer) => observer(state));
+    }
+
     async function loadExtensions() {
-        console.log("entrou");
         const DATA_SOURCE = "../assets/data/data.json";
         try {
             const response = await fetch(DATA_SOURCE);
@@ -25,6 +34,7 @@ export function createModel() {
                     id: crypto.randomUUID()
                 }
             });
+            notify();
 
         } catch (error) {
             state.status = "error";
@@ -58,21 +68,21 @@ export function createModel() {
     }
 
     function toggleStatusExtension(id){
-        state.extensions = state.extensions.filter((extension) => {
+        state.extensions = state.extensions.map((extension) => {
             if (extension.id === id) {
-                if (extension.isActive) {
-                    extension.isActive = false;
-                    return extension;
-                } else {
-                    extension.isActive = true;
+                return {
+                    ...extension,
+                    isActive: !extension.isActive
                 }
+            } else {
+                return extension;
             }
         });
     }
 
-    
 
     return {
+        subscribe,
         loadExtensions,
         toggleTheme,
         selectFilter,

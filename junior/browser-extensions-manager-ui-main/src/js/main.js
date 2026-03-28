@@ -5,8 +5,13 @@ import { createView } from "./view/view.js";
 function bootstrap(){
     const model = createModel();
     const controller = createController(model);
-    createView(controller);
+    const view = createView(controller);
+    model.subscribe((state) => {
+        view.renderView(state);
+    })
+    
     controller.init();
+
 }
 
 bootstrap()
