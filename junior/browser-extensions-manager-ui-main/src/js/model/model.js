@@ -43,15 +43,18 @@ export function createModel() {
 
     function toggleTheme() {
         state.theme = state.theme === "light" ? "dark" : "light";
+        notify();
     }
 
     function selectFilter(filterSelected) {
         state.filter = filterSelected;
+        getFilteredExtensions();
+        notify();
     }
 
     function getFilteredExtensions() {
         const extensions = state.extensions;
-
+      
         if (state.filter === "all") {
             return extensions;
         } else if (state.filter === "active") {
@@ -65,6 +68,7 @@ export function createModel() {
 
     function removeExtension(id) {
         state.extensions = state.extensions.filter((extension) => extension.id !== id);
+        notify();
     }
 
     function toggleStatusExtension(id){
@@ -78,6 +82,7 @@ export function createModel() {
                 return extension;
             }
         });
+        notify();
     }
 
 
