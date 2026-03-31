@@ -3,31 +3,52 @@
 @use "breakpoints";
 @forward "breakpoints";
 
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Manrope:wght@200..800&display=swap');
-
-$cyan-100: #A5F3EB;
-$cyan-150: #7AEADF;
-$cyan-200: #10D8C4;
-$cyan-300: #24AEA1;
-$red-100: #FEEDE8;
-$red-200: #FF8C66;
-$blue-100: #F9FAFF;
-$blue-200: #BDD2FF;
-$blue-500: #293356;
-$gray-100: #ECF0FB;
-$gray-200: #CFD8EF;
-$gray-300: #848EAD;
-$shadow: hsla(230, 29%, 61%, 0.15);
-$shadow-slider: hsla(174, 100%, 50%, 0.60);
-$white: #FFFFFF;
-
-$black: rgba(000, 000, 000, 0.8);
-$font: "Manrope", sans-serif;
+$neutral-900: hsl(227, 75%, 14%);
+$neutral-800: hsl(226, 25%, 17%); // #212636
+$Neutral-700: hsl(225, 23%, 24%);
+$neutral-600: hsl(226, 11%, 37%); //#545969
+$neutral-300: hsl(0, 0%, 78%); //#c7c7c7
+$neutral-200: hsl(217, 61%, 90%); //#d6e2f5
+$neutral-100: hsl(0, 0%, 93%);
+$neutral-0: hsl(200, 60%, 99%); //#FBFDFE
+$red-400: hsl(3, 86%, 64%);
+$red-500: hsl(3, 71%, 56%);
+$red-700: hsl(3, 77%, 44%);
+$light-gradient: linear-gradient(180deg, #EBF2FC 0%, #EEF8F9 100%);
+$dark-gradient: linear-gradient(180deg, #040918 0%, #091540 100%);
+$font: "Noto Sans", sans-serif;
 $deviceList: (
   "mobile": 375,
   "tablet": 768,
   "desktop": 1440,
 );
+
+:root {
+  --color-bg: $light-gradient;
+  --color-box: $neutral-0;
+  --color-box-border: $neutral-200;
+  --color-text-title: $neutral-900;
+  --color-text-paragraph: $neutral-600;
+  --color-switch-background: $red-700;
+  --color-btn-text: $neutral-900;
+  --color-btn-background-selected: $red-700;
+  --color-btn-text-selected: $neutral-0;
+  --color-btn-border:$neutral-200;
+}
+
+[data-theme="dark"] {
+  --color-bg: $dark-gradient;
+  --color-box: $neutral-800;
+  --color-box-border: $neutral-600;
+  --color-text-title: $neutral-0;
+  --color-text-paragraph: $neutral-300;
+  --color-switch-background: $red-400;
+  --color-btn-background: $Neutral-700;
+  --color-btn-text: $neutral-0;
+  --color-btn-background-selected: $red-400;
+  --color-btn-text-selected: $neutral-900;
+  --color-btn-border:$neutral-600;
+}
 
 //reset onfig
 @mixin reset {

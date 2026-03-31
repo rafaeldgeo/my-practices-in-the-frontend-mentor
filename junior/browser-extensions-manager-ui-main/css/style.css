@@ -1,6 +1,55 @@
+:root {
+  --color-bg: $light-gradient;
+  --color-box: $neutral-0;
+  --color-box-border: $neutral-200;
+  --color-text-title: $neutral-900;
+  --color-text-paragraph: $neutral-600;
+  --color-switch-background: $red-700;
+  --color-btn-text: $neutral-900;
+  --color-btn-background-selected: $red-700;
+  --color-btn-text-selected: $neutral-0;
+  --color-btn-border:$neutral-200;
+}
+
+[data-theme=dark] {
+  --color-bg: $dark-gradient;
+  --color-box: $neutral-800;
+  --color-box-border: $neutral-600;
+  --color-text-title: $neutral-0;
+  --color-text-paragraph: $neutral-300;
+  --color-switch-background: $red-400;
+  --color-btn-background: $Neutral-700;
+  --color-btn-text: $neutral-0;
+  --color-btn-background-selected: $red-400;
+  --color-btn-text-selected: $neutral-900;
+  --color-btn-border:$neutral-600;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Noto Sans", sans-serif;
+}
+
+html,
 body {
   background-color: red;
-  font-family: "Noto Sans", sans-serif;
+  min-block-size: 100vh;
+}
+@supports (min-block-size: 100svh) {
+  html,
+  body {
+    min-block-size: 100svh;
+  }
+}
+@supports (min-block-size: 100dvh) {
+  html,
+  body {
+    min-block-size: 100dvh;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

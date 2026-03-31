@@ -1,4 +1,10 @@
+@use "base";
+@include base.reset;
+
+html,
 body {
-    background-color: red;
-    font-family: "Noto Sans", sans-serif;
+  background-color: red;
+  @include base.layoutViewportHeight;
+
 }
+
