@@ -4,6 +4,7 @@
 @forward "breakpoints";
 
 :root {
+  --neutral-1000: hsl(225, 71%, 5%);
   --neutral-900: hsl(227, 75%, 14%);
   --neutral-800: hsl(226, 25%, 17%); // #212636
   --neutral-700: hsl(225, 23%, 24%);
@@ -12,16 +13,21 @@
   --neutral-200: hsl(217, 61%, 90%); //#d6e2f5
   --neutral-100: hsl(0, 0%, 93%);
   --neutral-50: rgb(217, 229, 244); //B8C4D7
+  --neutral-25: hsl(215, 74%, 95%);
   --neutral-0: hsl(200, 60%, 99%); //#FBFDFE
   --red-400: hsl(3, 86%, 64%);
   --red-500: hsl(3, 71%, 56%);
   --red-700: hsl(3, 77%, 44%);
   --white: hsl(0, 0%, 100%);
   --light-gradient: linear-gradient(180deg, #ebf2fc 0%, #eef8f9 100%);
+  --dark-gradient: linear-gradient(180deg, #040918 0%, #091540 100%);
   --shadow-btn-filter: hsl(217, 28%, 78%, 0.4);
   --shadow-card: hsl(217, 34%, 82%, 0.2);
-  --dark-gradient: linear-gradient(180deg, #040918 0%, #091540 100%);
+  --shadow-switch-thumb: hsl(218, 29%, 5%, 0.15);
   --no-color: none;
+
+  // all elements
+  --color-focus: var(--red-400);
 }
 
 $font: "Noto Sans", sans-serif;
@@ -46,24 +52,65 @@ $deviceList: (
   --color-btn-filter-text: var(--neutral-900);
   --color-btn-filter-bg-selected: var(--red-700);
   --color-btn-filter-text-selected: var(--neutral-0);
-  --color-focus: var(--red-400);
+  --color-btn-filter-focus-border: var(--neutral-25);
   --color-card-bg: var(--neutral-0);
   --color-card-border: var(--neutral-200);
   --color-card-shadow: var(--shadow-card);
-  --color-card-title:var(--neutral-900);
+  --color-card-title: var(--neutral-900);
   --color-card-text: var(--neutral-600);
-  --color-text-paragraph: var(--neutral-600);
-  --color-switch-background: var(--red-700);
-  --color-btn-background: var(--neutral-700);
-  --color-btn-text: var(--neutral-900);
-  --color-btn-background-selected: var(--red-700);
-  --color-btn-text-selected: var(--neutral-0);
-  --color-btn-border: var(--neutral-200);
+  --color-card-btn-bg: transparent;
+  --color-card-btn-border: var(--neutral-300);
+  --color-card-btn-text: var(--neutral-900);
+  --color-card-btn-bg-hover: var(--red-700);
+  --color-card-btn-text-hover: var(--neutral-0);
+  --color-card-btn-focus-border: var(--neutral-0);
+  --color-switch-bg: var(--neutral-300);
+  --color-switch-border: var(--neutral-0);
+  --color-switch-thumb-bg: var(--white);
+  --color-switch-thumb-shadow: var(--shadow-switch-thumb);
+  --color-swicth-bg-hover: var(--red-500);
+  --color-swicth-bg-checked: var(--red-700);
+  --color-swicth-focus-border: var(--neutral-0);
   --color-footer-text: var(--neutral-900);
   --color-footer-link: var(--red-700);
 }
 
 [data-theme="dark"] {
+  --color-bg: var(--dark-gradient);
+  --color-box-bg: var(--neutral-800);
+  --color-box-border: var(--no-color);
+  --color-box-shadow: var(--no-color);
+  --color-text-logo: var(--white);
+  --color-btn-theme-bg: var(--neutral-700);
+  --color-btn-theme-hover: var(--neutral-600);
+  --color-text-title: var(--neutral-0);
+  --color-btn-filter-bg: var(--neutral-700);
+  --color-btn-filter-border: var(--neutral-600);
+  --color-btn-filter-shadow: var(--no-color);
+  --color-btn-filter-text: var(--neutral-0);
+  --color-btn-filter-bg-selected: var(--red-400);
+  --color-btn-filter-text-selected: var(--neutral-900);
+  --color-btn-filter-focus-border: var(--neutral-1000);
+  --color-card-bg: var(--neutral-800);
+  --color-card-border: var(--neutral-600);
+  --color-card-shadow: var(--no-color);
+  --color-card-title: var(--neutral-0);
+  --color-card-text: var(--neutral-300);
+  --color-card-btn-bg: transparent;
+  --color-card-btn-border: var(--neutral-600);
+  --color-card-btn-text: var(--neutral-0);
+  --color-card-btn-bg-hover: var(--red-400);
+  --color-card-btn-text-hover: var(--neutral-900);
+  --color-card-btn-focus-border: var(--neutral-800);
+  --color-switch-bg: var(--neutral-600);
+  --color-switch-border: var(--neutral-800);
+  --color-switch-thumb-bg: var(--white);
+  --color-switch-thumb-shadow: var(--shadow-switch-thumb);
+  --color-swicth-bg-hover: var(--red-500);
+  --color-swicth-bg-checked: var(--red-700);
+  --color-swicth-focus-border: var(--neutral-800);
+  --color-footer-text: var(--neutral-0);
+  --color-footer-link: var(--red-400);
 }
 
 //reset onfig
