@@ -7,9 +7,8 @@ function bootstrap(){
     const controller = createController(model);
     const view = createView(controller);
     model.subscribe((state) => {
-        view.renderView(state);
+        view.renderUI(state);
     })
-    
     controller.init();
 
 }
