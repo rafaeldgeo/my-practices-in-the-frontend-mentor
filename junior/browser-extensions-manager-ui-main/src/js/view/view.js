@@ -8,10 +8,10 @@ export function createView(controller) {
     const btnFilters = document.querySelectorAll(".header-filters__btn");
     const extensionList = document.querySelector(".extensions-list__list");
 
-    function renderUI(state) {
-        renderTheme(state.theme);
-        renderFilterBtns(state.filter);
-        renderExtensions(state.extensions);
+    function renderUI({ theme, filter, filterExtension }) {
+        renderTheme(theme);
+        renderFilterBtns(filter);
+        renderExtensions(filterExtension);
     }
 
     btnTheme.addEventListener("click", () => controller.onToggleTheme());
@@ -23,6 +23,8 @@ export function createView(controller) {
         });
     });
 
+
+
     function renderTheme(theme) {
         if (theme === "dark") {
             btnTheme.setAttribute("aria-label", "Toggle light mode");
@@ -32,7 +34,6 @@ export function createView(controller) {
             btnTheme.setAttribute("aria-label", "Toggle dark mode");
             img.src = iconMoon;
             body.dataset.theme = "light";
-
         }
     }
 
@@ -49,9 +50,24 @@ export function createView(controller) {
         extensions.forEach((extension) => {
             const card = buildExtension(extension);
             extensionList.appendChild(card);
-        });
+        });    
     }
 
+    extensionList.addEventListener("click", (e) => {
+        const removeBtn = e.target.closest(".extension-card__btn-remove");
+
+        if (!removeBtn) return;
+
+        controller.onRemoveExtension(removeBtn.id);
+    });
+
+    extensionList.addEventListener("click", (e) => {
+        const statusExtension = e.target.closest(".switch__input");
+
+        if (!statusExtension) return;
+
+        model.toggleStatusExtension(statusExtension.id);
+    });
 
     function buildExtension(extension) {
         const li = document.createElement("li");
@@ -73,10 +89,11 @@ export function createView(controller) {
                   </div>
                 </div>
                 <div class="extension-card__actions">
-                  <button class="extension-card__btn-remove">Remove</button>
+                  <button class="extension-card__btn-remove" id="${extension.id}">Remove</button>
                   <label class="switch">
                     <input
                       class="switch__input"
+                      id=${extension.id}
                       type="checkbox"
                       aria-label="Toggle extension status"
                       ${extension.isActive ? "checked" : ""}

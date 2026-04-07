@@ -1,5 +1,7 @@
 export function createController(model) {
 
+    let view = null;
+
     function init() {
         model.loadExtensions();
     }
@@ -10,6 +12,19 @@ export function createController(model) {
 
     function onSelectFilter(filterSelected) {
         model.selectFilter(filterSelected);
+    }
+
+    function setView(viewInstance) {
+        view = viewInstance;
+    }
+
+    function onStateChange(state) {
+        const filterExtension = model.getFilteredExtensions();
+
+        view.renderUI({
+            ...state,
+            filterExtension
+        });
     }
 
     function onRemoveExtension(id) {
@@ -25,6 +40,8 @@ export function createController(model) {
         onToggleTheme,
         onSelectFilter,
         onRemoveExtension,
-        onToggleStatusExtension
+        onToggleStatusExtension,
+        onStateChange,
+        setView
     }
 }

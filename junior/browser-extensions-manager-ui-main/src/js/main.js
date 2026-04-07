@@ -6,11 +6,11 @@ function bootstrap(){
     const model = createModel();
     const controller = createController(model);
     const view = createView(controller);
+    controller.setView(view);
     model.subscribe((state) => {
-        view.renderUI(state);
+        controller.onStateChange(state);
     })
     controller.init();
-
 }
 
 bootstrap()

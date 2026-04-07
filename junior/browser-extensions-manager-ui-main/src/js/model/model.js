@@ -48,7 +48,6 @@ export function createModel() {
 
     function selectFilter(filterSelected) {
         state.filter = filterSelected;
-        getFilteredExtensions();
         notify();
     }
 
