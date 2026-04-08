@@ -8,10 +8,21 @@ export function createView(controller) {
     const btnFilters = document.querySelectorAll(".header-filters__btn");
     const extensionList = document.querySelector(".extensions-list__list");
 
-    function renderUI({ theme, filter, filterExtension }) {
+    function renderUI({theme, filter, filterExtension, status}) {
         renderTheme(theme);
         renderFilterBtns(filter);
-        renderExtensions(filterExtension);
+       
+        if (status === "loading") {
+            renderLoading();
+            return;
+        }
+
+        if (status === "error") {
+            renderError();
+            return;
+        }
+
+         renderExtensions(filterExtension);
     }
 
     btnTheme.addEventListener("click", () => controller.onToggleTheme());
@@ -23,8 +34,6 @@ export function createView(controller) {
         });
     });
 
-
-
     function renderTheme(theme) {
         if (theme === "dark") {
             btnTheme.setAttribute("aria-label", "Toggle light mode");
@@ -35,6 +44,14 @@ export function createView(controller) {
             img.src = iconMoon;
             body.dataset.theme = "light";
         }
+    }
+
+    function renderLoading(){
+        extensionList.innerHTML = `<li class="extensions-list__loading">Loading...</li>`
+    }
+
+    function renderError(){
+        extensionList.innerHTML = `<li class="extensions-list__error">Error!!!</li>`
     }
 
     function renderFilterBtns(filter) {
@@ -50,7 +67,7 @@ export function createView(controller) {
         extensions.forEach((extension) => {
             const card = buildExtension(extension);
             extensionList.appendChild(card);
-        });    
+        });
     }
 
     extensionList.addEventListener("click", (e) => {
@@ -66,7 +83,7 @@ export function createView(controller) {
 
         if (!statusExtension) return;
 
-        model.toggleStatusExtension(statusExtension.id);
+        controller.onToggleStatusExtension(statusExtension.id);
     });
 
     function buildExtension(extension) {

@@ -13,13 +13,16 @@ export function createModel() {
         observers.push(observerFn);
     }
 
-    function notify(){
+    function notify() {
         observers.forEach((observer) => observer(state));
     }
 
     async function loadExtensions() {
         const DATA_SOURCE = "../assets/data/data.json";
         try {
+            state.status = "loading";
+            notify();
+            
             const response = await fetch(DATA_SOURCE);
 
             if (!response.ok) {
@@ -38,6 +41,7 @@ export function createModel() {
 
         } catch (error) {
             state.status = "error";
+            notify();
         }
     }
 
@@ -53,7 +57,7 @@ export function createModel() {
 
     function getFilteredExtensions() {
         const extensions = state.extensions;
-      
+
         if (state.filter === "all") {
             return extensions;
         } else if (state.filter === "active") {
@@ -70,7 +74,7 @@ export function createModel() {
         notify();
     }
 
-    function toggleStatusExtension(id){
+    function toggleStatusExtension(id) {
         state.extensions = state.extensions.map((extension) => {
             if (extension.id === id) {
                 return {
@@ -83,7 +87,6 @@ export function createModel() {
         });
         notify();
     }
-
 
     return {
         subscribe,

@@ -2,8 +2,8 @@ export function createController(model) {
 
     let view = null;
 
-    function init() {
-        model.loadExtensions();
+    async function init() {
+        await model.loadExtensions();
     }
 
     function onToggleTheme() {

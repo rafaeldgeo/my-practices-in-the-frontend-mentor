@@ -25,6 +25,7 @@
   --shadow-card: hsl(217, 34%, 82%, 0.2);
   --shadow-switch-thumb: hsl(218, 29%, 5%, 0.15);
   --no-color: none;
+   --color-text-error: var(--red-700);
 
   // all elements
   --color-focus: var(--red-400);
@@ -73,6 +74,7 @@ $deviceList: (
   --color-swicth-focus-border: var(--neutral-0);
   --color-footer-text: var(--neutral-900);
   --color-footer-link: var(--red-700);
+  --color-text-loading: var(--neutral-900);
 }
 
 [data-theme="dark"] {
@@ -111,6 +113,7 @@ $deviceList: (
   --color-swicth-focus-border: var(--neutral-800);
   --color-footer-text: var(--neutral-0);
   --color-footer-link: var(--red-400);
+  --color-text-loading: var(--neutral-0);
 }
 
 //reset onfig

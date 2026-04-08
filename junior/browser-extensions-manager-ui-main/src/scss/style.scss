@@ -143,6 +143,19 @@ body {
 }
 
 .extensions-list {
+  &__loading {
+    color: var(--color-text-loading);
+    font-size: base.fluidFont(16, 22);
+    font-weight: 700;
+  }
+
+  &__error {
+    color: var(--color-text-error);
+    font-size: base.fluidFont(16, 22);
+    font-weight: 700;
+  }
+
+
   &__list {
     display: grid;
     grid-template-columns: repeat(
