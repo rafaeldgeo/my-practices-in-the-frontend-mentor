@@ -76,6 +76,6 @@ Practices in [Frontend Mentor Website](https://www.frontendmentor.io/)
 * 25- [Character-counter](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/junior/character-counter/):link: | **JS** <sup>Vanilla + MVC</sup>
 * 26- [Product-list-with-cart-main](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/junior/product-list-with-cart-main/):link: | **JS** <sup>Vanilla + MVC</sup>
 * 27- [Interactive-pricing-component](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/junior/interactive-pricing-component-main/):link: | **JS** <sup>Vanilla + MVC</sup>
-* 28- [browser-extensions-manager-ui-main](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/junior/interactive-pricing-component-main/):link: | **JS** <sup>Vanilla + MVC</sup>
+* 28- [browser-extensions-manager-ui-main](rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/junior/browser-extensions-manager-ui-main/):link: | **JS** <sup>Vanilla + MVC</sup>
 
 **My Frontend Mentor: [@rafaeldgeo](https://www.frontendmentor.io/profile/rafaeldgeo)**:link:
