@@ -19,7 +19,7 @@ export function createModel() {
 
     // load JSON file convert to objetc using messagem loading...
     async function loadExtensions() {
-        const DATA_SOURCE = "/assets/data/data.json";
+        const DATA_SOURCE = "./assets/data/data.json";
         try {
             state.status = "loading";
             notify();
