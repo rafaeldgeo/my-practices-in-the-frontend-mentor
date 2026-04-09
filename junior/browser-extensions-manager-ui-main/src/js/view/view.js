@@ -84,16 +84,15 @@ export function createView(controller) {
 
         if (!removeBtn) return;
 
-        controller.onRemoveExtension(removeBtn.id);
+        controller.onRemoveExtension(removeBtn.dataset.idBtn);
     });
 
     // listener the card to capture click on switch button
-    extensionList.addEventListener("click", (e) => {
+    extensionList.addEventListener("change", (e) => {
         const statusExtension = e.target.closest(".switch__input");
 
         if (!statusExtension) return;
-
-        controller.onToggleStatusExtension(statusExtension.id);
+        controller.onToggleStatusExtension(statusExtension.dataset.idSwitch);
     });
 
     // building cards
@@ -117,11 +116,11 @@ export function createView(controller) {
                   </div>
                 </div>
                 <div class="extension-card__actions">
-                  <button class="extension-card__btn-remove" id="${extension.id}">Remove</button>
+                  <button class="extension-card__btn-remove" data-id-btn="${extension.id}">Remove</button>
                   <label class="switch">
                     <input
                       class="switch__input"
-                      id=${extension.id}
+                      data-id-switch="${extension.id}"
                       type="checkbox"
                       aria-label="Toggle extension status"
                       ${extension.isActive ? "checked" : ""}

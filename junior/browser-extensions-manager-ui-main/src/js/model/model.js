@@ -75,6 +75,7 @@ export function createModel() {
 
     // remove the card
     function removeExtension(id) {
+        console.log(id);
         state.extensions = state.extensions.filter((extension) => extension.id !== id);
         notify();
     }
