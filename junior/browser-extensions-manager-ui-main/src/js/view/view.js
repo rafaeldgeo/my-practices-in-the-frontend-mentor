@@ -8,6 +8,7 @@ export function createView(controller) {
     const btnFilters = document.querySelectorAll(".header-filters__btn");
     const extensionList = document.querySelector(".extensions-list__list");
 
+    // render the element of layout
     function renderUI({theme, filter, filterExtension, status}) {
         renderTheme(theme);
         renderFilterBtns(filter);
@@ -25,8 +26,10 @@ export function createView(controller) {
          renderExtensions(filterExtension);
     }
 
+    // listener the button theme
     btnTheme.addEventListener("click", () => controller.onToggleTheme());
 
+    // listener the button filters
     btnFilters.forEach((btn) => {
         btn.addEventListener("click", (e) => {
             const selectedFilter = e.currentTarget.dataset.filter;
@@ -34,6 +37,7 @@ export function createView(controller) {
         });
     });
 
+    // rende the button theme
     function renderTheme(theme) {
         if (theme === "dark") {
             btnTheme.setAttribute("aria-label", "Toggle light mode");
@@ -46,14 +50,17 @@ export function createView(controller) {
         }
     }
 
+    // render loading message
     function renderLoading(){
         extensionList.innerHTML = `<li class="extensions-list__loading">Loading...</li>`
     }
 
+    // render erro message
     function renderError(){
         extensionList.innerHTML = `<li class="extensions-list__error">Error!!!</li>`
     }
 
+    // render button filter
     function renderFilterBtns(filter) {
         btnFilters.forEach((btn) => {
             const isSelected = btn.dataset.filter === filter;
@@ -62,6 +69,7 @@ export function createView(controller) {
         });
     }
 
+    // render the card extentions
     function renderExtensions(extensions) {
         extensionList.innerHTML = "";
         extensions.forEach((extension) => {
@@ -70,6 +78,7 @@ export function createView(controller) {
         });
     }
 
+    // listener the card to capture click on remove button
     extensionList.addEventListener("click", (e) => {
         const removeBtn = e.target.closest(".extension-card__btn-remove");
 
@@ -78,6 +87,7 @@ export function createView(controller) {
         controller.onRemoveExtension(removeBtn.id);
     });
 
+    // listener the card to capture click on switch button
     extensionList.addEventListener("click", (e) => {
         const statusExtension = e.target.closest(".switch__input");
 
@@ -86,6 +96,7 @@ export function createView(controller) {
         controller.onToggleStatusExtension(statusExtension.id);
     });
 
+    // building cards
     function buildExtension(extension) {
         const li = document.createElement("li");
         li.classList.add("extension-card");

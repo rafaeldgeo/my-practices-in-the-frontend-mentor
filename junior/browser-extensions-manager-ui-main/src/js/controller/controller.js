@@ -6,18 +6,22 @@ export function createController(model) {
         await model.loadExtensions();
     }
 
+    // set the state to theme
     function onToggleTheme() {
         model.toggleTheme();
     }
 
+    // set the state to filter
     function onSelectFilter(filterSelected) {
         model.selectFilter(filterSelected);
     }
 
+    // get the view
     function setView(viewInstance) {
         view = viewInstance;
     }
 
+    // create the snapshot the extensions
     function onStateChange(state) {
         const filterExtension = model.getFilteredExtensions();
 
@@ -27,10 +31,12 @@ export function createController(model) {
         });
     }
 
+    // send the card id remove
     function onRemoveExtension(id) {
         model.removeExtension(id);
     }
 
+    // send the card id active or inactive
     function onToggleStatusExtension(id) {
         model.toggleStatusExtension(id);
     }

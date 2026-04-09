@@ -17,6 +17,7 @@ export function createModel() {
         observers.forEach((observer) => observer(state));
     }
 
+    // load JSON file convert to objetc using messagem loading...
     async function loadExtensions() {
         const DATA_SOURCE = "../assets/data/data.json";
         try {
@@ -45,16 +46,19 @@ export function createModel() {
         }
     }
 
+    // define the theme color
     function toggleTheme() {
         state.theme = state.theme === "light" ? "dark" : "light";
         notify();
     }
 
+    // select filter by buttons
     function selectFilter(filterSelected) {
         state.filter = filterSelected;
         notify();
     }
 
+    // define the card by all, active and inactive
     function getFilteredExtensions() {
         const extensions = state.extensions;
 
@@ -69,11 +73,13 @@ export function createModel() {
         }
     }
 
+    // remove the card
     function removeExtension(id) {
         state.extensions = state.extensions.filter((extension) => extension.id !== id);
         notify();
     }
 
+    // define if the card is active or inactive
     function toggleStatusExtension(id) {
         state.extensions = state.extensions.map((extension) => {
             if (extension.id === id) {
