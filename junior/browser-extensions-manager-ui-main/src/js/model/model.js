@@ -3,7 +3,7 @@ export function createModel() {
     const state = {
         extensions: [],   // domínio
         filter: 'all',    // UI
-        theme: 'light',   // UI
+        theme: 'dark',   // UI
         status: 'idle'    // UI
     }
 
