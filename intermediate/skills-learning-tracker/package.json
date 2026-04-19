@@ -1,0 +1,18 @@
+{
+  "name": "skills-learning-tracker",
+  "version": "1.0.0",
+  "description": "Build a personal practice tracker where you log sessions, manage skills, track streaks, and visualize your consistency through heatmaps and progress rings. Your learning journey, beautifully visualized.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:css": "sass src/styles/main.scss public/assets/css/main.css --no-source-map --style=compressed",
+    "watch:css": "sass src/styles/main.scss public/assets/css/main.css --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "sass": "^1.99.0"
+  }
+}
