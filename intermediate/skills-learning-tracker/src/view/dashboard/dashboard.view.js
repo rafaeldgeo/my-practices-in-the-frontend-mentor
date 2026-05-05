@@ -244,8 +244,12 @@ export function createDashboardView() {
   }
 
 
+  function bindEvents() {}
+
+
   return {
     init,
     render,
+    bindEvents,
   };
 }

@@ -1,3 +1,1 @@
-
-
-/*# sourceMappingURL=main.css.map */
+.modal{position:fixed;inset:0;display:block;z-index:1000}.modal[hidden]{display:none}.modal__overlay{position:absolute;inset:0;background:rgba(0,0,0,.5)}.modal__container{position:relative;z-index:1;max-width:600px;width:min(600px,100% - 2rem);margin:10vh auto}.modal__content{background:#fff}

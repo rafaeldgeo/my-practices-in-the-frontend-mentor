@@ -1,10 +1,12 @@
-// Store de dados do projeto.
-// Responsável apenas por buscar o JSON bruto e expor recortes simples para o Controller.
-
 const DATA_URL = '../data/sample-skills.json'; // CAMINHO DO ARQUIVO JSON
+let cachedData = null
 
 // Carrega o JSON completo da fonte de dados e retorna o conteúdo cru.
 export async function fetchData() {
+  if (cachedData) {
+    return cachedData
+  }
+
   try {
     const response = await fetch(DATA_URL); 
 
@@ -12,7 +14,8 @@ export async function fetchData() {
       throw new Error(`Request failed with status ${response.status}`);
     }
 
-    return await response.json(); 
+    cachedData = await response.json(); 
+    return cachedData
   } catch (error) {
     throw new Error(`Failed to fetch skills data: ${error.message}`);
   }
@@ -31,4 +34,16 @@ export async function getSessions() {
   const data = await fetchData(); 
 
   return data.sessions; 
+}
+
+export async function saveSkill(skill) {
+  const data = await fetchData()
+  const currentSkills = Array.isArray(data.skills) ? data.skills : []
+
+  cachedData = {
+    ...data,
+    skills: [...currentSkills, skill],
+  }
+
+  return skill
 }
