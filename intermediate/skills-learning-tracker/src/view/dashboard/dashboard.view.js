@@ -51,6 +51,53 @@ function formatDateLabel(date) {
   return `${monthName} ${Number(day)}, ${year}`;
 }
 
+function formatRelativeTime(timestamp) {
+  const parsedTimestamp =
+    typeof timestamp === 'number' && Number.isFinite(timestamp)
+      ? timestamp
+      : typeof timestamp === 'string'
+        ? Date.parse(timestamp)
+        : NaN;
+
+  if (!Number.isFinite(parsedTimestamp)) {
+    return EMPTY_TEXT;
+  }
+
+  const now = Date.now();
+  const diff = now - parsedTimestamp;
+  const minute = 60 * 1000;
+  const hour = 60 * minute;
+
+  if (diff < minute) {
+    return 'just now';
+  }
+
+  if (diff < hour) {
+    const minutes = Math.floor(diff / minute);
+    return `${minutes}m ago`;
+  }
+
+  if (diff < 24 * hour) {
+    const hours = Math.floor(diff / hour);
+    return `${hours}h ago`;
+  }
+
+  const date = new Date(parsedTimestamp);
+  return date.toLocaleDateString();
+}
+
+function renderActivityButton(activity, content) {
+  return `
+    <button
+      class="recent-activity__item"
+      data-skill-id="${escapeHtml(String(activity?.skillId ?? ''))}"
+      type="button"
+    >
+      ${content}
+    </button>
+  `;
+}
+
 
 function renderFeatured(featuredData) {
 
@@ -165,28 +212,71 @@ function renderConsistency(consistency) {
   `;
 }
 
+function renderSkillCreated(activity) {
+  return `
+    <li class="dashboard__list-item">
+      ${renderActivityButton(
+        activity,
+        `
+          <span class="dashboard__list-label">${escapeHtml(activity?.message ?? EMPTY_TEXT)}</span>
+          <span class="dashboard__list-meta">${escapeHtml(formatRelativeTime(activity?.timestamp))}</span>
+        `
+      )}
+    </li>
+  `;
+}
+
+function renderSession(activity) {
+  const formattedDate = new Date(activity?.timestamp).toLocaleDateString('en-US', {
+    month: 'short',
+    day: 'numeric',
+  });
+
+  return `
+    <li class="dashboard__list-item">
+      ${renderActivityButton(
+        activity,
+        `
+          <span class="dashboard__list-label">${escapeHtml(activity?.message ?? EMPTY_TEXT)}</span>
+          <span class="recent-activity__meta">
+            <span class="dashboard__list-meta">${escapeHtml(formattedDate)}</span>
+            <span class="dashboard__list-value">${formatMinutes(activity?.duration)}</span>
+          </span>
+        `
+      )}
+    </li>
+  `;
+}
+
+function renderActivityItem(activity) {
+  if (activity?.type === 'skill_created') {
+    return renderSkillCreated(activity);
+  }
+
+  if (activity?.type === 'session') {
+    return renderSession(activity);
+  }
+
+  return null;
+}
 
 function renderRecentActivity(recentActivity) {
 
   const items = Array.isArray(recentActivity) ? recentActivity : [];
+  const renderedItems = items
+    .map((item) => renderActivityItem(item))
+    .filter(Boolean)
+    .join('');
 
 
   return `
     <article class="dashboard__panel dashboard__panel--activity">
       <p class="dashboard__eyebrow">Recent activity</p>
       ${
-        items.length > 0
+        renderedItems
           ? `
             <ol class="dashboard__list dashboard__list--activity">
-              ${items
-                .map((item) => `
-                  <li class="dashboard__list-item">
-                    <span class="dashboard__list-label">${escapeHtml(item?.skillName ?? item?.skillId ?? EMPTY_TEXT)}</span>
-                    <span class="dashboard__list-meta">${formatDateLabel(item?.date)}</span>
-                    <span class="dashboard__list-value">${formatMinutes(item?.duration)}</span>
-                  </li>
-                `)
-                .join('')}
+              ${renderedItems}
             </ol>
           `
           : `<p class="dashboard__empty">${EMPTY_TEXT}</p>`
@@ -199,6 +289,7 @@ function renderRecentActivity(recentActivity) {
 export function createDashboardView() {
   let elements = {};
   let isInitialized = false;
+  let isEventsBound = false;
 
 
   function init() {
@@ -228,7 +319,6 @@ export function createDashboardView() {
       throw new Error('createDashboardView().init() must be called before render().');
     }
 
-
     const {
       featured = null,
       globalStats = null,
@@ -244,12 +334,48 @@ export function createDashboardView() {
   }
 
 
-  function bindEvents() {}
+  function bindEvents() {
+    if (!isInitialized) {
+      throw new Error('createDashboardView().init() must be called before bindEvents().');
+    }
+
+    if (isEventsBound) {
+      return;
+    }
+
+    const handleActivityClick = (event) => {
+      const target = event.target;
+      const button =
+        target && typeof target.closest === 'function'
+          ? target.closest('.recent-activity__item')
+          : null;
+
+      if (!button || !elements.recentActivity.contains(button)) {
+        return;
+      }
+
+      const skillId = button.dataset.skillId;
+
+      if (typeof skillId !== 'string' || skillId.trim() === '') {
+        return;
+      }
+
+      if (typeof dashboardView.onActivityClick === 'function') {
+        dashboardView.onActivityClick(skillId);
+      }
+    };
+
+    elements.recentActivity.addEventListener('click', handleActivityClick);
+    isEventsBound = true;
+  }
 
 
-  return {
+  const dashboardView = {
+    onActivityClick: null,
     init,
     render,
     bindEvents,
   };
+
+  return dashboardView;
 }

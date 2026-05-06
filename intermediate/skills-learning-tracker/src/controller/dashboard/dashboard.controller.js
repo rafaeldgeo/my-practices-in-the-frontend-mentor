@@ -13,8 +13,13 @@ export function createDashboardController({ store, dashboardService, view }) {
     await updateDashboard();
   }
 
+  function handleActivityClick(skillId) {
+    console.log('Open session for:', skillId);
+  }
+
   return {
     updateDashboard,
     initDashboard,
+    handleActivityClick,
   };
 }

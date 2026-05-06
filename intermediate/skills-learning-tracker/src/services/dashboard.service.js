@@ -129,21 +129,103 @@ function getSkillNameById(skills, skillId) {
   return skill ? skill.name : undefined;
 }
 
-function getRecentActivity(sessions, skills) {
+function getActivitySortValue(timestamp) {
+  if (typeof timestamp === 'number' && !Number.isNaN(timestamp)) {
+    return timestamp;
+  }
+
+  if (typeof timestamp === 'string') {
+    const parsedTimestamp = Date.parse(timestamp);
+
+    if (!Number.isNaN(parsedTimestamp)) {
+      return parsedTimestamp;
+    }
+  }
+
+  return Number.NEGATIVE_INFINITY;
+}
+
+function getActivityDateLabel(timestamp) {
+  if (typeof timestamp !== 'string') {
+    return undefined;
+  }
+
+  return timestamp.includes('T') ? timestamp.split('T')[0] : timestamp;
+}
+
+function createActivityId(prefix, skillId, timestamp, index) {
+  return `${prefix}-${skillId}-${timestamp}-${index}`;
+}
+
+function mapSkillActivities(skills) {
+  if (!Array.isArray(skills)) {
+    return [];
+  }
+
+  return skills
+    .filter(
+      (skill) =>
+        skill &&
+        (typeof skill.id === 'string' || typeof skill.id === 'number') &&
+        typeof skill.name === 'string' &&
+        skill.name.trim() !== '' &&
+        skill.createdAt
+    )
+    .map((skill, index) => ({
+      id: createActivityId('skill-created', skill.id, skill.createdAt, index),
+      type: 'skill_created',
+      message: `${skill.name} added`,
+      timestamp: skill.createdAt,
+      skillId: skill.id,
+      skillName: skill.name,
+      date: getActivityDateLabel(skill.createdAt),
+      duration: 0,
+    }));
+}
+
+function mapSessionActivities(sessions, skills) {
   if (!Array.isArray(sessions)) {
     return [];
   }
 
   return sessions
-    .filter((session) => session && typeof session.skillId === 'string' && getSessionDate(session))
-    .map((session) => ({
-      skillId: session.skillId,
-      skillName: getSkillNameById(skills, session.skillId),
-      duration: getSessionDuration(session),
-      date: session.date,
-    }))
-    .sort((activityA, activityB) => activityB.date.localeCompare(activityA.date))
-    .slice(0, 5);
+    .filter(
+      (session) =>
+        session &&
+        (typeof session.skillId === 'string' || typeof session.skillId === 'number')
+    )
+    .map((session, index) => {
+      const skillName = getSkillNameById(skills, session.skillId) ?? session.skillId;
+      const timestamp = session.createdAt ?? session.date;
+      const id =
+        typeof session.id === 'string' && session.id.trim() !== ''
+          ? session.id
+          : createActivityId('session', session.skillId, timestamp, index);
+
+      return {
+        id,
+        type: 'session',
+        message: `Practiced ${skillName}`,
+        timestamp,
+        skillId: session.skillId,
+        skillName,
+        date: getActivityDateLabel(timestamp),
+        duration: getSessionDuration(session),
+      };
+    })
+    .filter((activity) => activity.timestamp);
+}
+
+function getRecentActivity(sessions, skills) {
+  const skillActivities = mapSkillActivities(skills);
+  const sessionActivities = mapSessionActivities(sessions, skills);
+  const activities = [...skillActivities, ...sessionActivities];
+
+  activities.sort((activityA, activityB) => {
+    return getActivitySortValue(activityB.timestamp) - getActivitySortValue(activityA.timestamp);
+  });
+
+  return activities.slice(0, 5);
 }
 
 function mapSkills(skills, sessions) {

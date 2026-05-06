@@ -26,3 +26,31 @@
 .modal__content {
   background: #fff;
 }
+
+.dashboard__list--activity {
+  margin: 0;
+  padding-left: 1.5rem;
+}
+
+.dashboard__list--activity .dashboard__list-item {
+  list-style: none;
+}
+
+.recent-activity__item {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  color: inherit;
+  cursor: pointer;
+  display: grid;
+  gap: 0.25rem;
+  font: inherit;
+  padding: 0;
+  text-align: left;
+  width: 100%;
+}
+
+.recent-activity__item:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+}

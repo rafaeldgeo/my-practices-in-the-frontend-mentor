@@ -56,13 +56,15 @@ if (typeof document !== 'undefined') {
     skillFormView.bindEvents()
     skillFormView.onSubmit = async (data) => {
       const skill = skillService.createSkill(data)
-
       await store.saveSkill(skill)
       await controller.updateDashboard()
     }
   }
 
   headerView.bindEvents()
+  view.onActivityClick = (skillId) => {
+    controller.handleActivityClick(skillId)
+  }
   view.bindEvents()
   modalView.bindEvents({ onClose: () => modalController.close() })
 
