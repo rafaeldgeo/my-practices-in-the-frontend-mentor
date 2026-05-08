@@ -4,6 +4,18 @@ import { calculateStreak } from './streak.service.js';
 const GLOBAL_SKILL_ID = '__global__'; 
 const FEATURED_MINUTES_THRESHOLD = 60; 
 
+function normalizeId(value) {
+  if (typeof value === 'string') {
+    return value;
+  }
+
+  if (typeof value === 'number' && Number.isFinite(value)) {
+    return String(value);
+  }
+
+  return '';
+}
+
 function getFirstSkill(skills) {
   if (!Array.isArray(skills) || skills.length === 0) {
     return null;
@@ -74,7 +86,15 @@ function getSkillSessions(sessions, skillId) {
     return [];
   }
 
-  return sessions.filter((session) => session && session.skillId === skillId);
+  const normalizedSkillId = normalizeId(skillId);
+
+  if (normalizedSkillId === '') {
+    return [];
+  }
+
+  return sessions.filter(
+    (session) => session && normalizeId(session.skillId) === normalizedSkillId
+  );
 }
 
 function getSkillStatus(totalTime) {
@@ -86,12 +106,13 @@ function getStatusLabel(type) {
 }
 
 function getSkillStats(sessions, skillId) {
+  const normalizedSkillId = normalizeId(skillId);
   const normalizedSessions = getSkillSessions(sessions, skillId).map((session) => ({
-    skillId,
+    skillId: normalizedSkillId,
     duration: getSessionDuration(session),
   }));
 
-  return calculateStats(normalizedSessions, skillId);
+  return calculateStats(normalizedSessions, normalizedSkillId);
 }
 
 function getConsistencyByDate(sessions) {
@@ -125,7 +146,13 @@ function getSkillNameById(skills, skillId) {
     return undefined;
   }
 
-  const skill = skills.find((item) => item && item.id === skillId);
+  const normalizedSkillId = normalizeId(skillId);
+
+  if (normalizedSkillId === '') {
+    return undefined;
+  }
+
+  const skill = skills.find((item) => item && normalizeId(item.id) === normalizedSkillId);
   return skill ? skill.name : undefined;
 }
 
@@ -154,7 +181,7 @@ function getActivityDateLabel(timestamp) {
 }
 
 function createActivityId(prefix, skillId, timestamp, index) {
-  return `${prefix}-${skillId}-${timestamp}-${index}`;
+  return `${prefix}-${normalizeId(skillId)}-${timestamp}-${index}`;
 }
 
 function mapSkillActivities(skills) {
@@ -176,7 +203,7 @@ function mapSkillActivities(skills) {
       type: 'skill_created',
       message: `${skill.name} added`,
       timestamp: skill.createdAt,
-      skillId: skill.id,
+      skillId: normalizeId(skill.id),
       skillName: skill.name,
       date: getActivityDateLabel(skill.createdAt),
       duration: 0,
@@ -195,19 +222,20 @@ function mapSessionActivities(sessions, skills) {
         (typeof session.skillId === 'string' || typeof session.skillId === 'number')
     )
     .map((session, index) => {
-      const skillName = getSkillNameById(skills, session.skillId) ?? session.skillId;
+      const skillId = normalizeId(session.skillId);
+      const skillName = getSkillNameById(skills, skillId) ?? skillId;
       const timestamp = session.createdAt ?? session.date;
       const id =
         typeof session.id === 'string' && session.id.trim() !== ''
           ? session.id
-          : createActivityId('session', session.skillId, timestamp, index);
+          : createActivityId('session', skillId, timestamp, index);
 
       return {
         id,
         type: 'session',
         message: `Practiced ${skillName}`,
         timestamp,
-        skillId: session.skillId,
+        skillId,
         skillName,
         date: getActivityDateLabel(timestamp),
         duration: getSessionDuration(session),
@@ -234,11 +262,12 @@ function mapSkills(skills, sessions) {
   }
 
   return skills.map((skill) => {
-    const skillStats = getSkillStats(sessions, skill.id);
+    const skillId = normalizeId(skill.id);
+    const skillStats = getSkillStats(sessions, skillId);
     const statusType = getSkillStatus(skillStats.totalTime);
 
     return {
-      skillId: skill.id,
+      skillId,
       skillName: skill.name,
       totalTime: skillStats.totalTime,
       status: { type: statusType },
@@ -258,7 +287,7 @@ export function createDashboardData({ skills = [], sessions = [] } = {}) {
   return {
     featured: firstSkill
       ? {
-          skillId: firstSkill.id,
+          skillId: normalizeId(firstSkill.id),
           skillName: firstSkill.name,
           totalTime: featuredSkillStats.totalTime,
           status: {

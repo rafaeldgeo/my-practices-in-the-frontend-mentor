@@ -1,4 +1,4 @@
-export function createDashboardController({ store, dashboardService, view }) {
+export function createDashboardController({ store, dashboardService, view, onActivityClick } = {}) {
   async function updateDashboard() {
     const [skills, sessions] = await Promise.all([
       store.getSkills(),
@@ -14,7 +14,9 @@ export function createDashboardController({ store, dashboardService, view }) {
   }
 
   function handleActivityClick(skillId) {
-    console.log('Open session for:', skillId);
+    if (typeof onActivityClick === 'function') {
+      onActivityClick(skillId);
+    }
   }
 
   return {

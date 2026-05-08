@@ -129,4 +129,20 @@ assertEqual(
   ['featured', 'globalStats', 'consistency', 'recentActivity', 'skills']
 );
 
+const mixedDashboardData = createDashboardData({
+  skills: [
+    { id: 1778200355041, name: 'Dynamic Skill', createdAt: '2026-04-24T10:00:00Z' },
+  ],
+  sessions: [
+    { skillId: 1778200355041, duration: 20, date: '2026-04-24', createdAt: '2026-04-24T12:00:00Z' },
+  ],
+});
+
+assertEqual('mixed skill id is normalized', mixedDashboardData.skills[0].skillId, '1778200355041');
+assertEqual(
+  'mixed activity skillId is normalized',
+  mixedDashboardData.recentActivity.find((activity) => activity.type === 'session')?.skillId,
+  '1778200355041'
+);
+
 console.log('dashboard tests finished');

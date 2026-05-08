@@ -54,3 +54,8 @@
   outline: 2px solid currentColor;
   outline-offset: 4px;
 }
+
+.session-form__preset.is-active {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}

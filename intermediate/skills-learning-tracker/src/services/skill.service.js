@@ -7,7 +7,7 @@ export function createSkill(data = {}) {
   const name = typeof data.name === 'string' ? data.name.trim() : ''
 
   return {
-    id: now,
+    id: String(now),
     name,
     createdAt: now,
   }
