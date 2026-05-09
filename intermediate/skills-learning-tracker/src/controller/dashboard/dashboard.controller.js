@@ -1,14 +1,26 @@
-export function createDashboardController({ store, dashboardService, view, onActivityClick } = {}) {
+import { createPriorityPayload } from '../../services/priority.service.js';
+
+export function createDashboardController({
+  store,
+  dashboardService,
+  view,
+  onActivityClick,
+  createPriorityPayload: buildPriorityPayload = createPriorityPayload,
+} = {}) {
   async function updateDashboard() {
     const [skills, sessions] = await Promise.all([
       store.getSkills(),
       store.getSessions(),
     ]);
-    const dashboardData = dashboardService.createDashboardData({ skills, sessions }); 
+    const dashboardData = dashboardService.createDashboardData({ skills, sessions });
+    const featured = buildPriorityPayload({ skills, sessions });
 
-    view.render(dashboardData); 
+    view.render({
+      ...dashboardData,
+      featured,
+    });
   }
-  
+
   async function initDashboard() {
     await updateDashboard();
   }

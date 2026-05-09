@@ -24,12 +24,15 @@ function assertEqual(description, actual, expected) {
   }
 }
 
-const template = createSessionTemplate({ skillId: 'skill-1' })
+const template = createSessionTemplate({
+  skillId: 'skill-1',
+  skillName: 'teste 1',
+})
 
 assertEqual('template returns a string', typeof template, 'string')
 assertEqual('template includes title', template.includes('<h2'), true)
 assertEqual('template includes start session text', template.includes('Start Session'), true)
-assertEqual('template includes skill id', template.includes('Skill: skill-1'), true)
+assertEqual('template includes skill name', template.includes('Skill: teste 1'), true)
 assertEqual('template includes session form', template.includes('class="session-form"'), true)
 assertEqual('template includes preset buttons', template.includes('15m') && template.includes('30m') && template.includes('60m') && template.includes('Custom'), true)
 assertEqual('template includes hidden custom field', template.includes('class="session-form__custom" hidden'), true)

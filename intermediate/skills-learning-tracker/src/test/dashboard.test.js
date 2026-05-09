@@ -27,11 +27,6 @@ const dashboardData = createDashboardData({
 });
 
 assertEqual('retorno existe', typeof dashboardData === 'object', true);
-assertEqual('featured totalTime', dashboardData.featured.totalTime, 65);
-assertEqual('featured status', dashboardData.featured.status, {
-  type: 'onTrack',
-  label: 'On track',
-});
 assertEqual('globalStats', dashboardData.globalStats, {
   totalTime: 160,
   totalSessions: 6,
@@ -126,7 +121,7 @@ assertEqual('skills', dashboardData.skills, [
 assertEqual(
   'dashboardData keys',
   Object.keys(dashboardData),
-  ['featured', 'globalStats', 'consistency', 'recentActivity', 'skills']
+  ['globalStats', 'consistency', 'recentActivity', 'skills']
 );
 
 const mixedDashboardData = createDashboardData({

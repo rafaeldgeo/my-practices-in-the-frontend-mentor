@@ -99,47 +99,187 @@ function renderActivityButton(activity, content) {
 }
 
 
-function renderFeatured(featuredData) {
+function formatNumber(value, fractionDigits = 1) {
+  const numericValue = Number(value);
 
-  if (!featuredData) {
-    return `
-      <article class="dashboard__panel dashboard__panel--featured dashboard__panel--empty">
-        <p class="dashboard__eyebrow">Featured skill</p>
-        <h2 class="dashboard__heading">No featured skill yet</h2>
-        <p class="dashboard__empty">${EMPTY_TEXT}</p>
-      </article>
-    `;
+  if (!Number.isFinite(numericValue)) {
+    return EMPTY_TEXT;
   }
 
+  return numericValue.toFixed(fractionDigits);
+}
+
+
+function getPriorityStatusLabel(status) {
+  if (status === 'behind') {
+    return 'Behind';
+  }
+
+  if (status === 'ahead') {
+    return 'Ahead';
+  }
+
+  if (status === 'on-track') {
+    return 'On track';
+  }
+
+  return EMPTY_TEXT;
+}
+
+function renderDefinitionItems(items) {
+  return items
+    .filter((item) => item && typeof item.label === 'string' && item.label.trim() !== '')
+    .map((item) => `
+      <div class="dashboard__definition-item">
+        <dt>${escapeHtml(item.label)}</dt>
+        <dd>${escapeHtml(String(item.value ?? EMPTY_TEXT))}</dd>
+      </div>
+    `)
+    .join('');
+}
+
+function renderFeaturedShell({
+  modifierClass = 'dashboard__panel--empty',
+  eyebrow,
+  title,
+  summary,
+  statusLabel,
+  statusClassName = '',
+  details = '',
+  emptyMessage = '',
+}) {
+  return `
+    <article class="dashboard__panel dashboard__panel--featured ${modifierClass}">
+      <header class="dashboard__hero-header">
+        <div class="dashboard__hero-copy">
+          <p class="dashboard__eyebrow">${escapeHtml(eyebrow ?? EMPTY_TEXT)}</p>
+          <h2 class="dashboard__heading">${escapeHtml(title ?? EMPTY_TEXT)}</h2>
+        </div>
+        ${
+          statusLabel
+            ? `<span class="dashboard__status-pill ${statusClassName}">${escapeHtml(statusLabel)}</span>`
+            : ''
+        }
+      </header>
+      ${
+        summary
+          ? `<p class="dashboard__summary">${escapeHtml(summary)}</p>`
+          : ''
+      }
+      ${
+        details
+          ? `<dl class="dashboard__definition-list dashboard__definition-list--hero">${details}</dl>`
+          : ''
+      }
+      ${
+        emptyMessage
+          ? `<p class="dashboard__empty">${escapeHtml(emptyMessage)}</p>`
+          : ''
+      }
+    </article>
+  `;
+}
+
+function renderFeaturedEmpty() {
+  return renderFeaturedShell({
+    modifierClass: 'dashboard__panel--empty',
+    eyebrow: 'Plan status',
+    title: 'No learning data yet',
+    summary: 'Add your first skill or session to surface the plan state here.',
+    statusLabel: 'Awaiting data',
+    statusClassName: 'dashboard__status-pill--empty',
+    emptyMessage: EMPTY_TEXT,
+  });
+}
+
+function renderFeaturedPriority(featuredSkill) {
+  if (!featuredSkill) {
+    return renderFeaturedEmpty();
+  }
 
   const {
     skillName,
+    progressDebtPercent,
+    progressDebtHours,
+    currentProgress,
+    expectedProgress,
     totalTime,
-    status,
     minutesToday,
-  } = featuredData;
+    status,
+  } = featuredSkill;
 
+  return renderFeaturedShell({
+    modifierClass: 'dashboard__panel--priority',
+    eyebrow: 'Operational priority',
+    title: skillName,
+    summary: 'This skill has the largest progress debt in the current plan.',
+    statusLabel: getPriorityStatusLabel(status),
+    statusClassName: `dashboard__status-pill--${status === 'behind' ? 'behind' : status === 'ahead' ? 'ahead' : 'on-track'}`,
+    details: renderDefinitionItems([
+      {
+        label: 'Status',
+        value: getPriorityStatusLabel(status),
+      },
+      {
+        label: 'Progress debt',
+        value: `${formatNumber(progressDebtPercent)}% / ${formatNumber(progressDebtHours)}h`,
+      },
+      {
+        label: 'Current vs expected',
+        value: `${formatNumber(currentProgress)}% / ${formatNumber(expectedProgress)}%`,
+      },
+      {
+        label: 'Total time',
+        value: formatMinutes(totalTime),
+      },
+      {
+        label: 'Minutes today',
+        value: formatMinutes(minutesToday),
+      },
+    ]),
+  });
+}
 
-  return `
-    <article class="dashboard__panel dashboard__panel--featured">
-      <p class="dashboard__eyebrow">Featured skill</p>
-      <h2 class="dashboard__heading">${escapeHtml(skillName)}</h2>
-      <dl class="dashboard__definition-list">
-        <div class="dashboard__definition-item">
-          <dt>Total time</dt>
-          <dd>${formatMinutes(totalTime)}</dd>
-        </div>
-        <div class="dashboard__definition-item">
-          <dt>Status</dt>
-          <dd>${escapeHtml(status?.label ?? EMPTY_TEXT)}</dd>
-        </div>
-        <div class="dashboard__definition-item">
-          <dt>Minutes today</dt>
-          <dd>${formatMinutes(minutesToday)}</dd>
-        </div>
-      </dl>
-    </article>
-  `;
+function renderFeaturedHealthy(summary) {
+  if (!summary) {
+    return renderFeaturedEmpty();
+  }
+
+  const {
+    skillsOnTrack,
+    skillsAhead,
+  } = summary;
+
+  return renderFeaturedShell({
+    modifierClass: 'dashboard__panel--healthy',
+    eyebrow: 'Healthy plan',
+    title: 'Balanced and sustainable',
+    summary: 'The current pace is stable across the plan.',
+    statusLabel: 'Stable',
+    statusClassName: 'dashboard__status-pill--healthy',
+    details: renderDefinitionItems([
+      {
+        label: 'Skills on track',
+        value: Number.isFinite(Number(skillsOnTrack)) ? String(Number(skillsOnTrack)) : '0',
+      },
+      {
+        label: 'Skills ahead',
+        value: Number.isFinite(Number(skillsAhead)) ? String(Number(skillsAhead)) : '0',
+      },
+    ]),
+  });
+}
+
+function renderFeatured(featuredData) {
+  switch (featuredData?.mode) {
+    case 'priority':
+      return renderFeaturedPriority(featuredData.featuredSkill);
+    case 'healthy':
+      return renderFeaturedHealthy(featuredData.summary);
+    case 'empty':
+    default:
+      return renderFeaturedEmpty();
+  }
 }
 
 

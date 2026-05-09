@@ -7,15 +7,16 @@ function escapeHtml(value) {
     .replaceAll("'", '&#39;')
 }
 
-export function createSessionTemplate({ skillId } = {}) {
+export function createSessionTemplate({ skillId, skillName } = {}) {
   const safeSkillId = escapeHtml(skillId ?? '')
+  const safeSkillName = escapeHtml(skillName ?? '')
 
   return `
     <section class="session" aria-labelledby="session-title">
       <header class="session__header">
         <p class="session__eyebrow">Session</p>
         <h2 class="session__title" id="session-title">Start Session</h2>
-        <p class="session__skill">Skill: ${safeSkillId}</p>
+        <p class="session__skill">Skill: ${safeSkillName || safeSkillId}</p>
       </header>
 
       <form class="session-form">

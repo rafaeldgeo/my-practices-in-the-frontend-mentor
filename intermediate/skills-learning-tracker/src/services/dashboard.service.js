@@ -16,14 +16,6 @@ function normalizeId(value) {
   return '';
 }
 
-function getFirstSkill(skills) {
-  if (!Array.isArray(skills) || skills.length === 0) {
-    return null;
-  }
-
-  return skills[0];
-}
-
 function getSessionDuration(session) {
   if (!session || typeof session !== 'object') {
     return 0;
@@ -99,10 +91,6 @@ function getSkillSessions(sessions, skillId) {
 
 function getSkillStatus(totalTime) {
   return totalTime < FEATURED_MINUTES_THRESHOLD ? 'behind' : 'onTrack';
-}
-
-function getStatusLabel(type) {
-  return type === 'behind' ? 'Behind' : 'On track';
 }
 
 function getSkillStats(sessions, skillId) {
@@ -276,27 +264,10 @@ function mapSkills(skills, sessions) {
 }
 
 export function createDashboardData({ skills = [], sessions = [] } = {}) {
-  const firstSkill = getFirstSkill(skills); 
-  const skillStats = calculateStats(normalizeSessionsForStats(sessions), GLOBAL_SKILL_ID); 
-  const skillStreak = calculateStreak(normalizeSessionsForStreak(sessions), GLOBAL_SKILL_ID); 
-  const featuredSkillStats = firstSkill ? getSkillStats(sessions, firstSkill.id) : null; 
-  const featuredStatusType = featuredSkillStats 
-    ? getSkillStatus(featuredSkillStats.totalTime)
-    : 'behind'; 
+  const skillStats = calculateStats(normalizeSessionsForStats(sessions), GLOBAL_SKILL_ID);
+  const skillStreak = calculateStreak(normalizeSessionsForStreak(sessions), GLOBAL_SKILL_ID);
 
   return {
-    featured: firstSkill
-      ? {
-          skillId: normalizeId(firstSkill.id),
-          skillName: firstSkill.name,
-          totalTime: featuredSkillStats.totalTime,
-          status: {
-            type: featuredStatusType,
-            label: getStatusLabel(featuredStatusType),
-          },
-          minutesToday: 30,
-        }
-      : null,
     globalStats: {
       totalTime: skillStats.totalTime,
       totalSessions: skillStats.totalSessions,
@@ -306,5 +277,4 @@ export function createDashboardData({ skills = [], sessions = [] } = {}) {
     recentActivity: getRecentActivity(sessions, skills),
     skills: mapSkills(skills, sessions),
   };
-
 }

@@ -2,6 +2,7 @@
 // Responsável por criar e validar skills sem acessar DOM, storage ou outros módulos.
 
 const DATE_PATTERN = /^\d{4}-\d{2}-\d{2}$/; 
+const DEFAULT_SKILL_COLOR = '#059669'
 
 function generateSkillId() {
   return `skill_${Date.now()}_${Math.random().toString(36).slice(2, 10)}`; 
@@ -29,16 +30,10 @@ export function createSkill({ name, startDate, targetHours, color } = {}) {
     name,
     startDate,
     targetHours,
+    color: typeof color === 'string' && color.trim() !== '' ? color.trim() : DEFAULT_SKILL_COLOR,
   };
-  
-
-  if (color !== undefined) {
-    skill.color = color;
-  }
-  
 
   return skill;
-  
 }
 
 // Valida a estrutura de uma skill e retorna o resultado com uma lista de erros.
@@ -85,4 +80,3 @@ export function validateSkill(skill) {
   };
 
 }
-

@@ -1,3 +1,5 @@
+import { createSkillFormTemplate } from './skill.template.js'
+
 /**
  * Skill form view.
  * Owns the form DOM lookup inside the rendered modal content and emits submit payloads.
@@ -7,15 +9,24 @@ export function createSkillFormView() {
   let isInitialized = false
   let isEventsBound = false
 
+  function render({ color } = {}) {
+    isInitialized = false
+    isEventsBound = false
+
+    return createSkillFormTemplate({ color })
+  }
+
   function init() {
     const form = document.querySelector('.skill-form')
     const feedbackEl = document.querySelector('.skill-form__feedback')
     const input = form?.querySelector('input[name="name"]')
+    const colorInput = form?.querySelector('input[name="color"]')
 
     elements = {
       form,
       feedbackEl,
       input,
+      colorInput,
     }
 
     const missingMountPoints = Object.entries(elements)
@@ -43,6 +54,7 @@ export function createSkillFormView() {
 
       const data = {
         name: elements.input.value.trim(),
+        color: elements.colorInput.value,
       }
 
       if (typeof skillFormView.onSubmit === 'function') {
@@ -60,6 +72,7 @@ export function createSkillFormView() {
 
   const skillFormView = {
     onSubmit: null,
+    render,
     init,
     bindEvents,
   }

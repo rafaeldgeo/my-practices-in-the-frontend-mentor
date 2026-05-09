@@ -18,17 +18,22 @@ export function createSessionView() {
   let isEventsBound = false
   let state = {
     skillId: '',
+    skillName: '',
     selectedDuration: null,
     isCustomOpen: false,
   }
 
-  function render({ skillId } = {}) {
+  function render({ skillId, skillName } = {}) {
     state.skillId = typeof skillId === 'string' ? skillId : ''
+    state.skillName = typeof skillName === 'string' ? skillName : ''
     state.selectedDuration = null
     state.isCustomOpen = false
     isInitialized = false
     isEventsBound = false
-    return createSessionTemplate({ skillId: state.skillId })
+    return createSessionTemplate({
+      skillId: state.skillId,
+      skillName: state.skillName,
+    })
   }
 
   function init() {

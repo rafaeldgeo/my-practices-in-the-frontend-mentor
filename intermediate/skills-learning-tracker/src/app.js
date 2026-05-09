@@ -17,12 +17,34 @@ const view = createDashboardView()
 const headerView = createHeaderView()
 const modalView = createModalView()
 const sessionView = createSessionView()
+const skillFormView = createSkillFormView()
 const modalController = createModalController({
   view: modalView
 })
 
-function openSessionModal(skillId) {
-  const content = sessionView.render({ skillId })
+async function getSkillById(skillId) {
+  const normalizedSkillId = typeof skillId === 'string' ? skillId.trim() : ''
+
+  if (normalizedSkillId === '') {
+    return null
+  }
+
+  const skills = await store.getSkills()
+
+  return skills.find((item) => item?.id === normalizedSkillId) ?? null
+}
+
+async function openSessionModal(skillId) {
+  const skill = await getSkillById(skillId)
+
+  if (!skill) {
+    return
+  }
+
+  const content = sessionView.render({
+    skillId: String(skill.id),
+    skillName: skill.name,
+  })
 
   sessionView.onSubmit = (payload) => {
     void handleSessionSubmit(payload)
@@ -38,21 +60,14 @@ function openSessionModal(skillId) {
 
 async function handleSessionSubmit(payload) {
   try {
-    const skillId = typeof payload?.skillId === 'string' ? payload.skillId : ''
-
-    if (skillId.trim() === '') {
-      throw new Error('Skill not found')
-    }
-
-    const skills = await store.getSkills()
-    const skill = skills.find((item) => item?.id === skillId)
+    const skill = await getSkillById(payload?.skillId)
 
     if (!skill) {
       throw new Error('Skill not found')
     }
 
     const session = sessionService.createSession({
-      skillId,
+      skillId: String(skill.id),
       duration: payload.duration,
     })
 
@@ -85,35 +100,22 @@ if (typeof document !== 'undefined') {
 
   headerView.onAddSkillClick = () => {
     modalController.open({
-      content: `
-        <h2>Nova Skill</h2>
-        <form class="skill-form">
-          <div class="skill-form__feedback"></div>
-
-          <div class="skill-form__field">
-            <label for="skill-name">Nome da skill</label>
-            <input
-              id="skill-name"
-              name="name"
-              type="text"
-              required
-            />
-          </div>
-
-          <button type="submit">Salvar</button>
-        </form>
-      `
+      content: skillFormView.render()
     })
 
-    const skillFormView = createSkillFormView()
+    skillFormView.onSubmit = async (data) => {
+      try {
+        const skill = skillService.createSkill(data)
+        await store.saveSkill(skill)
+        await controller.updateDashboard()
+        modalController.close()
+      } catch (error) {
+        console.error('Failed to save skill:', error)
+      }
+    }
 
     skillFormView.init()
     skillFormView.bindEvents()
-    skillFormView.onSubmit = async (data) => {
-      const skill = skillService.createSkill(data)
-      await store.saveSkill(skill)
-      await controller.updateDashboard()
-    }
   }
 
   headerView.bindEvents()
