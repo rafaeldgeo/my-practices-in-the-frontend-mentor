@@ -11,10 +11,26 @@ function assertEqual(description, actual, expected) {
 }
 
 const dashboardData = createDashboardData({
+  referenceDate: new Date('2026-04-22T12:00:00Z'),
   skills: [
-    { id: 'skill-1', name: 'Spanish', createdAt: '2026-04-21T11:00:00Z' },
-    { id: 'skill-2', name: 'Guitar', createdAt: '2026-04-23T10:00:00Z' },
-    { id: 'skill-3', name: 'TypeScript', createdAt: '2026-04-19T08:00:00Z' },
+    {
+      id: 'skill-1',
+      name: 'Spanish',
+      goal: { type: 'weekly', targetHours: 5 },
+      createdAt: '2026-04-21T11:00:00Z',
+    },
+    {
+      id: 'skill-2',
+      name: 'Guitar',
+      goal: { type: 'weekly', targetHours: 3 },
+      createdAt: '2026-04-23T10:00:00Z',
+    },
+    {
+      id: 'skill-3',
+      name: 'TypeScript',
+      goal: { type: 'total', targetHours: 200 },
+      createdAt: '2026-04-19T08:00:00Z',
+    },
   ],
   sessions: [
     { skillId: 'skill-1', duration: 40, date: '2026-04-21', createdAt: '2026-04-21T08:00:00Z' },
@@ -102,13 +118,13 @@ assertEqual('skills', dashboardData.skills, [
     skillId: 'skill-1',
     skillName: 'Spanish',
     totalTime: 65,
-    status: { type: 'onTrack' },
+    status: { type: 'on-track' },
   },
   {
     skillId: 'skill-2',
     skillName: 'Guitar',
     totalTime: 70,
-    status: { type: 'onTrack' },
+    status: { type: 'on-track' },
   },
   {
     skillId: 'skill-3',
@@ -117,11 +133,31 @@ assertEqual('skills', dashboardData.skills, [
     status: { type: 'behind' },
   },
 ]);
+assertEqual('featuredInsight mode', dashboardData.featuredInsight.mode, 'priority');
+assertEqual('featuredInsight state', dashboardData.featuredInsight.state, {
+  kind: 'priority',
+  reason: null,
+  label: 'At risk',
+});
+assertEqual('featuredInsight skill', dashboardData.featuredInsight.featuredSkill.skillId, 'skill-3');
+assertEqual('featuredInsight status', dashboardData.featuredInsight.featuredSkill.status, 'behind');
+assertEqual('featuredInsight recommendation title', dashboardData.featuredInsight.recommendation.title, 'Stay on track with TypeScript');
+assertEqual('featuredInsight primary action', dashboardData.featuredInsight.primaryAction.label, 'Practice now');
+assertEqual('featuredInsight ring readiness', dashboardData.featuredInsight.progressRing.isReady, true);
+assertEqual('featuredInsight flags', {
+  isAtRisk: dashboardData.featuredInsight.flags.isAtRisk,
+  hasMissingGoals: dashboardData.featuredInsight.flags.hasMissingGoals,
+  hasInsufficientPacingData: dashboardData.featuredInsight.flags.hasInsufficientPacingData,
+}, {
+  isAtRisk: true,
+  hasMissingGoals: false,
+  hasInsufficientPacingData: false,
+});
 
 assertEqual(
   'dashboardData keys',
   Object.keys(dashboardData),
-  ['globalStats', 'consistency', 'recentActivity', 'skills']
+  ['globalStats', 'consistency', 'recentActivity', 'skills', 'featuredInsight']
 );
 
 const mixedDashboardData = createDashboardData({

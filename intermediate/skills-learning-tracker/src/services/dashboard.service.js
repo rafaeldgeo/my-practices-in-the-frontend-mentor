@@ -1,4 +1,5 @@
 import { calculateStats } from './stats.service.js';
+import { createPriorityPayload } from './priority.service.js';
 import { calculateStreak } from './streak.service.js';
 
 const GLOBAL_SKILL_ID = '__global__'; 
@@ -90,7 +91,7 @@ function getSkillSessions(sessions, skillId) {
 }
 
 function getSkillStatus(totalTime) {
-  return totalTime < FEATURED_MINUTES_THRESHOLD ? 'behind' : 'onTrack';
+  return totalTime < FEATURED_MINUTES_THRESHOLD ? 'behind' : 'on-track';
 }
 
 function getSkillStats(sessions, skillId) {
@@ -263,7 +264,11 @@ function mapSkills(skills, sessions) {
   });
 }
 
-export function createDashboardData({ skills = [], sessions = [] } = {}) {
+export function createDashboardData({
+  skills = [],
+  sessions = [],
+  referenceDate = new Date(),
+} = {}) {
   const skillStats = calculateStats(normalizeSessionsForStats(sessions), GLOBAL_SKILL_ID);
   const skillStreak = calculateStreak(normalizeSessionsForStreak(sessions), GLOBAL_SKILL_ID);
 
@@ -276,5 +281,6 @@ export function createDashboardData({ skills = [], sessions = [] } = {}) {
     consistency: getConsistencyByDate(sessions),
     recentActivity: getRecentActivity(sessions, skills),
     skills: mapSkills(skills, sessions),
+    featuredInsight: createPriorityPayload({ skills, sessions, referenceDate }),
   };
 }

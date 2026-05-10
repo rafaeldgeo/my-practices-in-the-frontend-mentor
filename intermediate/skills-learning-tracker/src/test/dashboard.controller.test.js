@@ -13,7 +13,6 @@ function assertEqual(description, actual, expected) {
 
 const calls = {
   render: null,
-  priority: null,
 }
 
 const controller = createDashboardController({
@@ -43,28 +42,67 @@ const controller = createDashboardController({
           skillId: skill.id,
           skillName: skill.name,
           totalTime: 30,
-          status: { type: 'onTrack' },
+          status: { type: 'on-track' },
         })),
+        featuredInsight: {
+          mode: 'priority',
+          state: {
+            kind: 'priority',
+            reason: null,
+            label: 'At risk',
+          },
+          urgency: 'high',
+          severity: 'warning',
+          flags: {
+            isAtRisk: true,
+            isHealthyMomentum: false,
+            isOnboarding: false,
+            hasNoSkills: false,
+            hasNoSessions: false,
+            hasMissingGoals: false,
+            hasInsufficientPacingData: false,
+            hasGoalSkills: true,
+            hasPacingData: true,
+            hasFocusSkill: true,
+          },
+          recommendation: {
+            eyebrow: 'Operational priority',
+            title: 'Stay on track with Spanish',
+            description: 'You are behind the current pace.',
+          },
+          primaryAction: {
+            label: 'Practice now',
+            action: 'open_session_modal',
+            intent: 'practice_now',
+            skillId: 'skill-1',
+          },
+          secondaryAction: {
+            label: 'Choose another skill',
+            action: 'open_skill_picker',
+            intent: 'switch_skill',
+          },
+          progressRing: {
+            scope: 'skill',
+            percentage: 18,
+            current: 30,
+            target: 300,
+            remaining: 270,
+            isReady: true,
+          },
+          featuredSkill: {
+            skillId: 'skill-1',
+            skillName: 'Spanish',
+            progressDebtPercent: 12.5,
+            progressDebtHours: 1.2,
+            currentProgress: 18,
+            expectedProgress: 30,
+            totalTime: 30,
+            minutesToday: 30,
+            status: 'behind',
+          },
+        },
       }
     },
-  },
-  createPriorityPayload({ skills, sessions }) {
-    calls.priority = { skills, sessions }
-
-    return {
-      mode: 'priority',
-      featuredSkill: {
-        skillId: 'skill-1',
-        skillName: 'Spanish',
-        progressDebtPercent: 12.5,
-        progressDebtHours: 1.2,
-        currentProgress: 18,
-        expectedProgress: 30,
-        totalTime: 30,
-        minutesToday: 30,
-        status: 'behind',
-      },
-    }
   },
   view: {
     render(payload) {
@@ -75,12 +113,7 @@ const controller = createDashboardController({
 
 await controller.updateDashboard()
 
-assertEqual('priority payload factory received source data', calls.priority, {
-  skills: [{ id: 'skill-1', name: 'Spanish' }],
-  sessions: [{ skillId: 'skill-1', durationMinutes: 30, date: '2026-04-22' }],
-})
-
-assertEqual('render receives dashboard data plus priority payload', calls.render, {
+assertEqual('render receives dashboard data as a single payload', calls.render, {
   globalStats: {
     totalTime: 30,
     totalSessions: 1,
@@ -93,11 +126,54 @@ assertEqual('render receives dashboard data plus priority payload', calls.render
       skillId: 'skill-1',
       skillName: 'Spanish',
       totalTime: 30,
-      status: { type: 'onTrack' },
+      status: { type: 'on-track' },
     },
   ],
-  featured: {
+  featuredInsight: {
     mode: 'priority',
+    state: {
+      kind: 'priority',
+      reason: null,
+      label: 'At risk',
+    },
+    urgency: 'high',
+    severity: 'warning',
+    flags: {
+      isAtRisk: true,
+      isHealthyMomentum: false,
+      isOnboarding: false,
+      hasNoSkills: false,
+      hasNoSessions: false,
+      hasMissingGoals: false,
+      hasInsufficientPacingData: false,
+      hasGoalSkills: true,
+      hasPacingData: true,
+      hasFocusSkill: true,
+    },
+    recommendation: {
+      eyebrow: 'Operational priority',
+      title: 'Stay on track with Spanish',
+      description: 'You are behind the current pace.',
+    },
+    primaryAction: {
+      label: 'Practice now',
+      action: 'open_session_modal',
+      intent: 'practice_now',
+      skillId: 'skill-1',
+    },
+    secondaryAction: {
+      label: 'Choose another skill',
+      action: 'open_skill_picker',
+      intent: 'switch_skill',
+    },
+    progressRing: {
+      scope: 'skill',
+      percentage: 18,
+      current: 30,
+      target: 300,
+      remaining: 270,
+      isReady: true,
+    },
     featuredSkill: {
       skillId: 'skill-1',
       skillName: 'Spanish',

@@ -137,6 +137,59 @@ function getSessionDate(session) {
   return null
 }
 
+function getValidSkills(skills) {
+  if (!Array.isArray(skills)) {
+    return []
+  }
+
+  return skills.filter(
+    (skill) =>
+      skill &&
+      (typeof skill.id === 'string' || typeof skill.id === 'number') &&
+      isNonEmptyString(skill.name)
+  )
+}
+
+function getGoalSkills(skills) {
+  return getValidSkills(skills).filter((skill) => getSkillGoal(skill))
+}
+
+function getSessionsForSkillIds(sessions, skillIds) {
+  if (!Array.isArray(sessions) || !Array.isArray(skillIds) || skillIds.length === 0) {
+    return []
+  }
+
+  const allowedSkillIds = new Set(skillIds.map((skillId) => normalizeId(skillId)).filter(Boolean))
+
+  return sessions.filter((session) => {
+    if (!session || typeof session !== 'object') {
+      return false
+    }
+
+    const skillId = normalizeId(session.skillId)
+
+    return allowedSkillIds.has(skillId) && getSessionDurationMinutes(session) > 0
+  })
+}
+
+function getDistinctSessionDays(sessions) {
+  const distinctDays = new Set()
+
+  if (!Array.isArray(sessions)) {
+    return 0
+  }
+
+  sessions.forEach((session) => {
+    const date = getSessionDate(session)
+
+    if (date) {
+      distinctDays.add(date)
+    }
+  })
+
+  return distinctDays.size
+}
+
 function getTotalMinutesForSkill(sessions, skillId) {
   if (!Array.isArray(sessions) || skillId === '') {
     return 0
@@ -277,16 +330,21 @@ function buildSkillAnalysis(skill, sessions, referenceDate) {
   }
 
   const status = getSkillStatus(progressDebtPercent)
+  const targetMinutes = goal.targetHours * 60
 
   return {
     skillId,
     skillName,
+    goalType: goal.type,
+    targetHours: goal.targetHours,
+    targetMinutes,
     progressDebtPercent: roundToTwoDecimals(progressDebtPercent),
     progressDebtHours: roundToTwoDecimals(getProgressDebtHours(progressDebtPercent, goal)),
     currentProgress: roundToTwoDecimals(currentProgress),
     expectedProgress: roundToTwoDecimals(expectedProgress),
     totalTime,
     minutesToday: getMinutesTodayForSkill(sessions, skillId, referenceDate),
+    remainingMinutes: Math.max(0, targetMinutes - totalTime),
     status,
   }
 }
@@ -307,41 +365,528 @@ function getPrioritySkills(skillAnalyses) {
     })
 }
 
-function getHeroMode(skillAnalyses) {
+function getHealthySkills(skillAnalyses) {
+  return skillAnalyses
+    .filter((skill) => skill.status !== 'behind')
+    .sort((skillA, skillB) => {
+      if (skillB.totalTime !== skillA.totalTime) {
+        return skillB.totalTime - skillA.totalTime
+      }
+
+      if (skillB.minutesToday !== skillA.minutesToday) {
+        return skillB.minutesToday - skillA.minutesToday
+      }
+
+      return skillA.skillName.localeCompare(skillB.skillName)
+    })
+}
+
+function createStateFlags({
+  mode,
+  reason,
+  hasValidSkills,
+  hasValidSessions,
+  hasGoalSkills,
+  hasPacingData,
+  focusSkill,
+}) {
+  return {
+    isAtRisk: mode === 'priority',
+    isHealthyMomentum: mode === 'healthy',
+    isOnboarding: reason === 'no-data',
+    hasNoSkills: !hasValidSkills,
+    hasNoSessions: !hasValidSessions,
+    hasMissingGoals: reason === 'missing-goals',
+    hasInsufficientPacingData: reason === 'insufficient-pacing',
+    hasGoalSkills,
+    hasPacingData,
+    hasFocusSkill: Boolean(focusSkill),
+  }
+}
+
+function buildRecommendation({
+  mode,
+  reason,
+  focusSkill,
+  summary,
+  pacingSample,
+}) {
+  if (mode === 'priority' && focusSkill) {
+    return {
+      eyebrow: 'Operational priority',
+      title: `Stay on track with ${focusSkill.skillName}`,
+      description:
+        focusSkill.minutesToday > 0
+          ? `You already logged ${focusSkill.minutesToday} minutes today. One more session will help close the gap.`
+          : `You are ${focusSkill.progressDebtHours}h behind the current pace. A focused session now will reduce the gap.`,
+    }
+  }
+
+  if (mode === 'healthy' && focusSkill) {
+    return {
+      eyebrow: 'Healthy momentum',
+      title: `Keep momentum steady with ${focusSkill.skillName}`,
+      description:
+        summary && Number.isFinite(Number(summary.skillsOnTrack))
+          ? `${summary.skillsOnTrack} skills are on track and ${summary.skillsAhead} are ahead. Keep the rhythm with a short practice block.`
+          : 'Your plan is stable. A short practice block keeps the loop moving without creating pressure.',
+    }
+  }
+
+  if (reason === 'missing-goals') {
+    return {
+      eyebrow: 'Setup needed',
+      title: 'Set goals to unlock the hero',
+      description:
+        'Your skills exist, but none has a valid target yet. Add goals so the tracker can read pace and surface a progress ring.',
+    }
+  }
+
+  if (reason === 'insufficient-pacing') {
+    return {
+      eyebrow: 'More pacing data needed',
+      title: focusSkill
+        ? `Build enough history for ${focusSkill.skillName}`
+        : 'Build enough history to read the pace',
+      description:
+        pacingSample.totalSessions > 0
+          ? `You have ${pacingSample.totalSessions} session${pacingSample.totalSessions === 1 ? '' : 's'}, but not enough history yet to confirm pacing. Log a few more sessions.`
+          : 'You have goals, but not enough session history yet to confirm pacing. Log a few sessions first.',
+    }
+  }
+
+  return {
+    eyebrow: 'Start here',
+    title: 'Start your learning loop',
+    description:
+      'Add your first skill and session to turn the dashboard into an operational plan.',
+  }
+}
+
+function buildActions({
+  mode,
+  reason,
+  focusSkill,
+}) {
+  if (mode === 'priority' && focusSkill) {
+    return {
+      primaryAction: {
+        label: 'Practice now',
+        action: 'open_session_modal',
+        intent: 'practice_now',
+        skillId: focusSkill.skillId,
+      },
+      secondaryAction: {
+        label: 'Choose another skill',
+        action: 'open_skill_picker',
+        intent: 'switch_skill',
+      },
+    }
+  }
+
+  if (mode === 'healthy' && focusSkill) {
+    return {
+      primaryAction: {
+        label: 'Keep momentum',
+        action: 'open_session_modal',
+        intent: 'continue_practice',
+        skillId: focusSkill.skillId,
+      },
+      secondaryAction: {
+        label: 'Review another skill',
+        action: 'open_skill_picker',
+        intent: 'switch_skill',
+      },
+    }
+  }
+
+  if (reason === 'missing-goals') {
+    return {
+      primaryAction: {
+        label: 'Set a goal',
+        action: 'open_skill_goal_setup',
+        intent: 'configure_goals',
+      },
+      secondaryAction: {
+        label: 'Review skills',
+        action: 'open_skill_list',
+        intent: 'inspect_skills',
+      },
+    }
+  }
+
+  if (reason === 'insufficient-pacing') {
+    return {
+      primaryAction: {
+        label: 'Log a short session',
+        action: 'open_session_modal',
+        intent: 'build_history',
+        skillId: focusSkill ? focusSkill.skillId : null,
+      },
+      secondaryAction: {
+        label: 'Choose another skill',
+        action: 'open_skill_picker',
+        intent: 'switch_skill',
+      },
+    }
+  }
+
+  return {
+    primaryAction: {
+      label: 'Add your first skill',
+      action: 'open_skill_form',
+      intent: 'create_skill',
+    },
+    secondaryAction: {
+      label: 'Use sample data',
+      action: 'load_sample_data',
+      intent: 'seed_demo',
+    },
+  }
+}
+
+function buildProgressRing({
+  mode,
+  reason,
+  focusSkill,
+}) {
+  if (!focusSkill || (mode === 'empty' && reason === 'missing-goals')) {
+    return {
+      scope: 'unavailable',
+      percentage: null,
+      current: null,
+      target: null,
+      remaining: null,
+      isReady: false,
+    }
+  }
+
+  return {
+    scope: 'skill',
+    percentage: Math.max(0, Math.min(100, roundToTwoDecimals(focusSkill.currentProgress))),
+    current: focusSkill.totalTime,
+    target: focusSkill.targetMinutes,
+    remaining: focusSkill.remainingMinutes,
+    isReady: true,
+  }
+}
+
+function buildHeroPayload({
+  mode,
+  reason = null,
+  stateLabel,
+  summary = null,
+  focusSkill = null,
+  featuredSkill = null,
+  hasValidSkills,
+  hasValidSessions,
+  hasGoalSkills,
+  hasPacingData,
+  pacingSample,
+}) {
+  const recommendation = buildRecommendation({
+    mode,
+    reason,
+    focusSkill,
+    summary,
+    pacingSample,
+  })
+
+  const actions = buildActions({
+    mode,
+    reason,
+    focusSkill,
+  })
+
+  const flags = createStateFlags({
+    mode,
+    reason,
+    hasValidSkills,
+    hasValidSessions,
+    hasGoalSkills,
+    hasPacingData,
+    focusSkill,
+  })
+
+  return {
+    mode,
+    state: {
+      kind: mode,
+      reason,
+      label: stateLabel,
+    },
+    urgency:
+      mode === 'priority'
+        ? 'high'
+        : reason === 'missing-goals' || reason === 'insufficient-pacing'
+          ? 'medium'
+          : mode === 'healthy'
+            ? 'low'
+            : 'none',
+    severity:
+      mode === 'priority'
+        ? 'warning'
+        : mode === 'healthy'
+          ? 'success'
+          : reason === 'missing-goals' || reason === 'insufficient-pacing'
+            ? 'warning'
+            : 'neutral',
+    flags,
+    recommendation,
+    primaryAction: actions.primaryAction,
+    secondaryAction: actions.secondaryAction,
+    progressRing: buildProgressRing({
+      mode,
+      reason,
+      focusSkill,
+    }),
+    summary,
+    featuredSkill,
+    focusSkill,
+  }
+}
+
+function getHeroMode(input = {}) {
+  if (Array.isArray(input)) {
+    const skillAnalyses = input
+
+    if (skillAnalyses.length === 0) {
+      return buildHeroPayload({
+        mode: 'empty',
+        reason: 'no-data',
+        stateLabel: 'Start here',
+        hasValidSkills: false,
+        hasValidSessions: false,
+        hasGoalSkills: false,
+        hasPacingData: false,
+        pacingSample: {
+          totalSessions: 0,
+          distinctDays: 0,
+          totalMinutes: 0,
+        },
+      })
+    }
+
+    const prioritySkills = getPrioritySkills(skillAnalyses)
+
+    if (prioritySkills.length > 0) {
+      return buildHeroPayload({
+        mode: 'priority',
+        stateLabel: 'At risk',
+        featuredSkill: prioritySkills[0],
+        focusSkill: prioritySkills[0],
+        hasValidSkills: true,
+        hasValidSessions: true,
+        hasGoalSkills: true,
+        hasPacingData: true,
+        pacingSample: {
+          totalSessions: skillAnalyses.length,
+          distinctDays: skillAnalyses.length,
+          totalMinutes: 0,
+        },
+      })
+    }
+
+    const healthySkills = getHealthySkills(skillAnalyses)
+    const focusSkill = healthySkills[0] ?? skillAnalyses[0] ?? null
+    const summary = {
+      skillsOnTrack: skillAnalyses.filter((skill) => skill.status === 'on-track').length,
+      skillsAhead: skillAnalyses.filter((skill) => skill.status === 'ahead').length,
+    }
+
+    return buildHeroPayload({
+      mode: 'healthy',
+      stateLabel: 'Momentum steady',
+      summary,
+      focusSkill,
+      hasValidSkills: true,
+      hasValidSessions: true,
+      hasGoalSkills: true,
+      hasPacingData: true,
+      pacingSample: {
+        totalSessions: skillAnalyses.length,
+        distinctDays: skillAnalyses.length,
+        totalMinutes: 0,
+      },
+    })
+  }
+
+  const {
+    skillAnalyses,
+    hasValidSkills,
+    hasValidSessions,
+    hasGoalSkills,
+    pacingSample,
+  } = input
+
   if (!Array.isArray(skillAnalyses) || skillAnalyses.length === 0) {
-    return { mode: 'empty' }
+    if (!hasValidSkills && !hasValidSessions) {
+      return buildHeroPayload({
+        mode: 'empty',
+        reason: 'no-data',
+        stateLabel: 'Start here',
+        hasValidSkills,
+        hasValidSessions,
+        hasGoalSkills,
+        hasPacingData: false,
+        pacingSample,
+      })
+    }
+
+    if (!hasGoalSkills) {
+      return buildHeroPayload({
+        mode: 'empty',
+        reason: 'missing-goals',
+        stateLabel: 'Goals needed',
+        hasValidSkills,
+        hasValidSessions,
+        hasGoalSkills,
+        hasPacingData: false,
+        pacingSample,
+      })
+    }
+
+    return buildHeroPayload({
+      mode: 'empty',
+      reason: 'insufficient-pacing',
+      stateLabel: 'Need more pacing data',
+      hasValidSkills,
+      hasValidSessions,
+      hasGoalSkills,
+      hasPacingData: false,
+      pacingSample,
+    })
   }
 
   const prioritySkills = getPrioritySkills(skillAnalyses)
 
   if (prioritySkills.length > 0) {
-    return {
+    return buildHeroPayload({
       mode: 'priority',
+      stateLabel: 'At risk',
       featuredSkill: prioritySkills[0],
-    }
+      focusSkill: prioritySkills[0],
+      hasValidSkills,
+      hasValidSessions,
+      hasGoalSkills,
+      hasPacingData: true,
+      pacingSample,
+    })
   }
 
-  return {
-    mode: 'healthy',
-    summary: {
-      skillsOnTrack: skillAnalyses.filter((skill) => skill.status === 'on-track').length,
-      skillsAhead: skillAnalyses.filter((skill) => skill.status === 'ahead').length,
-    },
+  const healthySkills = getHealthySkills(skillAnalyses)
+  const focusSkill = healthySkills[0] ?? skillAnalyses[0] ?? null
+  const summary = {
+    skillsOnTrack: skillAnalyses.filter((skill) => skill.status === 'on-track').length,
+    skillsAhead: skillAnalyses.filter((skill) => skill.status === 'ahead').length,
   }
+
+  return buildHeroPayload({
+    mode: 'healthy',
+    stateLabel: 'Momentum steady',
+    summary,
+    focusSkill,
+    hasValidSkills,
+    hasValidSessions,
+    hasGoalSkills,
+    hasPacingData: true,
+    pacingSample,
+  })
 }
 
 export function createPriorityPayload({ skills = [], sessions = [], referenceDate = new Date() } = {}) {
   if (!(referenceDate instanceof Date) || Number.isNaN(referenceDate.getTime())) {
-    return { mode: 'empty' }
+    return buildHeroPayload({
+      mode: 'empty',
+      reason: 'no-data',
+      stateLabel: 'Start here',
+      hasValidSkills: false,
+      hasValidSessions: false,
+      hasGoalSkills: false,
+      hasPacingData: false,
+      pacingSample: {
+        totalSessions: 0,
+        distinctDays: 0,
+        totalMinutes: 0,
+      },
+    })
   }
 
-  const skillAnalyses = Array.isArray(skills)
-    ? skills
-        .map((skill) => buildSkillAnalysis(skill, sessions, referenceDate))
-        .filter(Boolean)
+  const validSkills = getValidSkills(skills)
+  const validSessions = Array.isArray(sessions)
+    ? sessions.filter(
+        (session) =>
+          session &&
+          (typeof session.skillId === 'string' || typeof session.skillId === 'number')
+      )
     : []
 
-  return getHeroMode(skillAnalyses)
+  const goalSkills = getGoalSkills(validSkills)
+  const goalSkillIds = goalSkills.map((skill) => normalizeId(skill.id)).filter(Boolean)
+  const goalSessions = getSessionsForSkillIds(validSessions, goalSkillIds)
+  const pacingSample = {
+    totalSessions: goalSessions.length,
+    distinctDays: getDistinctSessionDays(goalSessions),
+    totalMinutes: goalSessions.reduce((total, session) => total + getSessionDurationMinutes(session), 0),
+  }
+  const hasValidSkills = validSkills.length > 0
+  const hasValidSessions = validSessions.length > 0
+  const hasGoalSkills = goalSkills.length > 0
+  const hasPacingData = goalSessions.length >= 2 && pacingSample.distinctDays >= 2
+
+  if (!hasValidSkills && !hasValidSessions) {
+    return buildHeroPayload({
+      mode: 'empty',
+      reason: 'no-data',
+      stateLabel: 'Start here',
+      hasValidSkills,
+      hasValidSessions,
+      hasGoalSkills,
+      hasPacingData: false,
+      pacingSample,
+    })
+  }
+
+  if (!hasGoalSkills) {
+    return buildHeroPayload({
+      mode: 'empty',
+      reason: 'missing-goals',
+      stateLabel: 'Goals needed',
+      hasValidSkills,
+      hasValidSessions,
+      hasGoalSkills,
+      hasPacingData: false,
+      pacingSample,
+    })
+  }
+
+  const skillAnalyses = goalSkills
+    .map((skill) => buildSkillAnalysis(skill, sessions, referenceDate))
+    .filter(Boolean)
+
+  if (!hasPacingData) {
+    const fallbackFocusSkill = getHealthySkills(skillAnalyses)[0] ?? skillAnalyses[0] ?? null
+
+    return buildHeroPayload({
+      mode: 'empty',
+      reason: 'insufficient-pacing',
+      stateLabel: 'Need more pacing data',
+      focusSkill: fallbackFocusSkill,
+      hasValidSkills,
+      hasValidSessions,
+      hasGoalSkills,
+      hasPacingData: false,
+      pacingSample,
+    })
+  }
+
+  return getHeroMode({
+    skillAnalyses,
+    hasValidSkills,
+    hasValidSessions,
+    hasGoalSkills,
+    pacingSample,
+  })
 }
 
 export {

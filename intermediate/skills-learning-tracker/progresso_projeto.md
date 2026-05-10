@@ -1201,3 +1201,352 @@ A próxima sessão deve:
    * integração app.js  
 6. validar tudo em UI funcional mínima antes do refinamento visual definitivo.
 
+\# Andamento do Projeto — Skills Learning Tracker
+
+**\#10- Sessão encerrada**  
+Implementação dos Modais — Skill e Session (Infraestrutura \+ Fluxos MVC)
+
+\#\# Status  
+✅ concluída
+
+\#\# Decisões consolidadas
+
+\#\#\# Modal genérico  
+\- modal system consolidado como infraestrutura reutilizável  
+\- suporte funcional para:  
+  \- open  
+  \- close  
+  \- ESC  
+  \- overlay click  
+  \- content injection
+
+\#\#\# Skill Feature  
+\- fluxo de criação de skill implementado  
+\- persistência funcional integrada ao dashboard  
+\- activity derivada automática após criação  
+\- feedback visual sem empilhamento de mensagens  
+\- IDs normalizados como string  
+\- contrato mínimo oficial da Skill consolidado como:  
+  \- id  
+  \- name  
+  \- color  
+  \- createdAt
+
+\#\#\# Skill Modal  
+\- HTML removido do app.js  
+\- template extraído para camada própria  
+\- Skill View passou a encapsular:  
+  \- renderização  
+  \- eventos  
+  \- coleta de dados  
+  \- emissão de payload  
+\- inclusão do campo color no formulário  
+\- app.js mantido apenas como orquestrador
+
+\#\#\# Session Feature  
+\- Session modal funcional  
+\- abertura via Recent Activity  
+\- presets de duração implementados  
+\- custom duration implementado  
+\- estado interno da view implementado  
+\- Session desacoplada de Activity  
+\- Session definida como:  
+  \- domínio bruto  
+\- Activity definida como:  
+  \- evento derivado para feed visual
+
+\#\#\# Session Persistence  
+\- persistência real de Session implementada  
+\- geração automática de Activity após Session  
+\- updateDashboard integrado ao fluxo  
+\- recentActivity passou a reagir a dados reais
+
+\#\#\# Activity System  
+\- activities derivadas implementadas para:  
+  \- criação de skill  
+  \- prática de sessão  
+\- recentActivity consolidado como feed dinâmico  
+\- timeline preparada para futuras regras inteligentes
+
+\#\#\# Correções arquiteturais  
+\- correção de inconsistência entre IDs numéricos e string  
+\- lookup da skill mantido fora da view  
+\- Session Modal passou a exibir skillName em vez de skillId  
+\- store mantida como camada burra de persistência  
+\- views mantidas desacopladas da store
+
+\#\# Impacto desta etapa no projeto
+
+\#\#\# Esta sessão habilitou  
+\- fluxo completo real de domínio  
+\- persistência desacoplada  
+\- eventos derivados  
+\- dashboard reativo  
+\- base estrutural para regras inteligentes
+
+\#\#\# Onde será usado nas próximas etapas  
+\- priority system  
+\- consistency system  
+\- heatmap real  
+\- analytics  
+\- skill selection feature  
+\- dashboard intelligence
+
+\#\#\# Qual risco foi reduzido  
+\- vazamento de responsabilidade no app.js  
+\- acoplamento entre UI e store  
+\- inconsistência de tipos de IDs  
+\- mistura entre domínio bruto e feed visual
+
+\#\# Pendências abertas  
+\- refinamentos visuais dos modais  
+\- UX refinada  
+\- acessibilidade refinada  
+\- design system definitivo  
+\- formatação visual final do dashboard  
+\- feedbacks avançados de interface
+
+\#\# Riscos aceitos  
+\- UI ainda provisória  
+\- heatmap ainda não totalmente conectado ao domínio real  
+\- dashboard ainda sem inteligência comportamental  
+\- priority system ainda inexistente
+
+\#\# Próxima sessão  
+Priority System — Inteligência do Produto
+
+\#\#\# Ponto de partida da próxima sessão  
+Implementar o sistema de prioridade de skills negligenciadas utilizando:  
+\- sessions reais  
+\- activities derivadas  
+\- temporalidade  
+\- comportamento do usuário
+
+A próxima etapa marca a transição de:  
+\- infraestrutura operacional  
+para:  
+\- inteligência de produto e interpretação de comportamento.
+
+**\#10- Sessão encerrada**  
+Priority System — Inteligência do Produto
+
+\#\# Status  
+✅ concluída
+
+\#\# Decisões consolidadas
+
+\- O sistema de prioridade deixou de considerar “abandono” e passou oficialmente a utilizar:  
+  \- distância da meta esperada;  
+  \- progress debt;  
+  \- equilíbrio operacional entre skills.
+
+\- A lógica oficial da feature passou a ser:  
+    
+\`\`\`plaintext  
+quanto maior a dívida de progresso,  
+maior a prioridade da skill  
+\`\`\`
+
+\- Foi definido que:  
+  \- valores positivos representam atraso;  
+  \- valores negativos representam adiantamento.
+
+\- A feature passou a considerar:  
+  \- progresso atual;  
+  \- progresso esperado;  
+  \- tolerância operacional saudável.
+
+\- A tolerância global oficial definida foi:
+
+\`\`\`js  
+const PROGRESS\_DEBT\_TOLERANCE \= 10  
+\`\`\`
+
+\- Skills “ahead”:  
+  \- NÃO entram como prioridade;  
+  \- NÃO geram urgência;  
+  \- continuam informativas.
+
+\- O sistema prioriza:  
+  \- equilíbrio do plano;  
+  \- pacing saudável;  
+  \- prevenção de desalinhamento entre skills.
+
+\- Foi decidido que o hero:  
+  \- nunca deve ficar vazio;  
+  \- deve comunicar estado operacional do plano.
+
+\- Foram definidos oficialmente os hero modes:  
+  \- empty  
+  \- priority  
+  \- healthy
+
+\- O healthy state representa:  
+  \- equilíbrio sustentável;  
+  \- estabilidade do plano;  
+  \- pacing saudável.
+
+\- A abordagem oficial de comunicação da prioridade passou a utilizar:  
+  \- debt percentual;  
+  \- debt em horas;  
+  \- current vs expected.
+
+\- Foi decidido que:  
+  \- o percentual comunica gravidade;  
+  \- as horas comunicam impacto prático;  
+  \- ambas as métricas se complementam.
+
+\---
+
+\#\# Implementações concluídas
+
+\#\#\# Etapa 1 — Priority Service Core  
+✅ concluída
+
+Implementado:  
+\- \`priority.service.js\`  
+\- cálculo de debt  
+\- cálculo de progress expected  
+\- cálculo de progress current  
+\- status:  
+  \- ahead  
+  \- on-track  
+  \- behind  
+\- seleção da featured skill  
+\- hero mode detection  
+\- payload semântico puro  
+\- UTC-safe date handling  
+\- normalização e validações defensivas
+
+Função pública oficial criada:
+
+\`\`\`js  
+createPriorityPayload()  
+\`\`\`
+
+\---
+
+\#\#\# Etapa 2 — Dashboard Aggregation Integration  
+✅ concluída
+
+Implementado:  
+\- integração do Priority System ao dashboard  
+\- controller consumindo \`createPriorityPayload()\`  
+\- novo fluxo semântico do featured hero  
+\- remoção do featured legado do dashboard service  
+\- integração MVC preservada
+
+Fluxo consolidado:
+
+\`\`\`plaintext  
+skills \+ sessions  
+↓  
+priority.service  
+↓  
+semantic payload  
+↓  
+controller  
+↓  
+renderer  
+↓  
+DOM  
+\`\`\`
+
+\---
+
+\#\#\# Etapa 3 — Hero Renderer Evolution  
+✅ concluída
+
+Implementado:  
+\- renderer orientado por estado  
+\- templates separados por mode  
+\- shell visual compartilhado  
+\- modifiers BEM por estado  
+\- renderização semântica  
+\- healthy mode funcional  
+\- priority mode operacional  
+\- empty mode simplificado
+
+O renderer passou oficialmente a operar como:
+
+\`\`\`plaintext  
+state-driven renderer  
+\`\`\`
+
+\---
+
+\#\# Impacto desta etapa no projeto
+
+Esta sessão consolidou:  
+\- o primeiro sistema operacional real do dashboard;  
+\- a primeira feature state-driven completa;  
+\- o primeiro fluxo semântico fim-a-fim do produto.
+
+A sessão habilitou:  
+\- UX baseada em comportamento real;  
+\- futura hierarquia visual baseada em estados reais;  
+\- wireframes mais precisos;  
+\- evolução segura da UI.
+
+Também reduziu significativamente os riscos de:  
+\- lógica duplicada;  
+\- renderer acoplado;  
+\- domínio espalhado;  
+\- inconsistência entre painéis.
+
+\---
+
+\#\# Pendências abertas
+
+\- Revisão arquitetural dos painéis:  
+  \- stats  
+  \- consistency  
+  \- recent activity
+
+\- Auditoria de:  
+  \- payload semântico  
+  \- responsabilidades MVC  
+  \- possíveis cálculos na view  
+  \- contratos provisórios
+
+\- Definição da hierarquia definitiva do dashboard
+
+\- Wireframe final do dashboard
+
+\- UI final e refinamento visual completo
+
+\---
+
+\#\# Riscos aceitos
+
+\- O hero atual ainda utiliza:  
+  \- estrutura visual provisória;  
+  \- sem o wireframe final oficial.
+
+\- Alguns painéis do dashboard ainda podem:  
+  \- possuir contratos parcialmente provisórios;  
+  \- conter semântica insuficiente;  
+  \- precisar de evolução arquitetural antes do refinamento visual final.
+
+\---
+
+\#\# Próxima sessão  
+Dashboard Data Contract Review
+
+\#\#\# Ponto de partida da próxima sessão
+
+Auditar estruturalmente:  
+\- stats panel  
+\- consistency panel  
+\- recent activity panel
+
+Objetivos:  
+\- validar responsabilidades MVC;  
+\- revisar payloads;  
+\- identificar cálculos indevidos na view;  
+\- consolidar contratos semânticos;  
+\- preparar o dashboard para:  
+  \- wireframe final;  
+  \- hierarchy review;  
+  \- UI definitiva.
+

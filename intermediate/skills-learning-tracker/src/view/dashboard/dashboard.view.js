@@ -1,4 +1,4 @@
-const EMPTY_TEXT = 'No data available'; // MENSAGEM DE RETORNO CASO NÃO EXISTA DADO
+const EMPTY_TEXT = 'No data available'; 
 
 function escapeHtml(value) {
   return String(value)
@@ -138,6 +138,166 @@ function renderDefinitionItems(items) {
     .join('');
 }
 
+function renderActionButton(action, modifierClass = '') {
+  if (!action || typeof action !== 'object' || !action.label) {
+    return ''
+  }
+
+  const className = ['dashboard__hero-action', modifierClass]
+    .filter((item) => typeof item === 'string' && item.trim() !== '')
+    .join(' ')
+  const skillId =
+    typeof action.skillId === 'string' && action.skillId.trim() !== ''
+      ? action.skillId
+      : ''
+
+  return `
+    <button
+      class="${className}"
+      data-action="${escapeHtml(String(action.action ?? ''))}"
+      data-intent="${escapeHtml(String(action.intent ?? ''))}"
+      ${skillId ? `data-skill-id="${escapeHtml(skillId)}"` : ''}
+      type="button"
+    >
+      ${escapeHtml(action.label)}
+    </button>
+  `
+}
+
+function renderActionButtons(primaryAction, secondaryAction) {
+  const buttons = [
+    renderActionButton(primaryAction, 'dashboard__hero-action--primary'),
+    renderActionButton(secondaryAction, 'dashboard__hero-action--secondary'),
+  ].filter(Boolean)
+
+  if (buttons.length === 0) {
+    return ''
+  }
+
+  return `
+    <div class="dashboard__hero-actions">
+      ${buttons.join('')}
+    </div>
+  `
+}
+
+function renderProgressRingDetails(progressRing) {
+  if (!progressRing || !progressRing.isReady) {
+    return ''
+  }
+
+  return renderDefinitionItems([
+    {
+      label: 'Ring scope',
+      value: progressRing.scope,
+    },
+    {
+      label: 'Ring progress',
+      value: `${formatNumber(progressRing.percentage, 1)}%`,
+    },
+    {
+      label: 'Current',
+      value: formatMinutes(progressRing.current),
+    },
+    {
+      label: 'Target',
+      value: formatMinutes(progressRing.target),
+    },
+    {
+      label: 'Remaining',
+      value: formatMinutes(progressRing.remaining),
+    },
+  ])
+}
+
+function renderFeatureDetails(featuredInsight) {
+  const progressRingDetails = renderProgressRingDetails(featuredInsight?.progressRing)
+
+  if (featuredInsight?.mode === 'priority') {
+    const featuredSkill = featuredInsight.featuredSkill ?? featuredInsight.focusSkill
+
+    return renderDefinitionItems([
+      {
+        label: 'State',
+        value: featuredInsight?.state?.label ?? EMPTY_TEXT,
+      },
+      {
+        label: 'Skill',
+        value: featuredSkill?.skillName ?? EMPTY_TEXT,
+      },
+      {
+        label: 'Progress debt',
+        value:
+          featuredSkill
+            ? `${formatNumber(featuredSkill.progressDebtPercent)}% / ${formatNumber(featuredSkill.progressDebtHours)}h`
+            : EMPTY_TEXT,
+      },
+      {
+        label: 'Current vs expected',
+        value:
+          featuredSkill
+            ? `${formatNumber(featuredSkill.currentProgress)}% / ${formatNumber(featuredSkill.expectedProgress)}%`
+            : EMPTY_TEXT,
+      },
+      {
+        label: 'Total time',
+        value: featuredSkill ? formatMinutes(featuredSkill.totalTime) : EMPTY_TEXT,
+      },
+      {
+        label: 'Minutes today',
+        value: featuredSkill ? formatMinutes(featuredSkill.minutesToday) : EMPTY_TEXT,
+      },
+    ]) + progressRingDetails
+  }
+
+  if (featuredInsight?.mode === 'healthy') {
+    const summary = featuredInsight.summary ?? {}
+    const focusSkill = featuredInsight.focusSkill
+
+    return renderDefinitionItems([
+      {
+        label: 'State',
+        value: featuredInsight?.state?.label ?? EMPTY_TEXT,
+      },
+      {
+        label: 'Skills on track',
+        value: Number.isFinite(Number(summary.skillsOnTrack)) ? String(Number(summary.skillsOnTrack)) : '0',
+      },
+      {
+        label: 'Skills ahead',
+        value: Number.isFinite(Number(summary.skillsAhead)) ? String(Number(summary.skillsAhead)) : '0',
+      },
+      {
+        label: 'Focus skill',
+        value: focusSkill?.skillName ?? EMPTY_TEXT,
+      },
+      {
+        label: 'Current progress',
+        value: focusSkill ? `${formatNumber(focusSkill.currentProgress)}%` : EMPTY_TEXT,
+      },
+    ]) + progressRingDetails
+  }
+
+  return renderDefinitionItems([
+    {
+      label: 'State',
+      value: featuredInsight?.state?.label ?? EMPTY_TEXT,
+    },
+    {
+      label: 'Reason',
+      value: featuredInsight?.state?.reason ?? EMPTY_TEXT,
+    },
+    {
+      label: 'Goals',
+      value: featuredInsight?.flags?.hasGoalSkills ? 'Available' : 'Missing',
+    },
+    {
+      label: 'Pacing data',
+      value: featuredInsight?.flags?.hasPacingData ? 'Ready' : 'Not ready',
+    },
+  ]) + progressRingDetails
+}
+
 function renderFeaturedShell({
   modifierClass = 'dashboard__panel--empty',
   eyebrow,
@@ -146,6 +306,7 @@ function renderFeaturedShell({
   statusLabel,
   statusClassName = '',
   details = '',
+  actions = '',
   emptyMessage = '',
 }) {
   return `
@@ -172,6 +333,11 @@ function renderFeaturedShell({
           : ''
       }
       ${
+        actions
+          ? actions
+          : ''
+      }
+      ${
         emptyMessage
           ? `<p class="dashboard__empty">${escapeHtml(emptyMessage)}</p>`
           : ''
@@ -180,105 +346,55 @@ function renderFeaturedShell({
   `;
 }
 
-function renderFeaturedEmpty() {
+function renderFeaturedInsightEmpty(featuredInsight = {}) {
   return renderFeaturedShell({
     modifierClass: 'dashboard__panel--empty',
-    eyebrow: 'Plan status',
-    title: 'No learning data yet',
-    summary: 'Add your first skill or session to surface the plan state here.',
-    statusLabel: 'Awaiting data',
+    eyebrow: featuredInsight?.recommendation?.eyebrow ?? 'Plan status',
+    title: featuredInsight?.recommendation?.title ?? 'No learning data yet',
+    summary: featuredInsight?.recommendation?.description ?? 'Add your first skill or session to surface the plan state here.',
+    statusLabel: featuredInsight?.state?.label ?? 'Awaiting data',
     statusClassName: 'dashboard__status-pill--empty',
+    details: renderFeatureDetails(featuredInsight),
+    actions: renderActionButtons(featuredInsight?.primaryAction, featuredInsight?.secondaryAction),
     emptyMessage: EMPTY_TEXT,
   });
 }
 
-function renderFeaturedPriority(featuredSkill) {
-  if (!featuredSkill) {
-    return renderFeaturedEmpty();
-  }
-
-  const {
-    skillName,
-    progressDebtPercent,
-    progressDebtHours,
-    currentProgress,
-    expectedProgress,
-    totalTime,
-    minutesToday,
-    status,
-  } = featuredSkill;
-
+function renderFeaturedInsightPriority(featuredInsight) {
   return renderFeaturedShell({
     modifierClass: 'dashboard__panel--priority',
-    eyebrow: 'Operational priority',
-    title: skillName,
-    summary: 'This skill has the largest progress debt in the current plan.',
-    statusLabel: getPriorityStatusLabel(status),
-    statusClassName: `dashboard__status-pill--${status === 'behind' ? 'behind' : status === 'ahead' ? 'ahead' : 'on-track'}`,
-    details: renderDefinitionItems([
-      {
-        label: 'Status',
-        value: getPriorityStatusLabel(status),
-      },
-      {
-        label: 'Progress debt',
-        value: `${formatNumber(progressDebtPercent)}% / ${formatNumber(progressDebtHours)}h`,
-      },
-      {
-        label: 'Current vs expected',
-        value: `${formatNumber(currentProgress)}% / ${formatNumber(expectedProgress)}%`,
-      },
-      {
-        label: 'Total time',
-        value: formatMinutes(totalTime),
-      },
-      {
-        label: 'Minutes today',
-        value: formatMinutes(minutesToday),
-      },
-    ]),
+    eyebrow: featuredInsight?.recommendation?.eyebrow ?? 'Operational priority',
+    title: featuredInsight?.recommendation?.title ?? EMPTY_TEXT,
+    summary: featuredInsight?.recommendation?.description ?? EMPTY_TEXT,
+    statusLabel: featuredInsight?.state?.label ?? 'At risk',
+    statusClassName: 'dashboard__status-pill--behind',
+    details: renderFeatureDetails(featuredInsight),
+    actions: renderActionButtons(featuredInsight?.primaryAction, featuredInsight?.secondaryAction),
   });
 }
 
-function renderFeaturedHealthy(summary) {
-  if (!summary) {
-    return renderFeaturedEmpty();
-  }
-
-  const {
-    skillsOnTrack,
-    skillsAhead,
-  } = summary;
-
+function renderFeaturedInsightHealthy(featuredInsight) {
   return renderFeaturedShell({
     modifierClass: 'dashboard__panel--healthy',
-    eyebrow: 'Healthy plan',
-    title: 'Balanced and sustainable',
-    summary: 'The current pace is stable across the plan.',
-    statusLabel: 'Stable',
+    eyebrow: featuredInsight?.recommendation?.eyebrow ?? 'Healthy plan',
+    title: featuredInsight?.recommendation?.title ?? 'Balanced and sustainable',
+    summary: featuredInsight?.recommendation?.description ?? 'The current pace is stable across the plan.',
+    statusLabel: featuredInsight?.state?.label ?? 'Stable',
     statusClassName: 'dashboard__status-pill--healthy',
-    details: renderDefinitionItems([
-      {
-        label: 'Skills on track',
-        value: Number.isFinite(Number(skillsOnTrack)) ? String(Number(skillsOnTrack)) : '0',
-      },
-      {
-        label: 'Skills ahead',
-        value: Number.isFinite(Number(skillsAhead)) ? String(Number(skillsAhead)) : '0',
-      },
-    ]),
+    details: renderFeatureDetails(featuredInsight),
+    actions: renderActionButtons(featuredInsight?.primaryAction, featuredInsight?.secondaryAction),
   });
 }
 
-function renderFeatured(featuredData) {
-  switch (featuredData?.mode) {
+function renderFeaturedInsight(featuredInsight) {
+  switch (featuredInsight?.mode) {
     case 'priority':
-      return renderFeaturedPriority(featuredData.featuredSkill);
+      return renderFeaturedInsightPriority(featuredInsight);
     case 'healthy':
-      return renderFeaturedHealthy(featuredData.summary);
+      return renderFeaturedInsightHealthy(featuredInsight);
     case 'empty':
     default:
-      return renderFeaturedEmpty();
+      return renderFeaturedInsightEmpty(featuredInsight);
   }
 }
 
@@ -460,14 +576,14 @@ export function createDashboardView() {
     }
 
     const {
-      featured = null,
+      featuredInsight = null,
       globalStats = null,
       consistency = [],
       recentActivity = [],
     } = dashboardData;
 
 
-    elements.featured.innerHTML = renderFeatured(featured);
+    elements.featured.innerHTML = renderFeaturedInsight(featuredInsight);
     elements.stats.innerHTML = renderStats(globalStats);
     elements.consistency.innerHTML = renderConsistency(consistency);
     elements.recentActivity.innerHTML = renderRecentActivity(recentActivity);

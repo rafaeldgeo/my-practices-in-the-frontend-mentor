@@ -1,11 +1,8 @@
-import { createPriorityPayload } from '../../services/priority.service.js';
-
 export function createDashboardController({
   store,
   dashboardService,
   view,
   onActivityClick,
-  createPriorityPayload: buildPriorityPayload = createPriorityPayload,
 } = {}) {
   async function updateDashboard() {
     const [skills, sessions] = await Promise.all([
@@ -13,12 +10,8 @@ export function createDashboardController({
       store.getSessions(),
     ]);
     const dashboardData = dashboardService.createDashboardData({ skills, sessions });
-    const featured = buildPriorityPayload({ skills, sessions });
 
-    view.render({
-      ...dashboardData,
-      featured,
-    });
+    view.render(dashboardData);
   }
 
   async function initDashboard() {
