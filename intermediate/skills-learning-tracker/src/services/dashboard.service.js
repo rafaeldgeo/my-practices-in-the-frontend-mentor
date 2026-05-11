@@ -4,6 +4,7 @@ import { calculateStreak } from './streak.service.js';
 
 const GLOBAL_SKILL_ID = '__global__'; 
 const FEATURED_MINUTES_THRESHOLD = 60; 
+const RECENT_WINDOW_DAYS = 7;
 
 function normalizeId(value) {
   if (typeof value === 'string') {
@@ -22,15 +23,15 @@ function getSessionDuration(session) {
     return 0;
   }
 
-  if (typeof session.duration === 'number' && !Number.isNaN(session.duration)) {
-    return session.duration;
-  }
-
   if (
     typeof session.durationMinutes === 'number' &&
     !Number.isNaN(session.durationMinutes)
   ) {
     return session.durationMinutes;
+  }
+
+  if (typeof session.duration === 'number' && !Number.isNaN(session.duration)) {
+    return session.duration;
   }
 
   return 0;
@@ -46,6 +47,147 @@ function getSessionDate(session) {
   }
 
   return session.date;
+}
+
+function getDateString(referenceDate = new Date()) {
+  const date = referenceDate instanceof Date ? referenceDate : new Date(referenceDate);
+
+  if (Number.isNaN(date.getTime())) {
+    return '';
+  }
+
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+
+  return `${year}-${month}-${day}`;
+}
+
+function shiftDateString(dateString, dayOffset) {
+  if (!isValidDateString(dateString)) {
+    return '';
+  }
+
+  const date = new Date(`${dateString}T00:00:00`);
+  date.setDate(date.getDate() + dayOffset);
+  return getDateString(date);
+}
+
+function getDateWindow(referenceDate = new Date(), days = RECENT_WINDOW_DAYS) {
+  const referenceDateString = getDateString(referenceDate);
+
+  if (referenceDateString === '') {
+    return {
+      currentStart: '',
+      currentEnd: '',
+      previousStart: '',
+      previousEnd: '',
+    };
+  }
+
+  const currentStart = shiftDateString(referenceDateString, -(days - 1));
+  const currentEnd = referenceDateString;
+  const previousStart = shiftDateString(currentStart, -days);
+  const previousEnd = shiftDateString(currentStart, -1);
+
+  return {
+    currentStart,
+    currentEnd,
+    previousStart,
+    previousEnd,
+  };
+}
+
+function isSessionInRange(session, startDate, endDate) {
+  const date = getSessionDate(session);
+
+  if (!date || !isValidDateString(startDate) || !isValidDateString(endDate)) {
+    return false;
+  }
+
+  return date >= startDate && date <= endDate;
+}
+
+function getSessionsInRange(sessions, startDate, endDate) {
+  if (!Array.isArray(sessions)) {
+    return [];
+  }
+
+  return sessions.filter((session) => isSessionInRange(session, startDate, endDate));
+}
+
+function getTotalMinutes(sessions) {
+  return sessions.reduce((total, session) => total + getSessionDuration(session), 0);
+}
+
+function getDistinctSkillCount(sessions) {
+  return new Set(
+    sessions
+      .filter(
+        (session) =>
+          session && (typeof session.skillId === 'string' || typeof session.skillId === 'number')
+      )
+      .map((session) => normalizeId(session.skillId))
+      .filter((skillId) => skillId !== '')
+  ).size;
+}
+
+function getTrend(currentValue, previousValue) {
+  if (currentValue > previousValue) {
+    return 'up';
+  }
+
+  if (currentValue < previousValue) {
+    return 'down';
+  }
+
+  return 'stable';
+}
+
+function getStreakTrend(currentStreak) {
+  if (currentStreak >= 3) {
+    return 'up';
+  }
+
+  if (currentStreak > 0) {
+    return 'stable';
+  }
+
+  return 'down';
+}
+
+function formatMinutesLabel(totalMinutes) {
+  const minutes = Number.isFinite(Number(totalMinutes)) ? Math.max(0, Number(totalMinutes)) : 0;
+  const hours = Math.floor(minutes / 60);
+  const remainder = minutes % 60;
+
+  if (hours > 0 && remainder > 0) {
+    return `${hours}h ${remainder}m`;
+  }
+
+  if (hours > 0) {
+    return `${hours}h`;
+  }
+
+  return `${minutes}m`;
+}
+
+function formatCountLabel(value, noun, suffix = '') {
+  const count = Number.isFinite(Number(value)) ? Number(value) : 0;
+  const pluralizedNoun = count === 1 ? noun : `${noun}s`;
+
+  return `${count} ${pluralizedNoun}${suffix}`;
+}
+
+function createKpi({ key, label, value, displayValue, trend, periodLabel }) {
+  return {
+    key,
+    label,
+    value,
+    displayValue,
+    trend,
+    periodLabel,
+  };
 }
 
 function normalizeSessionsForStats(sessions) {
@@ -270,13 +412,61 @@ export function createDashboardData({
   referenceDate = new Date(),
 } = {}) {
   const skillStats = calculateStats(normalizeSessionsForStats(sessions), GLOBAL_SKILL_ID);
-  const skillStreak = calculateStreak(normalizeSessionsForStreak(sessions), GLOBAL_SKILL_ID);
+  const skillStreak = calculateStreak(
+    normalizeSessionsForStreak(sessions),
+    GLOBAL_SKILL_ID,
+    referenceDate
+  );
+  const dateWindow = getDateWindow(referenceDate);
+  const currentWindowSessions = getSessionsInRange(
+    sessions,
+    dateWindow.currentStart,
+    dateWindow.currentEnd
+  );
+  const previousWindowSessions = getSessionsInRange(
+    sessions,
+    dateWindow.previousStart,
+    dateWindow.previousEnd
+  );
+  const weeklyPracticeMinutes = getTotalMinutes(currentWindowSessions);
+  const previousWeeklyPracticeMinutes = getTotalMinutes(previousWindowSessions);
+  const skillsPracticed = getDistinctSkillCount(currentWindowSessions);
+  const previousSkillsPracticed = getDistinctSkillCount(previousWindowSessions);
 
   return {
     globalStats: {
-      totalTime: skillStats.totalTime,
-      totalSessions: skillStats.totalSessions,
-      currentStreak: skillStreak.currentStreak,
+      streak: createKpi({
+        key: 'streak',
+        label: 'Current streak',
+        value: skillStreak.currentStreak,
+        displayValue: formatCountLabel(skillStreak.currentStreak, 'day'),
+        trend: getStreakTrend(skillStreak.currentStreak),
+        periodLabel: 'Current day chain',
+      }),
+      weeklyPractice: createKpi({
+        key: 'weeklyPractice',
+        label: 'Weekly practice',
+        value: weeklyPracticeMinutes,
+        displayValue: `${formatMinutesLabel(weeklyPracticeMinutes)} this week`,
+        trend: getTrend(weeklyPracticeMinutes, previousWeeklyPracticeMinutes),
+        periodLabel: 'Last 7 days',
+      }),
+      skillsPracticed: createKpi({
+        key: 'skillsPracticed',
+        label: 'Skills practiced',
+        value: skillsPracticed,
+        displayValue: formatCountLabel(skillsPracticed, 'skill', ' this week'),
+        trend: getTrend(skillsPracticed, previousSkillsPracticed),
+        periodLabel: 'Last 7 days',
+      }),
+      totalLearningTime: createKpi({
+        key: 'totalLearningTime',
+        label: 'Total learning time',
+        value: skillStats.totalTime,
+        displayValue: `${formatMinutesLabel(skillStats.totalTime)} total`,
+        trend: getTrend(weeklyPracticeMinutes, previousWeeklyPracticeMinutes),
+        periodLabel: 'All time',
+      }),
     },
     consistency: getConsistencyByDate(sessions),
     recentActivity: getRecentActivity(sessions, skills),

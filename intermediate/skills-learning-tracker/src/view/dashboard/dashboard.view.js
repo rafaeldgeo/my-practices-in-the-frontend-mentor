@@ -109,33 +109,123 @@ function formatNumber(value, fractionDigits = 1) {
   return numericValue.toFixed(fractionDigits);
 }
 
+function renderTrendBadge(trend) {
+  const normalizedTrend =
+    trend === 'up' || trend === 'down' || trend === 'stable' ? trend : 'stable';
+  const trendLabel = {
+    up: 'Trending up',
+    stable: 'Stable pace',
+    down: 'Trending down',
+  }[normalizedTrend];
+  const trendSymbol = {
+    up: '↑',
+    stable: '•',
+    down: '↓',
+  }[normalizedTrend];
 
-function getPriorityStatusLabel(status) {
-  if (status === 'behind') {
-    return 'Behind';
-  }
-
-  if (status === 'ahead') {
-    return 'Ahead';
-  }
-
-  if (status === 'on-track') {
-    return 'On track';
-  }
-
-  return EMPTY_TEXT;
+  return `
+    <span
+      class="dashboard__kpi-trend dashboard__kpi-trend--${normalizedTrend}"
+      data-kpi-trend="${normalizedTrend}"
+      aria-label="${escapeHtml(trendLabel)}"
+    >
+      <span class="dashboard__kpi-trend-symbol" aria-hidden="true">${trendSymbol}</span>
+      <span class="dashboard__kpi-trend-label">${escapeHtml(trendLabel)}</span>
+    </span>
+  `;
 }
 
-function renderDefinitionItems(items) {
-  return items
-    .filter((item) => item && typeof item.label === 'string' && item.label.trim() !== '')
-    .map((item) => `
-      <div class="dashboard__definition-item">
-        <dt>${escapeHtml(item.label)}</dt>
-        <dd>${escapeHtml(String(item.value ?? EMPTY_TEXT))}</dd>
-      </div>
-    `)
+function renderKpiItem(kpi, modifierClass = '') {
+  if (!kpi || typeof kpi !== 'object') {
+    return '';
+  }
+
+  const label = typeof kpi.label === 'string' ? kpi.label.trim() : '';
+  const displayValue = typeof kpi.displayValue === 'string' ? kpi.displayValue.trim() : '';
+  const trend = typeof kpi.trend === 'string' ? kpi.trend.trim() : 'stable';
+  const key = typeof kpi.key === 'string' ? kpi.key.trim() : '';
+  const periodLabel = typeof kpi.periodLabel === 'string' ? kpi.periodLabel.trim() : '';
+
+  if (label === '' || displayValue === '') {
+    return '';
+  }
+
+  return `
+    <div
+      class="dashboard__definition-item ${escapeHtml(modifierClass)}"
+      data-kpi-key="${escapeHtml(key)}"
+      data-kpi-trend="${escapeHtml(trend)}"
+    >
+      <dt class="dashboard__definition-term">
+        <span class="dashboard__kpi-label">${escapeHtml(label)}</span>
+        ${renderTrendBadge(trend)}
+      </dt>
+      <dd>${escapeHtml(displayValue)}</dd>
+      ${
+        periodLabel
+          ? `<dd class="dashboard__definition-meta">${escapeHtml(periodLabel)}</dd>`
+          : ''
+      }
+    </div>
+  `;
+}
+
+function getStatsItems(globalStats) {
+  if (!globalStats || typeof globalStats !== 'object') {
+    return [];
+  }
+
+  return [
+    globalStats.streak,
+    globalStats.weeklyPractice,
+    globalStats.skillsPracticed,
+    globalStats.totalLearningTime,
+  ].filter(Boolean);
+}
+
+function getStatGroupingClass(index) {
+  return index < 2
+    ? 'dashboard__definition-item--primary'
+    : 'dashboard__definition-item--secondary';
+}
+
+function renderHeroMetric(metric) {
+  if (!metric || typeof metric !== 'object') {
+    return ''
+  }
+
+  const label = typeof metric.label === 'string' ? metric.label.trim() : ''
+  const value = typeof metric.value === 'string' ? metric.value.trim() : ''
+  const note = typeof metric.note === 'string' ? metric.note.trim() : ''
+
+  if (label === '' || value === '') {
+    return ''
+  }
+
+  return `
+    <div class="dashboard__hero-metric">
+      <p class="dashboard__hero-metric-label">${escapeHtml(label)}</p>
+      <p class="dashboard__hero-metric-value">${escapeHtml(value)}</p>
+      ${
+        note
+          ? `<p class="dashboard__hero-metric-note">${escapeHtml(note)}</p>`
+          : ''
+      }
+    </div>
+  `
+}
+
+function renderHeroMetrics(items) {
+  return (Array.isArray(items) ? items : [])
+    .map((item) => renderHeroMetric(item))
+    .filter(Boolean)
     .join('');
+}
+
+function normalizeHeroSummary(summary) {
+  return String(summary)
+    .replace(/\bcurrent pace\b/gi, 'ongoing pace')
+    .replace(/\bcurrent progress\b/gi, 'ongoing progress')
 }
 
 function renderActionButton(action, modifierClass = '') {
@@ -181,121 +271,64 @@ function renderActionButtons(primaryAction, secondaryAction) {
   `
 }
 
-function renderProgressRingDetails(progressRing) {
-  if (!progressRing || !progressRing.isReady) {
-    return ''
-  }
-
-  return renderDefinitionItems([
-    {
-      label: 'Ring scope',
-      value: progressRing.scope,
-    },
-    {
-      label: 'Ring progress',
-      value: `${formatNumber(progressRing.percentage, 1)}%`,
-    },
-    {
-      label: 'Current',
-      value: formatMinutes(progressRing.current),
-    },
-    {
-      label: 'Target',
-      value: formatMinutes(progressRing.target),
-    },
-    {
-      label: 'Remaining',
-      value: formatMinutes(progressRing.remaining),
-    },
-  ])
-}
-
 function renderFeatureDetails(featuredInsight) {
-  const progressRingDetails = renderProgressRingDetails(featuredInsight?.progressRing)
 
   if (featuredInsight?.mode === 'priority') {
     const featuredSkill = featuredInsight.featuredSkill ?? featuredInsight.focusSkill
 
-    return renderDefinitionItems([
-      {
-        label: 'State',
-        value: featuredInsight?.state?.label ?? EMPTY_TEXT,
-      },
-      {
-        label: 'Skill',
-        value: featuredSkill?.skillName ?? EMPTY_TEXT,
-      },
+    return renderHeroMetrics([
       {
         label: 'Progress debt',
-        value:
-          featuredSkill
-            ? `${formatNumber(featuredSkill.progressDebtPercent)}% / ${formatNumber(featuredSkill.progressDebtHours)}h`
-            : EMPTY_TEXT,
+        value: featuredSkill
+          ? `${formatNumber(featuredSkill.progressDebtPercent)}% behind pace`
+          : EMPTY_TEXT,
+        note: featuredSkill ? `${formatNumber(featuredSkill.progressDebtHours)}h gap` : '',
       },
       {
-        label: 'Current vs expected',
-        value:
-          featuredSkill
-            ? `${formatNumber(featuredSkill.currentProgress)}% / ${formatNumber(featuredSkill.expectedProgress)}%`
-            : EMPTY_TEXT,
+        label: 'Progress pace',
+        value: featuredSkill
+          ? `${formatNumber(featuredSkill.currentProgress)}% completed`
+          : EMPTY_TEXT,
+        note: featuredSkill ? `Expected by now ${formatNumber(featuredSkill.expectedProgress)}%` : '',
       },
       {
-        label: 'Total time',
-        value: featuredSkill ? formatMinutes(featuredSkill.totalTime) : EMPTY_TEXT,
-      },
-      {
-        label: 'Minutes today',
+        label: 'Today',
         value: featuredSkill ? formatMinutes(featuredSkill.minutesToday) : EMPTY_TEXT,
+        note: 'Momentum logged today',
       },
-    ]) + progressRingDetails
+    ])
   }
 
   if (featuredInsight?.mode === 'healthy') {
     const summary = featuredInsight.summary ?? {}
     const focusSkill = featuredInsight.focusSkill
 
-    return renderDefinitionItems([
+    return renderHeroMetrics([
       {
-        label: 'State',
-        value: featuredInsight?.state?.label ?? EMPTY_TEXT,
+        label: 'Progress pace',
+        value: focusSkill
+          ? `${formatNumber(focusSkill.currentProgress)}% completed`
+          : EMPTY_TEXT,
+        note: focusSkill ? `Expected by now ${formatNumber(focusSkill.expectedProgress)}%` : '',
       },
       {
-        label: 'Skills on track',
-        value: Number.isFinite(Number(summary.skillsOnTrack)) ? String(Number(summary.skillsOnTrack)) : '0',
+        label: 'Today',
+        value: focusSkill ? formatMinutes(focusSkill.minutesToday) : EMPTY_TEXT,
+        note: 'Momentum logged today',
       },
       {
-        label: 'Skills ahead',
-        value: Number.isFinite(Number(summary.skillsAhead)) ? String(Number(summary.skillsAhead)) : '0',
+        label: 'Balance',
+        value: Number.isFinite(Number(summary.skillsOnTrack))
+          ? `${Number(summary.skillsOnTrack)} on track`
+          : `0 on track`,
+        note: Number.isFinite(Number(summary.skillsAhead))
+          ? `${Number(summary.skillsAhead)} ahead`
+          : '0 ahead',
       },
-      {
-        label: 'Focus skill',
-        value: focusSkill?.skillName ?? EMPTY_TEXT,
-      },
-      {
-        label: 'Current progress',
-        value: focusSkill ? `${formatNumber(focusSkill.currentProgress)}%` : EMPTY_TEXT,
-      },
-    ]) + progressRingDetails
+    ])
   }
 
-  return renderDefinitionItems([
-    {
-      label: 'State',
-      value: featuredInsight?.state?.label ?? EMPTY_TEXT,
-    },
-    {
-      label: 'Reason',
-      value: featuredInsight?.state?.reason ?? EMPTY_TEXT,
-    },
-    {
-      label: 'Goals',
-      value: featuredInsight?.flags?.hasGoalSkills ? 'Available' : 'Missing',
-    },
-    {
-      label: 'Pacing data',
-      value: featuredInsight?.flags?.hasPacingData ? 'Ready' : 'Not ready',
-    },
-  ]) + progressRingDetails
+  return ''
 }
 
 function renderFeaturedShell({
@@ -307,7 +340,6 @@ function renderFeaturedShell({
   statusClassName = '',
   details = '',
   actions = '',
-  emptyMessage = '',
 }) {
   return `
     <article class="dashboard__panel dashboard__panel--featured ${modifierClass}">
@@ -324,22 +356,17 @@ function renderFeaturedShell({
       </header>
       ${
         summary
-          ? `<p class="dashboard__summary">${escapeHtml(summary)}</p>`
+          ? `<p class="dashboard__summary">${escapeHtml(normalizeHeroSummary(summary))}</p>`
           : ''
       }
       ${
-        details
-          ? `<dl class="dashboard__definition-list dashboard__definition-list--hero">${details}</dl>`
+      details
+          ? `<div class="dashboard__hero-metrics">${details}</div>`
           : ''
       }
       ${
         actions
           ? actions
-          : ''
-      }
-      ${
-        emptyMessage
-          ? `<p class="dashboard__empty">${escapeHtml(emptyMessage)}</p>`
           : ''
       }
     </article>
@@ -356,7 +383,6 @@ function renderFeaturedInsightEmpty(featuredInsight = {}) {
     statusClassName: 'dashboard__status-pill--empty',
     details: renderFeatureDetails(featuredInsight),
     actions: renderActionButtons(featuredInsight?.primaryAction, featuredInsight?.secondaryAction),
-    emptyMessage: EMPTY_TEXT,
   });
 }
 
@@ -378,7 +404,7 @@ function renderFeaturedInsightHealthy(featuredInsight) {
     modifierClass: 'dashboard__panel--healthy',
     eyebrow: featuredInsight?.recommendation?.eyebrow ?? 'Healthy plan',
     title: featuredInsight?.recommendation?.title ?? 'Balanced and sustainable',
-    summary: featuredInsight?.recommendation?.description ?? 'The current pace is stable across the plan.',
+    summary: featuredInsight?.recommendation?.description ?? 'The pace is stable across the plan.',
     statusLabel: featuredInsight?.state?.label ?? 'Stable',
     statusClassName: 'dashboard__status-pill--healthy',
     details: renderFeatureDetails(featuredInsight),
@@ -411,30 +437,39 @@ function renderStats(globalStats) {
   }
 
 
-  const {
-    totalTime,
-    totalSessions,
-    currentStreak,
-  } = globalStats;
+  const items = getStatsItems(globalStats);
 
+  if (items.length === 0) {
+    return `
+      <article class="dashboard__panel dashboard__panel--stats dashboard__panel--empty">
+        <p class="dashboard__eyebrow">Stats</p>
+        <p class="dashboard__empty">${EMPTY_TEXT}</p>
+      </article>
+    `;
+  }
+
+
+  const primaryItems = items.slice(0, 2);
+  const supportingItems = items.slice(2);
 
   return `
     <article class="dashboard__panel dashboard__panel--stats">
-      <p class="dashboard__eyebrow">Stats</p>
-      <dl class="dashboard__definition-list dashboard__definition-list--stats">
-        <div class="dashboard__definition-item">
-          <dt>Total time</dt>
-          <dd>${formatMinutes(totalTime)}</dd>
-        </div>
-        <div class="dashboard__definition-item">
-          <dt>Total sessions</dt>
-          <dd>${Number.isFinite(Number(totalSessions)) ? Number(totalSessions) : 0}</dd>
-        </div>
-        <div class="dashboard__definition-item">
-          <dt>Current streak</dt>
-          <dd>${Number.isFinite(Number(currentStreak)) ? Number(currentStreak) : 0} days</dd>
-        </div>
-      </dl>
+      <header class="dashboard__panel-header dashboard__panel-header--stats">
+        <p class="dashboard__eyebrow">Stats</p>
+        <p class="dashboard__panel-kicker">Momentum at a glance</p>
+      </header>
+      <div class="dashboard__stats-groups">
+        <dl class="dashboard__definition-list dashboard__definition-list--stats dashboard__definition-list--primary">
+          ${primaryItems
+            .map((item, index) => renderKpiItem(item, getStatGroupingClass(index)))
+            .join('')}
+        </dl>
+        <dl class="dashboard__definition-list dashboard__definition-list--stats dashboard__definition-list--secondary">
+          ${supportingItems
+            .map((item, index) => renderKpiItem(item, getStatGroupingClass(index + primaryItems.length)))
+            .join('')}
+        </dl>
+      </div>
     </article>
   `;
 }
@@ -621,6 +656,34 @@ export function createDashboardView() {
       }
     };
 
+    const handleHeroActionClick = (event) => {
+      const target = event.target;
+      const button =
+        target && typeof target.closest === 'function'
+          ? target.closest('.dashboard__hero-action')
+          : null;
+
+      if (!button || !elements.featured.contains(button)) {
+        return;
+      }
+
+      const action = button.dataset.action;
+
+      if (typeof action !== 'string' || action.trim() === '') {
+        return;
+      }
+
+      if (typeof dashboardView.onHeroAction === 'function') {
+        dashboardView.onHeroAction({
+          action,
+          intent: typeof button.dataset.intent === 'string' ? button.dataset.intent : '',
+          skillId:
+            typeof button.dataset.skillId === 'string' ? button.dataset.skillId : '',
+        });
+      }
+    };
+
+    elements.featured.addEventListener('click', handleHeroActionClick);
     elements.recentActivity.addEventListener('click', handleActivityClick);
     isEventsBound = true;
   }
@@ -628,6 +691,7 @@ export function createDashboardView() {
 
   const dashboardView = {
     onActivityClick: null,
+    onHeroAction: null,
     init,
     render,
     bindEvents,

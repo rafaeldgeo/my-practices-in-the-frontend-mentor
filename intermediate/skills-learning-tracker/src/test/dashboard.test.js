@@ -43,10 +43,37 @@ const dashboardData = createDashboardData({
 });
 
 assertEqual('retorno existe', typeof dashboardData === 'object', true);
-assertEqual('globalStats', dashboardData.globalStats, {
-  totalTime: 160,
-  totalSessions: 6,
-  currentStreak: 0,
+assertEqual('globalStats streak', dashboardData.globalStats.streak, {
+  key: 'streak',
+  label: 'Current streak',
+  value: 5,
+  displayValue: '5 days',
+  trend: 'up',
+  periodLabel: 'Current day chain',
+});
+assertEqual('globalStats weeklyPractice', dashboardData.globalStats.weeklyPractice, {
+  key: 'weeklyPractice',
+  label: 'Weekly practice',
+  value: 160,
+  displayValue: '2h 40m this week',
+  trend: 'up',
+  periodLabel: 'Last 7 days',
+});
+assertEqual('globalStats skillsPracticed', dashboardData.globalStats.skillsPracticed, {
+  key: 'skillsPracticed',
+  label: 'Skills practiced',
+  value: 3,
+  displayValue: '3 skills this week',
+  trend: 'up',
+  periodLabel: 'Last 7 days',
+});
+assertEqual('globalStats totalLearningTime', dashboardData.globalStats.totalLearningTime, {
+  key: 'totalLearningTime',
+  label: 'Total learning time',
+  value: 160,
+  displayValue: '2h 40m total',
+  trend: 'up',
+  periodLabel: 'All time',
 });
 assertEqual('consistency', dashboardData.consistency, [
   { date: '2026-04-22', totalMinutes: 50 },

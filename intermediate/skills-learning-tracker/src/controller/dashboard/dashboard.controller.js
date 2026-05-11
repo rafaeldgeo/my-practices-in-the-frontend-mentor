@@ -3,6 +3,7 @@ export function createDashboardController({
   dashboardService,
   view,
   onActivityClick,
+  onHeroAction,
 } = {}) {
   async function updateDashboard() {
     const [skills, sessions] = await Promise.all([
@@ -24,9 +25,16 @@ export function createDashboardController({
     }
   }
 
+  function handleHeroAction(action) {
+    if (typeof onHeroAction === 'function') {
+      onHeroAction(action);
+    }
+  }
+
   return {
     updateDashboard,
     initDashboard,
     handleActivityClick,
+    handleHeroAction,
   };
 }

@@ -77,6 +77,45 @@
   max-width: 48ch;
 }
 
+.dashboard__hero-metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+  gap: 0.75rem;
+}
+
+.dashboard__hero-metric {
+  display: grid;
+  gap: 0.35rem;
+  padding: 0.9rem 1rem;
+  border: 1px solid #e8e8e2;
+  border-radius: 0.85rem;
+  background: rgba(255, 255, 255, 0.78);
+}
+
+.dashboard__hero-metric-label {
+  margin: 0;
+  color: #7a837a;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.dashboard__hero-metric-value {
+  margin: 0;
+  color: #1a1d1a;
+  font-size: 1.03rem;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.dashboard__hero-metric-note {
+  margin: 0;
+  color: #5c645c;
+  font-size: 0.8125rem;
+  line-height: 1.4;
+}
+
 .dashboard__status-pill {
   align-self: flex-start;
   border: 1px solid #e8e8e2;
@@ -117,12 +156,6 @@
 
 .dashboard__definition-list {
   margin: 0;
-}
-
-.dashboard__definition-list--hero {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(10.5rem, 1fr));
-  gap: 0.75rem;
 }
 
 .dashboard__definition-item {

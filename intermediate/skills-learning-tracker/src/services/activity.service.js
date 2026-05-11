@@ -50,8 +50,11 @@ export function createActivityFromSession({ session, skillName } = {}) {
     skillId: normalizeId(session.skillId),
     skillName,
     date,
-    duration: typeof session.duration === 'number' && !Number.isNaN(session.duration)
-      ? session.duration
-      : 0,
+    duration:
+      typeof session.durationMinutes === 'number' && !Number.isNaN(session.durationMinutes)
+        ? session.durationMinutes
+        : typeof session.duration === 'number' && !Number.isNaN(session.duration)
+          ? session.duration
+          : 0,
   }
 }

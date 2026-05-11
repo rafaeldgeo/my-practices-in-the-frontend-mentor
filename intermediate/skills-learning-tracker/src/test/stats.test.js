@@ -14,8 +14,8 @@ function assertEqual(actual, expected, message) {
 
 const sessions = [
   { skillId: 'js', duration: 30 },
-  { skillId: 'js', duration: 45 },
-  { skillId: 'css', duration: 60 },
+  { skillId: 'js', durationMinutes: 45 },
+  { skillId: 'css', durationMinutes: 60 },
   { skillId: 'js', duration: 15 },
 ];
 
@@ -35,6 +35,12 @@ assertEqual(
   calculateStats([], 'js'),
   { totalTime: 0, totalSessions: 0, averageSessionTime: 0 },
   'Empty input should return zeroed stats'
+);
+
+assertEqual(
+  calculateStats([{ skillId: 'js', duration: 20 }, { skillId: 'js', durationMinutes: 25 }], 'js'),
+  { totalTime: 45, totalSessions: 2, averageSessionTime: 22.5 },
+  'Stats should normalize durationMinutes and duration consistently'
 );
 
 console.log('stats tests finished');

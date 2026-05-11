@@ -13,6 +13,7 @@ function assertEqual(description, actual, expected) {
 
 const calls = {
   render: null,
+  heroAction: null,
 }
 
 const controller = createDashboardController({
@@ -32,9 +33,38 @@ const controller = createDashboardController({
     createDashboardData({ skills, sessions }) {
       return {
         globalStats: {
-          totalTime: 30,
-          totalSessions: sessions.length,
-          currentStreak: 1,
+          streak: {
+            key: 'streak',
+            label: 'Current streak',
+            value: 1,
+            displayValue: '1 day',
+            trend: 'stable',
+            periodLabel: 'Current day chain',
+          },
+          weeklyPractice: {
+            key: 'weeklyPractice',
+            label: 'Weekly practice',
+            value: 30,
+            displayValue: '30m this week',
+            trend: 'stable',
+            periodLabel: 'Last 7 days',
+          },
+          skillsPracticed: {
+            key: 'skillsPracticed',
+            label: 'Skills practiced',
+            value: 1,
+            displayValue: '1 skill this week',
+            trend: 'stable',
+            periodLabel: 'Last 7 days',
+          },
+          totalLearningTime: {
+            key: 'totalLearningTime',
+            label: 'Total learning time',
+            value: 30,
+            displayValue: '30m total',
+            trend: 'stable',
+            periodLabel: 'All time',
+          },
         },
         consistency: [],
         recentActivity: [],
@@ -104,6 +134,9 @@ const controller = createDashboardController({
       }
     },
   },
+  onHeroAction(action) {
+    calls.heroAction = action
+  },
   view: {
     render(payload) {
       calls.render = payload
@@ -112,12 +145,46 @@ const controller = createDashboardController({
 })
 
 await controller.updateDashboard()
+controller.handleHeroAction({
+  action: 'open_session_modal',
+  intent: 'practice_now',
+  skillId: 'skill-1',
+})
 
 assertEqual('render receives dashboard data as a single payload', calls.render, {
   globalStats: {
-    totalTime: 30,
-    totalSessions: 1,
-    currentStreak: 1,
+    streak: {
+      key: 'streak',
+      label: 'Current streak',
+      value: 1,
+      displayValue: '1 day',
+      trend: 'stable',
+      periodLabel: 'Current day chain',
+    },
+    weeklyPractice: {
+      key: 'weeklyPractice',
+      label: 'Weekly practice',
+      value: 30,
+      displayValue: '30m this week',
+      trend: 'stable',
+      periodLabel: 'Last 7 days',
+    },
+    skillsPracticed: {
+      key: 'skillsPracticed',
+      label: 'Skills practiced',
+      value: 1,
+      displayValue: '1 skill this week',
+      trend: 'stable',
+      periodLabel: 'Last 7 days',
+    },
+    totalLearningTime: {
+      key: 'totalLearningTime',
+      label: 'Total learning time',
+      value: 30,
+      displayValue: '30m total',
+      trend: 'stable',
+      periodLabel: 'All time',
+    },
   },
   consistency: [],
   recentActivity: [],
@@ -186,6 +253,12 @@ assertEqual('render receives dashboard data as a single payload', calls.render, 
       status: 'behind',
     },
   },
+})
+
+assertEqual('hero action is passed through', calls.heroAction, {
+  action: 'open_session_modal',
+  intent: 'practice_now',
+  skillId: 'skill-1',
 })
 
 console.log('dashboard controller tests finished')
