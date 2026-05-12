@@ -1,4 +1,7 @@
 {
+  "demoTimeline": {
+    "anchorDate": "2026-03-19"
+  },
   "skills": [
     {
       "id": "skill-1",

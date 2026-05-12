@@ -136,7 +136,60 @@ try {
         periodLabel: 'All time',
       },
     },
-    consistency: [],
+    consistency: {
+      range: {
+        startDate: '2026-04-16',
+        endDate: '2026-04-22',
+        days: 7,
+      },
+      summary: {
+        totalMinutes: 45,
+        totalSessions: 2,
+        activeDays: 1,
+        emptyDays: 6,
+        longestActiveRun: 1,
+        currentActiveRun: 1,
+        peakDay: {
+          date: '2026-04-17',
+          totalMinutes: 45,
+          sessionCount: 2,
+          bucket: 'medium',
+          accessibilityLabel: 'Apr 17, 2026: 2 sessions, 45m, medium consistency, single-day rhythm',
+        },
+      },
+      cells: [
+        {
+          date: '2026-04-16',
+          totalMinutes: 0,
+          sessionCount: 0,
+          consistencyScore: 0,
+          intensityLevel: 'empty',
+          bucket: 'empty',
+          isActive: false,
+          isEmpty: true,
+          isToday: false,
+          isFuture: false,
+          activeRunLength: 0,
+          accessibilityLabel: 'Apr 16, 2026: 0 sessions, 0m, empty consistency, single-day rhythm',
+          summaryLabel: '0 sessions, 0m, empty consistency, single-day rhythm',
+        },
+        {
+          date: '2026-04-17',
+          totalMinutes: 45,
+          sessionCount: 2,
+          consistencyScore: 46,
+          intensityLevel: 'medium',
+          bucket: 'medium',
+          isActive: true,
+          isEmpty: false,
+          isToday: false,
+          isFuture: false,
+          activeRunLength: 1,
+          accessibilityLabel: 'Apr 17, 2026: 2 sessions, 45m, medium consistency, single-day rhythm',
+          summaryLabel: '2 sessions, 45m, medium consistency, single-day rhythm',
+        },
+      ],
+    },
     recentActivity: [],
   })
 
@@ -148,6 +201,14 @@ try {
   assertEqual('stats trend badge rendered', stats.innerHTML.includes('dashboard__kpi-trend--stable'), true)
   assertEqual('hero primary action rendered', featured.innerHTML.includes('Practice now'), true)
   assertEqual('hero primary skill id rendered', featured.innerHTML.includes('data-skill-id="skill-1"'), true)
+  assertEqual('heatmap panel title rendered', consistency.innerHTML.includes('dashboard__panel-title">Heatmap'), true)
+  assertEqual('heatmap legend rendered', consistency.innerHTML.includes('dashboard__heatmap-legend'), true)
+  assertEqual('heatmap grid rendered', consistency.innerHTML.includes('role="grid"'), true)
+  assertEqual('heatmap week grouping rendered', consistency.innerHTML.includes('dashboard__heatmap-week'), true)
+  assertEqual('heatmap bucket class rendered', consistency.innerHTML.includes('dashboard__heatmap-cell--medium'), true)
+  assertEqual('heatmap bucket data rendered', consistency.innerHTML.includes('data-bucket="medium"'), true)
+  assertEqual('heatmap accessibility label rendered', consistency.innerHTML.includes('Apr 17, 2026: 2 sessions, 45m, medium consistency, single-day rhythm'), true)
+  assertEqual('heatmap fallback text rendered', consistency.innerHTML.includes('dashboard__heatmap-fallback'), true)
 
   const primaryButton = {
     dataset: {
@@ -241,7 +302,45 @@ try {
         periodLabel: 'All time',
       },
     },
-    consistency: [],
+    consistency: {
+      range: {
+        startDate: '2026-04-16',
+        endDate: '2026-04-22',
+        days: 7,
+      },
+      summary: {
+        totalMinutes: 45,
+        totalSessions: 2,
+        activeDays: 1,
+        emptyDays: 6,
+        longestActiveRun: 1,
+        currentActiveRun: 1,
+        peakDay: {
+          date: '2026-04-17',
+          totalMinutes: 45,
+          sessionCount: 2,
+          bucket: 'medium',
+          accessibilityLabel: 'Apr 17, 2026: 2 sessions, 45m, medium consistency, single-day rhythm',
+        },
+      },
+      cells: [
+        {
+          date: '2026-04-17',
+          totalMinutes: 45,
+          sessionCount: 2,
+          consistencyScore: 46,
+          intensityLevel: 'medium',
+          bucket: 'medium',
+          isActive: true,
+          isEmpty: false,
+          isToday: false,
+          isFuture: false,
+          activeRunLength: 1,
+          accessibilityLabel: 'Apr 17, 2026: 2 sessions, 45m, medium consistency, single-day rhythm',
+          summaryLabel: '2 sessions, 45m, medium consistency, single-day rhythm',
+        },
+      ],
+    },
     recentActivity: [],
   })
 
@@ -270,7 +369,23 @@ try {
   view.render({
     featuredInsight: null,
     globalStats: null,
-    consistency: [],
+    consistency: {
+      range: {
+        startDate: '',
+        endDate: '',
+        days: 0,
+      },
+      summary: {
+        totalMinutes: 0,
+        totalSessions: 0,
+        activeDays: 0,
+        emptyDays: 0,
+        longestActiveRun: 0,
+        currentActiveRun: 0,
+        peakDay: null,
+      },
+      cells: [],
+    },
     recentActivity: [],
   })
 

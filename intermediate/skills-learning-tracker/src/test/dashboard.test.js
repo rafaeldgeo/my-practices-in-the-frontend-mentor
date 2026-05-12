@@ -10,6 +10,10 @@ function assertEqual(description, actual, expected) {
   }
 }
 
+function getHeatmapCell(consistency, date) {
+  return consistency?.cells?.find((cell) => cell.date === date);
+}
+
 const dashboardData = createDashboardData({
   referenceDate: new Date('2026-04-22T12:00:00Z'),
   skills: [
@@ -75,13 +79,31 @@ assertEqual('globalStats totalLearningTime', dashboardData.globalStats.totalLear
   trend: 'up',
   periodLabel: 'All time',
 });
-assertEqual('consistency', dashboardData.consistency, [
-  { date: '2026-04-22', totalMinutes: 50 },
-  { date: '2026-04-21', totalMinutes: 65 },
-  { date: '2026-04-20', totalMinutes: 20 },
-  { date: '2026-04-19', totalMinutes: 10 },
-  { date: '2026-04-18', totalMinutes: 15 },
-]);
+assertEqual('consistency range', dashboardData.consistency.range, {
+  startDate: '2026-03-19',
+  endDate: '2026-04-22',
+  days: 35,
+});
+assertEqual('consistency total minutes', dashboardData.consistency.summary.totalMinutes, 160);
+assertEqual('consistency total sessions', dashboardData.consistency.summary.totalSessions, 6);
+assertEqual('consistency active days', dashboardData.consistency.summary.activeDays, 5);
+assertEqual('consistency empty days', dashboardData.consistency.summary.emptyDays, 30);
+assertEqual('consistency longest active run', dashboardData.consistency.summary.longestActiveRun, 5);
+assertEqual('consistency current active run', dashboardData.consistency.summary.currentActiveRun, 5);
+assertEqual('consistency cells are continuous', dashboardData.consistency.cells.length, 35);
+assertEqual('consistency start day is empty', getHeatmapCell(dashboardData.consistency, '2026-03-19').isEmpty, true);
+assertEqual('consistency peak day is 2026-04-21', dashboardData.consistency.summary.peakDay.date, '2026-04-21');
+assertEqual('consistency peak day bucket', dashboardData.consistency.summary.peakDay.bucket, 'intense');
+assertEqual('consistency low bucket', getHeatmapCell(dashboardData.consistency, '2026-04-18').bucket, 'low');
+assertEqual('consistency medium bucket', getHeatmapCell(dashboardData.consistency, '2026-04-19').bucket, 'medium');
+assertEqual('consistency high bucket', getHeatmapCell(dashboardData.consistency, '2026-04-22').bucket, 'high');
+assertEqual('consistency intense bucket', getHeatmapCell(dashboardData.consistency, '2026-04-21').bucket, 'intense');
+assertEqual('consistency today flag', getHeatmapCell(dashboardData.consistency, '2026-04-22').isToday, true);
+assertEqual(
+  'consistency accessibility label',
+  typeof getHeatmapCell(dashboardData.consistency, '2026-04-21').accessibilityLabel,
+  'string'
+);
 assertEqual('recentActivity', dashboardData.recentActivity, [
   {
     id: 'skill-created-skill-2-2026-04-23T10:00:00Z-1',

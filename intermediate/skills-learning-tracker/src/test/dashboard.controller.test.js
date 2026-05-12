@@ -66,7 +66,23 @@ const controller = createDashboardController({
             periodLabel: 'All time',
           },
         },
-        consistency: [],
+        consistency: {
+          range: {
+            startDate: '2026-04-18',
+            endDate: '2026-04-22',
+            days: 5,
+          },
+          summary: {
+            totalMinutes: 30,
+            totalSessions: 1,
+            activeDays: 1,
+            emptyDays: 4,
+            longestActiveRun: 1,
+            currentActiveRun: 1,
+            peakDay: null,
+          },
+          cells: [],
+        },
         recentActivity: [],
         skills: skills.map((skill) => ({
           skillId: skill.id,
@@ -186,7 +202,23 @@ assertEqual('render receives dashboard data as a single payload', calls.render, 
       periodLabel: 'All time',
     },
   },
-  consistency: [],
+  consistency: {
+    range: {
+      startDate: '2026-04-18',
+      endDate: '2026-04-22',
+      days: 5,
+    },
+    summary: {
+      totalMinutes: 30,
+      totalSessions: 1,
+      activeDays: 1,
+      emptyDays: 4,
+      longestActiveRun: 1,
+      currentActiveRun: 1,
+      peakDay: null,
+    },
+    cells: [],
+  },
   recentActivity: [],
   skills: [
     {

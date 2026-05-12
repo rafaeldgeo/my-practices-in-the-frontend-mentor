@@ -474,28 +474,170 @@ function renderStats(globalStats) {
   `;
 }
 
+function getConsistencyCells(consistency) {
+  if (Array.isArray(consistency)) {
+    return consistency;
+  }
+
+  if (consistency && Array.isArray(consistency.cells)) {
+    return consistency.cells;
+  }
+
+  return [];
+}
+
+function getConsistencyWeeks(cells) {
+  const weeks = [];
+
+  for (let index = 0; index < cells.length; index += 7) {
+    weeks.push(cells.slice(index, index + 7));
+  }
+
+  return weeks;
+}
+
+function renderConsistencyLegendItem(bucket, label) {
+  return `
+    <li class="dashboard__heatmap-legend-item dashboard__heatmap-legend-item--${escapeHtml(bucket)}">
+      <span class="dashboard__heatmap-legend-swatch" aria-hidden="true"></span>
+      <span class="dashboard__heatmap-legend-label">${escapeHtml(label)}</span>
+    </li>
+  `;
+}
+
+function renderConsistencyLegend() {
+  return `
+    <ul id="consistency-legend" class="dashboard__heatmap-legend" aria-label="Consistency intensity legend">
+      ${[
+        ['empty', 'Empty'],
+        ['low', 'Low'],
+        ['medium', 'Medium'],
+        ['high', 'High'],
+        ['intense', 'Intense'],
+      ]
+        .map(([bucket, label]) => renderConsistencyLegendItem(bucket, label))
+        .join('')}
+    </ul>
+  `;
+}
+
+function renderConsistencyCell(cell) {
+  if (!cell || typeof cell !== 'object') {
+    return '';
+  }
+
+  const bucket = typeof cell.bucket === 'string' && cell.bucket.trim() !== '' ? cell.bucket : 'empty';
+  const sessionCount = Number.isFinite(Number(cell.sessionCount)) ? Number(cell.sessionCount) : 0;
+  const totalMinutes = Number.isFinite(Number(cell.totalMinutes)) ? Number(cell.totalMinutes) : 0;
+  const summaryLabel = typeof cell.summaryLabel === 'string' ? cell.summaryLabel.trim() : '';
+  const accessibilityLabel =
+    typeof cell.accessibilityLabel === 'string' ? cell.accessibilityLabel.trim() : EMPTY_TEXT;
+  const isActive = Boolean(cell.isActive);
+  const isEmpty = Boolean(cell.isEmpty);
+
+  return `
+    <div
+      class="dashboard__heatmap-cell dashboard__heatmap-cell--${escapeHtml(bucket)}"
+      role="gridcell"
+      tabindex="0"
+      data-bucket="${escapeHtml(bucket)}"
+      data-consistency-score="${escapeHtml(String(Number(cell.consistencyScore) || 0))}"
+      data-date="${escapeHtml(String(cell.date ?? ''))}"
+      data-intensity-level="${escapeHtml(String(cell.intensityLevel ?? bucket))}"
+      data-is-active="${String(isActive)}"
+      data-is-empty="${String(isEmpty)}"
+      data-session-count="${escapeHtml(String(sessionCount))}"
+      data-total-minutes="${escapeHtml(String(totalMinutes))}"
+      aria-label="${escapeHtml(accessibilityLabel)}"
+    >
+      <span class="dashboard__heatmap-cell-swatch" aria-hidden="true"></span>
+      <span class="dashboard__heatmap-cell-copy">
+        <span class="dashboard__heatmap-cell-label">${escapeHtml(formatDateLabel(cell?.date))}</span>
+        <span class="dashboard__heatmap-cell-value">
+          ${
+            isEmpty
+              ? 'No practice'
+              : `${escapeHtml(String(sessionCount))} ${sessionCount === 1 ? 'session' : 'sessions'}`
+          }
+        </span>
+        <span class="dashboard__heatmap-cell-meta">
+          ${escapeHtml(summaryLabel || `${formatMinutes(totalMinutes)} total`)}
+        </span>
+      </span>
+    </div>
+  `;
+}
+
 
 function renderConsistency(consistency) {
 
-  const items = Array.isArray(consistency) ? consistency : [];
+  const items = getConsistencyCells(consistency);
+  const weeks = getConsistencyWeeks(items);
+  const range = consistency?.range ?? {};
+  const summary = consistency?.summary ?? {};
+  const rangeLabel =
+    typeof range.startDate === 'string' && typeof range.endDate === 'string'
+      ? `${formatDateLabel(range.startDate)} to ${formatDateLabel(range.endDate)}`
+      : EMPTY_TEXT;
+  const summaryLabel = [
+    Number.isFinite(Number(summary.totalSessions)) ? `${Number(summary.totalSessions)} sessions` : null,
+    Number.isFinite(Number(summary.totalMinutes)) ? `${formatMinutes(summary.totalMinutes)} total` : null,
+    Number.isFinite(Number(summary.activeDays)) ? `${Number(summary.activeDays)} active days` : null,
+  ]
+    .filter(Boolean)
+    .join(' · ');
 
 
   return `
-    <article class="dashboard__panel dashboard__panel--consistency">
-      <p class="dashboard__eyebrow">Consistency</p>
+    <article
+      class="dashboard__panel dashboard__panel--consistency"
+      aria-labelledby="consistency-title"
+      aria-describedby="consistency-summary consistency-legend"
+    >
+      <header class="dashboard__panel-header dashboard__panel-header--consistency">
+        <div class="dashboard__panel-copy">
+          <p class="dashboard__eyebrow">Consistency</p>
+          <h2 id="consistency-title" class="dashboard__panel-title">Heatmap</h2>
+        </div>
+        <p id="consistency-summary" class="dashboard__panel-kicker">
+          ${escapeHtml(rangeLabel)}${summaryLabel ? ` · ${escapeHtml(summaryLabel)}` : ''}
+        </p>
+      </header>
       ${
         items.length > 0
           ? `
-            <ul class="dashboard__list dashboard__list--consistency">
-              ${items
-                .map((item) => `
-                  <li class="dashboard__list-item">
-                    <span class="dashboard__list-label">${formatDateLabel(item?.date)}</span>
-                    <span class="dashboard__list-value">${formatMinutes(item?.totalMinutes)}</span>
-                  </li>
-                `)
-                .join('')}
-            </ul>
+            <div class="dashboard__heatmap" role="grid" aria-label="Practice consistency by week">
+              ${renderConsistencyLegend()}
+              <div class="dashboard__heatmap-grid" role="rowgroup">
+                ${weeks
+                  .map(
+                    (week, weekIndex) => `
+                      <div
+                        class="dashboard__heatmap-week"
+                        role="row"
+                        aria-label="Week ${weekIndex + 1}${week[0]?.date ? `, starting ${formatDateLabel(week[0].date)}` : ''}"
+                      >
+                        <span class="dashboard__heatmap-week-label">
+                          ${escapeHtml(week[0]?.date ? formatDateLabel(week[0].date) : `Week ${weekIndex + 1}`)}
+                        </span>
+                        <div class="dashboard__heatmap-week-cells">
+                          ${week
+                            .map((item) => renderConsistencyCell(item))
+                            .filter(Boolean)
+                            .join('')}
+                        </div>
+                      </div>
+                    `
+                  )
+                  .join('')}
+              </div>
+              <p class="dashboard__heatmap-fallback">
+                ${escapeHtml(
+                  summaryLabel ||
+                    `${items.length} days tracked across ${weeks.length} weeks`
+                )}
+              </p>
+            </div>
           `
           : `<p class="dashboard__empty">${EMPTY_TEXT}</p>`
       }

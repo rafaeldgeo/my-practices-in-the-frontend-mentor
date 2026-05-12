@@ -1,3 +1,5 @@
+import { transformDemoDataset } from '../utils/demo-temporal.js'
+
 const DATA_URL = '../data/sample-skills.json'; // CAMINHO DO ARQUIVO JSON
 let cachedData = null
 
@@ -18,7 +20,8 @@ export async function fetchData() {
       throw new Error(`Request failed with status ${response.status}`);
     }
 
-    cachedData = await response.json(); 
+    const rawData = await response.json(); 
+    cachedData = transformDemoDataset(rawData)
     return cachedData
   } catch (error) {
     throw new Error(`Failed to fetch skills data: ${error.message}`);

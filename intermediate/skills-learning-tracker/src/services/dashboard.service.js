@@ -5,6 +5,7 @@ import { calculateStreak } from './streak.service.js';
 const GLOBAL_SKILL_ID = '__global__'; 
 const FEATURED_MINUTES_THRESHOLD = 60; 
 const RECENT_WINDOW_DAYS = 7;
+const CONSISTENCY_WINDOW_DAYS = 35;
 
 function normalizeId(value) {
   if (typeof value === 'string') {
@@ -246,30 +247,231 @@ function getSkillStats(sessions, skillId) {
   return calculateStats(normalizedSessions, normalizedSkillId);
 }
 
-function getConsistencyByDate(sessions) {
-  const totalsByDate = new Map();
+function getHeatmapWindow(referenceDate = new Date(), days = CONSISTENCY_WINDOW_DAYS) {
+  const referenceDateString = getDateString(referenceDate);
 
-  if (!Array.isArray(sessions)) {
+  if (referenceDateString === '') {
+    return {
+      startDate: '',
+      endDate: '',
+      days: 0,
+    };
+  }
+
+  const windowDays = Number.isFinite(Number(days)) ? Math.max(1, Number(days)) : CONSISTENCY_WINDOW_DAYS;
+
+  return {
+    startDate: shiftDateString(referenceDateString, -(windowDays - 1)),
+    endDate: referenceDateString,
+    days: windowDays,
+  };
+}
+
+function getDateRange(startDate, endDate) {
+  if (!isValidDateString(startDate) || !isValidDateString(endDate) || startDate > endDate) {
     return [];
   }
+
+  const dates = [];
+  let currentDate = startDate;
+
+  while (currentDate <= endDate) {
+    dates.push(currentDate);
+    currentDate = shiftDateString(currentDate, 1);
+  }
+
+  return dates;
+}
+
+function getHeatmapDateLabel(dateString) {
+  if (!isValidDateString(dateString)) {
+    return EMPTY_TEXT;
+  }
+
+  const [year, month, day] = dateString.split('-').map((part) => Number(part));
+
+  if (!year || !month || !day) {
+    return dateString;
+  }
+
+  const date = new Date(Date.UTC(year, month - 1, day));
+
+  return date.toLocaleDateString('en-US', {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+    timeZone: 'UTC',
+  });
+}
+
+function getIntensityBucket(consistencyScore, isActive) {
+  if (!isActive) {
+    return 'empty';
+  }
+
+  if (consistencyScore >= 75) {
+    return 'intense';
+  }
+
+  if (consistencyScore >= 50) {
+    return 'high';
+  }
+
+  if (consistencyScore >= 30) {
+    return 'medium';
+  }
+
+  return 'low';
+}
+
+function getHeatmapSummaryLabel({ sessionCount, totalMinutes, activeRunLength, bucket }) {
+  const sessionLabel = formatCountLabel(sessionCount, 'session');
+  const minutesLabel = formatMinutesLabel(totalMinutes);
+  const rhythmLabel =
+    activeRunLength > 1 ? `${activeRunLength}-day active rhythm` : 'single-day rhythm';
+  const bucketLabel = `${bucket} consistency`;
+
+  return `${sessionLabel}, ${minutesLabel}, ${bucketLabel}, ${rhythmLabel}`;
+}
+
+function createHeatmapCell({
+  date,
+  totalMinutes,
+  sessionCount,
+  activeRunLength,
+  maxSessionCount,
+  maxMinutes,
+  isToday,
+  isFuture,
+}) {
+  const isActive = sessionCount > 0;
+  const frequencyScore = maxSessionCount > 0 ? sessionCount / maxSessionCount : 0;
+  const durationScore = maxMinutes > 0 ? totalMinutes / maxMinutes : 0;
+  const continuityScore = isActive ? Math.min(activeRunLength / 7, 1) : 0;
+  const consistencyScore = Math.round(
+    (continuityScore * 0.45 + frequencyScore * 0.35 + durationScore * 0.2) * 100
+  );
+  const bucket = getIntensityBucket(consistencyScore, isActive);
+  const summaryLabel = getHeatmapSummaryLabel({
+    sessionCount,
+    totalMinutes,
+    activeRunLength,
+    bucket,
+  });
+
+  return {
+    date,
+    totalMinutes,
+    sessionCount,
+    consistencyScore,
+    intensityLevel: bucket,
+    bucket,
+    isActive,
+    isEmpty: !isActive,
+    isToday,
+    isFuture,
+    activeRunLength,
+    accessibilityLabel: `${getHeatmapDateLabel(date)}: ${summaryLabel}`,
+    summaryLabel,
+  };
+}
+
+function getConsistencyHeatmap(sessions, referenceDate = new Date()) {
+  const window = getHeatmapWindow(referenceDate);
+
+  if (!Array.isArray(sessions) || window.startDate === '' || window.endDate === '') {
+    return {
+      range: window,
+      summary: {
+        totalMinutes: 0,
+        totalSessions: 0,
+        activeDays: 0,
+        emptyDays: 0,
+        longestActiveRun: 0,
+        currentActiveRun: 0,
+        peakDay: null,
+      },
+      cells: [],
+    };
+  }
+
+  const totalsByDate = new Map();
+  const sessionsByDate = new Map();
 
   sessions.forEach((session) => {
     const date = getSessionDate(session);
 
-    if (!date) {
+    if (!date || date < window.startDate || date > window.endDate) {
       return;
     }
 
-    const currentTotal = totalsByDate.get(date) || 0;
-    totalsByDate.set(date, currentTotal + getSessionDuration(session));
+    const currentTotals = totalsByDate.get(date) || 0;
+    const currentSessions = sessionsByDate.get(date) || 0;
+
+    totalsByDate.set(date, currentTotals + getSessionDuration(session));
+    sessionsByDate.set(date, currentSessions + 1);
   });
 
-  return [...totalsByDate.entries()]
-    .sort(([dateA], [dateB]) => dateB.localeCompare(dateA))
-    .map(([date, totalMinutes]) => ({
+  const dates = getDateRange(window.startDate, window.endDate);
+  const maxSessionCount = Math.max(0, ...sessionsByDate.values());
+  const maxMinutes = Math.max(0, ...totalsByDate.values());
+  let activeRunLength = 0;
+  let longestActiveRun = 0;
+
+  const cells = dates.map((date) => {
+    const totalMinutes = totalsByDate.get(date) || 0;
+    const sessionCount = sessionsByDate.get(date) || 0;
+    const isToday = date === window.endDate;
+    const isFuture = date > window.endDate;
+
+    activeRunLength = sessionCount > 0 ? activeRunLength + 1 : 0;
+    longestActiveRun = Math.max(longestActiveRun, activeRunLength);
+
+    return createHeatmapCell({
       date,
       totalMinutes,
-    }));
+      sessionCount,
+      activeRunLength,
+      maxSessionCount,
+      maxMinutes,
+      isToday,
+      isFuture,
+    });
+  });
+
+  const peakDay = cells.reduce((peakCell, cell) => {
+    if (!peakCell || cell.totalMinutes > peakCell.totalMinutes) {
+      return cell;
+    }
+
+    return peakCell;
+  }, null);
+
+  const totalSessions = cells.reduce((total, cell) => total + cell.sessionCount, 0);
+  const totalMinutes = cells.reduce((total, cell) => total + cell.totalMinutes, 0);
+  const activeDays = cells.filter((cell) => cell.isActive).length;
+
+  return {
+    range: window,
+    summary: {
+      totalMinutes,
+      totalSessions,
+      activeDays,
+      emptyDays: cells.length - activeDays,
+      longestActiveRun,
+      currentActiveRun: cells.at(-1)?.activeRunLength ?? 0,
+      peakDay: peakDay
+        ? {
+            date: peakDay.date,
+            totalMinutes: peakDay.totalMinutes,
+            sessionCount: peakDay.sessionCount,
+            bucket: peakDay.bucket,
+            accessibilityLabel: peakDay.accessibilityLabel,
+          }
+        : null,
+    },
+    cells,
+  };
 }
 
 function getSkillNameById(skills, skillId) {
@@ -468,7 +670,7 @@ export function createDashboardData({
         periodLabel: 'All time',
       }),
     },
-    consistency: getConsistencyByDate(sessions),
+    consistency: getConsistencyHeatmap(sessions, referenceDate),
     recentActivity: getRecentActivity(sessions, skills),
     skills: mapSkills(skills, sessions),
     featuredInsight: createPriorityPayload({ skills, sessions, referenceDate }),
