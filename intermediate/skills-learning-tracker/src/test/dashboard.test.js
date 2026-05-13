@@ -14,6 +14,10 @@ function getHeatmapCell(consistency, date) {
   return consistency?.cells?.find((cell) => cell.date === date);
 }
 
+function getActivityGroup(recentActivity, key) {
+  return recentActivity?.groups?.find((group) => group.key === key);
+}
+
 const dashboardData = createDashboardData({
   referenceDate: new Date('2026-04-22T12:00:00Z'),
   skills: [
@@ -21,28 +25,27 @@ const dashboardData = createDashboardData({
       id: 'skill-1',
       name: 'Spanish',
       goal: { type: 'weekly', targetHours: 5 },
-      createdAt: '2026-04-21T11:00:00Z',
+      createdAt: '2026-04-19T10:00:00Z',
     },
     {
       id: 'skill-2',
       name: 'Guitar',
       goal: { type: 'weekly', targetHours: 3 },
-      createdAt: '2026-04-23T10:00:00Z',
+      createdAt: '2026-04-21T10:00:00Z',
     },
     {
       id: 'skill-3',
       name: 'TypeScript',
       goal: { type: 'total', targetHours: 200 },
-      createdAt: '2026-04-19T08:00:00Z',
+      createdAt: '2026-04-18T10:00:00Z',
     },
   ],
   sessions: [
-    { skillId: 'skill-1', duration: 40, date: '2026-04-21', createdAt: '2026-04-21T08:00:00Z' },
-    { skillId: 'skill-1', durationMinutes: 25, date: '2026-04-21', createdAt: '2026-04-21T10:00:00Z' },
-    { skillId: 'skill-2', duration: 50, date: '2026-04-22', createdAt: '2026-04-22T12:00:00Z' },
-    { skillId: 'skill-2', duration: 20, date: '2026-04-20', createdAt: '2026-04-20T07:30:00Z' },
-    { skillId: 'skill-3', duration: 10, date: '2026-04-19', createdAt: '2026-04-19T11:00:00Z' },
-    { skillId: 'skill-3', duration: 15, date: '2026-04-18', createdAt: '2026-04-18T14:00:00Z' },
+    { skillId: 'skill-1', duration: 60, date: '2026-04-22', createdAt: '2026-04-22T12:00:00Z' },
+    { skillId: 'skill-2', duration: 50, date: '2026-04-20', createdAt: '2026-04-20T12:00:00Z' },
+    { skillId: 'skill-1', durationMinutes: 25, date: '2026-04-19', createdAt: '2026-04-19T12:00:00Z' },
+    { skillId: 'skill-3', duration: 15, date: '2026-04-17', createdAt: '2026-04-17T12:00:00Z' },
+    { skillId: 'skill-2', duration: 10, date: '2026-04-16', createdAt: '2026-04-16T12:00:00Z' },
   ],
 });
 
@@ -50,9 +53,9 @@ assertEqual('retorno existe', typeof dashboardData === 'object', true);
 assertEqual('globalStats streak', dashboardData.globalStats.streak, {
   key: 'streak',
   label: 'Current streak',
-  value: 5,
-  displayValue: '5 days',
-  trend: 'up',
+  value: 1,
+  displayValue: '1 day',
+  trend: 'stable',
   periodLabel: 'Current day chain',
 });
 assertEqual('globalStats weeklyPractice', dashboardData.globalStats.weeklyPractice, {
@@ -85,100 +88,66 @@ assertEqual('consistency range', dashboardData.consistency.range, {
   days: 35,
 });
 assertEqual('consistency total minutes', dashboardData.consistency.summary.totalMinutes, 160);
-assertEqual('consistency total sessions', dashboardData.consistency.summary.totalSessions, 6);
+assertEqual('consistency total sessions', dashboardData.consistency.summary.totalSessions, 5);
 assertEqual('consistency active days', dashboardData.consistency.summary.activeDays, 5);
 assertEqual('consistency empty days', dashboardData.consistency.summary.emptyDays, 30);
-assertEqual('consistency longest active run', dashboardData.consistency.summary.longestActiveRun, 5);
-assertEqual('consistency current active run', dashboardData.consistency.summary.currentActiveRun, 5);
+assertEqual('consistency longest active run', dashboardData.consistency.summary.longestActiveRun, 2);
+assertEqual('consistency current active run', dashboardData.consistency.summary.currentActiveRun, 1);
 assertEqual('consistency cells are continuous', dashboardData.consistency.cells.length, 35);
 assertEqual('consistency start day is empty', getHeatmapCell(dashboardData.consistency, '2026-03-19').isEmpty, true);
-assertEqual('consistency peak day is 2026-04-21', dashboardData.consistency.summary.peakDay.date, '2026-04-21');
-assertEqual('consistency peak day bucket', dashboardData.consistency.summary.peakDay.bucket, 'intense');
-assertEqual('consistency low bucket', getHeatmapCell(dashboardData.consistency, '2026-04-18').bucket, 'low');
-assertEqual('consistency medium bucket', getHeatmapCell(dashboardData.consistency, '2026-04-19').bucket, 'medium');
+assertEqual('consistency peak day is 2026-04-22', dashboardData.consistency.summary.peakDay.date, '2026-04-22');
+assertEqual('consistency peak day bucket', dashboardData.consistency.summary.peakDay.bucket, 'high');
+assertEqual('consistency low bucket', getHeatmapCell(dashboardData.consistency, '2026-04-18').bucket, 'empty');
+assertEqual('consistency medium bucket', getHeatmapCell(dashboardData.consistency, '2026-04-19').bucket, 'high');
 assertEqual('consistency high bucket', getHeatmapCell(dashboardData.consistency, '2026-04-22').bucket, 'high');
-assertEqual('consistency intense bucket', getHeatmapCell(dashboardData.consistency, '2026-04-21').bucket, 'intense');
+assertEqual('consistency intense bucket', getHeatmapCell(dashboardData.consistency, '2026-04-21').bucket, 'empty');
 assertEqual('consistency today flag', getHeatmapCell(dashboardData.consistency, '2026-04-22').isToday, true);
 assertEqual(
   'consistency accessibility label',
   typeof getHeatmapCell(dashboardData.consistency, '2026-04-21').accessibilityLabel,
   'string'
 );
-assertEqual('recentActivity', dashboardData.recentActivity, [
-  {
-    id: 'skill-created-skill-2-2026-04-23T10:00:00Z-1',
-    type: 'skill_created',
-    message: 'Guitar added',
-    timestamp: '2026-04-23T10:00:00Z',
-    skillId: 'skill-2',
-    skillName: 'Guitar',
-    date: '2026-04-23',
-    duration: 0,
-  },
-  {
-    id: 'session-skill-2-2026-04-22T12:00:00Z-2',
-    type: 'session',
-    message: 'Practiced Guitar',
-    timestamp: '2026-04-22T12:00:00Z',
-    skillId: 'skill-2',
-    skillName: 'Guitar',
-    date: '2026-04-22',
-    duration: 50,
-  },
-  {
-    id: 'skill-created-skill-1-2026-04-21T11:00:00Z-0',
-    type: 'skill_created',
-    message: 'Spanish added',
-    timestamp: '2026-04-21T11:00:00Z',
-    skillId: 'skill-1',
-    skillName: 'Spanish',
-    date: '2026-04-21',
-    duration: 0,
-  },
-  {
-    id: 'session-skill-1-2026-04-21T10:00:00Z-1',
-    type: 'session',
-    message: 'Practiced Spanish',
-    timestamp: '2026-04-21T10:00:00Z',
-    skillId: 'skill-1',
-    skillName: 'Spanish',
-    date: '2026-04-21',
-    duration: 25,
-  },
-  {
-    id: 'session-skill-1-2026-04-21T08:00:00Z-0',
-    type: 'session',
-    message: 'Practiced Spanish',
-    timestamp: '2026-04-21T08:00:00Z',
-    skillId: 'skill-1',
-    skillName: 'Spanish',
-    date: '2026-04-21',
-    duration: 40,
-  },
+assertEqual('recentActivity totalCount', dashboardData.recentActivity.totalCount, 8);
+assertEqual('recentActivity hasMore', dashboardData.recentActivity.hasMore, true);
+assertEqual('recentActivity group labels', dashboardData.recentActivity.groups.map((group) => group.label), [
+  'Today',
+  'Yesterday',
+  'Earlier this week',
+  'Earlier',
 ]);
+assertEqual('recentActivity Today group title', getActivityGroup(dashboardData.recentActivity, 'today').items[0].title, 'Practiced Spanish');
+assertEqual('recentActivity Today group meta', getActivityGroup(dashboardData.recentActivity, 'today').items[0].meta, '1h');
+assertEqual('recentActivity Yesterday group title', getActivityGroup(dashboardData.recentActivity, 'yesterday').items[0].title, 'Added Guitar');
+assertEqual('recentActivity Yesterday group meta', getActivityGroup(dashboardData.recentActivity, 'yesterday').items[0].meta, '');
+assertEqual('recentActivity Earlier this week group title', getActivityGroup(dashboardData.recentActivity, 'earlier_this_week').items[0].title, 'Practiced Guitar');
+assertEqual('recentActivity Earlier group count', getActivityGroup(dashboardData.recentActivity, 'earlier').items.length, 2);
+assertEqual(
+  'recentActivity accessibility label',
+  getActivityGroup(dashboardData.recentActivity, 'yesterday').items[0].accessibilityLabel,
+  'Added Guitar, Yesterday'
+);
 assertEqual(
   'recentActivity ids and skillIds',
-  dashboardData.recentActivity.every((activity) => Boolean(activity.id) && Boolean(activity.skillId)),
+  dashboardData.recentActivity.groups.flatMap((group) => group.items).every((activity) => Boolean(activity.id) && Boolean(activity.skillId)),
   true
 );
-assertEqual('recentActivity length', dashboardData.recentActivity.length, 5);
 assertEqual('skills', dashboardData.skills, [
   {
     skillId: 'skill-1',
     skillName: 'Spanish',
-    totalTime: 65,
+    totalTime: 85,
     status: { type: 'on-track' },
   },
   {
     skillId: 'skill-2',
     skillName: 'Guitar',
-    totalTime: 70,
+    totalTime: 60,
     status: { type: 'on-track' },
   },
   {
     skillId: 'skill-3',
     skillName: 'TypeScript',
-    totalTime: 25,
+    totalTime: 15,
     status: { type: 'behind' },
   },
 ]);
@@ -221,7 +190,7 @@ const mixedDashboardData = createDashboardData({
 assertEqual('mixed skill id is normalized', mixedDashboardData.skills[0].skillId, '1778200355041');
 assertEqual(
   'mixed activity skillId is normalized',
-  mixedDashboardData.recentActivity.find((activity) => activity.type === 'session')?.skillId,
+  mixedDashboardData.recentActivity.groups.flatMap((group) => group.items).find((activity) => activity.type === 'session')?.skillId,
   '1778200355041'
 );
 

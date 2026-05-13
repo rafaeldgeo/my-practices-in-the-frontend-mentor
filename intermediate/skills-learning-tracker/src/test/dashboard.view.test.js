@@ -190,7 +190,44 @@ try {
         },
       ],
     },
-    recentActivity: [],
+    recentActivity: {
+      totalCount: 4,
+      hasMore: false,
+      groups: [
+        {
+          key: 'today',
+          label: 'Today',
+          items: [
+            {
+              id: 'activity-1',
+              type: 'session',
+              skillId: 'skill-1',
+              skillName: 'Spanish',
+              title: 'Practiced Spanish',
+              meta: '30m',
+              recencyLabel: 'Today',
+              accessibilityLabel: 'Practiced Spanish, 30m, Today',
+            },
+          ],
+        },
+        {
+          key: 'yesterday',
+          label: 'Yesterday',
+          items: [
+            {
+              id: 'activity-2',
+              type: 'skill_created',
+              skillId: 'skill-2',
+              skillName: 'TypeScript',
+              title: 'Added TypeScript',
+              meta: '',
+              recencyLabel: 'Yesterday',
+              accessibilityLabel: 'Added TypeScript, Yesterday',
+            },
+          ],
+        },
+      ],
+    },
   })
 
   assertEqual('stats header rendered', stats.innerHTML.includes('Momentum at a glance'), true)
@@ -209,6 +246,11 @@ try {
   assertEqual('heatmap bucket data rendered', consistency.innerHTML.includes('data-bucket="medium"'), true)
   assertEqual('heatmap accessibility label rendered', consistency.innerHTML.includes('Apr 17, 2026: 2 sessions, 45m, medium consistency, single-day rhythm'), true)
   assertEqual('heatmap fallback text rendered', consistency.innerHTML.includes('dashboard__heatmap-fallback'), true)
+  assertEqual('recent activity renders linear list', recentActivity.innerHTML.includes('dashboard__list--activity'), true)
+  assertEqual('recent activity group headings removed', recentActivity.innerHTML.includes('dashboard__activity-group-heading'), false)
+  assertEqual('recent activity title rendered', recentActivity.innerHTML.includes('Practiced Spanish'), true)
+  assertEqual('recent activity inline metadata rendered', recentActivity.innerHTML.includes('Today · 30m'), true)
+  assertEqual('recent activity accessibility label rendered', recentActivity.innerHTML.includes('aria-label="Practiced Spanish, 30m, Today"'), true)
 
   const primaryButton = {
     dataset: {
@@ -341,7 +383,11 @@ try {
         },
       ],
     },
-    recentActivity: [],
+    recentActivity: {
+      totalCount: 0,
+      hasMore: false,
+      groups: [],
+    },
   })
 
   const updatedButton = {
@@ -366,6 +412,62 @@ try {
     skillId: 'skill-2',
   })
 
+  const originalToLocaleDateString = Date.prototype.toLocaleDateString
+  Date.prototype.toLocaleDateString = function () {
+    throw new Error('recent activity view should not format dates')
+  }
+
+  try {
+    view.render({
+      featuredInsight: null,
+      globalStats: null,
+      consistency: {
+        range: {
+          startDate: '',
+          endDate: '',
+          days: 0,
+        },
+        summary: {
+          totalMinutes: 0,
+          totalSessions: 0,
+          activeDays: 0,
+          emptyDays: 0,
+          longestActiveRun: 0,
+          currentActiveRun: 0,
+          peakDay: null,
+        },
+        cells: [],
+      },
+      recentActivity: {
+        totalCount: 1,
+        hasMore: false,
+        groups: [
+          {
+            key: 'today',
+            label: 'Today',
+            items: [
+              {
+                id: 'activity-3',
+                type: 'session',
+                skillId: 'skill-3',
+                skillName: 'Guitar',
+                title: 'Practiced Guitar',
+                meta: '40m',
+                recencyLabel: 'Today',
+                accessibilityLabel: 'Practiced Guitar, 40m, Today',
+              },
+            ],
+          },
+        ],
+      },
+    })
+  } finally {
+    Date.prototype.toLocaleDateString = originalToLocaleDateString
+  }
+
+  assertEqual('recent activity render avoids date formatting', recentActivity.innerHTML.includes('Practiced Guitar'), true)
+  assertEqual('recent activity render keeps inline recency metadata', recentActivity.innerHTML.includes('Today · 40m'), true)
+
   view.render({
     featuredInsight: null,
     globalStats: null,
@@ -386,10 +488,15 @@ try {
       },
       cells: [],
     },
-    recentActivity: [],
+    recentActivity: {
+      totalCount: 0,
+      hasMore: false,
+      groups: [],
+    },
   })
 
   assertEqual('stats empty state rendered', stats.innerHTML.includes('No data available'), true)
+  assertEqual('recent activity empty state rendered', recentActivity.innerHTML.includes('No recent activity yet.'), true)
 } finally {
   globalThis.document = previousDocument
 }

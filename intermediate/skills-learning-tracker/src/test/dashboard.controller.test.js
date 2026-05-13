@@ -81,9 +81,44 @@ const controller = createDashboardController({
             currentActiveRun: 1,
             peakDay: null,
           },
-          cells: [],
+            cells: [],
+          },
+        recentActivity: {
+          totalCount: 2,
+          hasMore: false,
+          groups: [
+            {
+              key: 'today',
+              label: 'Today',
+              items: [
+                {
+                  id: 'activity-1',
+                  type: 'session',
+                  skillId: 'skill-1',
+                  skillName: 'Spanish',
+                  title: 'Practiced Spanish',
+                  meta: '30m',
+                  accessibilityLabel: 'Practiced Spanish, 30m, Today',
+                },
+              ],
+            },
+            {
+              key: 'yesterday',
+              label: 'Yesterday',
+              items: [
+                {
+                  id: 'activity-2',
+                  type: 'skill_created',
+                  skillId: 'skill-1',
+                  skillName: 'Spanish',
+                  title: 'Added Spanish',
+                  meta: '',
+                  accessibilityLabel: 'Added Spanish, Yesterday',
+                },
+              ],
+            },
+          ],
         },
-        recentActivity: [],
         skills: skills.map((skill) => ({
           skillId: skill.id,
           skillName: skill.name,
@@ -202,10 +237,10 @@ assertEqual('render receives dashboard data as a single payload', calls.render, 
       periodLabel: 'All time',
     },
   },
-  consistency: {
-    range: {
-      startDate: '2026-04-18',
-      endDate: '2026-04-22',
+    consistency: {
+      range: {
+        startDate: '2026-04-18',
+        endDate: '2026-04-22',
       days: 5,
     },
     summary: {
@@ -216,10 +251,45 @@ assertEqual('render receives dashboard data as a single payload', calls.render, 
       longestActiveRun: 1,
       currentActiveRun: 1,
       peakDay: null,
+      },
+      cells: [],
     },
-    cells: [],
-  },
-  recentActivity: [],
+    recentActivity: {
+      totalCount: 2,
+      hasMore: false,
+      groups: [
+        {
+          key: 'today',
+          label: 'Today',
+          items: [
+            {
+              id: 'activity-1',
+              type: 'session',
+              skillId: 'skill-1',
+              skillName: 'Spanish',
+              title: 'Practiced Spanish',
+              meta: '30m',
+              accessibilityLabel: 'Practiced Spanish, 30m, Today',
+            },
+          ],
+        },
+        {
+          key: 'yesterday',
+          label: 'Yesterday',
+          items: [
+            {
+              id: 'activity-2',
+              type: 'skill_created',
+              skillId: 'skill-1',
+              skillName: 'Spanish',
+              title: 'Added Spanish',
+              meta: '',
+              accessibilityLabel: 'Added Spanish, Yesterday',
+            },
+          ],
+        },
+      ],
+    },
   skills: [
     {
       skillId: 'skill-1',

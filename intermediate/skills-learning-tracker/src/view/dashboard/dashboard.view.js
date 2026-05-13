@@ -1,4 +1,6 @@
-const EMPTY_TEXT = 'No data available'; 
+const EMPTY_TEXT = 'No data available';
+const RECENT_ACTIVITY_EMPTY_TITLE = 'No recent activity yet.';
+const RECENT_ACTIVITY_EMPTY_BODY = 'Your latest activity will appear here.';
 
 function escapeHtml(value) {
   return String(value)
@@ -29,61 +31,22 @@ function formatMinutes(totalMinutes) {
   return `${minutes}m`;
 }
 
-
 function formatDateLabel(date) {
-
   if (typeof date !== 'string') {
     return EMPTY_TEXT;
   }
 
-
   const [year, month, day] = date.split('-');
-
 
   if (!year || !month || !day) {
     return escapeHtml(date);
   }
-  
-  const monthIndex = Number(month) - 1; 
-  const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']; 
-  const monthName = monthNames[monthIndex] ?? month; 
+
+  const monthIndex = Number(month) - 1;
+  const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  const monthName = monthNames[monthIndex] ?? month;
 
   return `${monthName} ${Number(day)}, ${year}`;
-}
-
-function formatRelativeTime(timestamp) {
-  const parsedTimestamp =
-    typeof timestamp === 'number' && Number.isFinite(timestamp)
-      ? timestamp
-      : typeof timestamp === 'string'
-        ? Date.parse(timestamp)
-        : NaN;
-
-  if (!Number.isFinite(parsedTimestamp)) {
-    return EMPTY_TEXT;
-  }
-
-  const now = Date.now();
-  const diff = now - parsedTimestamp;
-  const minute = 60 * 1000;
-  const hour = 60 * minute;
-
-  if (diff < minute) {
-    return 'just now';
-  }
-
-  if (diff < hour) {
-    const minutes = Math.floor(diff / minute);
-    return `${minutes}m ago`;
-  }
-
-  if (diff < 24 * hour) {
-    const hours = Math.floor(diff / hour);
-    return `${hours}h ago`;
-  }
-
-  const date = new Date(parsedTimestamp);
-  return date.toLocaleDateString();
 }
 
 function renderActivityButton(activity, content) {
@@ -91,6 +54,7 @@ function renderActivityButton(activity, content) {
     <button
       class="recent-activity__item"
       data-skill-id="${escapeHtml(String(activity?.skillId ?? ''))}"
+      aria-label="${escapeHtml(String(activity?.accessibilityLabel ?? EMPTY_TEXT))}"
       type="button"
     >
       ${content}
@@ -98,6 +62,21 @@ function renderActivityButton(activity, content) {
   `;
 }
 
+function formatActivityMeta(activity) {
+  if (!activity || typeof activity !== 'object') {
+    return '';
+  }
+
+  const recencyLabel =
+    typeof activity.recencyLabel === 'string' && activity.recencyLabel.trim() !== ''
+      ? activity.recencyLabel.trim()
+      : '';
+  const meta = typeof activity.meta === 'string' && activity.meta.trim() !== ''
+    ? activity.meta.trim()
+    : '';
+
+  return [recencyLabel, meta].filter(Boolean).join(' · ');
+}
 
 function formatNumber(value, fractionDigits = 1) {
   const numericValue = Number(value);
@@ -645,62 +624,54 @@ function renderConsistency(consistency) {
   `;
 }
 
-function renderSkillCreated(activity) {
-  return `
-    <li class="dashboard__list-item">
-      ${renderActivityButton(
-        activity,
-        `
-          <span class="dashboard__list-label">${escapeHtml(activity?.message ?? EMPTY_TEXT)}</span>
-          <span class="dashboard__list-meta">${escapeHtml(formatRelativeTime(activity?.timestamp))}</span>
-        `
-      )}
-    </li>
-  `;
-}
-
-function renderSession(activity) {
-  const formattedDate = new Date(activity?.timestamp).toLocaleDateString('en-US', {
-    month: 'short',
-    day: 'numeric',
-  });
-
-  return `
-    <li class="dashboard__list-item">
-      ${renderActivityButton(
-        activity,
-        `
-          <span class="dashboard__list-label">${escapeHtml(activity?.message ?? EMPTY_TEXT)}</span>
-          <span class="recent-activity__meta">
-            <span class="dashboard__list-meta">${escapeHtml(formattedDate)}</span>
-            <span class="dashboard__list-value">${formatMinutes(activity?.duration)}</span>
-          </span>
-        `
-      )}
-    </li>
-  `;
-}
-
 function renderActivityItem(activity) {
-  if (activity?.type === 'skill_created') {
-    return renderSkillCreated(activity);
+  if (!activity || typeof activity !== 'object') {
+    return '';
   }
 
-  if (activity?.type === 'session') {
-    return renderSession(activity);
+  const title = typeof activity.title === 'string' && activity.title.trim() !== ''
+    ? activity.title
+      : typeof activity.message === 'string' && activity.message.trim() !== ''
+      ? activity.message
+      : EMPTY_TEXT;
+  const meta = formatActivityMeta(activity);
+
+  return `
+    <li class="dashboard__list-item">
+      ${renderActivityButton(
+        activity,
+        `
+          <span class="dashboard__list-label">${escapeHtml(title)}</span>
+          ${
+            meta
+              ? `<span class="recent-activity__meta">${escapeHtml(meta)}</span>`
+              : ''
+          }
+        `
+      )}
+    </li>
+  `;
+}
+
+function getRecentActivityGroups(recentActivity) {
+  if (recentActivity && typeof recentActivity === 'object' && !Array.isArray(recentActivity)) {
+    return Array.isArray(recentActivity.groups) ? recentActivity.groups : [];
   }
 
-  return null;
+  return [];
+}
+
+function getRecentActivityItems(recentActivity) {
+  return getRecentActivityGroups(recentActivity)
+    .flatMap((group) => (group && Array.isArray(group.items) ? group.items : []));
 }
 
 function renderRecentActivity(recentActivity) {
-
-  const items = Array.isArray(recentActivity) ? recentActivity : [];
+  const items = getRecentActivityItems(recentActivity);
   const renderedItems = items
     .map((item) => renderActivityItem(item))
     .filter(Boolean)
     .join('');
-
 
   return `
     <article class="dashboard__panel dashboard__panel--activity">
@@ -708,11 +679,16 @@ function renderRecentActivity(recentActivity) {
       ${
         renderedItems
           ? `
-            <ol class="dashboard__list dashboard__list--activity">
+            <ol class="dashboard__list dashboard__list--activity" aria-label="Recent activity feed">
               ${renderedItems}
             </ol>
           `
-          : `<p class="dashboard__empty">${EMPTY_TEXT}</p>`
+          : `
+            <div class="dashboard__empty-state">
+              <p class="dashboard__empty-state-title">${RECENT_ACTIVITY_EMPTY_TITLE}</p>
+              <p class="dashboard__empty">${RECENT_ACTIVITY_EMPTY_BODY}</p>
+            </div>
+          `
       }
     </article>
   `;

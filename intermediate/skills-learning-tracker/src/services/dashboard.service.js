@@ -6,6 +6,14 @@ const GLOBAL_SKILL_ID = '__global__';
 const FEATURED_MINUTES_THRESHOLD = 60; 
 const RECENT_WINDOW_DAYS = 7;
 const CONSISTENCY_WINDOW_DAYS = 35;
+const RECENT_ACTIVITY_LIMIT = 5;
+
+const RECENT_ACTIVITY_GROUP_LABELS = {
+  today: 'Today',
+  yesterday: 'Yesterday',
+  earlier_this_week: 'Earlier this week',
+  earlier: 'Earlier',
+};
 
 function normalizeId(value) {
   if (typeof value === 'string') {
@@ -505,12 +513,156 @@ function getActivitySortValue(timestamp) {
   return Number.NEGATIVE_INFINITY;
 }
 
-function getActivityDateLabel(timestamp) {
-  if (typeof timestamp !== 'string') {
-    return undefined;
+function getLocalDateKey(referenceDate = new Date()) {
+  const date = referenceDate instanceof Date ? referenceDate : new Date(referenceDate);
+
+  if (Number.isNaN(date.getTime())) {
+    return '';
   }
 
-  return timestamp.includes('T') ? timestamp.split('T')[0] : timestamp;
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+
+  return `${year}-${month}-${day}`;
+}
+
+function getActivityDateKey(activity) {
+  if (!activity || typeof activity !== 'object') {
+    return '';
+  }
+
+  if (isValidDateString(activity.date)) {
+    return activity.date;
+  }
+
+  if (typeof activity.timestamp === 'string' || typeof activity.timestamp === 'number') {
+    const parsedTimestamp =
+      typeof activity.timestamp === 'number'
+        ? activity.timestamp
+        : Date.parse(activity.timestamp);
+
+    if (!Number.isNaN(parsedTimestamp)) {
+      return getLocalDateKey(new Date(parsedTimestamp));
+    }
+  }
+
+  return '';
+}
+
+function getStartOfWeekKey(referenceDate = new Date()) {
+  const date = referenceDate instanceof Date ? referenceDate : new Date(referenceDate);
+
+  if (Number.isNaN(date.getTime())) {
+    return '';
+  }
+
+  const mondayOffset = (date.getDay() + 6) % 7;
+  const startOfWeek = new Date(date);
+
+  startOfWeek.setHours(0, 0, 0, 0);
+  startOfWeek.setDate(startOfWeek.getDate() - mondayOffset);
+
+  return getLocalDateKey(startOfWeek);
+}
+
+function getActivityGroupKey(activityDateKey, referenceDate = new Date()) {
+  if (!isValidDateString(activityDateKey)) {
+    return 'earlier';
+  }
+
+  const todayKey = getLocalDateKey(referenceDate);
+  const yesterdayKey = shiftDateString(todayKey, -1);
+
+  if (activityDateKey === todayKey) {
+    return 'today';
+  }
+
+  if (activityDateKey === yesterdayKey) {
+    return 'yesterday';
+  }
+
+  const startOfWeekKey = getStartOfWeekKey(referenceDate);
+
+  if (isValidDateString(startOfWeekKey) && activityDateKey >= startOfWeekKey && activityDateKey < yesterdayKey) {
+    return 'earlier_this_week';
+  }
+
+  return 'earlier';
+}
+
+function getActivityGroupLabel(groupKey) {
+  return RECENT_ACTIVITY_GROUP_LABELS[groupKey] ?? RECENT_ACTIVITY_GROUP_LABELS.earlier;
+}
+
+function formatActivityDuration(totalMinutes) {
+  const minutes = Number.isFinite(Number(totalMinutes)) ? Math.max(0, Number(totalMinutes)) : 0;
+  const hours = Math.floor(minutes / 60);
+  const remainder = minutes % 60;
+
+  if (hours > 0 && remainder > 0) {
+    return `${hours}h ${remainder}m`;
+  }
+
+  if (hours > 0) {
+    return `${hours}h`;
+  }
+
+  return `${minutes}m`;
+}
+
+function createActivityAccessibilityLabel({ title, meta, groupLabel }) {
+  return [title, meta, groupLabel].filter((value) => typeof value === 'string' && value.trim() !== '').join(', ');
+}
+
+function enrichActivity(activity, referenceDate = new Date()) {
+  const activityDateKey = getActivityDateKey(activity);
+  const groupKey = getActivityGroupKey(activityDateKey, referenceDate);
+  const groupLabel = getActivityGroupLabel(groupKey);
+  const skillName = typeof activity.skillName === 'string' && activity.skillName.trim() !== ''
+    ? activity.skillName
+    : activity.skillId;
+  const title =
+    activity.type === 'skill_created'
+      ? `Added ${skillName}`
+      : `Practiced ${skillName}`;
+  const meta =
+    activity.type === 'session'
+      ? formatActivityDuration(activity.duration)
+      : '';
+
+  return {
+    ...activity,
+    title,
+    message: title,
+    meta,
+    groupKey,
+    groupLabel,
+    recencyLabel: groupLabel,
+    accessibilityLabel: createActivityAccessibilityLabel({
+      title,
+      meta,
+      groupLabel,
+    }),
+  };
+}
+
+function groupRecentActivity(items) {
+  return items.reduce((groups, item) => {
+    const lastGroup = groups.at(-1);
+
+    if (!lastGroup || lastGroup.key !== item.groupKey) {
+      groups.push({
+        key: item.groupKey,
+        label: item.groupLabel,
+        items: [item],
+      });
+      return groups;
+    }
+
+    lastGroup.items.push(item);
+    return groups;
+  }, []);
 }
 
 function createActivityId(prefix, skillId, timestamp, index) {
@@ -534,11 +686,12 @@ function mapSkillActivities(skills) {
     .map((skill, index) => ({
       id: createActivityId('skill-created', skill.id, skill.createdAt, index),
       type: 'skill_created',
-      message: `${skill.name} added`,
+      title: `Added ${skill.name}`,
+      message: `Added ${skill.name}`,
       timestamp: skill.createdAt,
       skillId: normalizeId(skill.id),
       skillName: skill.name,
-      date: getActivityDateLabel(skill.createdAt),
+      date: isValidDateString(skill.createdAt) ? skill.createdAt : getLocalDateKey(new Date(skill.createdAt)),
       duration: 0,
     }));
 }
@@ -566,18 +719,21 @@ function mapSessionActivities(sessions, skills) {
       return {
         id,
         type: 'session',
+        title: `Practiced ${skillName}`,
         message: `Practiced ${skillName}`,
         timestamp,
         skillId,
         skillName,
-        date: getActivityDateLabel(timestamp),
+        date: isValidDateString(session.date)
+          ? session.date
+          : getLocalDateKey(new Date(timestamp)),
         duration: getSessionDuration(session),
       };
     })
     .filter((activity) => activity.timestamp);
 }
 
-function getRecentActivity(sessions, skills) {
+function getRecentActivity(sessions, skills, referenceDate = new Date()) {
   const skillActivities = mapSkillActivities(skills);
   const sessionActivities = mapSessionActivities(sessions, skills);
   const activities = [...skillActivities, ...sessionActivities];
@@ -586,7 +742,15 @@ function getRecentActivity(sessions, skills) {
     return getActivitySortValue(activityB.timestamp) - getActivitySortValue(activityA.timestamp);
   });
 
-  return activities.slice(0, 5);
+  const visibleActivities = activities
+    .slice(0, RECENT_ACTIVITY_LIMIT)
+    .map((activity) => enrichActivity(activity, referenceDate));
+
+  return {
+    totalCount: activities.length,
+    hasMore: activities.length > RECENT_ACTIVITY_LIMIT,
+    groups: groupRecentActivity(visibleActivities),
+  };
 }
 
 function mapSkills(skills, sessions) {
@@ -671,7 +835,7 @@ export function createDashboardData({
       }),
     },
     consistency: getConsistencyHeatmap(sessions, referenceDate),
-    recentActivity: getRecentActivity(sessions, skills),
+    recentActivity: getRecentActivity(sessions, skills, referenceDate),
     skills: mapSkills(skills, sessions),
     featuredInsight: createPriorityPayload({ skills, sessions, referenceDate }),
   };
