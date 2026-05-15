@@ -1,3 +1,4 @@
+import { normalizeSkill } from '../services/skill.service.js'
 import { transformDemoDataset } from '../utils/demo-temporal.js'
 
 const DATA_URL = '../data/sample-skills.json'; // CAMINHO DO ARQUIVO JSON
@@ -21,7 +22,13 @@ export async function fetchData() {
     }
 
     const rawData = await response.json(); 
-    cachedData = transformDemoDataset(rawData)
+    const transformedData = transformDemoDataset(rawData)
+    cachedData = {
+      ...transformedData,
+      skills: Array.isArray(transformedData?.skills)
+        ? transformedData.skills.map((skill) => normalizeSkill(skill)).filter(Boolean)
+        : [],
+    }
     return cachedData
   } catch (error) {
     throw new Error(`Failed to fetch skills data: ${error.message}`);
@@ -52,13 +59,37 @@ export async function getActivities() {
 export async function saveSkill(skill) {
   const data = await fetchData()
   const currentSkills = getCollection(data, 'skills')
+  const normalizedSkill = normalizeSkill(skill)
 
   cachedData = {
     ...data,
-    skills: [...currentSkills, skill],
+    skills: normalizedSkill ? [...currentSkills, normalizedSkill] : currentSkills,
   }
 
-  return skill
+  return normalizedSkill
+}
+
+export async function updateSkill(skill) {
+  const data = await fetchData()
+  const currentSkills = getCollection(data, 'skills')
+  const normalizedSkill = normalizeSkill(skill)
+
+  if (!normalizedSkill) {
+    return null
+  }
+
+  const hasExistingSkill = currentSkills.some((currentSkill) => currentSkill?.id === normalizedSkill.id)
+
+  cachedData = {
+    ...data,
+    skills: hasExistingSkill
+      ? currentSkills.map((currentSkill) =>
+          currentSkill?.id === normalizedSkill.id ? normalizedSkill : currentSkill
+        )
+      : [...currentSkills, normalizedSkill],
+  }
+
+  return normalizedSkill
 }
 
 export async function saveSession(session) {

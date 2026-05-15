@@ -5,6 +5,7 @@ export function createSkillsLearningTrackerApp({
   activityService,
   dashboardService,
   skillService,
+  skillPickerService,
   sessionService,
   dashboardView,
   headerView,
@@ -28,7 +29,9 @@ export function createSkillsLearningTrackerApp({
   }
 
   async function openSkillFormModal() {
-    const content = skillFormView.render()
+    const content = skillFormView.render({
+      mode: 'create',
+    })
 
     skillFormView.onSubmit = (data) => {
       void handleSkillSubmit(data)
@@ -42,17 +45,53 @@ export function createSkillsLearningTrackerApp({
     skillFormView.bindEvents()
   }
 
-  async function openSkillPickerModal() {
-    const skills = await store.getSkills()
+  async function openSkillGoalSetupModal(skillId) {
+    const skill = await getSkillById(skillId)
 
-    if (!Array.isArray(skills) || skills.length === 0) {
+    if (!skill) {
       return
     }
 
-    const content = skillPickerView.render({ skills })
+    const content = skillFormView.render({
+      mode: 'goal_setup',
+      skill,
+    })
+
+    skillFormView.onSubmit = (data) => {
+      void handleSkillGoalSubmit(skill, data)
+    }
+
+    modalController.open({
+      content,
+    })
+
+    skillFormView.init()
+    skillFormView.bindEvents()
+  }
+
+  async function openSkillPickerModal(currentSkillId = '', { purpose = 'practice', onSelect } = {}) {
+    const [skills, sessions] = await Promise.all([
+      store.getSkills(),
+      store.getSessions(),
+    ])
+    const payload = skillPickerService.createSkillPickerPayload({
+      skills,
+      sessions,
+      currentSkillId,
+      purpose,
+    })
+    const content = skillPickerView.render(payload)
 
     skillPickerView.onSelect = (skillId) => {
-      void openSessionModal(skillId)
+      const selectionHandler =
+        typeof onSelect === 'function'
+          ? onSelect
+          : openSessionModal
+
+      void selectionHandler(skillId)
+    }
+    skillPickerView.onCreateSkill = () => {
+      void openSkillFormModal()
     }
 
     modalController.open({
@@ -98,6 +137,27 @@ export function createSkillsLearningTrackerApp({
     }
   }
 
+  async function handleSkillGoalSubmit(skill, data) {
+    try {
+      const updatedSkill = skillService.updateSkillGoal(skill, data)
+
+      if (!updatedSkill) {
+        throw new Error('Invalid goal setup payload')
+      }
+
+      if (typeof store.updateSkill === 'function') {
+        await store.updateSkill(updatedSkill)
+      } else {
+        await store.saveSkill(updatedSkill)
+      }
+
+      await controller.updateDashboard()
+      modalController.close()
+    } catch (error) {
+      console.error('Failed to save goal setup:', error)
+    }
+  }
+
   async function handleSessionSubmit(payload) {
     try {
       const skill = await getSkillById(payload?.skillId)
@@ -138,7 +198,18 @@ export function createSkillsLearningTrackerApp({
         }
         break
       case 'open_skill_picker':
-        await openSkillPickerModal()
+        await openSkillPickerModal(action.skillId)
+        break
+      case 'open_skill_goal_setup':
+        if (typeof action.skillId === 'string' && action.skillId.trim() !== '') {
+          await openSkillGoalSetupModal(action.skillId)
+          break
+        }
+
+        await openSkillPickerModal('', {
+          purpose: 'goal_setup',
+          onSelect: openSkillGoalSetupModal,
+        })
         break
       case 'open_skill_form':
         await openSkillFormModal()
@@ -193,6 +264,7 @@ export function createSkillsLearningTrackerApp({
     openSessionModal,
     openSkillPickerModal,
     openSkillFormModal,
+    openSkillGoalSetupModal,
     handleSessionSubmit,
     handleHeroAction,
   }

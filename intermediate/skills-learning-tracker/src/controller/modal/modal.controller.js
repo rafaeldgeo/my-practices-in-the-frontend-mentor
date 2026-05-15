@@ -4,6 +4,9 @@ export function createModalController({ view }) {
   function open({ content = '' } = {}) {
     if (isOpen) {
       view.render(content)
+      if (typeof view.focus === 'function') {
+        view.focus()
+      }
       return
     }
 

@@ -178,6 +178,37 @@ assertEqual(
   ['globalStats', 'consistency', 'recentActivity', 'skills', 'featuredInsight']
 );
 
+const goalLessDashboardData = createDashboardData({
+  referenceDate: new Date('2026-04-22T12:00:00Z'),
+  skills: [
+    {
+      id: 'skill-goal-less',
+      name: 'Sketching',
+      color: '#059669',
+      createdAt: '2026-04-21T09:00:00Z',
+      goal: null,
+    },
+  ],
+  sessions: [
+    {
+      skillId: 'skill-goal-less',
+      durationMinutes: 30,
+      date: '2026-04-22',
+      createdAt: '2026-04-22T12:00:00Z',
+    },
+  ],
+});
+
+assertEqual('goal-less dashboard mode', goalLessDashboardData.featuredInsight.mode, 'empty');
+assertEqual('goal-less dashboard reason', goalLessDashboardData.featuredInsight.state.reason, 'missing-goals');
+assertEqual('goal-less dashboard preserves skill', goalLessDashboardData.skills[0], {
+  skillId: 'skill-goal-less',
+  skillName: 'Sketching',
+  totalTime: 30,
+  status: { type: 'behind' },
+});
+assertEqual('goal-less dashboard keeps empty hero state valid', goalLessDashboardData.featuredInsight.progressRing.isReady, false);
+
 const mixedDashboardData = createDashboardData({
   skills: [
     { id: 1778200355041, name: 'Dynamic Skill', createdAt: '2026-04-24T10:00:00Z' },

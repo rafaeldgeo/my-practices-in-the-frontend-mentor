@@ -1,3 +1,5 @@
+import { normalizeSkill } from './skill.service.js'
+
 const PROGRESS_DEBT_TOLERANCE = 10
 const MS_PER_DAY = 24 * 60 * 60 * 1000
 
@@ -57,58 +59,6 @@ function getCalendarDateLabel(referenceDate = new Date()) {
   return `${year}-${month}-${day}`
 }
 
-function getSkillGoal(skill) {
-  if (!skill || typeof skill !== 'object' || Array.isArray(skill)) {
-    return null
-  }
-
-  const goal = skill.goal
-
-  if (
-    goal &&
-    typeof goal === 'object' &&
-    !Array.isArray(goal) &&
-    (goal.type === 'weekly' || goal.type === 'total') &&
-    typeof goal.targetHours === 'number' &&
-    Number.isFinite(goal.targetHours) &&
-    goal.targetHours > 0
-  ) {
-    return goal
-  }
-
-  if (
-    (skill.targetHours === undefined || skill.targetHours === null) &&
-    (skill.goalType === undefined || skill.goalType === null)
-  ) {
-    return null
-  }
-
-  if (
-    (skill.goalType === 'weekly' || skill.goalType === 'total') &&
-    typeof skill.targetHours === 'number' &&
-    Number.isFinite(skill.targetHours) &&
-    skill.targetHours > 0
-  ) {
-    return {
-      type: skill.goalType,
-      targetHours: skill.targetHours,
-    }
-  }
-
-  if (
-    typeof skill.targetHours === 'number' &&
-    Number.isFinite(skill.targetHours) &&
-    skill.targetHours > 0
-  ) {
-    return {
-      type: 'total',
-      targetHours: skill.targetHours,
-    }
-  }
-
-  return null
-}
-
 function getSessionDurationMinutes(session) {
   if (!session || typeof session !== 'object' || Array.isArray(session)) {
     return 0
@@ -142,16 +92,18 @@ function getValidSkills(skills) {
     return []
   }
 
-  return skills.filter(
-    (skill) =>
-      skill &&
-      (typeof skill.id === 'string' || typeof skill.id === 'number') &&
-      isNonEmptyString(skill.name)
-  )
+  return skills
+    .map((skill) => normalizeSkill(skill))
+    .filter(
+      (skill) =>
+        skill &&
+        isNonEmptyString(skill.id) &&
+        isNonEmptyString(skill.name)
+    )
 }
 
 function getGoalSkills(skills) {
-  return getValidSkills(skills).filter((skill) => getSkillGoal(skill))
+  return getValidSkills(skills).filter((skill) => Boolean(skill.goal))
 }
 
 function getSessionsForSkillIds(sessions, skillIds) {
@@ -308,13 +260,15 @@ function getProgressDebtHours(progressDebtPercent, goal) {
 }
 
 function buildSkillAnalysis(skill, sessions, referenceDate) {
-  if (!skill || typeof skill !== 'object' || Array.isArray(skill)) {
+  const normalizedSkill = normalizeSkill(skill)
+
+  if (!normalizedSkill) {
     return null
   }
 
-  const skillId = normalizeId(skill.id)
-  const skillName = isNonEmptyString(skill.name) ? skill.name.trim() : ''
-  const goal = getSkillGoal(skill)
+  const skillId = normalizeId(normalizedSkill.id)
+  const skillName = isNonEmptyString(normalizedSkill.name) ? normalizedSkill.name.trim() : ''
+  const goal = normalizedSkill.goal
 
   if (skillId === '' || skillName === '' || !goal) {
     return null
@@ -480,6 +434,7 @@ function buildActions({
         label: 'Choose another skill',
         action: 'open_skill_picker',
         intent: 'switch_skill',
+        skillId: focusSkill.skillId,
       },
     }
   }
@@ -496,6 +451,7 @@ function buildActions({
         label: 'Review another skill',
         action: 'open_skill_picker',
         intent: 'switch_skill',
+        skillId: focusSkill.skillId,
       },
     }
   }

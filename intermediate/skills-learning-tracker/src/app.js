@@ -3,6 +3,7 @@ import * as store from './store/data.store.js'
 import * as activityService from './services/activity.service.js'
 import * as dashboardService from './services/dashboard.service.js'
 import * as skillService from './services/skill.service.js'
+import * as skillPickerService from './services/skill-picker.service.js'
 import * as sessionService from './services/session.service.js'
 import { createSkillsLearningTrackerApp } from './app.bootstrap.js'
 import { createDashboardView } from './view/dashboard/dashboard.view.js'
@@ -25,6 +26,7 @@ const app = createSkillsLearningTrackerApp({
   activityService,
   dashboardService,
   skillService,
+  skillPickerService,
   sessionService,
   dashboardView,
   headerView,

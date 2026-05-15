@@ -402,6 +402,174 @@
   line-height: 1.5;
 }
 
+.skill-picker {
+  display: grid;
+  gap: 1rem;
+}
+
+.skill-picker__header {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.skill-picker__copy {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.skill-picker__eyebrow {
+  margin: 0;
+  color: #7a837a;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.skill-picker__title {
+  margin: 0;
+  color: #1a1d1a;
+  font-size: clamp(1.25rem, 2vw, 1.5rem);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.skill-picker__description {
+  margin: 0;
+  color: #5c645c;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  max-width: 42ch;
+}
+
+.skill-picker__list {
+  display: grid;
+  gap: 0.625rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.skill-picker__item {
+  list-style: none;
+}
+
+.skill-picker__option {
+  appearance: none;
+  display: block;
+  width: 100%;
+  border: 1px solid #e8e8e2;
+  border-radius: 0.95rem;
+  background: #ffffff;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  padding: 0.95rem 1rem;
+  text-align: left;
+  outline-offset: 2px;
+}
+
+.skill-picker__option:hover {
+  border-color: #cfd3cb;
+  background: #fafaf8;
+}
+
+.skill-picker__option:focus-visible {
+  border-color: #7a837a;
+  outline: 2px solid #7a837a;
+}
+
+.skill-picker__option:active {
+  border-color: #bfc5bc;
+  background: #f3f4ef;
+}
+
+.skill-picker__content {
+  display: grid;
+  gap: 0.25rem;
+  min-width: 0;
+}
+
+.skill-picker__name,
+.skill-picker__progress {
+  min-width: 0;
+}
+
+.skill-picker__name {
+  color: #1a1d1a;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.skill-picker__progress {
+  color: #5c645c;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.skill-picker__empty {
+  display: grid;
+  gap: 0.85rem;
+  padding: 1rem;
+  border: 1px solid #e8e8e2;
+  border-radius: 0.95rem;
+  background: linear-gradient(180deg, #fafaf8 0%, #ffffff 100%);
+}
+
+.skill-picker__empty-copy {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.skill-picker__empty-title {
+  margin: 0;
+  color: #1a1d1a;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.skill-picker__empty-description {
+  margin: 0;
+  color: #5c645c;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.skill-picker__empty-action {
+  appearance: none;
+  align-self: flex-start;
+  border: 1px solid #d9ddd4;
+  border-radius: 9999rem;
+  background: #ffffff;
+  color: #1a1d1a;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1;
+  padding: 0.65rem 0.95rem;
+  outline-offset: 2px;
+}
+
+.skill-picker__empty-action:hover {
+  border-color: #cfd3cb;
+  background: #fafaf8;
+}
+
+.skill-picker__empty-action:focus-visible {
+  border-color: #7a837a;
+  outline: 2px solid #7a837a;
+}
+
+.skill-picker__empty-action:active {
+  border-color: #bfc5bc;
+  background: #f3f4ef;
+}
+
 .modal {
   position: fixed;
   inset: 0;
@@ -429,6 +597,180 @@
 
 .modal__content {
   background: #fff;
+}
+
+.skill-form-view {
+  display: grid;
+  gap: 1rem;
+  padding: 1.5rem;
+}
+
+.skill-form-view__title {
+  margin: 0;
+  color: #1a1d1a;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+.skill-form-view__description {
+  margin: 0;
+  color: #5c645c;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  max-width: 42ch;
+}
+
+.skill-form {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.skill-form__feedback {
+  min-height: 1.25rem;
+  color: #047857;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.skill-form__field {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.skill-form__field label,
+.skill-form__goal-legend {
+  color: #1a1d1a;
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.skill-form__field input,
+.skill-form__field select {
+  border: 1px solid #d9ddd4;
+  border-radius: 0.85rem;
+  background: #ffffff;
+  color: #1a1d1a;
+  font: inherit;
+  padding: 0.8rem 0.9rem;
+  outline-offset: 2px;
+}
+
+.skill-form__field input:focus-visible,
+.skill-form__field select:focus-visible,
+.skill-form__goal-toggle:focus-visible,
+.skill-form button[type='submit']:focus-visible {
+  border-color: #7a837a;
+  outline: 2px solid #7a837a;
+}
+
+.skill-form__goal {
+  display: grid;
+  gap: 0.75rem;
+  padding: 1rem;
+  border: 1px solid #e8e8e2;
+  border-radius: 0.95rem;
+  background: linear-gradient(180deg, #fafaf8 0%, #ffffff 100%);
+}
+
+.skill-form__goal-header {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.skill-form__goal-toggle {
+  align-self: flex-start;
+  appearance: none;
+  border: 1px solid #d9ddd4;
+  border-radius: 9999rem;
+  background: #ffffff;
+  color: #1a1d1a;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1;
+  padding: 0.65rem 0.95rem;
+  outline-offset: 2px;
+}
+
+.skill-form__goal-toggle:hover {
+  border-color: #cfd3cb;
+  background: #fafaf8;
+}
+
+.skill-form__goal-description {
+  margin: 0;
+  color: #5c645c;
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  max-width: 42ch;
+}
+
+.skill-form__goal-panel {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.skill-form__goal-fields {
+  display: grid;
+  gap: 0.85rem;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  min-inline-size: 0;
+}
+
+.skill-form__goal-legend {
+  padding: 0;
+}
+
+.skill-form__skill-summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.8rem 0.95rem;
+  border: 1px solid #e8e8e2;
+  border-radius: 0.95rem;
+  background: #fafaf8;
+}
+
+.skill-form__skill-name {
+  color: #1a1d1a;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.skill-form__skill-color {
+  width: 0.9rem;
+  height: 0.9rem;
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  border-radius: 9999rem;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
+}
+
+.skill-form button[type='submit'] {
+  align-self: flex-start;
+  appearance: none;
+  border: 1px solid #1a1d1a;
+  border-radius: 9999rem;
+  background: #1a1d1a;
+  color: #ffffff;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1;
+  padding: 0.7rem 1rem;
+  outline-offset: 2px;
+}
+
+.skill-form button[type='submit']:hover {
+  border-color: #303530;
+  background: #303530;
 }
 
 .dashboard__list--activity {

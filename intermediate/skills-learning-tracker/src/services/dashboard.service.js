@@ -1,5 +1,6 @@
 import { calculateStats } from './stats.service.js';
 import { createPriorityPayload } from './priority.service.js';
+import { normalizeSkill } from './skill.service.js'
 import { calculateStreak } from './streak.service.js';
 
 const GLOBAL_SKILL_ID = '__global__'; 
@@ -675,6 +676,7 @@ function mapSkillActivities(skills) {
   }
 
   return skills
+    .map((skill) => normalizeSkill(skill))
     .filter(
       (skill) =>
         skill &&
@@ -759,17 +761,23 @@ function mapSkills(skills, sessions) {
   }
 
   return skills.map((skill) => {
-    const skillId = normalizeId(skill.id);
+    const normalizedSkill = normalizeSkill(skill);
+
+    if (!normalizedSkill) {
+      return null;
+    }
+
+    const skillId = normalizeId(normalizedSkill.id);
     const skillStats = getSkillStats(sessions, skillId);
     const statusType = getSkillStatus(skillStats.totalTime);
 
     return {
       skillId,
-      skillName: skill.name,
+      skillName: normalizedSkill.name,
       totalTime: skillStats.totalTime,
       status: { type: statusType },
     };
-  });
+  }).filter(Boolean);
 }
 
 export function createDashboardData({
@@ -777,6 +785,9 @@ export function createDashboardData({
   sessions = [],
   referenceDate = new Date(),
 } = {}) {
+  const normalizedSkills = Array.isArray(skills)
+    ? skills.map((skill) => normalizeSkill(skill)).filter(Boolean)
+    : [];
   const skillStats = calculateStats(normalizeSessionsForStats(sessions), GLOBAL_SKILL_ID);
   const skillStreak = calculateStreak(
     normalizeSessionsForStreak(sessions),
@@ -835,8 +846,8 @@ export function createDashboardData({
       }),
     },
     consistency: getConsistencyHeatmap(sessions, referenceDate),
-    recentActivity: getRecentActivity(sessions, skills, referenceDate),
-    skills: mapSkills(skills, sessions),
-    featuredInsight: createPriorityPayload({ skills, sessions, referenceDate }),
+    recentActivity: getRecentActivity(sessions, normalizedSkills, referenceDate),
+    skills: mapSkills(normalizedSkills, sessions),
+    featuredInsight: createPriorityPayload({ skills: normalizedSkills, sessions, referenceDate }),
   };
 }

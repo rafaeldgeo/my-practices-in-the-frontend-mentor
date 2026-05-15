@@ -1,82 +1,73 @@
-// Model da entidade Skill.
-// Responsável por criar e validar skills sem acessar DOM, storage ou outros módulos.
+// Compatibility model for the official Skill contract.
+// The service owns normalization; this module keeps validation available for tests.
 
-const DATE_PATTERN = /^\d{4}-\d{2}-\d{2}$/; 
-const DEFAULT_SKILL_COLOR = '#059669'
+import { createSkill as createOfficialSkill, normalizeSkill } from '../services/skill.service.js'
 
-function generateSkillId() {
-  return `skill_${Date.now()}_${Math.random().toString(36).slice(2, 10)}`; 
-}
+const GOAL_TYPES = new Set(['weekly', 'total'])
 
-function isValidDateString(date) {
-  if (typeof date !== 'string' || !DATE_PATTERN.test(date)) {
-    return false;
+function isValidDateString(value) {
+  if (typeof value !== 'string' || value.trim() === '') {
+    return false
   }
 
-  const [year, month, day] = date.split('-').map(Number);
-  const parsedDate = new Date(Date.UTC(year, month - 1, day));
+  const parsed = Date.parse(value)
 
-  return (
-    parsedDate.getUTCFullYear() === year &&
-    parsedDate.getUTCMonth() === month - 1 &&
-    parsedDate.getUTCDate() === day
-  );
+  return !Number.isNaN(parsed)
 }
 
-// Cria uma nova skill a partir dos dados de entrada, sem mutar o objeto recebido.
-export function createSkill({ name, startDate, targetHours, color } = {}) {
-  const skill = {
-    id: generateSkillId(),
-    name,
-    startDate,
-    targetHours,
-    color: typeof color === 'string' && color.trim() !== '' ? color.trim() : DEFAULT_SKILL_COLOR,
-  };
+function isValidGoal(goal) {
+  if (goal === undefined || goal === null) {
+    return true
+  }
 
-  return skill;
+  if (!goal || typeof goal !== 'object' || Array.isArray(goal)) {
+    return false
+  }
+
+  const type = typeof goal.type === 'string' ? goal.type.trim() : ''
+  const targetHours = Number(goal.targetHours)
+
+  return GOAL_TYPES.has(type) && Number.isFinite(targetHours) && targetHours > 0
 }
 
-// Valida a estrutura de uma skill e retorna o resultado com uma lista de erros.
+export const createSkill = createOfficialSkill
+
 export function validateSkill(skill) {
-  const errors = [];
+  const errors = []
 
   if (!skill || typeof skill !== 'object' || Array.isArray(skill)) {
     return {
       isValid: false,
       errors: ['Skill must be an object'],
-    };
+    }
   }
 
-  if (typeof skill.id !== 'string' || skill.id.trim() === '') {
-    errors.push('id is required and must be a string');
+  const normalizedSkill = normalizeSkill(skill)
+
+  if (typeof normalizedSkill?.id !== 'string' || normalizedSkill.id.trim() === '') {
+    errors.push('id is required and must be a string')
   }
 
-  if (typeof skill.name !== 'string' || skill.name.trim() === '') {
-    errors.push('name is required and must be a non-empty string');
+  if (typeof normalizedSkill?.name !== 'string' || normalizedSkill.name.trim() === '') {
+    errors.push('name is required and must be a non-empty string')
   }
 
-  if (typeof skill.startDate !== 'string' || skill.startDate.trim() === '') {
-    errors.push('startDate is required and must be a string');
-  } else if (!isValidDateString(skill.startDate)) {
-    errors.push('startDate must be a valid YYYY-MM-DD date');
+  if (typeof normalizedSkill?.createdAt !== 'string' || normalizedSkill.createdAt.trim() === '') {
+    errors.push('createdAt is required and must be a string')
+  } else if (!isValidDateString(normalizedSkill.createdAt)) {
+    errors.push('createdAt must be a valid date string')
   }
 
-  if (
-    typeof skill.targetHours !== 'number' ||
-    Number.isNaN(skill.targetHours)
-  ) {
-    errors.push('targetHours is required and must be a number');
-  } else if (skill.targetHours <= 0) {
-    errors.push('targetHours must be a positive number');
+  if (normalizedSkill?.color !== undefined && typeof normalizedSkill.color !== 'string') {
+    errors.push('color must be a string when provided')
   }
 
-  if (skill.color !== undefined && typeof skill.color !== 'string') {
-    errors.push('color must be a string when provided');
+  if (!isValidGoal(skill.goal)) {
+    errors.push('goal must be null or an object with a valid type and targetHours')
   }
 
   return {
     isValid: errors.length === 0,
     errors,
-  };
-
+  }
 }

@@ -5,22 +5,24 @@ export function createSkillPickerView() {
   let isInitialized = false
   let isEventsBound = false
 
-  function render({ skills } = {}) {
+  function render({ skills, emptyState } = {}) {
     isInitialized = false
     isEventsBound = false
 
-    return createSkillPickerTemplate({ skills })
+    return createSkillPickerTemplate({ skills, emptyState })
   }
 
   function init() {
     const picker = document.querySelector('.skill-picker')
     const list = picker?.querySelector('.skill-picker__list')
     const options = Array.from(picker?.querySelectorAll('.skill-picker__option') ?? [])
+    const emptyAction = picker?.querySelector('.skill-picker__empty-action')
 
     elements = {
       picker,
       list,
       options,
+      emptyAction,
     }
 
     const missingMountPoints = []
@@ -31,6 +33,10 @@ export function createSkillPickerView() {
 
     if (list && options.length === 0) {
       missingMountPoints.push('options')
+    }
+
+    if (!list && !emptyAction) {
+      missingMountPoints.push('emptyState')
     }
 
     if (missingMountPoints.length > 0) {
@@ -71,12 +77,22 @@ export function createSkillPickerView() {
       }
     }
 
+    const handleEmptyActionClick = () => {
+      if (typeof skillPickerView.onCreateSkill === 'function') {
+        skillPickerView.onCreateSkill()
+      }
+    }
+
     elements.picker.addEventListener('click', handleClick)
+    if (elements.emptyAction) {
+      elements.emptyAction.addEventListener('click', handleEmptyActionClick)
+    }
     isEventsBound = true
   }
 
   const skillPickerView = {
     onSelect: null,
+    onCreateSkill: null,
     render,
     init,
     bindEvents,
