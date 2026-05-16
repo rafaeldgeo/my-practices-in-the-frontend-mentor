@@ -83,18 +83,18 @@ assertEqual('globalStats totalLearningTime', dashboardData.globalStats.totalLear
   periodLabel: 'All time',
 });
 assertEqual('consistency range', dashboardData.consistency.range, {
-  startDate: '2026-03-19',
+  startDate: '2026-02-26',
   endDate: '2026-04-22',
-  days: 35,
+  days: 56,
 });
 assertEqual('consistency total minutes', dashboardData.consistency.summary.totalMinutes, 160);
 assertEqual('consistency total sessions', dashboardData.consistency.summary.totalSessions, 5);
 assertEqual('consistency active days', dashboardData.consistency.summary.activeDays, 5);
-assertEqual('consistency empty days', dashboardData.consistency.summary.emptyDays, 30);
+assertEqual('consistency empty days', dashboardData.consistency.summary.emptyDays, 51);
 assertEqual('consistency longest active run', dashboardData.consistency.summary.longestActiveRun, 2);
 assertEqual('consistency current active run', dashboardData.consistency.summary.currentActiveRun, 1);
-assertEqual('consistency cells are continuous', dashboardData.consistency.cells.length, 35);
-assertEqual('consistency start day is empty', getHeatmapCell(dashboardData.consistency, '2026-03-19').isEmpty, true);
+assertEqual('consistency cells are continuous', dashboardData.consistency.cells.length, 56);
+assertEqual('consistency start day is empty', getHeatmapCell(dashboardData.consistency, '2026-02-26').isEmpty, true);
 assertEqual('consistency peak day is 2026-04-22', dashboardData.consistency.summary.peakDay.date, '2026-04-22');
 assertEqual('consistency peak day bucket', dashboardData.consistency.summary.peakDay.bucket, 'high');
 assertEqual('consistency low bucket', getHeatmapCell(dashboardData.consistency, '2026-04-18').bucket, 'empty');
@@ -223,6 +223,37 @@ assertEqual(
   'mixed activity skillId is normalized',
   mixedDashboardData.recentActivity.groups.flatMap((group) => group.items).find((activity) => activity.type === 'session')?.skillId,
   '1778200355041'
+);
+
+const sameDayOrderingDashboardData = createDashboardData({
+  referenceDate: new Date('2026-04-22T18:00:00Z'),
+  skills: [
+    {
+      id: 'skill-live',
+      name: 'Live Session Skill',
+      createdAt: '2026-04-22T08:00:00Z',
+    },
+  ],
+  sessions: [
+    {
+      skillId: 'skill-live',
+      duration: 20,
+      date: '2026-04-22',
+      createdAt: '2026-04-22T15:00:00Z',
+    },
+    {
+      skillId: 'skill-live',
+      duration: 20,
+      date: '2026-04-22',
+      createdAt: '2026-04-22T11:51:15Z',
+    },
+  ],
+});
+
+assertEqual(
+  'latest timestamp wins for same-day recent activity',
+  sameDayOrderingDashboardData.recentActivity.groups.flatMap((group) => group.items)[0].timestamp,
+  '2026-04-22T15:00:00Z'
 );
 
 console.log('dashboard tests finished');

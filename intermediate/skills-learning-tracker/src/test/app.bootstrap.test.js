@@ -18,6 +18,7 @@ function createStubView(renderResultFactory = () => '') {
     renderCalls: [],
     onSubmit: null,
     onSelect: null,
+    feedbackCalls: [],
     init() {
       this.initCalls += 1
     },
@@ -27,6 +28,12 @@ function createStubView(renderResultFactory = () => '') {
     render(payload) {
       this.renderCalls.push(payload)
       return renderResultFactory(payload)
+    },
+    setFeedbackMessage(message) {
+      this.feedbackCalls.push(message)
+    },
+    clearFeedbackMessage() {
+      this.feedbackCalls.push('')
     },
   }
 
@@ -88,6 +95,11 @@ const modalController = {
 }
 
 const sessionService = {
+  validateSessionInput({ duration }) {
+    return typeof duration === 'number' && duration > 0
+      ? { isValid: true, errors: [] }
+      : { isValid: false, errors: ['duration must be a number greater than zero'] }
+  },
   createSession({ skillId, duration }) {
     return {
       id: `session-${storeState.sessions.length + 1}`,
@@ -295,6 +307,7 @@ await app.handleHeroAction({
 assertEqual('primary hero action opens session modal with preselected skill', sessionView.renderCalls[0], {
   skillId: 'skill-2',
   skillName: 'TypeScript',
+  feedbackMessage: '',
 })
 
 await app.handleHeroAction({
@@ -332,6 +345,7 @@ await flush()
 assertEqual('picker selection opens session modal', sessionView.renderCalls[1], {
   skillId: 'skill-1',
   skillName: 'Spanish',
+  feedbackMessage: '',
 })
 
 await app.handleHeroAction({
@@ -383,5 +397,19 @@ assertEqual(
   'skill-2'
 )
 assertEqual('modal closes after session save', modalController.closeCalls, 2)
+
+await app.handleSessionSubmit({
+  skillId: 'skill-2',
+  duration: 0,
+})
+
+assertEqual('invalid session is rejected before persistence', storeState.sessions.length, 1)
+assertEqual('invalid session does not refresh the dashboard', dashboardView.renderCalls.length, 3)
+assertEqual('invalid session keeps the modal open', modalController.closeCalls, 2)
+assertEqual(
+  'invalid session surfaces visible feedback',
+  sessionView.feedbackCalls.at(-1),
+  'Pick a duration to log this practice.'
+)
 
 console.log('app bootstrap tests finished')

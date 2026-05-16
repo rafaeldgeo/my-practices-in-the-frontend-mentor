@@ -1,3 +1,5 @@
+import { getLocalDateKey } from '../utils/date-key.js'
+
 // Model da entidade Session.
 // Responsável por criar e validar sessões de estudo sem acessar DOM, storage ou outros módulos.
 
@@ -5,15 +7,6 @@ const SESSION_DATE_PATTERN = /^\d{4}-\d{2}-\d{2}$/;
 
 function generateSessionId() {
   return `session_${Date.now()}_${Math.random().toString(36).slice(2, 10)}`;
-}
-
-function getTodayDate() {
-  const now = new Date();
-  const year = now.getFullYear();
-  const month = String(now.getMonth() + 1).padStart(2, '0');
-  const day = String(now.getDate()).padStart(2, '0');
-
-  return `${year}-${month}-${day}`;
 }
 
 function isValidDateString(date) {
@@ -31,30 +24,50 @@ function isValidDateString(date) {
   );
 }
 
-function assertValidSessionInput({ skillId, date, duration, notes } = {}) {
+function getSessionValidationErrors({ skillId, date, duration, notes } = {}, { requireDate = false } = {}) {
+  const errors = [];
+
   if (typeof skillId !== 'string' || skillId.trim() === '') {
-    throw new Error('skillId is required');
+    errors.push('skillId is required');
   }
 
-  if (typeof date !== 'string' || date.trim() === '') {
-    throw new Error('date is required');
+  if (requireDate && (typeof date !== 'string' || date.trim() === '')) {
+    errors.push('date is required');
   }
 
-  if (!isValidDateString(date)) {
-    throw new Error('date must be a valid YYYY-MM-DD date');
+  if (typeof date === 'string' && date.trim() !== '' && !isValidDateString(date)) {
+    errors.push('date must be a valid YYYY-MM-DD date');
   }
 
   if (typeof duration !== 'number' || Number.isNaN(duration) || duration <= 0) {
-    throw new Error('duration must be a number greater than zero');
+    errors.push('duration must be a number greater than zero');
   }
 
   if (notes !== undefined && typeof notes !== 'string') {
-    throw new Error('notes must be a string when provided');
+    errors.push('notes must be a string when provided');
+  }
+
+  return errors;
+}
+
+function assertValidSessionInput(input = {}) {
+  const errors = getSessionValidationErrors(input, { requireDate: true });
+
+  if (errors.length > 0) {
+    throw new Error(errors[0]);
   }
 }
 
-// Cria uma nova session válida a partir dos dados de entrada, sem mutar o objeto recebido.
-export function createSession({ skillId, date = getTodayDate(), duration, notes } = {}) {
+export function validateSessionInput(input = {}) {
+  const errors = getSessionValidationErrors(input, { requireDate: false });
+
+  return {
+    isValid: errors.length === 0,
+    errors,
+  };
+}
+
+export function createSession({ skillId, date = getLocalDateKey(), duration, notes } = {}) {
   assertValidSessionInput({ skillId, date, duration, notes });
 
   const session = {

@@ -1,3 +1,5 @@
+import { getLocalDateKey } from '../utils/date-key.js';
+
 const DATE_PATTERN = /^\d{4}-\d{2}-\d{2}$/; 
 
 function isValidDateString(date) {
@@ -19,14 +21,6 @@ function normalizeDate(date) {
   // Normaliza a data para um valor de calendário estável em UTC, evitando drift de fuso.
   const [year, month, day] = date.split('-').map(Number);
   return Date.UTC(year, month - 1, day);
-}
-
-function getTodayDateString(referenceDate = new Date()) {
-  const year = referenceDate.getFullYear();
-  const month = String(referenceDate.getMonth() + 1).padStart(2, '0');
-  const day = String(referenceDate.getDate()).padStart(2, '0');
-
-  return `${year}-${month}-${day}`;
 }
 
 function uniqueSortedDates(dates) {
@@ -63,10 +57,10 @@ function getCurrentStreak(dates, referenceDate = new Date()) {
     return 0;
   }
 
-  const today = getTodayDateString(referenceDate);
+  const today = getLocalDateKey(referenceDate);
   const yesterday = new Date(referenceDate);
   yesterday.setDate(yesterday.getDate() - 1);
-  const yesterdayString = getTodayDateString(yesterday);
+  const yesterdayString = getLocalDateKey(yesterday);
   const lastDate = dates[dates.length - 1];
 
   // A regra de "hoje ou ontem" limita o streak atual a uma sequência ainda ativa no calendário.
@@ -105,4 +99,3 @@ export function calculateStreak(sessions = [], skillId, referenceDate = new Date
     longestStreak: getLongestConsecutiveStreak(dates),
   };
 }
-

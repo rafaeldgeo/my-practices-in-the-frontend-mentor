@@ -33,6 +33,94 @@ function createMockElement() {
   }
 }
 
+function buildDateRange(startDate, dayCount) {
+  const dates = []
+  const currentDate = new Date(`${startDate}T00:00:00Z`)
+
+  for (let index = 0; index < dayCount; index += 1) {
+    dates.push(currentDate.toISOString().slice(0, 10))
+    currentDate.setUTCDate(currentDate.getUTCDate() + 1)
+  }
+
+  return dates
+}
+
+function createConsistencyFixture() {
+  const dates = buildDateRange('2026-02-26', 56)
+  const cells = dates.map((date) => ({
+    date,
+    totalMinutes: 0,
+    sessionCount: 0,
+    consistencyScore: 0,
+    intensityLevel: 'empty',
+    bucket: 'empty',
+    isActive: false,
+    isEmpty: true,
+    isToday: date === '2026-04-22',
+    isFuture: false,
+    activeRunLength: 0,
+    accessibilityLabel: `${date}, 0 sessions, 0m, empty consistency, single-day rhythm`,
+    summaryLabel: '0 sessions, 0m, empty consistency, single-day rhythm',
+  }))
+  const activeDays = {
+    '2026-04-17': {
+      totalMinutes: 45,
+      sessionCount: 2,
+      consistencyScore: 46,
+      intensityLevel: 'medium',
+      bucket: 'medium',
+      isActive: true,
+      isEmpty: false,
+      isToday: false,
+      isFuture: false,
+      activeRunLength: 1,
+      accessibilityLabel: 'Apr 17, 2026: 2 sessions, 45m, medium consistency, single-day rhythm',
+      summaryLabel: '2 sessions, 45m, medium consistency, single-day rhythm',
+    },
+    '2026-04-22': {
+      totalMinutes: 60,
+      sessionCount: 1,
+      consistencyScore: 82,
+      intensityLevel: 'intense',
+      bucket: 'intense',
+      isActive: true,
+      isEmpty: false,
+      isToday: true,
+      isFuture: false,
+      activeRunLength: 1,
+      accessibilityLabel: 'Apr 22, 2026: 1 session, 60m, intense consistency, single-day rhythm',
+      summaryLabel: '1 session, 60m, intense consistency, single-day rhythm',
+    },
+  }
+
+  return {
+    range: {
+      startDate: '2026-02-26',
+      endDate: '2026-04-22',
+      days: 56,
+    },
+    summary: {
+      totalMinutes: 105,
+      totalSessions: 3,
+      activeDays: 2,
+      emptyDays: 54,
+      longestActiveRun: 1,
+      currentActiveRun: 1,
+      peakDay: {
+        date: '2026-04-22',
+        totalMinutes: 60,
+        sessionCount: 1,
+        bucket: 'intense',
+        accessibilityLabel: 'Apr 22, 2026: 1 session, 60m, intense consistency, single-day rhythm',
+      },
+    },
+    cells: cells.map((cell) => ({
+      ...cell,
+      ...(activeDays[cell.date] ?? {}),
+    })),
+  }
+}
+
 const previousDocument = globalThis.document
 const featured = createMockElement()
 const stats = createMockElement()
@@ -55,6 +143,8 @@ globalThis.document = {
     }
   },
 }
+
+const consistencyFixture = createConsistencyFixture()
 
 try {
   const view = createDashboardView()
@@ -136,60 +226,7 @@ try {
         periodLabel: 'All time',
       },
     },
-    consistency: {
-      range: {
-        startDate: '2026-04-16',
-        endDate: '2026-04-22',
-        days: 7,
-      },
-      summary: {
-        totalMinutes: 45,
-        totalSessions: 2,
-        activeDays: 1,
-        emptyDays: 6,
-        longestActiveRun: 1,
-        currentActiveRun: 1,
-        peakDay: {
-          date: '2026-04-17',
-          totalMinutes: 45,
-          sessionCount: 2,
-          bucket: 'medium',
-          accessibilityLabel: 'Apr 17, 2026: 2 sessions, 45m, medium consistency, single-day rhythm',
-        },
-      },
-      cells: [
-        {
-          date: '2026-04-16',
-          totalMinutes: 0,
-          sessionCount: 0,
-          consistencyScore: 0,
-          intensityLevel: 'empty',
-          bucket: 'empty',
-          isActive: false,
-          isEmpty: true,
-          isToday: false,
-          isFuture: false,
-          activeRunLength: 0,
-          accessibilityLabel: 'Apr 16, 2026: 0 sessions, 0m, empty consistency, single-day rhythm',
-          summaryLabel: '0 sessions, 0m, empty consistency, single-day rhythm',
-        },
-        {
-          date: '2026-04-17',
-          totalMinutes: 45,
-          sessionCount: 2,
-          consistencyScore: 46,
-          intensityLevel: 'medium',
-          bucket: 'medium',
-          isActive: true,
-          isEmpty: false,
-          isToday: false,
-          isFuture: false,
-          activeRunLength: 1,
-          accessibilityLabel: 'Apr 17, 2026: 2 sessions, 45m, medium consistency, single-day rhythm',
-          summaryLabel: '2 sessions, 45m, medium consistency, single-day rhythm',
-        },
-      ],
-    },
+    consistency: consistencyFixture,
     recentActivity: {
       totalCount: 4,
       hasMore: false,
@@ -242,9 +279,16 @@ try {
   assertEqual('heatmap legend rendered', consistency.innerHTML.includes('dashboard__heatmap-legend'), true)
   assertEqual('heatmap grid rendered', consistency.innerHTML.includes('role="grid"'), true)
   assertEqual('heatmap week grouping rendered', consistency.innerHTML.includes('dashboard__heatmap-week'), true)
+  assertEqual('heatmap 8 weeks rendered', (consistency.innerHTML.match(/dashboard__heatmap-week"/g) || []).length, 8)
+  assertEqual('heatmap 56 cells rendered', (consistency.innerHTML.match(/role="gridcell"/g) || []).length, 56)
   assertEqual('heatmap bucket class rendered', consistency.innerHTML.includes('dashboard__heatmap-cell--medium'), true)
   assertEqual('heatmap bucket data rendered', consistency.innerHTML.includes('data-bucket="medium"'), true)
   assertEqual('heatmap accessibility label rendered', consistency.innerHTML.includes('Apr 17, 2026: 2 sessions, 45m, medium consistency, single-day rhythm'), true)
+  assertEqual('heatmap aria-labelledby rendered', consistency.innerHTML.includes('aria-labelledby="consistency-cell-2026-04-17-label"'), true)
+  assertEqual('heatmap aria-describedby rendered', consistency.innerHTML.includes('aria-describedby="consistency-cell-2026-04-17-description consistency-cell-2026-04-17-fallback"'), true)
+  assertEqual('heatmap focusable cells kept', (consistency.innerHTML.match(/tabindex="0"/g) || []).length, 56)
+  assertEqual('heatmap empty cells rendered', consistency.innerHTML.includes('data-is-empty="true"'), true)
+  assertEqual('heatmap visual copy removed', consistency.innerHTML.includes('dashboard__heatmap-cell-copy'), false)
   assertEqual('heatmap fallback text rendered', consistency.innerHTML.includes('dashboard__heatmap-fallback'), true)
   assertEqual('recent activity renders linear list', recentActivity.innerHTML.includes('dashboard__list--activity'), true)
   assertEqual('recent activity group headings removed', recentActivity.innerHTML.includes('dashboard__activity-group-heading'), false)
@@ -344,45 +388,7 @@ try {
         periodLabel: 'All time',
       },
     },
-    consistency: {
-      range: {
-        startDate: '2026-04-16',
-        endDate: '2026-04-22',
-        days: 7,
-      },
-      summary: {
-        totalMinutes: 45,
-        totalSessions: 2,
-        activeDays: 1,
-        emptyDays: 6,
-        longestActiveRun: 1,
-        currentActiveRun: 1,
-        peakDay: {
-          date: '2026-04-17',
-          totalMinutes: 45,
-          sessionCount: 2,
-          bucket: 'medium',
-          accessibilityLabel: 'Apr 17, 2026: 2 sessions, 45m, medium consistency, single-day rhythm',
-        },
-      },
-      cells: [
-        {
-          date: '2026-04-17',
-          totalMinutes: 45,
-          sessionCount: 2,
-          consistencyScore: 46,
-          intensityLevel: 'medium',
-          bucket: 'medium',
-          isActive: true,
-          isEmpty: false,
-          isToday: false,
-          isFuture: false,
-          activeRunLength: 1,
-          accessibilityLabel: 'Apr 17, 2026: 2 sessions, 45m, medium consistency, single-day rhythm',
-          summaryLabel: '2 sessions, 45m, medium consistency, single-day rhythm',
-        },
-      ],
-    },
+    consistency: consistencyFixture,
     recentActivity: {
       totalCount: 0,
       hasMore: false,

@@ -11,6 +11,22 @@ function assertEqual(description, actual, expected) {
   console.error(`❌ ${description}`, { actual, expected })
 }
 
+function assertTrue(description, actual) {
+  assertEqual(description, actual, true)
+}
+
+function isWithinSafeWindow(timestamp) {
+  const date = new Date(timestamp)
+
+  if (Number.isNaN(date.getTime())) {
+    return false
+  }
+
+  const minutesSinceMidnight = date.getUTCHours() * 60 + date.getUTCMinutes()
+
+  return minutesSinceMidnight >= 8 * 60 && minutesSinceMidnight <= 13 * 60
+}
+
 const referenceDate = new Date('2026-04-22T12:00:00Z')
 
 const demoData = {
@@ -37,6 +53,15 @@ const demoData = {
       createdAt: '2026-03-18T08:00:00Z',
     },
   ],
+  activities: [
+    {
+      id: 'a-001',
+      type: 'session',
+      skillId: 'skill-1',
+      timestamp: '2026-03-19T21:45:00Z',
+      date: '2026-03-19',
+    },
+  ],
 }
 
 const shifted = transformDemoDataset(demoData, referenceDate)
@@ -44,7 +69,11 @@ const shifted = transformDemoDataset(demoData, referenceDate)
 assertEqual('demo timeline keeps the domain shape', shifted.demoTimeline, demoData.demoTimeline)
 assertEqual('latest session aligns to reference date', shifted.sessions[0].date, '2026-04-22')
 assertEqual('older session keeps relative gap', shifted.sessions[1].date, '2026-04-21')
-assertEqual('skill timestamps are shifted', shifted.skills[0].createdAt, '2026-04-22T18:30:00Z')
+assertTrue('latest session timestamp stays in the safe window', isWithinSafeWindow(shifted.sessions[0].createdAt))
+assertTrue('older session timestamp stays in the safe window', isWithinSafeWindow(shifted.sessions[1].createdAt))
+assertTrue('skill timestamp stays in the safe window', isWithinSafeWindow(shifted.skills[0].createdAt))
+assertTrue('activity timestamp stays in the safe window', isWithinSafeWindow(shifted.activities[0].timestamp))
+assertTrue('demo timestamps are normalized away from late evening hours', shifted.sessions[0].createdAt < '2026-04-22T13:00:00Z')
 assertEqual('original payload is not mutated', demoData.sessions[0].date, '2026-03-19')
 
 console.log('demo temporal tests finished')

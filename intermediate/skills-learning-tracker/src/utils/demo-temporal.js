@@ -1,4 +1,10 @@
 const MS_PER_DAY = 24 * 60 * 60 * 1000
+const MS_PER_HOUR = 60 * 60 * 1000
+const MS_PER_MINUTE = 60 * 1000
+const SAFE_WINDOW_START = 8 * MS_PER_HOUR
+const SAFE_WINDOW_END = 13 * MS_PER_HOUR
+const SAFE_WINDOW_SPAN = SAFE_WINDOW_END - SAFE_WINDOW_START
+const MS_PER_DAY_EXCLUSIVE = MS_PER_DAY - 1
 
 function isValidDateString(value) {
   return typeof value === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(value)
@@ -53,7 +59,29 @@ function shiftTimestamp(timestamp, dayOffset) {
     return timestamp
   }
 
-  return new Date(parsedTimestamp + dayOffset * MS_PER_DAY).toISOString().replace('.000Z', 'Z')
+  const originalDate = new Date(parsedTimestamp)
+  const shiftedDate = new Date(parsedTimestamp + dayOffset * MS_PER_DAY)
+  const timeOfDayMilliseconds =
+    originalDate.getUTCHours() * MS_PER_HOUR +
+    originalDate.getUTCMinutes() * MS_PER_MINUTE +
+    originalDate.getUTCSeconds() * 1000 +
+    originalDate.getUTCMilliseconds()
+
+  const safeWindowOffset = Math.round(
+    (timeOfDayMilliseconds / MS_PER_DAY_EXCLUSIVE) * SAFE_WINDOW_SPAN
+  )
+  const normalizedTimeOfDay = Math.min(
+    SAFE_WINDOW_END,
+    Math.max(SAFE_WINDOW_START, SAFE_WINDOW_START + safeWindowOffset)
+  )
+  const normalizedTimestamp =
+    Date.UTC(
+      shiftedDate.getUTCFullYear(),
+      shiftedDate.getUTCMonth(),
+      shiftedDate.getUTCDate()
+    ) + normalizedTimeOfDay
+
+  return new Date(normalizedTimestamp).toISOString().replace('.000Z', 'Z')
 }
 
 function getLocalDateKey(referenceDate = new Date()) {

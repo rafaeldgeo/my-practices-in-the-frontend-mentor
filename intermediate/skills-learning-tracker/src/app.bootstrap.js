@@ -16,6 +16,24 @@ export function createSkillsLearningTrackerApp({
   modalController,
   dashboardController,
 } = {}) {
+  function getSessionValidationMessage(errors = []) {
+    if (!Array.isArray(errors) || errors.length === 0) {
+      return 'Pick a duration to log this practice.'
+    }
+
+    const firstError = String(errors[0] ?? '')
+
+    if (firstError.includes('duration')) {
+      return 'Pick a duration to log this practice.'
+    }
+
+    if (firstError.includes('skillId')) {
+      return 'Select a skill before logging practice.'
+    }
+
+    return 'Review the session and try again.'
+  }
+
   async function getSkillById(skillId) {
     const normalizedSkillId = typeof skillId === 'string' ? skillId.trim() : ''
 
@@ -112,10 +130,14 @@ export function createSkillsLearningTrackerApp({
     const content = sessionView.render({
       skillId: String(skill.id),
       skillName: skill.name,
+      feedbackMessage: '',
     })
 
     sessionView.onSubmit = (payload) => {
       void handleSessionSubmit(payload)
+    }
+    sessionView.onClose = () => {
+      modalController.close()
     }
 
     modalController.open({
@@ -166,6 +188,25 @@ export function createSkillsLearningTrackerApp({
         throw new Error('Skill not found')
       }
 
+      const validation =
+        typeof sessionService.validateSessionInput === 'function'
+          ? sessionService.validateSessionInput({
+              skillId: String(skill.id),
+              duration: payload?.duration,
+            })
+          : { isValid: true, errors: [] }
+
+      if (!validation.isValid) {
+        if (typeof sessionView.setFeedbackMessage === 'function') {
+          sessionView.setFeedbackMessage(getSessionValidationMessage(validation.errors))
+        }
+        return
+      }
+
+      if (typeof sessionView.clearFeedbackMessage === 'function') {
+        sessionView.clearFeedbackMessage()
+      }
+
       const session = sessionService.createSession({
         skillId: String(skill.id),
         duration: payload.duration,
@@ -182,6 +223,9 @@ export function createSkillsLearningTrackerApp({
       await controller.updateDashboard()
       modalController.close()
     } catch (error) {
+      if (typeof sessionView.setFeedbackMessage === 'function') {
+        sessionView.setFeedbackMessage('Could not save this practice right now. Try again.')
+      }
       console.error('Failed to save session:', error)
     }
   }

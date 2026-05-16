@@ -1,15 +1,19 @@
 import { createSessionTemplate } from './session.template.js'
 
-function parsePresetDuration(label) {
-  const text = String(label ?? '').trim()
-
-  if (text.toLowerCase() === 'custom') {
+function readPresetDuration(button) {
+  if (!button || typeof button !== 'object') {
     return null
   }
 
-  const value = Number.parseInt(text, 10)
+  const durationValue = typeof button.dataset?.duration === 'string' ? button.dataset.duration.trim() : ''
 
-  return Number.isFinite(value) ? value : null
+  if (durationValue === '' || durationValue === 'custom') {
+    return null
+  }
+
+  const duration = Number(durationValue)
+
+  return Number.isFinite(duration) && duration > 0 ? duration : null
 }
 
 export function createSessionView() {
@@ -21,18 +25,21 @@ export function createSessionView() {
     skillName: '',
     selectedDuration: null,
     isCustomOpen: false,
+    feedbackMessage: '',
   }
 
-  function render({ skillId, skillName } = {}) {
+  function render({ skillId, skillName, feedbackMessage = '' } = {}) {
     state.skillId = typeof skillId === 'string' ? skillId : ''
     state.skillName = typeof skillName === 'string' ? skillName : ''
     state.selectedDuration = null
     state.isCustomOpen = false
+    state.feedbackMessage = typeof feedbackMessage === 'string' ? feedbackMessage : ''
     isInitialized = false
     isEventsBound = false
     return createSessionTemplate({
       skillId: state.skillId,
       skillName: state.skillName,
+      feedbackMessage: state.feedbackMessage,
     })
   }
 
@@ -42,6 +49,8 @@ export function createSessionView() {
     const presetButtons = Array.from(form?.querySelectorAll('.session-form__preset') ?? [])
     const customContainer = form?.querySelector('.session-form__custom')
     const customInput = form?.querySelector('.session-form__input')
+    const feedbackEl = form?.querySelector('.session-form__feedback')
+    const closeButtons = Array.from(form?.querySelectorAll('[data-session-close]') ?? [])
 
     elements = {
       form,
@@ -49,6 +58,8 @@ export function createSessionView() {
       presetButtons,
       customContainer,
       customInput,
+      feedbackEl,
+      closeButtons,
     }
 
     const missingMountPoints = Object.entries(elements)
@@ -66,6 +77,7 @@ export function createSessionView() {
     }
 
     syncVisualState()
+    syncFeedback()
     isInitialized = true
   }
 
@@ -77,12 +89,18 @@ export function createSessionView() {
   }
 
   function getCustomButton() {
-    return elements.presetButtons.find((button) => parsePresetDuration(button.textContent) === null) ?? null
+    return (
+      elements.presetButtons.find((button) => {
+        const duration = readPresetDuration(button)
+        return duration === null && button?.dataset?.duration === 'custom'
+      }) ?? null
+    )
   }
 
   function openCustomMode() {
     state.selectedDuration = null
     state.isCustomOpen = true
+    clearFeedbackMessage()
 
     setPresetActive(getCustomButton())
     elements.customContainer.hidden = false
@@ -91,7 +109,7 @@ export function createSessionView() {
   }
 
   function selectPreset(button) {
-    const duration = parsePresetDuration(button.textContent)
+    const duration = readPresetDuration(button)
 
     if (duration === null) {
       openCustomMode()
@@ -100,6 +118,7 @@ export function createSessionView() {
 
     state.selectedDuration = duration
     state.isCustomOpen = false
+    clearFeedbackMessage()
 
     setPresetActive(button)
     elements.customContainer.hidden = true
@@ -108,12 +127,41 @@ export function createSessionView() {
 
   function syncVisualState() {
     const activePreset = elements.presetButtons.find((button) => {
-      const duration = parsePresetDuration(button.textContent)
+      const duration = readPresetDuration(button)
       return duration !== null && duration === state.selectedDuration
     })
 
     setPresetActive(state.isCustomOpen ? getCustomButton() : activePreset ?? null)
     elements.customContainer.hidden = !state.isCustomOpen
+  }
+
+  function syncFeedback() {
+    if (!elements.feedbackEl) {
+      return
+    }
+
+    const hasMessage = typeof state.feedbackMessage === 'string' && state.feedbackMessage.trim() !== ''
+
+    elements.feedbackEl.hidden = !hasMessage
+    elements.feedbackEl.textContent = hasMessage ? state.feedbackMessage.trim() : ''
+  }
+
+  function setFeedbackMessage(message = '') {
+    state.feedbackMessage = typeof message === 'string' ? message : ''
+
+    if (!elements.feedbackEl) {
+      return
+    }
+
+    syncFeedback()
+
+    if (typeof elements.feedbackEl.focus === 'function' && state.feedbackMessage.trim() !== '') {
+      elements.feedbackEl.focus()
+    }
+  }
+
+  function clearFeedbackMessage() {
+    setFeedbackMessage('')
   }
 
   function bindEvents() {
@@ -150,17 +198,30 @@ export function createSessionView() {
       }
     }
 
+    const handleClose = () => {
+      if (typeof sessionView.onClose === 'function') {
+        sessionView.onClose()
+      }
+    }
+
     elements.presetsGroup.addEventListener('click', handlePresetClick)
     elements.form.addEventListener('submit', handleSubmit)
+    elements.form.noValidate = true
+    elements.closeButtons.forEach((button) => {
+      button.addEventListener('click', handleClose)
+    })
 
     isEventsBound = true
   }
 
   const sessionView = {
     onSubmit: null,
+    onClose: null,
     render,
     init,
     bindEvents,
+    setFeedbackMessage,
+    clearFeedbackMessage,
   }
 
   return sessionView

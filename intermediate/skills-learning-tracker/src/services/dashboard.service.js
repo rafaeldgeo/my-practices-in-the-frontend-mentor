@@ -2,11 +2,12 @@ import { calculateStats } from './stats.service.js';
 import { createPriorityPayload } from './priority.service.js';
 import { normalizeSkill } from './skill.service.js'
 import { calculateStreak } from './streak.service.js';
+import { getLocalDateKey } from '../utils/date-key.js';
 
 const GLOBAL_SKILL_ID = '__global__'; 
 const FEATURED_MINUTES_THRESHOLD = 60; 
 const RECENT_WINDOW_DAYS = 7;
-const CONSISTENCY_WINDOW_DAYS = 35;
+const CONSISTENCY_WINDOW_DAYS = 56;
 const RECENT_ACTIVITY_LIMIT = 5;
 
 const RECENT_ACTIVITY_GROUP_LABELS = {
@@ -59,20 +60,6 @@ function getSessionDate(session) {
   return session.date;
 }
 
-function getDateString(referenceDate = new Date()) {
-  const date = referenceDate instanceof Date ? referenceDate : new Date(referenceDate);
-
-  if (Number.isNaN(date.getTime())) {
-    return '';
-  }
-
-  const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, '0');
-  const day = String(date.getDate()).padStart(2, '0');
-
-  return `${year}-${month}-${day}`;
-}
-
 function shiftDateString(dateString, dayOffset) {
   if (!isValidDateString(dateString)) {
     return '';
@@ -80,11 +67,11 @@ function shiftDateString(dateString, dayOffset) {
 
   const date = new Date(`${dateString}T00:00:00`);
   date.setDate(date.getDate() + dayOffset);
-  return getDateString(date);
+  return getLocalDateKey(date);
 }
 
 function getDateWindow(referenceDate = new Date(), days = RECENT_WINDOW_DAYS) {
-  const referenceDateString = getDateString(referenceDate);
+  const referenceDateString = getLocalDateKey(referenceDate);
 
   if (referenceDateString === '') {
     return {
@@ -257,7 +244,7 @@ function getSkillStats(sessions, skillId) {
 }
 
 function getHeatmapWindow(referenceDate = new Date(), days = CONSISTENCY_WINDOW_DAYS) {
-  const referenceDateString = getDateString(referenceDate);
+  const referenceDateString = getLocalDateKey(referenceDate);
 
   if (referenceDateString === '') {
     return {
@@ -512,20 +499,6 @@ function getActivitySortValue(timestamp) {
   }
 
   return Number.NEGATIVE_INFINITY;
-}
-
-function getLocalDateKey(referenceDate = new Date()) {
-  const date = referenceDate instanceof Date ? referenceDate : new Date(referenceDate);
-
-  if (Number.isNaN(date.getTime())) {
-    return '';
-  }
-
-  const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, '0');
-  const day = String(date.getDate()).padStart(2, '0');
-
-  return `${year}-${month}-${day}`;
 }
 
 function getActivityDateKey(activity) {
