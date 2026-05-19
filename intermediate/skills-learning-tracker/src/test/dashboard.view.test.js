@@ -183,6 +183,7 @@ try {
       featuredSkill: {
         skillId: 'skill-1',
         skillName: 'Spanish',
+        color: '#059669',
         progressDebtPercent: 12.5,
         progressDebtHours: 1.2,
         currentProgress: 18,
@@ -190,6 +191,16 @@ try {
         totalTime: 30,
         minutesToday: 30,
         status: 'behind',
+      },
+      progressRing: {
+        isReady: true,
+        percentage: 18,
+        current: 30,
+        target: 12000,
+        remaining: 11970,
+        skillId: 'skill-1',
+        skillName: 'Spanish',
+        accentColor: '#059669',
       },
     },
     globalStats: {
@@ -275,6 +286,8 @@ try {
   assertEqual('stats trend badge rendered', stats.innerHTML.includes('dashboard__kpi-trend--stable'), true)
   assertEqual('hero primary action rendered', featured.innerHTML.includes('Practice now'), true)
   assertEqual('hero primary skill id rendered', featured.innerHTML.includes('data-skill-id="skill-1"'), true)
+  assertEqual('hero progress ring rendered', featured.innerHTML.includes('dashboard__hero-progress'), true)
+  assertEqual('hero progress ring label rendered', featured.innerHTML.includes('Spanish progress'), true)
   assertEqual('heatmap panel title rendered', consistency.innerHTML.includes('dashboard__panel-title">Heatmap'), true)
   assertEqual('heatmap legend rendered', consistency.innerHTML.includes('dashboard__heatmap-legend'), true)
   assertEqual('heatmap grid rendered', consistency.innerHTML.includes('role="grid"'), true)
@@ -345,6 +358,7 @@ try {
       featuredSkill: {
         skillId: 'skill-2',
         skillName: 'TypeScript',
+        color: '#059669',
         progressDebtPercent: 32.5,
         progressDebtHours: 4.2,
         currentProgress: 10,
@@ -352,6 +366,16 @@ try {
         totalTime: 10,
         minutesToday: 10,
         status: 'behind',
+      },
+      progressRing: {
+        isReady: true,
+        percentage: 10,
+        current: 10,
+        target: 12000,
+        remaining: 11990,
+        skillId: 'skill-2',
+        skillName: 'TypeScript',
+        accentColor: '#059669',
       },
     },
     globalStats: {

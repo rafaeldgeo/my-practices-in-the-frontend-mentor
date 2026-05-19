@@ -212,11 +212,97 @@ function renderHeroMetric(metric) {
   `
 }
 
+function formatProgressPercent(value) {
+  const numericValue = Number(value)
+
+  if (!Number.isFinite(numericValue)) {
+    return EMPTY_TEXT
+  }
+
+  if (numericValue > 0 && numericValue < 10) {
+    return `${numericValue.toFixed(1)}%`
+  }
+
+  return `${Math.round(numericValue)}%`
+}
+
 function renderHeroMetrics(items) {
   return (Array.isArray(items) ? items : [])
     .map((item) => renderHeroMetric(item))
     .filter(Boolean)
     .join('');
+}
+
+function getSkillAccentColor(featuredInsight) {
+  const candidate =
+    featuredInsight?.progressRing?.accentColor ??
+    featuredInsight?.focusSkill?.color ??
+    featuredInsight?.featuredSkill?.color ??
+    ''
+
+  return typeof candidate === 'string' && candidate.trim() !== '' ? candidate.trim() : ''
+}
+
+function renderProgressRing(featuredInsight) {
+  const progressRing = featuredInsight?.progressRing
+
+  if (!progressRing || progressRing.isReady !== true) {
+    return ''
+  }
+
+  const skillName =
+    typeof progressRing.skillName === 'string' && progressRing.skillName.trim() !== ''
+      ? progressRing.skillName.trim()
+      : typeof featuredInsight?.focusSkill?.skillName === 'string' &&
+          featuredInsight.focusSkill.skillName.trim() !== ''
+        ? featuredInsight.focusSkill.skillName.trim()
+        : typeof featuredInsight?.featuredSkill?.skillName === 'string' &&
+            featuredInsight.featuredSkill.skillName.trim() !== ''
+          ? featuredInsight.featuredSkill.skillName.trim()
+          : 'Current skill'
+  const percentage = Number.isFinite(Number(progressRing.percentage))
+    ? Math.max(0, Math.min(100, Number(progressRing.percentage)))
+    : 0
+  const current = Number.isFinite(Number(progressRing.current)) ? Number(progressRing.current) : 0
+  const target = Number.isFinite(Number(progressRing.target)) ? Number(progressRing.target) : 0
+  const accentColor = getSkillAccentColor(featuredInsight)
+  const inlineStyle = [
+    `--progress-ring-progress:${percentage}`,
+    accentColor ? `--hero-accent:${accentColor}` : '',
+  ]
+    .filter(Boolean)
+    .join(';')
+  const ringLabel = `${skillName} progress ${formatProgressPercent(percentage)}, ${formatMinutes(
+    current
+  )} logged of ${formatMinutes(target)} target`
+  const ringMeta = `${formatMinutes(current)} logged · ${formatMinutes(target)} target`
+
+  return `
+    <div
+      class="dashboard__hero-progress"
+      ${inlineStyle ? `style="${escapeHtml(inlineStyle)}"` : ''}
+      role="img"
+      aria-label="${escapeHtml(ringLabel)}"
+      data-progress-state="${escapeHtml(String(featuredInsight?.mode ?? ''))}"
+    >
+      <div class="dashboard__hero-progress-ring" aria-hidden="true">
+        <svg viewBox="0 0 100 100" focusable="false" aria-hidden="true">
+          <circle class="dashboard__hero-progress-track" cx="50" cy="50" r="44"></circle>
+          <circle class="dashboard__hero-progress-value" cx="50" cy="50" r="44"></circle>
+          <circle class="dashboard__hero-progress-core" cx="50" cy="50" r="30"></circle>
+        </svg>
+        <div class="dashboard__hero-progress-copy">
+          <span class="dashboard__hero-progress-label">${escapeHtml(skillName)}</span>
+          <strong class="dashboard__hero-progress-value-text">${escapeHtml(
+            formatProgressPercent(percentage)
+          )}</strong>
+        </div>
+      </div>
+      <p class="dashboard__hero-progress-meta">
+        ${escapeHtml(ringMeta)}
+      </p>
+    </div>
+  `
 }
 
 function normalizeHeroSummary(summary) {
@@ -335,6 +421,7 @@ function renderFeaturedShell({
   summary,
   statusLabel,
   statusClassName = '',
+  featuredInsight = null,
   details = '',
   actions = '',
 }) {
@@ -345,11 +432,14 @@ function renderFeaturedShell({
           <p class="dashboard__eyebrow">${escapeHtml(eyebrow ?? EMPTY_TEXT)}</p>
           <h2 class="dashboard__heading">${escapeHtml(title ?? EMPTY_TEXT)}</h2>
         </div>
-        ${
-          statusLabel
-            ? `<span class="dashboard__status-pill ${statusClassName}">${escapeHtml(statusLabel)}</span>`
-            : ''
-        }
+        <div class="dashboard__hero-meta">
+          ${renderProgressRing(featuredInsight)}
+          ${
+            statusLabel
+              ? `<span class="dashboard__status-pill ${statusClassName}">${escapeHtml(statusLabel)}</span>`
+              : ''
+          }
+        </div>
       </header>
       ${
         summary
@@ -378,6 +468,7 @@ function renderFeaturedInsightEmpty(featuredInsight = {}) {
     summary: featuredInsight?.recommendation?.description ?? 'Add your first skill or session to surface the plan state here.',
     statusLabel: featuredInsight?.state?.label ?? 'Awaiting data',
     statusClassName: 'dashboard__status-pill--empty',
+    featuredInsight,
     details: renderFeatureDetails(featuredInsight),
     actions: renderActionButtons(featuredInsight?.primaryAction, featuredInsight?.secondaryAction),
   });
@@ -391,6 +482,7 @@ function renderFeaturedInsightPriority(featuredInsight) {
     summary: featuredInsight?.recommendation?.description ?? EMPTY_TEXT,
     statusLabel: featuredInsight?.state?.label ?? 'At risk',
     statusClassName: 'dashboard__status-pill--behind',
+    featuredInsight,
     details: renderFeatureDetails(featuredInsight),
     actions: renderActionButtons(featuredInsight?.primaryAction, featuredInsight?.secondaryAction),
   });
@@ -404,6 +496,7 @@ function renderFeaturedInsightHealthy(featuredInsight) {
     summary: featuredInsight?.recommendation?.description ?? 'The pace is stable across the plan.',
     statusLabel: featuredInsight?.state?.label ?? 'Stable',
     statusClassName: 'dashboard__status-pill--healthy',
+    featuredInsight,
     details: renderFeatureDetails(featuredInsight),
     actions: renderActionButtons(featuredInsight?.primaryAction, featuredInsight?.secondaryAction),
   });

@@ -159,9 +159,11 @@ assertEqual('featuredInsight state', dashboardData.featuredInsight.state, {
 });
 assertEqual('featuredInsight skill', dashboardData.featuredInsight.featuredSkill.skillId, 'skill-3');
 assertEqual('featuredInsight status', dashboardData.featuredInsight.featuredSkill.status, 'behind');
+assertEqual('featuredInsight skill color', dashboardData.featuredInsight.featuredSkill.color, '#059669');
 assertEqual('featuredInsight recommendation title', dashboardData.featuredInsight.recommendation.title, 'Stay on track with TypeScript');
 assertEqual('featuredInsight primary action', dashboardData.featuredInsight.primaryAction.label, 'Practice now');
 assertEqual('featuredInsight ring readiness', dashboardData.featuredInsight.progressRing.isReady, true);
+assertEqual('featuredInsight ring accent color', dashboardData.featuredInsight.progressRing.accentColor, '#059669');
 assertEqual('featuredInsight flags', {
   isAtRisk: dashboardData.featuredInsight.flags.isAtRisk,
   hasMissingGoals: dashboardData.featuredInsight.flags.hasMissingGoals,

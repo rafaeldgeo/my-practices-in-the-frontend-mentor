@@ -146,6 +146,7 @@ assertEqual('priority severity', priorityPayload.severity, 'warning')
 assertEqual('featured skill selected by largest debt', priorityPayload.featuredSkill.skillId, 'skill-3')
 assertEqual('featured skill name', priorityPayload.featuredSkill.skillName, 'TypeScript')
 assertEqual('featured skill status', priorityPayload.featuredSkill.status, 'behind')
+assertEqual('featured skill color', priorityPayload.featuredSkill.color, '#059669')
 assertEqual('featured skill totalTime', priorityPayload.featuredSkill.totalTime, 25)
 assertEqual('featured skill minutesToday', priorityPayload.featuredSkill.minutesToday, 15)
 assertClose('featured skill progress debt percent', priorityPayload.featuredSkill.progressDebtPercent, 30.2, 0.2)
@@ -158,6 +159,7 @@ assertEqual('priority secondary action', priorityPayload.secondaryAction.label, 
 assertEqual('priority ring readiness', priorityPayload.progressRing.isReady, true)
 assertEqual('priority ring current', priorityPayload.progressRing.current, 25)
 assertEqual('priority ring target', priorityPayload.progressRing.target, 12000)
+assertEqual('priority ring accent color', priorityPayload.progressRing.accentColor, '#059669')
 
 const healthyPayload = createPriorityPayload({
   skills: [

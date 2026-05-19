@@ -289,6 +289,7 @@ function buildSkillAnalysis(skill, sessions, referenceDate) {
   return {
     skillId,
     skillName,
+    color: normalizedSkill.color,
     goalType: goal.type,
     targetHours: goal.targetHours,
     targetMinutes,
@@ -523,6 +524,9 @@ function buildProgressRing({
     current: focusSkill.totalTime,
     target: focusSkill.targetMinutes,
     remaining: focusSkill.remainingMinutes,
+    skillId: focusSkill.skillId,
+    skillName: focusSkill.skillName,
+    accentColor: focusSkill.color,
     isReady: true,
   }
 }
