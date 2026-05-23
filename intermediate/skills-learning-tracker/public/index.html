@@ -13,30 +13,32 @@
     <link rel="stylesheet" href="/public/assets/css/main.css">
     <script type="module" src="/src/app.js"></script>
 </head>
-<body>
-  <header class="header">
-    <div class="header__brand">Skills Tracker</div>
+  <body>
+    <div id="modal-root">
+      <div class="modal" hidden>
+        <div class="modal__overlay"></div>
 
-    <button class="header__add-skill" type="button">
-      Add Skill
-    </button>
-  </header>
-
-  <div id="modal-root">
-    <div class="modal" hidden>
-      <div class="modal__overlay"></div>
-
-      <div class="modal__container" role="dialog" aria-modal="true" tabindex="-1">
-        <div class="modal__content"></div>
+        <div class="modal__container" role="dialog" aria-modal="true" tabindex="-1">
+          <div class="modal__content"></div>
+        </div>
       </div>
     </div>
-  </div>
 
-  <main class="dashboard">
-    <section id="featured" class="dashboard__featured"></section>
-    <section id="stats" class="dashboard__stats"></section>
-    <section id="consistency" class="dashboard__consistency"></section>
-    <section id="recent-activity" class="dashboard__recent-activity"></section>
-  </main>
-</body>
+    <div class="page-shell">
+      <header class="header">
+        <div class="header__brand">Skills Tracker</div>
+
+        <button class="header__add-skill" type="button">
+          Add Skill
+        </button>
+      </header>
+
+      <main class="dashboard">
+        <section id="featured" class="dashboard__featured"></section>
+        <section id="stats" class="dashboard__stats"></section>
+        <section id="consistency" class="dashboard__consistency"></section>
+        <section id="recent-activity" class="dashboard__recent-activity"></section>
+      </main>
+    </div>
+  </body>
 </html>

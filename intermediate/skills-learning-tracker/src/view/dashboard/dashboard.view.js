@@ -427,33 +427,35 @@ function renderFeaturedShell({
 }) {
   return `
     <article class="dashboard__panel dashboard__panel--featured ${modifierClass}">
-      <header class="dashboard__hero-header">
-        <div class="dashboard__hero-copy">
-          <p class="dashboard__eyebrow">${escapeHtml(eyebrow ?? EMPTY_TEXT)}</p>
-          <h2 class="dashboard__heading">${escapeHtml(title ?? EMPTY_TEXT)}</h2>
-        </div>
-        <div class="dashboard__hero-meta">
-          ${renderProgressRing(featuredInsight)}
-          ${
-            statusLabel
-              ? `<span class="dashboard__status-pill ${statusClassName}">${escapeHtml(statusLabel)}</span>`
-              : ''
-          }
-        </div>
-      </header>
+      <div class="dashboard__hero-main">
+        <header class="dashboard__hero-header">
+          <div class="dashboard__hero-copy">
+            <p class="dashboard__eyebrow">${escapeHtml(eyebrow ?? EMPTY_TEXT)}</p>
+            <h2 class="dashboard__heading">${escapeHtml(title ?? EMPTY_TEXT)}</h2>
+          </div>
+        </header>
+        ${
+          summary
+            ? `<p class="dashboard__summary">${escapeHtml(normalizeHeroSummary(summary))}</p>`
+            : ''
+        }
+        ${
+          actions
+            ? actions
+            : ''
+        }
+      </div>
+      <div class="dashboard__hero-meta">
+        ${renderProgressRing(featuredInsight)}
+        ${
+          statusLabel
+            ? `<span class="dashboard__status-pill ${statusClassName}">${escapeHtml(statusLabel)}</span>`
+            : ''
+        }
+      </div>
       ${
-        summary
-          ? `<p class="dashboard__summary">${escapeHtml(normalizeHeroSummary(summary))}</p>`
-          : ''
-      }
-      ${
-      details
+        details
           ? `<div class="dashboard__hero-metrics">${details}</div>`
-          : ''
-      }
-      ${
-        actions
-          ? actions
           : ''
       }
     </article>
