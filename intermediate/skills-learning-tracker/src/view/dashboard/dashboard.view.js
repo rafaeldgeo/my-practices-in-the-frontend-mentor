@@ -212,18 +212,57 @@ function renderHeroMetric(metric) {
   `
 }
 
-function formatProgressPercent(value) {
-  const numericValue = Number(value)
+const JOURNEY_MILESTONES_MINUTES = [60, 300, 600, 1500, 3000, 6000, 12000]
 
-  if (!Number.isFinite(numericValue)) {
-    return EMPTY_TEXT
+function getJourneyMilestones(targetMinutes) {
+  const numericTarget = Number(targetMinutes)
+  const safeTarget = Number.isFinite(numericTarget) ? Math.max(0, numericTarget) : 0
+
+  if (safeTarget <= 0) {
+    return []
   }
 
-  if (numericValue > 0 && numericValue < 10) {
-    return `${numericValue.toFixed(1)}%`
+  return [...new Set([...JOURNEY_MILESTONES_MINUTES.filter((minute) => minute < safeTarget), safeTarget])]
+    .sort((left, right) => left - right)
+}
+
+function getJourneyProgress(currentMinutes, targetMinutes) {
+  const numericCurrent = Number(currentMinutes)
+  const safeCurrent = Number.isFinite(numericCurrent) ? Math.max(0, numericCurrent) : 0
+  const milestones = getJourneyMilestones(targetMinutes)
+
+  if (milestones.length === 0) {
+    return 0
   }
 
-  return `${Math.round(numericValue)}%`
+  const boundaries = [0, ...milestones]
+  const finalBoundary = boundaries.at(-1) ?? 0
+  const clampedCurrent = Math.min(safeCurrent, finalBoundary)
+  const segmentCount = boundaries.length - 1
+
+  if (segmentCount <= 0) {
+    return 0
+  }
+
+  const segmentWeight = 100 / segmentCount
+  let segmentIndex = 0
+
+  while (
+    segmentIndex < segmentCount - 1 &&
+    clampedCurrent > boundaries[segmentIndex + 1]
+  ) {
+    segmentIndex += 1
+  }
+
+  const lowerBoundary = boundaries[segmentIndex]
+  const upperBoundary = boundaries[segmentIndex + 1]
+  const completedProgress = segmentIndex * segmentWeight
+  const segmentProgress =
+    upperBoundary > lowerBoundary
+      ? ((clampedCurrent - lowerBoundary) / (upperBoundary - lowerBoundary)) * segmentWeight
+      : 0
+
+  return Math.max(0, Math.min(100, completedProgress + segmentProgress))
 }
 
 function renderHeroMetrics(items) {
@@ -243,11 +282,11 @@ function getSkillAccentColor(featuredInsight) {
   return typeof candidate === 'string' && candidate.trim() !== '' ? candidate.trim() : ''
 }
 
-function renderProgressRing(featuredInsight) {
+function getProgressRingState(featuredInsight) {
   const progressRing = featuredInsight?.progressRing
 
   if (!progressRing || progressRing.isReady !== true) {
-    return ''
+    return null
   }
 
   const skillName =
@@ -258,24 +297,45 @@ function renderProgressRing(featuredInsight) {
         ? featuredInsight.focusSkill.skillName.trim()
         : typeof featuredInsight?.featuredSkill?.skillName === 'string' &&
             featuredInsight.featuredSkill.skillName.trim() !== ''
-          ? featuredInsight.featuredSkill.skillName.trim()
+        ? featuredInsight.featuredSkill.skillName.trim()
           : 'Current skill'
-  const percentage = Number.isFinite(Number(progressRing.percentage))
-    ? Math.max(0, Math.min(100, Number(progressRing.percentage)))
-    : 0
   const current = Number.isFinite(Number(progressRing.current)) ? Number(progressRing.current) : 0
   const target = Number.isFinite(Number(progressRing.target)) ? Number(progressRing.target) : 0
+  const percentage = getJourneyProgress(current, target)
+  const investedText = formatMinutes(current)
+  const targetText = formatMinutes(target)
   const accentColor = getSkillAccentColor(featuredInsight)
+
+  return {
+    skillName,
+    percentage,
+    investedText,
+    targetText,
+    accentColor,
+  }
+}
+
+function renderProgressRing(featuredInsight) {
+  const progressState = getProgressRingState(featuredInsight)
+
+  if (!progressState) {
+    return ''
+  }
+
+  const {
+    skillName,
+    percentage,
+    investedText,
+    targetText,
+    accentColor,
+  } = progressState
   const inlineStyle = [
     `--progress-ring-progress:${percentage}`,
     accentColor ? `--hero-accent:${accentColor}` : '',
   ]
     .filter(Boolean)
     .join(';')
-  const ringLabel = `${skillName} progress ${formatProgressPercent(percentage)}, ${formatMinutes(
-    current
-  )} logged of ${formatMinutes(target)} target`
-  const ringMeta = `${formatMinutes(current)} logged · ${formatMinutes(target)} target`
+  const ringLabel = `${skillName}, ${investedText} invested, target ${targetText}`
 
   return `
     <div
@@ -287,19 +347,17 @@ function renderProgressRing(featuredInsight) {
     >
       <div class="dashboard__hero-progress-ring" aria-hidden="true">
         <svg viewBox="0 0 100 100" focusable="false" aria-hidden="true">
-          <circle class="dashboard__hero-progress-track" cx="50" cy="50" r="44"></circle>
-          <circle class="dashboard__hero-progress-value" cx="50" cy="50" r="44"></circle>
-          <circle class="dashboard__hero-progress-core" cx="50" cy="50" r="30"></circle>
+          <circle class="dashboard__hero-progress-track" cx="50" cy="50" r="41.5"></circle>
+          <circle class="dashboard__hero-progress-value" cx="50" cy="50" r="41.5"></circle>
         </svg>
-        <div class="dashboard__hero-progress-copy">
-          <span class="dashboard__hero-progress-label">${escapeHtml(skillName)}</span>
-          <strong class="dashboard__hero-progress-value-text">${escapeHtml(
-            formatProgressPercent(percentage)
-          )}</strong>
-        </div>
+      </div>
+      <div class="dashboard__hero-progress-copy">
+        <span class="dashboard__hero-progress-label">Invested</span>
+        <strong class="dashboard__hero-progress-value-text">${escapeHtml(investedText)}</strong>
+        <span class="dashboard__hero-progress-skill">${escapeHtml(skillName)}</span>
       </div>
       <p class="dashboard__hero-progress-meta">
-        ${escapeHtml(ringMeta)}
+        <span class="dashboard__hero-progress-target">target ${escapeHtml(targetText)}</span>
       </p>
     </div>
   `
@@ -432,13 +490,18 @@ function renderFeaturedShell({
           <div class="dashboard__hero-copy">
             <p class="dashboard__eyebrow">${escapeHtml(eyebrow ?? EMPTY_TEXT)}</p>
             <h2 class="dashboard__heading">${escapeHtml(title ?? EMPTY_TEXT)}</h2>
+            ${
+              statusLabel
+                ? `<span class="dashboard__status-pill ${statusClassName}">${escapeHtml(statusLabel)}</span>`
+                : ''
+            }
+            ${
+              summary
+                ? `<p class="dashboard__summary">${escapeHtml(normalizeHeroSummary(summary))}</p>`
+                : ''
+            }
           </div>
         </header>
-        ${
-          summary
-            ? `<p class="dashboard__summary">${escapeHtml(normalizeHeroSummary(summary))}</p>`
-            : ''
-        }
         ${
           actions
             ? actions
@@ -447,11 +510,6 @@ function renderFeaturedShell({
       </div>
       <div class="dashboard__hero-meta">
         ${renderProgressRing(featuredInsight)}
-        ${
-          statusLabel
-            ? `<span class="dashboard__status-pill ${statusClassName}">${escapeHtml(statusLabel)}</span>`
-            : ''
-        }
       </div>
       ${
         details

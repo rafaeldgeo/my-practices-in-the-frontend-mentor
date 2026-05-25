@@ -194,10 +194,10 @@ try {
       },
       progressRing: {
         isReady: true,
-        percentage: 18,
-        current: 30,
+        percentage: 7.1,
+        current: 850,
         target: 12000,
-        remaining: 11970,
+        remaining: 11150,
         skillId: 'skill-1',
         skillName: 'Spanish',
         accentColor: '#059669',
@@ -287,7 +287,14 @@ try {
   assertEqual('hero primary action rendered', featured.innerHTML.includes('Practice now'), true)
   assertEqual('hero primary skill id rendered', featured.innerHTML.includes('data-skill-id="skill-1"'), true)
   assertEqual('hero progress ring rendered', featured.innerHTML.includes('dashboard__hero-progress'), true)
-  assertEqual('hero progress ring label rendered', featured.innerHTML.includes('Spanish progress'), true)
+  assertEqual('hero progress ring uses only track and value circles', featured.innerHTML.includes('dashboard__hero-progress-core'), false)
+  assertEqual('hero progress invested label rendered', featured.innerHTML.includes('Invested'), true)
+  assertEqual('hero progress invested value rendered', featured.innerHTML.includes('14h 10m'), true)
+  assertEqual('hero progress target rendered', featured.innerHTML.includes('target 200h'), true)
+  assertEqual('hero progress percent removed', featured.innerHTML.includes('47% built'), false)
+  assertEqual('hero progress percent class removed', featured.innerHTML.includes('dashboard__hero-progress-percent'), false)
+  assertEqual('hero progress bar removed', featured.innerHTML.includes('dashboard__hero-progress-bar'), false)
+  assertEqual('hero progress ring uses milestone journey value', featured.innerHTML.includes('--progress-ring-progress:46.'), true)
   assertEqual('heatmap panel title rendered', consistency.innerHTML.includes('dashboard__panel-title">Heatmap'), true)
   assertEqual('heatmap legend rendered', consistency.innerHTML.includes('dashboard__heatmap-legend'), true)
   assertEqual('heatmap grid rendered', consistency.innerHTML.includes('role="grid"'), true)
@@ -527,6 +534,7 @@ try {
 
   assertEqual('stats empty state rendered', stats.innerHTML.includes('No data available'), true)
   assertEqual('recent activity empty state rendered', recentActivity.innerHTML.includes('No recent activity yet.'), true)
+  assertEqual('hero progress bar remains removed with empty featured insight', featured.innerHTML.includes('dashboard__hero-progress-bar'), false)
 } finally {
   globalThis.document = previousDocument
 }
