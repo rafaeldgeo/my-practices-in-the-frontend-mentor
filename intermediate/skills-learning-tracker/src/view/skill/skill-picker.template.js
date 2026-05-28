@@ -13,6 +13,16 @@ function createSkillDomId(skillId) {
   return normalizedId === '' ? 'skill-picker-item' : `skill-picker-item-${normalizedId}`
 }
 
+function createSkillAccentStyle(color) {
+  const normalizedColor = typeof color === 'string' ? color.trim() : ''
+
+  if (!/^#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$/.test(normalizedColor)) {
+    return ''
+  }
+
+  return ` style="--skill-accent: ${escapeHtml(normalizedColor)};"`
+}
+
 function renderSkillOption(skill) {
   if (!skill || typeof skill !== 'object') {
     return ''
@@ -31,6 +41,7 @@ function renderSkillOption(skill) {
     <li class="skill-picker__item">
       <button
         class="skill-picker__option"
+        ${createSkillAccentStyle(skill.color)}
         data-skill-id="${escapeHtml(skillId)}"
         data-sort-rank="${escapeHtml(String(skill.sortRank ?? ''))}"
         aria-labelledby="${escapeHtml(`${skillDomId}-name`)}"

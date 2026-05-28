@@ -483,8 +483,14 @@ function renderFeaturedShell({
   details = '',
   actions = '',
 }) {
+  const accentColor = getSkillAccentColor(featuredInsight)
+  const inlineStyle = accentColor ? `--hero-accent:${accentColor}` : ''
+
   return `
-    <article class="dashboard__panel dashboard__panel--featured ${modifierClass}">
+    <article
+      class="dashboard__panel dashboard__panel--featured ${modifierClass}"
+      ${inlineStyle ? `style="${escapeHtml(inlineStyle)}"` : ''}
+    >
       <div class="dashboard__hero-main">
         <header class="dashboard__hero-header">
           <div class="dashboard__hero-copy">
