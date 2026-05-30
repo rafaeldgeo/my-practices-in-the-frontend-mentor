@@ -585,8 +585,16 @@ function renderStats(globalStats) {
 
   if (!globalStats) {
     return `
-      <article class="dashboard__panel dashboard__panel--stats dashboard__panel--empty">
-        <p class="dashboard__eyebrow">Stats</p>
+      <article
+        class="dashboard__panel dashboard__panel--stats dashboard__panel--empty"
+        aria-labelledby="stats-title"
+      >
+        <header class="dashboard__panel-header dashboard__panel-header--stats">
+          <div class="dashboard__panel-copy dashboard__panel-copy--stats">
+            <p class="dashboard__eyebrow">Stats</p>
+            <h2 id="stats-title" class="dashboard__panel-title">Momentum at a glance</h2>
+          </div>
+        </header>
         <p class="dashboard__empty">${EMPTY_TEXT}</p>
       </article>
     `;
@@ -597,8 +605,16 @@ function renderStats(globalStats) {
 
   if (items.length === 0) {
     return `
-      <article class="dashboard__panel dashboard__panel--stats dashboard__panel--empty">
-        <p class="dashboard__eyebrow">Stats</p>
+      <article
+        class="dashboard__panel dashboard__panel--stats dashboard__panel--empty"
+        aria-labelledby="stats-title"
+      >
+        <header class="dashboard__panel-header dashboard__panel-header--stats">
+          <div class="dashboard__panel-copy dashboard__panel-copy--stats">
+            <p class="dashboard__eyebrow">Stats</p>
+            <h2 id="stats-title" class="dashboard__panel-title">Momentum at a glance</h2>
+          </div>
+        </header>
         <p class="dashboard__empty">${EMPTY_TEXT}</p>
       </article>
     `;
@@ -609,10 +625,15 @@ function renderStats(globalStats) {
   const supportingItems = items.slice(2);
 
   return `
-    <article class="dashboard__panel dashboard__panel--stats">
+    <article
+      class="dashboard__panel dashboard__panel--stats"
+      aria-labelledby="stats-title"
+    >
       <header class="dashboard__panel-header dashboard__panel-header--stats">
-        <p class="dashboard__eyebrow">Stats</p>
-        <p class="dashboard__panel-kicker">Momentum at a glance</p>
+        <div class="dashboard__panel-copy dashboard__panel-copy--stats">
+          <p class="dashboard__eyebrow">Stats</p>
+          <h2 id="stats-title" class="dashboard__panel-title">Momentum at a glance</h2>
+        </div>
       </header>
       <div class="dashboard__stats-groups">
         <dl class="dashboard__definition-list dashboard__definition-list--stats dashboard__definition-list--primary">
