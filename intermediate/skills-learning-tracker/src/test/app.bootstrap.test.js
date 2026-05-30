@@ -42,8 +42,8 @@ function createStubView(renderResultFactory = () => '') {
 
 const storeState = {
   skills: [
-    { id: 'skill-1', name: 'Spanish' },
-    { id: 'skill-2', name: 'TypeScript' },
+    { id: 'skill-1', name: 'Spanish', color: '#059669' },
+    { id: 'skill-2', name: 'TypeScript', color: '#0f766e' },
   ],
   sessions: [],
   activities: [],
@@ -307,6 +307,7 @@ await app.handleHeroAction({
 assertEqual('primary hero action opens session modal with preselected skill', sessionView.renderCalls[0], {
   skillId: 'skill-2',
   skillName: 'TypeScript',
+  skillColor: '#0f766e',
   feedbackMessage: '',
 })
 
@@ -345,6 +346,7 @@ await flush()
 assertEqual('picker selection opens session modal', sessionView.renderCalls[1], {
   skillId: 'skill-1',
   skillName: 'Spanish',
+  skillColor: '#059669',
   feedbackMessage: '',
 })
 
@@ -363,6 +365,7 @@ assertEqual('goal setup opens the skill form in goal mode', skillFormView.render
   skill: {
     id: 'skill-1',
     name: 'Spanish',
+    color: '#059669',
   },
 })
 
@@ -375,6 +378,7 @@ await flush()
 assertEqual('goal setup updates the existing skill', storeState.skills[0], {
   id: 'skill-1',
   name: 'Spanish',
+  color: '#059669',
   goal: {
     type: 'weekly',
     targetHours: 12,

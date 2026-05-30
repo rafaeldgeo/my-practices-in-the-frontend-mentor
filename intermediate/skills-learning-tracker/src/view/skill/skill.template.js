@@ -72,7 +72,7 @@ function renderCreateMode({ color = DEFAULT_SKILL_COLOR } = {}) {
 
   return `
     <section class="skill-form-view" aria-labelledby="skill-form-title" aria-describedby="skill-form-description">
-      <h2 class="skill-form-view__title" id="skill-form-title">Add a skill</h2>
+      <h2 class="skill-form-view__title" id="skill-form-title">Add a Skill</h2>
       <p class="skill-form-view__description" id="skill-form-description">
         Create the skill first. Optional goals help track long-term progress.
       </p>
@@ -95,7 +95,7 @@ function renderCreateMode({ color = DEFAULT_SKILL_COLOR } = {}) {
           <input id="skill-color" name="color" type="color" value="${safeColor}" />
         </div>
 
-        <section class="skill-form__goal" aria-describedby="skill-goal-description">
+        <section class="skill-form__goal">
           <div class="skill-form__goal-header">
             <button
               class="skill-form__goal-toggle"
@@ -105,9 +105,6 @@ function renderCreateMode({ color = DEFAULT_SKILL_COLOR } = {}) {
             >
               Optional goal
             </button>
-            <p class="skill-form__goal-description" id="skill-goal-description">
-              Goals help track long-term progress. You can add one later.
-            </p>
           </div>
 
           <div class="skill-form__goal-panel" id="skill-goal-panel" hidden>

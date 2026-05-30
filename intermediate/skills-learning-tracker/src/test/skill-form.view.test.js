@@ -125,8 +125,9 @@ try {
   const createHtml = createView.render()
 
   assertEqual('create mode exposes accessibility description', createHtml.includes('aria-describedby="skill-form-description"'), true)
-  assertEqual('create mode title', createHtml.includes('Add a skill'), true)
-  assertEqual('create mode exposes optional goal copy', createHtml.includes('Optional goal'), true)
+  assertEqual('create mode title', createHtml.includes('Add a Skill'), true)
+  assertEqual('create mode exposes optional goal toggle', createHtml.includes('Optional goal'), true)
+  assertEqual('create mode omits goal helper copy', createHtml.includes('Goals help track long-term progress. You can add one later.'), false)
 
   let createPayload = null
 

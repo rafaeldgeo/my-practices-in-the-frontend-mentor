@@ -28,7 +28,7 @@ export function createSessionView() {
     feedbackMessage: '',
   }
 
-  function render({ skillId, skillName, feedbackMessage = '' } = {}) {
+  function render({ skillId, skillName, skillColor, feedbackMessage = '' } = {}) {
     state.skillId = typeof skillId === 'string' ? skillId : ''
     state.skillName = typeof skillName === 'string' ? skillName : ''
     state.selectedDuration = null
@@ -39,6 +39,7 @@ export function createSessionView() {
     return createSessionTemplate({
       skillId: state.skillId,
       skillName: state.skillName,
+      skillColor: typeof skillColor === 'string' ? skillColor : '',
       feedbackMessage: state.feedbackMessage,
     })
   }

@@ -130,6 +130,7 @@ export function createSkillsLearningTrackerApp({
     const content = sessionView.render({
       skillId: String(skill.id),
       skillName: skill.name,
+      skillColor: skill.color,
       feedbackMessage: '',
     })
 
