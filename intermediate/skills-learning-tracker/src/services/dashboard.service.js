@@ -501,6 +501,14 @@ function getActivitySortValue(timestamp) {
   return Number.NEGATIVE_INFINITY;
 }
 
+function getActivitySortPriority(activity) {
+  if (!activity || typeof activity !== 'object') {
+    return 0;
+  }
+
+  return activity.type === 'skill_created' ? 1 : 0;
+}
+
 function getActivityDateKey(activity) {
   if (!activity || typeof activity !== 'object') {
     return '';
@@ -664,6 +672,7 @@ function mapSkillActivities(skills) {
       title: `Added ${skill.name}`,
       message: `Added ${skill.name}`,
       timestamp: skill.createdAt,
+      sourceIndex: index,
       skillId: normalizeId(skill.id),
       skillName: skill.name,
       date: isValidDateString(skill.createdAt) ? skill.createdAt : getLocalDateKey(new Date(skill.createdAt)),
@@ -697,6 +706,7 @@ function mapSessionActivities(sessions, skills) {
         title: `Practiced ${skillName}`,
         message: `Practiced ${skillName}`,
         timestamp,
+        sourceIndex: index,
         skillId,
         skillName,
         date: isValidDateString(session.date)
@@ -714,7 +724,19 @@ function getRecentActivity(sessions, skills, referenceDate = new Date()) {
   const activities = [...skillActivities, ...sessionActivities];
 
   activities.sort((activityA, activityB) => {
-    return getActivitySortValue(activityB.timestamp) - getActivitySortValue(activityA.timestamp);
+    const timestampDelta = getActivitySortValue(activityB.timestamp) - getActivitySortValue(activityA.timestamp);
+
+    if (timestampDelta !== 0) {
+      return timestampDelta;
+    }
+
+    const typePriorityDelta = getActivitySortPriority(activityB) - getActivitySortPriority(activityA);
+
+    if (typePriorityDelta !== 0) {
+      return typePriorityDelta;
+    }
+
+    return (Number(activityB.sourceIndex) || 0) - (Number(activityA.sourceIndex) || 0);
   });
 
   const visibleActivities = activities

@@ -27,6 +27,17 @@ function isWithinSafeWindow(timestamp) {
   return minutesSinceMidnight >= 8 * 60 && minutesSinceMidnight <= 13 * 60
 }
 
+function isAtOrBeforeReference(timestamp, referenceDate) {
+  const parsedTimestamp = Date.parse(timestamp)
+  const parsedReference = referenceDate instanceof Date ? referenceDate.getTime() : Date.parse(referenceDate)
+
+  if (Number.isNaN(parsedTimestamp) || Number.isNaN(parsedReference)) {
+    return false
+  }
+
+  return parsedTimestamp <= parsedReference
+}
+
 const referenceDate = new Date('2026-04-22T12:00:00Z')
 
 const demoData = {
@@ -75,5 +86,17 @@ assertTrue('skill timestamp stays in the safe window', isWithinSafeWindow(shifte
 assertTrue('activity timestamp stays in the safe window', isWithinSafeWindow(shifted.activities[0].timestamp))
 assertTrue('demo timestamps are normalized away from late evening hours', shifted.sessions[0].createdAt < '2026-04-22T13:00:00Z')
 assertEqual('original payload is not mutated', demoData.sessions[0].date, '2026-03-19')
+
+const earlyReferenceDate = new Date('2026-04-22T09:30:00Z')
+const earlyShifted = transformDemoDataset(demoData, earlyReferenceDate)
+
+assertTrue(
+  'current-day session timestamp does not exceed the reference clock',
+  isAtOrBeforeReference(earlyShifted.sessions[0].createdAt, earlyReferenceDate)
+)
+assertTrue(
+  'current-day activity timestamp does not exceed the reference clock',
+  isAtOrBeforeReference(earlyShifted.activities[0].timestamp, earlyReferenceDate)
+)
 
 console.log('demo temporal tests finished')

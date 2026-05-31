@@ -258,4 +258,56 @@ assertEqual(
   '2026-04-22T15:00:00Z'
 );
 
+const sameTimestampInsertionDashboardData = createDashboardData({
+  referenceDate: new Date('2026-05-31T12:00:00Z'),
+  skills: [
+    {
+      id: 'skill-ai',
+      name: 'AI Engineering',
+      createdAt: '2026-05-31T10:00:00Z',
+    },
+    {
+      id: 'skill-guitar',
+      name: 'Guitar',
+      createdAt: '2026-05-31T10:00:00Z',
+    },
+    {
+      id: 'skill-spanish',
+      name: 'Spanish',
+      createdAt: '2026-05-31T10:00:00Z',
+    },
+    {
+      id: 'skill-new',
+      name: 'teste 1',
+      createdAt: '2026-05-31T10:00:00Z',
+    },
+  ],
+  sessions: [
+    {
+      skillId: 'skill-ai',
+      duration: 60,
+      date: '2026-05-31',
+      createdAt: '2026-05-31T10:00:00Z',
+    },
+    {
+      skillId: 'skill-guitar',
+      duration: 40,
+      date: '2026-05-31',
+      createdAt: '2026-05-31T10:00:00Z',
+    },
+    {
+      skillId: 'skill-spanish',
+      duration: 45,
+      date: '2026-05-31',
+      createdAt: '2026-05-31T10:00:00Z',
+    },
+  ],
+});
+
+assertEqual(
+  'newly inserted activity wins same-timestamp ties',
+  sameTimestampInsertionDashboardData.recentActivity.groups.flatMap((group) => group.items)[0].title,
+  'Added teste 1'
+);
+
 console.log('dashboard tests finished');

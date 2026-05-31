@@ -67,10 +67,14 @@ function formatCompactDateLabel(date) {
   return `${monthName} ${Number(day)}`;
 }
 
-function renderActivityButton(activity, content) {
+function renderActivityButton(activity, content, modifierClass = '') {
+  const className = ['recent-activity__item', modifierClass]
+    .filter((item) => typeof item === 'string' && item.trim() !== '')
+    .join(' ');
+
   return `
     <button
-      class="recent-activity__item"
+      class="${className}"
       data-skill-id="${escapeHtml(String(activity?.skillId ?? ''))}"
       aria-label="${escapeHtml(String(activity?.accessibilityLabel ?? EMPTY_TEXT))}"
       type="button"
@@ -78,6 +82,21 @@ function renderActivityButton(activity, content) {
       ${content}
     </button>
   `;
+}
+
+function getRecentActivityPresenceClass(index, total) {
+  const safeIndex = Number.isFinite(Number(index)) ? Number(index) : 0;
+  const safeTotal = Number.isFinite(Number(total)) ? Number(total) : 0;
+
+  if (safeIndex <= 0) {
+    return 'recent-activity__item--fresh';
+  }
+
+  if (safeIndex >= Math.max(0, safeTotal - 1)) {
+    return 'recent-activity__item--calm';
+  }
+
+  return 'recent-activity__item--settled';
 }
 
 function formatActivityMeta(activity) {
@@ -841,7 +860,7 @@ function renderConsistency(consistency) {
   `;
 }
 
-function renderActivityItem(activity) {
+function renderActivityItem(activity, index = 0, total = 0) {
   if (!activity || typeof activity !== 'object') {
     return '';
   }
@@ -852,6 +871,7 @@ function renderActivityItem(activity) {
       ? activity.message
       : EMPTY_TEXT;
   const meta = formatActivityMeta(activity);
+  const presenceClass = getRecentActivityPresenceClass(index, total);
 
   return `
     <li class="dashboard__list-item">
@@ -864,7 +884,8 @@ function renderActivityItem(activity) {
               ? `<span class="recent-activity__meta">${escapeHtml(meta)}</span>`
               : ''
           }
-        `
+        `,
+        presenceClass
       )}
     </li>
   `;
@@ -886,7 +907,7 @@ function getRecentActivityItems(recentActivity) {
 function renderRecentActivity(recentActivity) {
   const items = getRecentActivityItems(recentActivity);
   const renderedItems = items
-    .map((item) => renderActivityItem(item))
+    .map((item, index) => renderActivityItem(item, index, items.length))
     .filter(Boolean)
     .join('');
 

@@ -27,11 +27,28 @@
 
     <div class="page-shell">
       <header class="header">
-        <div class="header__brand">Skills Tracker</div>
+        <div class="header__brand" aria-label="Skills Tracker">
+          <span class="header__brand-primary"><em>SKILLS LEARNING</em></span>
+          <span class="header__brand-secondary"><sup>Tracker</sup></span>
+        </div>
 
-        <button class="header__add-skill" type="button">
-          Add Skill
-        </button>
+        <div class="header__actions" aria-label="Header actions">
+          <button class="header__add-skill" type="button">
+            Add Skill
+          </button>
+
+          <button class="header__profile" type="button" aria-label="Open profile">
+            <svg
+              class="header__profile-icon"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <circle cx="12" cy="8" r="3.25"></circle>
+              <path d="M5.5 19.5a6.5 6.5 0 0 1 13 0"></path>
+            </svg>
+          </button>
+        </div>
       </header>
 
       <main class="dashboard">
@@ -41,5 +58,26 @@
         <section id="recent-activity" class="dashboard__recent-activity"></section>
       </main>
     </div>
+
+    <footer class="footer">
+      Challenge by
+      <a
+        class="footer__link"
+        href="https://www.frontendmentor.io/profile/rafaeldgeo"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Frontend Mentor
+      </a>.
+      Coded by
+      <a
+        class="footer__link"
+        href="https://www.linkedin.com/in/rafaeldgeo/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Rafael Dias de Almeida
+      </a>.
+    </footer>
   </body>
 </html>

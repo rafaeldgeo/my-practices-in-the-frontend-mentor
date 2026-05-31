@@ -84,6 +84,26 @@ function shiftTimestamp(timestamp, dayOffset) {
   return new Date(normalizedTimestamp).toISOString().replace('.000Z', 'Z')
 }
 
+function clampTimestampToReference(timestamp, referenceDate) {
+  if (typeof timestamp !== 'string' || timestamp.trim() === '') {
+    return timestamp
+  }
+
+  const parsedTimestamp = Date.parse(timestamp)
+  const parsedReferenceDate =
+    referenceDate instanceof Date ? referenceDate.getTime() : Date.parse(referenceDate)
+
+  if (
+    Number.isNaN(parsedTimestamp) ||
+    Number.isNaN(parsedReferenceDate) ||
+    parsedTimestamp <= parsedReferenceDate
+  ) {
+    return timestamp
+  }
+
+  return new Date(parsedReferenceDate).toISOString().replace('.000Z', 'Z')
+}
+
 function getLocalDateKey(referenceDate = new Date()) {
   const date = referenceDate instanceof Date ? referenceDate : new Date(referenceDate)
 
@@ -121,14 +141,19 @@ function shiftTemporalValue(value, dayOffset) {
   return value
 }
 
-function shiftRecordDates(record, dayOffset) {
+function shiftRecordDates(record, dayOffset, referenceDate) {
   if (!record || typeof record !== 'object' || Array.isArray(record)) {
     return record
   }
 
   return Object.entries(record).reduce((accumulator, [key, value]) => {
     if (typeof value === 'string' && (key === 'date' || key === 'createdAt' || key === 'timestamp')) {
-      accumulator[key] = shiftTemporalValue(value, dayOffset)
+      const shiftedValue = shiftTemporalValue(value, dayOffset)
+
+      accumulator[key] =
+        key === 'createdAt' || key === 'timestamp'
+          ? clampTimestampToReference(shiftedValue, referenceDate)
+          : shiftedValue
       return accumulator
     }
 
@@ -137,12 +162,12 @@ function shiftRecordDates(record, dayOffset) {
   }, {})
 }
 
-function shiftCollection(collection, dayOffset) {
+function shiftCollection(collection, dayOffset, referenceDate) {
   if (!Array.isArray(collection)) {
     return collection
   }
 
-  return collection.map((item) => shiftRecordDates(item, dayOffset))
+  return collection.map((item) => shiftRecordDates(item, dayOffset, referenceDate))
 }
 
 export function transformDemoDataset(data, referenceDate = new Date()) {
@@ -160,15 +185,15 @@ export function transformDemoDataset(data, referenceDate = new Date()) {
   const transformed = { ...data }
 
   if (Array.isArray(data.skills)) {
-    transformed.skills = shiftCollection(data.skills, dayOffset)
+    transformed.skills = shiftCollection(data.skills, dayOffset, referenceDate)
   }
 
   if (Array.isArray(data.sessions)) {
-    transformed.sessions = shiftCollection(data.sessions, dayOffset)
+    transformed.sessions = shiftCollection(data.sessions, dayOffset, referenceDate)
   }
 
   if (Array.isArray(data.activities)) {
-    transformed.activities = shiftCollection(data.activities, dayOffset)
+    transformed.activities = shiftCollection(data.activities, dayOffset, referenceDate)
   }
 
   return transformed

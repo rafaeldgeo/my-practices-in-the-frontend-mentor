@@ -310,11 +310,14 @@ try {
   assertEqual('heatmap empty cells rendered', consistency.innerHTML.includes('data-is-empty="true"'), true)
   assertEqual('heatmap visual copy removed', consistency.innerHTML.includes('dashboard__heatmap-cell-copy'), false)
   assertEqual('heatmap fallback text rendered', consistency.innerHTML.includes('dashboard__heatmap-fallback'), true)
+  assertEqual('recent activity panel rendered', recentActivity.innerHTML.includes('dashboard__panel--activity'), true)
   assertEqual('recent activity renders linear list', recentActivity.innerHTML.includes('dashboard__list--activity'), true)
   assertEqual('recent activity group headings removed', recentActivity.innerHTML.includes('dashboard__activity-group-heading'), false)
   assertEqual('recent activity title rendered', recentActivity.innerHTML.includes('Practiced Spanish'), true)
   assertEqual('recent activity inline metadata rendered', recentActivity.innerHTML.includes('Today · 30m'), true)
   assertEqual('recent activity accessibility label rendered', recentActivity.innerHTML.includes('aria-label="Practiced Spanish, 30m, Today"'), true)
+  assertEqual('recent activity most recent item marked fresh', recentActivity.innerHTML.includes('recent-activity__item--fresh'), true)
+  assertEqual('recent activity older item marked calm', recentActivity.innerHTML.includes('recent-activity__item--calm'), true)
 
   const primaryButton = {
     dataset: {
