@@ -692,8 +692,104 @@ function getConsistencyWeeks(cells) {
   return weeks;
 }
 
-function getConsistencyCellIds(date) {
-  const safeDate = typeof date === 'string' && date.trim() !== '' ? date.trim() : 'unknown';
+const CONSISTENCY_WINDOW_COLUMNS = 28;
+const CONSISTENCY_DAYS_PER_WEEK = 7;
+const MS_PER_DAY = 24 * 60 * 60 * 1000;
+
+function shiftDateKey(date, dayOffset = 0) {
+  if (typeof date !== 'string' || date.trim() === '') {
+    return '';
+  }
+
+  const parsedTimestamp = Date.parse(`${date.trim()}T00:00:00Z`);
+
+  if (Number.isNaN(parsedTimestamp)) {
+    return '';
+  }
+
+  return new Date(parsedTimestamp + dayOffset * MS_PER_DAY).toISOString().slice(0, 10);
+}
+
+function getConsistencyCellMap(cells) {
+  return new Map(
+    cells
+      .filter((cell) => cell && typeof cell === 'object' && typeof cell.date === 'string')
+      .map((cell) => [cell.date.trim(), cell])
+      .filter(([date]) => date !== '')
+  );
+}
+
+function createConsistencyEmptyCell(date) {
+  const label = typeof date === 'string' && date.trim() !== '' ? formatDateLabel(date) : EMPTY_TEXT;
+
+  return {
+    bucket: 'empty',
+    sessionCount: 0,
+    totalMinutes: 0,
+    consistencyScore: 0,
+    activeRunLength: 0,
+    accessibilityLabel: `${label}: no activity recorded`,
+    summaryLabel: 'No activity recorded',
+    isActive: false,
+    isEmpty: true,
+    date,
+    intensityLevel: 'empty',
+  };
+}
+
+function getConsistencyWindowWeeks(consistency, windowWeeks = CONSISTENCY_WINDOW_COLUMNS) {
+  const items = getConsistencyCells(consistency);
+  const totalWeeks = Number.isFinite(Number(windowWeeks)) ? Number(windowWeeks) : CONSISTENCY_WINDOW_COLUMNS;
+
+  if (items.length === 0 || totalWeeks <= 0) {
+    return [];
+  }
+
+  const normalizedTotalWeeks = Math.max(1, Math.floor(totalWeeks));
+  const windowLength = normalizedTotalWeeks * CONSISTENCY_DAYS_PER_WEEK;
+  const fallbackEndDate =
+    typeof consistency?.range?.endDate === 'string' && consistency.range.endDate.trim() !== ''
+      ? consistency.range.endDate.trim()
+      : typeof items[items.length - 1]?.date === 'string'
+      ? items[items.length - 1].date.trim()
+      : '';
+  const endDate = shiftDateKey(fallbackEndDate, 0);
+
+  if (endDate === '') {
+    return getConsistencyWeeks(items).slice(-normalizedTotalWeeks);
+  }
+
+  const startDate = shiftDateKey(endDate, -(windowLength - 1));
+
+  if (startDate === '') {
+    return getConsistencyWeeks(items).slice(-normalizedTotalWeeks);
+  }
+
+  const cellMap = getConsistencyCellMap(items);
+  const windowCells = Array.from({ length: windowLength }, (_, dayOffset) => {
+    const date = shiftDateKey(startDate, dayOffset);
+
+    return cellMap.get(date) ?? createConsistencyEmptyCell(date);
+  });
+
+  return getConsistencyWeeks(windowCells);
+}
+
+function getConsistencyWeekSummaryLabel(week, weekIndex) {
+  const currentDate = week?.[0]?.date;
+
+  if (typeof currentDate !== 'string' || currentDate.trim() === '') {
+    return `Week ${weekIndex + 1}`;
+  }
+
+  return `Week ${weekIndex + 1}, starting ${formatDateLabel(currentDate)}`;
+}
+
+function getConsistencyCellIds(date, weekIndex = 0, dayIndex = 0) {
+  const safeDate =
+    typeof date === 'string' && date.trim() !== ''
+      ? date.trim()
+      : `missing-week-${weekIndex + 1}-day-${dayIndex + 1}`;
 
   return {
     labelId: `consistency-cell-${safeDate}-label`,
@@ -727,24 +823,48 @@ function renderConsistencyLegend() {
   `;
 }
 
-function renderConsistencyCell(cell) {
-  if (!cell || typeof cell !== 'object') {
-    return '';
-  }
+function renderConsistencyCell(cell, weekIndex = 0, dayIndex = 0) {
+  const fallbackCell = {
+    bucket: 'empty',
+    sessionCount: 0,
+    totalMinutes: 0,
+    consistencyScore: 0,
+    activeRunLength: 0,
+    accessibilityLabel: EMPTY_TEXT,
+    isActive: false,
+    isEmpty: true,
+    date: '',
+    intensityLevel: 'empty',
+  };
 
-  const bucket = typeof cell.bucket === 'string' && cell.bucket.trim() !== '' ? cell.bucket : 'empty';
-  const sessionCount = Number.isFinite(Number(cell.sessionCount)) ? Number(cell.sessionCount) : 0;
-  const totalMinutes = Number.isFinite(Number(cell.totalMinutes)) ? Number(cell.totalMinutes) : 0;
-  const consistencyScore = Number.isFinite(Number(cell.consistencyScore)) ? Number(cell.consistencyScore) : 0;
-  const activeRunLength = Number.isFinite(Number(cell.activeRunLength)) ? Number(cell.activeRunLength) : 0;
+  const normalizedCell = cell && typeof cell === 'object' ? cell : fallbackCell;
+
+  const bucket =
+    typeof normalizedCell.bucket === 'string' && normalizedCell.bucket.trim() !== ''
+      ? normalizedCell.bucket
+      : 'empty';
+  const sessionCount = Number.isFinite(Number(normalizedCell.sessionCount))
+    ? Number(normalizedCell.sessionCount)
+    : 0;
+  const totalMinutes = Number.isFinite(Number(normalizedCell.totalMinutes))
+    ? Number(normalizedCell.totalMinutes)
+    : 0;
+  const consistencyScore = Number.isFinite(Number(normalizedCell.consistencyScore))
+    ? Number(normalizedCell.consistencyScore)
+    : 0;
+  const activeRunLength = Number.isFinite(Number(normalizedCell.activeRunLength))
+    ? Number(normalizedCell.activeRunLength)
+    : 0;
   const accessibilityLabel =
-    typeof cell.accessibilityLabel === 'string' ? cell.accessibilityLabel.trim() : EMPTY_TEXT;
-  const isActive = Boolean(cell.isActive);
-  const isEmpty = Boolean(cell.isEmpty);
-  const cellIds = getConsistencyCellIds(cell.date);
+    typeof normalizedCell.accessibilityLabel === 'string'
+      ? normalizedCell.accessibilityLabel.trim()
+      : EMPTY_TEXT;
+  const isActive = Boolean(normalizedCell.isActive);
+  const isEmpty = Boolean(normalizedCell.isEmpty);
+  const cellIds = getConsistencyCellIds(normalizedCell.date, weekIndex, dayIndex);
   const tooltipReadyLabel = accessibilityLabel;
   const tooltipReadyDescription = [
-    `Date ${formatDateLabel(cell?.date)}`,
+    `Date ${formatDateLabel(normalizedCell?.date)}`,
     `${sessionCount} ${sessionCount === 1 ? 'session' : 'sessions'}`,
     `${formatMinutes(totalMinutes)} total`,
     `Score ${consistencyScore}`,
@@ -756,14 +876,18 @@ function renderConsistencyCell(cell) {
     <div
       class="dashboard__heatmap-cell dashboard__heatmap-cell--${escapeHtml(bucket)}"
       role="gridcell"
+      aria-colindex="${escapeHtml(String(weekIndex + 1))}"
+      aria-rowindex="${escapeHtml(String(dayIndex + 1))}"
       tabindex="0"
       aria-label="${escapeHtml(accessibilityLabel)}"
       aria-labelledby="${escapeHtml(cellIds.labelId)}"
       aria-describedby="${escapeHtml(cellIds.descriptionId)} ${escapeHtml(cellIds.fallbackId)}"
       data-bucket="${escapeHtml(bucket)}"
       data-consistency-score="${escapeHtml(String(consistencyScore))}"
-      data-date="${escapeHtml(String(cell.date ?? ''))}"
-      data-intensity-level="${escapeHtml(String(cell.intensityLevel ?? bucket))}"
+      data-date="${escapeHtml(String(normalizedCell.date ?? ''))}"
+      data-intensity-level="${escapeHtml(String(normalizedCell.intensityLevel ?? bucket))}"
+      data-week-index="${escapeHtml(String(weekIndex))}"
+      data-day-index="${escapeHtml(String(dayIndex))}"
       data-is-active="${String(isActive)}"
       data-is-empty="${String(isEmpty)}"
       data-session-count="${escapeHtml(String(sessionCount))}"
@@ -784,15 +908,33 @@ function renderConsistencyCell(cell) {
   `;
 }
 
+function renderConsistencyWeekSummary(weeks) {
+  if (!Array.isArray(weeks) || weeks.length === 0) {
+    return '';
+  }
+
+  return `
+    <ol id="consistency-week-summary" class="dashboard__sr-only">
+      ${weeks
+        .map((week, weekIndex) => `<li>${escapeHtml(getConsistencyWeekSummaryLabel(week, weekIndex))}</li>`)
+        .join('')}
+    </ol>
+  `;
+}
 
 function renderConsistency(consistency) {
   const items = getConsistencyCells(consistency);
-  const weeks = getConsistencyWeeks(items);
+  const weeks = getConsistencyWindowWeeks(consistency);
   const range = consistency?.range ?? {};
   const summary = consistency?.summary ?? {};
+  const renderedStartDate = weeks?.[0]?.[0]?.date ?? range.startDate ?? '';
+  const renderedEndDate = weeks?.[weeks.length - 1]?.[CONSISTENCY_DAYS_PER_WEEK - 1]?.date ?? range.endDate ?? '';
   const rangeLabel =
-    typeof range.startDate === 'string' && typeof range.endDate === 'string'
-      ? `${formatDateLabel(range.startDate)} to ${formatDateLabel(range.endDate)}`
+    typeof renderedStartDate === 'string' &&
+    typeof renderedEndDate === 'string' &&
+    renderedStartDate !== '' &&
+    renderedEndDate !== ''
+      ? `${formatDateLabel(renderedStartDate)} to ${formatDateLabel(renderedEndDate)}`
       : EMPTY_TEXT;
   const summaryLabel = [
     Number.isFinite(Number(summary.totalSessions)) ? `${Number(summary.totalSessions)} sessions` : null,
@@ -801,51 +943,44 @@ function renderConsistency(consistency) {
   ]
     .filter(Boolean)
     .join(' · ');
-
+  const rowCount = CONSISTENCY_DAYS_PER_WEEK;
 
   return `
     <article
       class="dashboard__panel dashboard__panel--consistency"
       aria-labelledby="consistency-title"
-      aria-describedby="consistency-summary consistency-legend"
+      aria-describedby="consistency-summary consistency-week-summary consistency-legend"
     >
       <header class="dashboard__panel-header dashboard__panel-header--consistency">
         <div class="dashboard__panel-copy">
           <p class="dashboard__eyebrow">Consistency</p>
-          <h2 id="consistency-title" class="dashboard__panel-title">Heatmap</h2>
+          <h2 id="consistency-title" class="dashboard__sr-only">Consistency</h2>
         </div>
         <p id="consistency-summary" class="dashboard__panel-kicker">
-          ${escapeHtml(rangeLabel)}${summaryLabel ? ` · ${escapeHtml(summaryLabel)}` : ''}
+          ${escapeHtml(rangeLabel)}
         </p>
       </header>
       ${
         items.length > 0
           ? `
-            <div class="dashboard__heatmap" role="grid" aria-label="Practice consistency by week">
-              ${renderConsistencyLegend()}
-              <div class="dashboard__heatmap-grid" role="rowgroup">
-                ${weeks
-                  .map(
-                    (week, weekIndex) => `
-                      <div
-                        class="dashboard__heatmap-week"
-                        role="row"
-                        aria-label="Week ${weekIndex + 1}${week[0]?.date ? `, starting ${formatDateLabel(week[0].date)}` : ''}"
-                      >
-                        <span class="dashboard__heatmap-week-label">
-                          ${escapeHtml(week[0]?.date ? formatCompactDateLabel(week[0].date) : `Week ${weekIndex + 1}`)}
-                        </span>
-                        <div class="dashboard__heatmap-week-cells">
-                          ${week
-                            .map((item) => renderConsistencyCell(item))
-                            .filter(Boolean)
-                            .join('')}
-                        </div>
-                      </div>
-                    `
-                  )
-                  .join('')}
+            <div class="dashboard__heatmap" role="grid" aria-label="Practice consistency over time">
+              <div
+                class="dashboard__heatmap-grid"
+                role="rowgroup"
+              >
+                ${Array.from({ length: rowCount }, (_, dayIndex) => `
+                  <div class="dashboard__heatmap-row" role="row">
+                    ${weeks
+                      .map((week, weekIndex) =>
+                        renderConsistencyCell(week[dayIndex], weekIndex, dayIndex)
+                      )
+                      .filter(Boolean)
+                      .join('')}
+                  </div>
+                `).join('')}
               </div>
+              ${renderConsistencyWeekSummary(weeks)}
+              ${renderConsistencyLegend()}
               <p class="dashboard__heatmap-fallback">
                 ${escapeHtml(
                   summaryLabel ||
