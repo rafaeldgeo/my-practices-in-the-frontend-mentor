@@ -1,7 +1,7 @@
 import { normalizeSkill } from '../services/skill.service.js'
 import { transformDemoDataset } from '../utils/demo-temporal.js'
 
-const DATA_URL = '../data/sample-skills.json'; // CAMINHO DO ARQUIVO JSON
+const DATA_URL = './public/data/sample-skills.json'; // CAMINHO DO ARQUIVO JSON
 let cachedData = null
 
 function getCollection(data, key) {

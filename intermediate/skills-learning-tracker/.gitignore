@@ -27,7 +27,7 @@ out/
 .env.test.local
 .env.production.local
 
-# IDE
+# IDE"
 .vscode/
 .idea/
 *.swp
