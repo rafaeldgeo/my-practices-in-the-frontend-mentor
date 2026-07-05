@@ -78,4 +78,9 @@ Practices in [Frontend Mentor Website](https://www.frontendmentor.io/)
 * 27- [Interactive-pricing-component](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/junior/interactive-pricing-component-main/):link: | **JS** <sup>Vanilla + MVC</sup>
 * 28- [browser-extensions-manager-ui-main](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/junior/browser-extensions-manager-ui-main/):link: | **JS** <sup>Vanilla + MVC</sup>
 
+## Level: intermediate<sup>3</sup>
+
+* 1- [Skills-learning-tracker](https://rafaeldgeo.github.io/my-practices-in-the-frontend-mentor/intermediate/skills-learning-tracker/):link: *Product Challenge* | **JS** <sup>Vanilla</sup> | Chat GPT | Figma IA | Codex
+
 **My Frontend Mentor: [@rafaeldgeo](https://www.frontendmentor.io/profile/rafaeldgeo)**:link:
+
