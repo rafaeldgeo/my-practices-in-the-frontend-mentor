@@ -934,6 +934,12 @@ body {
   line-height: 1.3;
 }
 
+@media (max-width: 39.25rem) {
+  .dashboard__heatmap {
+    --heatmap-visible-columns: 8;
+    --heatmap-cell-max-size: 100cqw;
+  }
+}
 @media (min-width: 48rem) {
   .dashboard__heatmap {
     --heatmap-visible-columns: 28;
@@ -984,6 +990,58 @@ body {
   .dashboard__hero-metrics {
     display: grid;
     gap: 0.65rem;
+  }
+}
+@media (max-width: 36rem) {
+  .dashboard__hero-meta {
+    width: 100%;
+    justify-self: stretch;
+    justify-items: center;
+  }
+  .dashboard__hero-progress {
+    width: 100%;
+    max-width: none;
+    border: 0;
+    background: transparent;
+    justify-items: center;
+  }
+  .dashboard__hero-progress-copy {
+    text-align: center;
+  }
+  .dashboard__hero-progress-meta {
+    justify-items: center;
+    text-align: center;
+  }
+}
+@media (max-width: 24.5rem) {
+  .page-shell {
+    padding-inline: 0.75rem;
+  }
+  .header {
+    gap: 0.5rem;
+    padding: 0.75rem 0.8rem;
+  }
+  .header__brand {
+    gap: 0.25rem;
+    font-size: 1rem;
+    letter-spacing: 0.02em;
+    min-width: 0;
+  }
+  .header__actions {
+    gap: 0.35rem;
+    min-width: 0;
+  }
+  .header__add-skill {
+    font-size: 0.8125rem;
+    padding: 0.58rem 0.8rem;
+  }
+  .header__profile {
+    width: 2rem;
+    height: 2rem;
+  }
+  .header__profile-icon {
+    width: 0.9rem;
+    height: 0.9rem;
   }
 }
 .skill-picker {
@@ -1824,5 +1882,3 @@ body {
   outline: 2px solid color-mix(in srgb, var(--color-text-tertiary) 72%, currentColor 28%);
   outline-offset: 2px;
 }
-
-/*# sourceMappingURL=main.css.map */
